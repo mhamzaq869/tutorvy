@@ -1,0 +1,42 @@
+.input-test input{
+    width: 100%;
+    border: 1px solid #D6DBE2;
+padding: 10px;
+border-radius: 4px;
+
+}
+.input-test input::placeholder{
+    color: #737D8B;
+    font-size: 16px;
+    font-family: "Poppins";
+    opacity: 0.5;
+
+}
+.input-answer input{
+    width: 100%;
+    border: 1px solid #D6DBE2;
+padding: 10px;
+border-radius: 4px;
+
+}
+.input-answer textarea::placeholder{
+    color: #737D8B !important;
+    font-size: 16px;
+
+    font-family: "Poppins";
+    opacity: 0.5 !important;
+
+}
+@media(max-width:790px) {
+    .card {
+        width: 100%;
+        margin-left: 0px  !important ;
+        margin-right: 0px !important;
+    }
+}
+/* @media(max-width:790px) {
+    .keep-res {
+        text-align: left     !important;
+        
+    }
+} */

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="21.5" height="23.69" viewBox="0 0 21.5 23.69">
+  <g id="students" transform="translate(-749.25 -2254.06)">
+    <path id="Path_1914" data-name="Path 1914" d="M753.49,2265.43c1.18-1.02,3.64-1.32,6.39-1.32,2.8,0,5.28.31,6.43,1.39" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" opacity="0.4" style="isolation: isolate"/>
+    <path id="Path_1915" data-name="Path 1915" d="M760.07,2269.95H760" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" opacity="0.4" style="isolation: isolate"/>
+    <path id="Stroke_3-43" data-name="Stroke 3-43" d="M758.9,2260.055a3.6,3.6,0,1,0-3.6-3.6h0a3.583,3.583,0,0,0,3.57,3.6Z" transform="translate(0.972 1.945)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" opacity="0.4" style="isolation: isolate"/>
+    <g id="Group_6049" data-name="Group 6049">
+      <path id="Path_1916" data-name="Path 1916" d="M768.07,2268v-2.92l-8.03,1.91-.04.01v10l.04-.01.03-.01,8-1.9V2273" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+      <path id="Path_1917" data-name="Path 1917" d="M752,2268v-2.92l8.03,1.91h.01l.03.01v10l-.03-.01h-.01l-.03-.01-8-1.9V2273" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    </g>
+    <ellipse id="Ellipse_192" data-name="Ellipse 192" cx="2" cy="2.5" rx="2" ry="2.5" transform="translate(766 2268)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <ellipse id="Ellipse_193" data-name="Ellipse 193" cx="2" cy="2.5" rx="2" ry="2.5" transform="translate(750 2268)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  </g>
+</svg>
