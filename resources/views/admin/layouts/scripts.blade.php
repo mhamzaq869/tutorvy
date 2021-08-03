@@ -1,6 +1,7 @@
 
     <!-- jquery  -->
     <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/jquery-ui.js"></script>
       <!-- bootstrap 4 javascript -->
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>

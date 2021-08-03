@@ -2,35 +2,35 @@
     <nav id="sidebar" class="bg-dark1 ">
         <div class="sidebar-header">
             <div class="logoImage">
-                <a href="index.html">
+                <a href="{{route('admin.dashboard')}}">
                     <img class="mt-2 mb-1 w-50 ml-5 mr-4" src="assets/img/logo/logo-white.png" alt="logoImage">
                 </a>
             </div>
         </div>
         <div class="list-ul mt-3">
             <ul class="list-unstyled list-unstyled-1 newClass componentsX" id="sidenav-hide">
-                <li class="btn active w-100">
-                    <a href="index.html" data-toggle="" aria-expanded="false">
+                <li class="btn @if(\Request::path() === 'admin/dashboard') active @endif w-100">
+                    <a href="{{route('admin.dashboard')}}" data-toggle="" aria-expanded="false">
                         <img src="assets/img/sidebar/dash-icon.svg" alt="dash-icon" class=" mr-2"> Dashboard
                     </a>
                 </li>
-                <li class="btn w-100">
-                    <a href="tutor-manage/tutor.html" role="button" class="btn-manage">
+                <li class="btn @if(\Request::path() === 'admin/tutor') active @endif w-100">
+                    <a href="{{route('admin.tutor')}}" role="button" class="btn-manage">
                         <img src="assets/img/sidebar/tutor.svg" alt="user-icon" class=" mr-2"> Tutor
                     </a>
                 </li>
-                <li class="btn w-100">
-                    <a href="student-manage/student.html" class="btn-manage">
+                <li class="btn @if(\Request::path() === 'admin/student') active @endif w-100">
+                    <a href="{{route('admin.student')}}" class="btn-manage">
                         <img src="assets/img/sidebar/students.svg" alt="user-icon" class=" mr-2"> Student
                     </a>
                 </li>
-                <li class="btn w-100">
-                    <a href="manage-institute/institute.html" class="btn-manage">
+                <li class="btn @if(\Request::path() === 'admin/institute') active @endif w-100">
+                    <a href="{{route('admin.course')}}" class="btn-manage">
                         <img src="assets/img/sidebar/institues.svg" alt="user-icon" class=" mr-2"> Institute
                     </a>
                 </li>
-                <li class="btn  w-100">
-                    <a href="courses/courses.html">
+                <li class="btn @if(\Request::path() === 'admin/course') active @endif w-100">
+                    <a href="{{route('admin.course')}}">
                         <img src="assets/img/sidebar/manage-icon.svg" alt="class-ico" class=" mr-2"> Courses
                     </a>
                 </li>

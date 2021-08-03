@@ -4,22 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+class TutorController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
-    | Admin Home Controller
+    | Admin -- TutorController
     |--------------------------------------------------------------------------
     |
-    | This controller handles admin dashboard and other view pages as
-    | well.
+    | This controller handles Tutors from admin side
+    |
     |
     */
-    
     public function index()
     {
-        return view('admin.dashboard');
+        return view('admin.pages.tutors.index');
     }
 }

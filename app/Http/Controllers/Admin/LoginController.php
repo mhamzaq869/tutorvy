@@ -11,12 +11,24 @@ class LoginController extends Controller
 {
 
     /**
+     * Admin Index Controller Method
+     *
+     */
+    public function index()
+    {
+        if(Auth::check()){
+            return redirect()->route('admin.dashboard');
+        }
+        return view('admin.login');
+    }
+
+    /**
      * Admin Login Controller Method
      */
 
     public function login(Request $request)
     {
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password,'role' => 1])){
             Session::put('user',$request->all());
             return redirect()->route('admin.dashboard');
         }

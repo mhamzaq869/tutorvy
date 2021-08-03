@@ -19,7 +19,7 @@
                             There are many variations of passages available, but <br />
                             the majority have suffered alteration in some form.</p>
                         <div class="input-text-1 input-text-main mt-5">
-                            <a href="../registerion/registration.html">
+                            <a href="{{route('register')}}">
                                 <input  type="submit" value="Become a tutor">
                             </a>
                         </div>
@@ -636,7 +636,7 @@
                         There are many variations of passages available, but
                         the majority have suffered alteration in some form.
                  </p>
-                 <a href="../registerion/registration.html">
+                 <a href="{{route('register')}}">
 
                     <button class="view-text">Become a tutor</button>
 
