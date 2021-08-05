@@ -80,24 +80,30 @@ class RegisterController extends Controller
         $data->ip = $_SERVER['REMOTE_ADDR'];
         $data->dob = $data->year.'-'.$data->month.'-'.$data->day;
 
-        $user = User::create([
-            'first_name' => $data->first_name,
-            'last_name' => $data->last_name,
-            'email' => $data->email,
-            'password' => Hash::make($data->password),
-            'ip' => $data->ip,
-            'dob' => $data->dob,
-            'phone' => $data->phone,
-            'city' => $data->city,
-            'country' => $data->country,
-            'country_short' => $data->country_short,
-            'role' => $data->role,
-            'type' => ($data->type == 1) ? 'cnic' : 'security',
-            'cnic_security' => $data->cnic ?? $data->security,
-            'language' => $data->language,
-            'gender' => $data->gender,
-            'bio' => $data->bio,
-        ]);
+        $user = User::where('ip',$data->ip)->get();
+
+        if($user):
+            return redirect()->back();
+        else:
+           $user = User::create([
+                'first_name' => $data->first_name,
+                'last_name' => $data->last_name,
+                'email' => $data->email,
+                'password' => Hash::make($data->password),
+                'ip' => $data->ip,
+                'dob' => $data->dob,
+                'phone' => $data->phone,
+                'city' => $data->city,
+                'country' => $data->country,
+                'country_short' => $data->country_short,
+                'role' => $data->role,
+                'type' => ($data->type == 1) ? 'cnic' : 'security',
+                'cnic_security' => $data->cnic ?? $data->security,
+                'language' => $data->language,
+                'gender' => $data->gender,
+                'bio' => $data->bio,
+            ]);
+        endif;
 
         dd($user);
     }

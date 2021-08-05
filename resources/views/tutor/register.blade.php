@@ -26,9 +26,13 @@
     {{-- <link rel="stylesheet" href="assets/css/country_flag.css"> --}}
     <!-- Year Picker CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/yearpicker.css')}}" />
+    {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
+
     <!-- Moment Js -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0rc.0/dist/js/select2.min.js"></script> --}}
+
 
 </head>
 
@@ -285,11 +289,7 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <select class="form-select form-select-lg mb-3"
-                                                                id="language" name="language">
-                                                                <option selected disabled>Language</option>
-                                                                <option value="2">English</option>
-                                                                <option value="2">Urdu</option>
-                                                                <option value="2">English</option>
+                                                                id="languages-list" name="language">
 
                                                             </select>
                                                         </div>
@@ -297,9 +297,9 @@
                                                             <select class="form-select form-select-lg mb-3"
                                                                 aria-label=".form-select-lg example" name="gender">
                                                                 <option selected disabled>Gender</option>
-                                                                <option value="male">Male</option>
-                                                                <option value="female">Female</option>
-                                                                <option value="other">Other</option>
+                                                                <option value="male" @if($user->gender == 'male') selected @endif>Male</option>
+                                                                <option value="female" @if($user->gender == 'female') selected @endif>Female</option>
+                                                                <option value="other" @if($user->gender == 'other') selected @endif>Other</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -309,7 +309,7 @@
                                                 <div class="container form-group mt-3" style="padding-right: 20px;">
                                                     <textarea class="form-control" name="bio"
                                                         id="exampleFormControlTextarea1" rows="5"
-                                                        placeholder="Write about yourself..."></textarea>
+                                                        placeholder="Write about yourself...">{{$user->bio ?? ''}}</textarea>
                                                 </div>
                                                 <br />
                                                 <div class="row ml-2 mt-4">
@@ -429,12 +429,13 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="btn-later">
-                                                        <button
-                                                            class="btn btn-registration btn-lg cencel-btn nextBtn pull-right ml-5 ">Save
-                                                            for Later</button>
+                                                        <button class="btn btn-registration btn-lg cencel-btn nextBtn pull-right ml-5 ">Save
+                                                            for Later
+                                                        </button>
                                                         <button type="button" id="step-2-next"
                                                             class="btn btn-lg   schedule-btn  nextBtn pull-right ml-4 btn-registration">&nbsp;
-                                                            Continue &nbsp; </button>
+                                                            Continue &nbsp;
+                                                        </button>
                                                     </div>
                                                 </div>
 
@@ -658,6 +659,7 @@
         <script src="{{ asset('assets/js/intlTelInput.js') }}"></script>
         <script src="{{ asset('assets/js/registration.js') }}"></script>
         <script src="{{ asset('assets/js/yearpicker.js')}}"></script>
+        <script src="{{ asset('assets/js/languages.json')}}"></script>
         <script>
 
              for(var i=1; i<=31; i++){
@@ -671,10 +673,10 @@
                     endYear: 2050,
                 });
             });
-            $("#language").select2({
-                language: "es"
-            });
-            $('.form-select-lg').select2();
+            // $("#language").select2({
+            //     language: "es"
+            // });
+            // $('.form-select-lg').select2();
 
             $("#country_selector").countrySelect({
                 defaultCountry: "{{$user->country_short}}",
@@ -687,8 +689,17 @@
             });
 
 
+            // var languages_list = {...};
+            (function () {
+                var user_language_code = "{{ $user->language ?? 'en-US'}}";
+                var option = '';
+                for (var language_code in languages_list) {
+                    var selected = (language_code == user_language_code) ? ' selected' : '';
+                    option += '<option value="' + language_code + '"' + selected + '>' + languages_list[language_code] + '</option>';
+                }
+                document.getElementById('languages-list').innerHTML = option;
+            })();
         </script>
-
     </section>
 </body>
 
