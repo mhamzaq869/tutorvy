@@ -24,6 +24,12 @@
     <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="assets/css/countrySelect.css">
     {{-- <link rel="stylesheet" href="assets/css/country_flag.css"> --}}
+    <!-- Year Picker CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/yearpicker.css')}}" />
+    <!-- Moment Js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+
 </head>
 
 <body>
@@ -67,26 +73,20 @@
                                         <a href="#step-1" aria-controls="step-1" role="tab" data-toggle="tab">
                                             <span>
                                                 <img class="mb-3" src="../assets/images/ico/profile-ico.png" alt="img">
-
                                             </span>
-
                                         </a>
                                         <p class="register-content">Personal</p>
                                     </li>
                                     <li rel-index="1" class="bordr-none">
-                                        <a href="#step-2" class=" disabled" aria-controls="step-2" role="tab"
-                                            data-toggle="tab">
+                                        <a href="#step-2" class=" disabled" aria-controls="step-2" role="tab" data-toggle="tab">
                                             <span>
-                                                <img class="mb-3" src="../assets/images/ico/bag-icon.png"
-                                                    alt="bag-icon">
-
+                                                <img class="mb-3" src="../assets/images/ico/bag-icon.png"  alt="bag-icon">
                                             </span>
                                         </a>
                                         <p class="register-content">Educational</p>
                                     </li>
                                     <li rel-index="2" class="bordr-none">
-                                        <a href="#step-3" class=" disabled" aria-controls="step-3" role="tab"
-                                            data-toggle="tab">
+                                        <a href="#step-3" class=" disabled" aria-controls="step-3" role="tab" data-toggle="tab">
                                             <span>
                                                 <img class="mb-3" src="../assets/images/ico/cap-icon.png"
                                                     alt="cap-icon">
@@ -116,18 +116,17 @@
                                             <div class="row mt-5">
                                                 <div class="input-text col-md-6">
                                                     <input type="" class="form-control csd" name="first_name"
-                                                        placeholder="First Name">
+                                                        placeholder="First Name" value="{{$user->first_name ?? ''}}">
 
                                                 </div>
                                                 <div class="input-text col-md-6">
-
                                                     <input type="" class="form-control" name="last_name"
-                                                        placeholder="Last Name">
+                                                        placeholder="Last Name" value="{{$user->last_name ?? ''}}">
                                                 </div>
                                             </div>
                                             <div class="input-text col-md-12 m-0 p-0 mt-4 mb-3">
                                                 <input type="email" class="form-control" name="email"
-                                                    placeholder="Enter Email Address">
+                                                    placeholder="Enter Email Address" value="{{$user->email ?? ''}}">
                                             </div>
                                             <div class="input-text col-md-12 m-0 p-0 mt-3 mb-4">
                                                 <input type="password" name="password" class="form-control"
@@ -138,63 +137,29 @@
                                             <!-- date of birth dropdown -->
                                             <div class="row mt-4 mb-3">
                                                 <div class="col-md-4">
-                                                    <select class="form-select form-select-lg" name="day"
-                                                        aria-label=".form-select-lg example">
-                                                        <option class="h" value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                        <option value="6">6</option>
-                                                        <option value="7">7</option>
-                                                        <option value="8">8</option>
-                                                        <option value="9">9</option>
-                                                        <option value="10">10</option>
-                                                        <option value="11">11</option>
-                                                        <option value="12">12</option>
-                                                        <option value="13">13</option>
-                                                        <option value="14">14</option>
-                                                        <option value="15">15</option>
-                                                        <option value="16">16</option>
-                                                        <option value="17">17</option>
-                                                        <option value="18">18</option>
-                                                        <option value="19">19</option>
-                                                        <option value="20">20</option>
-                                                        <option value="21">21</option>
-                                                        <option value="22">22</option>
-                                                        <option value="23">23</option>
-                                                        <option value="24">24</option>
-                                                        <option value="25">25</option>
-                                                        <option value="26">26</option>
-                                                        <option value="27">27</option>
-                                                        <option value="28">28</option>
-                                                        <option value="29">29</option>
-                                                        <option value="30">30</option>
-                                                        <option value="31">31</option>
-
+                                                    <select class="form-select form-select-lg" id="day" name="day">
                                                     </select>
                                                 </div>
                                                 <!--  -->
                                                 <div class="col-md-4">
                                                     <select class="form-select form-select-lg" name="month"
                                                         aria-label=".form-select-lg example">
-                                                        <option name="January" value="Jan">January</option>
-                                                        <option name="February" value="Feb">February</option>
-                                                        <option name="March" value="Mar">March</option>
-                                                        <option name="April" value="Apr">April</option>
-                                                        <option name="May" value="May">May</option>
-                                                        <option name="June" value="Jun">June</option>
-                                                        <option name="July" value="Jul">July</option>
-                                                        <option name="August" value="Aug">August</option>
-                                                        <option name="September" value="Sep">September</option>
-                                                        <option name="October" value="Oct">October</option>
-                                                        <option name="November" value="Nov">November</option>
-                                                        <option name="December" value="Dec">December</option>
+                                                        <option value="Jan" @if($user->month == 'Jan') @endif>January</option>
+                                                        <option value="Feb" @if($user->month == 'Feb') @endif>February</option>
+                                                        <option value="Mar" @if($user->month == 'Mar') @endif>March</option>
+                                                        <option value="Apr" @if($user->month == 'Apr') @endif>April</option>
+                                                        <option value="May" @if($user->month == 'May') @endif>May</option>
+                                                        <option value="Jun" @if($user->month == 'Jun') @endif>June</option>
+                                                        <option value="Jul" @if($user->month == 'Jul') @endif>July</option>
+                                                        <option value="Aug" @if($user->month == 'Aug') @endif>August</option>
+                                                        <option value="Sep" @if($user->month == 'Sep') @endif>September</option>
+                                                        <option value="Oct" @if($user->month == 'Oct') @endif>October</option>
+                                                        <option value="Nov" @if($user->month == 'Nov') @endif>November</option>
+                                                        <option value="Dec" @if($user->month == 'Dec') @endif>December</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <select class="form-select form-select-lg" name="year"
-                                                        aria-label=".form-select-lg example">
+                                                    {{-- <select class="form-select form-select-lg" name="year">
                                                         <option value="2020">2021</option>
                                                         <option value="2020">2020</option>
                                                         <option value="2019">2019</option>
@@ -262,13 +227,16 @@
                                                         <option value="1957">1957</option>
                                                         <option value="1956">1956</option>
                                                         <option value="1955">1955</option>
-                                                    </select>
+                                                    </select> --}}
+                                                    <input type="" name="password" class=" yearpicker form-control"
+                                                    placeholder="Year" id="year">
+
                                                 </div>
 
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 mt-3 mb-3">
-                                                    <input id="phone" name="phone" type="tel">
+                                                    <input id="phone" name="phone" type="tel" value="{{$user->phone}}">
 
                                                     <script src="{{ asset('assets/js/intlTelInput.js') }}"></script>
                                                     <script>
@@ -284,27 +252,13 @@
                                             <div class="row mt-3">
                                                 <div class="input-text col-md-6">
                                                     <div class="autocomplete mt-1" style="width:300px;">
-                                                        <input id="myInput" type="" name="city" placeholder="City">
+                                                        <input id="myInput" type="" name="city" placeholder="City" value="{{$user->city}}">
                                                     </div>
                                                 </div>
                                                 <div class="input-text col-md-6">
-                                                    {{-- <select class="mt-1 mb-3 pl-3 color-input1"
-                                                        style="color:#afb3b8; height: 49px;border-radius: 4px;"
-                                                        id="selectCountry" name="country">
-                                                        <option value="">Choose Country</option>
-                                                        <option value="">Choose Country</option>
-                                                        <option value="">Choose Country</option>
-                                                        <option value="">Choose Country</option>
-                                                        <option value="">Choose Country</option>
-                                                        <option value="">Choose Country</option>
-                                                        <option value="">Choose Country</option>
-                                                        <option value="">Choose Country</option>
-                                                        <option value="">Choose Country</option>
-                                                    </select> --}}
-
-
                                                     <div class="form-item">
                                                         <input id="country_selector" name="country" type="">
+                                                        <input id="country_short" name="country_short" type="" hidden>
                                                         <label for="country_selector" style="display:none;">Select a
                                                             country here...</label>
                                                     </div>
@@ -317,13 +271,13 @@
                                                                 onchange="changeplh()"
                                                                 class="form-select form-select-lg mb-3 "
                                                                 aria-label=".form-select-lg example">
-                                                                <option value="1">ID card number</option>
-                                                                <option value="2">Social security number</option>
+                                                                <option value="1" @if($user->type == 1) selected @endif>ID card number</option>
+                                                                <option value="2" @if($user->type == 2) selected @endif>Social security number</option>
                                                             </select>
                                                         </div>
                                                         <div class="input-text col-md-6">
-                                                            <input id="textbox" type="number" name="cnic"
-                                                                class="form-control" placeholder="ID card number">
+                                                            <input id="textbox" type="number" @if($user->type == 1) name="cnic" @else name="security" @endif
+                                                                class="form-control" placeholder="ID card number" value="{{$user->cnic_security}}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -331,7 +285,7 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <select class="form-select form-select-lg mb-3"
-                                                                aria-label=".form-select-lg example" name="language">
+                                                                id="language" name="language">
                                                                 <option selected disabled>Language</option>
                                                                 <option value="2">English</option>
                                                                 <option value="2">Urdu</option>
@@ -696,60 +650,45 @@
         </div>
         </div>
         </div>
-        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/intlTelInput.js"></script>
-
-        <!-- <script src="./inputflags.js"></script> -->
+        {{-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> --}}
+        <script src="assets/js/countrySelect.js"></script>
         <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
         <script src="{{ asset('assets/js/intlTelInput.js') }}"></script>
         <script src="{{ asset('assets/js/registration.js') }}"></script>
-        <script src="{{ asset('assets/js/googleapi.js') }}"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="assets/js/countrySelect.js"></script>
+        <script src="{{ asset('assets/js/yearpicker.js')}}"></script>
         <script>
-            $(document).ready(function() {
-                $('.form-select-lg').select2();
-            });
 
+             for(var i=1; i<=31; i++){
+                $("#day").append("<option value='"+i+"'"+ (i=={{$user->day}} ? 'selected' : '')+">"+i+"</option>");
+            }
+
+            $(document).ready(function() {
+                $("#year").yearpicker({
+                    year: {{$user->year}},
+                    startYear: 1950,
+                    endYear: 2050,
+                });
+            });
+            $("#language").select2({
+                language: "es"
+            });
+            $('.form-select-lg').select2();
 
             $("#country_selector").countrySelect({
+                defaultCountry: "{{$user->country_short}}",
                 preferredCountries: ['ca', 'gb', 'us', 'pk']
             });
 
-            try {
-                fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", {
-                    method: 'HEAD',
-                    mode: 'no-cors'
-                })).then(function(response) {
-                    return true;
-                }).catch(function(e) {
-                    var carbonScript = document.createElement("script");
-                    carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
-                    carbonScript.id = "_carbonads_js";
-                    document.getElementById("carbon-block").appendChild(carbonScript);
-                });
-            } catch (error) {
-                console.log(error);
-            }
-        </script>
-        <script type="text/javascript">
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-36251023-1']);
-            _gaq.push(['_setDomainName', 'jqueryscript.net']);
-            _gaq.push(['_trackPageview']);
+            $("#country_selector").on('change', function(){
+               var short = $(this).countrySelect("getSelectedCountryData");
+               $("#country_short").val(short.iso2);
+            });
 
-            (function() {
-                var ga = document.createElement('script');
-                ga.type = 'text/javascript';
-                ga.async = true;
-                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') +
-                    '.google-analytics.com/ga.js';
-                var s = document.getElementsByTagName('script')[0];
-                s.parentNode.insertBefore(ga, s);
-            })();
 
         </script>
+
     </section>
 </body>
 

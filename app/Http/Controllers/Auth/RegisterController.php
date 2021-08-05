@@ -56,19 +56,49 @@ class RegisterController extends Controller
         ]);
     }
 
+
+
+    protected function showRegistrationForm()
+    {
+        $user = User::where('ip',$_SERVER['REMOTE_ADDR'])->first();
+
+        $user->day = date('d',strtotime($user->dob));
+        $user->month = date('M',strtotime($user->dob));
+        $user->year = date('Y',strtotime($user->dob));
+
+        return view('tutor.register',compact('user'));
+    }
     /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(Request $data)
+    protected function register(Request $data)
     {
-        dd($data->all());
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+
+        $data->ip = $_SERVER['REMOTE_ADDR'];
+        $data->dob = $data->year.'-'.$data->month.'-'.$data->day;
+
+        $user = User::create([
+            'first_name' => $data->first_name,
+            'last_name' => $data->last_name,
+            'email' => $data->email,
+            'password' => Hash::make($data->password),
+            'ip' => $data->ip,
+            'dob' => $data->dob,
+            'phone' => $data->phone,
+            'city' => $data->city,
+            'country' => $data->country,
+            'country_short' => $data->country_short,
+            'role' => $data->role,
+            'type' => ($data->type == 1) ? 'cnic' : 'security',
+            'cnic_security' => $data->cnic ?? $data->security,
+            'language' => $data->language,
+            'gender' => $data->gender,
+            'bio' => $data->bio,
         ]);
+
+        dd($user);
     }
 }

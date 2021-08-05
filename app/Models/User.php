@@ -18,8 +18,22 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'first_name',
+        'last_name',
         'email',
         'password',
+        'ip',
+        'dob',
+        'phone',
+        'city',
+        'country',
+        'country_short',
+        'security',
+        'cnic',
+        'language',
+        'bio',
+        'role',
+        'status',
     ];
 
     /**
@@ -40,4 +54,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * The Relationship between user and userdetail to get
+     * his detail data .
+     *
+     * @return userdetail class
+     */
+    public function userdetail(){
+        return $this->hasMany(Userdetail::class);
+    }
 }

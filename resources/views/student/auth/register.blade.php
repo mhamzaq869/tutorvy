@@ -22,8 +22,13 @@
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
     <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="assets/css/countrySelect.css">
-		{{-- <link rel="stylesheet" href="assets/css/country_flag.css"> --}}
+    <link rel="stylesheet" href="assets/css/countrySelect.css">
+
+    <!--Select 2 dropdown-->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
 </head>
 
 <body>
@@ -106,34 +111,39 @@
                                     </li>
                                 </ul>
                             </div>
-                            <form action="{{url('register')}}" method="post" enctype="multipart/form-data">
-                            @csrf
-                            <div class="tab-content mt-5">
+                            <form action="{{ url('register') }}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="tab-content mt-5">
                                     <div role="tabpanel" class="border-right tab-pane active" id="step-1">
                                         <div class="col-md-12">
                                             <p class="heading-third mt-3">Personal information</p>
                                             <div class="row mt-5">
                                                 <div class="input-text col-md-6">
-                                                    <input type="" class="form-control csd" name="first_name" placeholder="First Name">
+                                                    <input type="" class="form-control csd" name="first_name"
+                                                        placeholder="First Name">
 
                                                 </div>
                                                 <div class="input-text col-md-6">
 
-                                                    <input type="" class="form-control" name="last_name"  placeholder="Last Name">
+                                                    <input type="" class="form-control" name="last_name"
+                                                        placeholder="Last Name">
                                                 </div>
                                             </div>
                                             <div class="input-text col-md-12 m-0 p-0 mt-4 mb-3">
-                                                <input type="email" class="form-control" name="email" placeholder="Enter Email Address">
+                                                <input type="email" class="form-control" name="email"
+                                                    placeholder="Enter Email Address">
                                             </div>
                                             <div class="input-text col-md-12 m-0 p-0 mt-3 mb-4">
-                                                <input type="password" name="password" class="form-control" placeholder="Password">
+                                                <input type="password" name="password" class="form-control"
+                                                    placeholder="Password">
                                             </div>
 
                                             <p class="heading-fifth">Date of Birth</p>
                                             <!-- date of birth dropdown -->
                                             <div class="row mt-4 mb-3">
                                                 <div class="col-md-4">
-                                                    <select class="form-select form-select-lg" name="day" aria-label=".form-select-lg example">
+                                                    <select class="form-select form-select-lg" name="day"
+                                                        aria-label=".form-select-lg example">
                                                         <option class="h" value="1">1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
@@ -170,7 +180,8 @@
                                                 </div>
                                                 <!--  -->
                                                 <div class="col-md-4">
-                                                    <select class="form-select form-select-lg" name="month" aria-label=".form-select-lg example">
+                                                    <select class="form-select form-select-lg" name="month"
+                                                        aria-label=".form-select-lg example">
                                                         <option name="January" value="Jan">January</option>
                                                         <option name="February" value="Feb">February</option>
                                                         <option name="March" value="Mar">March</option>
@@ -186,7 +197,8 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <select class="form-select form-select-lg" name="year" aria-label=".form-select-lg example">
+                                                    <select class="form-select form-select-lg" name="year"
+                                                        aria-label=".form-select-lg example">
                                                         <option value="2020">2021</option>
                                                         <option value="2020">2020</option>
                                                         <option value="2019">2019</option>
@@ -297,14 +309,16 @@
 
                                                     <div class="form-item">
                                                         <input id="country_selector" name="country" type="">
-                                                        <label for="country_selector" style="display:none;">Select a country here...</label>
+                                                        <label for="country_selector" style="display:none;">Select a
+                                                            country here...</label>
                                                     </div>
 
                                                 </div>
                                                 <div class="container mt-3">
                                                     <div class=" row">
                                                         <div class="input-text col-md-6">
-                                                            <select id="selection" name="security" onchange="changeplh()"
+                                                            <select id="selection" name="type"
+                                                                onchange="changeplh()"
                                                                 class="form-select form-select-lg mb-3 "
                                                                 aria-label=".form-select-lg example">
                                                                 <option value="1">ID card number</option>
@@ -312,8 +326,8 @@
                                                             </select>
                                                         </div>
                                                         <div class="input-text col-md-6">
-                                                            <input id="textbox" type="number" name="cnic" class="form-control"
-                                                                placeholder="ID card number">
+                                                            <input id="textbox" type="number" name="cnic"
+                                                                class="form-control" placeholder="ID card number">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -338,17 +352,21 @@
                                                 </div>
 
                                                 <div class="container form-group mt-3" style="padding-right: 20px;">
-                                                    <textarea class="form-control" name="bio" id="exampleFormControlTextarea1"
-                                                        rows="5" placeholder="Write about yourself..."></textarea>
+                                                    <textarea class="form-control" name="bio"
+                                                        id="exampleFormControlTextarea1" rows="5"
+                                                        placeholder="Write about yourself..."></textarea>
                                                 </div>
                                                 <br />
                                                 <div class="row ml-2 mt-4">
                                                     <div class="col-6">
                                                     </div>
                                                     <div class="col-6" style="display: flex;">
-                                                        <input type="submit" class="btn btn-registration btn-lg cencel-btn nextBtn pull-right ml-5" value=" Save for Later">
+                                                        <input type="submit"
+                                                            class="btn btn-registration btn-lg cencel-btn nextBtn pull-right ml-5"
+                                                            value=" Save for Later">
 
-                                                        <button id="step-1-next" type="button" class="btn btn-lg btn-registration schedule-btn  nextBtn pull-right ml-4 ">
+                                                        <button id="step-1-next" type="button"
+                                                            class="btn btn-lg btn-registration schedule-btn  nextBtn pull-right ml-4 ">
                                                             &nbsp; Continue &nbsp;
                                                         </button>
                                                     </div>
@@ -454,9 +472,11 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="btn-later">
-                                                        <button class="btn btn-registration btn-lg cencel-btn nextBtn pull-right ml-5 ">Save
+                                                        <button
+                                                            class="btn btn-registration btn-lg cencel-btn nextBtn pull-right ml-5 ">Save
                                                             for Later</button>
-                                                        <button type="button" id="step-2-next" class="btn btn-lg   schedule-btn  nextBtn pull-right ml-4 btn-registration">&nbsp;
+                                                        <button type="button" id="step-2-next"
+                                                            class="btn btn-lg   schedule-btn  nextBtn pull-right ml-4 btn-registration">&nbsp;
                                                             Continue &nbsp; </button>
                                                     </div>
                                                 </div>
@@ -664,7 +684,7 @@
                                         </div>
                                     </div>
 
-                            </div>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -685,40 +705,44 @@
         <script src="{{ asset('assets/js/registration.js') }}"></script>
         <script src="{{ asset('assets/js/googleapi.js') }}"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-		<script src="assets/js/countrySelect.js"></script>
-		<script>
-			$("#country_selector").countrySelect({
-				preferredCountries: ['ca', 'gb', 'us', 'pk']
-			});
-		</script>
-		<script>
-try {
-  fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", { method: 'HEAD', mode: 'no-cors' })).then(function(response) {
-    return true;
-  }).catch(function(e) {
-    var carbonScript = document.createElement("script");
-    carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
-    carbonScript.id = "_carbonads_js";
-    document.getElementById("carbon-block").appendChild(carbonScript);
-  });
-} catch (error) {
-  console.log(error);
-}
-</script>
-<script type="text/javascript">
+        <script src="assets/js/countrySelect.js"></script>
+        <script>
+            $("#country_selector").countrySelect({
+                preferredCountries: ['ca', 'gb', 'us', 'pk']
+            });
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-36251023-1']);
-  _gaq.push(['_setDomainName', 'jqueryscript.net']);
-  _gaq.push(['_trackPageview']);
+            try {
+                fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", {
+                    method: 'HEAD',
+                    mode: 'no-cors'
+                })).then(function(response) {
+                    return true;
+                }).catch(function(e) {
+                    var carbonScript = document.createElement("script");
+                    carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
+                    carbonScript.id = "_carbonads_js";
+                    document.getElementById("carbon-block").appendChild(carbonScript);
+                });
+            } catch (error) {
+                console.log(error);
+            }
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
 
-</script>
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-36251023-1']);
+            _gaq.push(['_setDomainName', 'jqueryscript.net']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') +
+                    '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
     </section>
 </body>
 

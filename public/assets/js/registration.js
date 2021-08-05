@@ -1178,18 +1178,20 @@ $("#demo").intlTelInput();
 
 
 
-//on chagnge dropdown 
+//on chagnge dropdown
 function changeplh() {
-    debugger;
     var sel = document.getElementById("selection");
     var textbx = document.getElementById("textbox");
     var indexe = sel.selectedIndex;
 
-    if (indexe == 0) {
-        $("#textbox").attr("placeholder", "Enter card number");
-
-    }
     if (indexe == 1) {
+        $("#textbox").attr("placeholder", "Enter card number");
+        $("#textbox").attr("name", "cnic");
+        $("#textbox").attr("value", "");
+    }
+    if (indexe == 2) {
         $("#textbox").attr("placeholder", "Enter security number");
+        $("#textbox").attr("name", "security");
+        $("#textbox").attr("value", "");
     }
 }

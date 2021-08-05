@@ -50,7 +50,7 @@ Route::group(['prefix' => '/admin','middleware' => ['auth']],function () {
 
 Auth::routes();
 Route::view('/student/login','student.auth.login');
-Route::post('/register',[RegisterController::class,'create']);
+Route::post('/register',[RegisterController::class,'register']);
 Route::view('/','welcome');
 Route::view('/tutor','frontend.tutor');
 Route::view('/student','frontend.student');
