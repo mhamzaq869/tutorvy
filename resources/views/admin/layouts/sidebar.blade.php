@@ -34,45 +34,45 @@
                         <img src="assets/img/sidebar/manage-icon.svg" alt="class-ico" class=" mr-2"> Courses
                     </a>
                 </li>
-                <li class="btn w-100">
-                    <a href="subject/subject.html">
+                <li class="btn @if(\Request::path() === 'admin/subject') active @endif w-100">
+                    <a href="{{route('admin.subject')}}">
                         <img src="assets/img/sidebar/course-icon.png" alt="class-ico" class=" mr-2"> Subject
                     </a>
                 </li>
-                <li class="btn  w-100">
-                    <a href="webiste/website.html">
+                <li class="btn @if(\Request::path() === 'admin/website') active @endif w-100">
+                    <a href="{{route('admin.website')}}">
                         <img src="assets/img/sidebar/website.svg" alt="class-ico" class=" mr-2"> Webiste
                     </a>
                 </li>
-                <li class="btn w-100">
-                    <a href="reports/reports.html">
+                <li class="btn @if(\Request::path() === 'admin/report') active @endif w-100">
+                    <a href="{{route('admin.report')}}">
                         <img src="assets/img/sidebar/report-icon.svg" alt="class-ico" class=" mr-2"> Reports
                     </a>
                 </li>
-                <li class="btn  w-100">
-                    <a href="integrations/integrations.html">
+                <li class="btn @if(\Request::path() === 'admin/integration') active @endif w-100">
+                    <a href="{{route('admin.integration')}}">
                         <img src="assets/img/sidebar/intergration-icon.svg" alt="class-ico" class=" mr-2">
                         Integrations
                     </a>
                 </li>
-                <li class="btn w-100">
-                    <a href="staff/staff.html">
+                <li class="btn @if(\Request::path() === 'admin/staff') active @endif w-100">
+                    <a href="{{route('admin.staff')}}">
                         <img src="assets/img/sidebar/staff-icon.svg" alt="class-ico" class=" mr-2"> Staff Members
                     </a>
                 </li>
-                <li class="btn w-100">
-                    <a href="knowlegde/knowledge.html">
+                <li class="btn @if(\Request::path() === 'admin/knowledge') active @endif w-100">
+                    <a href="{{route('admin.knowledge')}}">
                         <img src="assets/img/sidebar/knowledge-icon.svg" alt="class-ico" class=" mr-2"> Knowledge
                         Base
                     </a>
                 </li>
-                <li class="btn w-100">
-                    <a href="support/support.html">
+                <li class="btn @if(\Request::path() === 'admin/support') active @endif w-100">
+                    <a href="{{route('admin.support')}}">
                         <img src="assets/img/sidebar/support-icon.svg" alt="class-ico" class=" mr-2"> Support
                     </a>
                 </li>
-                <li class="btn w-100">
-                    <a href="setting/setting.html">
+                <li class="btn @if(\Request::path() === 'admin/setting') active @endif w-100">
+                    <a href="{{route('admin.setting')}}">
                         <img src="assets/img/sidebar/setting-icon.png" alt="class-ico" class=" mr-2"> Settings
                     </a>
                 </li>

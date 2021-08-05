@@ -365,26 +365,32 @@
                                                     <div class="input-text col-md-6">
                                                         <select class="form-select form-select-lg mb-3"
                                                             aria-label=".form-select-lg example">
-                                                            <option selected disabled>Degree</option>
-                                                            <option value="Associate's Degree">Associate's Degree</option>
-                                                            <option value="Bachelor's Degree">Bachelor's Degree</option>
-                                                            <option value="Doctor of Medicine (M.D.)">Doctor of Medicine (M.D.)</option>
-                                                            <option value="Doctor of Philosophy (Ph.D.)">Doctor of Philosophy (Ph.D.)</option>
-                                                            <option value="Engineer's Degree">Engineer's Degree</option>
-                                                            <option value="Juris Doctor (J.D.)">Juris Doctor (J.D.)</option>
-                                                            <option value="Master's Degree">Master's Degree</option>
-                                                            <option value="Master's of Business Administration (M.B.A.)">Master's of Business Administration (M.B.A.)</option>
-                                                            <option value="Others">Others</option>
+                                                            <option value="1">Degree</option>
+                                                            <option value="2">Lahore</option>
+                                                            <option value="2">Lahore</option>
+                                                            <option value="2">Lahore</option>
+                                                            <option value="2">Lahore</option>
+                                                            <option value="2">Lahore</option>
+                                                            <option value="2">Lahore</option>
+                                                            <option value="2">Lahore</option>
+                                                            <option value="2">Lahore</option>
 
                                                         </select>
                                                     </div>
                                                     <div class="input-text col-md-6">
-                                                        {{-- <select class="form-select form-select-lg mb-3"
+                                                        <select class="form-select form-select-lg mb-3"
                                                             aria-label=".form-select-lg example">
                                                             <option value="1">Major</option>
-                                                        </select> --}}
-                                                        <input type="" name="major" class="form-control"
-                                                        placeholder="Search Major">
+                                                            <option value="2">Pakistan</option>
+                                                            <option value="2">Lahore</option>
+                                                            <option value="2">Lahore</option>
+                                                            <option value="2">Lahore</option>
+                                                            <option value="2">Lahore</option>
+                                                            <option value="2">Lahore</option>
+                                                            <option value="2">Lahore</option>
+                                                            <option value="2">Lahore</option>
+                                                        </select>
+
                                                     </div>
                                                 </div>
                                                 <div class="row mt-3">
@@ -562,6 +568,8 @@
                                                 <button type="button" id="step-3-next"
                                                     class="btn btn-lg   schedule-btn  nextBtn pull-right ml-4 btn-registration">&nbsp;
                                                     Continue &nbsp; </button>
+
+
 
                                             </div>
                                         </div>
