@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\SupportController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\General\GeneralController;
+use App\Http\Controllers\Tutor\HomeController as TutorHomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,28 @@ Route::group(['prefix' => '/admin','middleware' => ['auth']],function () {
     Route::get('/support',[SupportController::class,'index'])->name('admin.support');
     Route::get('/setting',[SettingController::class,'index'])->name('admin.setting');
 });
+
+/*
+|--------------------------------------------------------------------------
+| Tutor Routes
+|--------------------------------------------------------------------------
+|
+*/
+Route::group(['prefix' => '/tutor','middleware' => []],function () {
+
+    Route::get('/dashboard',[TutorHomeController::class,'index'])->name('tutor.dashboard');
+    // Route::get('/tutor',[TutorController::class,'index'])->name('admin.tutor');
+    // Route::get('/student',[StudentController::class,'index'])->name('admin.student');
+    // Route::get('/course',[CourseController::class,'index'])->name('admin.course');
+    // Route::get('/subject',[SubjectController::class,'index'])->name('admin.subject');
+    // Route::get('/website',[WebsiteController::class,'index'])->name('admin.website');
+    // Route::get('/report',[ReportController::class,'index'])->name('admin.report');
+    // Route::get('/integration',[IntegrationController::class,'index'])->name('admin.integration');
+    // Route::get('/knowledge',[KnowledgeController::class,'index'])->name('admin.knolwedge');
+    // Route::get('/support',[SupportController::class,'index'])->name('admin.support');
+    // Route::get('/setting',[SettingController::class,'index'])->name('admin.setting');
+});
+
 /*
 |--------------------------------------------------------------------------
 | Frontend Routes
@@ -64,7 +87,7 @@ Route::view('/course','frontend.course');
 |--------------------------------------------------------------------------
 |
 */
-Route::get('/universities',[GeneralController::class,'university']);
+Route::post('/universities',[GeneralController::class,'university']);
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

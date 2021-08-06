@@ -1,0 +1,435 @@
+  <!-- sidenav mobile view start -->
+  <header class="site-header" style="display: none;">
+    <div class="container-fluid">
+        <div class="row" style="margin-bottom: -12px;">
+            <span style="font-size:30px;cursor:pointer;position: absolute;left: 25px;top:17px "
+                onclick="openNav()">
+                &#9776;
+            </span>
+            <div id="mySidenav" class="sidenav">
+                <p class="ml-5 mb-2">
+                    <img src="../assets/images/logo/logo.png" alt="logo">
+                </p>
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+                    &times;
+                </a>
+                <ul>
+                    <li class="btn w-100 mt-3 active">
+                        <a href="#" data-toggle="" aria-expanded="false" class="">
+                            <img src="../assets/images/ico/dash-ico.png" alt="dash-ico" class=" mr-2">
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="btn w-100">
+                        <a href="./Booking/Booking.html" data-toggle="" aria-expanded="false">
+                            <img src="../assets/images/ico/book-icons.png" alt="book-ico" class=" mr-2">
+                            Bookings
+                        </a>
+                    </li>
+                    <li class="btn w-100">
+                        <a href="#">
+                            <img src="../assets/images/ico/class-ico.png" alt="class-ico" class=" mr-2">
+                            Classroom
+                        </a>
+                    </li>
+                    <li class="btn w-100">
+                        <a href="#">
+                            <img src="../assets/images/ico/subject-ico.png" alt="subject-ico" class=" mr-2">
+                            Subjects
+                        </a>
+                    </li>
+                    <li class="btn w-100">
+                        <a href="./clander/clander.html">
+                            <img src="../assets/images/ico/class-ico.png" alt="class-ico" class=" mr-2">
+                            calendar
+                        </a>
+                    </li>
+                    <li class="btn w-100">
+                        <a href="#">
+                            <img src="../assets/images/ico/history-ico.png" alt="history-ico" class=" mr-2">
+                            History
+                        </a>
+                    </li>
+                    <li class="btn w-100">
+                        <a href="#">
+                            <img src="../assets/images/ico/payment-ico.png" alt="payment-ico" class=" mr-2">
+                            Payment
+                        </a>
+                    </li>
+                    <li class="btn w-100">
+                        <a href="./setting/setting.html">
+                            <img src="../assets/images/ico/setting-ico.png" alt="setting-ico" class=" mr-2">
+                            Settings
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- sidenav -->
+            <ul class="ml-5">
+                <li>
+
+                </li>
+                <li>
+                    <div class="notification mt-2 ml-3">
+                        <img src="../assets/images/ico/Notification.png" alt="notifiaction">
+                        <span class="notification-text">
+                            4
+                        </span>
+                        <ul class="notification-menu">
+                            <li class="container-fluid">
+                                <div class="row nav-row">
+                                    <span class="col-md-6" style="text-align: left;">
+                                        <a href="" class="notification-text1">
+                                            Notifications
+                                        </a>
+                                    </span>
+                                    <span class="col-md-6" style="text-align: right;">
+                                        <a href="" class="notification-text2">
+                                            Mark all read
+                                        </a>
+                                    </span>
+                                </div>
+                                <p class="mt-2 mb-2 notification-text3">
+                                    Recent
+                                </p>
+                            </li>
+                            <li>
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <img class="avatar mt-2 mb-2 "
+                                            src="../assets/images/notifiaction/Layer.png" alt="Layer">
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="notification-flex">
+                                            <span class="notification-text4">
+                                                <span class="notification-text5">
+                                                    Marina Hurst
+                                                </span>
+                                                request for book a class of chemistry on periodic tab
+                                                ...
+                                            </span>
+                                        </div>
+                                        <span class="notification-time">
+                                            10 min ago
+                                        </span>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <img class="dot-image" src=assets"images/ico/3dot.png"
+                                            alt="dot-ico">
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <img class="avatar mt-2 mb-2 "
+                                            src="../assets/images/notifiaction/star-ico.png" alt="Layer">
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="notification-flex">
+                                            <span class="notification-text4">
+                                                <span class="notification-text5">
+                                                    Marina Hurst
+                                                </span>
+                                                request for book a class of chemistry on periodic tab
+                                                ...
+                                            </span>
+                                        </div>
+                                        <span class="notification-time">
+                                            10 min ago
+                                        </span>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <img class="dot-image" src="../assets/images/ico/3dot.png"
+                                            alt="dot-ico">
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="mt-2 mb-2 ml-3 notification-text3">
+                                Yesterday
+                            </li>
+                            <li>
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <img class="avatar mt-2 mb-2 "
+                                            src="../assets/images/notifiaction/bach-ico.png" alt="Layer">
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="notification-flex">
+                                            <span class="notification-text4">
+                                                <span class="notification-text5">
+                                                    Marina Hurst
+                                                </span>
+                                                request for book a class of chemistry on periodic tab
+                                                ...
+                                            </span>
+                                        </div>
+                                        <span class="notification-time">
+                                            10 min ago
+                                        </span>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <img class="dot-image" src="../assets/images/ico/3dot.png"
+                                            alt="dot-ico">
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <img class="avatar mt-2 mb-2 "
+                                            src="../assets/images/notifiaction/tick-ico.png" alt="Layer">
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="notification-flex">
+                                            <span class="notification-text4">
+                                                <span class="notification-text5">
+                                                    Marina Hurst
+                                                </span>
+                                                request for book a class of chemistry on periodic tab
+                                                ...
+                                            </span>
+                                        </div>
+                                        <span class="notification-time">
+                                            10 min ago
+                                        </span>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <img class="dot-image" src="../assets/images/ico/3dot.png"
+                                            alt="dot-ico">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item" id="imageDropdown" data-toggle="dropdown"
+                    style="position: absolute;right: 15px;">
+                    <img src="../assets/images/logo/profile-image.png" alt="logo"
+                        style="width: 35px;border-radius: 30px;">
+                    <div class="dropdown classdrop" style="position: absolute;right:99px;top: 7px; ">
+                        <ul class="dropdown-menu classdrop " style="padding-bottom: 5px;padding-top: 5px;"
+                            role="menu" aria-labelledby="imageDropdown">
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1" href="#">
+                                    Profile
+                                </a>
+                            </li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">
+                                    Help
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1" href="./Login/reset.html">
+                                    Signout
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<!-- end mobile nav -->
+<!-- side navbar of icons button with navbar -->
+<nav class="navbar navbar-expand-lg mb-4 pb-2" style="width: 100%;background-color: #FBFBFB !important;">
+    <button onclick="navicon()" class="sidenav-toggle rotate">
+        <img src="../assets/images/ico/side-arrow-icon.jpg" alt="side-arrow" style="width: 20px;">
+    </button>
+    <img id="sideicons-side" src="../assets/images/ico/side-icons.png" alt="sideicons"
+        style="position: absolute;left: 30px;margin-top: 10px; display: none;">
+    <div class="box" id="box" style="float: left;">
+        <form class="input-nav">
+
+        </form>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-2 pull-right">
+                            <div class="notification">
+                                <img src="../assets/images/ico/Notification.png" alt="notification-ico">
+                                <span class="notification-text">
+                                    4
+                                </span>
+                                <ul class="notification-menu">
+                                    <li class="container-fluid">
+                                        <div class="row nav-row">
+                                            <span class="col-md-6" style="text-align: left;">
+                                                <a href="" class="notification-text1">
+                                                    Notifications
+                                                </a>
+                                            </span>
+                                            <span class="col-md-6" style="text-align: right;">
+                                                <a href="" class="notification-text2">
+                                                    Mark all read
+                                                </a>
+                                            </span>
+                                        </div>
+                                        <p class="mt-2 notification-text3 mt-2">
+                                            Recent
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                <img class="avatar mt-2"
+                                                    src="../assets/images/notifiaction/Layer.png"
+                                                    alt="Layer">
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div style="display: flex;line-height: 1.3;">
+                                                    <span
+                                                        style="color: #00132D; font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 500;">
+                                                        <span style="font-weight: 500; font-size: 14px;">
+                                                            Marina Hurst
+                                                        </span>
+                                                        request for book a class of chemistry on periodic
+                                                        tab ...
+                                                    </span>
+                                                </div>
+                                                <span class="notification-time">
+                                                    10 min ago
+                                                </span>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <img class="dot-image" src="../assets/images/ico/3dot.png"
+                                                    alt="dot-ico">
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                <img class="avatar mt-2"
+                                                    src="../assets/images/notifiaction/Layer.png"
+                                                    alt="Layer">
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div style="display: flex;line-height: 1.3;">
+                                                    <span
+                                                        style="color: #00132D; font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 500;">
+                                                        <span style="font-weight: 500; font-size: 14px;">
+                                                            Marina Hurst
+                                                        </span>
+                                                        request for book a class of chemistry on periodic
+                                                        tab ...
+                                                    </span>
+                                                </div>
+                                                <span class="notification-time">
+                                                    10 min ago
+                                                </span>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <img class="dot-image" src="../assets/images/ico/3dot.png"
+                                                    alt="dot-ico">
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="mt-2 mb-2 ml-1 notification-text3">
+                                        Yesterday
+                                    </li>
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                <img class="avatar mt-2"
+                                                    src="../assets/images/notifiaction/Layer.png"
+                                                    alt="Layer">
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div style="display: flex;line-height: 1.3;">
+                                                    <span
+                                                        style="color: #00132D; font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 500;">
+                                                        <span style="font-weight: 500; font-size: 14px;">
+                                                            Marina Hurst
+                                                        </span>
+                                                        request for book a class of chemistry on periodic
+                                                        tab ...
+                                                    </span>
+                                                </div>
+                                                <span class="notification-time">
+                                                    10 min ago
+                                                </span>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <img class="dot-image" src="../assets/images/ico/3dot.png"
+                                                    alt="dot-ico">
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-md-1">
+                                                <img class="avatar mt-2"
+                                                    src="../assets/images/notifiaction/Layer.png"
+                                                    alt="Layer">
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div style="display: flex;line-height: 1.3;">
+                                                    <span
+                                                        style="color: #00132D; font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 500;">
+                                                        <span style="font-weight: 500; font-size: 14px;">
+                                                            Marina Hurst
+                                                        </span>
+                                                        request for book a class of chemistry on periodic
+                                                        tab ...
+                                                    </span>
+                                                </div>
+                                                <span class="notification-time">
+                                                    10 min ago
+                                                </span>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <img class="dot-image" src="../assets/images/ico/3dot.png"
+                                                    alt="dot-ico">
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item pr-4">
+                <a class="nav-link" href="#">
+                    <img src="../assets/images/ico/email.png" alt="img-email"
+                        style="width: 20px;cursor: pointer !important;">
+                </a>
+            </li>
+            <li class="nav-item profile-name1" id="imageDropdowns">
+                <div class="dropdown d-flex ">
+                    <a class="nav-link profile-name d-flex pl-4 mr-3 mt-1 pb-1" href="#"
+                        data-toggle="dropdown" aria-expanded="true">
+                        Harram
+                    </a>
+                    <img class="profile-img" src="../assets/images/ico/profile-boy.png"
+                        data-toggle="dropdown" alt="profile">
+                    <ul class="dropdown-menu classdrop classdrop1 ">
+                        <li>
+                            <a tabindex="-1" class="disabled" href="setting/setting.html">
+                                Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a tabindex="-1" class="disabled" href="#">
+                                Help
+                            </a>
+                        </li>
+                        <li>
+                            <a tabindex="-1" class="disabled" href="#">
+                                Signout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- top Fixed navbar End -->

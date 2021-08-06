@@ -33,6 +33,7 @@ class CreateUsersTable extends Migration
             $table->text('bio')->nullable();
             $table->integer('role')->nullable()->comment('1-admin 2-tutor 3-student 4-staff');
             $table->integer('status')->nullable()->comment('1-Active 0-Disabled');
+            $table->integer('verify')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

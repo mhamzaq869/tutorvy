@@ -64,4 +64,7 @@ class User extends Authenticatable
     public function userdetail(){
         return $this->hasMany(Userdetail::class);
     }
+    public function userdetailIp(){
+        return $this->hasMany(Userdetail::class,'ip','ip');
+    }
 }

@@ -10,8 +10,9 @@ class GeneralController extends Controller
 {
 
 
-    public function university()
+    public function university(Request $request)
     {
+        dd($request->all());
         $result = Http::get('http://universities.hipolabs.com/search',[
             "name" => "punjab"
         ]);

@@ -26,6 +26,7 @@
     {{-- <link rel="stylesheet" href="assets/css/country_flag.css"> --}}
     <!-- Year Picker CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/yearpicker.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/multiselect.css')}}" />
     {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
 
     <!-- Moment Js -->
@@ -37,7 +38,6 @@
 </head>
 
 <body>
-
 
 
     <section id="body">
@@ -148,18 +148,18 @@
                                                 <div class="col-md-4">
                                                     <select class="form-select form-select-lg" name="month"
                                                         aria-label=".form-select-lg example">
-                                                        <option value="Jan" @if($user->month == 'Jan') @endif>January</option>
-                                                        <option value="Feb" @if($user->month == 'Feb') @endif>February</option>
-                                                        <option value="Mar" @if($user->month == 'Mar') @endif>March</option>
-                                                        <option value="Apr" @if($user->month == 'Apr') @endif>April</option>
-                                                        <option value="May" @if($user->month == 'May') @endif>May</option>
-                                                        <option value="Jun" @if($user->month == 'Jun') @endif>June</option>
-                                                        <option value="Jul" @if($user->month == 'Jul') @endif>July</option>
-                                                        <option value="Aug" @if($user->month == 'Aug') @endif>August</option>
-                                                        <option value="Sep" @if($user->month == 'Sep') @endif>September</option>
-                                                        <option value="Oct" @if($user->month == 'Oct') @endif>October</option>
-                                                        <option value="Nov" @if($user->month == 'Nov') @endif>November</option>
-                                                        <option value="Dec" @if($user->month == 'Dec') @endif>December</option>
+                                                        <option value="Jan" @if(isset($user) && $user->month == 'Jan') @endif>January</option>
+                                                        <option value="Feb" @if(isset($user) && $user->month == 'Feb') @endif>February</option>
+                                                        <option value="Mar" @if(isset($user) && $user->month == 'Mar') @endif>March</option>
+                                                        <option value="Apr" @if(isset($user) && $user->month == 'Apr') @endif>April</option>
+                                                        <option value="May" @if(isset($user) && $user->month == 'May') @endif>May</option>
+                                                        <option value="Jun" @if(isset($user) && $user->month == 'Jun') @endif>June</option>
+                                                        <option value="Jul" @if(isset($user) && $user->month == 'Jul') @endif>July</option>
+                                                        <option value="Aug" @if(isset($user) && $user->month == 'Aug') @endif>August</option>
+                                                        <option value="Sep" @if(isset($user) && $user->month == 'Sep') @endif>September</option>
+                                                        <option value="Oct" @if(isset($user) && $user->month == 'Oct') @endif>October</option>
+                                                        <option value="Nov" @if(isset($user) && $user->month == 'Nov') @endif>November</option>
+                                                        <option value="Dec" @if(isset($user) && $user->month == 'Dec') @endif>December</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-4">
@@ -232,7 +232,7 @@
                                                         <option value="1956">1956</option>
                                                         <option value="1955">1955</option>
                                                     </select> --}}
-                                                    <input type="" name="password" class=" yearpicker form-control"
+                                                    <input type="" name="year" class=" yearpicker form-control"
                                                     placeholder="Year" id="year">
 
                                                 </div>
@@ -240,7 +240,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12 mt-3 mb-3">
-                                                    <input id="phone" name="phone" type="tel" value="{{$user->phone}}">
+                                                    <input id="phone" name="phone" type="tel" value="{{$user->phone ?? ''}}">
 
                                                     <script src="{{ asset('assets/js/intlTelInput.js') }}"></script>
                                                     <script>
@@ -256,7 +256,7 @@
                                             <div class="row mt-3">
                                                 <div class="input-text col-md-6">
                                                     <div class="autocomplete mt-1" style="width:300px;">
-                                                        <input id="myInput" type="" name="city" placeholder="City" value="{{$user->city}}">
+                                                        <input id="myInput" type="" name="city" placeholder="City" value="{{$user->city ?? ''}}">
                                                     </div>
                                                 </div>
                                                 <div class="input-text col-md-6">
@@ -275,13 +275,13 @@
                                                                 onchange="changeplh()"
                                                                 class="form-select form-select-lg mb-3 "
                                                                 aria-label=".form-select-lg example">
-                                                                <option value="1" @if($user->type == 1) selected @endif>ID card number</option>
-                                                                <option value="2" @if($user->type == 2) selected @endif>Social security number</option>
+                                                                <option value="1" @if(isset($user) && $user->type == 1) selected @endif>ID card number</option>
+                                                                <option value="2" @if(isset($user) && $user->type == 2) selected @endif>Social security number</option>
                                                             </select>
                                                         </div>
                                                         <div class="input-text col-md-6">
-                                                            <input id="textbox" type="number" @if($user->type == 1) name="cnic" @else name="security" @endif
-                                                                class="form-control" placeholder="ID card number" value="{{$user->cnic_security}}">
+                                                            <input id="textbox" type="number" @if(isset($user) && $user->type == 1) name="cnic" @else name="security" @endif
+                                                                class="form-control" placeholder="ID card number" value="{{$user->cnic_security ?? ''}}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -297,9 +297,9 @@
                                                             <select class="form-select form-select-lg mb-3"
                                                                 aria-label=".form-select-lg example" name="gender">
                                                                 <option selected disabled>Gender</option>
-                                                                <option value="male" @if($user->gender == 'male') selected @endif>Male</option>
-                                                                <option value="female" @if($user->gender == 'female') selected @endif>Female</option>
-                                                                <option value="other" @if($user->gender == 'other') selected @endif>Other</option>
+                                                                <option value="male" @if(isset($user) &&$user->gender == 'male') selected @endif>Male</option>
+                                                                <option value="female" @if(isset($user) && $user->gender == 'female') selected @endif>Female</option>
+                                                                <option value="other" @if(isset($user) && $user->gender == 'other') selected @endif>Other</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -336,7 +336,7 @@
                                             <div class=" customer_records mt-5">
                                                 <div class="row">
                                                     <div class="input-text col-md-6">
-                                                        <select class="form-select form-select-lg mb-3"
+                                                        <select name="degree[]" class="form-select form-select-lg mb-3"
                                                             aria-label=".form-select-lg example">
                                                             <option selected disabled>Degree</option>
                                                             <option value="Associate's Degree">Associate's Degree
@@ -358,7 +358,7 @@
                                                         </select>
                                                     </div>
                                                     <div class="input-text col-md-6">
-                                                        <select class="form-select form-select-lg mb-3"
+                                                        <select name="major[]" class="form-select form-select-lg mb-3"
                                                             aria-label=".form-select-lg example">
                                                             <option value="1">Major</option>
                                                             <option value="1">Computer Scinece</option>
@@ -375,52 +375,31 @@
                                                 </div>
                                                 <div class="row mt-3">
                                                     <div class="input-text col-md-6">
-                                                        <select class="form-select form-select-lg mb-3"
+                                                        <select name="institute[]" class="form-select form-select-lg mb-3"
                                                             aria-label=".form-select-lg example">
                                                             <option value="1">Institute</option>
                                                             <option value="2">Punjab University</option>
                                                             <option value="2">Virtual University Of Pakistan</option>
-
                                                         </select>
                                                     </div>
                                                     <div class="input-text col-md-6">
-                                                        <select class="form-select form-select-lg mb-3"
-                                                            aria-label=".form-select-lg example">
-                                                            <option value="1">Year</option>
-                                                            <option value="2">Pakistan</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                        </select>
-
+                                                        <input type="date" name="graduate_year[]" class=" yearpicker form-control"
+                                                        id="grad-yea">
                                                     </div>
                                                 </div>
-
                                                 <div class="button-wrapper mt-4">
-                                                    <span class="label ">
+                                                    <span class="label" style="position: relative">
+                                                        <input type="file" name="upload[]" id="upload" class="upload-box" placeholder="Upload File"
+                                                        accept=".doc,.pdf,.png,.jpg,.jpeg">
                                                         <img src="../assets/images/ico/attach.png" class="w-25 "
-                                                            alt="i">
-                                                        Attach
-                                                        degrees
+                                                            alt="i">Attach degrees
                                                     </span>
-
-
-                                                    <input type="file" name="upload" id="upload" class="upload-box"
-                                                        placeholder="Upload File">
-
                                                 </div>
                                             </div>
                                             <hr />
-                                            <a class="extra-fields-customer" href="#"
-                                                style="font-size: 16px;font-family: Poppins;text-decoration: none;">+
-                                                Add
-                                                more degrees </a>
-
-
+                                            <a class="extra-fields-customer" href="#" style="font-size: 16px;font-family: Poppins;text-decoration: none;">+
+                                                Add  more degrees
+                                            </a>
                                             <div class="customer_records_dynamic mt-5"></div>
                                             <div class="row">
 
@@ -429,7 +408,7 @@
                                                 </div>
                                                 <div class="col-4">
                                                     <div class="btn-later">
-                                                        <button class="btn btn-registration btn-lg cencel-btn nextBtn pull-right ml-5 ">Save
+                                                        <button type="submit" class="btn btn-registration btn-lg cencel-btn nextBtn pull-right ml-5 ">Save
                                                             for Later
                                                         </button>
                                                         <button type="button" id="step-2-next"
@@ -454,66 +433,25 @@
                                                             <div class="element">
                                                                 <div class="row">
                                                                     <div class="input-text col-md-6">
-                                                                        <select class="form-select form-select-lg"
-                                                                            aria-label=".form-select-lg example">
+                                                                        <select class="form-select form-select-lg" name="designation[]" >
                                                                             <option value="1">Desigination</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-
+                                                                            <option value="Senior Engineer">Software Engineer</option>
                                                                         </select>
                                                                     </div>
                                                                     <div class="input-text col-md-6">
-                                                                        <select class="form-select form-select-lg"
-                                                                            aria-label=".form-select-lg example">
+                                                                        <select class="form-select form-select-lg" name="organization[]">
                                                                             <option value="1">Organization</option>
-                                                                            <option value="2">Pakistan</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
+                                                                            <option value="creative sprout media">Creative sprout media</option>
+
                                                                         </select>
                                                                     </div>
                                                                 </div>
-                                                                <div class="row">
+                                                                <div class="row my-3">
                                                                     <div class="input-text col-md-6">
-                                                                        <select
-                                                                            class="form-select form-select-lg mb-4 mt-4"
-                                                                            aria-label=".form-select-lg example">
-                                                                            <option value="1">Starting date</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                        </select>
+                                                                        <input type="date" class="form-control" name="degree_start[]" placeholder="Starting date">
                                                                     </div>
                                                                     <div class="input-text col-md-6">
-                                                                        <select
-                                                                            class="form-select form-select-lg mb-4 mt-4"
-                                                                            aria-label=".form-select-lg example">
-                                                                            <option value="1">Ending date</option>
-                                                                            <option value="2">Pakistan</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                        </select>
-
+                                                                        <input type="date" class="form-control" name="degree_end[]" placeholder="Ending Date">
                                                                     </div>
                                                                 </div>
 
@@ -524,8 +462,8 @@
                                                     <div class="results"></div>
 
                                                     <div class="buttons mb-5">
-                                                        <button class="clone schedule-btn ">Add more experience</button>
-                                                        <button class="remove cencel-btn btn-registration"
+                                                        <button type="button" class="clone schedule-btn ">Add more experience</button>
+                                                        <button type="button" class="remove cencel-btn btn-registration"
                                                             style="visibility: hidden;color: black;">remove</button>
 
                                                     </div>
@@ -563,80 +501,66 @@
                                         <div class="container-fluid">
                                             <div class="row">
                                                 <div class="input-text col-md-6">
-                                                    <select class="form-select form-select-lg mb-3"
+                                                    <select name="teach" class="form-select form-select-lg mb-3"
                                                         aria-label=".form-select-lg example">
                                                         <option value="1">I want to teach</option>
-                                                        <option value="2">Lahore</option>
-                                                        <option value="2">Lahore</option>
-                                                        <option value="2">Lahore</option>
-                                                        <option value="2">Lahore</option>
-                                                        <option value="2">Lahore</option>
-                                                        <option value="2">Lahore</option>
-                                                        <option value="2">Lahore</option>
-                                                        <option value="2">Lahore</option>
-
+                                                        <option value="2">Physics</option>
+                                                        <option value="2">Chemistery</option>
                                                     </select>
                                                 </div>
                                                 <div class="input-text col-md-6">
-                                                    <select class="form-select form-select-lg mb-3"
-                                                        aria-label=".form-select-lg example">
-                                                        <option value="1">Student level</option>
-                                                        <option value="2">Pakistan</option>
-                                                        <option value="2">Lahore</option>
-                                                        <option value="2">Lahore</option>
-                                                        <option value="2">Lahore</option>
-                                                        <option value="2">Lahore</option>
-                                                        <option value="2">Lahore</option>
-                                                        <option value="2">Lahore</option>
-                                                        <option value="2">Lahore</option>
-
-
+                                                    <select name="student_level" class="form-select form-select-lg mb-3" >
+                                                        <option disabled >Student level</option>
+                                                        <option value="1" selected>Basic</option>
+                                                        <option value="2">Intermediate</option>
+                                                        <option value="3">Expert</option>
                                                     </select>
-
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="container-fluid">
 
-                                            <div class="input-text col-md-12 m-0 p-0 mt-3">
-                                                <select class="form-select form-select-lg mb-3"
-                                                    aria-label=".form-select-lg example">
+                                            {{-- <div class="input-text col-md-12 m-0 p-0 mt-3">
+                                                <select class="form-select form-select-lg mb-3" name="availability">
                                                     <option value="1">Your availability</option>
-                                                    <option value="2">Pakistan</option>
-                                                    <option value="2">Lahore</option>
-                                                    <option value="2">Lahore</option>
-                                                    <option value="2">Lahore</option>
-                                                    <option value="2">Lahore</option>
-                                                    <option value="2">Lahore</option>
-                                                    <option value="2">Lahore</option>
-                                                    <option value="2">Lahore</option>
-
-
                                                 </select>
 
-                                            </div>
+
+
+                                                <script type="text/javascript">
+                                                $(function() {
+                                                    $('.multiselect-ui').multiselect({
+                                                        includeSelectAllOption: true
+                                                    });
+                                                });
+                                                </script>
+                                            </div> --}}
 
                                             <div class="input-text col-md-12 m-0 p-0 mt-3 mb-5">
-                                                <select class="form-select form-select-lg mb-3"
+                                                <select name="hour_rate" class="form-select form-select-lg mb-3"
                                                     aria-label=".form-select-lg example">
-                                                    <option value="1">Per hour charges</option>
-                                                    <option value="2">Pakistan</option>
-                                                    <option value="2">Lahore</option>
-                                                    <option value="2">Lahore</option>
-                                                    <option value="2">Lahore</option>
-                                                    <option value="2">Lahore</option>
-                                                    <option value="2">Lahore</option>
-                                                    <option value="2">Lahore</option>
-                                                    <option value="2">Lahore</option>
+                                                    <option disabled >Per hour charges</option>
+                                                    <option value="5">$5</option>
+                                                    <option value="10" selected>$10</option>
+                                                    <option value="15">$15</option>
+                                                    <option value="20">$20</option>
+                                                    <option value="25">$25</option>
+                                                    <option value="30">$30</option>
+                                                    <option value="35">$35</option>
+                                                    <option value="40">$40</option>
+                                                    <option value="45">$45</option>
+                                                    <option value="50">$50</option>
+
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-8" style="float: right;">
-                                            <a href="../Login/skip.html">
-                                                <button id="step-1-next"
-                                                    class="btn btn-lg   schedule-btn  nextBtn  pull-right">&nbsp;
-                                                    Finsh&nbsp; </button>
-                                            </a>
+
+                                            <button type="submit" id="step-1-next"
+                                                class="btn btn-lg   schedule-btn  nextBtn  pull-right">&nbsp;
+                                                Finsh&nbsp;
+                                            </button>
+
                                         </div>
                                     </div>
 
@@ -660,26 +584,27 @@
         <script src="{{ asset('assets/js/registration.js') }}"></script>
         <script src="{{ asset('assets/js/yearpicker.js')}}"></script>
         <script src="{{ asset('assets/js/languages.json')}}"></script>
+        <script src="{{ asset('assets/js/googleapi.js')}}"></script>
+        <script src="{{ asset('assets/js/multiselect.js')}}"></script>
         <script>
 
              for(var i=1; i<=31; i++){
-                $("#day").append("<option value='"+i+"'"+ (i=={{$user->day}} ? 'selected' : '')+">"+i+"</option>");
+                $("#day").append("<option value='"+i+"'"+ (i=={{$user->day ?? 1}} ? 'selected' : '')+">"+i+"</option>");
             }
 
+            $("#step-1-next").on('click', function(){
+                $(this).attr('name','finish');
+            });
             $(document).ready(function() {
-                $("#year").yearpicker({
-                    year: {{$user->year}},
+                $("#year,#grad-year").yearpicker({
+                    year: {{$user->year ?? '1990'}},
                     startYear: 1950,
                     endYear: 2050,
                 });
             });
-            // $("#language").select2({
-            //     language: "es"
-            // });
-            // $('.form-select-lg').select2();
 
             $("#country_selector").countrySelect({
-                defaultCountry: "{{$user->country_short}}",
+                defaultCountry: "{{$user->country_short ?? ''}}",
                 preferredCountries: ['ca', 'gb', 'us', 'pk']
             });
 

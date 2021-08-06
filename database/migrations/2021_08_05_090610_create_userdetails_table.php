@@ -16,6 +16,7 @@ class CreateUserdetailsTable extends Migration
         Schema::create('userdetails', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->nullable();
+            $table->integer('ip')->nullable();
             $table->string('degree')->nullable();
             $table->string('major')->nullable();
             $table->string('institute')->nullable();
@@ -28,6 +29,7 @@ class CreateUserdetailsTable extends Migration
             $table->string('student_level')->nullable();
             $table->string('availability')->nullable();
             $table->string('hourly_rate')->nullable();
+            $table->string('docs')->nullable();
             $table->timestamps();
         });
     }
