@@ -14,9 +14,18 @@ use App\Http\Controllers\Admin\IntegrationController;
 use App\Http\Controllers\Admin\KnowledgeController;
 use App\Http\Controllers\Admin\SupportController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\General\GeneralController;
 use App\Http\Controllers\Tutor\HomeController as TutorHomeController;
+use App\Http\Controllers\Tutor\BookingController;
+use App\Http\Controllers\Tutor\CalendarController;
+use App\Http\Controllers\Tutor\ClassController;
+use App\Http\Controllers\Tutor\SubjectController as TutorSubjectController;
+use App\Http\Controllers\Tutor\HistoryController;
+use App\Http\Controllers\Tutor\PaymentController;
+use App\Http\Controllers\Tutor\SettingController as TutorSettingController;
+use App\Http\Controllers\Tutor\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +37,7 @@ Route::get('/admins',[AdminLogin::class,'index']);
 Route::post('admin/login',[AdminLogin::class,'login'])->name('admin.login');
 Route::get('admin/logout',[AdminLogin::class,'logout'])->name('admin.logout');
 
-Route::group(['prefix' => '/admin','middleware' => ['auth']],function () {
+Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function () {
 
     Route::get('/dashboard',[HomeController::class,'index'])->name('admin.dashboard');
     Route::get('/tutor',[TutorController::class,'index'])->name('admin.tutor');
@@ -49,19 +58,18 @@ Route::group(['prefix' => '/admin','middleware' => ['auth']],function () {
 |--------------------------------------------------------------------------
 |
 */
-Route::group(['prefix' => '/tutor','middleware' => []],function () {
+Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function () {
 
     Route::get('/dashboard',[TutorHomeController::class,'index'])->name('tutor.dashboard');
-    // Route::get('/tutor',[TutorController::class,'index'])->name('admin.tutor');
-    // Route::get('/student',[StudentController::class,'index'])->name('admin.student');
-    // Route::get('/course',[CourseController::class,'index'])->name('admin.course');
-    // Route::get('/subject',[SubjectController::class,'index'])->name('admin.subject');
-    // Route::get('/website',[WebsiteController::class,'index'])->name('admin.website');
-    // Route::get('/report',[ReportController::class,'index'])->name('admin.report');
-    // Route::get('/integration',[IntegrationController::class,'index'])->name('admin.integration');
-    // Route::get('/knowledge',[KnowledgeController::class,'index'])->name('admin.knolwedge');
-    // Route::get('/support',[SupportController::class,'index'])->name('admin.support');
-    // Route::get('/setting',[SettingController::class,'index'])->name('admin.setting');
+    Route::get('/booking',[BookingController::class,'index'])->name('tutor.booking');
+    Route::get('/classroom',[ClassController::class,'index'])->name('tutor.classroom');
+    Route::get('/calendar',[CalendarController::class,'index'])->name('tutor.calendar');
+    Route::get('/history',[HistoryController::class,'index'])->name('tutor.history');
+    Route::get('/payment',[PaymentController::class,'index'])->name('tutor.payment');
+    Route::get('/subjects',[TutorSubjectController::class,'index'])->name('tutor.subject');
+    Route::get('/settings',[TutorSettingController::class,'index'])->name('tutor.settings');
+    Route::get('/profile',[ProfileController::class,'index'])->name('tutor.profile');
+
 });
 
 /*
@@ -73,7 +81,9 @@ Route::group(['prefix' => '/tutor','middleware' => []],function () {
 
 Auth::routes();
 Route::view('/student/login','student.auth.login');
-Route::post('/register',[RegisterController::class,'register']);
+Route::post('/register',[RegisterController::class,'register'])->middleware('guest');
+Route::view('/logged','auth.loginpass')->name('logged')->middleware('guest');;
+Route::post('/logged',[LoginController::class,'logged'])->name('logged')->middleware('guest');;
 Route::view('/','welcome');
 Route::view('/tutor','frontend.tutor');
 Route::view('/student','frontend.student');

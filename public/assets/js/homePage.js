@@ -5,7 +5,7 @@ $(document).ready(function () {
     $("#sidebar").toggleClass('active');
   });
 });
-// 
+//
 var main = function () {
   $('.notification img').click(function () {
     $('.notification-menu').toggle();
@@ -42,7 +42,7 @@ for (var i = 0; i < btns.length; i++) {
 
 
 
-// 
+//
 
 function chooseColor() {
   var mycolor = document.getElementById("myColor").value;
@@ -172,5 +172,6 @@ function openCity(evt, cityName) {
   document.getElementById(cityName).style.display = "block";
   evt.currentTarget.className += " active";
 }
-
-document.getElementById("defaultOpen").click();
+if(document.getElementById("defaultOpen")){
+    document.getElementById("defaultOpen").click();
+}

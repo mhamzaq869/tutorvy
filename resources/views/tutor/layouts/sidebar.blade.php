@@ -2,7 +2,7 @@
  <nav id="sidebar">
      <div class="sidebar-header">
          <div class="logoImage">
-             <a href="../dashborad/home.html">
+             <a href="{{ route('tutor.dashboard')}}">
                  <img class="mt-2 mb-1 w-50 ml-5 mr-4" src="../assets/images/logo/logo.png" alt="logoImage">
              </a>
          </div>
@@ -10,7 +10,7 @@
      <!-- sidenav icons web view -->
      <div class="id-sideicons">
          <ol class="list-unstyled id-sideicons componentsX click-sideicon" style="display: none;" id="sidenav-show">
-             <li id="btns-sideicons" class="btn w-100">
+             <li id="btns-sideicons" class="btn @if(\Request::path() === 'tutor/dashboard') active @endif w-100">
                  <a href="#" data-toggle="" aria-expanded="false">
                      <img class="mr-2 dasborad-sid" src="../assets/images/ico/dash-ico.png" alt="dasborad-ico">
                      <span class="dasborad-show mt-3">
@@ -79,50 +79,50 @@
      <!-- end -->
      <div class="scroll-nav">
          <ul class="list-unstyled componentsX" id="sidenav-hide">
-             <li class="btn  w-100 mt-3">
-                 <a href="../index.html" data-toggle="" aria-expanded="false">
+             <li class="btn @if(\Request::path() === 'tutor/dashboard') active @endif  w-100 mt-3">
+                 <a href="{{route('tutor.dashboard')}}" data-toggle="" aria-expanded="false">
                      <img src="../assets/images/ico/dash-ico.png" alt="dasborad-ico" class=" mr-2">
                      Dashboard
                  </a>
              </li>
-             <li class="btn w-100">
-                 <a href="../Booking/Booking.html" aria-expanded="false" class="">
+             <li class="btn @if(\Request::path() === 'tutor/booking') active @endif w-100">
+                 <a href="{{route('tutor.booking')}}" aria-expanded="false" class="">
                      <img src="../assets/images/ico/book-icons.png" alt="book-ico" class=" mr-2">
                      Bookings
                  </a>
              </li>
-             <li class="btn  w-100">
-                 <a href="../classroom/classroom.html">
+             <li class="btn @if(\Request::path() === 'tutor/classroom') active @endif w-100">
+                 <a href="{{route('tutor.classroom')}}">
                      <img src="../assets/images/ico/class-ico.png" alt="class-ico" class=" mr-2">
                      Classroom
                  </a>
              </li>
-             <li class="btn   w-100">
-                 <a href="../Subjects/subject.html">
+             <li class="btn  @if(\Request::path() === 'tutor/subjects') active @endif w-100">
+                 <a href="{{route('tutor.subject')}}">
                      <img src="../assets/images/ico/subject-ico.png" alt="subject-ico" class=" mr-2">
                      Subjects
                  </a>
              </li>
-             <li class="btn w-100">
-                 <a href="../clander/clander.html">
+             <li class="btn @if(\Request::path() === 'tutor/calendar') active @endif w-100">
+                 <a href="{{route('tutor.calendar')}}">
                      <img src="../assets/images/ico/calender-ico.png" alt="calender-ico" class=" mr-2">
                      Calendar
                  </a>
              </li>
-             <li class="btn  w-100">
-                 <a href="../History/history.html">
+             <li class="btn @if(\Request::path() === 'tutor/history') active @endif w-100">
+                 <a href="{{route('tutor.history')}}">
                      <img src="../assets/images/ico/history-ico.png" alt="history-ico" class=" mr-2">
                      History
                  </a>
              </li>
-             <li class="btn w-100">
-                 <a href="../payment/payment.html">
+             <li class="btn @if(\Request::path() === 'tutor/payment') active @endif w-100">
+                 <a href="{{route('tutor.payment')}}">
                      <img src="../assets/images/ico/payment-ico.png" alt="payment-ico" class=" mr-2">
                      Payment
                  </a>
              </li>
-             <li class="btn active  w-100">
-                 <a href="../setting/setting.html">
+             <li class="btn @if(\Request::path() === 'tutor/settings') active @endif w-100">
+                 <a href="{{route('tutor.settings')}}">
                      <img src="../assets/images/ico/setting-ico.png" alt="setting-ico" class=" mr-2">
                      Settings
                  </a>

@@ -31,8 +31,8 @@
                 <div class="col-md-6">
                     <div class="">
                         <div class="login-logo">
-                            <a href="{{url('/')}}">
-                                <img src="{{asset('assets/images/logo/logo.png')}}" alt="logo">
+                            <a href="{{ url('/') }}">
+                                <img src="{{ asset('assets/images/logo/logo.png') }}" alt="logo">
                             </a>
                         </div>
                         <div class="text">
@@ -56,34 +56,74 @@
                     <div class=" card border-0 container pb-5">
                         <div class="ml-3 mr-3">
                             <div class="row">
+                                @isset($user)
+                                <p class="ml-3 mt-3 mt-5">
+                                    @if($user->profile)
+                                    @else
+                                    <img src="../assets/images/logo/boy.jpg" alt="boy" style="width: 40px;">
+                                    @endif
+                                </p>
+                                <p class="ml-3 mt-5 Welcome-text"> {{$user->first_name ?? ''}} {{$user->last_name ?? ''}}</p>
+                                @else
                                 <p class="ml-3 mt-5 hello-text">
                                     Hello,
                                 </p>
                                 <p class="ml-1 mt-5 Welcome-text">
                                     Welcome back
                                 </p>
+                                @endisset
                             </div>
+                            @isset($user)
+                            <a href="{{route('login')}}" class="text-primary" style="position: absolute;top: 75px;left: 90px;font-size: 14px;font-family: Poppins;line-height: 1;text-decoration:none">
+                                Not you ?</a>
+                            <p class="sign-text">Enter Password</p>
+                            <div class="row">
+                                <p class="user-text ml-3">Enter password to login</p>
+                                <br />
+                                <br />
+                            </div>
+                            @else
                             <p class="sign-text">
                                 Sign in
                             </p>
                             <div class="row">
                                 <p class="user-text ml-3">
-                                    New user?<a href="{{route('register')}}" class="Create-text text-decoration-none">
-                                    create an account
+                                    New user?<a href="{{ route('register') }}" class="Create-text text-decoration-none">
+                                        create an account
                                     </a>
                                 </p>
                                 <br /><br />
                             </div>
+                            @endisset
                             <div class="mb-5 input-login">
                                 <div class="input-container">
-                                            <form action="" id="form">
-                                            <input type="password" name="myName" id="myName"
-                                                placeholder="**************" class="form-control">
+                                    <form action="{{ route('login') }}" method="POST" id="form">
+                                        @csrf
 
-                                                <input type="submit" class="submit schedule-btn w-25 mt-3 float-right"
-                                                value="Submit">
+                                        @if(!isset($user))
+                                        <input type="email" name="email" id="myName" placeholder="Enter Email Address"
+                                            class="form-control @if(Session::has('error')) is-invalid @endif">
 
-                                        </form>
+                                            @if(Session::has('error'))
+                                                <span class="invalid-feedback d-block" role="alert">
+                                                    <strong>{{session::get('error')}}</strong>
+                                                </span>
+                                            @endif
+                                        @else
+                                            <input type="email" name="valid_email" value="{{$user->email}}" hidden />
+                                            <input type="text" name="role" value="{{$user->role}}" hidden/>
+                                            <input type="password" name="password" id="pswd" placeholder="Enter your password"
+                                            class="@isset($error) is-invalid @endisset">
+                                            @isset($error)
+                                                    <span class="invalid-feedback d-block" role="alert">
+                                                        <strong>{{$error}}</strong>
+                                                    </span>
+                                            @endisset
+                                        @endif
+                                        <input type="submit" class="submit schedule-btn w-25 mt-3 float-right"
+                                            value="Submit">
+
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -133,47 +173,45 @@
         <script src="../assets/js/login.js"></script>
         <script src="../assets/js/jquery.validate.js"></script>
         <script>
-
-        // jquery form validation
-        $(document).ready(function () {
-            $("#form").validate({
-                rules: {
-                    myName: {
-                        required: true,
-                        minlength: 8
-                    }
-                    ,
-                    pass: {
-                        required: true,
-                        minlength: 8
-                    }
-                },
-
-                highlight: function (element) {
-                    $(element).addClass("cl");
-                },
-                unhighlight: function (element) {
-                    $(element).removeClass("cl");
-                },
-                messages: {
-                    myName: {
-                        required: "Enter your password",
-
+            // jquery form validation
+            $(document).ready(function() {
+                $("#form").validate({
+                    rules: {
+                        myName: {
+                            required: true,
+                            minlength: 8
+                        },
+                        pass: {
+                            required: true,
+                            minlength: 8
+                        }
                     },
-                    pass: {
-                        required: "Enter new password",
 
+                    highlight: function(element) {
+                        $(element).addClass("cl");
                     },
-                    cpass: {
-                        required: "Re-enter password",
-                        equalTo: "password not matched"
+                    unhighlight: function(element) {
+                        $(element).removeClass("cl");
+                    },
+                    messages: {
+                        myName: {
+                            required: "Enter your password",
 
+                        },
+                        pass: {
+                            required: "Enter new password",
+
+                        },
+                        cpass: {
+                            required: "Re-enter password",
+                            equalTo: "password not matched"
+
+                        }
                     }
-                }
 
 
+                })
             })
-        })
         </script>
     </section>
 </body>

@@ -193,21 +193,23 @@ class RegisterController extends Controller
             }
         }
 
+        // dd($request->all());
+
         return  Userdetail::create([
                     'user_id' => $user->id,
                     'ip' => $_SERVER['REMOTE_ADDR'],
-                    'degree' => json_encode($request->degree),
-                    'major' => json_encode($request->major),
-                    'institute' => json_encode($request->institute),
-                    'year' => json_encode($request->year),
-                    'designation' => json_encode($request->designation),
-                    'organization' => json_encode($request->organization),
-                    'start_date' => json_encode($request->start_date),
-                    'end_date' => json_encode($request->end_date),
+                    'degree' => $request->degree,
+                    'major' => $request->major,
+                    'institute' => $request->institute,
+                    'year' => $request->year,
+                    'designation' => $request->designation,
+                    'organization' => $request->organization,
+                    'start_date' => $request->start_date,
+                    'end_date' => $request->end_date,
                     'teach' => $request->teach,
                     'student_level' => $request->student_level,
                     'hourly_rate' => $request->hour_rate,
-                    'docs' => json_encode($docs),
+                    'docs' => $docs,
                 ]);
 
 

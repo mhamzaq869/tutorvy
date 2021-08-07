@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -37,4 +42,49 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+
+    public function login(Request $request)
+    {
+        /*
+        *  validating user by his email address and if user
+        *  if email/user validated then send Obj $user to login
+        *  view
+        */
+        $user = User::where('email',$request->email)->where('role','!=',1)->first();
+        if($user){
+            return view('auth.login',compact('user'));
+        }
+
+        /*
+        *  After validating email show only Password field
+        *  and set value of valid_email,role in hidden input
+        */
+
+        if($request->filled('valid_email','password','role')){
+            if(Auth::attempt(['email' => $request->valid_email, 'password' => $request->password,'role'=>$request->role,'status' => 1])){
+                Session::put('user',$request->valid_email);
+                if($request->role == 2){
+                    return redirect()->route('tutor.dashboard');
+                }
+            }
+            else{
+                $user = User::where('email',$request->valid_email)->where('role','!=',1)->first();
+                $error = 'Wrong! Password ';
+                return view('auth.login',compact('user','error'));
+            }
+        }
+        return redirect()->back()->with('error','Wrong! Email Address');
+
+    }
+
+    public function logged(Request $request)
+    {
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password,'role'=>$request->role])){
+            Session::put('user',$request->email);
+        }
+
+        return redirect()->back()->with('error','Wrong Password');
+    }
+
 }

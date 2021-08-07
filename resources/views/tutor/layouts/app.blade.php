@@ -14,9 +14,7 @@
     <!-- fonawsome -->
     <link href="{{ asset('assets/css/fontawesome.min.css') }}" rel="stylesheet">
     <!-- Styles -->
-    <link href="{{ asset('assets/css/tutor-home.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/tutor-asset.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/tutor-mobile.css') }}" rel="stylesheet">
+    @include('tutor.layouts.css')
 
 </head>
 <body>
@@ -24,7 +22,6 @@
         <!-- side navbar -->
         @include('tutor.layouts.sidebar')
         <!-- seide navbar end -->
-
         <div class="content" style="width: 100%;background-color: #FBFBFB !important;">
             @include('tutor.layouts.navbar')
             <!-- Main-->
@@ -36,8 +33,11 @@
      <!-- custom js -->
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
      <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
-     <script src="{{ asset('assets/js/homePage.js') }}"></script>
      <script src="{{ asset('assets/js/mobile.js') }}"></script>
-     <script src="{{ asset('assets/js/calendar.js') }}"></script>
+     <script src="{{ asset('assets/js/history.js') }}"></script>
+     <script src="{{ asset('assets/js/subject.js') }}"></script>
+     <script src="{{ asset('assets/js/homePage.js') }}"></script>
+     <script src="{{ asset('assets/js/clander.js') }}"></script>
+
 </body>
 </html>

@@ -114,7 +114,7 @@
                                         </span>
                                     </div>
                                     <div class="col-md-1">
-                                        <img class="dot-image" src=assets"images/ico/3dot.png"
+                                        <img class="dot-image" src="{{asset('assets/images/ico/3dot.png')}}"
                                             alt="dot-ico">
                                     </div>
                                 </div>
@@ -212,7 +212,7 @@
                         <ul class="dropdown-menu classdrop " style="padding-bottom: 5px;padding-top: 5px;"
                             role="menu" aria-labelledby="imageDropdown">
                             <li role="presentation">
-                                <a role="menuitem" tabindex="-1" href="#">
+                                <a role="menuitem" tabindex="-1" href="{{route('tutor.profile')}}">
                                     Profile
                                 </a>
                             </li>
@@ -412,17 +412,20 @@
                         data-toggle="dropdown" alt="profile">
                     <ul class="dropdown-menu classdrop classdrop1 ">
                         <li>
-                            <a tabindex="-1" class="disabled" href="setting/setting.html">
+                            <a tabindex="-1" class="" href="{{route('tutor.profile')}}">
                                 Profile
                             </a>
                         </li>
                         <li>
-                            <a tabindex="-1" class="disabled" href="#">
+                            <a tabindex="-1" class="" href="#">
                                 Help
                             </a>
                         </li>
                         <li>
-                            <a tabindex="-1" class="disabled" href="#">
+                            <form id="form"  action="{{route('logout')}}" onclick="preventDefault()" method="post">
+                                @csrf
+                            </form>
+                            <a tabindex="-1" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('form').submit();">
                                 Signout
                             </a>
                         </li>
