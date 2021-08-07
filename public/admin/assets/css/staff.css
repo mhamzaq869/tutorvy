@@ -1,0 +1,35 @@
+.cursor-1 {
+    cursor: pointer;
+}
+
+.email-text {
+    line-height: 0.5;
+}
+
+.email-text-1 {
+    line-height: 0.5;
+}
+
+.heading-sixth-1 {
+    font-size: 14px;
+    font-family: "Poppins";
+    font-weight: 400;
+}
+
+.email-text-2 {
+    line-height: 0.5;   
+}
+.view-bookings-2{
+    font-size: 14px;
+    font-family: "Poppins";
+    font-weight: 400;
+    margin-top: 1px;
+    color: #1173FF;
+}
+.input-option select{
+    padding: 11px;
+    /* background-color: red; */
+}
+.profile-image-1 img{
+    border-radius: 100%;
+}

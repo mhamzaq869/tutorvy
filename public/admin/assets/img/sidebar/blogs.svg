@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="105" height="105" viewBox="0 0 105 105">
+  <g id="blog" transform="translate(-7451 18227)">
+    <g id="blog-2" data-name="blog" transform="translate(7451 -18227)">
+      <g id="Group_6058" data-name="Group 6058">
+        <path id="Path_1930" data-name="Path 1930" d="M105,9.229A9.228,9.228,0,0,0,95.771,0H9.229A9.228,9.228,0,0,0,0,9.229V27.686a3.076,3.076,0,0,0,3.076,3.076h98.848A3.076,3.076,0,0,0,105,27.686Z" fill="#df615c"/>
+        <g id="Group_6056" data-name="Group 6056" transform="translate(9.434 10.767)">
+          <g id="Group_6053" data-name="Group 6053">
+            <path id="Path_1932" data-name="Path 1932" d="M53.178,58.652h-4.1a3.076,3.076,0,0,1,0-6.152h4.1a3.076,3.076,0,0,1,0,6.152Z" transform="translate(-46 -52.5)" fill="#fff"/>
+          </g>
+          <g id="Group_6054" data-name="Group 6054" transform="translate(16.406)">
+            <path id="Path_1933" data-name="Path 1933" d="M133.178,58.652h-4.1a3.076,3.076,0,0,1,0-6.152h4.1a3.076,3.076,0,0,1,0,6.152Z" transform="translate(-126 -52.5)" fill="#fff"/>
+          </g>
+          <g id="Group_6055" data-name="Group 6055" transform="translate(32.813)">
+            <path id="Path_1934" data-name="Path 1934" d="M213.178,58.652h-4.1a3.076,3.076,0,0,1,0-6.152h4.1a3.076,3.076,0,0,1,0,6.152Z" transform="translate(-206 -52.5)" fill="#fff"/>
+          </g>
+        </g>
+        <g id="Group_6057" data-name="Group 6057" transform="translate(0 27.686)">
+          <path id="Path_1935" data-name="Path 1935" d="M0,135v68.086a9.239,9.239,0,0,0,9.229,9.229H95.771A9.239,9.239,0,0,0,105,203.086V135Z" transform="translate(0 -135)" fill="#f7eeed"/>
+        </g>
+      </g>
+    </g>
+    <rect id="Rectangle_974" data-name="Rectangle 974" width="88" height="32" rx="5" transform="translate(7460 -18192)" fill="#fff"/>
+    <rect id="Rectangle_975" data-name="Rectangle 975" width="63" height="4" rx="2" transform="translate(7460 -18155)" fill="#fff"/>
+    <rect id="Rectangle_976" data-name="Rectangle 976" width="36" height="3" rx="1.5" transform="translate(7460 -18149)" fill="#fff"/>
+    <rect id="Rectangle_977" data-name="Rectangle 977" width="36" height="3" rx="1.5" transform="translate(7460 -18143)" fill="#fff"/>
+    <rect id="Rectangle_978" data-name="Rectangle 978" width="36" height="3" rx="1.5" transform="translate(7460 -18137)" fill="#fff"/>
+  </g>
+</svg>

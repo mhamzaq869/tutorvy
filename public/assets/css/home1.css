@@ -1,0 +1,55 @@
+
+.button:active {
+  box-shadow: 0 0.5vh #666;
+  transform: translateY(0.3vh);
+}
+
+#start {
+  top: 70vh;
+  left: 105vh;
+}
+#start .button {background-color: #EE9849;}
+#start .button:hover,
+#start .button:active {
+  background-color: #E58638;  
+}
+
+#skip {
+  top: 5vh;
+  left: 125vh;
+}
+#skip .button {background-color: #2A4E96;}
+#skip .button:hover,
+#skip .button:active {
+  background-color: #1E3D70;  
+}
+
+#lets {
+  top: 8vh;
+  left: 105vh;  
+}
+
+#formalities {
+  top: 25vh;
+  left: 115vh;
+  width: 100vh;
+}
+
+#text {
+  top: 40vh;
+  left: 105vh;  
+  width: 100vh;
+}
+
+#animation {
+  position: relative;
+  left: 0vh;
+}
+#animation div {
+  position: absolute;
+  display: none;
+}
+#animation svg {
+	height: 100vmin;
+	width: 100vmin;
+}

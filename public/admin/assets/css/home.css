@@ -1,0 +1,93 @@
+
+
+/* nedia query */
+@media(max-width:768px) {
+    #homesection {
+        display: block !important;
+    }
+}
+
+@media(max-width:768px) {
+    #calcultor {
+        width: 100% !important;
+    }
+}
+
+@media(max-width:1260px) {
+    .form-inline {
+        width: 1000px;
+    }
+}
+
+@media(max-width:790px) {
+    tr td:nth-child(6) {
+        width: 100px !important;
+    }
+}
+
+@media(max-width:560px) {
+    .rows-rap {
+        flex-wrap: nowrap;
+    }
+}
+
+@media(max-width:1290px) {
+    .res-textup {
+        line-height: 1.6 !important;
+    }
+}
+
+@media(max-width:700px) {
+    .bg-homeimage {
+        background: #1173FF !important;
+        height: 400px !important;
+    }
+}
+
+@media(max-width:1310px) {
+    .bg-homeimage {
+        /* background: #1173FF !important; */
+        height: 197px;
+    }
+}
+
+@media(max-width:710px) {
+    .home-image img {
+        position: relative !important;
+        left: -35px !important;
+    }
+}
+
+@media(max-width:1710px) {
+    .home-image img {
+        width: 100%;
+        height: 197px !important;
+    }
+}
+
+@media(max-width:1310px) {
+    .imageside {
+        position: relative;
+        bottom: -45px;
+    }
+}
+
+@media all and (max-width: 790px) {
+    .card-list {
+        flex-direction: column;
+    }
+}
+
+@media all and (max-width: 790px) {
+    .card {
+        width: 100% !important;
+    }
+}
+
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+    .table {
+        overflow: auto !important;
+        white-space: nowrap !important;
+        display: inline-block;
+    }
+}

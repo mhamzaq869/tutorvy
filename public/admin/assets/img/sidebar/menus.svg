@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="105" height="105" viewBox="0 0 105 105">
+  <g id="menu" transform="translate(-1418 -312)">
+    <g id="Group_6067" data-name="Group 6067" transform="translate(-107)">
+      <rect id="Rectangle_979" data-name="Rectangle 979" width="105" height="105" rx="9" transform="translate(1525 312)" fill="#21b573"/>
+      <g id="Group_6066" data-name="Group 6066" transform="translate(1544.77 348.078)">
+        <path id="Path_1924" data-name="Path 1924" d="M158.785,126.652H99.476a3.076,3.076,0,1,1,0-6.152h59.309a3.076,3.076,0,1,1,0,6.152Z" transform="translate(-96.4 -120.5)" fill="#f2f2f2"/>
+        <path id="Path_1925" data-name="Path 1925" d="M158.785,247.152H99.476a3.076,3.076,0,1,1,0-6.152h59.309a3.076,3.076,0,1,1,0,6.152Z" transform="translate(-96.4 -221.972)" fill="#f2f2f2"/>
+        <path id="Path_1926" data-name="Path 1926" d="M158.785,367.652H99.476a3.076,3.076,0,0,1,0-6.152h59.309a3.076,3.076,0,1,1,0,6.152Z" transform="translate(-96.4 -323.443)" fill="#f2f2f2"/>
+      </g>
+    </g>
+    <path id="Rectangle_980" data-name="Rectangle 980" d="M9,0H96a9,9,0,0,1,9,9V21a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V9A9,9,0,0,1,9,0Z" transform="translate(1418 312)" fill="#35cf8a"/>
+  </g>
+</svg>
