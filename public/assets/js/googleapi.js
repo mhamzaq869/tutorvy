@@ -20,7 +20,7 @@ $(document).on('click', '.remove-field', function (e) {
 });
 
 
-// 
+//
 
 $('.wrapper').on('click', '.remove', function () {
   $('.remove').closest('.wrapper').find('.element').not(':first').last().remove();
@@ -28,7 +28,7 @@ $('.wrapper').on('click', '.remove', function () {
 $('.wrapper').on('click', '.clone', function () {
   $('.clone').closest('.wrapper').find('.element').first().clone().appendTo('.results');
 });
-//   
+//
 $('.wrapper1').on('click', '.removes', function () {
   $('.removes').closest('.wrapper1').find('.element').not(':first').last().remove();
 });
@@ -37,7 +37,7 @@ $('.wrapper1').on('click', '.clone1', function () {
 });
 
 
-// 
+//
 const xhttp = new XMLHttpRequest();
 const select = document.getElementById("countries");
 const flag = document.getElementById("flag");
@@ -51,8 +51,10 @@ xhttp.onreadystatechange = function () {
     handleCountryChange();
   }
 };
-xhttp.open("GET", "https://  .eu/rest/v2/all", true);
-xhttp.send();
+// if(xhttp){
+//     xhttp.open("GET", "https://  .eu/rest/v2/all", true);
+//     xhttp.send();
+// }
 
 function assignValues() {
   countries.forEach(country => {
@@ -69,5 +71,6 @@ function handleCountryChange() {
   );
   flag.style.backgroundImage = `url(${countryData.flag})`;
 }
-
-select.addEventListener("change", handleCountryChange.bind(this));
+if(select){
+    select.addEventListener("change", handleCountryChange.bind(this));
+}

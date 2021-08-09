@@ -125,22 +125,23 @@ class RegisterController extends Controller
             $user->student_level = $user->student_level;
             $user->hourly_rate = $user->hourly_rate;
             $user->docs = json_decode($user->userdetailIp->first()->docs);
-        }else{
-            $user->degrees = [];
-            $user->major =[];
-            $user->institute = [];
-            $user->year = [];
-            $user->institute = [];
-            $user->year = [];
-            $user->designation = [];
-            $user->organization = [];
-            $user->start_date = [];
-            $user->end_date = [];
-            $user->teach = [];
-            $user->student_level = [];
-            $user->hourly_rate = [];
-            $user->docs = [];
         }
+        // else{
+        //     $user->degrees = null;
+        //     $user->major =[];
+        //     $user->institute = [];
+        //     $user->year = [];
+        //     $user->institute = [];
+        //     $user->year = [];
+        //     $user->designation = [];
+        //     $user->organization = [];
+        //     $user->start_date = [];
+        //     $user->end_date = [];
+        //     $user->teach = [];
+        //     $user->student_level = [];
+        //     $user->hourly_rate = [];
+        //     $user->docs = [];
+        // }
 
         return $user;
 

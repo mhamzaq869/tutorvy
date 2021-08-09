@@ -299,28 +299,80 @@
                                         style="padding-bottom: 100px;background-color: white;">
                                         <div class="col-md-12 ">
                                             <p class="heading-third mt-3">Educational information</p>
-                                            @foreach ($user->degrees as $i=>$education)
+                                            @isset($user)
+                                                @foreach ($user->degrees as $i=>$education)
+                                                <div class=" customer_records mt-5">
+                                                    <div class="row">
+                                                        <div class="input-text col-md-6">
+                                                            <select name="degree[]" class="form-select form-select-lg mb-3">
+                                                                <option @if($education == 'Degree') selected @endif value="Degree">Degree</option>
+                                                                <option @if($education == "Associate's Degree") selected @endif value="Associate's Degree">Associate's Degree</option>
+                                                                <option @if($education == "Associate's Degree") selected @endif value="Associate's Degree">Bachelor's Degree</option>
+                                                                <option @if($education == 'Doctor of Medicine (M.D.)') selected @endif value="Doctor of Medicine (M.D.)">Doctor of Medicine (M.D.)</option>
+                                                                <option @if($education == 'Doctor of Philosophy (Ph.D.)') selected @endif value="Doctor of Philosophy (Ph.D.)">Doctor of Philosophy (Ph.D.)</option>
+                                                                <option @if($education == "Engineer's Degree") selected @endif value="Engineer's Degree">Engineer's Degree</option>
+                                                                <option @if($education == 'Juris Doctor (J.D.)') selected @endif value="Juris Doctor (J.D.)">Juris Doctor (J.D.)</option>
+                                                                <option @if($education == "Master's Degree") selected @endif value="Master's Degree">Master's Degree</option>
+                                                                <option @if($education == "Master's of Business Administration (M.B.A.)") selected @endif value="Master's of Business Administration (M.B.A.)">Master's of Business Administration (M.B.A.)</option>
+                                                                <option @if($education == 'Others') selected @endif value="Others">Others</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="input-text col-md-6">
+                                                            <select name="major[]" class="form-select form-select-lg mb-3">
+                                                                <option @if($user->major[$i] == 0) selected @endif value="0">Major</option>
+                                                                <option @if($user->major[$i] == 1) selected @endif value="1">Computer Scinece</option>
+                                                            </select>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-3">
+                                                        <div class="input-text col-md-6">
+                                                            <select name="institute[]" class="form-select form-select-lg mb-3"
+                                                                aria-label=".form-select-lg example">
+                                                                <option @if($user->institute[$i] == 0) selected @endif value="0">Institute</option>
+                                                                <option @if($user->institute[$i] == 1) selected @endif value="1">Punjab University</option>
+                                                                <option @if($user->institute[$i] == 2) selected @endif value="2">Virtual University Of Pakistan</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="input-text col-md-6">
+                                                            <input type="date" name="graduate_year[]" class=" yearpicker form-control"
+                                                            id="grad-yea" value="{{$user->year[$i]}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="button-wrapper mt-4">
+                                                        <span class="label" style="position: relative">
+                                                            <input type="file" name="upload[]" id="upload" class="upload-box" placeholder="Upload File"
+                                                            accept=".doc,.pdf,.png,.jpg,.jpeg">
+                                                            <img src="../assets/images/ico/attach.png" class="w-25 "
+                                                                alt="i">Attach degrees
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <hr />
+                                                @endforeach
+                                            @else
                                             <div class=" customer_records mt-5">
                                                 <div class="row">
                                                     <div class="input-text col-md-6">
                                                         <select name="degree[]" class="form-select form-select-lg mb-3">
-                                                            <option @if($education == 'Degree') selected @endif value="Degree">Degree</option>
-                                                            <option @if($education == "Associate's Degree") selected @endif value="Associate's Degree">Associate's Degree</option>
-                                                            <option @if($education == "Associate's Degree") selected @endif value="Associate's Degree">Bachelor's Degree</option>
-                                                            <option @if($education == 'Doctor of Medicine (M.D.)') selected @endif value="Doctor of Medicine (M.D.)">Doctor of Medicine (M.D.)</option>
-                                                            <option @if($education == 'Doctor of Philosophy (Ph.D.)') selected @endif value="Doctor of Philosophy (Ph.D.)">Doctor of Philosophy (Ph.D.)</option>
-                                                            <option @if($education == "Engineer's Degree") selected @endif value="Engineer's Degree">Engineer's Degree</option>
-                                                            <option @if($education == 'Juris Doctor (J.D.)') selected @endif value="Juris Doctor (J.D.)">Juris Doctor (J.D.)</option>
-                                                            <option @if($education == "Master's Degree") selected @endif value="Master's Degree">Master's Degree</option>
-                                                            <option @if($education == "Master's of Business Administration (M.B.A.)") selected @endif value="Master's of Business Administration (M.B.A.)">Master's of Business Administration (M.B.A.)</option>
-                                                            <option @if($education == 'Others') selected @endif value="Others">Others</option>
+                                                            <option  value="Degree">Degree</option>
+                                                            <option  value="Associate's Degree">Associate's Degree</option>
+                                                            <option  value="Associate's Degree">Bachelor's Degree</option>
+                                                            <option  value="Doctor of Medicine (M.D.)">Doctor of Medicine (M.D.)</option>
+                                                            <option  value="Doctor of Philosophy (Ph.D.)">Doctor of Philosophy (Ph.D.)</option>
+                                                            <option  value="Engineer's Degree">Engineer's Degree</option>
+                                                            <option  value="Juris Doctor (J.D.)">Juris Doctor (J.D.)</option>
+                                                            <option  value="Master's Degree">Master's Degree</option>
+                                                            <option  value="Master's of Business Administration (M.B.A.)">Master's of Business Administration (M.B.A.)</option>
+                                                            <option  value="Others">Others</option>
                                                         </select>
                                                     </div>
 
                                                     <div class="input-text col-md-6">
                                                         <select name="major[]" class="form-select form-select-lg mb-3">
-                                                            <option @if($user->major[$i] == 0) selected @endif value="0">Major</option>
-                                                            <option @if($user->major[$i] == 1) selected @endif value="1">Computer Scinece</option>
+                                                            <option value="0">Major</option>
+                                                            <option value="1">Computer Scinece</option>
                                                         </select>
 
                                                     </div>
@@ -329,14 +381,14 @@
                                                     <div class="input-text col-md-6">
                                                         <select name="institute[]" class="form-select form-select-lg mb-3"
                                                             aria-label=".form-select-lg example">
-                                                            <option @if($user->institute[$i] == 0) selected @endif value="0">Institute</option>
-                                                            <option @if($user->institute[$i] == 1) selected @endif value="1">Punjab University</option>
-                                                            <option @if($user->institute[$i] == 2) selected @endif value="2">Virtual University Of Pakistan</option>
+                                                            <option value="0">Institute</option>
+                                                            <option value="1">Punjab University</option>
+                                                            <option value="2">Virtual University Of Pakistan</option>
                                                         </select>
                                                     </div>
                                                     <div class="input-text col-md-6">
                                                         <input type="date" name="graduate_year[]" class=" yearpicker form-control"
-                                                        id="grad-yea" value="{{$user->year[$i]}}">
+                                                        id="grad-yea">
                                                     </div>
                                                 </div>
                                                 <div class="button-wrapper mt-4">
@@ -349,7 +401,7 @@
                                                 </div>
                                             </div>
                                             <hr />
-                                            @endforeach
+                                            @endisset
                                             <a class="extra-fields-customer" href="#" style="font-size: 16px;font-family: Poppins;text-decoration: none;">+
                                                 Add  more degrees
                                             </a>
@@ -377,39 +429,74 @@
                                             <p class="heading-third mt-3">Professional information</p>
                                             <div class="wrapper mt-5">
                                                 <div class="container">
-                                                    @foreach ($user->designation as $profession)
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="element">
-                                                                <div class="row">
-                                                                    <div class="input-text col-md-6">
-                                                                        <select class="form-select form-select-lg" name="designation[]" >
-                                                                            <option @if($profession == 0) selected @endif value="0">Desigination</option>
-                                                                            <option @if($profession == 'Senior Engineer') selected @endif value="Senior Engineer">Software Engineer</option>
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="input-text col-md-6">
-                                                                        <select class="form-select form-select-lg" name="organization[]">
-                                                                            <option @if($user->organization[$i] == 0) selected @endif value="0">Organization</option>
-                                                                            <option value="creative sprout media">Creative sprout media</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row my-3">
-                                                                    <div class="input-text col-md-6">
-                                                                        <input type="date" class="form-control" name="degree_start[]" placeholder="Starting date"
-                                                                        value="{{$user->start_date[$i] ?? ''}}">
-                                                                    </div>
-                                                                    <div class="input-text col-md-6">
-                                                                        <input type="date" class="form-control" name="degree_end[]" placeholder="Ending Date"
-                                                                        value="{{$user->end_date[$i] ?? ''}}">
-                                                                    </div>
-                                                                </div>
+                                                    @isset($user)
 
+                                                        @foreach ($user->designation as $profession)
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="element">
+                                                                    <div class="row">
+                                                                        <div class="input-text col-md-6">
+                                                                            <select class="form-select form-select-lg" name="designation[]" >
+                                                                                <option @if($profession == 0) selected @endif value="0">Desigination</option>
+                                                                                <option @if($profession == 'Senior Engineer') selected @endif value="Senior Engineer">Software Engineer</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="input-text col-md-6">
+                                                                            <select class="form-select form-select-lg" name="organization[]">
+                                                                                <option @if($user->organization[$i] == 0) selected @endif value="0">Organization</option>
+                                                                                <option value="creative sprout media">Creative sprout media</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row my-3">
+                                                                        <div class="input-text col-md-6">
+                                                                            <input type="date" class="form-control" name="degree_start[]" placeholder="Starting date"
+                                                                            value="{{$user->start_date[$i] ?? ''}}">
+                                                                        </div>
+                                                                        <div class="input-text col-md-6">
+                                                                            <input type="date" class="form-control" name="degree_end[]" placeholder="Ending Date"
+                                                                            value="{{$user->end_date[$i] ?? ''}}">
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    @endforeach
+                                                        @endforeach
+                                                    @else
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="element">
+                                                                    <div class="row">
+                                                                        <div class="input-text col-md-6">
+                                                                            <select class="form-select form-select-lg" name="designation[]" >
+                                                                                <option value="0">Desigination</option>
+                                                                                <option value="Senior Engineer">Software Engineer</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="input-text col-md-6">
+                                                                            <select class="form-select form-select-lg" name="organization[]">
+                                                                                <option value="0">Organization</option>
+                                                                                <option value="creative sprout media">Creative sprout media</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row my-3">
+                                                                        <div class="input-text col-md-6">
+                                                                            <input type="date" class="form-control" name="degree_start[]" placeholder="Starting date"
+                                                                            value="">
+                                                                        </div>
+                                                                        <div class="input-text col-md-6">
+                                                                            <input type="date" class="form-control" name="degree_end[]" placeholder="Ending Date"
+                                                                            value="">
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endisset
                                                     <!-- <button  class="element1">aa</button> -->
                                                     <div class="results"></div>
 
@@ -452,17 +539,17 @@
                                                 <div class="input-text col-md-6">
                                                     <select name="teach" class="form-select form-select-lg mb-3"
                                                         aria-label=".form-select-lg example">
-                                                        <option @if($user->teach == 1) selected @endif value="1">I want to teach</option>
-                                                        <option @if($user->teach == 2) selected @endif value="2">Physics</option>
-                                                        <option @if($user->teach == 3) selected @endif value="3">Chemistery</option>
+                                                        <option @if(isset($user) && $user->teach == 1) selected @endif value="1">I want to teach</option>
+                                                        <option @if(isset($user) && $user->teach == 2) selected @endif value="2">Physics</option>
+                                                        <option @if(isset($user) && $user->teach == 3) selected @endif value="3">Chemistery</option>
                                                     </select>
                                                 </div>
                                                 <div class="input-text col-md-6">
                                                     <select name="student_level" class="form-select form-select-lg mb-3" >
                                                         <option selected value="0" >Student level</option>
-                                                        <option @if($user->student_level == 1) selected @endif value="1" selected>Basic</option>
-                                                        <option @if($user->student_level == 2) selected @endif value="2">Intermediate</option>
-                                                        <option @if($user->student_level == 3) selected @endif value="3">Expert</option>
+                                                        <option @if(isset($user) && $user->student_level == 1) selected @endif value="1" selected>Basic</option>
+                                                        <option @if(isset($user) && $user->student_level == 2) selected @endif value="2">Intermediate</option>
+                                                        <option @if(isset($user) && $user->student_level == 3) selected @endif value="3">Expert</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -489,7 +576,7 @@
                                         </div>
                                         <div class="col-8" style="float: right;">
 
-                                            <button type="submit" id="step-1-next"
+                                            <button type="submit" id="finish"
                                                 class="btn btn-lg   schedule-btn  nextBtn  pull-right">&nbsp;
                                                 Finsh&nbsp;
                                             </button>
@@ -525,7 +612,7 @@
                 $("#day").append("<option value='"+i+"'"+ (i=={{$user->day ?? 1}} ? 'selected' : '')+">"+i+"</option>");
             }
 
-            $("#step-1-next").on('click', function(){
+            $("#finish").on('click', function(){
                 $(this).attr('name','finish');
             });
             $(document).ready(function() {
