@@ -119,84 +119,6 @@
             "time": "2021-01-20T22:51:39+00:00"
         },
         {
-<<<<<<< HEAD
-            "name": "dflydev/dot-access-data",
-            "version": "v3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dflydev/dflydev-dot-access-data.git",
-                "reference": "e04ff030d24a33edc2421bef305e32919dd78fc3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dflydev/dflydev-dot-access-data/zipball/e04ff030d24a33edc2421bef305e32919dd78fc3",
-                "reference": "e04ff030d24a33edc2421bef305e32919dd78fc3",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1 || ^8.0"
-            },
-            "require-dev": {
-                "phpstan/phpstan": "^0.12.42",
-                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.3",
-                "scrutinizer/ocular": "1.6.0",
-                "squizlabs/php_codesniffer": "^3.5",
-                "vimeo/psalm": "^3.14"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-main": "3.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Dflydev\\DotAccessData\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dragonfly Development Inc.",
-                    "email": "info@dflydev.com",
-                    "homepage": "http://dflydev.com"
-                },
-                {
-                    "name": "Beau Simensen",
-                    "email": "beau@dflydev.com",
-                    "homepage": "http://beausimensen.com"
-                },
-                {
-                    "name": "Carlos Frutos",
-                    "email": "carlos@kiwing.it",
-                    "homepage": "https://github.com/cfrutos"
-                },
-                {
-                    "name": "Colin O'Dell",
-                    "email": "colinodell@gmail.com",
-                    "homepage": "https://www.colinodell.com"
-                }
-            ],
-            "description": "Given a deep data structure, access data by dot notation.",
-            "homepage": "https://github.com/dflydev/dflydev-dot-access-data",
-            "keywords": [
-                "access",
-                "data",
-                "dot",
-                "notation"
-            ],
-            "support": {
-                "issues": "https://github.com/dflydev/dflydev-dot-access-data/issues",
-                "source": "https://github.com/dflydev/dflydev-dot-access-data/tree/v3.0.0"
-            },
-            "time": "2021-01-01T22:08:42+00:00"
-        },
-        {
-=======
->>>>>>> 3112bf704934d935dcd9bdb29f5d798f0db5ffb3
             "name": "doctrine/inflector",
             "version": "2.0.3",
             "source": {
@@ -941,18 +863,6 @@
         },
         {
             "name": "laravel/framework",
-<<<<<<< HEAD
-            "version": "v8.53.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/framework.git",
-                "reference": "5df423c2790f32b26baee90518bb659572aa404f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/5df423c2790f32b26baee90518bb659572aa404f",
-                "reference": "5df423c2790f32b26baee90518bb659572aa404f",
-=======
             "version": "v8.52.0",
             "source": {
                 "type": "git",
@@ -963,7 +873,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/8fe9877d52e25f8aed36c51734e5a8510be967e6",
                 "reference": "8fe9877d52e25f8aed36c51734e5a8510be967e6",
->>>>>>> 3112bf704934d935dcd9bdb29f5d798f0db5ffb3
                 "shasum": ""
             },
             "require": {
@@ -1036,11 +945,7 @@
                 "illuminate/view": "self.version"
             },
             "require-dev": {
-<<<<<<< HEAD
-                "aws/aws-sdk-php": "^3.186.4",
-=======
                 "aws/aws-sdk-php": "^3.155",
->>>>>>> 3112bf704934d935dcd9bdb29f5d798f0db5ffb3
                 "doctrine/dbal": "^2.6|^3.0",
                 "filp/whoops": "^2.8",
                 "guzzlehttp/guzzle": "^6.5.5|^7.0.1",
@@ -1053,11 +958,7 @@
                 "symfony/cache": "^5.1.4"
             },
             "suggest": {
-<<<<<<< HEAD
-                "aws/aws-sdk-php": "Required to use the SQS queue driver, DynamoDb failed job storage and SES mail driver (^3.186.4).",
-=======
                 "aws/aws-sdk-php": "Required to use the SQS queue driver, DynamoDb failed job storage and SES mail driver (^3.155).",
->>>>>>> 3112bf704934d935dcd9bdb29f5d798f0db5ffb3
                 "brianium/paratest": "Required to run tests in parallel (^6.0).",
                 "doctrine/dbal": "Required to rename columns and drop SQLite columns (^2.6|^3.0).",
                 "ext-ftp": "Required to use the Flysystem FTP driver.",
@@ -1126,9 +1027,6 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-<<<<<<< HEAD
-            "time": "2021-08-05T14:04:08+00:00"
-=======
             "time": "2021-07-27T13:03:29+00:00"
         },
         {
@@ -1199,7 +1097,6 @@
                 "source": "https://github.com/laravel/socialite"
             },
             "time": "2021-04-06T14:38:16+00:00"
->>>>>>> 3112bf704934d935dcd9bdb29f5d798f0db5ffb3
         },
         {
             "name": "laravel/tinker",
@@ -1329,18 +1226,6 @@
         },
         {
             "name": "league/commonmark",
-<<<<<<< HEAD
-            "version": "2.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "0d57f20aa03129ee7ef5f690e634884315d4238c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/0d57f20aa03129ee7ef5f690e634884315d4238c",
-                "reference": "0d57f20aa03129ee7ef5f690e634884315d4238c",
-=======
             "version": "1.6.6",
             "source": {
                 "type": "git",
@@ -1351,44 +1236,10 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/c4228d11e30d7493c6836d20872f9582d8ba6dcf",
                 "reference": "c4228d11e30d7493c6836d20872f9582d8ba6dcf",
->>>>>>> 3112bf704934d935dcd9bdb29f5d798f0db5ffb3
                 "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
-<<<<<<< HEAD
-                "league/config": "^1.1",
-                "php": "^7.4 || ^8.0",
-                "psr/event-dispatcher": "^1.0",
-                "symfony/polyfill-php80": "^1.15"
-            },
-            "require-dev": {
-                "cebe/markdown": "^1.0",
-                "commonmark/cmark": "0.30.0",
-                "commonmark/commonmark.js": "0.30.0",
-                "composer/package-versions-deprecated": "^1.8",
-                "erusev/parsedown": "^1.0",
-                "ext-json": "*",
-                "github/gfm": "0.29.0",
-                "michelf/php-markdown": "^1.4",
-                "phpstan/phpstan": "^0.12.88",
-                "phpunit/phpunit": "^9.5.5",
-                "scrutinizer/ocular": "^1.8.1",
-                "symfony/finder": "^5.3",
-                "symfony/yaml": "^2.3 | ^3.0 | ^4.0 | ^5.0",
-                "unleashedtech/php-coding-standard": "^3.1",
-                "vimeo/psalm": "^4.7.3"
-            },
-            "suggest": {
-                "symfony/yaml": "v2.3+ required if using the Front Matter extension"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-main": "2.1-dev"
-                }
-            },
-=======
                 "php": "^7.1 || ^8.0"
             },
             "conflict": {
@@ -1411,7 +1262,6 @@
                 "bin/commonmark"
             ],
             "type": "library",
->>>>>>> 3112bf704934d935dcd9bdb29f5d798f0db5ffb3
             "autoload": {
                 "psr-4": {
                     "League\\CommonMark\\": "src"
@@ -1429,11 +1279,7 @@
                     "role": "Lead Developer"
                 }
             ],
-<<<<<<< HEAD
-            "description": "Highly-extensible PHP Markdown parser which fully supports the CommonMark spec and GitHub-Flavored Markdown (GFM)",
-=======
             "description": "Highly-extensible PHP Markdown parser which fully supports the CommonMark spec and Github-Flavored Markdown (GFM)",
->>>>>>> 3112bf704934d935dcd9bdb29f5d798f0db5ffb3
             "homepage": "https://commonmark.thephpleague.com",
             "keywords": [
                 "commonmark",
@@ -1447,10 +1293,6 @@
             ],
             "support": {
                 "docs": "https://commonmark.thephpleague.com/",
-<<<<<<< HEAD
-                "forum": "https://github.com/thephpleague/commonmark/discussions",
-=======
->>>>>>> 3112bf704934d935dcd9bdb29f5d798f0db5ffb3
                 "issues": "https://github.com/thephpleague/commonmark/issues",
                 "rss": "https://github.com/thephpleague/commonmark/releases.atom",
                 "source": "https://github.com/thephpleague/commonmark"
@@ -1481,93 +1323,7 @@
                     "type": "tidelift"
                 }
             ],
-<<<<<<< HEAD
-            "time": "2021-07-31T19:15:22+00:00"
-        },
-        {
-            "name": "league/config",
-            "version": "v1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/config.git",
-                "reference": "20d42d88f12a76ff862e17af4f14a5a4bbfd0925"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/config/zipball/20d42d88f12a76ff862e17af4f14a5a4bbfd0925",
-                "reference": "20d42d88f12a76ff862e17af4f14a5a4bbfd0925",
-                "shasum": ""
-            },
-            "require": {
-                "dflydev/dot-access-data": "^3.0",
-                "nette/schema": "^1.2",
-                "php": "^7.4 || ^8.0"
-            },
-            "require-dev": {
-                "phpstan/phpstan": "^0.12.90",
-                "phpunit/phpunit": "^9.5.5",
-                "scrutinizer/ocular": "^1.8.1",
-                "unleashedtech/php-coding-standard": "^3.1",
-                "vimeo/psalm": "^4.7.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-main": "1.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "League\\Config\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Colin O'Dell",
-                    "email": "colinodell@gmail.com",
-                    "homepage": "https://www.colinodell.com",
-                    "role": "Lead Developer"
-                }
-            ],
-            "description": "Define configuration arrays with strict schemas and access values with dot notation",
-            "homepage": "https://config.thephpleague.com",
-            "keywords": [
-                "array",
-                "config",
-                "configuration",
-                "dot",
-                "dot-access",
-                "nested",
-                "schema"
-            ],
-            "support": {
-                "docs": "https://config.thephpleague.com/",
-                "issues": "https://github.com/thephpleague/config/issues",
-                "rss": "https://github.com/thephpleague/config/releases.atom",
-                "source": "https://github.com/thephpleague/config"
-            },
-            "funding": [
-                {
-                    "url": "https://www.colinodell.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://www.paypal.me/colinpodell/10.00",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/colinodell",
-                    "type": "github"
-                }
-            ],
-            "time": "2021-06-19T15:52:37+00:00"
-=======
             "time": "2021-07-17T17:13:23+00:00"
->>>>>>> 3112bf704934d935dcd9bdb29f5d798f0db5ffb3
         },
         {
             "name": "league/flysystem",
@@ -1720,8 +1476,6 @@
             "time": "2021-01-18T20:58:21+00:00"
         },
         {
-<<<<<<< HEAD
-=======
             "name": "league/oauth1-client",
             "version": "1.9.2",
             "source": {
@@ -1798,7 +1552,6 @@
             "time": "2021-08-03T23:29:01+00:00"
         },
         {
->>>>>>> 3112bf704934d935dcd9bdb29f5d798f0db5ffb3
             "name": "monolog/monolog",
             "version": "2.3.2",
             "source": {
@@ -1989,156 +1742,6 @@
             "time": "2021-07-28T13:16:28+00:00"
         },
         {
-<<<<<<< HEAD
-            "name": "nette/schema",
-            "version": "v1.2.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nette/schema.git",
-                "reference": "f5ed39fc96358f922cedfd1e516f0dadf5d2be0d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nette/schema/zipball/f5ed39fc96358f922cedfd1e516f0dadf5d2be0d",
-                "reference": "f5ed39fc96358f922cedfd1e516f0dadf5d2be0d",
-                "shasum": ""
-            },
-            "require": {
-                "nette/utils": "^3.1.4 || ^4.0",
-                "php": ">=7.1 <8.1"
-            },
-            "require-dev": {
-                "nette/tester": "^2.3 || ^2.4",
-                "phpstan/phpstan-nette": "^0.12",
-                "tracy/tracy": "^2.7"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.2-dev"
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "src/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause",
-                "GPL-2.0-only",
-                "GPL-3.0-only"
-            ],
-            "authors": [
-                {
-                    "name": "David Grudl",
-                    "homepage": "https://davidgrudl.com"
-                },
-                {
-                    "name": "Nette Community",
-                    "homepage": "https://nette.org/contributors"
-                }
-            ],
-            "description": "📐 Nette Schema: validating data structures against a given Schema.",
-            "homepage": "https://nette.org",
-            "keywords": [
-                "config",
-                "nette"
-            ],
-            "support": {
-                "issues": "https://github.com/nette/schema/issues",
-                "source": "https://github.com/nette/schema/tree/v1.2.1"
-            },
-            "time": "2021-03-04T17:51:11+00:00"
-        },
-        {
-            "name": "nette/utils",
-            "version": "v3.2.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nette/utils.git",
-                "reference": "967cfc4f9a1acd5f1058d76715a424c53343c20c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nette/utils/zipball/967cfc4f9a1acd5f1058d76715a424c53343c20c",
-                "reference": "967cfc4f9a1acd5f1058d76715a424c53343c20c",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.2 <8.1"
-            },
-            "conflict": {
-                "nette/di": "<3.0.6"
-            },
-            "require-dev": {
-                "nette/tester": "~2.0",
-                "phpstan/phpstan": "^0.12",
-                "tracy/tracy": "^2.3"
-            },
-            "suggest": {
-                "ext-gd": "to use Image",
-                "ext-iconv": "to use Strings::webalize(), toAscii(), chr() and reverse()",
-                "ext-intl": "to use Strings::webalize(), toAscii(), normalize() and compare()",
-                "ext-json": "to use Nette\\Utils\\Json",
-                "ext-mbstring": "to use Strings::lower() etc...",
-                "ext-tokenizer": "to use Nette\\Utils\\Reflection::getUseStatements()",
-                "ext-xml": "to use Strings::length() etc. when mbstring is not available"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.2-dev"
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "src/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause",
-                "GPL-2.0-only",
-                "GPL-3.0-only"
-            ],
-            "authors": [
-                {
-                    "name": "David Grudl",
-                    "homepage": "https://davidgrudl.com"
-                },
-                {
-                    "name": "Nette Community",
-                    "homepage": "https://nette.org/contributors"
-                }
-            ],
-            "description": "🛠  Nette Utils: lightweight utilities for string & array manipulation, image handling, safe JSON encoding/decoding, validation, slug or strong password generating etc.",
-            "homepage": "https://nette.org",
-            "keywords": [
-                "array",
-                "core",
-                "datetime",
-                "images",
-                "json",
-                "nette",
-                "paginator",
-                "password",
-                "slugify",
-                "string",
-                "unicode",
-                "utf-8",
-                "utility",
-                "validation"
-            ],
-            "support": {
-                "issues": "https://github.com/nette/utils/issues",
-                "source": "https://github.com/nette/utils/tree/v3.2.2"
-            },
-            "time": "2021-03-03T22:53:25+00:00"
-        },
-        {
-=======
->>>>>>> 3112bf704934d935dcd9bdb29f5d798f0db5ffb3
             "name": "nikic/php-parser",
             "version": "v4.12.0",
             "source": {
@@ -2808,23 +2411,6 @@
         },
         {
             "name": "ramsey/collection",
-<<<<<<< HEAD
-            "version": "1.2.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ramsey/collection.git",
-                "reference": "eaca1dc1054ddd10cbd83c1461907bee6fb528fa"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/collection/zipball/eaca1dc1054ddd10cbd83c1461907bee6fb528fa",
-                "reference": "eaca1dc1054ddd10cbd83c1461907bee6fb528fa",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.3 || ^8",
-                "symfony/polyfill-php81": "^1.23"
-=======
             "version": "1.1.4",
             "source": {
                 "type": "git",
@@ -2839,7 +2425,6 @@
             },
             "require": {
                 "php": "^7.2 || ^8"
->>>>>>> 3112bf704934d935dcd9bdb29f5d798f0db5ffb3
             },
             "require-dev": {
                 "captainhook/captainhook": "^5.3",
@@ -2849,10 +2434,6 @@
                 "hamcrest/hamcrest-php": "^2",
                 "jangregor/phpstan-prophecy": "^0.8",
                 "mockery/mockery": "^1.3",
-<<<<<<< HEAD
-                "phpspec/prophecy-phpunit": "^2.0",
-=======
->>>>>>> 3112bf704934d935dcd9bdb29f5d798f0db5ffb3
                 "phpstan/extension-installer": "^1",
                 "phpstan/phpstan": "^0.12.32",
                 "phpstan/phpstan-mockery": "^0.12.5",
@@ -2880,11 +2461,7 @@
                     "homepage": "https://benramsey.com"
                 }
             ],
-<<<<<<< HEAD
-            "description": "A PHP library for representing and manipulating collections.",
-=======
             "description": "A PHP 7.2+ library for representing and manipulating collections.",
->>>>>>> 3112bf704934d935dcd9bdb29f5d798f0db5ffb3
             "keywords": [
                 "array",
                 "collection",
@@ -2895,11 +2472,7 @@
             ],
             "support": {
                 "issues": "https://github.com/ramsey/collection/issues",
-<<<<<<< HEAD
-                "source": "https://github.com/ramsey/collection/tree/1.2.1"
-=======
                 "source": "https://github.com/ramsey/collection/tree/1.1.4"
->>>>>>> 3112bf704934d935dcd9bdb29f5d798f0db5ffb3
             },
             "funding": [
                 {
@@ -2911,11 +2484,7 @@
                     "type": "tidelift"
                 }
             ],
-<<<<<<< HEAD
-            "time": "2021-08-06T03:41:06+00:00"
-=======
             "time": "2021-07-30T00:58:27+00:00"
->>>>>>> 3112bf704934d935dcd9bdb29f5d798f0db5ffb3
         },
         {
             "name": "ramsey/uuid",
@@ -4686,88 +4255,6 @@
             "time": "2021-07-28T13:41:28+00:00"
         },
         {
-<<<<<<< HEAD
-            "name": "symfony/polyfill-php81",
-            "version": "v1.23.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-php81.git",
-                "reference": "e66119f3de95efc359483f810c4c3e6436279436"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php81/zipball/e66119f3de95efc359483f810c4c3e6436279436",
-                "reference": "e66119f3de95efc359483f810c4c3e6436279436",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-main": "1.23-dev"
-                },
-                "thanks": {
-                    "name": "symfony/polyfill",
-                    "url": "https://github.com/symfony/polyfill"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php81\\": ""
-                },
-                "files": [
-                    "bootstrap.php"
-                ],
-                "classmap": [
-                    "Resources/stubs"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony polyfill backporting some PHP 8.1+ features to lower PHP versions",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "compatibility",
-                "polyfill",
-                "portable",
-                "shim"
-            ],
-            "support": {
-                "source": "https://github.com/symfony/polyfill-php81/tree/v1.23.0"
-            },
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2021-05-21T13:25:03+00:00"
-        },
-        {
-=======
->>>>>>> 3112bf704934d935dcd9bdb29f5d798f0db5ffb3
             "name": "symfony/process",
             "version": "v5.3.4",
             "source": {
@@ -6061,18 +5548,6 @@
         },
         {
             "name": "laravel/sail",
-<<<<<<< HEAD
-            "version": "v1.9.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/sail.git",
-                "reference": "3e1aa8679b10ae9210eebfbc2ee5f3600f356702"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/3e1aa8679b10ae9210eebfbc2ee5f3600f356702",
-                "reference": "3e1aa8679b10ae9210eebfbc2ee5f3600f356702",
-=======
             "version": "v1.8.6",
             "source": {
                 "type": "git",
@@ -6083,7 +5558,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/sail/zipball/51ecfe0f048f8f8e6c5617e02a1f67ca22817c98",
                 "reference": "51ecfe0f048f8f8e6c5617e02a1f67ca22817c98",
->>>>>>> 3112bf704934d935dcd9bdb29f5d798f0db5ffb3
                 "shasum": ""
             },
             "require": {
@@ -6130,11 +5604,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-<<<<<<< HEAD
-            "time": "2021-08-03T18:51:44+00:00"
-=======
             "time": "2021-07-15T07:35:41+00:00"
->>>>>>> 3112bf704934d935dcd9bdb29f5d798f0db5ffb3
         },
         {
             "name": "mockery/mockery",
@@ -7964,10 +7434,7 @@
                     "type": "github"
                 }
             ],
-<<<<<<< HEAD
-=======
             "abandoned": true,
->>>>>>> 3112bf704934d935dcd9bdb29f5d798f0db5ffb3
             "time": "2020-09-28T06:45:17+00:00"
         },
         {

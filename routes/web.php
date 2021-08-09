@@ -48,7 +48,8 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
     Route::get('/website',[WebsiteController::class,'index'])->name('admin.website');
     Route::get('/report',[ReportController::class,'index'])->name('admin.report');
     Route::get('/integration',[IntegrationController::class,'index'])->name('admin.integration');
-    Route::get('/knowledge',[KnowledgeController::class,'index'])->name('admin.knolwedge');
+    Route::get('/staff',[StaffController::class,'index'])->name('admin.staff');
+    Route::get('/knowledge',[KnowledgeController::class,'index'])->name('admin.knowledge');
     Route::get('/support',[SupportController::class,'index'])->name('admin.support');
     Route::get('/setting',[SettingController::class,'index'])->name('admin.setting');
 });
