@@ -35,6 +35,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0rc.0/dist/js/select2.min.js"></script> --}}
 
+    <style>
+        .error{
+            color: red !important;
+            font-weight: 500;
+        }
+    </style>
 
 </head>
 
@@ -115,7 +121,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <form action="{{ url('register') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ url('register') }}" method="post" id="register" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="role" value="2">
                                 <div class="tab-content mt-5">
@@ -124,13 +130,13 @@
                                             <p class="heading-third mt-3">Personal information</p>
                                             <div class="row mt-5">
                                                 <div class="input-text col-md-6 d-block">
-                                                    <input type="" class="form-control csd @error('first_name') is-invalid @enderror" name="first_name"
+                                                    <input type="" class="form-control csd" name="first_name"
                                                         placeholder="First Name" value="{{$user->first_name ?? ''}}">
-                                                    @error('first_name')
+                                                    {{-- @error('first_name')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{$message}}</strong>
                                                         </span>
-                                                    @enderror
+                                                    @enderror --}}
 
                                                 </div>
                                                 <div class="input-text col-md-6 d-block">
@@ -536,13 +542,17 @@
                                         style="background-color: white;">
                                         <div class="container-fluid">
                                             <div class="row">
-                                                <div class="input-text col-md-6">
-                                                    <select name="teach" class="form-select form-select-lg mb-3"
-                                                        aria-label=".form-select-lg example">
-                                                        <option @if(isset($user) && $user->teach == 1) selected @endif value="1">I want to teach</option>
+                                                <div class="input-text col-md-6 d-block">
+                                                    <select name="teach" class="form-select form-select-lg mb-3 @error('teach') is-invalid @enderror"  required>
+                                                        <option  disabled selected>I want to teach</option>
                                                         <option @if(isset($user) && $user->teach == 2) selected @endif value="2">Physics</option>
                                                         <option @if(isset($user) && $user->teach == 3) selected @endif value="3">Chemistery</option>
                                                     </select>
+                                                    @error('teach')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{$message}}</strong>
+                                                    </span>
+                                                    @enderror
                                                 </div>
                                                 <div class="input-text col-md-6">
                                                     <select name="student_level" class="form-select form-select-lg mb-3" >
@@ -606,6 +616,7 @@
         <script src="{{ asset('assets/js/languages.json')}}"></script>
         <script src="{{ asset('assets/js/googleapi.js')}}"></script>
         <script src="{{ asset('assets/js/multiselect.js')}}"></script>
+        <script src="{{ asset('assets/js/jquery.validate.js') }} "></script>
         <script>
 
              for(var i=1; i<=31; i++){
@@ -644,6 +655,34 @@
                 }
                 document.getElementById('languages-list').innerHTML = option;
             })();
+
+            $("#register").validate({
+                rules: {
+                    // compound rule
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    password: {
+                        required: true,
+                    },
+                    first_name: {
+                        required:true
+                    },
+                    last_name: {
+                        required:true
+                    },
+                    teach: {
+                        required:true
+                    }
+                },
+                messages: {
+                    email: {
+                        required: "We need your email address to contact you",
+                        email: "Your email address must be in the format of name@domain.com"
+                    }
+                }
+            });
         </script>
     </section>
 </body>

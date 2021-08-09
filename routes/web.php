@@ -25,6 +25,7 @@ use App\Http\Controllers\Tutor\SubjectController as TutorSubjectController;
 use App\Http\Controllers\Tutor\HistoryController;
 use App\Http\Controllers\Tutor\PaymentController;
 use App\Http\Controllers\Tutor\SettingController as TutorSettingController;
+use App\Http\Controllers\Tutor\AssessmentController;
 use App\Http\Controllers\Tutor\ProfileController;
 use App\Http\Controllers\Student\HomeController as StudentHomeController;
 
@@ -70,7 +71,8 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::get('/subjects',[TutorSubjectController::class,'index'])->name('tutor.subject');
     Route::get('/settings',[TutorSettingController::class,'index'])->name('tutor.settings');
     Route::get('/profile',[ProfileController::class,'index'])->name('tutor.profile');
-
+    Route::view('/skip','tutor.skip')->name('skip');
+    Route::get('/assessment/{id}',[AssessmentController::class,'index'])->name('tutor.test');
 });
 
 /*
@@ -109,6 +111,7 @@ Route::view('/tutor','frontend.tutor');
 Route::view('/student','frontend.student');
 Route::view('/subject','frontend.subject');
 Route::view('/course','frontend.course');
+
 
 
 /*

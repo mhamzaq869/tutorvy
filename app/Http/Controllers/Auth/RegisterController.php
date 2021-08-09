@@ -168,7 +168,7 @@ class RegisterController extends Controller
             'gender' => ['required'],
         ]);
 
-        $request->ip = $_SERVER['REMOTE_ADDR'];
+
         $request->dob = $request->year.'-'.$request->month.'-'.$request->day;
 
         /**
@@ -178,6 +178,8 @@ class RegisterController extends Controller
         $user = User::where('ip',$request->ip)->where('role',2)->first();
 
         if($user):
+                $request->ip = $_SERVER['REMOTE_ADDR'];
+
                 $this->updateUser($user,$request);
 
                 if($user->userdetailIp->count() != 0):
@@ -194,7 +196,7 @@ class RegisterController extends Controller
                     'last_name' => $request->last_name,
                     'email' => $request->email,
                     'password' => Hash::make($request->password),
-                    'ip' => $request->ip,
+                    'ip' => $request->ip ?? null,
                     'dob' => $request->dob,
                     'phone' => $request->phone,
                     'city' => $request->city,
@@ -219,7 +221,7 @@ class RegisterController extends Controller
                     if($userdetail):
                         $this->updateUserdetail($user,$request);
                     else:
-                        $this->userdetail($user = null,$request);
+                        $this->userdetail($user,$request);
                     endif;
                 endif;
 
@@ -228,14 +230,29 @@ class RegisterController extends Controller
          * if Tutor complete his 4 steps in registeration form then name attribute
          * append on submit button to identify his step completion/visited
          */
+
         if($request->has('finish')){
+
             Auth::login($user);
             if(Auth::user()->role == 2):
-                return redirect()->route('tutor.dashboard');
+                return view('tutor.skip',compact('request'));
             else:
                 return redirect()->route('student.dashboard');
             endif;
+
         }
+        // if($request->has('finish')){
+
+
+        //     Auth::login($user);
+        //     if(Auth::user()->role == 2):
+        //         return redirect()->route('tutor.dashboard');
+        //     else:
+        //         return redirect()->route('student.dashboard');
+        //     endif;
+        // }
+
+
 
     }
 
@@ -299,7 +316,7 @@ class RegisterController extends Controller
             }
         }
 
-        // dd($request->all());
+        // dd($user->id,$request->all());
 
         return  Userdetail::create([
                     'user_id' => $user->id,
@@ -357,4 +374,5 @@ class RegisterController extends Controller
 
         return $user;
     }
+
 }
