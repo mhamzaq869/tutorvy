@@ -74,6 +74,7 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::get('/profile',[ProfileController::class,'index'])->name('tutor.profile');
     Route::view('/skip','tutor.skip')->name('skip');
     Route::get('/assessment/{id}',[AssessmentController::class,'index'])->name('tutor.test');
+    Route::post('/assessment',[AssessmentController::class,'store'])->name('tutor.assessment');
 });
 
 /*
