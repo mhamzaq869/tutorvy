@@ -55,27 +55,51 @@ class RegisterController extends Controller
     {
         return Validator::make($request, [
             'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phone' => ['required', 'number'],
+            'gender' => ['required'],
         ]);
     }
 
-
-
+    /**
+     * Show Registeration Form of Tutor and return User data
+     * which matched with his Remote Address
+     *
+     */
     protected function showRegistrationForm()
     {
         $user = User::where('ip',$_SERVER['REMOTE_ADDR'])->first();
 
         if(isset($user->dob)):
-            $user->day = date('d',strtotime($user->dob)) ?? '0';
+            $user->day = date('d',strtotime($user->dob));
             $user->month = date('M',strtotime($user->dob));
             $user->year = date('Y',strtotime($user->dob));
         endif;
 
         $this->getDecodeUserdetail($user);
 
-        // dd($user);
         return view('tutor.register',compact('user'));
+    }
+
+    /**
+     * Show Registeration Form of Tutor and return User data
+     * which matched with his Remote Address
+     *
+     */
+    protected function showStudentRegistrationForm()
+    {
+        $user = User::where('ip',$_SERVER['REMOTE_ADDR'])->first();
+
+        if(isset($user->dob)):
+            $user->day = date('d',strtotime($user->dob));
+            $user->month = date('M',strtotime($user->dob));
+            $user->year = date('Y',strtotime($user->dob));
+        endif;
+
+        return view('student.auth.register',compact('user'));
     }
 
      /**
@@ -87,11 +111,6 @@ class RegisterController extends Controller
      */
     private function getDecodeUserdetail($user)
     {
-        $collection = collect();
-
-        $collection->each(function($item){
-            return $item*$item;
-        });
 
         if(isset($user->userdetailIp)){
             $user->degrees = json_decode($user->userdetailIp->first()->degree);
@@ -107,25 +126,26 @@ class RegisterController extends Controller
             $user->hourly_rate = $user->hourly_rate;
             $user->docs = json_decode($user->userdetailIp->first()->docs);
         }else{
-            // $user->degrees = [];
-            // $user->major =[];
-            // $user->institute = [];
-            // $user->year = [];
-            // $user->institute = [];
-            // $user->year = [];
-            // $user->designation = [];
-            // $user->organization = [];
-            // $user->start_date = [];
-            // $user->end_date = [];
-            // $user->teach = [];
-            // $user->student_level = [];
-            // $user->hourly_rate = [];
-            // $user->docs = [];
+            $user->degrees = [];
+            $user->major =[];
+            $user->institute = [];
+            $user->year = [];
+            $user->institute = [];
+            $user->year = [];
+            $user->designation = [];
+            $user->organization = [];
+            $user->start_date = [];
+            $user->end_date = [];
+            $user->teach = [];
+            $user->student_level = [];
+            $user->hourly_rate = [];
+            $user->docs = [];
         }
 
         return $user;
 
     }
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -135,21 +155,39 @@ class RegisterController extends Controller
     protected function register(Request $request)
     {
 
-        dd($request->all());
+         // Get a validator for an incoming registration request
+        // from Tutor/Student Registor Form .
+
+        $request->validate([
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'password' => ['required', 'string', 'min:8'],
+            'phone' => ['required'],
+            'gender' => ['required'],
+        ]);
+
         $request->ip = $_SERVER['REMOTE_ADDR'];
         $request->dob = $request->year.'-'.$request->month.'-'.$request->day;
 
-        $user = User::where('ip',$request->ip)->first();
+        /**
+         * Identify user already exist
+         */
+
+        $user = User::where('ip',$request->ip)->where('role',2)->first();
 
         if($user):
                 $this->updateUser($user,$request);
+
                 if($user->userdetailIp->count() != 0):
                     $this->updateUserdetail($user,$request);
                 else:
                     $this->userdetail($user,$request);
                 endif;
         else:
-
+        /**
+         * Create new Tutor/Student if not identified
+         */
            $user = User::create([
                     'first_name' => $request->first_name,
                     'last_name' => $request->last_name,
@@ -169,21 +207,34 @@ class RegisterController extends Controller
                     'bio' => $request->bio,
                 ]);
 
-            $userdetail = Userdetail::where('user_id',$user->id)->orWhere('ip',$request->ip)->first();
+                /**
+                 * Userdetail Model/Table is only for Tutor , so here is checking ( 2 represent tutor)
+                 * if tutor is registering himself then it will create userdetail
+                 */
 
-            if($userdetail):
-                $this->updateUserdetail($user,$request);
-            else:
-                $this->userdetail($user = null,$request);
-            endif;
+                if($request->role == 2):
+                    $userdetail = Userdetail::where('user_id',$user->id)->orWhere('ip',$request->ip)->first();
+
+                    if($userdetail):
+                        $this->updateUserdetail($user,$request);
+                    else:
+                        $this->userdetail($user = null,$request);
+                    endif;
+                endif;
 
         endif;
-
+        /**
+         * if Tutor complete his 4 steps in registeration form then name attribute
+         * append on submit button to identify his step completion/visited
+         */
         if($request->has('finish')){
             Auth::login($user);
+            if(Auth::user()->role == 2):
+                return redirect()->route('tutor.dashboard');
+            else:
+                return redirect()->route('student.dashboard');
+            endif;
         }
-
-        return redirect()->back();
 
     }
 
@@ -210,7 +261,7 @@ class RegisterController extends Controller
             $docs = $user->userdetailIp[0]->docs;
         }
 
-        // dd($user->userdetailIp[0],$request->student_level );
+
        return $user->userdetailIp[0]->update([
             'degree' => json_encode($request->degree) ?? $user->userdetailIp->degree,
             'major' => json_encode($request->major) ?? $user->userdetailIp->major,
@@ -246,25 +297,25 @@ class RegisterController extends Controller
                 $docs =  $path;
             }
         }
-        foreach($request->degree as $degree){
-            Userdetail::create([
-                'user_id' => $user->id,
-                'ip' => $_SERVER['REMOTE_ADDR'],
-                'degree' => json_encode($request->degree),
-                'major' => json_encode($request->major),
-                'institute' => json_encode($request->institute),
-                'year' => json_encode($request->year),
-                'designation' => json_encode($request->designation),
-                'organization' => json_encode($request->organization),
-                'start_date' => json_encode($request->start_date),
-                'end_date' => json_encode($request->end_date),
-                'teach' => $request->teach,
-                'student_level' => $request->student_level,
-                'hourly_rate' => $request->hour_rate,
-                'docs' => json_encode($docs),
-            ]);
-        }
 
+        // dd($request->all());
+
+        return  Userdetail::create([
+                    'user_id' => $user->id,
+                    'ip' => $_SERVER['REMOTE_ADDR'],
+                    'degree' => json_encode($request->degree),
+                    'major' => json_encode($request->major),
+                    'institute' => json_encode($request->institute),
+                    'year' => json_encode($request->year),
+                    'designation' => json_encode($request->designation),
+                    'organization' => json_encode($request->organization),
+                    'start_date' => json_encode($request->start_date),
+                    'end_date' => json_encode($request->end_date),
+                    'teach' => $request->teach,
+                    'student_level' => $request->student_level,
+                    'hourly_rate' => $request->hour_rate,
+                    'docs' => json_encode($docs),
+                ]);
 
 
     }
@@ -280,6 +331,11 @@ class RegisterController extends Controller
 
     private function updateUser($user,$request)
     {
+
+        /**
+         *  Update request in User Model
+         */
+
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->email = $request->email;

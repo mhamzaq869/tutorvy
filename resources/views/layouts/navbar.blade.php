@@ -40,16 +40,52 @@
                                          </li>
                                      </ul>
                                      <ul class="navbar-nav ml-auto py-1 py-md-0">
-                                         <li class="nav-item  pl-md-0 ml-0 ml-md-4">
-                                             <a class="nav-link " href="{{ route('login') }}">
-                                                 Login
-                                             </a>
-                                         </li>
-                                         <li class=" button-blue pl-md-0 ml-0 ml-md-4">
-                                             <a data-toggle="modal" href="#myModal" class="nav-link sign-text">
-                                                 &nbsp;&nbsp; Sign Up &nbsp;&nbsp;
-                                             </a>
-                                         </li>
+                                        @auth
+                                            <li class="nav-item profile-name1" id="imageDropdowns">
+                                                <div class="dropdown d-flex ">
+                                                    <a class="nav-link profile-name d-flex pl-4 mr-3 mt-1 pb-1" href="#"
+                                                        data-toggle="dropdown" aria-expanded="true">
+                                                        {{Auth::user()->first_name}}
+                                                    </a>
+                                                    <img class="profile-img" src="../assets/images/ico/profile-boy.png"
+                                                        data-toggle="dropdown" alt="profile">
+                                                    <ul class="dropdown-menu classdrop classdrop1 ">
+                                                        <li>
+                                                            <a tabindex="-1" class="" href="{{route('tutor.profile')}}">
+                                                                Profile
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a tabindex="-1" class="" href="#">
+                                                                Help
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <form id="form" action="{{route('logout')}}" onclick="preventDefault()" method="post">
+                                                                @csrf
+                                                            </form>
+                                                            <a tabindex="-1" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('form').submit();">
+                                                                Signout
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                         @endauth
+
+                                         @guest
+                                            <li class="nav-item  pl-md-0 ml-0 ml-md-4">
+                                                <a class="nav-link " href="{{ route('login') }}">
+                                                    Login
+                                                </a>
+                                            </li>
+                                            <li class=" button-blue pl-md-0 ml-0 ml-md-4">
+                                                <a data-toggle="modal" href="#myModal" class="nav-link sign-text">
+                                                    &nbsp;&nbsp; Sign Up &nbsp;&nbsp;
+                                                </a>
+                                            </li>
+                                         @endguest
+
                                      </ul>
                                  </div>
                              </nav>
@@ -97,7 +133,7 @@
                 </div>
                 <div class="modal-body ml-auto mr-auto">
                     <a href="{{route('register')}}" class="btn btn-primary">Tutor</a>
-                    <a href="{{route('register')}}" class="btn btn-dark">Student</a>
+                    <a href="{{route('student.register')}}" class="btn btn-dark">Student</a>
                 </div>
 
             </div><!-- /.modal-content -->

@@ -5,34 +5,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login-Pages</title>
+    <title>Create Account</title>
     <!-- CSS only -->
     <link href="../assets/css/bootstrap.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <!--favicon --->
+    <link href="{{ asset('assets/images/ico/side-icons.png') }}" rel="icon">
     <!-- bootstrap end -->
-    <!--  -->
-    <link href="../assets/css/registerpage.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/demo.css">
-    <link rel="stylesheet" href="../assets/css/intlTelInput.css">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="{{asset('assets/css/registerpage.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('assets/css/demo.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/intlTelInput.css')}}">
     <!-- style css -->
-    <link href="../assets/css/registration.css" rel="stylesheet">
+    <link href="{{asset('assets/css/registration.css')}}" rel="stylesheet">
 
     <!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
-    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="assets/css/countrySelect.css">
 
-    <!--Select 2 dropdown-->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{asset('assets/css/countrySelect.css')}}">
+    <!-- Year Picker CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/yearpicker.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/multiselect.css')}}" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
 </head>
 
 <body>
-
 
 
     <section id="body">
@@ -61,218 +62,102 @@
                 </div>
                 <div class="col-md-6 card">
                     <p class="mt-5 ml-3 heading-first">Create account</p>
-                    <p class="ml-3 heading-sixth">Already have an account? Sign in</p>
+                    <p class="ml-3 heading-sixth">Already have an account?
+                        <a href="{{route('login')}}" class="text-primary" style="text-decoration:none">
+                        Sign in
+                        </a>
+                    </p>
 
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="board">
-                                <ul class="nav nav-tabs">
-                                    <div class="liner"></div>
-                                    <li rel-index="0" class="bordr-none active">
-                                        <a href="#step-1" aria-controls="step-1" role="tab" data-toggle="tab">
-                                            <span>
-                                                <img class="mb-3" src="../assets/images/ico/profile-ico.png" alt="img">
-
-                                            </span>
-
-                                        </a>
-                                        <p class="register-content">Personal</p>
-                                    </li>
-                                    <li rel-index="1" class="bordr-none">
-                                        <a href="#step-2" class=" disabled" aria-controls="step-2" role="tab"
-                                            data-toggle="tab">
-                                            <span>
-                                                <img class="mb-3" src="../assets/images/ico/bag-icon.png"
-                                                    alt="bag-icon">
-
-                                            </span>
-                                        </a>
-                                        <p class="register-content">Educational</p>
-                                    </li>
-                                    <li rel-index="2" class="bordr-none">
-                                        <a href="#step-3" class=" disabled" aria-controls="step-3" role="tab"
-                                            data-toggle="tab">
-                                            <span>
-                                                <img class="mb-3" src="../assets/images/ico/cap-icon.png"
-                                                    alt="cap-icon">
-                                            </span>
-                                        </a>
-                                        <p class="register-content">Professional</p>
-                                    </li>
-                                    <li rel-index="3" class="bordr-none">
-                                        <a href="#step-4" class=" disabled" aria-controls="step-4" role="tab"
-                                            data-toggle="tab">
-                                            <span>
-                                                <img class="mb-3" src="../assets/images/ico/cricle-icon.png"
-                                                    alt="cricle-icon">
-                                            </span>
-                                        </a>
-                                        <p class="register-content">Complete</p>
-                                    </li>
-                                </ul>
-                            </div>
                             <form action="{{ url('register') }}" method="post" enctype="multipart/form-data">
                                 @csrf
+                                <input type="hidden" name="role" value="3">
                                 <div class="tab-content mt-5">
                                     <div role="tabpanel" class="border-right tab-pane active" id="step-1">
                                         <div class="col-md-12">
                                             <p class="heading-third mt-3">Personal information</p>
                                             <div class="row mt-5">
-                                                <div class="input-text col-md-6">
-                                                    <input type="" class="form-control csd" name="first_name"
-                                                        placeholder="First Name">
-
+                                                <div class="input-text col-md-6 d-block">
+                                                    <input type="" class="form-control csd  @error('first_name') is-invalid @enderror" name="first_name"
+                                                        placeholder="First Name" value="{{$user->first_name ?? ''}}">
+                                                        @error('first_name')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{$message}}</strong>
+                                                            </span>
+                                                        @enderror
                                                 </div>
-                                                <div class="input-text col-md-6">
 
-                                                    <input type="" class="form-control" name="last_name"
-                                                        placeholder="Last Name">
+                                                <div class="input-text col-md-6 d-block">
+                                                    <input type="" class="form-control @error('last_name') is-invalid @enderror" name="last_name"
+                                                        placeholder="Last Name" value="{{$user->last_name ?? ''}}">
+                                                        @error('last_name')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{$message}}</strong>
+                                                            </span>
+                                                        @enderror
                                                 </div>
                                             </div>
-                                            <div class="input-text col-md-12 m-0 p-0 mt-4 mb-3">
-                                                <input type="email" class="form-control" name="email"
-                                                    placeholder="Enter Email Address">
+                                            <div class="input-text col-md-12 m-0 p-0 mt-4 mb-3 d-block">
+                                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                                                    placeholder="Enter Email Address" value="{{$user->email ?? ''}}">
+                                                    @error('email')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{$message}}</strong>
+                                                        </span>
+                                                    @enderror
                                             </div>
-                                            <div class="input-text col-md-12 m-0 p-0 mt-3 mb-4">
-                                                <input type="password" name="password" class="form-control"
+                                            <div class="input-text col-md-12 m-0 p-0 mt-3 mb-4 d-block">
+                                                <input type="password" name="password" class="form-control  @error('password') is-invalid @enderror"
                                                     placeholder="Password">
+                                                    @error('password')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{$message}}</strong>
+                                                        </span>
+                                                    @enderror
                                             </div>
 
                                             <p class="heading-fifth">Date of Birth</p>
                                             <!-- date of birth dropdown -->
                                             <div class="row mt-4 mb-3">
                                                 <div class="col-md-4">
-                                                    <select class="form-select form-select-lg" name="day"
-                                                        aria-label=".form-select-lg example">
-                                                        <option class="h" value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                        <option value="6">6</option>
-                                                        <option value="7">7</option>
-                                                        <option value="8">8</option>
-                                                        <option value="9">9</option>
-                                                        <option value="10">10</option>
-                                                        <option value="11">11</option>
-                                                        <option value="12">12</option>
-                                                        <option value="13">13</option>
-                                                        <option value="14">14</option>
-                                                        <option value="15">15</option>
-                                                        <option value="16">16</option>
-                                                        <option value="17">17</option>
-                                                        <option value="18">18</option>
-                                                        <option value="19">19</option>
-                                                        <option value="20">20</option>
-                                                        <option value="21">21</option>
-                                                        <option value="22">22</option>
-                                                        <option value="23">23</option>
-                                                        <option value="24">24</option>
-                                                        <option value="25">25</option>
-                                                        <option value="26">26</option>
-                                                        <option value="27">27</option>
-                                                        <option value="28">28</option>
-                                                        <option value="29">29</option>
-                                                        <option value="30">30</option>
-                                                        <option value="31">31</option>
-
+                                                    <select class="form-select form-select-lg" id="day" name="day">
                                                     </select>
                                                 </div>
                                                 <!--  -->
                                                 <div class="col-md-4">
                                                     <select class="form-select form-select-lg" name="month"
                                                         aria-label=".form-select-lg example">
-                                                        <option name="January" value="Jan">January</option>
-                                                        <option name="February" value="Feb">February</option>
-                                                        <option name="March" value="Mar">March</option>
-                                                        <option name="April" value="Apr">April</option>
-                                                        <option name="May" value="May">May</option>
-                                                        <option name="June" value="Jun">June</option>
-                                                        <option name="July" value="Jul">July</option>
-                                                        <option name="August" value="Aug">August</option>
-                                                        <option name="September" value="Sep">September</option>
-                                                        <option name="October" value="Oct">October</option>
-                                                        <option name="November" value="Nov">November</option>
-                                                        <option name="December" value="Dec">December</option>
+                                                        <option value="Jan" @if(isset($user) && $user->month == 'Jan') @endif>January</option>
+                                                        <option value="Feb" @if(isset($user) && $user->month == 'Feb') @endif>February</option>
+                                                        <option value="Mar" @if(isset($user) && $user->month == 'Mar') @endif>March</option>
+                                                        <option value="Apr" @if(isset($user) && $user->month == 'Apr') @endif>April</option>
+                                                        <option value="May" @if(isset($user) && $user->month == 'May') @endif>May</option>
+                                                        <option value="Jun" @if(isset($user) && $user->month == 'Jun') @endif>June</option>
+                                                        <option value="Jul" @if(isset($user) && $user->month == 'Jul') @endif>July</option>
+                                                        <option value="Aug" @if(isset($user) && $user->month == 'Aug') @endif>August</option>
+                                                        <option value="Sep" @if(isset($user) && $user->month == 'Sep') @endif>September</option>
+                                                        <option value="Oct" @if(isset($user) && $user->month == 'Oct') @endif>October</option>
+                                                        <option value="Nov" @if(isset($user) && $user->month == 'Nov') @endif>November</option>
+                                                        <option value="Dec" @if(isset($user) && $user->month == 'Dec') @endif>December</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <select class="form-select form-select-lg" name="year"
-                                                        aria-label=".form-select-lg example">
-                                                        <option value="2020">2021</option>
-                                                        <option value="2020">2020</option>
-                                                        <option value="2019">2019</option>
-                                                        <option value="2018">2018</option>
-                                                        <option value="2017">2017</option>
-                                                        <option value="2016">2016</option>
-                                                        <option value="2015">2015</option>
-                                                        <option value="2014">2014</option>
-                                                        <option value="2013">2013</option>
-                                                        <option value="2012">2012</option>
-                                                        <option value="2011">2011</option>
-                                                        <option value="2010">2010</option>
-                                                        <option value="2009">2009</option>
-                                                        <option value="2008">2008</option>
-                                                        <option value="2007">2007</option>
-                                                        <option value="2006">2006</option>
-                                                        <option value="2005">2005</option>
-                                                        <option value="2004">2004</option>
-                                                        <option value="2003">2003</option>
-                                                        <option value="2002">2002</option>
-                                                        <option value="2001">2001</option>
-                                                        <option value="2000" selected>2000</option>
-                                                        <option value="1999">1999</option>
-                                                        <option value="1998">1998</option>
-                                                        <option value="1997">1997</option>
-                                                        <option value="1996">1996</option>
-                                                        <option value="1995">1995</option>
-                                                        <option value="1994">1994</option>
-                                                        <option value="1993">1993</option>
-                                                        <option value="1992">1992</option>
-                                                        <option value="1991">1991</option>
-                                                        <option value="1990">1990</option>
-                                                        <option value="1989">1989</option>
-                                                        <option value="1988">1988</option>
-                                                        <option value="1987">1987</option>
-                                                        <option value="1986">1986</option>
-                                                        <option value="1985">1985</option>
-                                                        <option value="1984">1984</option>
-                                                        <option value="1983">1983</option>
-                                                        <option value="1982">1982</option>
-                                                        <option value="1981">1981</option>
-                                                        <option value="1980">1980</option>
-                                                        <option value="1979">1979</option>
-                                                        <option value="1978">1978</option>
-                                                        <option value="1977">1977</option>
-                                                        <option value="1976">1976</option>
-                                                        <option value="1975">1975</option>
-                                                        <option value="1974">1974</option>
-                                                        <option value="1973">1973</option>
-                                                        <option value="1972">1972</option>
-                                                        <option value="1971">1971</option>
-                                                        <option value="1970">1970</option>
-                                                        <option value="1969">1969</option>
-                                                        <option value="1968">1968</option>
-                                                        <option value="1967">1967</option>
-                                                        <option value="1966">1966</option>
-                                                        <option value="1965">1965</option>
-                                                        <option value="1964">1964</option>
-                                                        <option value="1963">1963</option>
-                                                        <option value="1962">1962</option>
-                                                        <option value="1961">1961</option>
-                                                        <option value="1960">1960</option>
-                                                        <option value="1959">1959</option>
-                                                        <option value="1958">1958</option>
-                                                        <option value="1957">1957</option>
-                                                        <option value="1956">1956</option>
-                                                        <option value="1955">1955</option>
-                                                    </select>
+                                                    <input type="" name="year" class=" yearpicker form-control"
+                                                    placeholder="Year" id="year">
                                                 </div>
 
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-12 mt-3 mb-3">
-                                                    <input id="phone" name="phone" type="tel">
+                                                <div class="col-md-12 mt-3 mb-3 d-block">
+                                                    <input id="phone" name="phone" type="tel" value="{{$user->phone ?? ''}}"
+                                                    class="form-control @error('phone') is-invalid @enderror" />
+
+                                                    @error('phone')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{$message}}</strong>
+                                                        </span>
+                                                    @enderror
 
                                                     <script src="{{ asset('assets/js/intlTelInput.js') }}"></script>
                                                     <script>
@@ -288,27 +173,13 @@
                                             <div class="row mt-3">
                                                 <div class="input-text col-md-6">
                                                     <div class="autocomplete mt-1" style="width:300px;">
-                                                        <input id="myInput" type="" name="city" placeholder="City">
+                                                        <input id="myInput" type="" name="city" placeholder="City" value="{{$user->city ?? ''}}">
                                                     </div>
                                                 </div>
                                                 <div class="input-text col-md-6">
-                                                    {{-- <select class="mt-1 mb-3 pl-3 color-input1"
-                                                        style="color:#afb3b8; height: 49px;border-radius: 4px;"
-                                                        id="selectCountry" name="country">
-                                                        <option value="">Choose Country</option>
-                                                        <option value="">Choose Country</option>
-                                                        <option value="">Choose Country</option>
-                                                        <option value="">Choose Country</option>
-                                                        <option value="">Choose Country</option>
-                                                        <option value="">Choose Country</option>
-                                                        <option value="">Choose Country</option>
-                                                        <option value="">Choose Country</option>
-                                                        <option value="">Choose Country</option>
-                                                    </select> --}}
-
-
                                                     <div class="form-item">
                                                         <input id="country_selector" name="country" type="">
+                                                        <input id="country_short" name="country_short" type="" hidden>
                                                         <label for="country_selector" style="display:none;">Select a
                                                             country here...</label>
                                                     </div>
@@ -317,35 +188,42 @@
                                                 <div class="container mt-3">
                                                     <div class=" row">
                                                         <div class="input-text col-md-6">
-                                                            <select id="selection" name="type"
+                                                            <select id="selection" name="security"
                                                                 onchange="changeplh()"
                                                                 class="form-select form-select-lg mb-3 "
                                                                 aria-label=".form-select-lg example">
-                                                                <option value="1">ID card number</option>
-                                                                <option value="2">Social security number</option>
+                                                                <option value="1" @if(isset($user) && $user->type == 1) selected @endif>ID card number</option>
+                                                                <option value="2" @if(isset($user) && $user->type == 2) selected @endif>Social security number</option>
                                                             </select>
                                                         </div>
                                                         <div class="input-text col-md-6">
-                                                            <input id="textbox" type="number" name="cnic"
-                                                                class="form-control" placeholder="ID card number">
+                                                            <input id="textbox" type="number" @if(isset($user) && $user->type == 1) name="cnic" @else name="security" @endif
+                                                                class="form-control" placeholder="ID card number" value="{{$user->cnic_security ?? ''}}">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="container mt-3">
                                                     <div class="row">
-                                                        <div class="input-text col-md-6">
-                                                            <input type="password" class="form-control"
-                                                                placeholder="Social security number">
-                                                        </div>
                                                         <div class="col-md-6">
                                                             <select class="form-select form-select-lg mb-3"
-                                                                aria-label=".form-select-lg example" name="language">
-                                                                <option value="1">Language</option>
-                                                                <option value="2">English</option>
-                                                                <option value="2">Urdu</option>
-                                                                <option value="2">English</option>
+                                                                id="languages-list" name="language">
 
                                                             </select>
+                                                        </div>
+                                                        <div class="col-md-6 d-block">
+                                                            <select class="form-select form-select-lg mb-3  @error('gender') is-invalid @enderror"
+                                                                aria-label=".form-select-lg example" name="gender">
+                                                                <option selected disabled>Gender</option>
+                                                                <option value="male" @if(isset($user) &&$user->gender == 'male') selected @endif>Male</option>
+                                                                <option value="female" @if(isset($user) && $user->gender == 'female') selected @endif>Female</option>
+                                                                <option value="other" @if(isset($user) && $user->gender == 'other') selected @endif>Other</option>
+                                                            </select>
+
+                                                            @error('gender')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{$message}}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
 
@@ -354,18 +232,15 @@
                                                 <div class="container form-group mt-3" style="padding-right: 20px;">
                                                     <textarea class="form-control" name="bio"
                                                         id="exampleFormControlTextarea1" rows="5"
-                                                        placeholder="Write about yourself..."></textarea>
+                                                        placeholder="Write about yourself...">{{$user->bio ?? ''}}</textarea>
                                                 </div>
                                                 <br />
                                                 <div class="row ml-2 mt-4">
                                                     <div class="col-6">
                                                     </div>
-                                                    <div class="col-6" style="display: flex;">
-                                                        <input type="submit"
-                                                            class="btn btn-registration btn-lg cencel-btn nextBtn pull-right ml-5"
-                                                            value=" Save for Later">
+                                                    <div class="col-6 text-right" style="display: flex;">
 
-                                                        <button id="step-1-next" type="button"
+                                                        <button type="submit" name="finish"
                                                             class="btn btn-lg btn-registration schedule-btn  nextBtn pull-right ml-4 ">
                                                             &nbsp; Continue &nbsp;
                                                         </button>
@@ -374,316 +249,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div role="tabpanel" class="tab-pane border-right" id="step-2"
-                                        style="padding-bottom: 100px;background-color: white;">
-                                        <div class="col-md-12 ">
-                                            <p class="heading-third mt-3">Educational information</p>
-                                            <div class=" customer_records mt-5">
-                                                <div class="row">
-                                                    <div class="input-text col-md-6">
-                                                        <select class="form-select form-select-lg mb-3"
-                                                            aria-label=".form-select-lg example">
-                                                            <option value="1">Degree</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-
-                                                        </select>
-                                                    </div>
-                                                    <div class="input-text col-md-6">
-                                                        <select class="form-select form-select-lg mb-3"
-                                                            aria-label=".form-select-lg example">
-                                                            <option value="1">Major</option>
-                                                            <option value="2">Pakistan</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                        </select>
-
-                                                    </div>
-                                                </div>
-                                                <div class="row mt-3">
-                                                    <div class="input-text col-md-6">
-                                                        <select class="form-select form-select-lg mb-3"
-                                                            aria-label=".form-select-lg example">
-                                                            <option value="1">Institute</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="input-text col-md-6">
-                                                        <select class="form-select form-select-lg mb-3"
-                                                            aria-label=".form-select-lg example">
-                                                            <option value="1">Year</option>
-                                                            <option value="2">Pakistan</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                            <option value="2">Lahore</option>
-                                                        </select>
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="button-wrapper mt-4">
-                                                    <span class="label ">
-                                                        <img src="../assets/images/ico/attach.png" class="w-25 "
-                                                            alt="i">
-                                                        Attach
-                                                        degrees
-                                                    </span>
-
-
-                                                    <input type="file" name="upload" id="upload" class="upload-box"
-                                                        placeholder="Upload File">
-
-                                                </div>
-                                            </div>
-                                            <hr />
-                                            <a class="extra-fields-customer" href="#"
-                                                style="font-size: 16px;font-family: Poppins;text-decoration: none;">+
-                                                Add
-                                                more degrees </a>
-
-
-                                            <div class="customer_records_dynamic mt-5"></div>
-                                            <div class="row">
-
-                                                <div class="col-8">
-
-                                                </div>
-                                                <div class="col-4">
-                                                    <div class="btn-later">
-                                                        <button
-                                                            class="btn btn-registration btn-lg cencel-btn nextBtn pull-right ml-5 ">Save
-                                                            for Later</button>
-                                                        <button type="button" id="step-2-next"
-                                                            class="btn btn-lg   schedule-btn  nextBtn pull-right ml-4 btn-registration">&nbsp;
-                                                            Continue &nbsp; </button>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div role="tabpanel" class="tab-pane border-right" id="step-3"
-                                        style="padding-bottom: 100px;background-color: white;">
-                                        <div class="col-md-12">
-                                            <p class="heading-third mt-3">Professional information</p>
-
-                                            <div class="wrapper mt-5">
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="element">
-                                                                <div class="row">
-                                                                    <div class="input-text col-md-6">
-                                                                        <select class="form-select form-select-lg"
-                                                                            aria-label=".form-select-lg example">
-                                                                            <option value="1">Desigination</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="input-text col-md-6">
-                                                                        <select class="form-select form-select-lg"
-                                                                            aria-label=".form-select-lg example">
-                                                                            <option value="1">Organization</option>
-                                                                            <option value="2">Pakistan</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="input-text col-md-6">
-                                                                        <select
-                                                                            class="form-select form-select-lg mb-4 mt-4"
-                                                                            aria-label=".form-select-lg example">
-                                                                            <option value="1">Starting date</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="input-text col-md-6">
-                                                                        <select
-                                                                            class="form-select form-select-lg mb-4 mt-4"
-                                                                            aria-label=".form-select-lg example">
-                                                                            <option value="1">Ending date</option>
-                                                                            <option value="2">Pakistan</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                            <option value="2">Lahore</option>
-                                                                        </select>
-
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- <button  class="element1">aa</button> -->
-                                                    <div class="results"></div>
-
-                                                    <div class="buttons mb-5">
-                                                        <button class="clone schedule-btn ">Add more experience</button>
-                                                        <button class="remove cencel-btn btn-registration"
-                                                            style="visibility: hidden;color: black;">remove</button>
-
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-
-                                        </div>
-                                        <div class="row ml-2 mt-5">
-                                            <div class="col-4">
-
-                                            </div>
-                                            <div class="col-8" style="display: flex;">
-                                                <button
-                                                    class="btn btn-lg cencel-btn nextBtn pull-right ml-5 btn-registration">Save
-                                                    for Later</button>
-                                                <button type="button" id="step-3-next"
-                                                    class="btn btn-lg   schedule-btn  nextBtn pull-right ml-4 btn-registration">&nbsp;
-                                                    Continue &nbsp; </button>
-
-
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <script>
-                                        $(document).ready(function() {
-                                            $(".clone").click(function() {
-                                                $(".remove").css("visibility", "visible");
-                                            });
-                                        });
-                                    </script>
-                                    <div role="tabpanel" class="tab-pane border-right" id="step-4"
-                                        style="background-color: white;">
-                                        <div class="container-fluid">
-                                            <div class="row">
-                                                <div class="input-text col-md-6">
-                                                    <select class="form-select form-select-lg mb-3"
-                                                        aria-label=".form-select-lg example">
-                                                        <option value="1">I want to teach</option>
-                                                        <option value="2">Lahore</option>
-                                                        <option value="2">Lahore</option>
-                                                        <option value="2">Lahore</option>
-                                                        <option value="2">Lahore</option>
-                                                        <option value="2">Lahore</option>
-                                                        <option value="2">Lahore</option>
-                                                        <option value="2">Lahore</option>
-                                                        <option value="2">Lahore</option>
-
-                                                    </select>
-                                                </div>
-                                                <div class="input-text col-md-6">
-                                                    <select class="form-select form-select-lg mb-3"
-                                                        aria-label=".form-select-lg example">
-                                                        <option value="1">Student level</option>
-                                                        <option value="2">Pakistan</option>
-                                                        <option value="2">Lahore</option>
-                                                        <option value="2">Lahore</option>
-                                                        <option value="2">Lahore</option>
-                                                        <option value="2">Lahore</option>
-                                                        <option value="2">Lahore</option>
-                                                        <option value="2">Lahore</option>
-                                                        <option value="2">Lahore</option>
-
-
-                                                    </select>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="container-fluid">
-
-                                            <div class="input-text col-md-12 m-0 p-0 mt-3">
-                                                <select class="form-select form-select-lg mb-3"
-                                                    aria-label=".form-select-lg example">
-                                                    <option value="1">Your availability</option>
-                                                    <option value="2">Pakistan</option>
-                                                    <option value="2">Lahore</option>
-                                                    <option value="2">Lahore</option>
-                                                    <option value="2">Lahore</option>
-                                                    <option value="2">Lahore</option>
-                                                    <option value="2">Lahore</option>
-                                                    <option value="2">Lahore</option>
-                                                    <option value="2">Lahore</option>
-
-
-                                                </select>
-
-                                            </div>
-
-                                            <div class="input-text col-md-12 m-0 p-0 mt-3 mb-5">
-                                                <select class="form-select form-select-lg mb-3"
-                                                    aria-label=".form-select-lg example">
-                                                    <option value="1">Per hour charges</option>
-                                                    <option value="2">Pakistan</option>
-                                                    <option value="2">Lahore</option>
-                                                    <option value="2">Lahore</option>
-                                                    <option value="2">Lahore</option>
-                                                    <option value="2">Lahore</option>
-                                                    <option value="2">Lahore</option>
-                                                    <option value="2">Lahore</option>
-                                                    <option value="2">Lahore</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-8" style="float: right;">
-                                            <a href="../Login/skip.html">
-                                                <button id="step-1-next"
-                                                    class="btn btn-lg   schedule-btn  nextBtn  pull-right">&nbsp;
-                                                    Finsh&nbsp; </button>
-                                            </a>
-                                        </div>
-                                    </div>
-
                                 </div>
                             </form>
                         </div>
@@ -695,52 +260,48 @@
         </div>
         </div>
         </div>
-        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/intlTelInput.js"></script>
 
-        <!-- <script src="./inputflags.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/intlTelInput.js"></script>
+        <script src="{{ asset('assets/js/countrySelect.js') }}"></script>
         <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
-        <script src="{{ asset('assets/js/intlTelInput.js') }}"></script>
         <script src="{{ asset('assets/js/registration.js') }}"></script>
-        <script src="{{ asset('assets/js/googleapi.js') }}"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="assets/js/countrySelect.js"></script>
+        <script src="{{ asset('assets/js/intlTelInput.js') }}"></script>
+        <script src="{{ asset('assets/js/yearpicker.js')}}"></script>
+        <script src="{{ asset('assets/js/languages.json')}}"></script>
         <script>
+
+             for(var i=1; i<=31; i++){
+                $("#day").append("<option value='"+i+"'"+ (i=={{$user->day ?? 1}} ? 'selected' : '')+">"+i+"</option>");
+            }
+
+            $(document).ready(function() {
+                $("#year").yearpicker({
+                    year: {{$user->year ?? '1990'}},
+                    startYear: 1950,
+                    endYear: 2050,
+                });
+            });
+
             $("#country_selector").countrySelect({
+                defaultCountry: "{{$user->country_short ?? ''}}",
                 preferredCountries: ['ca', 'gb', 'us', 'pk']
             });
 
-            try {
-                fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", {
-                    method: 'HEAD',
-                    mode: 'no-cors'
-                })).then(function(response) {
-                    return true;
-                }).catch(function(e) {
-                    var carbonScript = document.createElement("script");
-                    carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
-                    carbonScript.id = "_carbonads_js";
-                    document.getElementById("carbon-block").appendChild(carbonScript);
-                });
-            } catch (error) {
-                console.log(error);
-            }
+            $("#country_selector").on('change', function(){
+               var short = $(this).countrySelect("getSelectedCountryData");
+               $("#country_short").val(short.iso2);
+            });
 
 
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-36251023-1']);
-            _gaq.push(['_setDomainName', 'jqueryscript.net']);
-            _gaq.push(['_trackPageview']);
-
-            (function() {
-                var ga = document.createElement('script');
-                ga.type = 'text/javascript';
-                ga.async = true;
-                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') +
-                    '.google-analytics.com/ga.js';
-                var s = document.getElementsByTagName('script')[0];
-                s.parentNode.insertBefore(ga, s);
+            // var languages_list = {...};
+            (function () {
+                var user_language_code = "{{ $user->language ?? 'en-US'}}";
+                var option = '';
+                for (var language_code in languages_list) {
+                    var selected = (language_code == user_language_code) ? ' selected' : '';
+                    option += '<option value="' + language_code + '"' + selected + '>' + languages_list[language_code] + '</option>';
+                }
+                document.getElementById('languages-list').innerHTML = option;
             })();
         </script>
     </section>

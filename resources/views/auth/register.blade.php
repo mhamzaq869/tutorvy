@@ -56,7 +56,12 @@
                 </div>
                 <div class="col-md-6 card">
                     <p class="mt-5 ml-3 heading-first">Create account</p>
-                    <p class="ml-3 heading-sixth">Already have an account? Sign in</p>
+
+                    <p class="ml-3 heading-sixth">Already have an account?
+                        <a href="{{route('login')}}" class="text-primary" style="text-decoration:none">
+                            Sign in
+                        </a>
+                    </p>
 
                     <div class="row">
                         <div class="col-md-12">

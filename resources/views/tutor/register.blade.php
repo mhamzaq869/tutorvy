@@ -8,7 +8,8 @@
     <title>Login-Pages</title>
     <!-- CSS only -->
     <link href="../assets/css/bootstrap.css" rel="stylesheet">
-
+    <!--favicon --->
+    <link href="{{ asset('assets/images/ico/side-icons.png') }}" rel="icon">
     <!-- bootstrap end -->
     <!--  -->
     <link href="../assets/css/registerpage.css" rel="stylesheet">
@@ -66,7 +67,11 @@
                 </div>
                 <div class="col-md-6 card">
                     <p class="mt-5 ml-3 heading-first">Create account</p>
-                    <p class="ml-3 heading-sixth">Already have an account? Sign in</p>
+                    <p class="ml-3 heading-sixth">Already have an account?
+                        <a href="{{route('login')}}" class="text-primary" style="text-decoration:none">
+                        Sign in
+                        </a>
+                    </p>
 
                     <div class="row">
                         <div class="col-md-12">
@@ -118,23 +123,43 @@
                                         <div class="col-md-12">
                                             <p class="heading-third mt-3">Personal information</p>
                                             <div class="row mt-5">
-                                                <div class="input-text col-md-6">
-                                                    <input type="" class="form-control csd" name="first_name"
+                                                <div class="input-text col-md-6 d-block">
+                                                    <input type="" class="form-control csd @error('first_name') is-invalid @enderror" name="first_name"
                                                         placeholder="First Name" value="{{$user->first_name ?? ''}}">
+                                                    @error('first_name')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{$message}}</strong>
+                                                        </span>
+                                                    @enderror
 
                                                 </div>
-                                                <div class="input-text col-md-6">
-                                                    <input type="" class="form-control" name="last_name"
+                                                <div class="input-text col-md-6 d-block">
+                                                    <input type="" class="form-control @error('last_name') is-invalid @enderror" name="last_name"
                                                         placeholder="Last Name" value="{{$user->last_name ?? ''}}">
+                                                    @error('last_name')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{$message}}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                             </div>
-                                            <div class="input-text col-md-12 m-0 p-0 mt-4 mb-3">
-                                                <input type="email" class="form-control" name="email"
+                                            <div class="input-text col-md-12 m-0 p-0 mt-4 mb-3 d-block">
+                                                <input type="email" class="form-control  @error('email') is-invalid @enderror" name="email"
                                                     placeholder="Enter Email Address" value="{{$user->email ?? ''}}">
+                                                    @error('email')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{$message}}</strong>
+                                                        </span>
+                                                    @enderror
                                             </div>
-                                            <div class="input-text col-md-12 m-0 p-0 mt-3 mb-4">
-                                                <input type="password" name="password" class="form-control"
+                                            <div class="input-text col-md-12 m-0 p-0 mt-3 mb-4 d-block">
+                                                <input type="password" name="password" class="form-control  @error('password') is-invalid @enderror"
                                                     placeholder="Password">
+                                                    @error('password')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{$message}}</strong>
+                                                        </span>
+                                                    @enderror
                                             </div>
 
                                             <p class="heading-fifth">Date of Birth</p>
@@ -163,75 +188,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    {{-- <select class="form-select form-select-lg" name="year">
-                                                        <option value="2020">2021</option>
-                                                        <option value="2020">2020</option>
-                                                        <option value="2019">2019</option>
-                                                        <option value="2018">2018</option>
-                                                        <option value="2017">2017</option>
-                                                        <option value="2016">2016</option>
-                                                        <option value="2015">2015</option>
-                                                        <option value="2014">2014</option>
-                                                        <option value="2013">2013</option>
-                                                        <option value="2012">2012</option>
-                                                        <option value="2011">2011</option>
-                                                        <option value="2010">2010</option>
-                                                        <option value="2009">2009</option>
-                                                        <option value="2008">2008</option>
-                                                        <option value="2007">2007</option>
-                                                        <option value="2006">2006</option>
-                                                        <option value="2005">2005</option>
-                                                        <option value="2004">2004</option>
-                                                        <option value="2003">2003</option>
-                                                        <option value="2002">2002</option>
-                                                        <option value="2001">2001</option>
-                                                        <option value="2000" selected>2000</option>
-                                                        <option value="1999">1999</option>
-                                                        <option value="1998">1998</option>
-                                                        <option value="1997">1997</option>
-                                                        <option value="1996">1996</option>
-                                                        <option value="1995">1995</option>
-                                                        <option value="1994">1994</option>
-                                                        <option value="1993">1993</option>
-                                                        <option value="1992">1992</option>
-                                                        <option value="1991">1991</option>
-                                                        <option value="1990">1990</option>
-                                                        <option value="1989">1989</option>
-                                                        <option value="1988">1988</option>
-                                                        <option value="1987">1987</option>
-                                                        <option value="1986">1986</option>
-                                                        <option value="1985">1985</option>
-                                                        <option value="1984">1984</option>
-                                                        <option value="1983">1983</option>
-                                                        <option value="1982">1982</option>
-                                                        <option value="1981">1981</option>
-                                                        <option value="1980">1980</option>
-                                                        <option value="1979">1979</option>
-                                                        <option value="1978">1978</option>
-                                                        <option value="1977">1977</option>
-                                                        <option value="1976">1976</option>
-                                                        <option value="1975">1975</option>
-                                                        <option value="1974">1974</option>
-                                                        <option value="1973">1973</option>
-                                                        <option value="1972">1972</option>
-                                                        <option value="1971">1971</option>
-                                                        <option value="1970">1970</option>
-                                                        <option value="1969">1969</option>
-                                                        <option value="1968">1968</option>
-                                                        <option value="1967">1967</option>
-                                                        <option value="1966">1966</option>
-                                                        <option value="1965">1965</option>
-                                                        <option value="1964">1964</option>
-                                                        <option value="1963">1963</option>
-                                                        <option value="1962">1962</option>
-                                                        <option value="1961">1961</option>
-                                                        <option value="1960">1960</option>
-                                                        <option value="1959">1959</option>
-                                                        <option value="1958">1958</option>
-                                                        <option value="1957">1957</option>
-                                                        <option value="1956">1956</option>
-                                                        <option value="1955">1955</option>
-                                                    </select> --}}
+
                                                     <input type="" name="year" class=" yearpicker form-control"
                                                     placeholder="Year" id="year">
 
@@ -241,7 +198,11 @@
                                             <div class="row">
                                                 <div class="col-md-12 mt-3 mb-3">
                                                     <input id="phone" name="phone" type="tel" value="{{$user->phone ?? ''}}">
-
+                                                    @error('phone')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{$message}}</strong>
+                                                        </span>
+                                                    @enderror
                                                     <script src="{{ asset('assets/js/intlTelInput.js') }}"></script>
                                                     <script>
                                                         var input = document.getElementById("phone");
@@ -301,6 +262,11 @@
                                                                 <option value="female" @if(isset($user) && $user->gender == 'female') selected @endif>Female</option>
                                                                 <option value="other" @if(isset($user) && $user->gender == 'other') selected @endif>Other</option>
                                                             </select>
+                                                            @error('gender')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{$message}}</strong>
+                                                            </span>
+                                                            @enderror
                                                         </div>
                                                     </div>
 
@@ -333,43 +299,44 @@
                                         style="padding-bottom: 100px;background-color: white;">
                                         <div class="col-md-12 ">
                                             <p class="heading-third mt-3">Educational information</p>
-
+                                            @foreach ($user->degrees as $i=>$education)
                                             <div class=" customer_records mt-5">
                                                 <div class="row">
                                                     <div class="input-text col-md-6">
                                                         <select name="degree[]" class="form-select form-select-lg mb-3">
-                                                            <option selected disabled>Degree</option>
-                                                            <option value="Associate's Degree">Associate's Degree</option>
-                                                            <option value="Bachelor's Degree">Bachelor's Degree</option>
-                                                            <option value="Doctor of Medicine (M.D.)">Doctor of Medicine (M.D.)</option>
-                                                            <option value="Doctor of Philosophy (Ph.D.)">Doctor of Philosophy (Ph.D.)</option>
-                                                            <option value="Engineer's Degree">Engineer's Degree</option>
-                                                            <option value="Juris Doctor (J.D.)">Juris Doctor (J.D.)</option>
-                                                            <option value="Master's Degree">Master's Degree</option>
-                                                            <option value="Master's of Business Administration (M.B.A.)"> Master's of Business Administration (M.B.A.)</option>
-                                                            <option value="Others">Others</option>
+                                                            <option @if($education == 'Degree') selected @endif value="Degree">Degree</option>
+                                                            <option @if($education == "Associate's Degree") selected @endif value="Associate's Degree">Associate's Degree</option>
+                                                            <option @if($education == "Associate's Degree") selected @endif value="Associate's Degree">Bachelor's Degree</option>
+                                                            <option @if($education == 'Doctor of Medicine (M.D.)') selected @endif value="Doctor of Medicine (M.D.)">Doctor of Medicine (M.D.)</option>
+                                                            <option @if($education == 'Doctor of Philosophy (Ph.D.)') selected @endif value="Doctor of Philosophy (Ph.D.)">Doctor of Philosophy (Ph.D.)</option>
+                                                            <option @if($education == "Engineer's Degree") selected @endif value="Engineer's Degree">Engineer's Degree</option>
+                                                            <option @if($education == 'Juris Doctor (J.D.)') selected @endif value="Juris Doctor (J.D.)">Juris Doctor (J.D.)</option>
+                                                            <option @if($education == "Master's Degree") selected @endif value="Master's Degree">Master's Degree</option>
+                                                            <option @if($education == "Master's of Business Administration (M.B.A.)") selected @endif value="Master's of Business Administration (M.B.A.)">Master's of Business Administration (M.B.A.)</option>
+                                                            <option @if($education == 'Others') selected @endif value="Others">Others</option>
                                                         </select>
-
                                                     </div>
+
                                                     <div class="input-text col-md-6">
                                                         <select name="major[]" class="form-select form-select-lg mb-3">
-                                                            <option disabled selected>Major</option>
-                                                            <option  value="1">Computer Scinece</option>
+                                                            <option @if($user->major[$i] == 0) selected @endif value="0">Major</option>
+                                                            <option @if($user->major[$i] == 1) selected @endif value="1">Computer Scinece</option>
                                                         </select>
+
                                                     </div>
                                                 </div>
                                                 <div class="row mt-3">
                                                     <div class="input-text col-md-6">
                                                         <select name="institute[]" class="form-select form-select-lg mb-3"
                                                             aria-label=".form-select-lg example">
-                                                            <option value="1">Institute</option>
-                                                            <option value="2">Punjab University</option>
-                                                            <option value="2">Virtual University Of Pakistan</option>
+                                                            <option @if($user->institute[$i] == 0) selected @endif value="0">Institute</option>
+                                                            <option @if($user->institute[$i] == 1) selected @endif value="1">Punjab University</option>
+                                                            <option @if($user->institute[$i] == 2) selected @endif value="2">Virtual University Of Pakistan</option>
                                                         </select>
                                                     </div>
                                                     <div class="input-text col-md-6">
                                                         <input type="date" name="graduate_year[]" class=" yearpicker form-control"
-                                                        id="grad-yea">
+                                                        id="grad-yea" value="{{$user->year[$i]}}">
                                                     </div>
                                                 </div>
                                                 <div class="button-wrapper mt-4">
@@ -382,16 +349,13 @@
                                                 </div>
                                             </div>
                                             <hr />
-
+                                            @endforeach
                                             <a class="extra-fields-customer" href="#" style="font-size: 16px;font-family: Poppins;text-decoration: none;">+
                                                 Add  more degrees
                                             </a>
                                             <div class="customer_records_dynamic mt-5"></div>
                                             <div class="row">
-
-                                                <div class="col-8">
-
-                                                </div>
+                                                <div class="col-8"></div>
                                                 <div class="col-4">
                                                     <div class="btn-later">
                                                         <button type="submit" class="btn btn-registration btn-lg cencel-btn nextBtn pull-right ml-5 ">Save
@@ -411,39 +375,41 @@
                                         style="padding-bottom: 100px;background-color: white;">
                                         <div class="col-md-12">
                                             <p class="heading-third mt-3">Professional information</p>
-
                                             <div class="wrapper mt-5">
                                                 <div class="container">
+                                                    @foreach ($user->designation as $profession)
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="element">
                                                                 <div class="row">
                                                                     <div class="input-text col-md-6">
                                                                         <select class="form-select form-select-lg" name="designation[]" >
-                                                                            <option value="1">Desigination</option>
-                                                                            <option value="Senior Engineer">Software Engineer</option>
+                                                                            <option @if($profession == 0) selected @endif value="0">Desigination</option>
+                                                                            <option @if($profession == 'Senior Engineer') selected @endif value="Senior Engineer">Software Engineer</option>
                                                                         </select>
                                                                     </div>
                                                                     <div class="input-text col-md-6">
                                                                         <select class="form-select form-select-lg" name="organization[]">
-                                                                            <option value="1">Organization</option>
+                                                                            <option @if($user->organization[$i] == 0) selected @endif value="0">Organization</option>
                                                                             <option value="creative sprout media">Creative sprout media</option>
-
                                                                         </select>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row my-3">
                                                                     <div class="input-text col-md-6">
-                                                                        <input type="date" class="form-control" name="degree_start[]" placeholder="Starting date">
+                                                                        <input type="date" class="form-control" name="degree_start[]" placeholder="Starting date"
+                                                                        value="{{$user->start_date[$i] ?? ''}}">
                                                                     </div>
                                                                     <div class="input-text col-md-6">
-                                                                        <input type="date" class="form-control" name="degree_end[]" placeholder="Ending Date">
+                                                                        <input type="date" class="form-control" name="degree_end[]" placeholder="Ending Date"
+                                                                        value="{{$user->end_date[$i] ?? ''}}">
                                                                     </div>
                                                                 </div>
 
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    @endforeach
                                                     <!-- <button  class="element1">aa</button> -->
                                                     <div class="results"></div>
 
@@ -454,10 +420,7 @@
 
                                                     </div>
                                                 </div>
-
-
                                             </div>
-
                                         </div>
                                         <div class="row ml-2 mt-5">
                                             <div class="col-4">
@@ -489,38 +452,22 @@
                                                 <div class="input-text col-md-6">
                                                     <select name="teach" class="form-select form-select-lg mb-3"
                                                         aria-label=".form-select-lg example">
-                                                        <option value="1">I want to teach</option>
-                                                        <option value="2">Physics</option>
-                                                        <option value="2">Chemistery</option>
+                                                        <option @if($user->teach == 1) selected @endif value="1">I want to teach</option>
+                                                        <option @if($user->teach == 2) selected @endif value="2">Physics</option>
+                                                        <option @if($user->teach == 3) selected @endif value="3">Chemistery</option>
                                                     </select>
                                                 </div>
                                                 <div class="input-text col-md-6">
                                                     <select name="student_level" class="form-select form-select-lg mb-3" >
-                                                        <option disabled >Student level</option>
-                                                        <option value="1" selected>Basic</option>
-                                                        <option value="2">Intermediate</option>
-                                                        <option value="3">Expert</option>
+                                                        <option selected value="0" >Student level</option>
+                                                        <option @if($user->student_level == 1) selected @endif value="1" selected>Basic</option>
+                                                        <option @if($user->student_level == 2) selected @endif value="2">Intermediate</option>
+                                                        <option @if($user->student_level == 3) selected @endif value="3">Expert</option>
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="container-fluid">
-
-                                            {{-- <div class="input-text col-md-12 m-0 p-0 mt-3">
-                                                <select class="form-select form-select-lg mb-3" name="availability">
-                                                    <option value="1">Your availability</option>
-                                                </select>
-
-
-
-                                                <script type="text/javascript">
-                                                $(function() {
-                                                    $('.multiselect-ui').multiselect({
-                                                        includeSelectAllOption: true
-                                                    });
-                                                });
-                                                </script>
-                                            </div> --}}
 
                                             <div class="input-text col-md-12 m-0 p-0 mt-3 mb-5">
                                                 <select name="hour_rate" class="form-select form-select-lg mb-3"

@@ -1,0 +1,869 @@
+ul {
+    list-style: none;
+}
+
+
+.bg-homeimage1 {
+    background-image: url('../images/backgrounds/cover.png');
+    background-position: center;
+    border-radius: 8px;
+}
+
+.res-textup {
+    font-family: 'Poppins';
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 0.6;
+}
+
+.res-textup1 {
+    font-size: 12px;
+    font-weight: 400;
+    font-family: "Poppins";
+    color: #FFFFFF;
+    opacity: 0.71;
+}
+
+.res-textup2 {
+    font-family: "Poppins";
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/*  */
+
+.card-ico {
+    width: 35px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.card-ico1 {
+
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.card-ico3{
+    width: 38px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.card-ico2{
+    width: 32px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/* side peridics today Bookings */
+
+.periodic-cls {
+    line-height: 1.2;
+    color: #273858;
+    font-size: 14px;
+    font-family: "Poppins";
+    font-weight: 400;
+}
+
+.chemistry-tex1 {
+    line-height: 1;
+    color: #273858;
+    font-size: 16px;
+    font-family: "Poppins";
+    font-weight: 500;
+}
+
+.chemistry-tex2 {
+    line-height: 1.6;
+    color: #273858;
+    ;
+    font-size: 14px;
+    font-family: "Poppins";
+    font-weight: 400;
+    opacity: 1 !important;
+}
+
+.row-bac {
+    display: inline-flex;
+    background-color: #00000005;
+    border-radius: 8px;
+}
+
+.time-chemistry {
+    line-height: 0;
+    color: #1173FF;
+    font-size: 10px;
+    font-family: "Poppins";
+    font-weight: 500;
+}
+
+.watch-icon {
+    width: 15px;
+    position: relative;
+    top: -9px;
+    left: -5px;
+}
+
+/* chatbox*/
+
+.chatbox-holder {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: flex-end;
+}
+
+tr[multiple]:focus td:checked {
+    background: red linear-gradient(0deg, red 0%, red 100%) !important;
+}
+
+.chatbox {
+    width: 330px;
+    height: 400px;
+    margin: 0 20px 0 0;
+    position: relative;
+    margin-right: 30px;
+    box-shadow: 0 0 5px 0 rgba(34, 27, 27, 0.2);
+    display: flex;
+    flex-flow: column;
+    border-radius: 10px 10px 0 0;
+    background: white;
+    bottom: 0;
+    transition: .1s ease-out;
+    border: none !important;
+}
+
+.chatbox-top {
+    position: relative;
+    display: flex;
+    padding: 14px 0;
+    border-radius: 10px 10px 0 0;
+    background: #00132D;
+}
+
+.chatbox-icons {
+    margin-left: 40px;
+    display: flex;
+    position: relative;
+}
+
+.chatbox-icons .fa {
+    /* background: white; */
+    padding: 3px 5px;
+    color: white;
+    border-radius: 0 5px 0 5px;
+    transition: 0.3s;
+}
+
+.chatbox-icons .fa:hover {
+    border-radius: 5px 0 5px 0;
+    color: white;
+}
+
+.chatbox-icons a, .chatbox-icons a:link, .chatbox-icons a:visited {
+    color: white;
+}
+
+.chat-partner-name, .chat-group-name {
+    flex: 1;
+    padding: 0 0 0 95px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #30649c;
+    text-shadow: 1px 1px 0 white;
+    transition: .1s ease-out;
+}
+
+.status {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: inset 0 0 3px 0 rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background: #cacaca;
+    margin: 0 3px 0 0;
+    position: absolute;
+    left: 60px;
+    top: 60px;
+}
+
+.online {
+    background: #2BA472;
+}
+
+.away {
+    background: #ffae00;
+}
+
+.donot-disturb {
+    background: #ff4343;
+}
+
+.chat-name {
+    font-size: 16px;
+    margin-left: 90px;
+    color: white;
+    margin-right: 30px;
+    font-family: 'Poppins';
+    font-weight: 600;
+}
+
+.chat-name:hover {
+    color: white;
+}
+
+.chatbox-avatar {
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    border-radius: 50%;
+    background: white;
+    padding: 3px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .2);
+    position: absolute;
+    transition: .1s ease-out;
+    bottom: 0;
+    top: 15px;
+    left: 15px;
+}
+
+.chatbox-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.chat-messages {
+    border-top: 1px solid rgba(0, 0, 0, .05);
+    padding: 10px;
+    overflow: auto;
+    display: flex;
+    flex-flow: row wrap;
+    align-content: flex-start;
+    flex: 1;
+}
+
+.message-box-holder {
+    width: 100%;
+    margin: 0 0 15px;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-end;
+}
+
+.send {
+    width: 20px;
+    height: 20px;
+    margin-top: 10px;
+}
+
+.message-sender {
+    font-size: 12px;
+    margin: 0 0 15px;
+    color: #30649c;
+    align-self: flex-start;
+}
+
+.message-sender a, .message-sender a:link, .message-sender a:visited, .chat-partner-name a, .chat-partner-name a:link, .chat-partner-name a:visited {
+    color: white;
+    font-family: 'Poppins';
+    text-decoration: none;
+}
+
+.message-box {
+    padding: 6px 10px;
+    /* border-radius: 6px 0 6px 0; */
+    border-radius: 4px;
+    position: relative;
+    background: white;
+    border: 2px solid #1173FF;
+    color: #00132D;
+    font-size: 12px;
+    /* margin-right: 1200px; */
+}
+
+.message-box:after {
+    content: "";
+    position: absolute;
+    border: 10px solid transparent;
+    border-top: 10px solid rgba(100, 170, 0, .2);
+    border-right: none;
+    bottom: -22px;
+    right: 10px;
+}
+
+.message-partner {
+    background: rgba(0, 114, 135, .1);
+    border-radius: 4px;
+    border-color: rgba(0, 114, 135, .1);
+    align-self: flex-start;
+}
+
+.message-partner:after {
+    right: auto;
+    bottom: auto;
+    top: -22px;
+    left: 9px;
+    border: 10px solid transparent;
+    /* border-bottom: 10px solid #DFE3E6; */
+    border-left: none;
+}
+
+.chat-input-holder {
+    display: flex;
+    border: 1px solid #DFE3E6;
+    border-radius: 4px;
+}
+
+.chat-input {
+    resize: none;
+    padding: 10px 7px;
+    height: 45px;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    color: #999999;
+    flex: 1;
+    border: none;
+    background: #FFFFFF;
+    border-bottom: 1px solid #DFE3E6;
+}
+
+.chat-input:focus, .message-send:focus {
+    outline: none;
+}
+
+.message-send::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+.message-send {
+    -webkit-appearance: none;
+    background: #1173FF;
+    color: white;
+    font-size: 12px;
+    padding: 0 15px;
+    border: none;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.attachment-panel {
+    padding: 3px 10px;
+    text-align: right;
+}
+
+.attachment-panel a, .attachment-panel a:link, .attachment-panel a:visited {
+    text-decoration: none;
+}
+
+.chatbox-min {
+    margin-bottom: -362px;
+}
+
+.chatbox-min .chatbox-avatar {
+    width: 60px;
+    height: 60px;
+}
+
+.chatbox-min .chat-partner-name, .chatbox-min .chat-group-name {
+    padding: 0 0 0 75px;
+}
+
+.settings-popup {
+    background: white;
+    border-radius: 20px/10px;
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, .2);
+    font-size: 13px;
+    opacity: 0;
+    padding: 10px 0;
+    position: absolute;
+    right: 0;
+    text-align: left;
+    top: 33px;
+    transition: .15s;
+    transform: scale(1, 0);
+    transform-origin: 50% 0;
+    width: 120px;
+    z-index: 2;
+    border-top: 1px solid rgba(0, 0, 0, .2);
+    border-bottom: 2px solid rgba(0, 0, 0, .3);
+}
+
+.settings-popup:after, .settings-popup:before {
+    border: 7px solid transparent;
+    border-bottom: 7px solid white;
+    border-top: none;
+    content: "";
+    position: absolute;
+    left: 45px;
+    top: -10px;
+    border-top: 3px solid rgba(0, 0, 0, .2);
+}
+
+.settings-popup:before {
+    border-bottom: 7px solid rgba(0, 0, 0, .25);
+    top: -11px;
+}
+
+.settings-popup:after {
+    border-top-color: transparent;
+}
+
+#chkSettings {
+    display: none;
+}
+
+#chkSettings:checked+.settings-popup {
+    opacity: 1;
+    transform: scale(1, 1);
+}
+
+.settings-popup ul li a, .settings-popup ul li a:link, .settings-popup ul li a:visited {
+    text-decoration: none;
+    display: block;
+    font-family: 'poppins';
+    padding: 5px 10px;
+}
+
+.settings-popup ul li a:hover {
+    background: rgba(0, 0, 0, .05);
+}
+
+/*  home calander css */
+
+.day:hover {
+    background-color: #DBEAFF;
+    color: black;
+}
+
+.day:active {
+    background-color: #1173FF !important;
+    color: white;
+}
+
+.year {
+    display: none !important;
+}
+
+.calendar {
+    position: relative;
+    overflow: hidden;
+    text-transform: capitalize;
+    text-align: center;
+    font: 15px/1em inherit;
+    color: #00132D;
+    font-family: "Poppins";
+    opacity: 1;
+}
+
+.calendar a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.calendar header .simple-calendar-btn {
+    display: inline-block;
+    position: absolute;
+    width: 27px;
+    height: 27px;
+    text-align: center;
+    line-height: 30px;
+    color: #D6DBE2;
+    border-radius: 50%;
+    border: 2px solid #D6DBE2;
+}
+
+.calendar header .simple-calendar-btn:hover {
+    background: white;
+    color: black;
+}
+
+.calendar header .simple-calendar-btn:before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    width: 8px;
+    height: 8px;
+    border-style: solid;
+    border-width: 3px 3px 0 0;
+    transform: rotate(45deg);
+    transform-origin: center center;
+}
+
+.calendar header .btn-prev {
+    top: 0;
+    left: 0;
+    color: #00132D;
+    transform: rotate(-180deg);
+}
+
+.calendar header .btn-next {
+    top: 0;
+    right: 0;
+    color: #00132D;
+}
+
+.calendar header .btn-next:before {
+    transform: rotate(45deg);
+}
+
+.calendar header .month {
+    padding: 0;
+    margin: 0;
+}
+
+.calendar header .month .year {
+    font-size: 0.6em;
+    font-weight: 100;
+}
+
+.calendar table {
+    width: 100%;
+    margin: 20px 0;
+    border-spacing: 0px;
+}
+
+.calendar thead {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.calendar td {
+    padding: .1em .1em;
+}
+
+.calendar .day {
+    position: relative;
+    display: inline-block;
+    width: 2.5em;
+    height: 2.5em !important;
+    line-height: 2.5em;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.month {
+    font-size: 24px;
+}
+
+.calendar .day:hover {
+    border: 2px solid #6691CC;
+}
+
+.calendar .day.today.has-event:after {
+    background: white;
+}
+
+.calendar .day.wrong-month {
+    color: #CBD1D2;
+}
+
+.calendar .day.wrong-month:hover {
+    border: 2px solid transparent;
+}
+
+.calendar .day.has-event:after {
+    content: '';
+    position: absolute;
+    top: calc(50% + .6em);
+    left: calc(50% - 2px);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #6691CC;
+}
+
+.calendar .day.disabled:hover {
+    border: 2px solid transparent;
+}
+
+.calendar .event-container {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 70px;
+    background: #545A5C;
+    box-sizing: border-box;
+}
+
+.clander1 {
+    border: 1px solid #FFFFFF !important;
+    background-color: #ffffff !important;
+    padding: 10px !important;
+}
+
+.calendar .event-container .event-wrapper {
+    overflow-y: auto;
+    max-height: 100%;
+}
+
+.calendar .event-container .close {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.calendar .event-container .close:before, .calendar .event-container .close:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    background-color: #CBD1D2;
+}
+
+.calendar .event-container .close:before {
+    transform: rotate(45deg);
+}
+
+.calendar .event-container .close:after {
+    transform: rotate(-45deg);
+}
+
+.calendar .event-container .event {
+    position: relative;
+    width: 100%;
+    padding: 1em;
+    margin-bottom: 1em;
+    background: #6691CC;
+    border-radius: 4px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
+    text-align: left;
+    color: white;
+}
+
+.calendar .event-container .event-date {
+    margin-bottom: 1em;
+}
+
+.calendar .event-container .event-hour {
+    float: right;
+}
+
+.calendar .event-container .event-summary {
+    font-weight: 600;
+}
+
+.calendar .filler {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: #545A5C;
+    transform: translate(-50%, -50%);
+}
+
+/* dropdown image */
+
+.classdrop {
+    text-align: left !important;
+    background-color: white !important;
+    text-decoration: none !important;
+}
+
+.classdrop1 {
+    padding-bottom: 5px;
+    padding-top: 5px;
+
+}
+
+.classdrop li:hover {
+    background-color: #F2F8FF !important;
+}
+
+.classdrop li {
+    padding: 5px !important;
+}
+
+.classdrop li a {
+    text-align: left !important;
+    margin-left: 20px !important;
+    text-decoration: none !important;
+    color: #00132D;
+    font-family: "Poppins";
+}
+
+/* table */
+
+.detail-table {
+    color: #1173FF;
+}
+
+/* booking */
+
+.number-booking {
+    margin-top: 40px;
+    font-weight: 600;
+    font-size: 44px;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1;
+}
+
+.class-booking {
+    opacity: 0.6;
+    font-weight: 500;
+    font-size: 1.8vh;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1;
+}
+
+.btn-btn:focus {
+    outline: none;
+}
+
+.table-image td, th {
+    vertical-align: middle;
+}
+
+td {
+    border: none !important;
+    font-size: 14px;
+    color: #00132D;
+    font-weight: 400;
+    font-family: "poppins";
+}
+
+th {
+    border: none !important;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Poppins';
+}
+
+/*  */
+
+/*
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+
+.bg-homeimage {
+    background-image: url('../images/backgrounds/back-covers.png');
+    background-position: center;
+    border-radius: 8px;
+    height: 198px;
+
+    background-repeat: no-repeat;
+}
+
+/* end */
+
+/* card */
+
+.card {
+    margin-top: 20px;
+    width: 100% !important;
+    height: 145px;
+    border-radius: 8px;
+    border: white;
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+@media(max-width:768px) {
+    #homesection {
+        display: block !important;
+    }
+}
+
+@media(max-width:768px) {
+    #calcultor {
+        width: 100% !important;
+    }
+}
+
+@media(max-width:1260px) {
+    .form-inline {
+        width: 1000px;
+    }
+}
+
+@media(max-width:790px) {
+    tr td:nth-child(6) {
+        width: 100px !important;
+    }
+}
+
+@media(max-width:560px) {
+    .rows-rap {
+        flex-wrap: nowrap;
+    }
+}
+
+@media(max-width:1290px) {
+    .res-textup {
+        line-height: 1.6 !important;
+    }
+}
+
+@media(max-width:700px) {
+    .bg-homeimage {
+        background: #1173FF !important;
+        height: 400px !important;
+    }
+}
+
+@media(max-width:1310px) {
+    .bg-homeimage {
+        /* background: #1173FF !important; */
+        height: 197px;
+    }
+}
+
+@media(max-width:710px) {
+    .home-image img {
+        position: relative !important;
+        left: -35px !important;
+    }
+}
+
+@media(max-width:1710px) {
+    .home-image img {
+        width: 100%;
+        height: 197px !important;
+    }
+}
+
+@media(max-width:1310px) {
+    .imageside {
+        position: relative;
+        bottom: -45px;
+    }
+}
+
+@media all and (max-width: 790px) {
+    .card-list {
+        flex-direction: column;
+    }
+}
+
+@media all and (max-width: 790px) {
+    .card {
+        width: 100% !important;
+    }
+}
+
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+    .table {
+        overflow: auto !important;
+        white-space: nowrap !important;
+        display: inline-block;
+    }
+}
