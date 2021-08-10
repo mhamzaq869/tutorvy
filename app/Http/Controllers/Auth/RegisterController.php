@@ -175,7 +175,11 @@ class RegisterController extends Controller
          * Identify user already exist
          */
 
-        $user = User::where('ip',$request->ip)->where('role',2)->first();
+        if($request->role == 2):
+            $user = User::where('ip',$request->ip)->where('role',2)->first();
+        else:
+            $user = User::where('role',3)->first();
+        endif;
 
         if($user):
                 $request->ip = $_SERVER['REMOTE_ADDR'];

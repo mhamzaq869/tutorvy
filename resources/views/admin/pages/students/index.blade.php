@@ -123,44 +123,43 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($students as $student)
+                                <tr>
+                                    <td class="pt-4 alex-name-2">
+                                        <span href="#" data-toggle="tooltip" title="{{ $student->first_name }} {{ $student->last_name }}">{{ $student->first_name }} {{ $student->last_name }}</span>
+                                    </td>
+                                    <td class="pt-4">1234567891</td>
+                                    <td class="pt-4">
+                                        <span href="#" data-toggle="tooltip" title="{{ $student->email }}">{{Str::limit($student->email, 3, $end='***')}}</span>
 
-                            <tr>
-                                <td class="pt-4 alex-name-2">
-
-                                    <span href="#" data-toggle="tooltip" title="Harram Laraib">Harram</span>
-                                </td>
-                                <td class="pt-4">1234567891</td>
-                                <td class="pt-4">
-                                    <span href="#" data-toggle="tooltip" title="harramlaraib127@gmail.com">har***</span>
-
-                                </td>
-                                <td class="pt-4">01</td>
-                                <td class="pt-4">Lahore</td>
-                                <td class="pt-4">01</td>
-                                <td class="pt-4">10</td>
-                                <td class="pt-4">
-                                    <span class="pending-text-1">Pending</span>
-                                </td>
-                                <td class="pt-4">
-                                    <img src="../assets/img/ico/delete-icon.png" alt="delete-icon" data-toggle="modal"
-                                        data-target="#exampleModalCenter">
-                                    <a href="edit-student.html">
-                                        <img src="../assets/img/ico/edit-icon.png" alt="delete-icon" class="ml-1">
-                                    </a>
-                                    <label class="switch ml-2" style="position: relative;left: -10px;width: 60px;">
-                                        <input type="checkbox">
-                                        <span class="slider round"></span>
-                                    </label>
-                                </td>
-                                <td class="pt-3 d-flex float-right">
-                                    <a href="profile.html" class="cencel-btn btn mr-2">
-                                        View
-                                    </a>
-                                    <button class="schedule-btn" data-toggle="modal"
-                                        data-target="#exampleModalCenters">Assign</button>
-                                </td>
-                            </tr>
-
+                                    </td>
+                                    <td class="pt-4">01</td>
+                                    <td class="pt-4">{{ $student->address }}</td>
+                                    <td class="pt-4">01</td>
+                                    <td class="pt-4">10</td>
+                                    <td class="pt-4">
+                                        <span class="pending-text-1">{{$student->status_text}}</span>
+                                    </td>
+                                    <td class="pt-4">
+                                        <img src="{{ asset('admin/assets/img/ico/delete-icon.png')}}" alt="delete-icon" data-toggle="modal"
+                                            data-target="#exampleModalCenter">
+                                        <a href="edit-student.html">
+                                            <img src=" {{ asset('admin/assets/img/ico/edit-icon.png')}}" alt="delete-icon" class="ml-1">
+                                        </a>
+                                        <label class="switch ml-2" style="position: relative;left: -10px;width: 60px;">
+                                            <input type="checkbox">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </td>
+                                    <td class="pt-3 d-flex float-right">
+                                        <a href="{{ route('admin.studentProfile',[ $student->id]) }}" class="cencel-btn btn mr-2">
+                                            View
+                                        </a>
+                                        <button class="schedule-btn" data-toggle="modal"
+                                            data-target="#exampleModalCenters">Assign</button>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -174,7 +173,7 @@
             <div class="modal-content">
                 <div class="modal-body modal-bodys">
                     <div class="container text-center pb-3 pt-3">
-                        <img src="../assets/img/ico/cross-icon.png" alt="verfiy" />
+                        <img src="{{ asset('admin/assets/img/ico/cross-icon.png')}}" alt="verfiy" />
                         <h3 class="mt-3 pb-2">
                             Remove student
                         </h3>
@@ -326,7 +325,7 @@
 
                         <li class="page-item">
                             <a class="page-link" href="#" tabindex="-1">
-                                <img src="../assets/img/ico/arrow-left-1.png" alt="image" />
+                                <img src="{{ asset('admin/assets/img/ico/arrow-left-1.png')}}" alt="image" />
                             </a>
                         </li>
                         <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -334,7 +333,7 @@
                         <li class="page-item"><a class="page-link" href="#">3</a></li>
                         <li class="page-item">
                             <a class="page-link" href="#">
-                                <img src="../assets/img/ico/arrow-right-1.png" alt="image" />
+                                <img src="{{ asset('admin/assets/img/ico/arrow-right-1.png')}}" alt="image" />
                             </a>
                         </li>
                     </ul>

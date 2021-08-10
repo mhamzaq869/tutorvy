@@ -1,16 +1,17 @@
 
     <!-- jquery  -->
-    <script src="assets/js/jquery.js"></script>
-    <script src="assets/js/jquery-ui.js"></script>
+    <script src="{{ asset('/admin/assets/js/jquery.js ')}}"></script>
+    <script src="{{ asset('/admin/assets/js/jquery-ui.js')}}"></script>
       <!-- bootstrap 4 javascript -->
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="{{ asset('/admin/assets/js/popper.min.js')}}"></script>
+    <script src="{{ asset('/admin/assets/js/bootstrap.min.js')}}"></script>
      <!-- chart javascript -->
-    <script src="assets/js/chart.js"></script>
+    <script src="{{ asset('/admin/assets/js/chart.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <!-- Custom js -->
-    <script src="assets/js/mobile.js"></script>
-    <script src="assets/js/global.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('/admin/assets/js/mobile.js')}}"></script>
+    <script src="{{ asset('/admin/assets/js/global.js')}}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOIfEfDtYJRmL9ALc-bcfJPukqy_8OCwQ&libraries=places&callback=initAutocomplete"></script>
 
 
@@ -134,7 +135,7 @@
             var location = place.name;
             $("#search-location").val(location);
             $.ajax({
-                url: "assets/js/ticket-id.json",
+                url: "/assets/js/ticket-id.json'",
                 type: "GET",
                 data: {
                     id: $("#home-ticket-1").val(),
@@ -161,7 +162,7 @@
         //  tutor serach
         // $(document).ready(function () {
         //     $("#home-ticket-1").autocomplete({
-        //         source: "assets/js/test1.json",
+        //         source: "/assets/js/test1.json",
         //         minLength: 3,
         //         select: function (event, ui) {
         //             $.ajax({
@@ -278,7 +279,7 @@
             $('#TypeFeed').change(function () {
 
                 $.ajax({
-                    url: "assets/js/ticket-id.json",
+                    url: "/assets/js/ticket-id.json",
 
                     // url: $('#TypeFeed').val() + '.html',
                     type: "GET",
@@ -317,7 +318,7 @@
             //
             // $('#home-ticket-1').keydown(function () {
             //     $.ajax({
-            //         url: "assets/js/ticket-id.json",
+            //         url: "/assets/js/ticket-id.json",
             //         type: "GET",
             //         data: {
             //             id: $("#home-ticket-1").val(),
@@ -341,7 +342,7 @@
             // });
             $('#availability-id').change(function () {
                 $.ajax({
-                    url: "assets/js/ticket-id.json",
+                    url: "/assets/js/ticket-id.json",
                     type: "GET",
                     data: {
                         id: $("#home-ticket-1").val(),
@@ -368,7 +369,7 @@
         $(document).ready(function ($) {
             $('#rate-number').change(function () {
                 $.ajax({
-                    url: "assets/js/ticket-id.json",
+                    url: "/assets/js/ticket-id.json",
                     type: "GET",
                     data: {
                         id: $("#home-ticket-1").val(),
@@ -395,7 +396,7 @@
         $(document).ready(function ($) {
             $('#sort-by-home').change(function () {
                 $.ajax({
-                    url: "assets/js/ticket-id.json",
+                    url: "/assets/js/ticket-id.json",
                     type: "GET",
                     data: {
                         id: "1",
@@ -423,7 +424,7 @@
             $('#home-category').change(function () {
                 // var url = $(this).val();
                 $.ajax({
-                    url: "assets/js/ticket-id.json",
+                    url: "/assets/js/ticket-id.json",
                     type: "GET",
                     data: {
 
@@ -451,7 +452,7 @@
 
             $('#home-status').change(function () {
                 $.ajax({
-                    url: "assets/js/ticket-id.json",
+                    url: "/assets/js/ticket-id.json",
                     type: "GET",
                     data: {
 
@@ -476,7 +477,7 @@
             $(document).ready(function ($) {
                 $('#sort-by-home-1').change(function () {
                     $.ajax({
-                        url: "assets/js/ticket-id.json",
+                        url: "/assets/js/ticket-id.json",
                         type: "GET",
                         data: {
                             id: "2",

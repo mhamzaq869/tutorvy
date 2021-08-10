@@ -109,33 +109,34 @@
                         </thead>
                         <tbody>
                             <!-- staff table data -->
+                            @foreach($subjects as $subject)
                             <tr>
                                 <td class="pt-4">
-                                    <span>Chemistry</span>
+                                    <span>{{$subject->cat_name}}</span>
                                 </td>
                                 <td class="pt-4 alex-name-2">
-                                    <span>Chemistry</span>
+                                    <span>{{ $subject->name }}</span>
                                 </td>
                                 <td class="pt-4">
-                                    02
+                                    0
                                 </td>
                                 <td class="pt-4">
-                                    01
+                                    0
                                 </td>
                                 <td class="pt-4">
-                                    01
+                                    0
                                 </td>
                                 <td class="pt-4">
                                     <div class="container">
                                         <div class="row float-right">
                                             <div class="col-md-1">
                                                 <img data-toggle="modal" data-target="#exampleModalCenter"
-                                                    src="../assets/img/ico/delete-icon.svg" alt="a"
+                                                    src="{{ asset('/admin/assets/img/ico/delete-icon.svg')}}" alt="a"
                                                     class="mr-3 cursor-1">
                                             </div>
                                             <div class="col-md-1">
                                                 <img data-toggle="modal" data-target="#exampleModalCenters"
-                                                    src="../assets/img/ico/edit-icon.svg" alt="a"
+                                                    src="{{ asset('/admin/assets/img/ico/edit-icon.svg')}}" alt="a"
                                                     class="mr-2 cursor-1">
                                             </div>
                                             <div class="col-md-2">
@@ -148,201 +149,8 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="pt-4">
-                                    <span>Chemistry</span>
-                                </td>
-                                <td class="pt-4 alex-name-2">
-                                    <span>Chemistry</span>
-                                </td>
-                                <td class="pt-4">
-                                    02
-                                </td>
-                                <td class="pt-4">
-                                    01
-                                </td>
-                                <td class="pt-4">
-                                    01
-                                </td>
-                                <td class="pt-4">
-                                    <div class="container">
-                                        <div class="row float-right">
-                                            <div class="col-md-1">
-                                                <img data-toggle="modal" data-target="#exampleModalCenter"
-                                                    src="../assets/img/ico/delete-icon.svg" alt="a"
-                                                    class="mr-3 cursor-1">
-                                            </div>
-                                            <div class="col-md-1">
-                                                <img data-toggle="modal" data-target="#exampleModalCenters"
-                                                    src="../assets/img/ico/edit-icon.svg" alt="a"
-                                                    class="mr-2 cursor-1">
-                                            </div>
-                                            <div class="col-md-2">
-                                                <label class="switch">
-                                                    <input type="checkbox">
-                                                    <span class="slider round"></span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="pt-4">
-                                    <span>Chemistry</span>
-                                </td>
-                                <td class="pt-4 alex-name-2">
-                                    <span>Chemistry</span>
-                                </td>
-                                <td class="pt-4">
-                                    02
-                                </td>
-                                <td class="pt-4">
-                                    01
-                                </td>
-                                <td class="pt-4">
-                                    01
-                                </td>
-                                <td class="pt-4">
-                                    <div class="container">
-                                        <div class="row float-right">
-                                            <div class="col-md-1">
-                                                <img data-toggle="modal" data-target="#exampleModalCenter"
-                                                    src="../assets/img/ico/delete-icon.svg" alt="a"
-                                                    class="mr-3 cursor-1">
-                                            </div>
-                                            <div class="col-md-1">
-                                                <img data-toggle="modal" data-target="#exampleModalCenters"
-                                                    src="../assets/img/ico/edit-icon.svg" alt="a"
-                                                    class="mr-2 cursor-1">
-                                            </div>
-                                            <div class="col-md-2">
-                                                <label class="switch">
-                                                    <input type="checkbox">
-                                                    <span class="slider round"></span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="pt-4">
-                                    <span>Chemistry</span>
-                                </td>
-                                <td class="pt-4 alex-name-2">
-                                    <span>Chemistry</span>
-                                </td>
-                                <td class="pt-4">
-                                    02
-                                </td>
-                                <td class="pt-4">
-                                    01
-                                </td>
-                                <td class="pt-4">
-                                    01
-                                </td>
-                                <td class="pt-4">
-                                    <div class="container">
-                                        <div class="row float-right">
-                                            <div class="col-md-1">
-                                                <img data-toggle="modal" data-target="#exampleModalCenter"
-                                                    src="../assets/img/ico/delete-icon.svg" alt="a"
-                                                    class="mr-3 cursor-1">
-                                            </div>
-                                            <div class="col-md-1">
-                                                <img data-toggle="modal" data-target="#exampleModalCenters"
-                                                    src="../assets/img/ico/edit-icon.svg" alt="a"
-                                                    class="mr-2 cursor-1">
-                                            </div>
-                                            <div class="col-md-2">
-                                                <label class="switch">
-                                                    <input type="checkbox">
-                                                    <span class="slider round"></span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="pt-4">
-                                    <span>Chemistry</span>
-                                </td>
-                                <td class="pt-4 alex-name-2">
-                                    <span>Chemistry</span>
-                                </td>
-                                <td class="pt-4">
-                                    02
-                                </td>
-                                <td class="pt-4">
-                                    01
-                                </td>
-                                <td class="pt-4">
-                                    01
-                                </td>
-                                <td class="pt-4">
-                                    <div class="container">
-                                        <div class="row float-right">
-                                            <div class="col-md-1">
-                                                <img data-toggle="modal" data-target="#exampleModalCenter"
-                                                    src="../assets/img/ico/delete-icon.svg" alt="a"
-                                                    class="mr-3 cursor-1">
-                                            </div>
-                                            <div class="col-md-1">
-                                                <img data-toggle="modal" data-target="#exampleModalCenters"
-                                                    src="../assets/img/ico/edit-icon.svg" alt="a"
-                                                    class="mr-2 cursor-1">
-                                            </div>
-                                            <div class="col-md-2">
-                                                <label class="switch">
-                                                    <input type="checkbox">
-                                                    <span class="slider round"></span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="pt-4">
-                                    <span>Chemistry</span>
-                                </td>
-                                <td class="pt-4 alex-name-2">
-                                    <span>Chemistry</span>
-                                </td>
-                                <td class="pt-4">
-                                    02
-                                </td>
-                                <td class="pt-4">
-                                    01
-                                </td>
-                                <td class="pt-4">
-                                    01
-                                </td>
-                                <td class="pt-4">
-                                    <div class="container">
-                                        <div class="row float-right">
-                                            <div class="col-md-1">
-                                                <img data-toggle="modal" data-target="#exampleModalCenter"
-                                                    src="../assets/img/ico/delete-icon.svg" alt="a"
-                                                    class="mr-3 cursor-1">
-                                            </div>
-                                            <div class="col-md-1">
-                                                <img data-toggle="modal" data-target="#exampleModalCenters"
-                                                    src="../assets/img/ico/edit-icon.svg" alt="a"
-                                                    class="mr-2 cursor-1">
-                                            </div>
-                                            <div class="col-md-2">
-                                                <label class="switch">
-                                                    <input type="checkbox">
-                                                    <span class="slider round"></span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                            @endforeach
+                           
                             <!-- end data -->
                         </tbody>
                     </table>
@@ -355,7 +163,7 @@
                     <ul class="pagination bg-white pagination-example-1">
                         <li class="page-item">
                             <a class="page-link" href="#" tabindex="-1">
-                                <img src="../assets/img/ico/arrow-left-1.png" alt="image" />
+                                <img src="{{ asset('/admin/assets/img/ico/arrow-left-1.png')}}" alt="image" />
                             </a>
                         </li>
                         <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -363,7 +171,7 @@
                         <li class="page-item"><a class="page-link" href="#">3</a></li>
                         <li class="page-item">
                             <a class="page-link" href="#">
-                                <img src="../assets/img/ico/arrow-right-1.png" alt="image" />
+                                <img src="{{ asset('/admin/assets/img/ico/arrow-right-1.png')}}" alt="image" />
                             </a>
                         </li>
                     </ul>
@@ -382,7 +190,7 @@
             <div class="modal-content modals">
                 <div class="modal-body modal-bodys">
                     <div class="container text-center pb-3 pt-3">
-                        <img src="../assets/img/ico/cross-icon.png" alt="verfiy" />
+                        <img src="{{ asset('/admin/assets/img/ico/cross-icon.png')}}" alt="verfiy" />
                         <h3 class="mt-3">
                             Remove Subject
                         </h3>
@@ -407,7 +215,7 @@
             <div class="modal-content modals">
                 <div class="modal-body modal-bodys">
                     <div class="container text-center pb-3 pt-3">
-                        <img src="../assets/img/ico/subject-add.svg" alt="verfiy" />
+                        <img src="{{ asset('admin/assets/img/ico/subject-add.svg')}}" alt="verfiy" />
                         <h3 class="mt-3">
                             Add new Subject
                         </h3>
@@ -418,6 +226,9 @@
                                     <div class="input-option">
                                         <select class="w-100">
                                             <option>Subject category</option>
+                                            @foreach($categories as $category)
+                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -426,7 +237,7 @@
                             <div class="row pb-3">
                                 <div class="col-md-12">
                                     <div class="input-serach">
-                                        <input class="w-100 subject-input" type=""
+                                        <input class="w-100 subject-input" name="subject" type=""
                                             placeholder="Write subject name" />
                                     </div>
                                 </div>

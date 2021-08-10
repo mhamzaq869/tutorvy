@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class StudentController extends Controller
 {
@@ -19,6 +20,14 @@ class StudentController extends Controller
 
     public function index()
     {
-        return view('admin.pages.students.index');
+        $students = User::where('role',3)->get();
+        return view('admin.pages.students.index',compact('students'));
+    }
+
+    public function profile($id){
+
+        $student = User::where('role',3)->where('id',$id)->first();
+        return view('admin.pages.students.profile',compact('student'));
+
     }
 }

@@ -23,6 +23,8 @@ class CreateAssessmentsTable extends Migration
             $table->string('answer_1')->nullable();
             $table->string('answer_2')->nullable();
             $table->string('answer_3')->nullable();
+            $table->string('assessment_note')->nullable();
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }
@@ -34,8 +36,7 @@ class CreateAssessmentsTable extends Migration
      */
     public function down()
     {
-        Schema::table('assessments', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('assessments');
+
     }
 }

@@ -13,4 +13,5 @@ class SubjectCategory extends Model
         'slug',
         'status',
     ];
+
 }
