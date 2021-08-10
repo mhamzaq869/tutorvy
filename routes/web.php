@@ -54,6 +54,9 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
     Route::get('/knowledge',[KnowledgeController::class,'index'])->name('admin.knowledge');
     Route::get('/support',[SupportController::class,'index'])->name('admin.support');
     Route::get('/setting',[SettingController::class,'index'])->name('admin.setting');
+    // Route to get all subjects form api call
+    Route::get('/api_subjects',[SubjectController::class,'getSubjectsFromApi']);
+
 });
 
 /*
