@@ -15,7 +15,7 @@
 
 <body>
     <div class="container-fluid">
-        <img class="mx-auto d-block mt-5 mb-5" src="../assets/images/logo/logo.png">
+        <img class="mx-auto d-block mt-5 mb-5" src="{{asset('assets/images/logo/logo.png')}}">
         <div class="row">
             <div class="col-md-12">
                 <div class="card mx-auto d-block text-center">

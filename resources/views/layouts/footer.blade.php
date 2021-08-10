@@ -201,7 +201,7 @@
 <div id="preloaderbody" class="preloader-body">
     <div class="preloader">
         <span class="whirly-loader">
-            <img src="assets/images/preloader-icon.gif" alt="preloader" />
+            <img src="{{asset('assets/images/preloader-icon.gif')}}" alt="preloader" />
         </span>
     </div>
 </div>

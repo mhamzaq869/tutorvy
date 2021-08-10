@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -87,4 +88,39 @@ class LoginController extends Controller
         return redirect()->back()->with('error','Wrong Password');
     }
 
+
+    public function redirectGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function handleGoogleCallback()
+    {
+        $user = Socialite::driver('google')->user();
+        $user->user['provider'] = 'google';
+
+        $this->_registerOrLogin($user->user);
+
+        return redirect()->route('tutor.dashboard');
+    }
+
+     /*
+    *  Register User if not exist in db and if exist will login
+    *  and redirect to dashboard
+    */
+    private function _registerOrLogin($data)
+    {
+        $user = User::where('email', $data['email'])->where('provider',$data['provider'])->first();
+        if(!$user){
+           $user = User::create([
+                    'first_name' => $data['given_name'],
+                    'last_name' => $data['family_name'],
+                    'email' => $data['email'],
+                    'picture' => $data['picture'],
+                    'provider' => 'google',
+                ]);
+        }
+
+        Auth::login($user);
+    }
 }

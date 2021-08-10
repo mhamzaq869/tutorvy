@@ -292,7 +292,7 @@ class RegisterController extends Controller
             'teach' => $request->teach ?? $user->userdetailIp->teach,
             'student_level' => $request->student_level ?? $user->userdetailIp->student_level,
             'hourly_rate' => $request->hour_rate ?? $user->userdetailIp->hourly_rate,
-            'docs' => $docs,
+            'docs' => json_encode($docs) ?? $user->userdetailIp->docs,
         ]);
     }
 

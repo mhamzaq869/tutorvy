@@ -348,10 +348,14 @@
                                                     </div>
                                                     <div class="button-wrapper mt-4">
                                                         <span class="label" style="position: relative">
+                                                           <span><img src="../assets/images/ico/attach.png" class="w-25 "
+                                                                alt="i">Attach degrees
+                                                            </span>
                                                             <input type="file" name="upload[]" id="upload" class="upload-box" placeholder="Upload File"
                                                             accept=".doc,.pdf,.png,.jpg,.jpeg">
-                                                            <img src="../assets/images/ico/attach.png" class="w-25 "
-                                                                alt="i">Attach degrees
+                                                            @if ($user->docs)
+                                                            <button class="btn btn-outline-primary">{{$user->docs[$i]}}</button>
+                                                            @endif
                                                         </span>
                                                     </div>
                                                 </div>
@@ -682,6 +686,14 @@
                         email: "Your email address must be in the format of name@domain.com"
                     }
                 }
+            });
+
+            $(document).ready(function(){
+                $('input[type="file"]').change(function(e){
+                    var fileName = e.target.files[0].name;
+                    var  btn = '<button class="btn btn-outline-primary">'+fileName+'</button>';
+                    $(btn).insertAfter(this);
+                });
             });
         </script>
     </section>

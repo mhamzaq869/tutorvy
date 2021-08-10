@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Assessment;
 
 class User extends Authenticatable
 {
@@ -25,6 +26,7 @@ class User extends Authenticatable
         'ip',
         'dob',
         'phone',
+        'picture',
         'city',
         'country',
         'country_short',
@@ -32,6 +34,7 @@ class User extends Authenticatable
         'cnic',
         'language',
         'bio',
+        'provider',
         'role',
         'status',
     ];
@@ -61,10 +64,17 @@ class User extends Authenticatable
      *
      * @return userdetail class
      */
-    public function userdetail(){
+    public function userdetail()
+    {
         return $this->hasMany(Userdetail::class);
     }
-    public function userdetailIp(){
+    public function userdetailIp()
+    {
         return $this->hasMany(Userdetail::class,'ip','ip');
+    }
+
+    public function assessment()
+    {
+        return $this->hasMany(Assessment::class);
     }
 }

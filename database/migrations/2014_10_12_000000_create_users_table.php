@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('profile')->nullable();
+            $table->string('picture')->nullable();
             $table->string('ip')->nullable();
             $table->string('dob')->nullable();
             $table->string('phone')->nullable();
@@ -33,6 +33,7 @@ class CreateUsersTable extends Migration
             $table->string('cnic_security')->nullable();
             $table->string('language')->nullable();
             $table->text('bio')->nullable();
+            $table->sring('provider')->nullable();
             $table->integer('role')->nullable()->comment('1-admin 2-tutor 3-student 4-staff');
             $table->integer('status')->nullable()->comment('1-Active 0-Disabled');
             $table->integer('verify')->default(0);
