@@ -248,6 +248,13 @@
     </div>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item  mr-5">
+                <a href="./Booking/bookclass.html">
+                    <button class="booknow-btn">
+                        Book Now
+                    </button>
+                </a>
+            </li>
             <li class="header">
                 <div class="container">
                     <div class="row">
@@ -412,7 +419,7 @@
                         data-toggle="dropdown" alt="profile">
                     <ul class="dropdown-menu classdrop classdrop1 ">
                         <li>
-                            <a tabindex="-1" class="" href="{{route('tutor.profile')}}">
+                            <a tabindex="-1" class="" href="{{route('student.profile')}}">
                                 Profile
                             </a>
                         </li>

@@ -29,6 +29,8 @@ use App\Http\Controllers\Tutor\SettingController as TutorSettingController;
 use App\Http\Controllers\Tutor\AssessmentController;
 use App\Http\Controllers\Tutor\ProfileController;
 use App\Http\Controllers\Student\HomeController as StudentHomeController;
+use App\Http\Controllers\Student\ProfileController as StudentProfileController;
+use App\Http\Controllers\Student\TutorController as StudentTutorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,8 +57,8 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
     Route::get('/support',[SupportController::class,'index'])->name('admin.support');
     Route::get('/setting',[SettingController::class,'index'])->name('admin.setting');
     // Route to get all subjects form api call
-    Route::get('/api_subjects',[SubjectController::class,'getSubjectsFromApi']);
 
+    Route::get('/api_subjects',[SubjectController::class,'getSubjectsFromApi']);
 });
 
 /*
@@ -95,9 +97,9 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     // Route::get('/calendar',[CalendarController::class,'index'])->name('tutor.calendar');
     // Route::get('/history',[HistoryController::class,'index'])->name('tutor.history');
     // Route::get('/payment',[PaymentController::class,'index'])->name('tutor.payment');
-    // Route::get('/subjects',[TutorSubjectController::class,'index'])->name('tutor.subject');
+    Route::get('/tutor',[StudentTutorController::class,'index'])->name('student.tutor');
     // Route::get('/settings',[TutorSettingController::class,'index'])->name('tutor.settings');
-    // Route::get('/profile',[ProfileController::class,'index'])->name('tutor.profile');
+    Route::get('/profile',[StudentProfileController::class,'index'])->name('student.profile');
 
 });
 /*
@@ -130,7 +132,7 @@ Route::view('/course','frontend.course');
 |--------------------------------------------------------------------------
 |
 */
-Route::post('/universities',[GeneralController::class,'university']);
+Route::get('/universities',[GeneralController::class,'university']);
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

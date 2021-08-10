@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Assessment;
+use App\Models\Admin\Subject;
 
 class User extends Authenticatable
 {
@@ -58,6 +59,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
+    protected $append = ['day','month','year'];
+
     /**
      * The Relationship between user and userdetail to get
      * his detail data .
@@ -77,4 +81,30 @@ class User extends Authenticatable
     {
         return $this->hasMany(Assessment::class);
     }
+
+    public function subject()
+    {
+        return $this->hasMany(Subject::class);
+    }
+
+     /**
+     * Accessor ot Mutator
+     */
+    public function getFullNameAttribute()
+    {
+        return "{$this->first_name} {$this->last_name}";
+    }
+    public function getDayAttribute()
+    {
+        return $this->attributes['day'] = date('d',strtotime($this->dob));
+    }
+    public function getMonthAttribute()
+    {
+        return $this->attributes['month'] = date('M',strtotime($this->dob));
+    }
+    public function getYearAttribute()
+    {
+        return $this->attributes['year'] = date('y',strtotime($this->dob));
+    }
+
 }

@@ -57,9 +57,15 @@
 
                                                     <ul class="dropdown-menu classdrop classdrop1 ">
                                                         <li>
+                                                            @if(Auth::user()->role == 2)
                                                             <a tabindex="-1" class="" href="{{route('tutor.profile')}}">
                                                                 Profile
                                                             </a>
+                                                            @elseif(Auth::user()->role == 3)
+                                                            <a tabindex="-1" class="" href="{{route('student.profile')}}">
+                                                                Profile
+                                                            </a>
+                                                            @endif
                                                         </li>
                                                         <li>
                                                             <a tabindex="-1" class="" href="#">

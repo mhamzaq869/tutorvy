@@ -2,7 +2,7 @@
  <nav id="sidebar">
      <div class="sidebar-header">
          <div class="logoImage">
-             <a href="{{ route('tutor.dashboard')}}">
+             <a href="{{ route('student.dashboard')}}">
                  <img class="mt-2 mb-1 w-50 ml-5 mr-4" src="../assets/images/logo/logo.png" alt="logoImage">
              </a>
          </div>
@@ -10,8 +10,8 @@
      <!-- sidenav icons web view -->
      <div class="id-sideicons">
          <ol class="list-unstyled id-sideicons componentsX click-sideicon" style="display: none;" id="sidenav-show">
-             <li id="btns-sideicons" class="btn @if(\Request::path() === 'tutor/dashboard') active @endif w-100">
-                 <a href="#" data-toggle="" aria-expanded="false">
+             <li id="btns-sideicons" class="btn @if(\Request::path() === 'student/dashboard') active @endif w-100">
+                 <a href="{{route('student.dashboard')}}" data-toggle="" aria-expanded="false">
                      <img class="mr-2 dasborad-sid" src="../assets/images/ico/dash-ico.png" alt="dasborad-ico">
                      <span class="dasborad-show mt-3">
                          Dashboard
@@ -20,7 +20,7 @@
              </li>
              <li class="btn mt-3 mt-3">
                  <a href="./Booking/BookingNo.html" aria-expanded="false">
-                     <img class="mr-2 book-sid" src="../assets/images/ico/book-icons.png" alt="book-ico">
+                     <img class="mr-2 book-sid" src="{{asset('assets/images/ico/book-icons.png')}}" alt="book-ico">
                      <span class="book-show mt-3">
                          Bookings
                      </span>
@@ -28,20 +28,20 @@
              </li>
              <li class="btn mt-3">
                  <a href="./classroom/classroom.html">
-                     <img class="class-sid mr-2" src="../assets/images/ico/class-ico.png" alt="class-ico">
+                     <img class="class-sid mr-2" src="assets/images/ico/class-ico.png" alt="class-ico">
                      <span class="class-show mt-3">
                          Classroom
                      </span>
                  </a>
              </li>
              <li class="btn mt-3">
-                 <a href="./Subjects/subject.html">
-                     <img class="subject-sid mr-2" src="../assets/images/ico/subject-ico.png" alt="subject-ico">
-                     <span class="subject-show mt-3">
-                         Subjects
-                     </span>
-                 </a>
-             </li>
+                <a href="./Subjects/subject.html">
+                    <img class="subject-sid mr-2" src="assets/img/ico/find-ico.png" alt="Tutor">
+                    <span class="subject-show mt-3">
+                        Find a Tutor
+                    </span>
+                </a>
+            </li>
              <li class="btn mt-3">
                  <a href="./clander/clander.html">
                      <img class="calande-sid mr-2" src="../assets/images/ico/calender-ico.png" alt="calender-ico">
@@ -59,13 +59,13 @@
                  </a>
              </li>
              <li class="btn mt-3">
-                 <a href="./payment/payment.html">
-                     <img class="payment-sid mr-2" src="../assets/images/ico/payment-ico.png" alt="payment-ico">
-                     <span class="payment-show mt-3">
-                         Payment
-                     </span>
-                 </a>
-             </li>
+                <a href="./payment/payment.html">
+                    <img class="payment-sid mr-2" src="assets/img/ico/payment-ico.png" alt="payment-ico">
+                    <span class="payment-show mt-3">
+                        Wallet
+                    </span>
+                </a>
+            </li>
              <li class="btn mt-3">
                  <a href="./setting/setting.html">
                      <img class="setting-sid mr-2" src="../assets/images/ico/setting-ico.png" alt="setting-ico">
@@ -79,8 +79,8 @@
      <!-- end -->
      <div class="scroll-nav">
          <ul class="list-unstyled componentsX" id="sidenav-hide">
-             <li class="btn @if(\Request::path() === 'tutor/dashboard') active @endif  w-100 mt-3">
-                 <a href="{{route('tutor.dashboard')}}" data-toggle="" aria-expanded="false">
+             <li class="btn @if(\Request::path() === 'student/dashboard') active @endif  w-100 mt-3">
+                 <a href="{{route('student.dashboard')}}" data-toggle="" aria-expanded="false">
                      <img src="../assets/images/ico/dash-ico.png" alt="dasborad-ico" class=" mr-2">
                      Dashboard
                  </a>
@@ -97,12 +97,12 @@
                      Classroom
                  </a>
              </li>
-             <li class="btn  @if(\Request::path() === 'tutor/subjects') active @endif w-100">
-                 <a href="{{route('tutor.subject')}}">
-                     <img src="../assets/images/ico/subject-ico.png" alt="subject-ico" class=" mr-2">
-                     Subjects
-                 </a>
-             </li>
+             <li class="btn @if(\Request::path() === 'student/tutor') active @endif w-100">
+                <a href="{{route('student.tutor')}}">
+                    <img src="{{asset('assets/images/ico/find-ico.png')}}" alt="tutor" class=" mr-2">
+                    Find a Tutor
+                </a>
+            </li>
              <li class="btn @if(\Request::path() === 'tutor/calendar') active @endif w-100">
                  <a href="{{route('tutor.calendar')}}">
                      <img src="../assets/images/ico/calender-ico.png" alt="calender-ico" class=" mr-2">
@@ -115,11 +115,11 @@
                      History
                  </a>
              </li>
-             <li class="btn @if(\Request::path() === 'tutor/payment') active @endif w-100">
-                 <a href="{{route('tutor.payment')}}">
-                     <img src="../assets/images/ico/payment-ico.png" alt="payment-ico" class=" mr-2">
-                     Payment
-                 </a>
+             <li class="btn  w-100">
+                <a href="./payment/payment.html">
+                    <img src="{{asset('assets/images/ico/payment-ico.png')}}" class=" mr-2">
+                    Wallet
+                </a>
              </li>
              <li class="btn @if(\Request::path() === 'tutor/settings') active @endif w-100">
                  <a href="{{route('tutor.settings')}}">

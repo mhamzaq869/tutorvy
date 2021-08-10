@@ -14,16 +14,16 @@
     <!-- fonawsome -->
     <link href="{{ asset('assets/css/fontawesome.min.css') }}" rel="stylesheet">
     <!-- Styles -->
-    @include('tutor.layouts.css')
+    @include('student.layouts.css')
 
 </head>
 <body>
     <div class="wrapper" id="wrapper">
         <!-- side navbar -->
-        @include('tutor.layouts.sidebar')
+        @include('student.layouts.sidebar')
         <!-- seide navbar end -->
         <div class="content" style="width: 100%;background-color: #FBFBFB !important;">
-            @include('tutor.layouts.navbar')
+            @include('student.layouts.navbar')
             <!-- Main-->
             @yield('content')
         <div>

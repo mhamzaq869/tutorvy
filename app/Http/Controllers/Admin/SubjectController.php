@@ -41,6 +41,6 @@ class SubjectController extends Controller
                 ]);
             }
         }
-        return true;
+        return "added Subjects" ;
     }
 }

@@ -44,4 +44,9 @@ class Userdetail extends Model
         return $this->belongsTo(User::class);
     }
 
+    // public function setDegreeAttribute()
+    // {
+    //    return json_decode($this->degree);
+    // }
+
 }

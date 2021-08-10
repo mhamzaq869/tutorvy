@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\General\Degree;
+use App\Models\Admin\Subject;
+use App\Models\General\Education;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\Userdetail;
@@ -12,6 +15,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+
 
 class RegisterController extends Controller
 {
@@ -72,16 +76,10 @@ class RegisterController extends Controller
     protected function showRegistrationForm()
     {
         $user = User::where('ip',$_SERVER['REMOTE_ADDR'])->first();
+        $subjects = Subject::all();
+        $degrees = Degree::all();
 
-        if(isset($user->dob)):
-            $user->day = date('d',strtotime($user->dob));
-            $user->month = date('M',strtotime($user->dob));
-            $user->year = date('Y',strtotime($user->dob));
-        endif;
-
-        $this->getDecodeUserdetail($user);
-
-        return view('tutor.register',compact('user'));
+        return view('tutor.register',compact('user','subjects','degrees'));
     }
 
     /**
@@ -93,59 +91,11 @@ class RegisterController extends Controller
     {
         $user = User::where('ip',$_SERVER['REMOTE_ADDR'])->first();
 
-        if(isset($user->dob)):
-            $user->day = date('d',strtotime($user->dob));
-            $user->month = date('M',strtotime($user->dob));
-            $user->year = date('Y',strtotime($user->dob));
-        endif;
-
         return view('student.auth.register',compact('user'));
     }
 
-     /**
-     * Data is json encoded , this function is returing json
-     * decoded data and retun collection $user
-     *
-     * @param  array  $user
-     * @return array $user
-     */
-    private function getDecodeUserdetail($user)
-    {
 
-        if(isset($user->userdetailIp)){
-            $user->degrees = json_decode($user->userdetailIp->first()->degree);
-            $user->major = json_decode($user->userdetailIp->first()->major);
-            $user->institute = json_decode($user->userdetailIp->first()->institute);
-            $user->year = json_decode($user->userdetailIp->first()->year);
-            $user->designation = json_decode($user->userdetailIp->first()->designation);
-            $user->organization = json_decode($user->userdetailIp->first()->organization);
-            $user->start_date = json_decode($user->userdetailIp->first()->start_date);
-            $user->end_date = json_decode($user->userdetailIp->first()->end_date);
-            $user->teach = $user->teach;
-            $user->student_level = $user->student_level;
-            $user->hourly_rate = $user->hourly_rate;
-            $user->docs = json_decode($user->userdetailIp->first()->docs);
-        }
-        // else{
-        //     $user->degrees = null;
-        //     $user->major =[];
-        //     $user->institute = [];
-        //     $user->year = [];
-        //     $user->institute = [];
-        //     $user->year = [];
-        //     $user->designation = [];
-        //     $user->organization = [];
-        //     $user->start_date = [];
-        //     $user->end_date = [];
-        //     $user->teach = [];
-        //     $user->student_level = [];
-        //     $user->hourly_rate = [];
-        //     $user->docs = [];
-        // }
 
-        return $user;
-
-    }
 
     /**
      * Create a new user instance after a valid registration.
@@ -167,7 +117,7 @@ class RegisterController extends Controller
             'phone' => ['required'],
             'gender' => ['required'],
         ]);
-
+        $request->ip = $_SERVER['REMOTE_ADDR'];
 
         $request->dob = $request->year.'-'.$request->month.'-'.$request->day;
 
@@ -175,28 +125,30 @@ class RegisterController extends Controller
          * Identify user already exist
          */
 
-        $user = User::where('ip',$request->ip)->where('role',2)->first();
+         if($request->role == 2):
+          $user = User::where('ip',$request->ip)->where('role',2)->first();
+         else:
+          $user = User::where('role',3)->first();
+         endif;
 
-        if($user):
-                $request->ip = $_SERVER['REMOTE_ADDR'];
+        // if($user):
+        //         $this->updateUser($user,$request);
 
-                $this->updateUser($user,$request);
-
-                if($user->userdetailIp->count() != 0):
-                    $this->updateUserdetail($user,$request);
-                else:
-                    $this->userdetail($user,$request);
-                endif;
-        else:
+        //         if($user->userdetailIp->count() != 0):
+        //             $this->updateUserdetail($user,$request);
+        //         else:
+        //             $this->userdetail($user,$request);
+        //         endif;
+        // else:
         /**
          * Create new Tutor/Student if not identified
          */
-           $user = User::create([
+           $user = User::upsert([
                     'first_name' => $request->first_name,
                     'last_name' => $request->last_name,
                     'email' => $request->email,
                     'password' => Hash::make($request->password),
-                    'ip' => $request->ip ?? null,
+                    'ip' => $request->ip,
                     'dob' => $request->dob,
                     'phone' => $request->phone,
                     'city' => $request->city,
@@ -208,7 +160,9 @@ class RegisterController extends Controller
                     'language' => $request->language,
                     'gender' => $request->gender,
                     'bio' => $request->bio,
-                ]);
+                ],['id'],['ip']);
+
+                // dd($request->all());
 
                 /**
                  * Userdetail Model/Table is only for Tutor , so here is checking ( 2 represent tutor)
@@ -216,16 +170,11 @@ class RegisterController extends Controller
                  */
 
                 if($request->role == 2):
-                    $userdetail = Userdetail::where('user_id',$user->id)->orWhere('ip',$request->ip)->first();
+                    $this->updateOrCreatedetail($user,$request);
 
-                    if($userdetail):
-                        $this->updateUserdetail($user,$request);
-                    else:
-                        $this->userdetail($user,$request);
-                    endif;
                 endif;
 
-        endif;
+        // endif;
         /**
          * if Tutor complete his 4 steps in registeration form then name attribute
          * append on submit button to identify his step completion/visited
@@ -265,35 +214,27 @@ class RegisterController extends Controller
      * @return $user
      */
 
-    private function updateUserdetail($user,$request)
+    private function updateOrCreatedetail($user,$request)
     {
-        // dd($user->userdetailIp->first());
-        $docs = [];
-        if($request->hasFile('upload')){
-            foreach($request->upload as $upload){
-                $path = 'docs/'.$upload->getClientOriginalName();
-                Storage::disk('local')->put($path,$upload->getClientOriginalName());
-                $docs =  $path;
-            }
-        }else{
-            $docs = $user->userdetailIp[0]->docs;
+
+        Userdetail::updateOrCreate([
+            'user_id' => $user,
+            'ip' => $request->ip,
+            'student_level' => $request->student_level,
+            'hourly_rate' => $request->hour_rate,
+        ]);
+
+
+        foreach($request->degree as $i => $edu){
+            Education::updateOrCreate([
+                "user_id" => $user,
+                "degree_id" => $edu,
+                "subject_id" => $request->major[$i],
+                "institute" => $request->institute[$i],
+                "year" => $request->graduate_year[$i],
+            ]);
         }
 
-
-       return $user->userdetailIp[0]->update([
-            'degree' => json_encode($request->degree) ?? $user->userdetailIp->degree,
-            'major' => json_encode($request->major) ?? $user->userdetailIp->major,
-            'institute' => json_encode($request->institute) ?? $user->userdetailIp->institute,
-            'year' => json_encode($request->year) ?? $user->userdetailIp->year,
-            'designation' => json_encode($request->designation) ?? $user->userdetailIp->designation,
-            'organization' => json_encode($request->organization) ?? $user->userdetailIp->organization,
-            'start_date' => json_encode($request->start_date) ?? $user->userdetailIp->start_date,
-            'end_date' => json_encode($request->end_date) ?? $user->userdetailIp->end_date,
-            'teach' => $request->teach ?? $user->userdetailIp->teach,
-            'student_level' => $request->student_level ?? $user->userdetailIp->student_level,
-            'hourly_rate' => $request->hour_rate ?? $user->userdetailIp->hourly_rate,
-            'docs' => json_encode($docs) ?? $user->userdetailIp->docs,
-        ]);
     }
 
      /**

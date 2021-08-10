@@ -12,11 +12,13 @@ class GeneralController extends Controller
 
     public function university(Request $request)
     {
-        dd($request->all());
+
         $result = Http::get('http://universities.hipolabs.com/search',[
-            "name" => "punjab"
+            "name" => ""
         ]);
 
-        return $result;
+        $data = json_decode($result);
+        dd($data);
+        return $data;
     }
 }
