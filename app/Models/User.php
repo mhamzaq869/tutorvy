@@ -26,6 +26,7 @@ class User extends Authenticatable
         'ip',
         'dob',
         'phone',
+        'picture',
         'city',
         'country',
         'country_short',
@@ -33,6 +34,7 @@ class User extends Authenticatable
         'cnic',
         'language',
         'bio',
+        'provider',
         'role',
         'status',
     ];

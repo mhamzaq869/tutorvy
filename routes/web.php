@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\TutorController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\SubjectController;
+use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\WebsiteController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\IntegrationController;
@@ -104,6 +105,10 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
 */
 
 Auth::routes();
+//Google
+Route::get('/google/redirect', [LoginController::class,'redirectGoogle'])->name('social.google');
+Route::get('/login/google/callback', [LoginController::class,'handleGoogleCallback']);
+
 Route::get('/student/register',[RegisterController::class,'showStudentRegistrationForm'])->name('student.register')->middleware('guest');
 Route::post('/register',[RegisterController::class,'register'])->middleware('guest');
 Route::view('/logged','auth.loginpass')->name('logged')->middleware('guest');;

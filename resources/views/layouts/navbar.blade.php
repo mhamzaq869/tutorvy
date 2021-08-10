@@ -47,8 +47,14 @@
                                                         data-toggle="dropdown" aria-expanded="true">
                                                         {{Auth::user()->first_name}}
                                                     </a>
+                                                    @if (Auth::user()->picture)
+                                                    <img class="profile-img" src="{{Auth::user()->picture}}"
+                                                    data-toggle="dropdown" alt="profile">
+                                                    @else
                                                     <img class="profile-img" src="../assets/images/ico/profile-boy.png"
                                                         data-toggle="dropdown" alt="profile">
+                                                    @endif
+
                                                     <ul class="dropdown-menu classdrop classdrop1 ">
                                                         <li>
                                                             <a tabindex="-1" class="" href="{{route('tutor.profile')}}">

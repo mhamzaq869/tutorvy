@@ -95,37 +95,42 @@
                                 <br /><br />
                             </div>
                             @endisset
-                            <div class="mb-5 input-login">
-                                <div class="input-container">
-                                    <form action="{{ route('login') }}" method="POST" id="form">
-                                        @csrf
+                            <form action="{{ route('login') }}" method="POST" id="form">
+                                @csrf
+                                <div class="mb-5 input-login">
+                                    <div class="input-container">
+                                            @if(!isset($user))
+                                            <input type="email" name="email" id="myName" placeholder="Enter Email Address"
+                                                class="form-control @if(Session::has('error')) is-invalid @endif">
 
-                                        @if(!isset($user))
-                                        <input type="email" name="email" id="myName" placeholder="Enter Email Address"
-                                            class="form-control @if(Session::has('error')) is-invalid @endif">
-
-                                            @if(Session::has('error'))
-                                                <span class="invalid-feedback d-block" role="alert">
-                                                    <strong>{{session::get('error')}}</strong>
-                                                </span>
-                                            @endif
-                                        @else
-                                            <input type="email" name="valid_email" value="{{$user->email}}" hidden />
-                                            <input type="text" name="role" value="{{$user->role}}" hidden/>
-                                            <input type="password" name="password" id="pswd" placeholder="Enter your password"
-                                            class="@isset($error) is-invalid @endisset">
-                                            @isset($error)
+                                                @if(Session::has('error'))
                                                     <span class="invalid-feedback d-block" role="alert">
-                                                        <strong>{{$error}}</strong>
+                                                        <strong>{{session::get('error')}}</strong>
                                                     </span>
-                                            @endisset
-                                        @endif
-                                        <input type="submit" class="submit schedule-btn w-25 mt-3 float-right"
-                                            value="Submit">
-
-                                    </form>
+                                                @endif
+                                            @else
+                                                <input type="email" name="valid_email" value="{{$user->email}}" hidden />
+                                                <input type="text" name="role" value="{{$user->role}}" hidden/>
+                                                <input type="password" name="password" id="pswd" placeholder="Enter your password"
+                                                class="@isset($error) is-invalid @endisset">
+                                                @isset($error)
+                                                        <span class="invalid-feedback d-block" role="alert">
+                                                            <strong>{{$error}}</strong>
+                                                        </span>
+                                                @endisset
+                                            @endif
+                                            <input type="submit" class="submit schedule-btn w-25 mt-3 float-right" value="Submit">
+                                    </div>
+                                    @if(isset($user))
+                                    <span toggle="#password-field pr-5" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                    <p class="checkboxs d-inline-block w-100 mt-4">
+                                        <input style="width: 15px;" type="checkbox" class="checkbox">
+                                        <span style="position: absolute;left: 55px;font-size: 16px;font-family: Poppins;">
+                                        Stay signed in</span>
+                                    </p>
+                                    @endif
                                 </div>
-                            </div>
+                            </form>
                         </div>
                         <!-- <form method="post" action="#" id="myform">
                             <input type="" placeholder="Enter your email address" name="email" class="email"
@@ -134,10 +139,13 @@
                             <input type="submit" class="submit schedule-btn w-25 mt-3 float-right"
                                 value="Submit">
                         </form> -->
+                        @if(!isset($user))
                         <div class="social-Icon ml-3 mr-3">
                             <div class="Google">
-                                <img class="mr-3" src="../assets/images/ico/google.png" alt="google">
-                                Continue with Google
+                                <a href="{{route('social.google')}}">
+                                    <img class="mr-3" src="../assets/images/ico/google.png" alt="google">
+                                    Continue with Google
+                                </a>
                             </div>
                             <div class="facebook">
                                 <img class="mr-3" src="../assets/images/ico/facebook(1).png" alt="facebook">
@@ -163,6 +171,24 @@
                                 </P>
                             </div>
                         </div>
+                        @else
+                        <div class="row mt-5">
+                            <div class="col-md-6">
+                                <a href="{{route('password.request')}}" style="font-size: 14px;">
+                                   <p class="ml-4">Forgot password?</p>
+                                </a>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <div class="social-Icon ml-4" style="font-size: 14px;color: #1173FF;font-family: Poppins;">
+                                    <a href="./login.html" class="mr-4" > Back to signin</a>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        @endif
+
+
                     </div>
                 </div>
             </div>
