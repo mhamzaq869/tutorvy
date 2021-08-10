@@ -6,4 +6,5 @@
 <link href="{{ asset('assets/css/tutor-home.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/css/tutor-asset.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/css/tutor-mobile.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/css/home.css') }}" rel="stylesheet">
 @endif

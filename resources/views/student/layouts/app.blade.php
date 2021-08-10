@@ -38,6 +38,7 @@
      <script src="{{ asset('assets/js/subject.js') }}"></script>
      <script src="{{ asset('assets/js/homePage.js') }}"></script>
      <script src="{{ asset('assets/js/clander.js') }}"></script>
+     <script src="{{ asset('assets/js/global.js') }}"></script>
 
 </body>
 </html>

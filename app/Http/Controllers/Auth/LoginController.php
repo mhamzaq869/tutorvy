@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
@@ -110,17 +111,24 @@ class LoginController extends Controller
     */
     private function _registerOrLogin($data)
     {
-        $user = User::where('email', $data['email'])->where('provider',$data['provider'])->first();
-        if(!$user){
-           $user = User::create([
-                    'first_name' => $data['given_name'],
-                    'last_name' => $data['family_name'],
-                    'email' => $data['email'],
-                    'picture' => $data['picture'],
-                    'provider' => 'google',
-                ]);
+        try{
+            $user = User::where('email', $data['email'])->where('provider',$data['provider'])->first();
+            if(!$user){
+               $user = User::create([
+                        'first_name' => $data['given_name'],
+                        'last_name' => $data['family_name'],
+                        'email' => $data['email'],
+                        'picture' => $data['picture'],
+                        'provider' => 'google',
+                    ]);
+            }
+
+            Auth::login($user);
+
+        }catch(Exception $e){
+            
+            dd($e->getMessage());
         }
 
-        Auth::login($user);
     }
 }
