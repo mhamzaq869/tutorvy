@@ -23,6 +23,8 @@ class Assessment extends Model
         'answer_2',
         'question_3',
         'answer_3',
+        'assessment_note',
+        'status'
 
     ];
 

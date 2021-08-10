@@ -122,126 +122,37 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-
-                                        <td class="pt-4">
-                                            <!-- -->
-                                            Harram Laraib Ali
-                                            <!-- <span data-toggle="tooltip" title="Harram Laraib Ali">Har***</span> -->
-                                        </td>
-                                        <td class="pt-4">
-                                            123123141
-                                        </td>
-                                        <td class="pt-4">
-                                            <span data-toggle="tooltip"
-                                                title="harramlaraib127@gmail.com">har***</span>
-                                        </td>
-                                        <td class="pt-4">Political Science book</td>
-                                        <td class="pt-4">Lahore, punjab Pakistan</td>
-                                        <td class="pt-4">Advance</td>
-                                        <td class="pt-4">8am-8pm</td>
-                                        <td class="pt-4">$50</td>
-
-                                        <td class="pt-3 text-right">
-                                            <a href="../tutor-manage/request.html" class="cencel-btn btn">
-                                                View
-                                            </a>
-                                        </td>
-                                        <td class="pt-3 text-right">
-                                            <button class="schedule-btn" data-toggle="modal"
-                                                data-target="#exampleModalCenter">Assign</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-
-                                        <td class="pt-4">
-                                            <!-- -->
-                                            Harram Laraib Ali
-                                            <!-- <span data-toggle="tooltip" title="Harram Laraib Ali">Har***</span> -->
-                                        </td>
-                                        <td class="pt-4">
-                                            123123141
-                                        </td>
-                                        <td class="pt-4">
-                                            <span data-toggle="tooltip"
-                                                title="harramlaraib127@gmail.com">har***</span>
-                                        </td>
-                                        <td class="pt-4">Political Science book</td>
-                                        <td class="pt-4">Lahore, punjab Pakistan</td>
-                                        <td class="pt-4">Advance</td>
-                                        <td class="pt-4">8am-8pm</td>
-                                        <td class="pt-4">$50</td>
-
-                                        <td class="pt-3 text-right">
-                                            <a href="../tutor-manage/request.html" class="cencel-btn btn">
-                                                View
-                                            </a>
-                                        </td>
-                                        <td class="pt-3 text-right">
-                                            <button class="schedule-btn" data-toggle="modal"
-                                                data-target="#exampleModalCenter">Assign</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-
-                                        <td class="pt-4">
-                                            <!-- -->
-                                            Harram Laraib Ali
-                                            <!-- <span data-toggle="tooltip" title="Harram Laraib Ali">Har***</span> -->
-                                        </td>
-                                        <td class="pt-4">
-                                            123123141
-                                        </td>
-                                        <td class="pt-4">
-                                            <span data-toggle="tooltip"
-                                                title="harramlaraib127@gmail.com">har***</span>
-                                        </td>
-                                        <td class="pt-4">Political Science book</td>
-                                        <td class="pt-4">Lahore, punjab Pakistan</td>
-                                        <td class="pt-4">Advance</td>
-                                        <td class="pt-4">8am-8pm</td>
-                                        <td class="pt-4">$50</td>
-
-                                        <td class="pt-3 text-right">
-                                            <a href="../tutor-manage/request.html" class="cencel-btn btn">
-                                                View
-                                            </a>
-                                        </td>
-                                        <td class="pt-3 text-right">
-                                            <button class="schedule-btn" data-toggle="modal"
-                                                data-target="#exampleModalCenter">Assign</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-
-                                        <td class="pt-4">
-                                            <!-- -->
-                                            Harram Laraib Ali
-                                            <!-- <span data-toggle="tooltip" title="Harram Laraib Ali">Har***</span> -->
-                                        </td>
-                                        <td class="pt-4">
-                                            123123141
-                                        </td>
-                                        <td class="pt-4">
-                                            <span data-toggle="tooltip"
-                                                title="harramlaraib127@gmail.com">har***</span>
-                                        </td>
-                                        <td class="pt-4">Political Science book</td>
-                                        <td class="pt-4">Lahore, punjab Pakistan</td>
-                                        <td class="pt-4">Advance</td>
-                                        <td class="pt-4">8am-8pm</td>
-                                        <td class="pt-4">$50</td>
-
-                                        <td class="pt-3 text-right">
-                                            <a href="../tutor-manage/request.html" class="cencel-btn btn">
-                                                View
-                                            </a>
-                                        </td>
-                                        <td class="pt-3 text-right">
-                                            <button class="schedule-btn" data-toggle="modal"
-                                                data-target="#exampleModalCenter">Assign</button>
-                                        </td>
-                                    </tr>
+                                    @foreach($tutors as $tutor)
+                                        <tr>
+                                            <td class="pt-4">
+                                                <!-- -->
+                                                {{ $tutor->first_name }} {{ $tutor->last_name }}
+                                                <!-- <span data-toggle="tooltip" title="Harram Laraib Ali">Har***</span> -->
+                                            </td>
+                                            <td class="pt-4">
+                                                123123141
+                                            </td>
+                                            <td class="pt-4">
+                                                <span data-toggle="tooltip"
+                                                    title="{{$tutor->email}}">{{Str::limit($tutor->email, 3, $end='***')}}</span>
+                                            </td>
+                                            <td class="pt-4">{{$tutor->userdetail->subjects}}</td>
+                                            <td class="pt-4">{{$tutor->address}}</td>
+                                            <td class="pt-4">{{$tutor->userdetail->std_level}}</td>
+                                            <td class="pt-4">{{$tutor->userdetail->availability != NULL ? $tutor->userdetail->availability : '---'}}</td>
+                                            <td class="pt-4">{{$tutor->userdetail->hourly_rate}}</td>
+                                            <td class="pt-3 text-right">
+                                                <a href="{{ route('admin.tutorRequest',[$tutor->id]) }}" class="cencel-btn btn">
+                                                    View
+                                                </a>
+                                            </td>
+                                            <td class="pt-3 text-right">
+                                                <button class="schedule-btn" data-toggle="modal"
+                                                    data-target="#exampleModalCenter">Assign</button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    
                                 </tbody>
                             </table>
                         </div>

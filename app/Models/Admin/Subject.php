@@ -22,6 +22,7 @@ class Subject extends Model
         'slug',
         'status',
     ];
+    protected $appends = ['cat_name'];
 
     public function subCategory(){
         return $this->belongsToMany(SubjectController::class);
@@ -30,5 +31,12 @@ class Subject extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function getCatNameAttribute(){
+
+        $id = $this->category_id;
+        $category = SubjectCategory::where('id',$id)->first();
+
+        return $category->name;
     }
 }

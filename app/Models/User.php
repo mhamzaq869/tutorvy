@@ -39,6 +39,7 @@ class User extends Authenticatable
         'role',
         'status',
     ];
+    protected $appends = ['address','status_text'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -70,11 +71,11 @@ class User extends Authenticatable
      */
     public function userdetail()
     {
-        return $this->hasMany(Userdetail::class);
+        return $this->hasOne(Userdetail::class);
     }
     public function userdetailIp()
     {
-        return $this->hasMany(Userdetail::class,'ip','ip');
+        return $this->hasOne(Userdetail::class,'ip','ip');
     }
 
     public function assessment()
@@ -107,4 +108,22 @@ class User extends Authenticatable
         return $this->attributes['year'] = date('y',strtotime($this->dob));
     }
 
+    public function getAddressAttribute(){
+
+        $city = $this->city != null ? $this->city : '---' ;
+        $country = $this->country != null ? $this->country : '---';
+        $address = $city .' , '. $country;
+        return $address;
+
+    }
+
+    public function getStatusTextAttribute(){
+
+        if($this->status == 1){
+            return 'Approved';
+        }else{
+            return 'Pending';
+        }
+
+    }
 }

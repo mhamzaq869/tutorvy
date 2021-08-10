@@ -22,7 +22,10 @@ class SubjectController extends Controller
 
     public function index()
     {
-        return view('admin.pages.subjects.index');
+        $subjects = Subject::get();
+        $categories = SubjectCategory::get();
+    
+        return view('admin.pages.subjects.index',compact('subjects','categories'));
     }
 
     public function getSubjectsFromApi(){

@@ -45,14 +45,27 @@ Route::get('admin/logout',[AdminLogin::class,'logout'])->name('admin.logout');
 Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function () {
 
     Route::get('/dashboard',[HomeController::class,'index'])->name('admin.dashboard');
+
     Route::get('/tutor',[TutorController::class,'index'])->name('admin.tutor');
+    Route::get('tutor/request/{id}',[TutorController::class,'tutorRequest'])->name('admin.tutorRequest');
+    Route::get('tutor/assessment/{tutor_id}/{subject_id}',[TutorController::class,'tutorAssessment'])->name('admin.tutotAssessment');
+
+
     Route::get('/student',[StudentController::class,'index'])->name('admin.student');
+    Route::get('/student/profile/{id}',[StudentController::class,'profile'])->name('admin.studentProfile');
+
     Route::get('/course',[CourseController::class,'index'])->name('admin.course');
     Route::get('/subject',[SubjectController::class,'index'])->name('admin.subject');
     Route::get('/website',[WebsiteController::class,'index'])->name('admin.website');
     Route::get('/report',[ReportController::class,'index'])->name('admin.report');
     Route::get('/integration',[IntegrationController::class,'index'])->name('admin.integration');
+
     Route::get('/staff',[StaffController::class,'index'])->name('admin.staff');
+    Route::post('/staff/insert',[StaffController::class,'insertStaff'])->name('admin.insertStaff');
+    Route::get('/staff/profile/{id}',[StaffController::class,'staffProfile'])->name('admin.staffProfile');
+
+
+
     Route::get('/knowledge',[KnowledgeController::class,'index'])->name('admin.knowledge');
     Route::get('/support',[SupportController::class,'index'])->name('admin.support');
     Route::get('/setting',[SettingController::class,'index'])->name('admin.setting');
