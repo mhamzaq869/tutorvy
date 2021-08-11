@@ -12,8 +12,61 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('/admin/assets/js/mobile.js')}}"></script>
     <script src="{{ asset('/admin/assets/js/global.js')}}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOIfEfDtYJRmL9ALc-bcfJPukqy_8OCwQ&libraries=places&callback=initAutocomplete"></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOIfEfDtYJRmL9ALc-bcfJPukqy_8OCwQ&libraries=places&callback=initAutocomplete"></script> -->
 
+    <script>
+    var socketId = Echo.socketId();
+    console.log(socketId)
+    Echo.join(`admin_dash`)
+    .here( users => {
+        console.log(users)
+        console.log('User is here')
+    })
+    .joining( user => {
+        console.log('User is Joining')
+    })
+    .leaving( user => {
+        console.log('User is leave')
+    })
+    .listen('NewNotification', (e) => {
+            // console.log(e.message);
+    });
+    // Echo.join(`admin_dash`).listen('NewNotification', (e) => {
+    //     console.log(e.message);
+        
+    // });
+   
+
+    // let permission = Notification.permission;
+    // if(permission === "granted") {
+    // showNotification();
+    // } else if(permission === "default"){
+    // requestAndShowPermission();
+    // } else {
+    // alert("Use normal alert");
+    // }
+    // function showNotification() {
+    // if(document.visibilityState === "visible") {
+    //     return;
+    // }
+    // var title = "JavaScript Jeep";
+    // icon = "image-url"
+    // var body = "Message to be displayed";
+    // var notification = new Notification('Title', { body, icon });
+    // notification.onclick = () => { 
+    //         notification.close();
+    //         window.parent.focus();
+    // }
+    // }
+    // function requestAndShowPermission() {
+    // Notification.requestPermission(function (permission) {
+    //     if (permission === "granted") {
+    //         showNotification();
+    //     }
+    // });
+    // }
+
+    </script>    
 
     <script>
         // Replace Math.random() with a pseudo-random number generator to get reproducible results in e2e tests
@@ -103,7 +156,7 @@
         chart.render();
 
     </script>
-    <script>
+    <!-- <script>
         // serach location
         var input = document.getElementById('search-location');
         var options = {
@@ -183,7 +236,7 @@
         // home-ticket
 
 
-    </script>
+    </script> -->
     <!-- graph js -->
     <script>
         var options = {
