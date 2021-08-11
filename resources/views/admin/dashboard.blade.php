@@ -37,7 +37,7 @@
                                     <div class="container card ">
                                         <div class="text-home">
                                             <p class="number-booking">
-                                                506
+                                                {{ $tutors_count }}
                                             </p>
                                             <p class="class-booking">
                                                 Total tutors
@@ -52,7 +52,7 @@
                                     <div class="container card ">
                                         <div class="text-home">
                                             <p class="number-booking">
-                                                239
+                                                {{ $students_count }}
                                             </p>
                                             <p class="class-booking">
                                                 Total students

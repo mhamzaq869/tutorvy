@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- Scripts -->
-    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
+    <script src="{{ asset('js/app.js') }}" ></script>
     <!--favicon --->
     <link href="{{ asset('assets/images/ico/side-icons.png') }}" rel="icon">
     <!-- bootstrap link -->
