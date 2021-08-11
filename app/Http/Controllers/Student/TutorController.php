@@ -12,8 +12,8 @@ class TutorController extends Controller
 
     public function index()
     {
-        $tutors = User::with('userdetail')->where('role',2)->where('status',1)->where('verify',1)->get();
-
+        $tutors = User::with(['education','professional','userdetail','teach'])->where('role',2)->where('status',1)->get();
+        // dd($tutors->first()->teach->first());
         return view('student.pages.tutor.index',compact('tutors'));
     }
 }

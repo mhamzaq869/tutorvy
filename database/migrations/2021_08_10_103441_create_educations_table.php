@@ -20,6 +20,8 @@ class CreateEducationsTable extends Migration
             $table->integer('subject_id');
             $table->string('institute');
             $table->string('year');
+            $table->string('docs');
+            $table->string('field');
             $table->timestamps();
         });
     }

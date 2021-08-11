@@ -137,6 +137,14 @@ Route::view('/student','frontend.student');
 Route::view('/subject','frontend.subject');
 Route::view('/course','frontend.course');
 
+/*
+|--------------------------------------------------------------------------
+| Ajax Calls Routes
+|--------------------------------------------------------------------------
+|
+*/
+Route::get('/universities',[GeneralController::class,'university']);
+Route::post('/checkEmail',[GeneralController::class,'isEmailTaken'])->name('available.email');
 
 
 /*
@@ -145,7 +153,6 @@ Route::view('/course','frontend.course');
 |--------------------------------------------------------------------------
 |
 */
-Route::get('/universities',[GeneralController::class,'university']);
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

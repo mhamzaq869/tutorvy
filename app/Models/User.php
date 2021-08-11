@@ -8,6 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Assessment;
 use App\Models\Admin\Subject;
+use App\Models\General\Education;
+use App\Models\General\Professional;
+use App\Models\General\Teach;
 
 class User extends Authenticatable
 {
@@ -34,12 +37,13 @@ class User extends Authenticatable
         'security',
         'cnic',
         'language',
+        'lang_short',
         'bio',
         'provider',
         'role',
         'status',
     ];
-    protected $appends = ['address','status_text'];
+    protected $appends = ['address','status_text','day','month','year'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -60,8 +64,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
-    protected $append = ['day','month','year'];
 
     /**
      * The Relationship between user and userdetail to get
@@ -87,6 +89,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Subject::class);
     }
+    public function teach()
+    {
+        return $this->hasMany(Teach::class);
+    }
 
      /**
      * Accessor ot Mutator
@@ -108,6 +114,14 @@ class User extends Authenticatable
         return $this->attributes['year'] = date('y',strtotime($this->dob));
     }
 
+    public function education()
+    {
+        return $this->hasMany(Education::class);
+    }
+    public function professional()
+    {
+        return $this->hasMany(Professional::class);
+    }
     public function getAddressAttribute(){
 
         $city = $this->city != null ? $this->city : '---' ;
@@ -126,4 +140,6 @@ class User extends Authenticatable
         }
 
     }
+
+
 }

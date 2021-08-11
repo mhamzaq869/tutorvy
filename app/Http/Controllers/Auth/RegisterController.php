@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\General\Degree;
 use App\Models\Admin\Subject;
 use App\Models\General\Education;
+use App\Models\General\Professional;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\Userdetail;
@@ -75,9 +76,10 @@ class RegisterController extends Controller
      */
     protected function showRegistrationForm()
     {
-        $user = User::where('ip',$_SERVER['REMOTE_ADDR'])->first();
+        $user = User::with(['education','professional','userdetail'])->where('ip',$_SERVER['REMOTE_ADDR'])->first();
         $subjects = Subject::all();
         $degrees = Degree::all();
+
 
         return view('tutor.register',compact('user','subjects','degrees'));
     }
@@ -106,6 +108,7 @@ class RegisterController extends Controller
     protected function register(Request $request)
     {
 
+        // dd($request->all());
          // Get a validator for an incoming registration request
         // from Tutor/Student Registor Form .
 
@@ -127,40 +130,40 @@ class RegisterController extends Controller
 
          if($request->role == 2):
           $user = User::where('ip',$request->ip)->where('role',2)->first();
+          $user = User::updateOrCreate([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'ip' => $request->ip,
+            'dob' => $request->dob,
+            'phone' => $request->phone,
+            'city' => $request->city,
+            'country' => $request->country,
+            'country_short' => $request->country_short,
+            'role' => $request->role,
+            'type' => ($request->type == 1) ? 'cnic' : 'security',
+            'cnic_security' => $request->cnic ?? $request->security,
+            'language' => $request->language,
+            'lang_short' => $request->lang_short,
+            'gender' => $request->gender,
+            'bio' => $request->bio,
+        ],['id','email'],['ip']);
+
+
+        // dd($user);
          else:
           $user = User::where('role',3)->first();
+          $this->registerStudent($request);
          endif;
 
-        // if($user):
-        //         $this->updateUser($user,$request);
+        //  dd($user,$request->all());
 
-        //         if($user->userdetailIp->count() != 0):
-        //             $this->updateUserdetail($user,$request);
-        //         else:
-        //             $this->userdetail($user,$request);
-        //         endif;
-        // else:
         /**
          * Create new Tutor/Student if not identified
          */
-           $user = User::upsert([
-                    'first_name' => $request->first_name,
-                    'last_name' => $request->last_name,
-                    'email' => $request->email,
-                    'password' => Hash::make($request->password),
-                    'ip' => $request->ip,
-                    'dob' => $request->dob,
-                    'phone' => $request->phone,
-                    'city' => $request->city,
-                    'country' => $request->country,
-                    'country_short' => $request->country_short,
-                    'role' => $request->role,
-                    'type' => ($request->type == 1) ? 'cnic' : 'security',
-                    'cnic_security' => $request->cnic ?? $request->security,
-                    'language' => $request->language,
-                    'gender' => $request->gender,
-                    'bio' => $request->bio,
-                ],['id'],['ip']);
+
+
 
                 // dd($request->all());
 
@@ -171,7 +174,6 @@ class RegisterController extends Controller
 
                 if($request->role == 2):
                     $this->updateOrCreatedetail($user,$request);
-
                 endif;
 
         // endif;
@@ -180,9 +182,14 @@ class RegisterController extends Controller
          * append on submit button to identify his step completion/visited
          */
 
+
         if($request->has('finish')){
 
             Auth::login($user);
+
+            User::find(Auth::user()->id)->update(['ip' => null,'status' => 1]);
+            Userdetail::where('user_id',Auth::user()->id)->update(['ip' => null]);
+
             if(Auth::user()->role == 2):
                 return view('tutor.skip',compact('request'));
             else:
@@ -190,18 +197,8 @@ class RegisterController extends Controller
             endif;
 
         }
-        // if($request->has('finish')){
 
-
-        //     Auth::login($user);
-        //     if(Auth::user()->role == 2):
-        //         return redirect()->route('tutor.dashboard');
-        //     else:
-        //         return redirect()->route('student.dashboard');
-        //     endif;
-        // }
-
-
+        return redirect()->back();
 
     }
 
@@ -217,103 +214,76 @@ class RegisterController extends Controller
     private function updateOrCreatedetail($user,$request)
     {
 
-        Userdetail::updateOrCreate([
-            'user_id' => $user,
+
+        Userdetail::upsert([
+            'user_id' => $user->id,
             'ip' => $request->ip,
             'student_level' => $request->student_level,
             'hourly_rate' => $request->hour_rate,
-        ]);
+        ],['user_id'],['student_level','hourly_rate']);
 
-
-        foreach($request->degree as $i => $edu){
-            Education::updateOrCreate([
-                "user_id" => $user,
-                "degree_id" => $edu,
-                "subject_id" => $request->major[$i],
-                "institute" => $request->institute[$i],
-                "year" => $request->graduate_year[$i],
-            ]);
-        }
-
-    }
-
-     /**
-     * Update user if his Ip/Remote Address does match.
-     * $user is actually found user from Model
-     * $date is actually request request which recieved from Form
-     *
-     * @param  array  $user,$request
-     * @return $user
-     */
-
-    private function userdetail($user,$request)
-    {
         $docs = [];
         if($request->hasFile('upload')){
             foreach($request->upload as $upload){
                 $path = 'docs/'.$upload->getClientOriginalName();
+                // dd($path);
                 Storage::disk('local')->put($path,$upload->getClientOriginalName());
-                $docs =  $path;
+                $docs[] =  $path;
             }
         }
 
-        // dd($user->id,$request->all());
 
-        return  Userdetail::create([
+        for($i=0; $i<count($request->degree); $i++){
+
+            Education::upsert([
+                "user_id" => $user->id,
+                "degree_id" => $request->degree[$i],
+                "subject_id" => $request->major[$i],
+                "institute" => $request->institute[$i],
+                "year" => $request->graduate_year[$i],
+                "docs" => $docs[$i] ?? null,
+            ],['user_id']);
+        }
+
+
+        if($request->filled('designation')){
+            for($i=0; $i<count($request->designation); $i++){
+                Professional::updateOrCreate([
                     'user_id' => $user->id,
-                    'ip' => $_SERVER['REMOTE_ADDR'],
-                    'degree' => json_encode($request->degree),
-                    'major' => json_encode($request->major),
-                    'institute' => json_encode($request->institute),
-                    'year' => json_encode($request->year),
-                    'designation' => json_encode($request->designation),
-                    'organization' => json_encode($request->organization),
-                    'start_date' => json_encode($request->start_date),
-                    'end_date' => json_encode($request->end_date),
-                    'teach' => $request->teach,
-                    'student_level' => $request->student_level,
-                    'hourly_rate' => $request->hour_rate,
-                    'docs' => json_encode($docs),
+                    'designation' => $request->designation[$i],
+                    'organization' => $request->organization[$i],
+                    'start_date' => $request->degree_start[$i],
+                    'end_date' => $request->degree_end[$i],
                 ]);
+            }
+        }
 
 
     }
 
-     /**
-     * Update user if his Ip/Remote Address does match.
-     * $user is actually found user from Model
-     * $date is actually request request which recieved from Form
-     *
-     * @param  array  $user,$request
-     * @return $user
-     */
 
-    private function updateUser($user,$request)
+    private function registerStudent($request)
     {
+        return User::updateOrCreate([
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'ip' => $request->ip,
+                'dob' => $request->dob,
+                'phone' => $request->phone,
+                'city' => $request->city,
+                'country' => $request->country,
+                'country_short' => $request->country_short,
+                'role' => $request->role,
+                'type' => ($request->type == 1) ? 'cnic' : 'security',
+                'cnic_security' => $request->cnic ?? $request->security,
+                'language' => $request->language,
+                'lang_short' => $request->lang_short,
+                'gender' => $request->gender,
+                'bio' => $request->bio,
+            ],['id','email'],['ip']);
 
-        /**
-         *  Update request in User Model
-         */
-
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->ip = $request->ip;
-        $user->dob = $request->dob;
-        $user->phone = $request->phone;
-        $user->city = $request->city;
-        $user->country = $request->country;
-        $user->country_short = $request->country_short;
-        $user->role = $request->role;
-        $user->type = ($request->type == 1) ? 'cnic' : 'security';
-        $user->cnic_security = $request->cnic ?? $request->security;
-        $user->language = $request->language;
-        $user->gender = $request->gender;
-        $user->bio = $request->bio;
-        $user->save();
-
-        return $user;
     }
 
 }

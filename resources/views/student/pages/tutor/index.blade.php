@@ -60,7 +60,7 @@
                                                     <div class="col-md-10 mt-4">
                                                         <div class="d-flex ml-5 ">
                                                             <p class="heading-third ml-1">
-                                                                Harram
+                                                                {{$tutor->fullname}}
                                                             </p>
                                                             <div class=" ml-2">
                                                                 <span
@@ -82,7 +82,7 @@
                                                             </div>
                                                             <div class="col-md-9 m-0 p-0">
                                                                 <p class="text-pro">
-                                                                    Associate Prof. at UKAS
+                                                                    {{$tutor->professional->last()->designation ?? '---'}}
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -123,7 +123,7 @@
                                             <img src="{{asset('assets/images/ico/red-icon.png') }}">
                                         </div>
                                         <div class="col-md-9 m-0 p-0">
-                                            <p class="text-pro"> Associate Prof. at UKAS</p>
+                                            <p class="text-pro">  {{$tutor->professional->last()->designation ?? '---'}} at {{$tutor->professional->last()->organization ?? '---'}}</p>
                                         </div>
                                     </div>
                                     <div class="row  ml-1">
@@ -131,7 +131,7 @@
                                             <img src="{{asset('assets/images/ico/location-pro.png') }}">
                                         </div>
                                         <div class="col-md-9 m-0 p-0">
-                                            <p class="heading-fifth ml-2"> Lahore, Pakistan </p>
+                                            <p class="heading-fifth ml-2"> {{$tutor->city}}, {{$tutor->country}} </p>
                                         </div>
                                     </div>
                                 </div>
@@ -145,6 +145,7 @@
                             </div>
                             <div class="container-fluid mt-3">
                                 <div class="row">
+
                                     <div class="col-md-4 m-0 p-0">
                                         <p class="heading-fifth"> Subjects</p>
                                     </div>
@@ -161,21 +162,26 @@
                                     <div class="d-flex">
                                         <button class="color-btn-std1">Computer</button>
                                         <button class="color-btn-std1  ml-2">Math</button>
-                                        <button class="color-btn-std  ml-2">Franch</button>
-                                        <button class="color-btn-std  ml-2">English</button>
-                                        <button class="color-btn-std ml-2">Urdu</button>
-                                        <button class="color-btn-std3 ml-2 ">University College of
-                                        </button>
+
+                                        @foreach ($tutor->teach as $teach)
+
+                                            {{$teach->id}}
+
+                                        @endforeach
+
+                                        <button class="color-btn-std  ml-2">{{$tutor->language}}</button>
+
+
+                                        @foreach ($tutor->education as $edu)
+                                            <button class="color-btn-std3 ml-2">{{$edu->institute->name ?? ''}}</button>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
                             <p class="mt-3 heading-forth">About tutor</p>
                             <div class="container-fluid m-0 p-0">
                                 <p class="paragraph-text1" style="opacity: 0.8;">
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting
-                                    industry. Lorem Ipsum has been the industry's standard dummy text
-                                    ever since the 1500s, when an unknown printer took a galley of type
-                                    and scrambled it to make a type specimen book.
+                                  {{$tutor->bio}}
                                 </p>
                             </div>
 

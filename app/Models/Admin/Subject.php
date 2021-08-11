@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\SubjectController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Admin\SubjectCategory;
+use App\Models\General\Education;
+use App\Models\General\Teach;
 use App\Models\User;
 class Subject extends Model
 {
@@ -24,9 +26,16 @@ class Subject extends Model
     ];
     protected $appends = ['cat_name'];
 
+
     public function subCategory(){
         return $this->belongsToMany(SubjectController::class);
     }
+
+    public function education()
+    {
+        return $this->belongsTo(Education::class);
+    }
+
 
     public function user()
     {
@@ -38,5 +47,10 @@ class Subject extends Model
         $category = SubjectCategory::where('id',$id)->first();
 
         return $category->name;
+    }
+
+    public function teach()
+    {
+        return $this->belongsTo(Teach::class);
     }
 }

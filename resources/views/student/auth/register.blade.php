@@ -70,7 +70,7 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <form action="{{ url('register') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ url('register') }}" method="post" enctype="multipart/form-data" id="register">
                                 @csrf
                                 <input type="hidden" name="role" value="3">
                                 <div class="tab-content mt-5">
@@ -268,6 +268,9 @@
         <script src="{{ asset('assets/js/intlTelInput.js') }}"></script>
         <script src="{{ asset('assets/js/yearpicker.js')}}"></script>
         <script src="{{ asset('assets/js/languages.json')}}"></script>
+        {{-- <script src="{{ asset('assets/js/jquery.validate.js') }} "></script> --}}
+        <script src="{{ asset('assets/js/utils.js') }} "></script>
+
         <script>
 
              for(var i=1; i<=31; i++){
@@ -303,6 +306,41 @@
                 }
                 document.getElementById('languages-list').innerHTML = option;
             })();
+
+            $("#register").validate({
+                rules: {
+                    // compound rule
+                    email: {
+                        required: true,
+                        email: true,
+                        remote: {
+                                url: "{{route('available.email')}}",
+                                type: "post",
+                                data: {
+                                    _token: function() {
+                                        return "{{csrf_token()}}"
+                                    },
+                                }
+                            }
+                    },
+                    password: {
+                        required: true,
+                    },
+                    first_name: {
+                        required:true
+                    },
+                    last_name: {
+                        required:true
+                    },
+
+                },
+                messages: {
+                    email: {
+                        required: "We need your email address to contact you",
+                        email: "Your email address must be in the format of name@domain.com"
+                    }
+                }
+            });
         </script>
     </section>
 </body>

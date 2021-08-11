@@ -15,7 +15,8 @@ class CreateProfessionalsTable extends Migration
     {
         Schema::create('professionals', function (Blueprint $table) {
             $table->id();
-            $table->integer('designation_id');
+            $table->integer('user_id');
+            $table->string('designation');
             $table->string('organization');
             $table->string('start_date');
             $table->string('end_date');

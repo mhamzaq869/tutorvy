@@ -5,7 +5,7 @@ namespace App\Http\Controllers\General;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-
+use App\Models\User;
 class GeneralController extends Controller
 {
 
@@ -20,5 +20,16 @@ class GeneralController extends Controller
         $data = json_decode($result);
         dd($data);
         return $data;
+    }
+
+
+    public function isEmailTaken(Request $request)
+    {
+
+        $user = User::where('email',$request->email)->count();
+
+        if($user == 1){
+            return true;
+        }
     }
 }

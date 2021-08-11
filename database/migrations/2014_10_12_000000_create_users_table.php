@@ -32,6 +32,7 @@ class CreateUsersTable extends Migration
             $table->string('type')->nullable();
             $table->string('cnic_security')->nullable();
             $table->string('language')->nullable();
+            $table->string('lang_short')->nullable();
             $table->text('bio')->nullable();
             $table->sring('provider')->nullable();
             $table->integer('role')->nullable()->comment('1-admin 2-tutor 3-student 4-staff');

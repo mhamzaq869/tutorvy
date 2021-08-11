@@ -305,22 +305,119 @@
                                         style="padding-bottom: 100px;background-color: white;">
                                         <div class="col-md-12 ">
                                             <p class="heading-third mt-3">Educational information</p>
+                                            @isset($user)
+                                                @forelse ($user->education as $i => $education)
+                                                <div class=" customer_records mt-5">
+                                                    <div class="row">
+                                                        <div class="input-text col-md-6">
+                                                            <select name="degree[]" class="form-select form-select-lg mb-3">
+                                                                @foreach ($degrees as $degree)
+                                                                    <option  value="{{$degree->id}}" @if($education[$i] == $degree->id) selected @endif>{{$degree->name}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
 
+                                                        <div class="input-text col-md-6">
+                                                            <select name="major[]" class="form-select form-select-lg mb-3">
+                                                                @foreach ($subjects as $subject)
+                                                                <option value="{{$subject->id}}" @if($subject->id == $education->subject_id) selected @endif>{{$subject->name}}</option>
+                                                                @endforeach
+                                                            </select>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-3">
+                                                        <div class="input-text col-md-6">
+                                                            <select name="institute[]" class="form-select form-select-lg mb-3"
+                                                                aria-label=".form-select-lg example">
+                                                                <option  value="0">Institute</option>
+                                                                <option  value="1">Punjab University</option>
+                                                                <option  value="2">Virtual University Of Pakistan</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="input-text col-md-6">
+                                                            <input type="date" name="graduate_year[]" class=" yearpicker form-control"
+                                                            id="grad-yea" value="{{$user->year[$i] ?? ''}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="button-wrapper mt-4">
+                                                        <span class="label" style="position: relative">
+                                                           <span><img src="../assets/images/ico/attach.png" class="w-25 "
+                                                                alt="i">Attach degrees
+                                                            </span>
+                                                            <input type="file" name="upload[]" id="upload" class="upload-box" placeholder="Upload File"
+                                                            accept=".doc,.pdf,.png,.jpg,.jpeg">
+                                                            @if ($user->docs)
+                                                            <button class="btn btn-outline-primary">{{$user->docs[$i]}}</button>
+                                                            @endif
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <hr />
+                                                @empty
+                                                <div class=" customer_records mt-5">
+                                                    <div class="row">
+                                                        <div class="input-text col-md-6">
+                                                            <select name="degree[]" class="form-select form-select-lg mb-3">
+                                                                <option value="0" selected>Degree</option>
+                                                                @foreach ($degrees as $degree)
+                                                                <option  value="{{$degree->id}}">{{$degree->name}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="input-text col-md-6">
+                                                            <select name="major[]" class="form-select form-select-lg mb-3">
+                                                                <option value="0" selected>Major</option>
+                                                                @foreach ($subjects as $subject)
+                                                                <option value="{{$subject->id}}">{{$subject->name}}</option>
+                                                                @endforeach
+                                                            </select>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-3">
+                                                        <div class="input-text col-md-6">
+                                                            <select name="institute[]" class="form-select form-select-lg mb-3"
+                                                                aria-label=".form-select-lg example">
+                                                                <option value="0">Institute</option>
+                                                                <option value="1">Punjab University</option>
+                                                                <option value="2">Virtual University Of Pakistan</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="input-text col-md-6">
+                                                            <input type="date" name="graduate_year[]" class=" yearpicker form-control"
+                                                            id="grad-yea">
+                                                        </div>
+                                                    </div>
+                                                    <div class="button-wrapper mt-4">
+                                                        <span class="label" style="position: relative">
+                                                            <input type="file" name="upload[]" id="upload" class="upload-box" placeholder="Upload File"
+                                                            accept=".doc,.pdf,.png,.jpg,.jpeg">
+                                                            <img src="../assets/images/ico/attach.png" class="w-25 "
+                                                                alt="i">Attach degrees
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <hr />
+                                                @endforelse
+                                            @else
                                             <div class=" customer_records mt-5">
                                                 <div class="row">
                                                     <div class="input-text col-md-6">
-                                                        <select name="degree[]" onchange="checkLevel(this)" class="form-select form-select-lg mb-3" id="degree">
+                                                        <select name="degree[]" class="form-select form-select-lg mb-3">
+                                                            <option value="0" selected>Degree</option>
                                                             @foreach ($degrees as $degree)
-                                                            <option level="{{$degree->level}}" value="{{$degree->id}}">{{$degree->name}}</option>
+                                                            <option  value="{{$degree->id}}">{{$degree->name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
 
                                                     <div class="input-text col-md-6">
                                                         <select name="major[]" class="form-select form-select-lg mb-3">
-                                                            <option value="0">Major</option>
+                                                            <option value="0" selected>Major</option>
                                                             @foreach ($subjects as $subject)
-                                                            <option  value="{{$subject->id}}">{{$subject->name}}</option>
+                                                            <option value="{{$subject->id}}">{{$subject->name}}</option>
                                                             @endforeach
                                                         </select>
 
@@ -350,7 +447,7 @@
                                                 </div>
                                             </div>
                                             <hr />
-
+                                            @endisset
                                             <a class="extra-fields-customer" href="#" style="font-size: 16px;font-family: Poppins;text-decoration: none;">+
                                                 Add  more degrees
                                             </a>
@@ -378,23 +475,46 @@
                                             <p class="heading-third mt-3">Professional information</p>
                                             <div class="wrapper mt-5">
                                                 <div class="container">
-
-                                                    {{-- @else --}}
+                                                    @isset($user)
+                                                        @forelse ($user->professional as $profession)
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="element">
                                                                     <div class="row">
                                                                         <div class="input-text col-md-6">
-                                                                            <select class="form-select form-select-lg" name="designation[]" >
-                                                                                <option value="0">Desigination</option>
-                                                                                <option value="Senior Engineer">Software Engineer</option>
-                                                                            </select>
+                                                                            <input name="designation[]" class="form-control" placeholder="Designation: Senior Developer at Google" value="{{$profession->designation}}">
                                                                         </div>
                                                                         <div class="input-text col-md-6">
-                                                                            <select class="form-select form-select-lg" name="organization[]">
-                                                                                <option value="0">Organization</option>
-                                                                                <option value="creative sprout media">Creative sprout media</option>
-                                                                            </select>
+                                                                            <input name="organization[]" class="form-control" placeholder="Organization"
+                                                                            value="{{$profession->organization}}">
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="row my-3">
+                                                                        <div class="input-text col-md-6">
+                                                                            <input type="date" class="form-control" name="degree_start[]" placeholder="Starting date"
+                                                                            value="{{$profession->start_date ?? ''}}">
+                                                                        </div>
+                                                                        <div class="input-text col-md-6">
+                                                                            <input type="date" class="form-control" name="degree_end[]" placeholder="Ending Date"
+                                                                            value="{{$profession->end_date ?? ''}}">
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        @empty
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="element">
+                                                                    <div class="row">
+                                                                        <div class="input-text col-md-6">
+                                                                            <input name="designation[]" class="form-control" title="Designation: Senior Developer at Google"  placeholder="Designation">
+                                                                        </div>
+                                                                        <div class="input-text col-md-6">
+                                                                            <input name="organization[]" class="form-control" title="Organization Like Google" placeholder="Organization">
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row my-3">
@@ -411,7 +531,35 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    {{-- @endisset --}}
+                                                        @endforelse
+                                                    @else
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="element">
+                                                                <div class="row">
+                                                                    <div class="input-text col-md-6">
+                                                                        <input name="designation[]" class="form-control" title="Designation: Senior Developer at Google"  placeholder="Designation">
+                                                                    </div>
+                                                                    <div class="input-text col-md-6">
+                                                                        <input name="organization[]" class="form-control" title="Organization Like Google" placeholder="Organization">
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row my-3">
+                                                                    <div class="input-text col-md-6">
+                                                                        <input type="date" class="form-control" name="degree_start[]" placeholder="Starting date"
+                                                                        value="">
+                                                                    </div>
+                                                                    <div class="input-text col-md-6">
+                                                                        <input type="date" class="form-control" name="degree_end[]" placeholder="Ending Date"
+                                                                        value="">
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    @endisset
                                                     <!-- <button  class="element1">aa</button> -->
                                                     <div class="results"></div>
 
@@ -454,8 +602,9 @@
                                                 <div class="input-text col-md-6 d-block">
                                                     <select name="teach" class="form-select form-select-lg mb-3 @error('teach') is-invalid @enderror"  required>
                                                         <option  disabled selected>I want to teach</option>
-                                                        <option @if(isset($user) && $user->teach == 2) selected @endif value="2">Physics</option>
-                                                        <option @if(isset($user) && $user->teach == 3) selected @endif value="3">Chemistery</option>
+                                                        @foreach ($subjects as $subject)
+                                                        <option value="{{$subject->id}}" @if($subject->id ==( $user->userdetail->subject_id ?? 0)) selected @endif>{{$subject->name}}</option>
+                                                        @endforeach
                                                     </select>
                                                     @error('teach')
                                                     <span class="invalid-feedback" role="alert">
@@ -464,7 +613,7 @@
                                                     @enderror
                                                 </div>
                                                 <div class="input-text col-md-6">
-                                                    <select name="student_level" class="form-select form-select-lg mb-3" id="levels">
+                                                    <select name="student_level" class="form-select form-select-lg mb-3" >
                                                         <option selected value="0" >Student level</option>
                                                         <option @if(isset($user) && $user->student_level == 1) selected @endif value="1" selected>Basic</option>
                                                         <option @if(isset($user) && $user->student_level == 2) selected @endif value="2">Intermediate</option>
@@ -561,7 +710,7 @@
                 for(var i=0; i<teach_levels.length; i++){
                     if(level >= teach_levels[i].value){
                        $(html).append(teach_levels[i]);
-                       $("#levels").append(teach_levels[i])[];
+                       $("#levels").append(teach_levels[i]);
                     }
                 }
                 console.warn(html)
