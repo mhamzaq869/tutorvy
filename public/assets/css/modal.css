@@ -1,7 +1,7 @@
 .bg-custom {
     background: #00132D;
     color: #fff;
-    background-image: url('img/Mask-Group-64.png');
+    background-image: url('../../assets/images/Mask-Group-64.png');
     background-position: center;
     background-size: cover;
 }
