@@ -130,7 +130,6 @@ class RegisterController extends Controller
 
          if($request->role == 2):
         //   $user = User::where('ip',$request->ip)->where('role',2)->first();
-
           $user = User::updateOrCreate([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,

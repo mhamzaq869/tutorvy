@@ -130,8 +130,8 @@
                                             <p class="heading-third mt-3">Personal information</p>
                                             <div class="row mt-5">
                                                 <div class="input-text col-md-6 d-block">
-                                                    <input id="first_name" class="form-control csd" name="first_name"
-                                                        placeholder="First Name">
+                                                    <input type="" class="form-control csd" name="first_name"
+                                                        placeholder="First Name" value="{{$user->first_name ?? ''}}">
                                                     {{-- @error('first_name')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{$message}}</strong>
@@ -140,7 +140,7 @@
 
                                                 </div>
                                                 <div class="input-text col-md-6 d-block">
-                                                    <input type="" class="form-control @error('last_name') is-invalid @enderror" id="last_name" name="last_name"
+                                                    <input type="" class="form-control @error('last_name') is-invalid @enderror" name="last_name"
                                                         placeholder="Last Name" value="{{$user->last_name ?? ''}}">
                                                     @error('last_name')
                                                         <span class="invalid-feedback" role="alert">
@@ -150,7 +150,7 @@
                                                 </div>
                                             </div>
                                             <div class="input-text col-md-12 m-0 p-0 mt-4 mb-3 d-block">
-                                                <input type="email" class="form-control  @error('email') is-invalid @enderror" id="email" name="email"
+                                                <input type="email" class="form-control  @error('email') is-invalid @enderror" name="email"
                                                     placeholder="Enter Email Address" value="{{$user->email ?? ''}}">
                                                     @error('email')
                                                         <span class="invalid-feedback" role="alert">
@@ -159,7 +159,7 @@
                                                     @enderror
                                             </div>
                                             <div class="input-text col-md-12 m-0 p-0 mt-3 mb-4 d-block">
-                                                <input type="password" name="password" id="password" class="form-control  @error('password') is-invalid @enderror"
+                                                <input type="password" name="password" class="form-control  @error('password') is-invalid @enderror"
                                                     placeholder="Password">
                                                     @error('password')
                                                         <span class="invalid-feedback" role="alert">
@@ -178,7 +178,7 @@
                                                 <!--  -->
                                                 <div class="col-md-4">
                                                     <select class="form-select form-select-lg" name="month"
-                                                        id="month">
+                                                        aria-label=".form-select-lg example">
                                                         <option value="Jan" @if(isset($user) && $user->month == 'Jan') @endif>January</option>
                                                         <option value="Feb" @if(isset($user) && $user->month == 'Feb') @endif>February</option>
                                                         <option value="Mar" @if(isset($user) && $user->month == 'Mar') @endif>March</option>
@@ -223,7 +223,7 @@
                                             <div class="row mt-3">
                                                 <div class="input-text col-md-6">
                                                     <div class="autocomplete mt-1" style="width:300px;">
-                                                        <input id="city" type="" name="city" placeholder="City" value="{{$user->city ?? ''}}">
+                                                        <input id="myInput" type="" name="city" placeholder="City" value="{{$user->city ?? ''}}">
                                                     </div>
                                                 </div>
                                                 <div class="input-text col-md-6">
@@ -262,7 +262,7 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             <select class="form-select form-select-lg mb-3"
-                                                                id="gender" name="gender">
+                                                                aria-label=".form-select-lg example" name="gender">
                                                                 <option selected disabled>Gender</option>
                                                                 <option value="male" @if(isset($user) &&$user->gender == 'male') selected @endif>Male</option>
                                                                 <option value="female" @if(isset($user) && $user->gender == 'female') selected @endif>Female</option>
@@ -280,7 +280,7 @@
 
                                                 <div class="container form-group mt-3" style="padding-right: 20px;">
                                                     <textarea class="form-control" name="bio"
-                                                        id="bio" rows="5"
+                                                        id="exampleFormControlTextarea1" rows="5"
                                                         placeholder="Write about yourself...">{{$user->bio ?? ''}}</textarea>
                                                 </div>
                                                 <br />
@@ -288,9 +288,9 @@
                                                     <div class="col-6">
                                                     </div>
                                                     <div class="col-6" style="display: flex;">
-                                                        <button type="button" class="btn btn-registration btn-lg cencel-btn nextBtn pull-right ml-5" onclick="personal()">
-                                                            Save for Later
-                                                        </button>
+                                                        <input type="submit"
+                                                            class="btn btn-registration btn-lg cencel-btn nextBtn pull-right ml-5"
+                                                            value=" Save for Later">
 
                                                         <button id="step-1-next" type="button"
                                                             class="btn btn-lg btn-registration schedule-btn  nextBtn pull-right ml-4 ">
@@ -425,8 +425,8 @@
                                                 </div>
                                                 <div class="row mt-3">
                                                     <div class="input-text col-md-6">
-                                                        <select name="institute[]"  class="form-select form-select-lg mb-3"
-                                                            id="institute">
+                                                        <select name="institute[]" class="form-select form-select-lg mb-3"
+                                                            aria-label=".form-select-lg example">
                                                             <option value="0">Institute</option>
                                                             <option value="1">Punjab University</option>
                                                             <option value="2">Virtual University Of Pakistan</option>
@@ -447,8 +447,8 @@
                                                 </div>
                                             </div>
                                             <hr />
-
-                                            <a class="extra-fields-customer" href="#" id="addfield" style="font-size: 16px;font-family: Poppins;text-decoration: none;">+
+                                            @endisset
+                                            <a class="extra-fields-customer" href="#" style="font-size: 16px;font-family: Poppins;text-decoration: none;">+
                                                 Add  more degrees
                                             </a>
                                             <div class="customer_records_dynamic mt-5"></div>
@@ -456,7 +456,7 @@
                                                 <div class="col-8"></div>
                                                 <div class="col-4">
                                                     <div class="btn-later">
-                                                        <button type="button" onclick="education()" class="btn btn-registration btn-lg cencel-btn nextBtn pull-right ml-5 ">Save
+                                                        <button type="submit" class="btn btn-registration btn-lg cencel-btn nextBtn pull-right ml-5 ">Save
                                                             for Later
                                                         </button>
                                                         <button type="button" id="step-2-next"
@@ -665,7 +665,8 @@
         </div>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/intlTelInput.js"></script>
-        <script src="{{ asset('assets/js/countrySelect.js') }}"></script>
+        {{-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> --}}
+        <script src="assets/js/countrySelect.js"></script>
         <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
         <script src="{{ asset('assets/js/intlTelInput.js') }}"></script>
         <script src="{{ asset('assets/js/registration.js') }}"></script>
@@ -760,7 +761,6 @@
                     $(btn).insertAfter(this);
                 });
             });
-
         </script>
     </section>
 </body>

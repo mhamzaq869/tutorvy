@@ -34,9 +34,8 @@ class Teach extends Model
         return $this->hasMany(Subject::class,'id','subject_id');
     }
 
-    public function getSubjectAttribute()
+    public function getSubNameAttribute()
     {
-        return $this->subject_id;
-
+        return $this->attributes['sub'] = Subject::find($this->subject_id)->name;
     }
 }

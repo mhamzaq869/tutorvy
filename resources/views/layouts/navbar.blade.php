@@ -92,7 +92,7 @@
                                                 </a>
                                             </li>
                                             <li class=" button-blue pl-md-0 ml-0 ml-md-4">
-                                                <a data-toggle="modal" href="#myModal" class="nav-link sign-text">
+                                                <a data-toggle="modal" href="#registerLogin" class="nav-link sign-text">
                                                     &nbsp;&nbsp; Sign Up &nbsp;&nbsp;
                                                 </a>
                                             </li>
@@ -109,48 +109,33 @@
      </div>
  </div>
 
-<style>
-.modal .modal-header {
-  border-bottom: none;
-  position: relative;
-}
-.modal .modal-header .btn {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin-top: 0;
-  border-top-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-.modal .modal-footer {
-  border-top: none;
-  padding: 0;
-}
-.modal .modal-footer .btn-group > .btn:first-child {
-  border-bottom-left-radius: 0;
-}
-.modal .modal-footer .btn-group > .btn:last-child {
-  border-top-right-radius: 0;
-}
- </style>
- <div class="container">
-	<div class="row">
-	    <div id="myModal" class="modal fade in">
-        <div class="modal-dialog">
+    <!-- Modal -->
+    <div class="modal fade custom_modal" id="registerLogin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
 
-                <div class="modal-header">
-                    <a class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
-                    <h4 class="modal-title">Modal Heading</h4>
-                </div>
-                <div class="modal-body ml-auto mr-auto">
-                    <a href="{{route('register')}}" class="btn btn-primary">Tutor</a>
-                    <a href="{{route('student.register')}}" class="btn btn-dark">Student</a>
-                </div>
+                <div class="modal-body bg-custom text-center p-5">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="p-2"> <img src="{{asset('assets/images/Logo.png')}}" alt="">
+                            </h1>
+                            <h3 class="mb-4 p-2"> Are you a</h3>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="bg-btn-light">
+                                <a type="button" href="{{route('student.register')}}" class="btn  modal-btn animate__animated">Student</a>
+                                <a type="buttin" href="{{route('register')}}" class="btn  modal-btn animate__animated">Tutor</a>
 
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dalog -->
-    </div><!-- /.modal -->
-        <a data-toggle="modal" href="#myModal" class="btn btn-primary">Launch demo modal</a>
-	</div>
-</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <!-- <div class="modal-footer">
+
+                </div> -->
+            </div>
+        </div>
+    </div>

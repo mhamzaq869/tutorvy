@@ -160,18 +160,10 @@
                             <div class="container-fluid mt-1 pb-3">
                                 <div class="row">
                                     <div class="d-flex">
-                                        <button class="color-btn-std1">Computer</button>
-                                        <button class="color-btn-std1  ml-2">Math</button>
-
                                         @foreach ($tutor->teach as $teach)
-
-                                            {{$teach->id}}
-
+                                        <button class="color-btn-std1 ml-2 py-1">{{$teach->sub_name ?? ''}}</button>
                                         @endforeach
-
-                                        <button class="color-btn-std  ml-2">{{$tutor->language}}</button>
-
-
+                                        <button class="color-btn-std ml-2">{{$tutor->language ?? ''}}</button>
                                         @foreach ($tutor->education as $edu)
                                             <button class="color-btn-std3 ml-2">{{$edu->institute->name ?? ''}}</button>
                                         @endforeach
@@ -189,7 +181,8 @@
                         <div class="col-md-3 pb-4" style="background-color: #ebf4ff;border-radius: 8px;">
                             <div class="text-center mt-5">
                                 <p class="paragraph-text1">starting from</p>
-                                <p class="" style="font-size: 64px;font-family: 'poppins';line-height: 1;">$15
+                                <p class="" style="font-size: 64px;font-family: 'poppins';line-height: 1;">
+                                    ${{$tutor->userdetail->hourly_rate ?? 0}}
                                 </p>
                                 <p class="paragraph-text1 mb-5" style="line-height: 1;">Per hour</p>
                                 <button class="cencel-btn w-100 mt-5">Massge</button>

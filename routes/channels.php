@@ -17,5 +17,4 @@ Broadcast::channel('admin_dash', function ($user) {
     if (auth()->check()) {
         return $user->toArray();
     }
-    // return $user;
 });

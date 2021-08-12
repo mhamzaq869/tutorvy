@@ -3,6 +3,7 @@
 
 // email validation
 
+<<<<<<< HEAD
 $(".submit2").click(function () {
   var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
   var email = $(".email").val();
@@ -13,6 +14,20 @@ $(".submit2").click(function () {
   }
 })
 // 
+=======
+if(document.querySelector('.submit2')){
+    $(".submit2").click(function () {
+    var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    var email = $(".email").val();
+    if (!filter.test(email)) {
+        $(".email").css("border-color", "red");
+        $(".add").html('enter your valid email address');
+        return false;
+    }
+    })
+}
+//
+>>>>>>> remotes/origin/hamza
 $(".toggle-password").click(function () {
 
   $(this).toggleClass("fa-eye fa-eye-slash");
@@ -28,7 +43,11 @@ $(".toggle-password").click(function () {
 // pass validation
 
 
+<<<<<<< HEAD
 // 
+=======
+//
+>>>>>>> remotes/origin/hamza
 // const pass_field = document.querySelector("input");
 // const show_btn = document.querySelector("i");
 // show_btn.addEventListener("click", function () {
@@ -42,7 +61,10 @@ $(".toggle-password").click(function () {
 // });
 
 
+<<<<<<< HEAD
 // 
+=======
+>>>>>>> remotes/origin/hamza
 function checkPass() {
 
   var get_elem = document.getElementById,
@@ -59,7 +81,11 @@ function checkPass() {
 
     },
     strings = {
+<<<<<<< HEAD
       "confirmMessage": ["Password Matched", "Password notmathed"]
+=======
+      "confirmMessage": ["Password Matched", "Password not matched"]
+>>>>>>> remotes/origin/hamza
     };
 
   if (password.value === password2.value && (password.value + password2.value) !== "") {
