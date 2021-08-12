@@ -17,12 +17,12 @@ class CreateAssessmentsTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('subject_id');
-            $table->string('question_1')->nullable();
-            $table->string('question_2')->nullable();
-            $table->string('question_3')->nullable();
-            $table->string('answer_1')->nullable();
-            $table->string('answer_2')->nullable();
-            $table->string('answer_3')->nullable();
+            $table->text('question_1')->nullable();
+            $table->text('question_2')->nullable();
+            $table->text('question_3')->nullable();
+            $table->text('answer_1')->nullable();
+            $table->text('answer_2')->nullable();
+            $table->text('answer_3')->nullable();
             $table->string('assessment_note')->nullable();
             $table->integer('status')->default(0);
             $table->timestamps();

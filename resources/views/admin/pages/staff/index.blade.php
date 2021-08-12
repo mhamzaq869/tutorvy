@@ -250,14 +250,7 @@
 <!-- Extra js to perfome function using ajax. -->
 @section('js')
 
-<script type="text/javascript">
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
 
-</script>
 <script src="{{ asset('/admin/assets/js/pages/staff.js')}}"></script>
 @endsection
 

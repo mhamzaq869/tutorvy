@@ -12,7 +12,7 @@ use App\Models\General\Education;
 use App\Models\General\Professional;
 use App\Models\General\Teach;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
@@ -43,7 +43,7 @@ class User extends Authenticatable
         'role',
         'status',
     ];
-    protected $appends = ['address','status_text','day','month','year'];
+    protected $appends = ['address','status_text','day','month','year','subject'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -141,5 +141,9 @@ class User extends Authenticatable
 
     }
 
+    public function getSubjectAttribute(){
 
+        
+
+    }
 }
