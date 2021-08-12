@@ -23,6 +23,7 @@
     <link href="{{ asset('assets/css/home.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/asset.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/tutor.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/modal.css') }}" rel="stylesheet">
 
 </head>
 <body>
