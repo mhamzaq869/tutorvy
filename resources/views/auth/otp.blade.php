@@ -43,7 +43,6 @@
                     <div class=" card container pb-5 pt-5">
                         <div class="ml-3 mr-3">
 
-
                             <!-- <p style="position: absolute;top: 50px;left: 100px;font-size: 14px;font-family: Poppins;line-height: 1;">Not you ?</p> -->
                             <p class="sign-text">Forgot password?</p>
                             <div class="row">
@@ -52,13 +51,12 @@
                                 <!-- <p class="ml-2 Create-text"> Enter password to login</p> -->
                                 <br />
                                 <br />
-                                <!-- <div class="prompt">
-                                    Enter the code generated on your mobile device below to log in!
-                                </div> -->
+
 
                                 <form method="post" class="digit-group" data-group-name="digits" data-autosubmit="false"
-                                    autocomplete="off" style="display: flex;">
+                                    autocomplete="off">
                                     @csrf
+                                    <div class="d-flex">
                                     <input type="" id="digit-1" name="digit-1" placeholder="9" data-next="digit-2" />
                                     <input type="" id="digit-2" name="digit-2" placeholder="9" data-next="digit-3"
                                         data-previous="digit-1" />
@@ -66,16 +64,19 @@
                                         data-previous="digit-2" />
                                     <input type="" id="digit-4" name="digit-4" placeholder="9" data-next="digit-5"
                                         data-previous="digit-3" />
+                                    </div>
 
+                                        <div class="mb-5 input-login">
+                                            {{-- {{Session::get('otp')}} --}}
+                                            <p onclick="resendOTP()" style="text-align: left; margin-top: 35px;width: 100%;font-size: 14px;font-family: Poppins;;color: #1173FF;padding-right: 15px;">
+                                                Resend code
+                                            </p>
+                                            <button type="submit" class="schedule-btn" style="float: right;margin-top: 20px;width: 120px;">Continus</button>
+                                        </div>
                                 </form>
                             </div>
-                            <div class="mb-5 input-login" style="display: flex;">
-                                {{-- {{Session::get('otp')}} --}}
-                                <p style="text-align: left; margin-top: 35px;width: 100%;font-size: 14px;font-family: Poppins;;color: #1173FF;padding-right: 15px;">
-                                    Resend code
-                                </p>
-                                <button type="submit" class="schedule-btn" style="float: right;margin-top: 20px;width: 120px;">Continus</button>
-                            </div>
+
+
                         </div>
 
                         <div class="social-Icon ml-4"
@@ -85,7 +86,8 @@
                     </div>
                 </div>
             </div>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+            <script src="../assets/js/jquery.js"></script>
             <script src="../assets/js/bootstrap.js"></script>
             <script src="../assets/js/login.js">   </script>
             <script>
@@ -113,6 +115,23 @@
                         }
                     });
                 });
+
+
+                function resendOTP()
+                {
+                    $.ajax({
+                        url:"{{route('resend.otp')}}",
+                        type: "Post",
+                        async: true,
+
+                        success: function (data) {
+
+
+
+                        }
+                    });
+
+                }
             </script>
     </section>
 </body>
