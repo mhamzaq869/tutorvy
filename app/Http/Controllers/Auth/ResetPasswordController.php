@@ -61,7 +61,7 @@ class ResetPasswordController extends Controller
     public function resendOtp()
     {
         Session::put('otp',rand(1000,9999));
-        return redirect()->back()->with('success',"New otp has been sended");
+        return response("New otp has been sended",200);
     }
 
 }
