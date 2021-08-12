@@ -1,9 +1,11 @@
 @extends('admin.layouts.app')
 @section('content')
-
+@php
+    $request_ = route('admin.tutorRequest',[$test->user_id,$test->id]);
+@endphp
 <div class="container-fluid pb-4">
             <h1 class="mt-5">
-               <a href="{{ route('admin.tutorRequest',[$test->user_id]) }}"> < </a> Tutor test </h1>
+               <a href="{{ route('admin.tutorRequest',[$test->user_id,$test->id]) }}"> < </a> Tutor test </h1>
         </div>
         <div class="container-fluid  pb-5">
             <div class="row">
@@ -61,7 +63,7 @@
                         <div class="btn-test  col-md-8  mt-3 pb-5" style="text-align: right;">
                             <button class="cencel-btn" data-toggle="modal"
                                 data-target="#exampleModalCenterss">Reject</button>
-                            <a href="request.html" class="btn schedule-btn">
+                            <a class="btn schedule-btn" onclick="verifyAssessment(`{{$test->id}}`,1)">
                                 Verfiy
                             </a>
                         </div>
@@ -74,7 +76,7 @@
             </div>
         </div>
         <!-- modal -->
-        <div class="modal fade" id="exampleModalCenterss" tabindex="-1" role="dialog"
+        <div class="modal fade reject_asses_modal" id="exampleModalCenterss" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -87,10 +89,10 @@
                             <p class="paragraph-text">
                                 Write allegation that why are you rejecting tutor
                             </p>
-                            <textarea class="form-control" rows="5" placeholder="Write reason"></textarea>
+                            <textarea class="form-control" rows="5" placeholder="Write reason" id="assess_reject_reason"></textarea>
                             <div class="mt-4 d-flex" style="position: absolute;right: 30px;">
                                 <button class="cencel-btn w-150 mr-4" data-dismiss="modal">Cancel</button>
-                                <button class="schedule-btn w-150">Send</button>
+                                <button class="schedule-btn w-150" onclick="verifyAssessment(`{{$test->id}}`,2)">Send</button>
                             </div>
                         </div>
                     </div>
@@ -98,4 +100,12 @@
             </div>
         </div>
 
+@endsection
+
+<!-- Extra js to perfome function using ajax. -->
+@section('js')
+<script>
+    let request_ = "{{$request_}}";
+</script>    
+<script src="{{ asset('/admin/assets/js/pages/tutor.js')}}"></script>
 @endsection

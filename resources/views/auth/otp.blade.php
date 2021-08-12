@@ -5,23 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!-- fontawsome -->
+    <title>Login-Pages</title>
+    <!-- bootstrap start -->
+    <link href="../assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- bootstrap end -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- style css -->
     <link href="{{ asset('assets/css/login.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/global-login.css') }}" rel="stylesheet">
-
-    <!-- Scripts -->
-    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
-    <!--favicon --->
-    <link href="{{ asset('assets/images/ico/side-icons.png') }}" rel="icon">
-    <!-- bootstrap link -->
-    <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
-    <!-- fonawsome -->
-    <link href="{{ asset('assets/css/fontawesome.min.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -31,7 +22,7 @@
                 <div class="col-md-6">
                     <div class="">
                         <div class="login-logo">
-                            <img src="../assets/images/logo/logo.png" alt="logo">
+                            <img src="{{asset('assets/images/logo/logo.png')}}" alt="logo">
                         </div>
                         <div class="text">
                             <p class="learn">Learn from the best tutors</p>
@@ -65,36 +56,26 @@
                                     Enter the code generated on your mobile device below to log in!
                                 </div> -->
 
-                                <form method="post" action="{{route('check.otp')}}" class="digit-group" data-group-name="digits" data-autosubmit="false"
-                                    autocomplete="off">
+                                <form method="post" class="digit-group" data-group-name="digits" data-autosubmit="false"
+                                    autocomplete="off" style="display: flex;">
                                     @csrf
+                                    <input type="" id="digit-1" name="digit-1" placeholder="9" data-next="digit-2" />
+                                    <input type="" id="digit-2" name="digit-2" placeholder="9" data-next="digit-3"
+                                        data-previous="digit-1" />
+                                    <input type="" id="digit-3" name="digit-3" placeholder="9" data-next="digit-4"
+                                        data-previous="digit-2" />
+                                    <input type="" id="digit-4" name="digit-4" placeholder="9" data-next="digit-5"
+                                        data-previous="digit-3" />
 
-                                    <div class="d-flex">
-                                        <input class="text-dark" id="digit-1" name="digit1" placeholder="9" data-next="digit-2" />
-                                        <input class="text-dark" id="digit-2" name="digit2" placeholder="9" data-next="digit-3" data-previous="digit-1" />
-                                        <input class="text-dark" id="digit-3" name="digit3" placeholder="9" data-next="digit-4" data-previous="digit-2" />
-                                        <input class="text-dark" id="digit-4" name="digit4" placeholder="9" data-next="digit-5" data-previous="digit-3" />
-                                    </div>
-
-                                    @if(Session::has('error'))
-                                        <span class="invalid-feedback d-block" role="alert">
-                                            <strong>{{session::get('error')}}</strong>
-                                        </span>
-                                    @endif
-
-
-                                        <div class="mb-5 input-login" style="display: flex;">
-
-                                            <p style="text-align: left; margin-top: 35px;width: 100%;font-size: 14px;font-family: Poppins;;color: #1173FF;padding-right: 15px;">
-                                                Resend code</p>
-
-                                                <button type="submit" class="schedule-btn" style="float: right;margin-top: 20px;width: 120px;">
-                                                    Continus
-                                                </button>
-                                        </div>
                                 </form>
                             </div>
-
+                            <div class="mb-5 input-login" style="display: flex;">
+                                {{-- {{Session::get('otp')}} --}}
+                                <p style="text-align: left; margin-top: 35px;width: 100%;font-size: 14px;font-family: Poppins;;color: #1173FF;padding-right: 15px;">
+                                    Resend code
+                                </p>
+                                <button type="submit" class="schedule-btn" style="float: right;margin-top: 20px;width: 120px;">Continus</button>
+                            </div>
                         </div>
 
                         <div class="social-Icon ml-4"

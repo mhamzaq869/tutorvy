@@ -34,9 +34,10 @@ class CreateUsersTable extends Migration
             $table->string('language')->nullable();
             $table->string('lang_short')->nullable();
             $table->text('bio')->nullable();
+            $table->text('reject_note')->nullable();
             $table->string('provider')->nullable();
             $table->integer('role')->nullable()->comment('1-admin 2-tutor 3-student 4-staff');
-            $table->integer('status')->nullable()->comment('1-Active 0-Disabled');
+            $table->integer('status')->default(0)->comment('1-Active 0-Default 2-Reject' );
             $table->integer('verify')->default(0);
             $table->rememberToken();
             $table->timestamps();
