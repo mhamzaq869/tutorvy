@@ -10,7 +10,9 @@ use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use phpDocumentor\Reflection\DocBlock\Tags\See;
 use Illuminate\Support\Facades\Mail;
+
 class ResetPasswordController extends Controller
 {
     /*
@@ -49,24 +51,7 @@ class ResetPasswordController extends Controller
             return view('auth.otp');
         }
 
-        return redirect()->back()->with('error',$request->email." email doesn't exist!");
     }
-
-    public function checkOtp(Request $request)
-    {
-
-        $otp = $request->digit1.$request->digit2.$request->digit3.$request->digit4;
-
-        if($otp == Session::get('otp')){
-            return redirect()->route('reset.password');
-        }
-
-        $request->session()->flash('error','Wrong OTP Code');
-
-        return view('auth.otp');
-
-    }
-
 
     public function updatePassword(Request $request)
     {
@@ -78,6 +63,11 @@ class ResetPasswordController extends Controller
         ]);
 
         return redirect()->back()->with('success','Your password has been changed!');
+    }
+    public function resendOtp()
+    {
+        Session::put('otp',rand(1000,9999));
+        return response("New otp has been sended",200);
     }
 
 }

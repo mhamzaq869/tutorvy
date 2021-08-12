@@ -48,8 +48,10 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
     Route::get('/dashboard',[HomeController::class,'index'])->name('admin.dashboard');
 
     Route::get('/tutor',[TutorController::class,'index'])->name('admin.tutor');
-    Route::get('tutor/request/{id}',[TutorController::class,'tutorRequest'])->name('admin.tutorRequest');
-    Route::get('tutor/assessment/{tutor_id}/{subject_id}',[TutorController::class,'tutorAssessment'])->name('admin.tutotAssessment');
+    Route::get('tutor/request/{id}/{assess_id}',[TutorController::class,'tutorRequest'])->name('admin.tutorRequest');
+    Route::get('tutor/assessment/{assessment_id}',[TutorController::class,'tutorAssessment'])->name('admin.tutotAssessment');
+    Route::post('tutor/verify-assessment',[TutorController::class,'verifyAssessment'])->name('admin.verifyAssessment');
+    Route::post('tutor/verify-tutor',[TutorController::class,'verifyTutor'])->name('admin.verifyTutor');
 
 
     Route::get('/student',[StudentController::class,'index'])->name('admin.student');
@@ -123,7 +125,7 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
 |
 */
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 //Google
 Route::get('/google/redirect', [LoginController::class,'redirectGoogle'])->name('social.google');
 Route::get('/login/google/callback', [LoginController::class,'handleGoogleCallback']);
@@ -134,6 +136,7 @@ Route::view('/logged','auth.loginpass')->name('logged')->middleware('guest');
 Route::post('/validate_otp',[ResetPasswordController::class,'checkOtp'])->name('check.otp');
 Route::view('/resetPassword','auth.reset')->name('reset.password');
 Route::post('/updatePassword',[ResetPasswordController::class,'updatePassword'])->name('update.password');
+Route::post('/resendOtp',[ResetPasswordController::class,'resendOtp'])->name('resend.otp');
 // Route::post('/logged',[LoginController::class,'logged'])->name('logged')->middleware('guest');;
 Route::view('/','welcome');
 Route::view('/tutor','frontend.tutor');

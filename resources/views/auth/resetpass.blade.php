@@ -54,24 +54,32 @@
                 </div>
                 <div class="col-md-6">
                     <div class=" card border-0 container pb-5">
-                        <div class="ml-3 mr-3 mt-5">
+                        <div class="ml-3 mr-3 mt-4">
 
                             <p class="sign-text">
                                 Forget Password
                             </p>
-
+                            <div class="row">
+                                <p class="user-text ml-3">
+                                   <a href="{{ route('login') }}" class="Create-text text-decoration-none">
+                                    Login
+                                    </a>
+                                </p>
+                                <br /><br />
+                            </div>
                             <div class="mb-5 input-login">
                                 <div class="input-container">
-                                    <form action="{{ route('password.request') }}" method="POST" id="form">
+                                    <form action="{{ route('password.update') }}" method="POST" id="form">
                                         @csrf
 
                                         <input type="email" name="email" id="myName" placeholder="Enter Email Address"
-                                            class="form-control @if(Session::has('error')) is-invalid @endif">
+                                            class="form-control @error('email') is-invalid @enderror">
+
 
                                             @if(Session::has('error'))
-                                                <span class="invalid-feedback d-block" role="alert">
-                                                    <strong>{{session::get('error')}}</strong>
-                                                </span>
+                                            <span class="invalid-feedback d-block" role="alert">
+                                                <strong>{{session::get('error')}}</strong>
+                                            </span>
                                             @endif
 
                                         <input type="submit" class="submit schedule-btn w-25 mt-3 float-right"
@@ -81,16 +89,10 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <form method="post" action="#" id="myform">
-                            <input type="" placeholder="Enter your email address" name="email" class="email"
-                                required>
-                            <div class="add"></div>
-                            <input type="submit" class="submit schedule-btn w-25 mt-3 float-right"
-                                value="Submit">
-                        </form> -->
+
                         <div class="social-Icon ml-3 mr-3">
 
-                            <div class="Policy-text" style="display: flex;">
+                            <div class="Policy-text mt-5" style="display: flex;">
                                 <p class="by-text">
                                     Protected by reCAPTCHA and subject to the Google</p>
                                 <p class="Privacy-text">
@@ -109,7 +111,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="../assets/js/bootstrap.js"></script>
@@ -124,10 +125,6 @@
                             required: true,
                             minlength: 8
                         },
-                        pass: {
-                            required: true,
-                            minlength: 8
-                        }
                     },
 
                     highlight: function(element) {

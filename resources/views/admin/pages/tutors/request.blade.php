@@ -15,10 +15,10 @@
                 <p class="heading-fifth mt-2 line-height-1">Tutor</p>
                 <hr />
                 <div class="pb-5 mt-4">
-                    <button class="cencel-btn" data-toggle="modal" data-target="#exampleModalCenterss"
+                    <button class="cencel-btn" data-toggle="modal" data-target="#tutorRejectModal"
                         style="width: 110px;">Reject</button>
                     <button class="schedule-btn" data-toggle="modal" data-target="#exampleModalCenter"
-                        style="width: 110px;">Accpet</button>
+                        style="width: 110px;">Accept</button>
                 </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
         <!--  -->
 
         <!-- Modal reject-->
-        <div class="modal fade" id="exampleModalCenterss" tabindex="-1" role="dialog"
+        <div class="modal fade" id="tutorRejectModal" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -59,10 +59,10 @@
                             <p class="paragraph-text">
                                 Write allegation that why are you rejecting tutor
                             </p>
-                            <textarea class="form-control" rows="5" placeholder="Write reason"></textarea>
+                            <textarea class="form-control" rows="5" placeholder="Write reason" id="t_reject_reason"></textarea>
                             <div class="mt-4 d-flex" style="position: absolute;right: 30px;">
                                 <button class="cencel-btn w-150 mr-4" data-dismiss="modal">Cencel</button>
-                                <button class="schedule-btn w-150">Send</button>
+                                <button class="schedule-btn w-150" onclick="verifyTutor(`{{$tutor->id}}`,2)">Send</button>
                             </div>
                         </div>
                     </div>
@@ -166,11 +166,18 @@
                             </th>
                             <td class="d-flex">
                                 <p class="paragraph-text">
-                                    {{$tutor->userdetail->subjects}}
+                                    {{$tutor_assessment->sub_name}}
                                 </p>
-                                <a href="{{ route('admin.tutotAssessment',[$tutor->id,$tutor->userdetail->teach]) }}" class="view-btn btn">
+                                @if($tutor_assessment->status == 1)
+                                    <h6><span class="badge badge-success">Verified</span></h6>
+                                @elseif($tutor_assessment->status == 2)
+                                    <h6><span class="badge badge-danger">Rejected</span></h6>
+                                @else
+                                <a href="{{ route('admin.tutotAssessment',[$tutor_assessment->id]) }}" class="view-btn btn">
                                     View
                                 </a>
+                                @endif
+                                
                             </td>
                         </tr>
                         <tr>
