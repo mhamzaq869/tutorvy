@@ -1,0 +1,41 @@
+.card {
+    width: 700px;
+    border: none;
+    box-shadow: 0 2px 8px 0 rgba(235, 228, 228, 0.2), 0 6px 20px 0 rgba(223, 215, 215, 0.19);
+}
+
+.show-text {
+    font-size: 34px;
+    font-family: 'Poppins';
+    font-weight: 700;
+    color: #00132D;
+}
+
+.show-text1 {
+    font-size: 16px;
+    font-family: 'Poppins';
+    font-weight: 400;
+    color: #00132D;
+}
+
+@media(max-width:790px) {
+    .cencel-btn {
+        width: 100% !important;
+    }
+}
+@media(max-width:790px) {
+    .schedule-btn {
+        width: 100% !important;
+    margin-top: 20px;
+    }
+}
+@media(max-width:790px) {
+    .card {
+        width: 100% !important;
+    }
+}
+@media(max-width:790px) {
+    .skip-img {
+        width: 100% !important;
+    }
+}

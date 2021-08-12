@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="81" height="81" viewBox="0 0 81 81">
+  <g id="Group_11036" data-name="Group 11036" transform="translate(0.454)">
+    <circle id="Ellipse_99" data-name="Ellipse 99" cx="40.5" cy="40.5" r="40.5" transform="translate(-0.454)" fill="#df615c" opacity="0.24"/>
+    <g id="Group_5431" data-name="Group 5431" transform="translate(24.325 23.542)">
+      <path id="Subtraction_2" data-name="Subtraction 2" d="M16.535,26.129H2.613A2.616,2.616,0,0,1,0,23.516L.013,5.225a2.609,2.609,0,0,1,2.6-2.613H3.919V0H6.532V2.612H16.984V0H19.6V2.612H20.9a2.616,2.616,0,0,1,2.613,2.613V18.363a8.2,8.2,0,0,0-2.613.874V9.145H2.613V23.516H17.094a8.234,8.234,0,0,0-.56,2.612Zm1.756-11.758H15.677V11.758h2.613V14.37Zm-5.226,0H10.451V11.758h2.613V14.37Zm-5.225,0H5.226V11.758H7.839V14.37Z" fill="#df615c"/>
+      <ellipse id="Ellipse_104" data-name="Ellipse 104" cx="7.5" cy="7" rx="7.5" ry="7" transform="translate(17.221 19.458)" fill="#fff"/>
+      <path id="Path_1667" data-name="Path 1667" d="M-2675.5,2126.237v3.713h2.727" transform="translate(2700.299 -2103.411)" fill="none" stroke="#df615c" stroke-width="1"/>
+    </g>
+  </g>
+</svg>
