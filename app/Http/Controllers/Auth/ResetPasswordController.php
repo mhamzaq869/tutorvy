@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
 class ResetPasswordController extends Controller
@@ -41,8 +42,8 @@ class ResetPasswordController extends Controller
 
         $user = User::where('email',$request->email)->first();
 
-        if($user->count() != 0){
-            $this->email = $user->email;
+        if($user){
+            Session::put('changepass',$user->id);
             Session::put('otp',rand(1000,9999));
             Mail::to($request->email)->send(new SendOtpMail($user));
             return view('auth.otp');
@@ -69,7 +70,14 @@ class ResetPasswordController extends Controller
 
     public function updatePassword(Request $request)
     {
-        dd($request->all());
+        return
+        $id = Session::get('changepass');
+
+        User::find($id)->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        return redirect()->back()->with('success','Your password has been changed!');
     }
 
 }

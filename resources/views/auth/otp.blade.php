@@ -31,7 +31,9 @@
                 <div class="col-md-6">
                     <div class="">
                         <div class="login-logo">
-                            <img src="../assets/images/logo/logo.png" alt="logo">
+                            <a href="{{url('/')}}">
+                                <img src="{{asset('assets/images/logo/logo.png')}}">
+                            </a>
                         </div>
                         <div class="text">
                             <p class="learn">Learn from the best tutors</p>
@@ -104,9 +106,7 @@
                     </div>
                 </div>
             </div>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-            <script src="../assets/js/bootstrap.js"></script>
-            <script src="../assets/js/login.js">   </script>
+
             <script>
                 $('.digit-group').find('input').each(function () {
                     $(this).attr('maxlength', 1);
@@ -132,6 +132,40 @@
                         }
                     });
                 });
+
+
+                    function checkPass() {
+                        pass1 = document.getElementById('password'),
+                        pass2 = document.getElementById('password2'),
+                        message = document.getElementById('confirmMessage'),
+                    colors = {
+                        goodColor: "#fff",
+                        goodColored: "#087a08",
+                        badColor: "#fff",
+                        badColored: "#ed0b0b",
+                        fontStyle: "italic"
+                    },
+                    strings = {
+                        "confirmMessage": ["Password Matched", "Password not matched"]
+                    };
+
+                        if (password.value === password2.value && (password.value + password2.value) !== "") {
+                            password2.style.backgroundColor = colors["goodColor"];
+                            message.style.color = colors["goodColored"];
+                            message.innerHTML = strings["confirmMessage"][0];
+                            $(".schedule-btn").attr('type','submit')
+                        }
+                        else if (!(password2.value === "")) {
+                            password2.style.backgroundColor = colors["badColor"];
+                            message.style.color = colors["badColored"];
+                            message.innerHTML = strings["confirmMessage"][1];
+                            $(".schedule-btn").attr('type','button')
+                        }
+                        else {
+                            message.innerHTML = "";
+                        }
+
+                    }
             </script>
     </section>
 </body>
