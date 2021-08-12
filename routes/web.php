@@ -124,7 +124,7 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
 |
 */
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 //Google
 Route::get('/google/redirect', [LoginController::class,'redirectGoogle'])->name('social.google');
 Route::get('/login/google/callback', [LoginController::class,'handleGoogleCallback']);
