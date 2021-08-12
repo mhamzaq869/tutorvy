@@ -129,7 +129,7 @@ class RegisterController extends Controller
          */
 
          if($request->role == 2):
-          $user = User::where('ip',$request->ip)->where('role',2)->first();
+        //   $user = User::where('ip',$request->ip)->where('role',2)->first();
           $user = User::updateOrCreate([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
@@ -153,8 +153,8 @@ class RegisterController extends Controller
 
         // dd($user);
          else:
-          $user = User::where('role',3)->first();
-          $this->registerStudent($request);
+        //   $user = User::where('role',3)->first();
+          $user = $this->registerStudent($request);
          endif;
 
         //  dd($user,$request->all());
