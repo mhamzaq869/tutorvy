@@ -43,7 +43,7 @@ class User extends Authenticatable
         'role',
         'status',
     ];
-    protected $appends = ['address','status_text','day','month','year'];
+    protected $appends = ['address','status_text','day','month','year','subject'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -141,5 +141,9 @@ class User extends Authenticatable
 
     }
 
+    public function getSubjectAttribute(){
 
+        
+
+    }
 }
