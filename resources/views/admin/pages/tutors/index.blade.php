@@ -122,11 +122,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($tutors as $tutor)
+                                    @foreach($new_requests as $request)
+                                        
                                         <tr>
                                             <td class="pt-4">
                                                 <!-- -->
-                                                {{ $tutor->first_name }} {{ $tutor->last_name }}
+                                                {{ $request->tutor->first_name }} {{ $request->tutor->last_name }}
                                                 <!-- <span data-toggle="tooltip" title="Harram Laraib Ali">Har***</span> -->
                                             </td>
                                             <td class="pt-4">
@@ -134,15 +135,15 @@
                                             </td>
                                             <td class="pt-4">
                                                 <span data-toggle="tooltip"
-                                                    title="{{$tutor->email}}">{{Str::limit($tutor->email, 3, $end='***')}}</span>
+                                                    title="{{$request->tutor->email}}">{{Str::limit($request->tutor->email, 3, $end='***')}}</span>
                                             </td>
-                                            <td class="pt-4">{{$tutor->userdetail->subjects}}</td>
-                                            <td class="pt-4">{{$tutor->address}}</td>
-                                            <td class="pt-4">{{$tutor->userdetail->std_level}}</td>
-                                            <td class="pt-4">{{$tutor->userdetail->availability != NULL ? $tutor->userdetail->availability : '---'}}</td>
-                                            <td class="pt-4">{{$tutor->userdetail->hourly_rate}}</td>
+                                            <td class="pt-4">{{$request->sub_name}}</td>
+                                            <td class="pt-4">{{$request->tutor->address}}</td>
+                                            <td class="pt-4">{{$request->tutor->userdetail->std_level}}</td>
+                                            <td class="pt-4">{{$request->tutor->userdetail->availability != NULL ? $request->tutor->userdetail->availability : '---'}}</td>
+                                            <td class="pt-4">{{$request->tutor->userdetail->hourly_rate}}</td>
                                             <td class="pt-3 text-right">
-                                                <a href="{{ route('admin.tutorRequest',[$tutor->id]) }}" class="cencel-btn btn">
+                                                <a href="{{ route('admin.tutorRequest',[$request->tutor->id,$request->id]) }}" class="cencel-btn btn">
                                                     View
                                                 </a>
                                             </td>
@@ -151,6 +152,7 @@
                                                     data-target="#exampleModalCenter">Assign</button>
                                             </td>
                                         </tr>
+                                       
                                     @endforeach
                                     
                                 </tbody>
@@ -265,105 +267,46 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="pt-4">
-
-                                        Muhammad Arsalan Aslam
-                                    </td>
-                                    <td scope="col" class="pt-4">1234567800</td>
-                                    <td class="pt-4">
-                                        <span data-toggle="tooltip" title="harramlaraib127@gmail.com">har***</span>
-                                    </td>
-                                    <td class="pt-4">Physics chemistry computer</td>
-                                    <td class="pt-4">Lahore, punjab Pakistan</td>
-                                    <td class="pt-4">Advance</td>
-                                    <td class="pt-4">8am-8pm</td>
-                                    <td class="pt-4">$50</td>
-                                    <td class="pt-4 text-right">
-                                        <a href="setting.html">
-                                            <img src="../assets/img/ico/edit-icon.svg" alt="image"
-                                                class="edit-image" />
-                                        </a>
-                                    </td>
-                                    <td class="pt-4 text-right">
-                                        <label class="switch mt-0">
-                                            <input type="checkbox">
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </td>
-                                    <td class="pt-3 text-right">
-
-                                        <a href="profile.html" class="btn schedule-btn">
-                                            View
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="pt-4">
-
-                                        Muhammad Arsalan Aslam
-                                    </td>
-                                    <td scope="col" class="pt-4">1234567800</td>
-                                    <td class="pt-4">
-                                        <span data-toggle="tooltip" title="harramlaraib127@gmail.com">har***</span>
-                                    </td>
-                                    <td class="pt-4">Physics chemistry computer</td>
-                                    <td class="pt-4">Lahore, punjab Pakistan</td>
-                                    <td class="pt-4">Advance</td>
-                                    <td class="pt-4">8am-8pm</td>
-                                    <td class="pt-4">$50</td>
-                                    <td class="pt-4 text-right">
-                                        <a href="setting.html">
-                                            <img src="../assets/img/ico/edit-icon.svg" alt="image"
-                                                class="edit-image" />
-                                        </a>
-                                    </td>
-                                    <td class="pt-4 text-right">
-                                        <label class="switch mt-0">
-                                            <input type="checkbox">
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </td>
-                                    <td class="pt-3 text-right">
-
-                                        <a href="profile.html" class="btn schedule-btn">
-                                            View
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="pt-4">
-
-                                        Muhammad Arsalan Aslam
-                                    </td>
-                                    <td scope="col" class="pt-4">1234567800</td>
-                                    <td class="pt-4">
-                                        <span data-toggle="tooltip" title="harramlaraib127@gmail.com">har***</span>
-                                    </td>
-                                    <td class="pt-4">Physics chemistry computer</td>
-                                    <td class="pt-4">Lahore, punjab Pakistan</td>
-                                    <td class="pt-4">Advance</td>
-                                    <td class="pt-4">8am-8pm</td>
-                                    <td class="pt-4">$50</td>
-                                    <td class="pt-4 text-right">
-                                        <a href="setting.html">
-                                            <img src="../assets/img/ico/edit-icon.svg" alt="image"
-                                                class="edit-image" />
-                                        </a>
-                                    </td>
-                                    <td class="pt-4 text-right">
-                                        <label class="switch mt-0">
-                                            <input type="checkbox">
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </td>
-                                    <td class="pt-3 text-right">
-
-                                        <a href="profile.html" class="btn schedule-btn">
-                                            View
-                                        </a>
-                                    </td>
-                                </tr>
+                                @if(empty($approved_tutors))
+                                    <p> No Data found. </p>
+                                @else
+                                @foreach($approved_tutors as $tutor)
+                                            
+                                    <tr>
+                                        <td class="pt-4">
+                                            <!-- -->
+                                            {{ $tutor->first_name }} {{ $tutor->last_name }}
+                                            <!-- <span data-toggle="tooltip" title="Harram Laraib Ali">Har***</span> -->
+                                        </td>
+                                        <td class="pt-4">
+                                            123123141
+                                        </td>
+                                        <td class="pt-4">
+                                            <span data-toggle="tooltip"
+                                                title="{{$tutor->email}}">{{Str::limit($tutor->email, 3, $end='***')}}</span>
+                                        </td>
+                                        <td class="pt-4">{{$request->sub_name}}</td>
+                                        <td class="pt-4">{{$tutor->address}}</td>
+                                        <td class="pt-4">{{$tutor->userdetail->std_level}}</td>
+                                        <td class="pt-4">{{$tutor->userdetail->availability != NULL ? $tutor->userdetail->availability : '---'}}</td>
+                                        <td class="pt-4">{{$tutor->userdetail->hourly_rate}}</td>
+                                        <td class="pt-4 text-right">
+                                            <a href="setting.html">
+                                                <img src="../assets/img/ico/edit-icon.svg" alt="image"
+                                                    class="edit-image" />
+                                            </a>
+                                        </td>
+                                        <td class="pt-3 text-right">
+                                            <a href="{{ route('admin.tutorRequest',[$tutor->id,$request->id]) }}" class="cencel-btn btn">
+                                                View
+                                            </a>
+                                        </td>
+                                        
+                                    </tr>
+                                    
+                                @endforeach
+                                @endif
+                               
                             </tbody>
                         </table>
                     </div>

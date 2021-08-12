@@ -13,7 +13,13 @@
     <script src="{{ asset('/admin/assets/js/mobile.js')}}"></script>
     <script src="{{ asset('/admin/assets/js/global.js')}}"></script>
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOIfEfDtYJRmL9ALc-bcfJPukqy_8OCwQ&libraries=places&callback=initAutocomplete"></script> -->
-
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
     <script>
     var socketId = Echo.socketId();
     console.log(socketId)

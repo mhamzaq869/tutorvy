@@ -32,7 +32,7 @@ class Userdetail extends Model
         'hourly_rate',
         'docs',
     ];
-    protected $appends = ['std_level','subjects'];
+    protected $appends = ['std_level'];
    /**
      * one-to-Many Relation to user Model.
      *
@@ -61,22 +61,6 @@ class Userdetail extends Model
         }else{
             return '---';
         }
-    }
-
-    public function getSubjectsAttribute(){
-
-        $teach_arr = explode(",",$this->teach);
-        $subjects = array();
-        for($i = 0; $i < sizeof($teach_arr) ; $i ++){
-            if($i < 3){
-                $subject = Subject::where('id',$teach_arr[$i])->first();
-                array_push($subjects , $subject->name);
-            }else{
-                break;
-            }
-        }
-        
-        return implode(",",$subjects);
     }
 
     // public function setDegreeAttribute()
