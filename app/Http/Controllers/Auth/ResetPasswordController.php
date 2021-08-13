@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SendOtpMail;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
-use App\Models\User;
 use Illuminate\Support\Facades\Session;
 use phpDocumentor\Reflection\DocBlock\Tags\See;
 
@@ -24,6 +25,9 @@ class ResetPasswordController extends Controller
     */
 
     use ResetsPasswords;
+
+
+    private $email;
 
     /**
      * Where to redirect users after resetting their password.
@@ -50,10 +54,14 @@ class ResetPasswordController extends Controller
     }
 
 
+    public function updatePassword(Request $request)
+    {
+        dd($request->all());
+    }
     public function resendOtp()
     {
         Session::put('otp',rand(1000,9999));
-        return redirect()->back()->with('success',"New otp has been sended");
+        return response("New otp has been sended",200);
     }
 
 }
