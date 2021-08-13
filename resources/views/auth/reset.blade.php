@@ -33,7 +33,9 @@
                 <div class="col-md-6">
                     <div class="">
                         <div class="login-logo">
-                            <img src="../assets/images/logo/logo.png">
+                            <a href="{{url('/')}}">
+                                <img src="{{asset('assets/images/logo/logo.png')}}">
+                            </a>
                         </div>
                         <div class="text">
                             <p class="learn">Learn from the best tutors</p>
@@ -79,7 +81,10 @@
 
                                 </div>
                                 <span id="confirmMessage" class="confirmMessage"> </span>
-                                <button type="submit" class="schedule-btn" style="float: right;margin-top: 20px;width: 110px;">Continus</button>
+                                @if (Session::has('success'))
+                                    <span id="confirmMessage" class="text-success">{{Session::get('success')}}</span>
+                                @endif
+                                <button type="submit" class="schedule-btn" id="continue" style="float: right;margin-top: 20px;width: 110px;">Continus</button>
                             </form>
                         </div>
 
@@ -117,21 +122,20 @@
                 password2.style.backgroundColor = colors["goodColor"];
                 message.style.color = colors["goodColored"];
                 message.innerHTML = strings["confirmMessage"][0];
+
             }
             else if (!(password2.value === "")) {
-            password2.style.backgroundColor = colors["badColor"];
-                 message.style.color = colors["badColored"];
+                password2.style.backgroundColor = colors["badColor"];
+                message.style.color = colors["badColored"];
                 message.innerHTML = strings["confirmMessage"][1];
+            }
+                else {
+                message.innerHTML = "";
 
-            event.preventDefault();
+                }
 
             }
-            else {
-            message.innerHTML = "";
 
-            }
-
-            }
 
             </script>
     </section>
