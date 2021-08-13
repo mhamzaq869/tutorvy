@@ -8,8 +8,10 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use phpDocumentor\Reflection\DocBlock\Tags\See;
+use Illuminate\Support\Facades\Mail;
 
 class ResetPasswordController extends Controller
 {
@@ -37,27 +39,45 @@ class ResetPasswordController extends Controller
     protected $redirectTo = RouteServiceProvider::HOME;
 
 
-
     public function reset(Request $request)
     {
 
-        $user = User::where('email',$request->email)->count();
+        $user = User::where('email',$request->email)->first();
 
-        if($user) {
-           $otp = Session::put('otp',rand(1000,9999));
-           return view('auth.otp');
+        if($user){
+            Session::put('changepass',$user->id);
+            Session::put('otp',rand(1000,9999));
+            Mail::to($request->email)->send(new SendOtpMail($user));
+            return view('auth.otp');
         }
 
+    }
+    public function checkOtp(Request $request)
+    {
 
-        return redirect()->back()->with('error',$request->email." email doesn't exists!");
+        $otp = $request->digit1.$request->digit2.$request->digit3.$request->digit4;
+
+        if($otp == Session::get('otp')){
+            return redirect()->route('reset.password');
+        }
+
+        $request->session()->flash('error','Wrong OTP Code');
+
+        return view('auth.otp');
 
     }
-
-
     public function updatePassword(Request $request)
     {
-        dd($request->all());
+        $id = Session::get('changepass');
+
+        User::find($id)->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        return redirect()->back()->with('success','Your password has been changed!');
     }
+
+
     public function resendOtp()
     {
         Session::put('otp',rand(1000,9999));

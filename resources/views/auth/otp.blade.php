@@ -22,7 +22,9 @@
                 <div class="col-md-6">
                     <div class="">
                         <div class="login-logo">
-                            <img src="{{asset('assets/images/logo/logo.png')}}" alt="logo">
+                            <a href="{{url('/')}}">
+                                <img src="{{asset('assets/images/logo/logo.png')}}">
+                            </a>
                         </div>
                         <div class="text">
                             <p class="learn">Learn from the best tutors</p>
@@ -51,6 +53,7 @@
                                 <!-- <p class="ml-2 Create-text"> Enter password to login</p> -->
                                 <br />
                                 <br />
+
 
 
                                 <form method="post" class="digit-group" data-group-name="digits" data-autosubmit="false"
@@ -87,9 +90,11 @@
                 </div>
             </div>
 
+
             <script src="../assets/js/jquery.js"></script>
             <script src="../assets/js/bootstrap.js"></script>
             <script src="../assets/js/login.js">   </script>
+
             <script>
                 $('.digit-group').find('input').each(function () {
                     $(this).attr('maxlength', 1);
@@ -117,6 +122,7 @@
                 });
 
 
+
                 function resendOTP()
                 {
                     $.ajax({
@@ -132,6 +138,7 @@
                     });
 
                 }
+
             </script>
     </section>
 </body>

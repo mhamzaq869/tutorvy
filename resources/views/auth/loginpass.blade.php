@@ -31,7 +31,9 @@
                 <div class="col-md-6">
                     <div class="">
                         <div class="login-logo">
-                            <img src="../assets/images/logo/logo.png" alt="logo">
+                            <a href="{{url('/')}}">
+                                <img src="{{asset('assets/images/logo/logo.png')}}">
+                            </a>
                         </div>
                         <div class="text">
                             <p class="learn">
