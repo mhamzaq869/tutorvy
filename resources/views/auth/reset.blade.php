@@ -84,7 +84,7 @@
                                 @if (Session::has('success'))
                                     <span id="confirmMessage" class="text-success">{{Session::get('success')}}</span>
                                 @endif
-                                <button type="button" class="schedule-btn" id="continue" style="float: right;margin-top: 20px;width: 110px;">Continus</button>
+                                <button type="submit" class="schedule-btn" id="continue" style="float: right;margin-top: 20px;width: 110px;">Continus</button>
                             </form>
                         </div>
 

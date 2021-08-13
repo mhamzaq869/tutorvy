@@ -54,30 +54,34 @@
                                 <!-- <p class="ml-2 Create-text"> Enter password to login</p> -->
                                 <br />
                                 <br />
-                                <!-- <div class="prompt">
-                                    Enter the code generated on your mobile device below to log in!
-                                </div> -->
+                                <form method="post" action="{{route('check.otp')}}" class="digit-group" data-group-name="digits" data-autosubmit="false"
+                                autocomplete="off">
+                                @csrf
 
-                                <form method="post" class="digit-group" data-group-name="digits" data-autosubmit="false"
-                                    autocomplete="off" style="display: flex;">
-                                    @csrf
-                                    <input type="" id="digit-1" name="digit-1" placeholder="9" data-next="digit-2" />
-                                    <input type="" id="digit-2" name="digit-2" placeholder="9" data-next="digit-3"
-                                        data-previous="digit-1" />
-                                    <input type="" id="digit-3" name="digit-3" placeholder="9" data-next="digit-4"
-                                        data-previous="digit-2" />
-                                    <input type="" id="digit-4" name="digit-4" placeholder="9" data-next="digit-5"
-                                        data-previous="digit-3" />
+                                <div class="d-flex">
+                                    <input class="text-dark" id="digit-1" name="digit1" placeholder="9" data-next="digit-2" />
+                                    <input class="text-dark" id="digit-2" name="digit2" placeholder="9" data-next="digit-3" data-previous="digit-1" />
+                                    <input class="text-dark" id="digit-3" name="digit3" placeholder="9" data-next="digit-4" data-previous="digit-2" />
+                                    <input class="text-dark" id="digit-4" name="digit4" placeholder="9" data-next="digit-5" data-previous="digit-3" />
+                                </div>
 
-                                </form>
-                            </div>
-                            <div class="mb-5 input-login" style="display: flex;">
-                                {{-- {{Session::get('otp')}} --}}
-                                <p style="text-align: left; margin-top: 35px;width: 100%;font-size: 14px;font-family: Poppins;;color: #1173FF;padding-right: 15px;">
-                                    Resend code
-                                </p>
-                                <button type="submit" class="schedule-btn" style="float: right;margin-top: 20px;width: 120px;">Continus</button>
-                            </div>
+                                @if(Session::has('error'))
+                                    <span class="invalid-feedback d-block" role="alert">
+                                        <strong>{{session::get('error')}}</strong>
+                                    </span>
+                                @endif
+
+
+                                    <div class="mb-5 input-login" style="display: flex;">
+
+                                        <p style="text-align: left; margin-top: 35px;width: 100%;font-size: 14px;font-family: Poppins;;color: #1173FF;padding-right: 15px;">
+                                            Resend code</p>
+
+                                            <button type="submit" class="schedule-btn" style="float: right;margin-top: 20px;width: 120px;">
+                                                Continus
+                                            </button>
+                                    </div>
+                            </form>
                         </div>
 
                         <div class="social-Icon ml-4"
@@ -87,6 +91,7 @@
                     </div>
                 </div>
             </div>
+            <script src="{{asset('assets/js/jquery.js')}}"></script>
 
             <script>
                 $('.digit-group').find('input').each(function () {
@@ -115,38 +120,7 @@
                 });
 
 
-                    function checkPass() {
-                        pass1 = document.getElementById('password'),
-                        pass2 = document.getElementById('password2'),
-                        message = document.getElementById('confirmMessage'),
-                    colors = {
-                        goodColor: "#fff",
-                        goodColored: "#087a08",
-                        badColor: "#fff",
-                        badColored: "#ed0b0b",
-                        fontStyle: "italic"
-                    },
-                    strings = {
-                        "confirmMessage": ["Password Matched", "Password not matched"]
-                    };
 
-                        if (password.value === password2.value && (password.value + password2.value) !== "") {
-                            password2.style.backgroundColor = colors["goodColor"];
-                            message.style.color = colors["goodColored"];
-                            message.innerHTML = strings["confirmMessage"][0];
-                            $(".schedule-btn").attr('type','submit')
-                        }
-                        else if (!(password2.value === "")) {
-                            password2.style.backgroundColor = colors["badColor"];
-                            message.style.color = colors["badColored"];
-                            message.innerHTML = strings["confirmMessage"][1];
-                            $(".schedule-btn").attr('type','button')
-                        }
-                        else {
-                            message.innerHTML = "";
-                        }
-
-                    }
             </script>
     </section>
 </body>
