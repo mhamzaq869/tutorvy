@@ -465,18 +465,18 @@
                                                 </div>
                                                 <div class="row mt-3">
                                                     <div class="input-text col-md-6">
-                                                        <!-- <select name="institute[]" class="form-select form-select-lg mb-3"
+                                                        <select name="institute[]" class="form-select form-select-lg mb-3"
                                                             aria-label=".form-select-lg example">
                                                             <option value="0">Institute</option>
                                                             <option value="1">Punjab University</option>
                                                             <option value="2">Virtual University Of Pakistan</option>
-                                                        </select> -->
-                                                        <input list="instiuteList" name="institute[]" id="browser">
+                                                        </select>
+                                                        <!--<input list="instiuteList" name="institute[]" id="browser">
                                                                 <datalist id="instiuteList">
                                                                     <option value="Institute">
                                                                     <option value="Punjab University">
                                                                     <option value="Virtual University Of Pakistan">
-                                                                </datalist>
+                                                                </datalist>-->
                                                     </div>
                                                     <div class="input-text col-md-6">
                                                         <input type="date" name="graduate_year[]" class=" yearpicker form-control"
