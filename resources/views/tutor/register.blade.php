@@ -29,6 +29,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/yearpicker.css')}}" />
     <link rel="stylesheet" href="{{ asset('assets/css/multiselect.css')}}" />
     {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
+    <!-- Dropify CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/dropify.css')}}" />
 
     <!-- Moment Js -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -304,7 +306,7 @@
                                     <div role="tabpanel" class="tab-pane border-right" id="step-2"
                                         style="padding-bottom: 100px;background-color: white;">
                                         <div class="col-md-12 ">
-                                            <p class="heading-third mt-3">Educational information</p>
+                                            <p class="heading-third mt-3">Educational information </p>
                                             @isset($user)
                                                 @forelse ($user->education as $i => $education)
                                                 <div class=" customer_records mt-5">
@@ -340,7 +342,12 @@
                                                             id="grad-yea" value="{{$user->year[$i] ?? ''}}">
                                                         </div>
                                                     </div>
-                                                    <div class="button-wrapper mt-4">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <input type="file" class="dropify" name="upload[]" id="" >
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="button-wrapper mt-4">
                                                         <span class="label" style="position: relative">
                                                            <span><img src="../assets/images/ico/attach.png" class="w-25 "
                                                                 alt="i">Attach degrees
@@ -351,7 +358,7 @@
                                                             <button class="btn btn-outline-primary">{{$user->docs[$i]}}</button>
                                                             @endif
                                                         </span>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                                 <hr />
                                                 @empty
@@ -389,15 +396,21 @@
                                                             <input type="date" name="graduate_year[]" class=" yearpicker form-control"
                                                             id="grad-yea">
                                                         </div>
+                                                       
                                                     </div>
-                                                    <div class="button-wrapper mt-4">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <input type="file" class="dropify" name="upload[]" id="" >
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="button-wrapper mt-4">
                                                         <span class="label" style="position: relative">
                                                             <input type="file" name="upload[]" id="upload" class="upload-box" placeholder="Upload File"
                                                             accept=".doc,.pdf,.png,.jpg,.jpeg">
                                                             <img src="../assets/images/ico/attach.png" class="w-25 "
                                                                 alt="i">Attach degrees
                                                         </span>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                                 <hr />
                                                 @endforelse
@@ -436,15 +449,23 @@
                                                         <input type="date" name="graduate_year[]" class=" yearpicker form-control"
                                                         id="grad-yea">
                                                     </div>
+                                                    
                                                 </div>
-                                                <div class="button-wrapper mt-4">
+                                                <div class="row mt-3">
+                                                    <div class="col-md-12">
+                                                        <input type="file" class="dropify" name="upload[]" id="" >
+                                                    </div>
+                                                   
+                                                </div>
+
+                                                <!-- <div class="button-wrapper mt-4">
                                                     <span class="label" style="position: relative">
                                                         <input type="file" name="upload[]" id="upload" class="upload-box" placeholder="Upload File"
                                                         accept=".doc,.pdf,.png,.jpg,.jpeg">
                                                         <img src="../assets/images/ico/attach.png" class="w-25 "
                                                             alt="i">Attach degrees
                                                     </span>
-                                                </div>
+                                                </div> -->
                                             </div>
                                             <hr />
                                             @endisset
@@ -640,6 +661,7 @@
                                                     <option value="50">$50</option>
 
                                                 </select>
+
                                             </div>
                                         </div>
                                         <div class="col-8" style="float: right;">
@@ -674,6 +696,7 @@
         <script src="{{ asset('assets/js/languages.json')}}"></script>
         <script src="{{ asset('assets/js/googleapi.js')}}"></script>
         <script src="{{ asset('assets/js/multiselect.js')}}"></script>
+        <script src="{{ asset('assets/js/dropify.js')}}"></script>
         <script src="{{ asset('assets/js/jquery.validate.js') }} "></script>
         <script>
 
@@ -755,12 +778,11 @@
             });
 
             $(document).ready(function(){
-                $('input[type="file"]').change(function(e){
-                    var fileName = e.target.files[0].name;
-                    var  btn = '<button class="btn btn-outline-primary">'+fileName+'</button>';
-                    $(btn).insertAfter(this);
-                });
+                
+                $(".dropify").dropify();
+                // $(".form-select").select2();
             });
+          
         </script>
     </section>
 </body>
