@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\SupportController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\General\GeneralController;
 use App\Http\Controllers\Tutor\HomeController as TutorHomeController;
 use App\Http\Controllers\Tutor\BookingController;
@@ -131,7 +132,11 @@ Route::get('/login/google/callback', [LoginController::class,'handleGoogleCallba
 
 Route::get('/student/register',[RegisterController::class,'showStudentRegistrationForm'])->name('student.register')->middleware('guest');
 Route::post('/register',[RegisterController::class,'register'])->middleware('guest');
-Route::view('/logged','auth.loginpass')->name('logged')->middleware('guest');;
+Route::view('/logged','auth.loginpass')->name('logged')->middleware('guest');
+Route::post('/validate_otp',[ResetPasswordController::class,'checkOtp'])->name('check.otp');
+Route::view('/resetPassword','auth.reset')->name('reset.password');
+Route::post('/updatePassword',[ResetPasswordController::class,'updatePassword'])->name('update.password');
+Route::post('/resendOtp',[ResetPasswordController::class,'resendOtp'])->name('resend.otp');
 // Route::post('/logged',[LoginController::class,'logged'])->name('logged')->middleware('guest');;
 Route::view('/','welcome');
 Route::view('/tutor','frontend.tutor');

@@ -747,7 +747,6 @@
                 }
                 console.warn(html)
             }
-
             // var languages_list = {...};
             (function () {
                 var user_language_code = "{{ $user->language ?? 'en-US'}}";
