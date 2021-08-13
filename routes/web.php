@@ -47,6 +47,7 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
     Route::get('/dashboard',[HomeController::class,'index'])->name('admin.dashboard');
 
     Route::get('/tutor',[TutorController::class,'index'])->name('admin.tutor');
+    Route::get('/tutor/profile/{id}',[TutorController::class,'profile'])->name('admin.tutorProfile');
     Route::get('tutor/request/{id}/{assess_id}',[TutorController::class,'tutorRequest'])->name('admin.tutorRequest');
     Route::get('tutor/assessment/{assessment_id}',[TutorController::class,'tutorAssessment'])->name('admin.tutotAssessment');
     Route::post('tutor/verify-assessment',[TutorController::class,'verifyAssessment'])->name('admin.verifyAssessment');
