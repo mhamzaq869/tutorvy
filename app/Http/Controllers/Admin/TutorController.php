@@ -21,7 +21,8 @@ class TutorController extends Controller
     */
     public function index()
     {
-        // $tutors = User::with('userdetail')->where('role',2)->get();
+        $staff_members = User::whereNotIn('role', [1,2,3])->get();
+
         // $tutors = User::with('userdetail')->with('assessment')->where('role',2)->get();
         $approved_tutors = User::with(['education','professional','userdetail','teach'])->where('role',2)->where('status',1)->get();
         
@@ -38,13 +39,21 @@ class TutorController extends Controller
         
         }
        
-        return view('admin.pages.tutors.index',compact('new_requests','approved_tutors'));
+        return view('admin.pages.tutors.index',compact('new_requests','approved_tutors','staff_members'));
     }
 
     public function profile($id){
         $tutor = User::with(['education','professional','userdetail','teach'])->where('id',$id)->where('role',2)->where('status',1)->first();
         
         return view('admin.pages.tutors.profile',compact('tutor'));
+    }
+
+    public function subjects($id){
+
+        $tutor = User::with(['userdetail','teach'])->where('id',$id)->where('role',2)->where('status',1)->first();
+        $pending_subjects = Assessment::where('user_id',$id)->where('status',0)->get();
+
+        return view('admin.pages.tutors.tutor_subjects',compact('tutor','pending_subjects'));
     }
 
     public function tutorRequest($id,$assess_id){
@@ -67,6 +76,8 @@ class TutorController extends Controller
         $assessment = Assessment::where('id',$request->id)->first();
         $assessment->status = $request->status;
         $assessment->assessment_note = $request->reason;
+        $assessment->verified_by = \Auth::user()->id;
+
         $assessment->save();
 
         $message = '';
@@ -77,7 +88,8 @@ class TutorController extends Controller
 
             $teach = Teach::create([
                 'user_id' => $user_id,
-                'subject_id' => $subject_id
+                'subject_id' => $subject_id,
+                'verified_by' => \Auth::user()->id
             ]);
 
             $message = 'Assessment Verified.';

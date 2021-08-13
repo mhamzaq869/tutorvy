@@ -16,12 +16,19 @@
                 <h3 class="mt-3 mb-0">{{ $tutor->first_name }} {{ $tutor->last_name }}</h3>
                 <p class="heading-fifth mt-2 line-height-1">Tutor</p>
                 <hr />
+                @if($tutor->status == 1)
+                <h6><span class="badge badge-success">Approved</span></h6>
+                @else
+
                 <div class="pb-5 mt-4">
                     <button class="cencel-btn" data-toggle="modal" data-target="#tutorRejectModal"
                         style="width: 110px;">Reject</button>
                     <button class="schedule-btn" 
                         style="width: 110px;" onclick="verifyTutor(`{{$tutor->id}}`,1,`{{$tutor_assessment->status}}`)">Accept</button>
                 </div>
+
+                @endif
+                
             </div>
         </div>
         <!-- Modal verify -->

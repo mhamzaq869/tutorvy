@@ -25,7 +25,8 @@ class Assessment extends Model
         'question_3',
         'answer_3',
         'assessment_note',
-        'status'
+        'status',
+        'verified_by'
 
     ];
 

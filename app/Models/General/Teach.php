@@ -5,6 +5,7 @@ namespace App\Models\General;
 use App\Models\Admin\Subject;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Teach extends Model
 {
@@ -19,10 +20,11 @@ class Teach extends Model
 
     protected $fillable = [
         'user_id',
-        'subject_id'
+        'subject_id',
+        'verified_by'
     ];
 
-    protected $appends = ['sub_name'];
+    protected $appends = ['sub_name','verified_by_name'];
 
     public function user()
     {
@@ -37,5 +39,11 @@ class Teach extends Model
     public function getSubNameAttribute()
     {
         return $this->attributes['sub'] = Subject::find($this->subject_id)->name;
+    }
+
+    public function getVerifiedByNameAttribute()
+    {
+       $user = User::where('id',$this->verified_by)->first();
+       return $user->name;
     }
 }
