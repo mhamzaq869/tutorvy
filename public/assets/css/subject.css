@@ -1,0 +1,323 @@
+.input-test input {
+    width: 100%;
+    border: 1px solid #D6DBE2;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.input-test input::placeholder {
+    color: #737D8B;
+    font-size: 16px;
+    font-family: "Poppins";
+    opacity: 0.5;
+}
+
+.text-getting {
+    color: #00132D;
+    font-size: 30px;
+    font-family: "Poppins";
+    font-weight: 600;
+}
+
+.variations-text {
+    color: #00132D;
+    font-size: 16px;
+    font-family: "Poppins";
+    font-weight: 500;
+}
+
+.variations-text-blue {
+    color: #1173FF;
+    font-size: 16px;
+    font-family: "Poppins";
+    font-weight: 500;
+}
+
+.input-answer input {
+    width: 100%;
+    border: 1px solid #D6DBE2;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.bg-light-white {
+    background-color: white;
+    border-radius: 16px;
+}
+
+.Knowledge-input input {
+    padding: 7px;
+    border: 1px solid #D6DBE2;
+    width: 25%;
+    margin-top: 30px;
+    border-radius: 4px;
+    padding-left: 10px;
+}
+
+.Knowledge-input select {
+    padding: 8px;
+    border: 1px solid #D6DBE2;
+    width: 50%;
+    border-radius: 4px;
+}
+
+.Knowledge-input select:focus {
+    border-color: #1173FF;
+    outline: none;
+}
+
+.Knowledge-input input:focus {
+    border-color: #1173FF;
+    outline: none;
+    border-radius: 4px;
+}
+
+.input-answer textarea::placeholder {
+    color: #737D8B !important;
+    font-size: 16px;
+    font-family: "Poppins";
+    opacity: 0.5 !important;
+}
+
+.input-subject {
+    padding: 9px;
+    border-radius: 4px;
+    width: 240px;
+    border: 1px solid #ffffff;
+    font-family: "Poppins";
+    font-size: 14px;
+}
+
+.input-subject:focus {
+    outline: none;
+    border-color: #1173FF !important;
+}
+
+.bg-subject {
+    text-align: center;
+    background-color: #F2F8FF;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 8px;
+}
+
+.input-submite {
+    background-color: #1173FF;
+    padding: 7px;
+    width: 100px;
+    border: 1px solid #1173FF;
+    border-radius: 4px;
+    color: #ffffff;
+    font-family: "Poppins";
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.input-submite:focus {
+    outline: none;
+}
+
+.input-submite:hover {
+    background-color: white;
+    color: black;
+}
+
+.che-text {
+    font-size: 26px;
+    font-weight: 600;
+    font-family: "Poppins";
+}
+
+.card {
+    box-shadow: 1px 1px 10px rgb(241, 241, 241);
+    border: transparent;
+    cursor: pointer;
+    transition: all 0.7s ease;
+}
+
+.card:hover {
+    transform: scale(0.9);
+    box-shadow: 1px 1px 15px rgb(207, 204, 204);
+}
+
+.card-sub {
+    height: 400px;
+    background-color: red;
+    position: absolute;
+    top: 200px;
+    left: -120px;
+    width: 600px;
+    border-radius: 8px;
+    /* top: -00px; */
+}
+
+
+
+.input-text input:focus {
+    outline: none;
+    border-color: #1173FF;
+}
+
+.input-text input::placeholder {
+    padding-left: 7px;
+    font-size: 14px;
+    font-family: "Poppins";
+}
+
+.card-input {
+    width: 250px !important;
+}
+
+.input-text input[type=submit] {
+    color: #ffffff;
+    width: 130px;
+    margin-left: 20px;
+    background: #1173FF;
+    cursor: pointer;
+}
+
+.input-text input[type=submit]:hover {
+    background: white;
+    color: #1173FF
+}
+
+.sub-card {
+    background-color: #ffffff;
+
+    height: 450px;
+    /* box-shadow: 1px 1px 10px rgb(155, 153, 153); */
+    width: 600px;
+    position: absolute;
+    top: 150px;
+    /* left: 150px; */
+    border-radius: 8px;
+}
+
+
+@media screen and (max-width: 600px) {
+    .input-sub {
+        display: flex;
+    }
+    .text-work-res-1{
+        margin-top: -70px !important;
+    /* background-color: red !important; */
+    }
+.Knowledge-input input{
+    width: 100%;
+    margin-top: 5px;
+}
+.Knowledge-input select{
+    width: 100%;
+}
+.form-group-100{
+width: 100% !important;
+}
+.Knowledge-input{
+    margin-top: 20px;
+}
+.input-responsive {
+    margin-top: -30px !important;
+    /* background-color: red; */
+}
+.margin-top{
+    margin-top: -40px !important;
+}
+
+}
+
+@media screen and (max-width: 600px) {
+    .sub-card {
+        position: absolute;
+        left: 0px;
+        width: 100% !important;
+        height: 500px;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .text-mobile-sub input {
+        width: 100% !important;
+        overflow: hidden !important;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .input-text1 input {
+        position: absolute;
+        right: 15px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .input-subject {
+        text-align: center;
+        margin-top: 15px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .input-subject1 {
+        margin-left: -0px !important;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .input-submite1 {
+        /* position: absolute; */
+        /* left: 35%; */
+        /* top: 100px; */
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .bg-subject {
+        height: 220px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .sub-image {
+        margin-bottom: 600px !important;
+    }
+    .text-1 {
+        margin-top: 100px !important;
+    }
+    .bg-subject {
+        height: 120px;
+    }
+    .bg-subject1 {
+        height: 120px !important;
+    }
+    .text-work-res {
+        position: relative;
+        top: -50px;
+    }
+    .text-work {
+        line-height: 1.3 !important;
+    }
+    .carousel-inner {
+        display: block;
+    }
+    .carousel-inner-hide {
+        display: none;
+    }
+}
+
+/* */
+
+@media(max-width:790px) {
+    .card {
+        width: 100%;
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+    }
+}
+
+/* @media(max-width:790px) {
+    .keep-res {
+        text-align: left     !important;
+        
+    }
+} */
