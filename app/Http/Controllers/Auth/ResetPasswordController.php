@@ -52,10 +52,22 @@ class ResetPasswordController extends Controller
         }
 
     }
+    public function checkOtp(Request $request)
+    {
 
+        $otp = $request->digit1.$request->digit2.$request->digit3.$request->digit4;
+
+        if($otp == Session::get('otp')){
+            return redirect()->route('reset.password');
+        }
+
+        $request->session()->flash('error','Wrong OTP Code');
+
+        return view('auth.otp');
+
+    }
     public function updatePassword(Request $request)
     {
-        return
         $id = Session::get('changepass');
 
         User::find($id)->update([
@@ -64,6 +76,8 @@ class ResetPasswordController extends Controller
 
         return redirect()->back()->with('success','Your password has been changed!');
     }
+
+
     public function resendOtp()
     {
         Session::put('otp',rand(1000,9999));
