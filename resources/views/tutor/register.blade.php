@@ -42,6 +42,14 @@
             color: red !important;
             font-weight: 500;
         }
+        .cust_link{
+            font-size: 16px;
+            font-family: Poppins;
+        }
+        .cust_link:hover{
+
+            text-decoration:none;
+        }
     </style>
 
 </head>
@@ -469,7 +477,7 @@
                                             </div>
                                             <hr />
                                             @endisset
-                                            <a class="extra-fields-customer" href="#" style="font-size: 16px;font-family: Poppins;text-decoration: none;">+
+                                            <a class="extra-fields-customer cust_link" href="#" >+
                                                 Add  more degrees
                                             </a>
                                             <div class="customer_records_dynamic mt-5"></div>
@@ -582,14 +590,15 @@
                                                     </div>
                                                     @endisset
                                                     <!-- <button  class="element1">aa</button> -->
-                                                    <div class="results"></div>
+                                                  
 
                                                     <div class="buttons mb-5">
-                                                        <button type="button" class="clone schedule-btn ">Add more experience</button>
-                                                        <button type="button" class="remove cencel-btn btn-registration"
-                                                            style="visibility: hidden;color: black;">remove</button>
+                                                        <a href="#" class="moreExperience cust_link" >+ Add more experience</a>
+                                                        <!-- <button type="button" class="remove cencel-btn btn-registration"
+                                                            style="visibility: hidden;color: black;">remove</button> -->
 
                                                     </div>
+                                                    <div class="results"></div>
                                                 </div>
                                             </div>
                                         </div>

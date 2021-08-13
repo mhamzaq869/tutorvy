@@ -1477,6 +1477,7 @@ $(document).on('click', '.remove-field', function(e) {
 
 });
 let count_field = 0;
+let count_field_2 = 0;
 
 //
 
@@ -1542,4 +1543,40 @@ $('.extra-fields-customer').click(function() {
 
 function removeFields(id) {
     $('#record_' + id + '').empty();
+}
+$(".moreExperience").click(function() {
+    count_field_2++;
+    var html = `<div class="row " id="exp_rec_` + count_field_2 + `">
+    <div class="col-md-12">
+        <div class="element">
+            <div class="row">
+                <div class="input-text col-md-6">
+                    <input name="designation[` + count_field_2 + `]" class="form-control" title="Designation: Senior Developer at Google"  placeholder="Designation">
+                </div>
+                <div class="input-text col-md-6">
+                    <input name="organization[` + count_field_2 + `]" class="form-control" title="Organization Like Google" placeholder="Organization">
+
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="input-text col-md-6">
+                    <input type="date" class="form-control" name="degree_start[` + count_field_2 + `]" placeholder="Starting date"
+                    value="">
+                </div>
+                <div class="input-text col-md-6">
+                    <input type="date" class="form-control" name="degree_end[` + count_field_2 + `]" placeholder="Ending Date"
+                    value="">
+                </div>
+            </div>
+            <div class="col-md-12 mt-3 mb-3">
+                    <a href="#" class="removeFields" onclick="removeFields2(` + count_field_2 + `)"> Remove Fields</a>
+                </div>
+        </div>
+    </div>
+</div>`;
+    $('.results').append(html);
+})
+
+function removeFields2(id) {
+    $('#exp_rec_' + id + '').empty();
 }
