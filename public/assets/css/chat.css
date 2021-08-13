@@ -1,0 +1,160 @@
+.box-main {
+    overflow-y: scroll;
+    height: 504px;
+}
+
+.line-box {
+    border-bottom: 1px solid #D6DBE2;
+    margin-top: 10px;
+}
+
+.input-box input {
+    padding: 5px;
+    background-color: #E8EAEC;
+    border-radius: 4px;
+    border: 1px solid #E8EAEC;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 50px;
+}
+
+.input-box input::placeholder {
+    font-family: 'Poppins';
+    font-size: 12px;
+    color: #00132D;
+}
+
+.input-box input:focus {
+    outline: none;
+    border-color: #E8EAEC;
+}
+
+.search-box-icon {
+    position: relative;
+    float: right;
+    width: 20px;
+    top: -28px;
+    right: 15px;
+}
+
+
+/* images */
+
+.img-chats {
+    display: flex;
+}
+
+.img-chats:hover {
+    background-color: #FFFFFF;
+    border-radius: 8px;
+}
+
+.img-chat {
+    display: block;
+}
+
+.img-chats img {
+    margin-top: 10px;
+    width: 40px;
+    height: 45px;
+    border-radius: 50px;
+}
+
+.name-client {
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 14px;
+    color: #00132D;
+    font-family: 'Poppins';
+    font-weight: 600;
+}
+
+.massage-client {
+    margin-left: 10px;
+    font-size: 12px;
+    color: #00132D;
+    font-family: 'Poppins';
+    line-height: 0;
+    font-weight: 400;
+}
+
+.time-chat {
+    color: #00132D;
+    font-size: 12px;
+    opacity: 0.5;
+    font-family: 'Poppins';
+    margin-top: 10px;
+}
+
+.dot {
+    height: 20px;
+    width: 20px;
+    background-color: #21B573;
+    border-radius: 50%;
+    display: inline-block;
+    font-size: 13px;
+    position: relative;
+    top: -15px;
+    color: white;
+}
+
+
+/* sroll bar */
+
+
+/* width */
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgb(185, 182, 182);
+    border-radius: 10px;
+}
+
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background: #00132D;
+    border-radius: 10px;
+}
+
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background: #1173FF;
+}
+
+
+/* input */
+
+.search-type input {
+    border: 1px solid #D6DBE2;
+    padding: 9px;
+    padding-right: 50px;
+    border-radius: 4px;
+}
+
+.search-type input:focus {
+    border-color: #1173FF;
+    outline: none;
+}
+
+.navbars {
+    z-index: 0 !important;
+    /* background-color: red !important; */
+}
+
+
+/* 
+@media(max-width:700px) {
+    .navbar {
+display: block !important;
+    }
+} */

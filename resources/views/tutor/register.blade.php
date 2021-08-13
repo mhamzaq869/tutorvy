@@ -29,16 +29,29 @@
     <link rel="stylesheet" href="{{ asset('assets/css/yearpicker.css')}}" />
     <link rel="stylesheet" href="{{ asset('assets/css/multiselect.css')}}" />
     {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
+    <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> -->
+    <!-- Dropify CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/dropify.css')}}" />
 
     <!-- Moment Js -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0rc.0/dist/js/select2.min.js"></script> --}}
+    <!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
+
 
     <style>
         .error{
             color: red !important;
             font-weight: 500;
+        }
+        .cust_link{
+            font-size: 16px;
+            font-family: Poppins;
+        }
+        .cust_link:hover{
+
+            text-decoration:none;
         }
     </style>
 
@@ -304,7 +317,7 @@
                                     <div role="tabpanel" class="tab-pane border-right" id="step-2"
                                         style="padding-bottom: 100px;background-color: white;">
                                         <div class="col-md-12 ">
-                                            <p class="heading-third mt-3">Educational information</p>
+                                            <p class="heading-third mt-3">Educational information </p>
                                             @isset($user)
                                                 @forelse ($user->education as $i => $education)
                                                 <div class=" customer_records mt-5">
@@ -330,17 +343,23 @@
                                                         <div class="input-text col-md-6">
                                                             <select name="institute[]" class="form-select form-select-lg mb-3"
                                                                 aria-label=".form-select-lg example">
-                                                                <option  value="0">Institute</option>
+                                                                <option  value="0">Institute3</option>
                                                                 <option  value="1">Punjab University</option>
                                                                 <option  value="2">Virtual University Of Pakistan</option>
                                                             </select>
+                                                           
                                                         </div>
                                                         <div class="input-text col-md-6">
                                                             <input type="date" name="graduate_year[]" class=" yearpicker form-control"
                                                             id="grad-yea" value="{{$user->year[$i] ?? ''}}">
                                                         </div>
                                                     </div>
-                                                    <div class="button-wrapper mt-4">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <input type="file" class="dropify" name="upload[]" id="" >
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="button-wrapper mt-4">
                                                         <span class="label" style="position: relative">
                                                            <span><img src="../assets/images/ico/attach.png" class="w-25 "
                                                                 alt="i">Attach degrees
@@ -351,7 +370,7 @@
                                                             <button class="btn btn-outline-primary">{{$user->docs[$i]}}</button>
                                                             @endif
                                                         </span>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                                 <hr />
                                                 @empty
@@ -389,15 +408,21 @@
                                                             <input type="date" name="graduate_year[]" class=" yearpicker form-control"
                                                             id="grad-yea">
                                                         </div>
+                                                       
                                                     </div>
-                                                    <div class="button-wrapper mt-4">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <input type="file" class="dropify" name="upload[]" id="" >
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="button-wrapper mt-4">
                                                         <span class="label" style="position: relative">
                                                             <input type="file" name="upload[]" id="upload" class="upload-box" placeholder="Upload File"
                                                             accept=".doc,.pdf,.png,.jpg,.jpeg">
                                                             <img src="../assets/images/ico/attach.png" class="w-25 "
                                                                 alt="i">Attach degrees
                                                         </span>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                                 <hr />
                                                 @endforelse
@@ -425,30 +450,44 @@
                                                 </div>
                                                 <div class="row mt-3">
                                                     <div class="input-text col-md-6">
-                                                        <select name="institute[]" class="form-select form-select-lg mb-3"
+                                                        <!-- <select name="institute[]" class="form-select form-select-lg mb-3"
                                                             aria-label=".form-select-lg example">
                                                             <option value="0">Institute</option>
                                                             <option value="1">Punjab University</option>
                                                             <option value="2">Virtual University Of Pakistan</option>
-                                                        </select>
+                                                        </select> -->
+                                                        <input list="instiuteList" name="institute[]" id="browser">
+                                                                <datalist id="instiuteList">
+                                                                    <option value="Institute">
+                                                                    <option value="Punjab University">
+                                                                    <option value="Virtual University Of Pakistan">
+                                                                </datalist>
                                                     </div>
                                                     <div class="input-text col-md-6">
                                                         <input type="date" name="graduate_year[]" class=" yearpicker form-control"
                                                         id="grad-yea">
                                                     </div>
+                                                    
                                                 </div>
-                                                <div class="button-wrapper mt-4">
+                                                <div class="row mt-3">
+                                                    <div class="col-md-12">
+                                                        <input type="file" class="dropify" name="upload[]" id="" >
+                                                    </div>
+                                                   
+                                                </div>
+
+                                                <!-- <div class="button-wrapper mt-4">
                                                     <span class="label" style="position: relative">
                                                         <input type="file" name="upload[]" id="upload" class="upload-box" placeholder="Upload File"
                                                         accept=".doc,.pdf,.png,.jpg,.jpeg">
                                                         <img src="../assets/images/ico/attach.png" class="w-25 "
                                                             alt="i">Attach degrees
                                                     </span>
-                                                </div>
+                                                </div> -->
                                             </div>
                                             <hr />
                                             @endisset
-                                            <a class="extra-fields-customer" href="#" style="font-size: 16px;font-family: Poppins;text-decoration: none;">+
+                                            <a class="extra-fields-customer cust_link" href="#" >+
                                                 Add  more degrees
                                             </a>
                                             <div class="customer_records_dynamic mt-5"></div>
@@ -561,14 +600,15 @@
                                                     </div>
                                                     @endisset
                                                     <!-- <button  class="element1">aa</button> -->
-                                                    <div class="results"></div>
+                                                  
 
                                                     <div class="buttons mb-5">
-                                                        <button type="button" class="clone schedule-btn ">Add more experience</button>
-                                                        <button type="button" class="remove cencel-btn btn-registration"
-                                                            style="visibility: hidden;color: black;">remove</button>
+                                                        <a href="#" class="moreExperience cust_link" >+ Add more experience</a>
+                                                        <!-- <button type="button" class="remove cencel-btn btn-registration"
+                                                            style="visibility: hidden;color: black;">remove</button> -->
 
                                                     </div>
+                                                    <div class="results"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -640,6 +680,7 @@
                                                     <option value="50">$50</option>
 
                                                 </select>
+
                                             </div>
                                         </div>
                                         <div class="col-8" style="float: right;">
@@ -674,6 +715,7 @@
         <script src="{{ asset('assets/js/languages.json')}}"></script>
         <script src="{{ asset('assets/js/googleapi.js')}}"></script>
         <script src="{{ asset('assets/js/multiselect.js')}}"></script>
+        <script src="{{ asset('assets/js/dropify.js')}}"></script>
         <script src="{{ asset('assets/js/jquery.validate.js') }} "></script>
         <script>
 
@@ -755,12 +797,11 @@
             });
 
             $(document).ready(function(){
-                $('input[type="file"]').change(function(e){
-                    var fileName = e.target.files[0].name;
-                    var  btn = '<button class="btn btn-outline-primary">'+fileName+'</button>';
-                    $(btn).insertAfter(this);
-                });
+                
+                $(".dropify").dropify();
+                // $(".form-select").select2();
             });
+          
         </script>
     </section>
 </body>
