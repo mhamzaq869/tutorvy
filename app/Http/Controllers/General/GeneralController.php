@@ -20,6 +20,27 @@ class GeneralController extends Controller
 
         $result = Institute::where('country_code',$request->name)->get();
         return response($result,200);
+        // ini_set('max_execution_time', 780);
+        // $result = Http::get('http://universities.hipolabs.com/search',[
+        //     "name" => ""
+        // ]);
+
+        // $data = json_decode($result);
+        // foreach($data as $uni){
+        //     $name = $uni->name;
+        //     $country = $uni->country;
+        //     $country_code = $uni->alpha_two_code;
+        //     $domain = $uni->domains[0];
+
+        //     $inst = Institute::create([
+        //         'name' => $name,
+        //         'country' => $country,
+        //         'country_code' => $country_code,
+        //         'inst_domain' => $domain
+
+        //     ]);
+        // }
+        // return $data;
     }
 
 

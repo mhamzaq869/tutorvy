@@ -1477,6 +1477,7 @@ $(document).on('click', '.remove-field', function(e) {
 
 });
 let count_field = 0;
+let count_field_2 = 0;
 
 //
 

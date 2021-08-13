@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/yearpicker.css')}}" />
     <link rel="stylesheet" href="{{ asset('assets/css/multiselect.css')}}" />
     {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <!-- Dropify CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/dropify.css')}}" />
 
@@ -36,12 +37,37 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0rc.0/dist/js/select2.min.js"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 
     <style>
         .error{
             color: red !important;
             font-weight: 500;
         }
+        .cust_link{
+            font-size: 16px;
+            font-family: Poppins;
+        }
+        .cust_link:hover{
+
+            text-decoration:none;
+        }
+        .select2-container .select2-selection--single{
+        height:46px;
+        width: 100% !important  ;
+
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            top: 11px;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+                line-height: 47px;
+            }
+            .select2
+            {
+                width:100% !important;
+            }
     </style>
 
 </head>
@@ -332,7 +358,7 @@
                                                         <div class="input-text col-md-6">
                                                             {{-- <select name="institute[]" class="form-select form-select-lg mb-3"
                                                                 aria-label=".form-select-lg example">
-                                                                <option  value="0">Institute</option>
+                                                                <option  value="0">Institute3</option>
                                                                 <option  value="1">Punjab University</option>
                                                                 <option  value="2">Virtual University Of Pakistan</option>
                                                             </select> --}}
@@ -450,7 +476,7 @@
                                                 </div>
                                                 <div class="row mt-3">
                                                     <div class="input-text col-md-6">
-                                                        <select name="institute[]" class="form-select form-select-lg mb-3"
+                                                        <!-- <select name="institute[]" class="form-select form-select-lg mb-3"
                                                             aria-label=".form-select-lg example">
                                                             <option value="0">Institute</option>
                                                             <option value="1">Punjab University</option>
@@ -487,7 +513,7 @@
                                             </div>
                                             <hr />
                                             @endisset
-                                            <a class="extra-fields-customer" href="#" style="font-size: 16px;font-family: Poppins;text-decoration: none;">+
+                                            <a class="extra-fields-customer cust_link" href="#" >+
                                                 Add  more degrees
                                             </a>
                                             <div class="customer_records_dynamic mt-5"></div>
@@ -599,14 +625,15 @@
                                                     </div>
                                                     @endisset
                                                     <!-- <button  class="element1">aa</button> -->
-                                                    <div class="results"></div>
+
 
                                                     <div class="buttons mb-5">
-                                                        <button type="button" class="clone schedule-btn ">Add more experience</button>
-                                                        <button type="button" class="remove cencel-btn btn-registration"
-                                                            style="visibility: hidden;color: black;">remove</button>
+                                                        <a href="#" class="moreExperience cust_link" >+ Add more experience</a>
+                                                        <!-- <button type="button" class="remove cencel-btn btn-registration"
+                                                            style="visibility: hidden;color: black;">remove</button> -->
 
                                                     </div>
+                                                    <div class="results"></div>
                                                 </div>
                                             </div>
                                         </div>

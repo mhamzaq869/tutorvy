@@ -33,11 +33,19 @@ function verifyAssessment(id,status){
 
 }
 
-function verifyTutor(id,status){
+function verifyTutor(id,status,assess_status){
     let reason = null;
-    if(status == 2){
-        reason = $('#t_reject_reason').val();
+
+    if(status == 1 && assess_status == 0){
+      $('#tutorAcceptModal').modal('show')
+      return false;
     }
+
+    if(status == 2){
+      reason = $('#t_reject_reason').val();
+    }
+
+
     $.ajax({
         url: "/admin/tutor/verify-tutor",
         type:"POST",
@@ -48,9 +56,9 @@ function verifyTutor(id,status){
         },
         success:function(response){
           // console.log(response);
-            if(response.status == 200) {
+          if(response.status == 200) {
 
-            $('.reject_asses_modal').modal('hide')
+            $('#tutorRejectModal').modal('hide')
 
             Swal.fire({
                 position: 'top-end',

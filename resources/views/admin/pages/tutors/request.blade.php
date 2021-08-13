@@ -1,6 +1,8 @@
 @extends('admin.layouts.app')
 @section('content')
-
+@php
+    $request_ = route ('admin.tutor') ;
+@endphp
 <div class="container-fluid pb-4">
     <h1 class="heading-first-top mt-5 ">
         <a href="{{ route ('admin.tutor') }}"> < </a> Tutor request </h1>
@@ -17,14 +19,14 @@
                 <div class="pb-5 mt-4">
                     <button class="cencel-btn" data-toggle="modal" data-target="#tutorRejectModal"
                         style="width: 110px;">Reject</button>
-                    <button class="schedule-btn" data-toggle="modal" data-target="#exampleModalCenter"
-                        style="width: 110px;">Accept</button>
+                    <button class="schedule-btn" 
+                        style="width: 110px;" onclick="verifyTutor(`{{$tutor->id}}`,1,`{{$tutor_assessment->status}}`)">Accept</button>
                 </div>
             </div>
         </div>
         <!-- Modal verify -->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="tutorAcceptModal" tabindex="-1" role="dialog"
+            aria-labelledby="tutorAcceptModalTitle" aria-hidden="true">
             <div class="modal-dialog  modal-dialog-centered" role="document">
                 <div class="modal-content modals">
                     <div class="modal-body modal-bodys">
@@ -34,8 +36,8 @@
                                 Please verify tutor test to accept request
                             </h3>
 
-                            <button type="button" class="cencel-btn w-25" data-dismiss="modal">Cencel</button>
-                            <a href="./test.html">
+                            <button type="button" class="cencel-btn w-25" data-dismiss="modal">Cancel</button>
+                            <a href="{{ route('admin.tutotAssessment',[$tutor_assessment->id]) }}">
                                 <button class="schedule-btn w-25">View</button>
                             </a>
                         </div>
@@ -62,7 +64,7 @@
                             <textarea class="form-control" rows="5" placeholder="Write reason" id="t_reject_reason"></textarea>
                             <div class="mt-4 d-flex" style="position: absolute;right: 30px;">
                                 <button class="cencel-btn w-150 mr-4" data-dismiss="modal">Cencel</button>
-                                <button class="schedule-btn w-150" onclick="verifyTutor(`{{$tutor->id}}`,2)">Send</button>
+                                <button class="schedule-btn w-150" onclick="verifyTutor(`{{$tutor->id}}`,2,`{{$tutor_assessment->status}}`)">Send</button>
                             </div>
                         </div>
                     </div>
@@ -206,4 +208,12 @@
     </div>
 </div>
 
+@endsection
+
+<!-- Extra js to perfome function using ajax. -->
+@section('js')
+<script>
+    let request_ = "{{$request_}}";
+</script>    
+<script src="{{ asset('/admin/assets/js/pages/tutor.js')}}"></script>
 @endsection

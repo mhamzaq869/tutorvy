@@ -43,7 +43,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'role',
         'status',
     ];
-    protected $appends = ['address','status_text','day','month','year','subject'];
+    protected $appends = ['address','status_text','day','month','year','subjects'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -141,9 +141,18 @@ class User extends Authenticatable implements MustVerifyEmail
 
     }
 
-    public function getSubjectAttribute(){
+    public function getSubjectsAttribute(){
 
-        
+        $approved_subjects = $this->teach;
+        $subjects = array();
+        if(!empty($approved_subjects)){
+            foreach($approved_subjects as $sub){
+                array_push($subjects,$sub->sub_name);
+            }
+            return implode(',',$subjects);
+        }else{
+            return '---';
+        }
 
     }
 }

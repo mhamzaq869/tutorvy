@@ -53,10 +53,7 @@ function checkPass() {
       goodColor: "#fff",
       goodColored: "#087a08",
       badColor: "#fff",
-      badColored: "#ed0b0b",
       fontStyle: "italic"
-
-
     },
     strings = {
       "confirmMessage": ["Password Matched", "Password notmathed"]
