@@ -108,8 +108,7 @@ class RegisterController extends Controller
     protected function register(Request $request)
     {
 
-        dd($request->all());
-         // Get a validator for an incoming registration request
+        // Get a validator for an incoming registration request
         // from Tutor/Student Registor Form .
 
         $request->validate([
@@ -121,16 +120,14 @@ class RegisterController extends Controller
             'gender' => ['required'],
         ]);
         $request->ip = $_SERVER['REMOTE_ADDR'];
-
         $request->dob = $request->year.'-'.$request->month.'-'.$request->day;
 
         /**
          * Identify user already exist
          */
 
-         if($request->role == 2):
-        //   $user = User::where('ip',$request->ip)->where('role',2)->first();
-          $user = User::updateOrCreate([
+        if($request->role == 2):
+            $user = User::updateOrCreate(["email" => $request->email],[
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
@@ -148,35 +145,21 @@ class RegisterController extends Controller
             'lang_short' => $request->lang_short,
             'gender' => $request->gender,
             'bio' => $request->bio,
-        ],['id','email'],['ip']);
-
-
-        // dd($user);
-         else:
-        //   $user = User::where('role',3)->first();
+            ]);
+        else:
           $user = $this->registerStudent($request);
-         endif;
+        endif;
 
-        //  dd($user,$request->all());
 
         /**
-         * Create new Tutor/Student if not identified
+         * Userdetail Model/Table is only for Tutor , so here is checking ( 2 represent tutor)
+         * if tutor is registering himself then it will create userdetail
          */
 
+        if($request->role == 2):
+            $this->updateOrCreatedetail($user,$request);
+        endif;
 
-
-                // dd($request->all());
-
-                /**
-                 * Userdetail Model/Table is only for Tutor , so here is checking ( 2 represent tutor)
-                 * if tutor is registering himself then it will create userdetail
-                 */
-
-                if($request->role == 2):
-                    $this->updateOrCreatedetail($user,$request);
-                endif;
-
-        // endif;
         /**
          * if Tutor complete his 4 steps in registeration form then name attribute
          * append on submit button to identify his step completion/visited
@@ -213,25 +196,37 @@ class RegisterController extends Controller
 
     private function updateOrCreatedetail($user,$request)
     {
-
-
         Userdetail::upsert([
             'user_id' => $user->id,
             'ip' => $request->ip,
             'student_level' => $request->student_level,
             'hourly_rate' => $request->hour_rate,
-        ],['user_id'],['student_level','hourly_rate']);
+        ],['user_id']);
 
         $docs = [];
         if($request->hasFile('upload')){
             foreach($request->upload as $upload){
-                $path = 'docs/'.$upload->getClientOriginalName();
+                $path = 'storage/docs/'.$upload->getClientOriginalName();
                 // dd($path);
-                Storage::disk('local')->put($path,$upload->getClientOriginalName());
+                $upload->storeAs('docs',$upload->getClientOriginalName(),'public');
+                // Storage::disk('local')->put('public/docs/'.$upload->getClientOriginalName(),'Contents');
                 $docs[] =  $path;
             }
         }
 
+
+        if($user->education){
+            $user->education->each(function($record) {
+                $record->delete(); // <-- direct deletion
+             });
+        }
+
+        if($user->professional)
+        {
+            $user->professional->each(function($data){
+                $data->delete();
+            });
+        }
 
         for($i=0; $i<count($request->degree); $i++){
 

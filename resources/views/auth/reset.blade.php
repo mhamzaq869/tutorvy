@@ -61,7 +61,7 @@
                                 <br />
 
                             </div>
-                            <form action="{{route('update.password')}}" method="post" id="form">
+                            <form action="{{route('update.password')}}" method="post" id="reset">
                                 @csrf
                                 <div class="content mt-5">
 
@@ -95,8 +95,9 @@
                     </div>
                 </div>
             </div>
-            {{-- <script src="{{asset('assets/js/login.js') }}"></script> --}}
-            {{-- <script src="{{asset('assets/js/bootstrap.js') }}"></script> --}}
+
+            <script src="{{asset('assets/js/jquery.js') }}"></script>
+            <script src="{{ asset('assets/js/jquery.validate.js') }} "></script>
             <script>
 
             function checkPass() {
@@ -122,12 +123,13 @@
                 password2.style.backgroundColor = colors["goodColor"];
                 message.style.color = colors["goodColored"];
                 message.innerHTML = strings["confirmMessage"][0];
-
+                $("#continue").attr('type','submit');
             }
             else if (!(password2.value === "")) {
                 password2.style.backgroundColor = colors["badColor"];
                 message.style.color = colors["badColored"];
                 message.innerHTML = strings["confirmMessage"][1];
+                $("#continue").attr('type','button');
             }
                 else {
                 message.innerHTML = "";
@@ -135,6 +137,17 @@
                 }
 
             }
+
+
+            $("#reset").validate({
+                rules: {
+                    password: {
+                        required: true,
+                        length:8
+                    },
+                },
+            });
+
 
 
             </script>
