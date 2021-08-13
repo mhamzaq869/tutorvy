@@ -117,7 +117,7 @@
                 <div class="modal-body bg-custom text-center p-5">
                     <div class="row">
                         <div class="col-md-12">
-                            <h1 class="p-2"> <img src="{{asset('assets/images/Logo.png')}}" alt="">
+                            <h1 class="p-2"> <img src="{{asset('assets/images/logo-footer.png')}}" alt="">
                             </h1>
                             <h3 class="mb-4 p-2"> Are you a</h3>
                         </div>

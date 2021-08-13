@@ -150,7 +150,7 @@ Route::view('/course','frontend.course');
 |--------------------------------------------------------------------------
 |
 */
-Route::get('/universities',[GeneralController::class,'university']);
+Route::get('/universities',[GeneralController::class,'university'])->name('uni.name');
 Route::post('/checkEmail',[GeneralController::class,'isEmailTaken'])->name('available.email');
 
 
