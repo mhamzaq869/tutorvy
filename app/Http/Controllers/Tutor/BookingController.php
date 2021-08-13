@@ -14,4 +14,7 @@ class BookingController extends Controller
     public function index(){
         return view('tutor.pages.booking.index');
     }
+    public function chat(){
+        return view('tutor.pages.chat.index');
+    }
 }
