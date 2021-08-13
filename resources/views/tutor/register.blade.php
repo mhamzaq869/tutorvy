@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/yearpicker.css')}}" />
     <link rel="stylesheet" href="{{ asset('assets/css/multiselect.css')}}" />
     {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
+    <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> -->
     <!-- Dropify CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/dropify.css')}}" />
 
@@ -36,6 +37,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0rc.0/dist/js/select2.min.js"></script> --}}
+    <!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
+
 
     <style>
         .error{
@@ -340,10 +343,11 @@
                                                         <div class="input-text col-md-6">
                                                             <select name="institute[]" class="form-select form-select-lg mb-3"
                                                                 aria-label=".form-select-lg example">
-                                                                <option  value="0">Institute</option>
+                                                                <option  value="0">Institute3</option>
                                                                 <option  value="1">Punjab University</option>
                                                                 <option  value="2">Virtual University Of Pakistan</option>
                                                             </select>
+                                                           
                                                         </div>
                                                         <div class="input-text col-md-6">
                                                             <input type="date" name="graduate_year[]" class=" yearpicker form-control"
@@ -446,12 +450,18 @@
                                                 </div>
                                                 <div class="row mt-3">
                                                     <div class="input-text col-md-6">
-                                                        <select name="institute[]" class="form-select form-select-lg mb-3"
+                                                        <!-- <select name="institute[]" class="form-select form-select-lg mb-3"
                                                             aria-label=".form-select-lg example">
                                                             <option value="0">Institute</option>
                                                             <option value="1">Punjab University</option>
                                                             <option value="2">Virtual University Of Pakistan</option>
-                                                        </select>
+                                                        </select> -->
+                                                        <input list="instiuteList" name="institute[]" id="browser">
+                                                                <datalist id="instiuteList">
+                                                                    <option value="Institute">
+                                                                    <option value="Punjab University">
+                                                                    <option value="Virtual University Of Pakistan">
+                                                                </datalist>
                                                     </div>
                                                     <div class="input-text col-md-6">
                                                         <input type="date" name="graduate_year[]" class=" yearpicker form-control"
