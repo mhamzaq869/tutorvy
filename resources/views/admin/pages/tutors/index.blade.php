@@ -285,7 +285,7 @@
                                             <span data-toggle="tooltip"
                                                 title="{{$tutor->email}}">{{Str::limit($tutor->email, 3, $end='***')}}</span>
                                         </td>
-                                        <td class="pt-4">{{$request->sub_name}}</td>
+                                        <td class="pt-4">{{$tutor->subjects}}</td>
                                         <td class="pt-4">{{$tutor->address}}</td>
                                         <td class="pt-4">{{$tutor->userdetail->std_level}}</td>
                                         <td class="pt-4">{{$tutor->userdetail->availability != NULL ? $tutor->userdetail->availability : '---'}}</td>
@@ -297,7 +297,7 @@
                                             </a>
                                         </td>
                                         <td class="pt-3 text-right">
-                                            <a href="{{ route('admin.tutorRequest',[$tutor->id,$request->id]) }}" class="cencel-btn btn">
+                                            <a href="{{ route('admin.tutorProfile',[$tutor->id]) }}" class="cencel-btn btn">
                                                 View
                                             </a>
                                         </td>
