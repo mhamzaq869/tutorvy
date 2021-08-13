@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Assessment;
+use App\Models\General\Teach;
 
 class TutorController extends Controller
 {
@@ -36,7 +37,14 @@ class TutorController extends Controller
             array_push($new_requests,$assessment);
         
         }
+       
         return view('admin.pages.tutors.index',compact('new_requests','approved_tutors'));
+    }
+
+    public function profile($id){
+        $tutor = User::with(['education','professional','userdetail','teach'])->where('id',$id)->where('role',2)->where('status',1)->first();
+        
+        return view('admin.pages.tutors.profile',compact('tutor'));
     }
 
     public function tutorRequest($id,$assess_id){
@@ -63,6 +71,15 @@ class TutorController extends Controller
 
         $message = '';
         if($request->status == 1){
+
+            $user_id = $assessment->user_id;
+            $subject_id = $assessment->subject_id;
+
+            $teach = Teach::create([
+                'user_id' => $user_id,
+                'subject_id' => $subject_id
+            ]);
+
             $message = 'Assessment Verified.';
         }else{
             $message = 'Assessment Rejected.';

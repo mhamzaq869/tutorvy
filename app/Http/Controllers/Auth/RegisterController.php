@@ -108,7 +108,7 @@ class RegisterController extends Controller
     protected function register(Request $request)
     {
 
-        // dd($request->all());
+        dd($request->all());
          // Get a validator for an incoming registration request
         // from Tutor/Student Registor Form .
 
