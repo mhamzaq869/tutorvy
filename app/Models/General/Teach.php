@@ -3,9 +3,9 @@
 namespace App\Models\General;
 
 use App\Models\Admin\Subject;
+use App\Models\Admin\SubjectCategory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 class Teach extends Model
 {
     use HasFactory;
@@ -34,8 +34,13 @@ class Teach extends Model
         return $this->hasMany(Subject::class,'id','subject_id');
     }
 
+    public function subjectCategory()
+    {
+        return $this->belongsTo(SubjectCategory::class,'subject_category_id','id');
+    }
+
     public function getSubNameAttribute()
     {
-        return $this->attributes['sub'] = Subject::find($this->subject_id)->name;
+        return $this->attributes['sub_name'] = Subject::find($this->subject_id)->name ?? null;
     }
 }

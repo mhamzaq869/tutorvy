@@ -2,12 +2,12 @@
 
 namespace App\Models\Admin;
 
-use App\Http\Controllers\Admin\SubjectController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Admin\SubjectCategory;
 use App\Models\General\Education;
 use App\Models\General\Teach;
+use App\Models\Course;
 use App\Models\User;
 class Subject extends Model
 {
@@ -28,18 +28,24 @@ class Subject extends Model
 
 
     public function subCategory(){
-        return $this->belongsToMany(SubjectController::class);
+        return $this->belongsToMany(SubjectCategory::class);
     }
 
     public function education()
     {
         return $this->belongsTo(Education::class);
     }
-
-
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function teach()
+    {
+        return $this->belongsTo(Teach::class);
+    }
+    public function course()
+    {
+        return $this->hasMany(Course::class);
     }
     public function getCatNameAttribute(){
 
@@ -49,8 +55,5 @@ class Subject extends Model
         return $category->name;
     }
 
-    public function teach()
-    {
-        return $this->belongsTo(Teach::class);
-    }
+
 }

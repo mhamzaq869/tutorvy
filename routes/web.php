@@ -24,6 +24,7 @@ use App\Http\Controllers\Tutor\BookingController;
 use App\Http\Controllers\Tutor\CalendarController;
 use App\Http\Controllers\Tutor\ClassController;
 use App\Http\Controllers\Tutor\SubjectController as TutorSubjectController;
+use App\Http\Controllers\Tutor\CourseController as TutorCourseController;
 use App\Http\Controllers\Tutor\HistoryController;
 use App\Http\Controllers\Tutor\PaymentController;
 use App\Http\Controllers\Tutor\SettingController as TutorSettingController;
@@ -99,6 +100,13 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::view('/skip','tutor.skip')->name('skip');
     Route::get('/assessment/{id}',[AssessmentController::class,'index'])->name('tutor.test');
     Route::post('/assessment',[AssessmentController::class,'store'])->name('tutor.assessment');
+
+    //Course CRUD
+    Route::get('/course',[TutorCourseController::class,'index'])->name('tutor.course');
+    Route::get('/addcourse', [TutorCourseController::class,'create'])->name('tutor.addcourse');
+    Route::post('/srtorecourse', [TutorCourseController::class,'store'])->name('tutor.storecourse');
+    Route::get('/course/{id}/edit', [TutorCourseController::class,'edit'])->name('tutor.course.edit');
+    Route::post('/course/update', [TutorCourseController::class,'update'])->name('tutor.course.update');
 });
 
 /*

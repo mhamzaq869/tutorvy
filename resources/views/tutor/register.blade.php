@@ -642,12 +642,13 @@
 
                                             </div>
                                             <div class="col-8" style="display: flex;">
-                                                <button
-                                                    class="btn btn-lg cencel-btn nextBtn pull-right ml-5 btn-registration">Save
-                                                    for Later</button>
+                                                <button class="btn btn-lg cencel-btn nextBtn pull-right ml-5 btn-registration">Save
+                                                    for Later
+                                                </button>
                                                 <button type="button" id="step-3-next"
                                                     class="btn btn-lg   schedule-btn  nextBtn pull-right ml-4 btn-registration">&nbsp;
-                                                    Continue &nbsp; </button>
+                                                    Continue &nbsp;
+                                                </button>
 
                                             </div>
                                         </div>
@@ -771,19 +772,7 @@
                $("#country_short").val(short.iso2);
             });
 
-            function checkLevel(opt){
-                var level = opt.options[opt.selectedIndex].getAttribute('level');
-                var teach_levels = document.getElementById("levels").options;
 
-                for(var i=0; i<teach_levels.length; i++){
-                    if(level >= teach_levels[i].value){
-
-                        for(var j=0; j<i; j++){
-                            $("#levels").("<option value="'+teach_levels[i].value+'">"'+teach_levels[i].innerHTML+'"</option>");
-                        }
-                    }
-                }
-            }
             // var languages_list = {...};
             (function () {
                 var user_language_code = "{{ $user->language ?? 'en-US'}}";
@@ -900,6 +889,19 @@
                 });
             }
 
+            function checkLevel(opt){
+                var level = opt.options[opt.selectedIndex].getAttribute('level');
+                var teach_levels = document.getElementById("levels").options;
+
+                for(var i=0; i<teach_levels.length; i++){
+                    if(level >= teach_levels[i].value){
+
+                        for(var j=0; j<i; j++){
+                            $("#levels").html("<option value='"+teach_levels[i].value+"'>"+teach_levels[i].innerHTML+"</option>");
+                        }
+                    }
+                }
+            }
         </script>
     </section>
 </body>

@@ -69,11 +69,12 @@
                                         data-previous="digit-3" />
                                     </div>
 
+                                        <p class="text-success" id=newotp></p>
                                         <div class="mb-5 input-login">
-                                            {{-- {{Session::get('otp')}} --}}
-                                            <p onclick="resendOTP()" style="text-align: left; margin-top: 35px;width: 100%;font-size: 14px;font-family: Poppins;;color: #1173FF;padding-right: 15px;">
+
+                                            <a onclick="resendOTP()" href="javascript:void(0)" style="text-align: left; margin-top: 35px;width: 100%;font-size: 14px;font-family: Poppins;;color: #1173FF;padding-right: 15px;">
                                                 Resend code
-                                            </p>
+                                            </a>
                                             <button type="submit" class="schedule-btn" style="float: right;margin-top: 20px;width: 120px;">Continus</button>
                                         </div>
                                 </form>
@@ -84,7 +85,7 @@
 
                         <div class="social-Icon ml-4"
                             style="margin-top: 250px;font-size: 14px;color: #1173FF;font-family: Poppins;">
-                            <a href="./login.html"> Back to signin</a>
+                            <a href="{{route('login')}}"> Back to signin</a>
                         </div>
                     </div>
                 </div>
@@ -128,12 +129,9 @@
                     $.ajax({
                         url:"{{route('resend.otp')}}",
                         type: "Post",
-                        async: true,
-
+                        data: {_token:"{{csrf_token()}}"},
                         success: function (data) {
-
-
-
+                            $("#newotp").html(data)
                         }
                     });
 
