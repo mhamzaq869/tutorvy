@@ -33,6 +33,7 @@ use App\Http\Controllers\Tutor\ProfileController;
 use App\Http\Controllers\Student\HomeController as StudentHomeController;
 use App\Http\Controllers\Student\ProfileController as StudentProfileController;
 use App\Http\Controllers\Student\TutorController as StudentTutorController;
+use App\Http\Controllers\Frontend\TutorController as FrontTutorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -106,7 +107,7 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::get('/addcourse', [TutorCourseController::class,'create'])->name('tutor.addcourse');
     Route::post('/srtorecourse', [TutorCourseController::class,'store'])->name('tutor.storecourse');
     Route::get('/course/{id}/edit', [TutorCourseController::class,'edit'])->name('tutor.course.edit');
-    Route::post('/course/update', [TutorCourseController::class,'update'])->name('tutor.course.update');
+    Route::post('/course/{id}/update', [TutorCourseController::class,'update'])->name('tutor.course.update');
 });
 
 /*
@@ -147,12 +148,12 @@ Route::post('/validate_otp',[ResetPasswordController::class,'checkOtp'])->name('
 Route::view('/resetPassword','auth.reset')->name('reset.password');
 Route::post('/updatePassword',[ResetPasswordController::class,'updatePassword'])->name('update.password');
 Route::post('/resendOtp',[ResetPasswordController::class,'resendOtp'])->name('resend.otp');
-// Route::post('/logged',[LoginController::class,'logged'])->name('logged')->middleware('guest');;
 Route::view('/','welcome');
 Route::view('/tutor','frontend.tutor');
 Route::view('/student','frontend.student');
 Route::view('/subject','frontend.subject');
 Route::view('/course','frontend.course');
+Route::get('/findtutor',[FrontTutorController::class,'index']);
 
 /*
 |--------------------------------------------------------------------------

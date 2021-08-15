@@ -56,28 +56,36 @@ class CourseController extends Controller
 
         $courselevel = new Course();
 
-        $courselevel->user_id    =  Auth::user()->id;
-        $courselevel->title      = $request->course_title;
-        $courselevel->subject_id = $request->subject;
-        $courselevel->about      = $request->about;
-        $courselevel->video      = $video_path;
-        $courselevel->thumbnail      = $thumbnail_path;
-        $courselevel->basic_home_work  = $request->basic_home_work ?? null;
-        $courselevel->basic_quiz       = $request->basic_quiz ?? null;
-        $courselevel->basic_one_one = $request->final_test ?? null;
-        $courselevel->basic_duration = $request->one_to_one ?? null;
-        $courselevel->basic_days       = $request->basic_days ?? null;
-        $courselevel->basic_time   = $request->basic_time ?? null;
-        $courselevel->standard_one_one       = $request->standard_one_one ?? null;
-        $courselevel->standard_duration       = $request->standard_duration ?? null;
-        $courselevel->standard_days       = $request->standard_days ?? null;
-        $courselevel->standard_time       = $request->standard_time ?? null;
-        $courselevel->advance_home_work       = $request->advance_home_work ?? null;
+        $courselevel->user_id            =  Auth::user()->id;
+        $courselevel->title              = $request->course_title;
+        $courselevel->subject_id         = $request->subject;
+        $courselevel->about              = $request->about;
+        $courselevel->video              = $video_path ?? '';
+        $courselevel->thumbnail          = $thumbnail_path ?? '';
+        $courselevel->basic_home_work    = $request->basic_home_work ?? null;
+        $courselevel->basic_quiz         = $request->basic_quiz ?? null;
+        $courselevel->basic_one_one      = $request->basic_one_one ?? null;
+        $courselevel->basic_final        = $request->basic_final ?? null;
+        $courselevel->basic_note         = $request->basic_note ?? null;
+        $courselevel->basic_duration     = $request->basic_duration ?? null;
+        $courselevel->basic_days         = $request->basic_days ?? null;
+        $courselevel->basic_time         = $request->basic_time ?? null;
+        $courselevel->standard_home_work = $request->standard_home_work ?? null;
+        $courselevel->standard_quiz      = $request->standard_quiz ?? null;
+        $courselevel->standard_one_one   = $request->standard_one_one ?? null;
+        $courselevel->standard_final     = $request->standard_final ?? null;
+        $courselevel->standard_note      = $request->standard_note ?? null;
+        $courselevel->standard_duration  = $request->standard_duration ?? null;
+        $courselevel->standard_days      = $request->standard_days ?? null;
+        $courselevel->standard_time      = $request->standard_time ?? null;
+        $courselevel->advance_home_work  = $request->advance_home_work ?? null;
         $courselevel->advance_quiz       = $request->advance_quiz ?? null;
-        $courselevel->advance_final     = $request->advance_final ?? null;
-        $courselevel->advance_duration  = $request->advance_duration ?? null;
-        $courselevel->advance_days    = $request->advance_days ?? null;
-        $courselevel->advance_time    = $request->advance_time ?? null;
+        $courselevel->advance_one_one    = $request->advance_one_one ?? null;
+        $courselevel->advance_final      = $request->advance_final ?? null;
+        $courselevel->advance_note       = $request->advance_note ?? null;
+        $courselevel->advance_duration   = $request->advance_duration ?? null;
+        $courselevel->advance_days       = $request->advance_days ?? null;
+        $courselevel->advance_time       = $request->advance_time ?? null;
 
         $courselevel->save();
 
@@ -98,6 +106,7 @@ class CourseController extends Controller
     public function show($id)
     {
         dd($id);
+
     }
 
     /**
@@ -108,7 +117,10 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        dd($id);
+
+        $course = Course::with('outline')->find($id);
+
+        return view('tutor.pages.courses.edit',compact('course'));
     }
 
     /**
@@ -120,7 +132,64 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($id);
+        if($request->hasFile('video')){
+            $video_path = "storage/course/video/".$request->video->getClientOriginalName();
+            $request->video->storeAs('course/video/',$request->video->getClientOriginalName(),'public');
+        }
+
+        if($request->hasFile('thumbnail')){
+            $thumbnail_path = "storage/course/thumbnail/".$request->thumbnail->getClientOriginalName();
+            $request->video->storeAs('course/thumbnail/',$request->thumbnail->getClientOriginalName(),'public');
+        }
+
+
+        $courselevel = Course::find($id);
+
+        $courselevel->user_id            = Auth::user()->id;
+        $courselevel->title              = $request->course_title;
+        $courselevel->subject_id         = $request->subject;
+        $courselevel->about              = $request->about;
+        $courselevel->video              = $video_path ?? '';
+        $courselevel->thumbnail          = $thumbnail_path ?? '';
+        $courselevel->basic_home_work    = $request->basic_home_work ?? null;
+        $courselevel->basic_quiz         = $request->basic_quiz ?? null;
+        $courselevel->basic_one_one      = $request->basic_one_one ?? null;
+        $courselevel->basic_final        = $request->basic_final ?? null;
+        $courselevel->basic_note         = $request->basic_note ?? null;
+        $courselevel->basic_duration     = $request->basic_duration ?? null;
+        $courselevel->basic_days         = $request->basic_days ?? null;
+        $courselevel->basic_time         = $request->basic_time ?? null;
+        $courselevel->standard_home_work = $request->standard_home_work ?? null;
+        $courselevel->standard_quiz      = $request->standard_quiz ?? null;
+        $courselevel->standard_one_one   = $request->standard_one_one ?? null;
+        $courselevel->standard_final     = $request->standard_final ?? null;
+        $courselevel->standard_note      = $request->standard_note ?? null;
+        $courselevel->standard_duration  = $request->standard_duration ?? null;
+        $courselevel->standard_days      = $request->standard_days ?? null;
+        $courselevel->standard_time      = $request->standard_time ?? null;
+        $courselevel->advance_home_work  = $request->advance_home_work ?? null;
+        $courselevel->advance_quiz       = $request->advance_quiz ?? null;
+        $courselevel->advance_one_one    = $request->advance_one_one ?? null;
+        $courselevel->advance_final      = $request->advance_final ?? null;
+        $courselevel->advance_note       = $request->advance_note ?? null;
+        $courselevel->advance_duration   = $request->advance_duration ?? null;
+        $courselevel->advance_days       = $request->advance_days ?? null;
+        $courselevel->advance_time       = $request->advance_time ?? null;
+
+        $courselevel->save();
+
+        $request->id = $courselevel->id;
+        if($courselevel->outline){
+            $courselevel->outline->each(function($record) {
+                $record->delete(); // <-- direct deletion
+             });
+        }
+
+        $this->basicOutline($request);
+        $this->standardOutline($request);
+        $this->advanceOutline($request);
+
+        return redirect()->route('tutor.course');
     }
 
     /**
@@ -135,6 +204,11 @@ class CourseController extends Controller
     }
 
 
+    /**
+     * Add Basic outline of course
+     *
+     * @param  array $reques
+     */
     private function basicOutline($request){
         foreach($request->basic_title as $i => $data){
             CourseOutline::upsert([
@@ -146,6 +220,12 @@ class CourseController extends Controller
         }
 
     }
+
+    /**
+     * Add Standard outline of course
+     *
+     * @param  array $reques
+     */
     private function standardOutline($request){
         foreach($request->standard_title as $i=>$data){
             CourseOutline::upsert([
@@ -156,6 +236,11 @@ class CourseController extends Controller
             ],['id']);
         }
     }
+    /**
+     * Add Advance outline of course
+     *
+     * @param  array $reques
+     */
     private function advanceOutline($request){
         foreach($request->advance_title as $i=>$data){
             CourseOutline::upsert([
@@ -166,4 +251,6 @@ class CourseController extends Controller
             ],['id']);
         }
     }
+
+
 }

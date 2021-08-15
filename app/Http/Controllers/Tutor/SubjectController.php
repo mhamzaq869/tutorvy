@@ -14,7 +14,6 @@ class SubjectController extends Controller
      */
 
     public function index(){
-        dd(Auth::user()->teach->first()->subjectCategory);
         return view('tutor.pages.subject.index');
     }
 }
