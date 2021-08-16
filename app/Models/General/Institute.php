@@ -22,5 +22,5 @@ class Institute extends Model
         'inst_domain',
     ];
 
-    
+
 }

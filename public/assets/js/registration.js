@@ -1495,88 +1495,55 @@ let count_field_2 = 0;
 //     $('.clone1').closest('.wrapper1').find('.element1').first().clone().appendTo('.results1');
 // });
 
-$('.extra-fields-customer').click(function() {
-    // alert("Tech");
-    count_field++;
-    var html = `<div class=" customer_records mt-5" id="record_` + count_field + `">
-    <div class="row">
-        <div class="input-text col-md-6">
-            <select name="degree[` + count_field + `]" class="form-select form-select-lg mb-3">
-                <option value="0" selected="">Degree</option>
-                                                                        </select>
-        </div>
+// $('.extra-fields-customer').click(function() {
+//     // alert("Tech");
+//     count_field++;
+//     var html = `<div class=" customer_records mt-5" id="record_` + count_field + `">
+//     <div class="row">
+//         <div class="input-text col-md-6">
+//             <select name="degree[` + count_field + `]" class="form-select form-select-lg mb-3">
+//                   <option  selected="">Degree</option>
+//                   @foreach ($subjects as $subject)
+//                   <option value="{{$subject->id}}" @if($subject->id ==( $user->userdetail->subject_id ?? 0)) selected @endif>{{$subject->name}}</option>
+//                   @endforeach
+//             </select>
+//         </div>
 
-        <div class="input-text col-md-6">
-            <select name="major[` + count_field + `]" class="form-select form-select-lg mb-3">
-                <option value="0" selected="">Major</option>
-                                                                        </select>
+//         <div class="input-text col-md-6">
+//             <select name="major[` + count_field + `]" class="form-select form-select-lg mb-3">
+//                 <option value="0" selected="">Major</option>
+//             </select>
 
-        </div>
-    </div>
-    <div class="row mt-3">
-        <div class="input-text col-md-6">
-            <select name="institute[` + count_field + `]" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                <option value="0">Institute</option>
-                <option value="1">Punjab University</option>
-                <option value="2">Virtual University Of Pakistan</option>
-            </select>
-        </div>
-        <div class="input-text col-md-6">
-            <input type="date" name="graduate_year[` + count_field + `]" class=" yearpicker form-control" id="grad-yea">
-        </div>
-        
-    </div>
-    <div class="row mt-3">
-    <div class="col-md-12">
-        <input type="file" class="dropify" name="upload[` + count_field + `]" id="" >
-    </div>
-    <div class="col-md-12 mt-3">
-        <a href="#" class="removeFields" onclick="removeFields(` + count_field + `)"> Remove Fields</a>
-    </div>
-</div>
+//         </div>
+//     </div>
+//     <div class="row mt-3">
+//         <div class="input-text col-md-6">
+//             <select name="institute[` + count_field + `]" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+//                 <option value="0">Institute</option>
+//                 <option value="1">Punjab University</option>
+//                 <option value="2">Virtual University Of Pakistan</option>
+//             </select>
+//         </div>
+//         <div class="input-text col-md-6">
+//             <input type="date" name="graduate_year[` + count_field + `]" class=" yearpicker form-control" id="grad-yea">
+//         </div>
 
-</div>`;
-    $('.customer_records_dynamic').append(html);
-    $('.dropify').dropify();
+//     </div>
+//     <div class="row mt-3">
+//     <div class="col-md-12">
+//         <input type="file" class="dropify" name="upload[` + count_field + `]" id="" >
+//     </div>
+//     <div class="col-md-12 mt-3">
+//         <a href="#" class="removeFields" onclick="removeFields(` + count_field + `)"> Remove Fields</a>
+//     </div>
+// </div>
 
-});
+// </div>`;
+//     $('.customer_records_dynamic').append(html);
+//     $('.dropify').dropify();
+
+// });
 
 function removeFields(id) {
     $('#record_' + id + '').empty();
-}
-$(".moreExperience").click(function() {
-    count_field_2++;
-    var html = `<div class="row " id="exp_rec_` + count_field_2 + `">
-    <div class="col-md-12">
-        <div class="element">
-            <div class="row">
-                <div class="input-text col-md-6">
-                    <input name="designation[` + count_field_2 + `]" class="form-control" title="Designation: Senior Developer at Google"  placeholder="Designation">
-                </div>
-                <div class="input-text col-md-6">
-                    <input name="organization[` + count_field_2 + `]" class="form-control" title="Organization Like Google" placeholder="Organization">
-
-                </div>
-            </div>
-            <div class="row my-3">
-                <div class="input-text col-md-6">
-                    <input type="date" class="form-control" name="degree_start[` + count_field_2 + `]" placeholder="Starting date"
-                    value="">
-                </div>
-                <div class="input-text col-md-6">
-                    <input type="date" class="form-control" name="degree_end[` + count_field_2 + `]" placeholder="Ending Date"
-                    value="">
-                </div>
-            </div>
-            <div class="col-md-12 mt-3 mb-3">
-                    <a href="#" class="removeFields" onclick="removeFields2(` + count_field_2 + `)"> Remove Fields</a>
-                </div>
-        </div>
-    </div>
-</div>`;
-    $('.results').append(html);
-})
-
-function removeFields2(id) {
-    $('#exp_rec_' + id + '').empty();
 }
