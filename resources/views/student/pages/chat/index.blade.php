@@ -98,6 +98,19 @@
             color:#00132D;
             font-size:22px;
         }
+        .activeDot {
+            width: 14px;
+            border: 2px solid #fff;
+            position: relative;
+            height: 14px;
+            right: 9px;
+            top: 39px;
+            background: green;
+            border-radius: 50%;
+        }
+        .offlice{
+            background: gray !important;
+        }
     </style>
 
     <div class="content" style="width: 100%;background-color: #FBFBFB !important;">
@@ -118,6 +131,7 @@
                             <a href="#" class="chatLeft" id="chatClient_1" onclick="selectUser(`{{$tutor->id}}`)">
                                 <div class="container-fluid m-0 p-0 img-chats">
                                     <img src="{{ asset('admin/assets/img/logo/harram.jpg')}}" class="leftImg ml-1">
+                                    <span class="activeDot" id="activeDot_{{$tutor->id}}"></span>
                                     <div class="img-chat">
 
                                         <div class="row">
@@ -130,11 +144,11 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-10">
-                                                <p class="massage-client">It is a long distae... </p>
+                                                <p class="massage-client" id="recent_msg_{{$tutor->id}}">It is a long distae... </p>
 
                                             </div>
                                             <div class="col-md-2">
-                                                <span class="dot pl-2 ">2 </span>
+                                                <span class="dot pl-2 " id="unseen_msg_cnt_{{$tutor->id}}">2 </span>
                                             </div>
                                         </div>
                                     </div>

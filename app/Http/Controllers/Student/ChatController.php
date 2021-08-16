@@ -20,28 +20,5 @@ class ChatController extends Controller
         return view('student.pages.chat.index',compact('tutors'));
     }
 
-    public function sendMessage(Request $request){
-
-        $message = Message::create([
-            'sender_id' => auth()->id(),
-            'recipient_id' => $request->user,
-            'content' => request('msg')
-        ]);
-        broadcast(new NewMessage($message))->toOthers();
-        // auth()->user()->markMessagesSeen($user);
-        return response()->json([
-            'status' => 'success'
-        ]);
-
-    }
-
-    public function messages_between($id)
-    {
-        $user = User::where('id',$id)->first();
-        
-        $messages = auth()->user()->messages_between($user);
-        
-        return response()->json($messages);
-    }
 
 }
