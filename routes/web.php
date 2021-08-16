@@ -32,6 +32,10 @@ use App\Http\Controllers\Tutor\ProfileController;
 use App\Http\Controllers\Student\HomeController as StudentHomeController;
 use App\Http\Controllers\Student\ProfileController as StudentProfileController;
 use App\Http\Controllers\Student\TutorController as StudentTutorController;
+use App\Http\Controllers\Tutor\ChatController;
+use App\Http\Controllers\Student\ChatController as StdChatController;
+use App\Http\Controllers\General\GenChatController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -90,7 +94,7 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
 
     Route::get('/dashboard',[TutorHomeController::class,'index'])->name('tutor.dashboard');
     Route::get('/booking',[BookingController::class,'index'])->name('tutor.booking');
-    Route::get('/chat',[BookingController::class,'chat'])->name('tutor.chat');
+    Route::get('/chat',[ChatController::class,'index'])->name('tutor.chat');
     Route::get('/classroom',[ClassController::class,'index'])->name('tutor.classroom');
     Route::get('/calendar',[CalendarController::class,'index'])->name('tutor.calendar');
     Route::get('/history',[HistoryController::class,'index'])->name('tutor.history');
@@ -109,9 +113,20 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
 |--------------------------------------------------------------------------
 |
 */
+Route::group(['prefix' => '/general','middleware' => ['auth']],function () {
+
+    Route::post('chat/store',[GenChatController::class,'sendMessage'])->name('store.text');
+    Route::get('chat/user/talk/{id}',[GenChatController::class,'messages_between'])->name('user.chat');
+
+});
+
 Route::group(['prefix' => '/student','middleware' => ['auth','student']],function () {
 
     Route::get('/dashboard',[StudentHomeController::class,'index'])->name('student.dashboard');
+    Route::get('/chat',[StdChatController::class,'index'])->name('student.chat');
+    
+
+
     // Route::get('/booking',[BookingController::class,'index'])->name('tutor.booking');
     // Route::get('/classroom',[ClassController::class,'index'])->name('tutor.classroom');
     // Route::get('/calendar',[CalendarController::class,'index'])->name('tutor.calendar');

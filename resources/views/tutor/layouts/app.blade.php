@@ -7,6 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" ></script>
+
     <!--favicon --->
     <link href="{{ asset('assets/images/ico/side-icons.png') }}" rel="icon">
     <!-- bootstrap link -->
@@ -30,7 +32,7 @@
         <div>
 
     </div>
-
+    
      <!-- custom js -->
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
      <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
@@ -39,6 +41,7 @@
      <script src="{{ asset('assets/js/subject.js') }}"></script>
      <script src="{{ asset('assets/js/homePage.js') }}"></script>
      <script src="{{ asset('assets/js/clander.js') }}"></script>
+     @include('js_files.chat')
 
 </body>
 </html>
