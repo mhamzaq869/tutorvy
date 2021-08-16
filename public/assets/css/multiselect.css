@@ -1,66 +1,98 @@
-span.multiselect-native-select {
-	position: relative
+.ms-options-wrap,
+.ms-options-wrap * {
+    box-sizing: border-box;
 }
-span.multiselect-native-select select {
-	border: 0!important;
-	clip: rect(0 0 0 0)!important;
-	height: 1px!important;
-	margin: -1px -1px -1px -3px!important;
-	overflow: hidden!important;
-	padding: 0!important;
-	position: absolute!important;
-	width: 1px!important;
-	left: 50%;
-	top: 30px
+
+.ms-options-wrap > button:focus,
+.ms-options-wrap > button {
+    position: relative;
+    width: 100%;
+    text-align: left;
+    border: 1px solid #aaa;
+    background-color: #fff;
+    padding: 5px 20px 5px 5px;
+    margin-top: 1px;
+    font-size: 13px;
+    color: #aaa;
+    outline: none;
+    white-space: nowrap;
 }
-.multiselect-container {
-	position: absolute;
-	list-style-type: none;
-	margin: 0;
-	padding: 0
+
+.ms-options-wrap > button:after {
+    content: ' ';
+    height: 0;
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    width: 0;
+    border: 6px solid rgba(0, 0, 0, 0);
+    border-top-color: #999;
+    margin-top: -3px;
 }
-.multiselect-container .input-group {
-	margin: 5px
+
+.ms-options-wrap > .ms-options {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    margin-top: 1px;
+    margin-bottom: 20px;
+    background: white;
+    z-index: 2000;
+    border: 1px solid #aaa;
+	text-align:left;
 }
-.multiselect-container>li {
-	padding: 0
+
+.ms-options-wrap > .ms-options > .ms-search input {
+    width: 100%;
+    padding: 4px 5px;
+    border: none;
+    border-bottom: 1px groove;
+    outline: none;
 }
-.multiselect-container>li>a.multiselect-all label {
-	font-weight: 700
+
+.ms-options-wrap > .ms-options .ms-selectall {
+    display: inline-block;
+    font-size: .9em;
+    text-transform: lowercase;
+    text-decoration: none;
 }
-.multiselect-container>li.multiselect-group label {
-	margin: 0;
-	padding: 3px 20px 3px 20px;
-	height: 100%;
-	font-weight: 700
+.ms-options-wrap > .ms-options .ms-selectall:hover {
+    text-decoration: underline;
 }
-.multiselect-container>li.multiselect-group-clickable label {
-	cursor: pointer
+
+.ms-options-wrap > .ms-options > .ms-selectall.global {
+    margin: 4px 5px;
 }
-.multiselect-container>li>a {
-	padding: 0
+
+.ms-options-wrap > .ms-options > ul > li.optgroup {
+    padding: 5px;
 }
-.multiselect-container>li>a>label {
-	margin: 0;
-	height: 100%;
-	cursor: pointer;
-	font-weight: 400;
-	padding: 3px 0 3px 30px
+.ms-options-wrap > .ms-options > ul > li.optgroup + li.optgroup {
+    border-top: 1px solid #aaa;
 }
-.multiselect-container>li>a>label.radio, .multiselect-container>li>a>label.checkbox {
-	margin: 0
+
+.ms-options-wrap > .ms-options > ul > li.optgroup .label {
+    display: block;
+    padding: 5px 0 0 0;
+    font-weight: bold;
 }
-.multiselect-container>li>a>label>input[type=checkbox] {
-	margin-bottom: 5px
+
+.ms-options-wrap > .ms-options > ul label {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    padding: 8px 4px;
+    margin: 1px 0;
 }
-.btn-group>.btn-group:nth-child(2)>.multiselect.btn {
-	border-top-left-radius: 4px;
-	border-bottom-left-radius: 4px
+
+.ms-options-wrap > .ms-options > ul li.selected label,
+.ms-options-wrap > .ms-options > ul label:hover {
+    background-color: #efefef;
 }
-.form-inline .multiselect-container label.checkbox, .form-inline .multiselect-container label.radio {
-	padding: 3px 20px 3px 40px
-}
-.form-inline .multiselect-container li a label.checkbox input[type=checkbox], .form-inline .multiselect-container li a label.radio input[type=radio] {
-	margin-left: -20px;
-	margin-right: 0
+
+.ms-options-wrap > .ms-options > ul input[type="checkbox"] {
+    margin-right: 5px;
+    position: absolute;
+    left: 4px;
+    top: 7px;
 }

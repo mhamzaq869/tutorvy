@@ -90,6 +90,7 @@
                             Basic
                         </div>
                         <div class="adddivs-1">
+
                             <div class="input-serachs mt-2">
                                 <input type="search" name="basic_title[]" placeholder="Write course outline" />
                             </div>
