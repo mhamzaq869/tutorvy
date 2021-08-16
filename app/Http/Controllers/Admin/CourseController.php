@@ -21,4 +21,12 @@ class CourseController extends Controller
     {
         return view('admin.pages.courses.index');
     }
+    public function courseRequest()
+    {
+        return view('admin.pages.courses.course_req');
+    }
+    public function courseProfile()
+    {
+        return view('admin.pages.courses.course_profile');
+    }
 }

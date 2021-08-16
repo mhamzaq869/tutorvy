@@ -36,6 +36,7 @@
      <!-- custom js -->
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
      <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
+
      <script src="{{ asset('assets/js/mobile.js') }}"></script>
      <script src="{{ asset('assets/js/history.js') }}"></script>
      <script src="{{ asset('assets/js/subject.js') }}"></script>
@@ -43,6 +44,7 @@
      <script src="{{ asset('assets/js/clander.js') }}"></script>
      <script src="{{ asset('assets/js/dropify.js')}}"></script>
      <script src="{{ asset('assets/js/multiselect.js')}}"></script>
+     <script src="{{ asset('assets/js/course.js')}}"></script>
 
 <script>
       $(document).ready(function(){

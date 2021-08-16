@@ -1,7 +1,17 @@
 @extends('tutor.layouts.app')
 
 @section('content')
-    <link href="{{ asset('assets/css/course.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/css/course.css') }}" rel="stylesheet">
+<style>
+    .dropify-wrapper{
+        height:120px;
+    }
+    .paid-text-1 a{
+        text-decoration:none;
+        color:#00132D ;
+    }
+</style>
+  <!--section start  -->
 
     <style>
         .dropify-wrapper {
@@ -103,12 +113,10 @@
                             <textarea class="form-control texteara-s mt-2 pt-2 mb-2" name="basic_explain[]"
                                 rows="6">Explaine</textarea>
                         </div>
+                        <div id="basicNew"></div>
 
                         <div class="text-center paid-text-1 btn w-100 mt-3 buttonAdd-1">
-                            + Add more
-                        </div>
-                        <div class="adddiv-1">
-
+                           <a href="#basicNew" class="basicMore"> + Add more </a>
                         </div>
                         <div class="w-100 border-bottom">&nbsp;</div>
 
@@ -207,11 +215,15 @@
                             <textarea class="form-control texteara-s mt-2 pt-2 mb-2" name="standard_explain[]"
                                 rows="6">Explaine</textarea>
                         </div>
+                        <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
+                        name="standard_explain[]" rows="6">Explaine</textarea>
+                    </div>
+                    <div id="standardNew"></div>
 
-                        <div class="text-center paid-text-1 btn w-100 mt-3 buttonAdd-1">
-                            + Add more
-                        </div>
-                        <div class="adddiv-1">
+                    <div class="text-center paid-text-1 btn w-100 mt-3 buttonAdd-1">
+                        <a href="#standardNew" class="standardMore"> + Add more </a>
+                    </div>
+                    <div class="w-100 border-bottom">&nbsp;</div>
 
                         </div>
                         <div class="w-100 border-bottom">&nbsp;</div>
@@ -310,11 +322,15 @@
                             <textarea class="form-control texteara-s mt-2 pt-2 mb-2" name="advance_explain[]"
                                 rows="6">Explaine</textarea>
                         </div>
+                        <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
+                        name="advance_explain[]" rows="6">Explaine</textarea>
+                    </div>
 
-                        <div class="text-center paid-text-1 btn w-100 mt-3 buttonAdd-1">
-                            + Add more
-                        </div>
-                        <div class="adddiv-1">
+                    <div id="advNew"></div>
+                    <div class="text-center paid-text-1 btn w-100 mt-3 buttonAdd-1">
+                        <a href="#advNew"  class="advMore"> + Add more </a>
+                    </div>
+                    <div class="w-100 border-bottom">&nbsp;</div>
 
                         </div>
                         <div class="w-100 border-bottom">&nbsp;</div>
@@ -401,11 +417,22 @@
                         </div> -->
 
                     </div>
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4">
-                        <div class="text-center mt-4">
-                            <input type="submit" class="schedule-btn w-50 " value="Submit course" />
-                        </div>
+                    <h3 class="mt-3 pb-2">
+                        Price
+                    </h3>
+                    <div class="input-options mt-2">
+                       <input type="text" class="form-control" placeholder="$23">
+                    </div>
+                    <!-- <div class="text-center mt-4">
+                        <input type="submit" class="schedule-btn w-50 " value="Submit course" />
+                    </div> -->
+
+                </div>
+
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <div class="text-center mt-4">
+                        <input type="submit" class="schedule-btn w-50 " value="Submit course" />
                     </div>
                     <div class="col-md-4"></div>
                 </div>
