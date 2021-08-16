@@ -3,17 +3,15 @@
 
 // email validation
 
-if(document.querySelector('.submit2')){
-    $(".submit2").click(function () {
-    var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-    var email = $(".email").val();
-    if (!filter.test(email)) {
-        $(".email").css("border-color", "red");
-        $(".add").html('enter your valid email address');
-        return false;
-    }
-    })
-}
+$(".submit2").click(function () {
+  var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+  var email = $(".email").val();
+  if (!filter.test(email)) {
+    $(".email").css("border-color", "red");
+    $(".add").html('enter your valid email address');
+    return false;
+  }
+})
 //
 $(".toggle-password").click(function () {
 
@@ -44,6 +42,7 @@ $(".toggle-password").click(function () {
 // });
 
 
+//
 function checkPass() {
 
   var get_elem = document.getElementById,
@@ -54,13 +53,10 @@ function checkPass() {
       goodColor: "#fff",
       goodColored: "#087a08",
       badColor: "#fff",
-      badColored: "#ed0b0b",
       fontStyle: "italic"
-
-
     },
     strings = {
-      "confirmMessage": ["Password Matched", "Password not matched"]
+      "confirmMessage": ["Password Matched", "Password notmathed"]
     };
 
   if (password.value === password2.value && (password.value + password2.value) !== "") {
