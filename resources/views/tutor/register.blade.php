@@ -68,6 +68,9 @@
             {
                 width:100% !important;
             }
+            .is-invalid{
+                color:red;
+            }
     </style>
 
 </head>
@@ -356,18 +359,21 @@
                                                     </div>
                                                     <div class="row mt-3">
                                                         <div class="input-text col-md-6">
-                                                            {{-- <select name="institute[]" class="form-select form-select-lg mb-3"
+                                                            <select name="institute[]" class="form-select form-select-lg mb-3"
                                                                 aria-label=".form-select-lg example">
-                                                                <option  value="0">Institute3</option>
+                                                                @foreach ($institutes as $institute)
+                                                                    <option  value="{{$institute->id}}" @if($education[$i] == $institute->id) selected @endif>{{$institute->name}}</option>
+                                                                @endforeach
+                                                                <!-- <option  value="0">Institute3</option>
                                                                 <option  value="1">Punjab University</option>
-                                                                <option  value="2">Virtual University Of Pakistan</option>
-                                                            </select> --}}
-                                                            <input list="instiuteList"  class="mb-3 form-control" name="institute[]" id="browser">
+                                                                <option  value="2">Virtual University Of Pakistan</option> -->
+                                                            </select>
+                                                            <!-- <input list="instiuteList"  class="mb-3 form-control" name="institute[]" id="browser">
                                                             <datalist id="instiuteList">
                                                                 <option value="Institute">
                                                                 <option value="Punjab University">
                                                                 <option value="Virtual University Of Pakistan">
-                                                            </datalist>
+                                                            </datalist> -->
                                                         </div>
                                                         <div class="input-text col-md-6">
                                                             <input type="date" name="graduate_year[]" class=" yearpicker form-control"
@@ -417,18 +423,18 @@
                                                     </div>
                                                     <div class="row mt-3">
                                                         <div class="input-text col-md-6">
-                                                            {{-- <select name="institute[]" class="form-select form-select-lg mb-3"
+                                                            <select name="institute[]" class="form-select form-select-lg mb-3"
                                                                 aria-label=".form-select-lg example">
                                                                 <option value="0">Institute</option>
                                                                 <option value="1">Punjab University</option>
                                                                 <option value="2">Virtual University Of Pakistan</option>
-                                                            </select> --}}
-                                                            <input list="instiuteList" name="institute[]" id="browser">
+                                                            </select>
+                                                            <!-- <input list="instiuteList" name="institute[]" id="browser">
                                                             <datalist id="instiuteList">
                                                                 <option value="Institute">
                                                                 <option value="Punjab University">
                                                                 <option value="Virtual University Of Pakistan">
-                                                            </datalist>
+                                                            </datalist> -->
                                                         </div>
                                                         <div class="input-text col-md-6">
                                                             <input type="date" name="graduate_year[]" class=" yearpicker form-control"
@@ -779,7 +785,9 @@
                     if(level >= teach_levels[i].value){
 
                         for(var j=0; j<i; j++){
-                            $("#levels").("<option value="'+teach_levels[i].value+'">"'+teach_levels[i].innerHTML+'"</option>");
+                            var opts=`<option value="`+teach_levels[i].value+`">"`+teach_levels[i].innerHTML+`"</option>`;
+                            // "<option value="'+teach_levels[i].value+'">"'+teach_levels[i].innerHTML+'"</option>";
+                            $("#levels").innerHtml=opts;
                         }
                     }
                 }
@@ -825,6 +833,7 @@
 
             $(document).ready(function(){
                 $(".dropify").dropify();
+                $(".form-select").select2();
             });
 
 
@@ -860,12 +869,12 @@
                             <option value="1">Punjab University</option>
                             <option value="2">Virtual University Of Pakistan</option>
                         </select>
-                        <input list="instiuteList" name="institute[]" id="browser">
+                        <!--<input list="instiuteList" name="institute[]" id="browser">
                         <datalist id="instiuteList">
                             <option value="Institute">
                             <option value="Punjab University">
                             <option value="Virtual University Of Pakistan">
-                        </datalist>
+                        </datalist>-->
                     </div>
                     <div class="input-text col-md-6">
                         <input type="date" name="graduate_year[` + count_field + `]" class=" yearpicker form-control" id="grad-yea">
@@ -884,7 +893,7 @@
             </div>`;
                 $('.customer_records_dynamic').append(html);
                 $('.dropify').dropify();
-
+                // $(".form-select").select2();
             });
 
            function university(){

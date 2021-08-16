@@ -1,5 +1,12 @@
 @extends('tutor.layouts.app')
-
+<style>
+    .searchBtn{
+        position: absolute;
+    right: 23px;
+    top: 10px;
+}
+    }
+</style>
 @section('content')
  <!-- top Fixed navbar End -->
  <section>
@@ -24,7 +31,7 @@
                         </P>
                         <br />
                         <button class="schedule-btn" style="width: 140px;" type="button" data-toggle="modal"
-                            data-target="#exampleModalCenter">Add Subjects</button>
+                            data-target="#exampleModalCenter">Add Subjects </button>
                         <!-- Button trigger modal -->
                         <!-- Modal -->
                         <div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog"
@@ -42,9 +49,9 @@
                                         <div class="modal-body">
                                             <div class="container">
                                                 <div class="search">
-                                                    <div class="form-group has-search">
-                                                        <span class="fa fa-search form-control-feedback"></span>
-                                                        <input type="search" style="width: 430px;"
+                                                    <div class="form-group has-search col-md-12">
+                                                        <a href="#"  class="fa fa-search form-control-feedback searchBtn"></a>
+                                                        <input type="search" style=""
                                                             class="form-control " data-search
                                                             placeholder="Search">
                                                     </div>

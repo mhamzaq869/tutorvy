@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\General\Degree;
+use App\Models\General\Institute;
 use App\Models\Admin\Subject;
 use App\Models\General\Education;
 use App\Models\General\Professional;
@@ -79,9 +80,10 @@ class RegisterController extends Controller
         $user = User::with(['education','professional','userdetail'])->where('ip',$_SERVER['REMOTE_ADDR'])->first();
         $subjects = Subject::all();
         $degrees = Degree::all();
+        $institutes = Institute::all();
 
 
-        return view('tutor.register',compact('user','subjects','degrees'));
+        return view('tutor.register',compact('user','subjects','degrees','institutes'));
     }
 
     /**
