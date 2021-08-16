@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\SubjectController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Admin\Subject;
-use App\Models\Assessment;
 use App\Models\General\Teach;
 class SubjectCategory extends Model
 {
@@ -32,7 +31,5 @@ class SubjectCategory extends Model
         return $this->hasMany(Teach::class,'subject_id','id');
     }
 
-    public function assessment(){
-        return $this->hasMany(Assessment::class);
-    }
+
 }

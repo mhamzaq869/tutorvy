@@ -106,7 +106,7 @@
                                                 <span class="badge badge-pill  badge-pending mt-1">New</span>
                                                 <div class="" style="display: flex;">
                                                     <p class="heading-fifth mr-3 pt-2 mb-0" >{{$subject->name}}</p>
-                                                    <a href="#"><p class="view-bookings mb-0" >Add</p></a>
+                                                    <a href="{{route('tutor.test',[$subject->id])}}"><p class="view-bookings mb-0" >Add</p></a>
                                                 </div>
                                             </div>
                                         </div>
