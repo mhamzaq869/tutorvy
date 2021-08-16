@@ -136,7 +136,7 @@
 }
 
 .card:hover {
-    transform: scale(0.9);
+    /* transform: scale(0.9); */
     box-shadow: 1px 1px 15px rgb(207, 204, 204);
 }
 
@@ -150,8 +150,6 @@
     border-radius: 8px;
     /* top: -00px; */
 }
-
-
 
 .input-text input:focus {
     outline: none;
@@ -183,7 +181,6 @@
 
 .sub-card {
     background-color: #ffffff;
-
     height: 450px;
     /* box-shadow: 1px 1px 10px rgb(155, 153, 153); */
     width: 600px;
@@ -193,36 +190,34 @@
     border-radius: 8px;
 }
 
-
 @media screen and (max-width: 600px) {
     .input-sub {
         display: flex;
     }
-    .text-work-res-1{
+    .text-work-res-1 {
         margin-top: -70px !important;
-    /* background-color: red !important; */
+        /* background-color: red !important; */
     }
-.Knowledge-input input{
-    width: 100%;
-    margin-top: 5px;
-}
-.Knowledge-input select{
-    width: 100%;
-}
-.form-group-100{
-width: 100% !important;
-}
-.Knowledge-input{
-    margin-top: 20px;
-}
-.input-responsive {
-    margin-top: -30px !important;
-    /* background-color: red; */
-}
-.margin-top{
-    margin-top: -40px !important;
-}
-
+    .Knowledge-input input {
+        width: 100%;
+        margin-top: 5px;
+    }
+    .Knowledge-input select {
+        width: 100%;
+    }
+    .form-group-100 {
+        width: 100% !important;
+    }
+    .Knowledge-input {
+        margin-top: 20px;
+    }
+    .input-responsive {
+        margin-top: -30px !important;
+        /* background-color: red; */
+    }
+    .margin-top {
+        margin-top: -40px !important;
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -305,6 +300,7 @@ width: 100% !important;
     }
 }
 
+
 /* */
 
 @media(max-width:790px) {
@@ -314,6 +310,7 @@ width: 100% !important;
         margin-right: 0px !important;
     }
 }
+
 
 /* @media(max-width:790px) {
     .keep-res {

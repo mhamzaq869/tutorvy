@@ -7,6 +7,7 @@
     ;
 }
 
+
 /* bnutton toogle left onclick */
 
 .toogle {
@@ -80,6 +81,7 @@ a:hover {
     font-size: 15 px;
 }
 
+
 /* deatail booking */
 
 .cencel-btn {
@@ -106,10 +108,12 @@ a:hover {
     cursor: pointer;
     transition: 0.6s;
 }
+
 .profile-header {
     background-color: white;
     border-radius: 8px;
 }
+
 .schedule-btn {
     background-color: #1173FF;
     border: 1px solid #1173FF;
@@ -119,6 +123,7 @@ a:hover {
     font-family: 'Poppins';
     border-radius: 4px;
 }
+
 
 /*  */
 
@@ -198,7 +203,8 @@ a:hover {
     cursor: pointer !important;
 }
 
-.table-image td, th {
+.table-image td,
+th {
     vertical-align: middle;
 }
 
@@ -234,6 +240,7 @@ th {
     border: none !important;
 }
 
+
 /* search */
 
 .input[type=text] {
@@ -265,6 +272,7 @@ th {
 .bg-custom-2 {
     background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
 }
+
 
 /* notification */
 
@@ -332,6 +340,7 @@ th {
     pointer-events: none;
     color: #aaa;
 }
+
 
 /*  */
 
@@ -509,10 +518,28 @@ a[data-toggle="collapse"] {
     }
 }
 
-@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+@media only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px) {
     .table {
         overflow: auto !important;
         white-space: nowrap !important;
         display: inline-block;
     }
+}
+
+
+/* Mohsin */
+
+.nav-link.active,
+.nav-link.active:hover {
+    border-right: none;
+}
+
+.tab-content .active {
+    border-right: none !important;
+}
+
+.card:hover {
+    transform: none !important;
+    box-shadow: 1px 1px 15px rgb(207 204 204);
 }

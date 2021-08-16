@@ -68,6 +68,9 @@
             {
                 width:100% !important;
             }
+            .is-invalid{
+                color:red;
+            }
     </style>
 
 </head>
@@ -283,8 +286,9 @@
                                                 <div class="container mt-3">
                                                     <div class="row">
                                                         <div class="col-md-6">
+                                                            <input type="" name="language" id="lang" hidden>
                                                             <select class="form-select form-select-lg mb-3"
-                                                                id="languages-list" name="language">
+                                                                id="languages-list" name="lang_short" onchange="langshort(this)">
 
                                                             </select>
                                                         </div>
@@ -356,25 +360,28 @@
                                                     </div>
                                                     <div class="row mt-3">
                                                         <div class="input-text col-md-6">
-                                                            {{-- <select name="institute[]" class="form-select form-select-lg mb-3"
+                                                            <select name="institute[]" class="form-select form-select-lg mb-3"
                                                                 aria-label=".form-select-lg example">
-                                                                <option  value="0">Institute3</option>
+                                                                @foreach ($institutes as $institute)
+                                                                    <option  value="{{$institute->id}}" @if($education[$i] == $institute->id) selected @endif>{{$institute->name}}</option>
+                                                                @endforeach
+                                                                <!-- <option  value="0">Institute3</option>
                                                                 <option  value="1">Punjab University</option>
-                                                                <option  value="2">Virtual University Of Pakistan</option>
-                                                            </select> --}}
-                                                            <input list="instiuteList"  class="mb-3 form-control" name="institute[]" id="browser">
+                                                                <option  value="2">Virtual University Of Pakistan</option> -->
+                                                            </select>
+                                                            <!-- <input list="instiuteList"  class="mb-3 form-control" name="institute[]" id="browser">
                                                             <datalist id="instiuteList">
                                                                 <option value="Institute">
                                                                 <option value="Punjab University">
                                                                 <option value="Virtual University Of Pakistan">
-                                                            </datalist>
+                                                            </datalist> -->
                                                         </div>
                                                         <div class="input-text col-md-6">
                                                             <input type="date" name="graduate_year[]" class=" yearpicker form-control"
                                                             id="grad-yea" value="{{$user->year[$i] ?? ''}}">
                                                         </div>
                                                     </div>
-                                                    <div class="row">
+                                                    <div class="row mt-3">
                                                         <div class="col-md-12">
                                                             <input type="file" class="dropify" name="upload[]" id="" data-default-file="{{asset($education->docs)}}">
                                                         </div>
@@ -417,18 +424,18 @@
                                                     </div>
                                                     <div class="row mt-3">
                                                         <div class="input-text col-md-6">
-                                                            {{-- <select name="institute[]" class="form-select form-select-lg mb-3"
+                                                            <select name="institute[]" class="form-select form-select-lg mb-3"
                                                                 aria-label=".form-select-lg example">
                                                                 <option value="0">Institute</option>
                                                                 <option value="1">Punjab University</option>
                                                                 <option value="2">Virtual University Of Pakistan</option>
-                                                            </select> --}}
-                                                            <input list="instiuteList" name="institute[]" id="browser">
+                                                            </select>
+                                                            <!-- <input list="instiuteList" name="institute[]" id="browser">
                                                             <datalist id="instiuteList">
                                                                 <option value="Institute">
                                                                 <option value="Punjab University">
                                                                 <option value="Virtual University Of Pakistan">
-                                                            </datalist>
+                                                            </datalist> -->
                                                         </div>
                                                         <div class="input-text col-md-6">
                                                             <input type="date" name="graduate_year[]" class=" yearpicker form-control"
@@ -436,7 +443,7 @@
                                                         </div>
 
                                                     </div>
-                                                    <div class="row">
+                                                    <div class="row mt-3">
                                                         <div class="col-md-12">
                                                             <input type="file" class="dropify" name="upload[]" id="" >
                                                         </div>
@@ -476,18 +483,18 @@
                                                 </div>
                                                 <div class="row mt-3">
                                                     <div class="input-text col-md-6">
-                                                        <!-- <select name="institute[]" class="form-select form-select-lg mb-3"
+                                                        <select name="institute[]" class="form-select form-select-lg mb-3"
                                                             aria-label=".form-select-lg example">
                                                             <option value="0">Institute</option>
                                                             <option value="1">Punjab University</option>
                                                             <option value="2">Virtual University Of Pakistan</option>
                                                         </select>
-                                                        <input list="instiuteList" name="institute[]" id="browser">
-                                                        <datalist id="instiuteList">
-                                                            <option value="Institute">
-                                                            <option value="Punjab University">
-                                                            <option value="Virtual University Of Pakistan">
-                                                        </datalist>
+                                                        <!--<input list="instiuteList" name="institute[]" id="browser">
+                                                                <datalist id="instiuteList">
+                                                                    <option value="Institute">
+                                                                    <option value="Punjab University">
+                                                                    <option value="Virtual University Of Pakistan">
+                                                                </datalist>-->
                                                     </div>
                                                     <div class="input-text col-md-6">
                                                         <input type="date" name="graduate_year[]" class=" yearpicker form-control"
@@ -642,12 +649,13 @@
 
                                             </div>
                                             <div class="col-8" style="display: flex;">
-                                                <button
-                                                    class="btn btn-lg cencel-btn nextBtn pull-right ml-5 btn-registration">Save
-                                                    for Later</button>
+                                                <button class="btn btn-lg cencel-btn nextBtn pull-right ml-5 btn-registration">Save
+                                                    for Later
+                                                </button>
                                                 <button type="button" id="step-3-next"
                                                     class="btn btn-lg   schedule-btn  nextBtn pull-right ml-4 btn-registration">&nbsp;
-                                                    Continue &nbsp; </button>
+                                                    Continue &nbsp;
+                                                </button>
 
                                             </div>
                                         </div>
@@ -771,15 +779,14 @@
                $("#country_short").val(short.iso2);
             });
 
-            function checkLevel(opt){
-                var level = opt.options[opt.selectedIndex].getAttribute('level');
-                var teach_levels = document.getElementById("levels").options;
 
                 for(var i=0; i<teach_levels.length; i++){
                     if(level >= teach_levels[i].value){
 
                         for(var j=0; j<i; j++){
-                            $("#levels").("<option value="'+teach_levels[i].value+'">"'+teach_levels[i].innerHTML+'"</option>");
+                            var opts=`<option value="`+teach_levels[i].value+`">"`+teach_levels[i].innerHTML+`"</option>`;
+                            // "<option value="'+teach_levels[i].value+'">"'+teach_levels[i].innerHTML+'"</option>";
+                            $("#levels").innerHtml=opts;
                         }
                     }
                 }
@@ -825,6 +832,7 @@
 
             $(document).ready(function(){
                 $(".dropify").dropify();
+                $(".form-select").select2();
             });
 
 
@@ -860,12 +868,12 @@
                             <option value="1">Punjab University</option>
                             <option value="2">Virtual University Of Pakistan</option>
                         </select>
-                        <input list="instiuteList" name="institute[]" id="browser">
+                        <!--<input list="instiuteList" name="institute[]" id="browser">
                         <datalist id="instiuteList">
                             <option value="Institute">
                             <option value="Punjab University">
                             <option value="Virtual University Of Pakistan">
-                        </datalist>
+                        </datalist>-->
                     </div>
                     <div class="input-text col-md-6">
                         <input type="date" name="graduate_year[` + count_field + `]" class=" yearpicker form-control" id="grad-yea">
@@ -884,7 +892,7 @@
             </div>`;
                 $('.customer_records_dynamic').append(html);
                 $('.dropify').dropify();
-
+                // $(".form-select").select2();
             });
 
            function university(){
@@ -900,6 +908,24 @@
                 });
             }
 
+            function checkLevel(opt){
+                var level = opt.options[opt.selectedIndex].getAttribute('level');
+                var teach_levels = document.getElementById("levels").options;
+
+                for(var i=0; i<teach_levels.length; i++){
+                    if(level >= teach_levels[i].value){
+
+                        for(var j=0; j<i; j++){
+                            $("#levels").html("<option value='"+teach_levels[i].value+"'>"+teach_levels[i].innerHTML+"</option>");
+                        }
+                    }
+                }
+            }
+
+            function langshort(opt){
+                var val = opt.options[opt.selectedIndex].innerHTML;
+                $("#lang").val(val)
+            }
         </script>
     </section>
 </body>
