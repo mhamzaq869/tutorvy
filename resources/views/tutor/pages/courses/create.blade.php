@@ -6,6 +6,10 @@
     .dropify-wrapper{
         height:120px;
     }
+    .paid-text-1 a{
+        text-decoration:none;
+        color:#00132D ;
+    }
 </style>
   <!--section start  -->
 
@@ -116,12 +120,10 @@
                             <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
                             name="basic_explain[]" rows="6">Explaine</textarea>
                         </div>
+                        <div id="basicNew"></div>
 
                         <div class="text-center paid-text-1 btn w-100 mt-3 buttonAdd-1">
-                            + Add more
-                        </div>
-                        <div class="adddiv-1">
-
+                           <a href="#basicNew" class="basicMore"> + Add more </a> 
                         </div>
                         <div class="w-100 border-bottom">&nbsp;</div>
 
@@ -220,12 +222,10 @@
                         <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
                         name="standard_explain[]" rows="6">Explaine</textarea>
                     </div>
+                    <div id="standardNew"></div>
 
                     <div class="text-center paid-text-1 btn w-100 mt-3 buttonAdd-1">
-                        + Add more
-                    </div>
-                    <div class="adddiv-1">
-
+                        <a href="#standardNew" class="standardMore"> + Add more </a> 
                     </div>
                     <div class="w-100 border-bottom">&nbsp;</div>
 
@@ -324,11 +324,9 @@
                         name="advance_explain[]" rows="6">Explaine</textarea>
                     </div>
 
+                    <div id="advNew"></div>
                     <div class="text-center paid-text-1 btn w-100 mt-3 buttonAdd-1">
-                        + Add more
-                    </div>
-                    <div class="adddiv-1">
-
+                        <a href="#advNew"  class="advMore"> + Add more </a> 
                     </div>
                     <div class="w-100 border-bottom">&nbsp;</div>
 
@@ -409,6 +407,7 @@
                     </div> -->
 
                 </div>
+
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
                     <div class="text-center mt-4">

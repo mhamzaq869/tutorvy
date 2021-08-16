@@ -110,6 +110,16 @@
             color:#00132D;
             font-size:22px;
         }
+        .activeDot {
+    width: 14px;
+    border: 2px solid #fff;
+    position: relative;
+    height: 14px;
+    right: 9px;
+    top: 39px;
+    background: green;
+    border-radius: 50%;
+}
     </style>
 
             <div class="content" style="width: 100%;background-color: #FBFBFB !important;">
@@ -128,323 +138,24 @@
                                 <div class="line-box"></div>
                                 <a href="#" class="chatLeft" id="chatClient_1">
                                     <div class="container-fluid m-0 p-0 img-chats">
-                                        <img src="../assets/img/logo/harram.jpg" class="leftImg ml-1">
+                                        <img src="{{asset('admin/assets/img/logo/harram.jpg')}}" class="leftImg ml-1">
+                                        <span class="activeDot"></span>
                                         <div class="img-chat">
 
                                             <div class="row">
-                                                <div class="col-10">
+                                                <div class="col-10 pl-0">
                                                     <p class="name-client">Harram Laraib </p>
                                                 </div>
-                                                <div class="col-md-2">
+                                                <div class="col-md-2 pl-0">
                                                     <p class="time-chat">11:25</p>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-10">
+                                                <div class="col-md-10 pl-0">
                                                     <p class="massage-client">It is a long distae... </p>
 
                                                 </div>
-                                                <div class="col-md-2">
-                                                    <span class="dot pl-2 ">2 </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#" class="chatLeft">
-                                    <div class="container-fluid m-0 p-0 img-chats">
-                                        <img src="../assets/img/logo/harram.jpg" class="leftImg ml-1">
-                                        <div class="img-chat">
-
-                                            <div class="row">
-                                                <div class="col-10">
-                                                    <p class="name-client">Harram Laraib </p>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <p class="time-chat">11:25</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-10">
-                                                    <p class="massage-client">It is a long distae... </p>
-
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <span class="dot pl-2 ">2 </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#" class="chatLeft">
-                                    <div class="container-fluid m-0 p-0 img-chats">
-                                        <img src="../assets/img/logo/harram.jpg" class="leftImg ml-1">
-                                        <div class="img-chat">
-
-                                            <div class="row">
-                                                <div class="col-10">
-                                                    <p class="name-client">Harram Laraib </p>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <p class="time-chat">11:25</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-10">
-                                                    <p class="massage-client">It is a long distae... </p>
-
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <span class="dot pl-2 ">2 </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#" class="chatLeft">
-                                    <div class="container-fluid m-0 p-0 img-chats">
-                                        <img src="../assets/img/logo/harram.jpg" class="leftImg ml-1">
-                                        <div class="img-chat">
-
-                                            <div class="row">
-                                                <div class="col-10">
-                                                    <p class="name-client">Harram Laraib </p>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <p class="time-chat">11:25</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-10">
-                                                    <p class="massage-client">It is a long distae... </p>
-
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <span class="dot pl-2 ">2 </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#" class="chatLeft">
-                                    <div class="container-fluid m-0 p-0 img-chats">
-                                        <img src="../assets/img/logo/harram.jpg" class="leftImg ml-1">
-                                        <div class="img-chat">
-
-                                            <div class="row">
-                                                <div class="col-10">
-                                                    <p class="name-client">Harram Laraib </p>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <p class="time-chat">11:25</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-10">
-                                                    <p class="massage-client">It is a long distae... </p>
-
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <span class="dot pl-2 ">2 </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#" class="chatLeft">
-                                    <div class="container-fluid m-0 p-0 img-chats">
-                                        <img src="../assets/img/logo/harram.jpg" class="leftImg ml-1">
-                                        <div class="img-chat">
-
-                                            <div class="row">
-                                                <div class="col-10">
-                                                    <p class="name-client">Harram Laraib </p>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <p class="time-chat">11:25</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-10">
-                                                    <p class="massage-client">It is a long distae... </p>
-
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <span class="dot pl-2 ">2 </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#" class="chatLeft">
-                                    <div class="container-fluid m-0 p-0 img-chats">
-                                        <img src="../assets/img/logo/harram.jpg" class="leftImg ml-1">
-                                        <div class="img-chat">
-
-                                            <div class="row">
-                                                <div class="col-10">
-                                                    <p class="name-client">Harram Laraib </p>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <p class="time-chat">11:25</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-10">
-                                                    <p class="massage-client">It is a long distae... </p>
-
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <span class="dot pl-2 ">2 </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#" class="chatLeft">
-                                    <div class="container-fluid m-0 p-0 img-chats">
-                                        <img src="../assets/img/logo/harram.jpg" class="leftImg ml-1">
-                                        <div class="img-chat">
-
-                                            <div class="row">
-                                                <div class="col-10">
-                                                    <p class="name-client">Harram Laraib </p>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <p class="time-chat">11:25</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-10">
-                                                    <p class="massage-client">It is a long distae... </p>
-
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <span class="dot pl-2 ">2 </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#" class="chatLeft">
-                                    <div class="container-fluid m-0 p-0 img-chats">
-                                        <img src="../assets/img/logo/harram.jpg" class="leftImg ml-1">
-                                        <div class="img-chat">
-
-                                            <div class="row">
-                                                <div class="col-10">
-                                                    <p class="name-client">Harram Laraib </p>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <p class="time-chat">11:25</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-10">
-                                                    <p class="massage-client">It is a long distae... </p>
-
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <span class="dot pl-2 ">2 </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#" class="chatLeft">
-                                    <div class="container-fluid m-0 p-0 img-chats">
-                                        <img src="../assets/img/logo/harram.jpg" class="leftImg ml-1">
-                                        <div class="img-chat">
-
-                                            <div class="row">
-                                                <div class="col-10">
-                                                    <p class="name-client">Harram Laraib </p>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <p class="time-chat">11:25</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-10">
-                                                    <p class="massage-client">It is a long distae... </p>
-
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <span class="dot pl-2 ">2 </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#" class="chatLeft">
-                                    <div class="container-fluid m-0 p-0 img-chats">
-                                        <img src="../assets/img/logo/harram.jpg" class="leftImg ml-1">
-                                        <div class="img-chat">
-
-                                            <div class="row">
-                                                <div class="col-10">
-                                                    <p class="name-client">Harram Laraib </p>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <p class="time-chat">11:25</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-10">
-                                                    <p class="massage-client">It is a long distae... </p>
-
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <span class="dot pl-2 ">2 </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#" class="chatLeft">
-                                    <div class="container-fluid m-0 p-0 img-chats">
-                                        <img src="../assets/img/logo/harram.jpg" class="leftImg ml-1">
-                                        <div class="img-chat">
-
-                                            <div class="row">
-                                                <div class="col-10">
-                                                    <p class="name-client">Harram Laraib </p>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <p class="time-chat">11:25</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-10">
-                                                    <p class="massage-client">It is a long distae... </p>
-
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <span class="dot pl-2 ">2 </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#" class="chatLeft">
-                                    <div class="container-fluid m-0 p-0 img-chats">
-                                        <img src="../assets/img/logo/harram.jpg" class="leftImg ml-1">
-                                        <div class="img-chat">
-
-                                            <div class="row">
-                                                <div class="col-10">
-                                                    <p class="name-client">Harram Laraib </p>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <p class="time-chat">11:25</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-10">
-                                                    <p class="massage-client">It is a long distae... </p>
-
-                                                </div>
-                                                <div class="col-md-2">
+                                                <div class="col-md-2 pl-0">
                                                     <span class="dot pl-2 ">2 </span>
                                                 </div>
                                             </div>
@@ -460,7 +171,7 @@
                                     <a class="navbar-brand pb-0" href="#">
                                         <div class="container-fluid m-0 p-0 img-chats">
 
-                                            <img src="../assets/img/logo/harram.jpg">
+                                            <img src="{{asset('admin/assets/img/logo/harram.jpg')}}">
                                             <div class="img-chat">
                                                 <div class="row">
                                                     <div class="col-12">

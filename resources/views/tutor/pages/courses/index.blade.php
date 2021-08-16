@@ -13,6 +13,32 @@
     <div class="container-fluid mt-3">
         <div class="container pt-4 pb-4 profile-header">
             <div class="row">
+            <div class="col-md-4">
+                    <div class="card">
+                        <img src="{{asset('assets/images/ico/add-new.png')}}" alt="Avatar" style="width:100%">
+                        <div class="container mt-3">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span class="che-text">
+                                        chemistry
+                                    </span>
+                                </div>
+                                <div class="col-md-6">
+                                    <span class="dolar-text ml-5">
+                                        $99
+                                    </span>
+                                </div>
+                                <span class="heading-forth ml-3 mt-3">
+                                   hung
+                                </span>
+                            </div>
+
+                            <a href="#">
+                                <button class="mt-3 w-100 schedule-btn1">Edit Course</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 @foreach ($courses as $course)
                 <div class="col-md-4">
                     <div class="card">

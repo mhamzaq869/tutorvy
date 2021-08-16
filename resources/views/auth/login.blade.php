@@ -22,6 +22,14 @@
     <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
     <!-- fonawsome -->
     <link href="{{ asset('assets/css/fontawesome.min.css') }}" rel="stylesheet">
+
+    <!--toggle Eye for tutor and student-->
+    <style>
+        .toggle-password{
+            position: absolute;
+    right: 43px;
+        }
+    </style>
 </head>
 
 <body>
