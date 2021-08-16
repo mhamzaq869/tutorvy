@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubjectCategoriesTable extends Migration
+class CreateCourseOutlinesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateSubjectCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('subject_categories', function (Blueprint $table) {
+        Schema::create('course_outlines', function (Blueprint $table) {
             $table->id();
-            $table->integer('subject_id')->nullable();
-            $table->string('name')->nullable();
-            $table->string('slug')->nullable();
-            $table->integer('status')->nullable();
+            $table->integer('course_id');
+            $table->string('title');
+            $table->string('explain');
+            $table->integer('level');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateSubjectCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subject_categories');
+        Schema::dropIfExists('course_outlines');
     }
 }

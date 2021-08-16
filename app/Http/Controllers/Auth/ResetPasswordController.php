@@ -47,7 +47,7 @@ class ResetPasswordController extends Controller
         if($user){
             Session::put('changepass',$user->id);
             Session::put('otp',rand(1000,9999));
-            Mail::to($request->email)->send(new SendOtpMail($user));
+            Mail::to($request->email)->send(new SendOtpMail);
             return view('auth.otp');
         }
 
@@ -80,7 +80,12 @@ class ResetPasswordController extends Controller
 
     public function resendOtp()
     {
+        //regenerate code
         Session::put('otp',rand(1000,9999));
+
+        $email = User::find(Session::get('changepass'))->email;
+        Mail::to($email)->send(new SendOtpMail);
+
         return response("New otp has been sended",200);
     }
 

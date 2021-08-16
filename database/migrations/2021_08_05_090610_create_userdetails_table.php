@@ -16,15 +16,6 @@ class CreateUserdetailsTable extends Migration
         Schema::create('userdetails', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->unique();
-            $table->string('ip')->nullable();
-            $table->string('degree')->nullable();
-            $table->string('major')->nullable();
-            $table->string('institute')->nullable();
-            $table->string('year')->nullable();
-            $table->string('designation')->nullable();
-            $table->string('organization')->nullable();
-            $table->string('start_date')->nullable();
-            $table->string('end_date')->nullable();
             $table->string('teach')->nullable();
             $table->string('student_level')->nullable();
             $table->string('availability')->nullable();

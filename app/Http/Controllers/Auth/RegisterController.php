@@ -109,7 +109,6 @@ class RegisterController extends Controller
      */
     protected function register(Request $request)
     {
-
         // Get a validator for an incoming registration request
         // from Tutor/Student Registor Form .
 
@@ -209,9 +208,7 @@ class RegisterController extends Controller
         if($request->hasFile('upload')){
             foreach($request->upload as $upload){
                 $path = 'storage/docs/'.$upload->getClientOriginalName();
-                // dd($path);
                 $upload->storeAs('docs',$upload->getClientOriginalName(),'public');
-                // Storage::disk('local')->put('public/docs/'.$upload->getClientOriginalName(),'Contents');
                 $docs[] =  $path;
             }
         }
