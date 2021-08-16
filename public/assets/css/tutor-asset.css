@@ -1408,7 +1408,7 @@ h3 {
 }
 
 .view-bookings {
-    float: right !important;
+    float: right;
     color: #1173FF !important;
     font-size: 14px;
     font-weight: 500;
@@ -2043,15 +2043,6 @@ a[data-toggle="collapse"] {
 
 
 /* border right */
-
-.active,
-.btns:hover {
-    background-color: #244775!important;
-}
-
-.active:nth-child(2) {
-    background-color: #00132D !important;
-}
 
 
 /* .bg-dark2 {

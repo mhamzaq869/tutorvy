@@ -36,14 +36,14 @@
      <!-- custom js -->
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
      <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
-     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    
      <script src="{{ asset('assets/js/mobile.js') }}"></script>
      <script src="{{ asset('assets/js/history.js') }}"></script>
      <script src="{{ asset('assets/js/subject.js') }}"></script>
      <script src="{{ asset('assets/js/homePage.js') }}"></script>
      <script src="{{ asset('assets/js/clander.js') }}"></script>
      <script src="{{ asset('assets/js/dropify.js')}}"></script>
+     <script src="{{ asset('assets/js/course.js')}}"></script>
 
 <script>
       $(document).ready(function(){
