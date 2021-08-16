@@ -404,7 +404,7 @@
                 </div>
             </li>
             <li class="nav-item pr-4">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('student.chat') }}">
                     <img src="../assets/images/ico/email.png" alt="img-email"
                         style="width: 20px;cursor: pointer !important;">
                 </a>

@@ -6,6 +6,9 @@
     <title>Tutorvy</title>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <script src="{{ asset('js/app.js') }}" ></script>
+
     <!-- Scripts -->
     <!--favicon --->
     <link href="{{ asset('assets/images/ico/side-icons.png') }}" rel="icon">
@@ -29,8 +32,16 @@
         <div>
 
     </div>
-
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
      <!-- custom js -->
+     <script src="{{ asset('/admin/assets/js/jquery.js ')}}"></script>
+    <script src="{{ asset('/admin/assets/js/jquery-ui.js')}}"></script>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
      <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
      <script src="{{ asset('assets/js/mobile.js') }}"></script>
@@ -39,6 +50,6 @@
      <script src="{{ asset('assets/js/homePage.js') }}"></script>
      <script src="{{ asset('assets/js/clander.js') }}"></script>
      <script src="{{ asset('assets/js/global.js') }}"></script>
-
+     @include('js_files.chat')
 </body>
 </html>

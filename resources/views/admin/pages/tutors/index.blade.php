@@ -148,7 +148,7 @@
                                                 </a>
                                             </td>
                                             <td class="pt-3 text-right">
-                                                <button class="schedule-btn" data-toggle="modal"
+                                                <button class="schedule-btn"  data-toggle="modal"
                                                     data-target="#exampleModalCenter">Assign</button>
                                             </td>
                                         </tr>
@@ -292,7 +292,7 @@
                                         <td class="pt-4">{{$tutor->userdetail->hourly_rate}}</td>
                                         <td class="pt-4 text-right">
                                             <a href="setting.html">
-                                                <img src="../assets/img/ico/edit-icon.svg" alt="image"
+                                                <img src="{{ asset('admin/assets/img/ico/edit-icon.svg')}}" alt="image"
                                                     class="edit-image" />
                                             </a>
                                         </td>
@@ -326,112 +326,22 @@
                 <div class="modal-body">
                     <div class="input-serach">
                         <input class="w-100" type="search" placeholder="Search members" />
-                        <img class="serach-icon" src="../assets/img/ico/Search.png" />
+                        <img class="serach-icon" src="{{ asset('admin/assets/img/ico/Search.png')}}" />
                     </div>
+                    @foreach($staff_members as $member)
                     <div class="container mt-4">
                         <div class="row">
                             <div class="col-md-6 col-6">
-                                <span class="alex-name"><img src="../assets/img/ico/profile-boy.svg"
+                                <span class="alex-name"><img src="{{ asset('admin/assets/img/ico/profile-boy.svg')}}"
                                         alt="std-icon" /></span>
-                                <span class="pl-2 alex-names">Harram</span>
+                                <span class="pl-2 alex-names">{{$member->name}}</span>
                             </div>
                             <div class="col-md-6 col-6">
-                                <button class="schedule-btn assgin-text" data-toggle="modal"
-                                    data-target="#exampleModalCenter">Assign</button>
+                                <button class="schedule-btn assgin-text" onclick="assignStaff(`{{$member->id}}`)" >Assign</button>
                             </div>
                         </div>
                     </div>
-                    <div class="container mt-4">
-                        <div class="row">
-                            <div class="col-md-6 col-6">
-                                <span class="alex-name"><img src="../assets/img/ico/profile-boy.png"
-                                        alt="std-icon" /></span>
-                                <span class="pl-2 alex-names">Harram</span>
-                            </div>
-                            <div class="col-md-6 col-6">
-                                <button class="schedule-btn assgin-text" data-toggle="modal"
-                                    data-target="#exampleModalCenter">Assign</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container mt-4">
-                        <div class="row">
-                            <div class="col-md-6 col-6">
-                                <span class="alex-name">
-                                    <img src="../assets/img/ico/profile-boy.png" alt="std-icon" /></span>
-                                <span class="pl-2 alex-names">Harram</span>
-                            </div>
-                            <div class="col-md-6 col-6">
-                                <button class="schedule-btn assgin-text" data-toggle="modal"
-                                    data-target="#exampleModalCenter">Assign</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container mt-4">
-                        <div class="row">
-                            <div class="col-md-6 col-6">
-                                <span class="alex-name"><img src="../assets/img/ico/profile-boy.png"
-                                        alt="std-icon" /></span>
-                                <span class="pl-2 alex-names">Harram</span>
-                            </div>
-                            <div class="col-md-6 col-6">
-                                <button class="schedule-btn assgin-text" data-toggle="modal"
-                                    data-target="#exampleModalCenter">Assign</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container mt-4">
-                        <div class="row">
-                            <div class="col-md-6 col-6">
-                                <span class="alex-name"><img src="../assets/img/ico/profile-boy.png"
-                                        alt="std-icon" /></span>
-                                <span class="pl-2 alex-names">Harram</span>
-                            </div>
-                            <div class="col-md-6 col-6">
-                                <button class="schedule-btn assgin-text" data-toggle="modal"
-                                    data-target="#exampleModalCenter">Assign</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container mt-4">
-                        <div class="row">
-                            <div class="col-md-6 col-6">
-                                <span class="alex-name"><img src="../assets/img/ico/profile-boy.png"
-                                        alt="std-icon" /></span>
-                                <span class="pl-2 alex-names">Harram</span>
-                            </div>
-                            <div class="col-md-6 col-6">
-                                <button class="schedule-btn assgin-text" data-toggle="modal"
-                                    data-target="#exampleModalCenter">Assign</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container mt-4">
-                        <div class="row">
-                            <div class="col-md-6 col-6">
-                                <span class="alex-name"><img src="../assets/img/ico/profile-boy.png"
-                                        alt="std-icon" /></span>
-                                <span class="pl-2 alex-names">Harram</span>
-                            </div>
-                            <div class="col-md-6 col-6">
-                                <button class="schedule-btn assgin-text" data-toggle="modal"
-                                    data-target="#exampleModalCenter">Assign</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container mt-4">
-                        <div class="row">
-                            <div class="col-md-6 col-6">
-                                <span class="alex-name"><img src="../assets/img/ico/profile-boy.png"
-                                        alt="std-icon" /></span>
-                                <span class="pl-2 alex-names">Harram</span>
-                            </div>
-                            <div class="col-md-6 col-6">
-                                <button class="schedule-btn assgin-text" data-toggle="modal"
-                                    data-target="#exampleModalCenter">Assign</button>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

@@ -98,16 +98,6 @@
             color:#00132D;
             font-size:22px;
         }
-        .activeDot {
-    width: 14px;
-    border: 2px solid #fff;
-    position: relative;
-    height: 14px;
-    right: 9px;
-    top: 39px;
-    background: green;
-    border-radius: 50%;
-}
     </style>
 
     <div class="content" style="width: 100%;background-color: #FBFBFB !important;">
@@ -124,15 +114,15 @@
                             </a>
                         </div>
                         <div class="line-box"></div>
-                        @foreach($students as $student)
-                            <a href="#" class="chatLeft" id="chatClient_1" onclick="selectUser(`{{$student->id}}`)">
+                        @foreach($tutors as $tutor)
+                            <a href="#" class="chatLeft" id="chatClient_1" onclick="selectUser(`{{$tutor->id}}`)">
                                 <div class="container-fluid m-0 p-0 img-chats">
-                                    <img src="{{asset('admin/assets/img/logo/harram.jpg')}}" class="leftImg ml-1">
+                                    <img src="{{ asset('admin/assets/img/logo/harram.jpg')}}" class="leftImg ml-1">
                                     <div class="img-chat">
 
                                         <div class="row">
                                             <div class="col-10">
-                                                <p class="name-client">{{ $student->first_name }} {{ $student->last_name }}</p>
+                                                <p class="name-client">{{ $tutor->first_name }} {{ $tutor->last_name }}</p>
                                             </div>
                                             <div class="col-md-2">
                                                 <p class="time-chat">11:25</p>
@@ -210,7 +200,6 @@
                                 <div class="col-md-10 col-8">
                                     <span class="text-muted" id="typingUser"></span>
                                     <form id="chat_form" action="{{ route('store.text') }}">
-                                        
                                         <input type="search" id="msg" class="w-100" alt="message" onKeyUp="sendTypingEvent()">
                                         <a href="" class="sendRight" type="submit">
                                             <i class="fa fa-paper-plane f-28"></i>

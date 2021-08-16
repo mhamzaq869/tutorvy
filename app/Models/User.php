@@ -11,6 +11,7 @@ use App\Models\Admin\Subject;
 use App\Models\General\Education;
 use App\Models\General\Professional;
 use App\Models\General\Teach;
+use App\Models\General\Message;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -161,5 +162,16 @@ class User extends Authenticatable implements MustVerifyEmail
             return '---';
         }
 
+    }
+
+    public function messages_between($user)
+    {
+        
+        return Message::where(['sender_id' => $this->id, 'recipient_id' => $user->id])
+            ->orWhere(function ($q) use ($user) {
+                $q->where('sender_id', $user->id);
+                $q->where('recipient_id', $this->id);
+            })
+            ->orderBy('id', 'ASC')->get();
     }
 }

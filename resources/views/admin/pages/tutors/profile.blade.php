@@ -168,7 +168,7 @@
                                 </p>
                             </div>
                             <div class="col-md-2">
-                                <a href="subject.html">
+                                <a href="{{ route('admin.tutorSubjects',[$tutor->id]) }}">
                                     <p class="view-bookings view-bookings-1">View</p>
                                 </a>
                             </div>

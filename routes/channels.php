@@ -13,6 +13,17 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
+Broadcast::channel('App.User.{id}', function ($user, $id) {
+    //    return (int)$user->id === (int)$id;
+        return $user;
+});
+
+Broadcast::channel('chat', function ($user) {
+    if (auth()->check()) {
+        return $user;
+    }
+});
+
 Broadcast::channel('admin_dash', function ($user) {
     if (auth()->check()) {
         return $user->toArray();

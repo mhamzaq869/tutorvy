@@ -25,6 +25,7 @@ class CreateAssessmentsTable extends Migration
             $table->text('answer_3')->nullable();
             $table->string('assessment_note')->nullable();
             $table->integer('status')->default(0);
+            $table->integer('verified_by')->nullable();
             $table->timestamps();
         });
     }
