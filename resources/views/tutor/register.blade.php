@@ -369,7 +369,7 @@
                                                             id="grad-yea" value="{{$user->year[$i] ?? ''}}">
                                                         </div>
                                                     </div>
-                                                    <div class="row">
+                                                    <div class="row mt-3">
                                                         <div class="col-md-12">
                                                             <input type="file" class="dropify" name="upload[]" id="" >
                                                         </div>
@@ -425,7 +425,7 @@
                                                         </div>
                                                        
                                                     </div>
-                                                    <div class="row">
+                                                    <div class="row mt-3">
                                                         <div class="col-md-12">
                                                             <input type="file" class="dropify" name="upload[]" id="" >
                                                         </div>
