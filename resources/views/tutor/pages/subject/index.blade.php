@@ -18,33 +18,17 @@
                     <div class="container-fluid">
                         <p class="heading-third mt-5">My Subjects</p>
                         <div class="row">
+                            @foreach (Auth::user()->teach as $teach)
                             <div class="col-md-2">
-                                <div class="cards container-fluid">
-                                    <img src="../assets/images/ico/botal-ico.png" alt="botal" style="width: 45px;"
-                                        class="mt-3">
-                                    <img src="../assets/images/ico/3dot.png" alt="botal" style="width: 25px;float: right;"
-                                        class="mt-3">
-                                    <div class="">
-                                        <p class="heading-forth " style="margin-top: 35px;">Chemistry</p>
+                                <div class="cards d-flex shadow">
 
-                                    </div>
+                                        <p class="heading-forth " style="margin-top: 35px;">{{$teach->subject->name}}</p>
+                                        <p class="view-bookings mt-auto">Add</p>
+
                                 </div>
 
                             </div>
-                            <div class="col-md-2">
-                                <div class="cards container-fluid">
-                                    <img src="../assets/images/ico/botal-ico.png" alt="botal" style="width: 45px;"
-                                        class="mt-3">
-                                    <img src="../assets/images/ico/3dot.png" alt="botal" style="width: 25px;float: right;"
-                                        class="mt-3">
-                                    <div class="">
-                                        <p class="heading-forth" style="margin-top: 35px;">Physics</p>
-
-                                    </div>
-                                </div>
-
-                            </div>
-
+                            @endforeach
                         </div>
                     </div>
 
@@ -56,114 +40,27 @@
                             <input class="ml-3 mr-3 form-control w-25 mb-4 " type="search" placeholder="Type a name"
                                 aria-label="Search" id="search">
                             <div class="card-deck ml-1 mr-1" style="width: 100%;">
+                                @foreach ($subjects as $subject)
                                 <div class="col-md-2  " style="padding-right: 0;">
                                     <div class=" cards card-shadow ">
                                         <div class="card-body ">
                                             <h4 class="card-title" style="visibility: hidden;position: absolute;">
-                                                chemistry</h4>
-                                            <img src="../assets/images/ico/botal-ico.png" alt="botal" style="width: 45px;">
-                                            <img src="../assets/images/ico/3dot.png" alt="botal"
-                                                style="width: 25px;float: right;">
-                                            <div class="" style="display: flex;">
-                                                <p class="heading-fifth mr-3" style="margin-top: 30px;">Chemistry</p>
-                                                <p class="view-bookings " style="margin-top: 30px;">Add</p>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2  " style="padding-right: 0;">
-                                    <div class=" cards card-shadow ">
-                                        <div class="card-body ">
-                                            <h4 class="card-title" style="visibility: hidden;position: absolute;">
-                                                chemistry</h4>
-                                            <img src="../assets/images/ico/botal-ico.png" alt="botal" style="width: 45px;">
-                                            <img src="../assets/images/ico/3dot.png" alt="botal"
-                                                style="width: 25px;float: right;">
-                                            <div class="" style="display: flex;">
-                                                <p class="heading-fifth mr-3" style="margin-top: 30px;">Chemistry</p>
-                                                <p class="view-bookings " style="margin-top: 30px;">Add</p>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2  " style="padding-right: 0;">
-                                    <div class="cards card-shadow ">
-                                        <div class="card-body">
-                                            <h4 class="card-title" style="visibility: hidden;position: absolute;">
-                                                Math</h4>
-                                            <img src="../assets/images/ico/botal-ico.png" alt="botal" style="width: 45px;">
-                                            <img src="../assets/images/ico/3dot.png" alt="botal"
-                                                style="width: 25px;float: right;">
-                                            <div class="" style="display: flex;">
-                                                <p class="heading-fifth mr-3" style="margin-top: 30px;">Math</p>
-                                                <p class="view-bookings " style="margin-top: 30px;">Add</p>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2  " style="padding-right: 0;">
-                                    <div class=" cards card-shadow ">
-                                        <div class="card-body ">
-                                            <h4 class="card-title" style="visibility: hidden;position: absolute;">
-                                                English</h4>
-                                            <img src="../assets/images/ico/botal-ico.png" alt="botal" style="width: 45px;">
-                                            <img src="../assets/images/ico/3dot.png" alt="botal"
-                                                style="width: 25px;float: right;">
-                                            <div class="" style="display: flex;">
-                                                <p class="heading-fifth mr-3" style="margin-top: 30px;">English</p>
-                                                <p class="view-bookings " style="margin-top: 30px;">Add</p>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2  " style="padding-right: 0;">
-                                    <div class=" cards card-shadow ">
-                                        <div class="card-body ">
-                                            <h4 class="card-title" style="visibility: hidden;position: absolute;">
-                                                chemistry</h4>
-                                            <img src="../assets/images/ico/botal-ico.png" alt="botal" style="width: 45px;">
-                                            <img src="../assets/images/ico/3dot.png" alt="botal"
-                                                style="width: 25px;float: right;">
-                                            <div class="" style="display: flex;">
-                                                <p class="heading-fifth mr-3" style="margin-top: 30px;">Chemistry</p>
-                                                <p class="view-bookings " style="margin-top: 30px;">Add</p>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2  " style="padding-right: 0;">
-                                    <div class=" cards card-shadow ">
-                                        <div class="card-body ">
-                                            <h4 class="card-title" style="visibility: hidden;position: absolute;">
-                                                chemistry
+                                                {{$subject->name}}
                                             </h4>
                                             <img src="../assets/images/ico/botal-ico.png" alt="botal" style="width: 45px;">
                                             <img src="../assets/images/ico/3dot.png" alt="botal"
                                                 style="width: 25px;float: right;">
                                             <div class="" style="display: flex;">
-                                                <p class="heading-fifth mr-3" style="margin-top: 30px;">
-                                                    Chemistry
-                                                </p>
-                                                <p class="view-bookings " style="margin-top: 30px;">
-                                                    Add
-                                                </p>
+                                                <p class="heading-fifth mr-3" style="margin-top: 30px;"> {{$subject->name}}</p>
+                                                <p class="view-bookings " style="margin-top: 30px;">Add</p>
 
                                             </div>
 
                                         </div>
                                     </div>
+
                                 </div>
-                            </div>
+                            @endforeach
 
                         </div>
                     </div>
@@ -172,6 +69,9 @@
 
 
             </div>
+
+            {{$subjects->links()}}
+
 
         @else
             <!-- no subject start -->
