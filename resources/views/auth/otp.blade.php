@@ -56,18 +56,26 @@
 
 
 
-                                <form method="post" class="digit-group" data-group-name="digits" data-autosubmit="false"
+                                <form method="post" action="{{route('check.otp')}}" class="digit-group" data-group-name="digits" data-autosubmit="false"
                                     autocomplete="off">
                                     @csrf
                                     <div class="d-flex">
-                                    <input type="" id="digit-1" name="digit-1" placeholder="9" data-next="digit-2" />
-                                    <input type="" id="digit-2" name="digit-2" placeholder="9" data-next="digit-3"
+                                    <input type="" id="digit-1" name="digit1" placeholder="9" data-next="digit-2" />
+                                    <input type="" id="digit-2" name="digit2" placeholder="9" data-next="digit-3"
                                         data-previous="digit-1" />
-                                    <input type="" id="digit-3" name="digit-3" placeholder="9" data-next="digit-4"
+                                    <input type="" id="digit-3" name="digit3" placeholder="9" data-next="digit-4"
                                         data-previous="digit-2" />
-                                    <input type="" id="digit-4" name="digit-4" placeholder="9" data-next="digit-5"
+                                    <input type="" id="digit-4" name="digit4" placeholder="9" data-next="digit-5"
                                         data-previous="digit-3" />
                                     </div>
+
+
+                                    @if(Session::has('error'))
+                                        <span class="invalid-feedback d-block" role="alert">
+                                            <strong>{{session::get('error')}}</strong>
+                                        </span>
+                                    @endif
+
 
                                         <p class="text-success" id=newotp></p>
                                         <div class="mb-5 input-login">

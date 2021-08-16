@@ -283,8 +283,9 @@
                                                 <div class="container mt-3">
                                                     <div class="row">
                                                         <div class="col-md-6">
+                                                            <input type="" name="language" id="lang" hidden>
                                                             <select class="form-select form-select-lg mb-3"
-                                                                id="languages-list" name="language">
+                                                                id="languages-list" name="lang_short" onchange="langshort(this)">
 
                                                             </select>
                                                         </div>
@@ -901,6 +902,11 @@
                         }
                     }
                 }
+            }
+
+            function langshort(opt){
+                var val = opt.options[opt.selectedIndex].innerHTML;
+                $("#lang").val(val)
             }
         </script>
     </section>

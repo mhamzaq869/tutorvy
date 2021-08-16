@@ -31,12 +31,12 @@ class Teach extends Model
 
     public function subject()
     {
-        return $this->hasMany(Subject::class,'id','subject_id');
+        return $this->belongsTo(Subject::class);
     }
 
     public function subjectCategory()
     {
-        return $this->belongsTo(SubjectCategory::class,'subject_category_id','id');
+        return $this->belongsTo(SubjectCategory::class,'subject_ca_id','id');
     }
 
     public function getSubNameAttribute()

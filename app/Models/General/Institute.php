@@ -23,4 +23,9 @@ class Institute extends Model
     ];
 
 
+    public function education()
+    {
+        return $this->hasMany(Education::class);
+    }
+
 }

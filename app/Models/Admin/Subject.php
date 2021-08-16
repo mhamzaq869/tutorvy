@@ -41,7 +41,7 @@ class Subject extends Model
     }
     public function teach()
     {
-        return $this->belongsTo(Teach::class);
+        return $this->hasMany(Teach::class);
     }
     public function course()
     {

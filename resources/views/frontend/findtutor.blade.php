@@ -250,7 +250,7 @@
                 </div>
             </div>
             <div class="col-md-9 mb-3">
-                @foreach ($tutors as $tutor)
+                @foreach ($tutors as $i => $tutor)
                 <div class="container pt-4 bg-white">
                     <div class="row">
                         <div class="col-md-9">
@@ -283,7 +283,7 @@
                                             <img class="img-mobile-view" src="../assets/images/ico/red-icon.png">
                                         </div>
                                         <div class="col-md-9 m-0 p-0">
-                                            <p class="text-pro text-pro-mobile"> {{$tutor->professionals->designation ?? '---'}} at {{$tutor->professionals->organization ?? '---'}} </p>
+                                            <p class="text-pro text-pro-mobile"> {{$tutor->professional->first()->designation ?? '---'}} at {{$tutor->professional->first()->organization ?? '---'}} </p>
                                         </div>
                                     <!-- </div> -->
                                 </div>
@@ -313,7 +313,7 @@
                                     <div class="d-flex">
                                         <div class="btn-responsive">
                                             @foreach ($tutor->teach as  $subject)
-                                            <button class="color-btn-std1">&nbsp; {{$subject->subjectCategory->name}} &nbsp;</button>
+                                            <button class="color-btn-std1">&nbsp; {{$subject->first()->subject->name}} &nbsp;</button>
                                             @endforeach
                                         </div>
                                     </div>
@@ -323,9 +323,7 @@
                                     <p class="heading-fifth"> Language</p>
                                     <div class="d-flex">
                                         <div class="btn-responsive">
-                                            <button class="color-btn-std">&nbsp; Computer &nbsp;</button>
-                                            <button class="color-btn-std  ml-2">&nbsp; Math &nbsp;</button>
-
+                                            <button class="color-btn-std">&nbsp; {{$tutor->language}} &nbsp;</button>
                                         </div>
                                     </div>
                                 </div>
@@ -334,9 +332,9 @@
                                     <p class="heading-fifth"> Education</p>
                                     <div class="d-flex">
                                         <div class="btn-responsive">
-                                            <button class="color-btn-std3">&nbsp; Computer &nbsp;</button>
-                                            <button class="color-btn-std3 ml-2">&nbsp; Math &nbsp;</button>
-
+                                            @foreach ($tutor->education as  $edu)
+                                                <button class="color-btn-std3">&nbsp;{{$edu->institute->name}}&nbsp;</button>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
