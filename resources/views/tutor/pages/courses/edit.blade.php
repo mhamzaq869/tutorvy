@@ -2,6 +2,15 @@
 
 @section('content')
 <link href="{{ asset('assets/css/course.css') }}" rel="stylesheet">
+<style>
+    .dropify-wrapper {
+        height: 120px;
+    }
+
+</style>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0rc.0/dist/js/select2.min.js"></script>
 
   <!--section start  -->
 
@@ -28,8 +37,9 @@
                             <div class="input-options mt-2">
                                 <select name="subject">
                                     <option disabled selected>Subject</option>
-                                    <option value="1">Chemistry</option>
-                                    <option value="2">Physice</option>
+                                    @foreach (Auth::user()->teach as $teach)
+                                    <option value="{{$teach->subject_id}}" @if($teach->subject_id == $teach->subject->id) selected @endif>{{$teach->subject->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -45,31 +55,18 @@
             </div>
             <div class="col-md-5 mt-5">
                 <div class="mt-5"><br />
-                    <div class="bg-edit">
-                        <div class="text-center">
-                            <div class="text-center">
-                                <input type="file" id="file" name="video" class="repeat-image-2" />
-                                <label for="file">
-                                    <img src="../assets/img/ico/Icon-feather-image.svg" class="repeat-image-2 mt-2"
-                                        style="height: 63px;" alt="repeat" />
-                                </label>
-                            </div>
-                            <p class="paragraph-text">Upload intro video</p>
-                        </div>
+                    <div class="bg-edit text-center">
+                        <label for="" class="pt-2 ">Intro Video</label>
+                        <input type="file" class="dropify" name="video" id="video"
+                        data-default-file="{{asset($course->video)}}">
                     </div>
-                    <div class="bg-edit mt-4">
-                        <div class="text-center">
-                            <!-- <img src="../assets/img/ico/Icon-feather-upload-cloud.svg" alt="asd" class="mt-4" /> -->
-                            <div class="text-center">
-                                <input type="file" id="file" name="thumbnail" class="repeat-image-2" />
-                                <label for="file">
-                                    <img src="../assets/img/ico/Icon-feather-upload-cloud.svg"
-                                        class="repeat-image-2 mt-2" style="height: 63px;" alt="repeat" />
-                                </label>
-                            </div>
-                            <p class="paragraph-text">Upload course thumbnail </p>
-                        </div>
-                    </div>
+                </div>
+                <div class="bg-edit mt-4 text-center">
+                    <label for="" class="pt-2 ">Course Thumbnail</label>
+                    <input type="file" class="dropify" name="thumbnail" id="thumbnail"
+                        data-default-file="{{asset($course->thumbnail)}}">
+
+                </div>
                 </div>
             </div>
         </div>
@@ -154,10 +151,10 @@
                             </div>
                         </div>
                         <div class="input-options mt-3">
-                            <select name="basic_duration">
+                            <select name="basic_duration" class="js-example-placeholder-multiple" multiple="multiple">
                                 <option disabled selected>Course duration</option>
-                                <option>1 hour</option>
-                                <option>2 hour</option>
+                                <option value="1" @if($course->basic_duration == 1) selected @endif>1 hour</option>
+                                <option value="2" @if($course->basic_duration == 2) selected @endif>2 hour</option>
                             </select>
                         </div>
 
@@ -383,5 +380,11 @@
         </div>
     </form>
 </div>
+
+<script>
+    $(".js-example-placeholder-multiple").select2({
+        placeholder: "Select days"
+    });
+</script>
 <!-- end section -->
 @endsection

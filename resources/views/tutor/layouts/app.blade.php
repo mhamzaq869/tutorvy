@@ -14,6 +14,8 @@
     <link href="{{ asset('assets/css/chat.css') }}" rel="stylesheet">
     <!-- fonawsome -->
     <link href="{{ asset('assets/css/fontawesome.min.css') }}" rel="stylesheet">
+      <!-- Dropify CSS -->
+      <link rel="stylesheet" href="{{ asset('assets/css/dropify.css')}}" />
     <!-- Styles -->
     @include('tutor.layouts.css')
 
@@ -39,6 +41,13 @@
      <script src="{{ asset('assets/js/subject.js') }}"></script>
      <script src="{{ asset('assets/js/homePage.js') }}"></script>
      <script src="{{ asset('assets/js/clander.js') }}"></script>
+     <script src="{{ asset('assets/js/dropify.js')}}"></script>
+     <script src="{{ asset('assets/js/multiselect.js')}}"></script>
 
+<script>
+      $(document).ready(function(){
+        $(".dropify").dropify();
+    })
+</script>
 </body>
 </html>

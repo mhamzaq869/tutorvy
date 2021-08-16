@@ -1,5 +1,42 @@
 @extends('tutor.layouts.app')
+<style>
+    .searchBtn{
+        position: absolute;
+    right: 23px;
+    top: 10px;
+    color:#00132D;
+}
+.h-auto{
+    height:auto !important;
+}
+.appOpt{
+    padding-top: 8px;
+    /* float: right; */
+    padding-left: 12px;
+    color:#00132D;
+    font-size:24px;
 
+}
+.badge{
+    position: absolute;
+    right: -28px;
+    top: -15px;
+    z-index:9;
+}
+.badge-new{
+    background:#FAAF3A;
+    color:#fff;
+}
+.badge-pending{
+    background:#65A5ff;
+    color:#fff;
+
+}
+.badge-approve{
+    background:#0ace36b0;
+
+}
+</style>
 @section('content')
  <!-- top Fixed navbar End -->
  <section>
@@ -19,50 +56,66 @@
                         <p class="heading-third mt-5">My Subjects</p>
                         <div class="row">
                             @foreach (Auth::user()->teach as $teach)
-                            <div class="col-md-2">
-                                <div class="cards d-flex shadow">
-
-                                        <p class="heading-forth " style="margin-top: 35px;">{{$teach->subject->name}}</p>
-                                        <p class="view-bookings mt-auto">Add</p>
-
+                            <div class="col-md-2 p-0 ml-2" >
+                                <div class="card-deck " style="width: 100%;">
+                                    <div class="card h-auto card-shadow p-0">
+                                        <div class="card-body ">
+                                            <span class="badge badge-pill badge-approve mt-1">Approved</span>
+                                            <div class="" style="display: flex;">
+                                                <p class="heading-fifth mr-3 pt-2 mb-0" >{{$teach->subject->name}}</p>
+                                                <a href="#" class="view-bookings mb-0 text-decoration-none">Add</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-
                             </div>
                             @endforeach
                         </div>
                     </div>
+                    <div class="container-fluid">
+                        <p class="heading-first mt-3 ">Pending Subjects</p>
+                        <div class="row">
 
+
+                            <div class="card-deck " style="width: 100%;">
+                                <div class="col-md-2 p-0 ml-2" >
+                                    <div class="  card h-auto card-shadow p-0">
+                                        <div class="card-body ">
+                                            <span class="badge badge-pill badge-new mt-1">Pending</span>
+                                            <div class="" style="display: flex;">
+                                                <p class="heading-fifth mr-3 pt-2 mb-0" >Chemistry</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Cards -->
                     <div class="container-fluid">
                         <p class="heading-first mt-3 ">Add subjects</p>
+                        <input class="ml-3 mr-3 form-control w-25 mb-4 " type="search" placeholder="Type a name"
+                            aria-label="Search" id="search">
                         <div class="row">
-
-                            <input class="ml-3 mr-3 form-control w-25 mb-4 " type="search" placeholder="Type a name"
-                                aria-label="Search" id="search">
-                            <div class="card-deck ml-1 mr-1" style="width: 100%;">
-                                @foreach ($subjects as $subject)
-                                <div class="col-md-2  " style="padding-right: 0;">
-                                    <div class=" cards card-shadow ">
-                                        <div class="card-body ">
-                                            <h4 class="card-title" style="visibility: hidden;position: absolute;">
-                                                {{$subject->name}}
-                                            </h4>
-                                            <img src="../assets/images/ico/botal-ico.png" alt="botal" style="width: 45px;">
-                                            <img src="../assets/images/ico/3dot.png" alt="botal"
-                                                style="width: 25px;float: right;">
-                                            <div class="" style="display: flex;">
-                                                <p class="heading-fifth mr-3" style="margin-top: 30px;"> {{$subject->name}}</p>
-                                                <p class="view-bookings " style="margin-top: 30px;">Add</p>
-
+                            @foreach ($subjects as $i => $subject)
+                             @if ((Auth::user()->teach[$i]->subject_id ?? null) != $subject->id)
+                                <div class="col-md-2 p-0 ml-2" >
+                                    <div class="card-deck " style="width: 100%;">
+                                        <div class="card h-auto card-shadow p-0">
+                                            <div class="card-body ">
+                                                <span class="badge badge-pill  badge-pending mt-1">New</span>
+                                                <div class="" style="display: flex;">
+                                                    <p class="heading-fifth mr-3 pt-2 mb-0" >{{$subject->name}}</p>
+                                                    <a href="#"><p class="view-bookings mb-0" >Add</p></a>
+                                                </div>
                                             </div>
-
                                         </div>
                                     </div>
-
                                 </div>
+                                @endif
+
                             @endforeach
 
-                        </div>
                     </div>
 
                 </div>

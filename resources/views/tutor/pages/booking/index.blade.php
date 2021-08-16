@@ -1,5 +1,9 @@
 @extends('tutor.layouts.app')
+<style>
 
+
+  
+</style>
 @section('content')
  <!-- top Fixed navbar End -->
  <section>

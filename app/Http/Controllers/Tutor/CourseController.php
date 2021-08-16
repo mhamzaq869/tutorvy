@@ -117,9 +117,7 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-
         $course = Course::with('outline')->find($id);
-
         return view('tutor.pages.courses.edit',compact('course'));
     }
 
