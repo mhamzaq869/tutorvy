@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Admin\Subject;
+use App\Models\Admin\SubjectCategory;
 
 class Assessment extends Model
 {
@@ -37,6 +38,10 @@ class Assessment extends Model
         return $this->belongsTo(Assessment::class);
     }
 
+    public function subjectCategory()
+    {
+        return $this->belongsTo(SubjectCategory::class);
+    }
     public function getSubNameAttribute()
     {
         return $this->attributes['sub_name'] = Subject::find($this->subject_id)->name;

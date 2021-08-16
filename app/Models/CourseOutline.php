@@ -1,31 +1,28 @@
 <?php
 
-namespace App\Models\General;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Course;
 
-class Institute extends Model
+class CourseOutline extends Model
 {
     use HasFactory;
 
-     /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-
     protected $fillable = [
-        'name',
-        'country',
-        'country_code',
-        'inst_domain',
+        'course_level_id',
+        'title',
+        'explain',
     ];
 
-
-    public function education()
+    public function course()
     {
-        return $this->hasMany(Education::class);
+        return $this->belongsTo(Course::class);
     }
-
 }

@@ -31,7 +31,15 @@
     <!-- css -->
     <link href="{{asset('assets/css/tutor-asset.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/subject.css')}}" rel="stylesheet">
-
+<style>
+    .card_test{
+        margin-left: 300px;
+        margin-right: 300px;   
+        box-shadow: 0 16px 16px -22px #777;
+        border: #00000005;border-radius: 8px;
+    }
+    
+</style>
 </head>
 
 <body style="background-color: #FBFBFB;">
@@ -42,11 +50,11 @@
                 <div class="logo text-center mt-5 mb-5">
                     <img src="{{asset('assets/images/logo/logo.png')}}" alt="logo">
                 </div>
-                <div class="card"
-                    style="margin-left: 300px;margin-right: 300px;   box-shadow: 0 16px 16px -22px #777;border: #00000005;border-radius: 8px;">
+                <div class="card card_test mb-5"
+                    style="">
                     <div class="container mt-4 ">
                         <p class="heading-third ml-5">
-                            Write down 3 questions and their awnsers
+                            Write down 3 questions and their awnsers in your words
                         </p>
                         <p class="heading-sixth keep-res ml-5">
                             Keep in mind, we will analyze you by your questions and answers so, write <br /> good and
@@ -101,7 +109,7 @@
                                 </div>
                             </div>
                             <button type="button" data-toggle="modal" data-target="#exampleModalCenter"
-                                class="schedule-btn mb-5 mt-4"
+                                class="schedule-btn mb-4 mt-4"
                                 style="width: 100px;float: right;margin-right: 50px;">
                                 Submit
                             </button>

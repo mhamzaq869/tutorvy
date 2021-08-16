@@ -24,6 +24,7 @@ use App\Http\Controllers\Tutor\BookingController;
 use App\Http\Controllers\Tutor\CalendarController;
 use App\Http\Controllers\Tutor\ClassController;
 use App\Http\Controllers\Tutor\SubjectController as TutorSubjectController;
+use App\Http\Controllers\Tutor\CourseController as TutorCourseController;
 use App\Http\Controllers\Tutor\HistoryController;
 use App\Http\Controllers\Tutor\PaymentController;
 use App\Http\Controllers\Tutor\SettingController as TutorSettingController;
@@ -35,6 +36,7 @@ use App\Http\Controllers\Student\TutorController as StudentTutorController;
 use App\Http\Controllers\Tutor\ChatController;
 use App\Http\Controllers\Student\ChatController as StdChatController;
 use App\Http\Controllers\General\GenChatController;
+use App\Http\Controllers\Frontend\TutorController as FrontTutorController;
 
 
 /*
@@ -65,6 +67,8 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
     Route::get('/student/profile/{id}',[StudentController::class,'profile'])->name('admin.studentProfile');
 
     Route::get('/course',[CourseController::class,'index'])->name('admin.course');
+    Route::get('/course-request',[CourseController::class,'courseRequest'])->name('admin.course-request');
+    Route::get('/course-profile',[CourseController::class,'courseProfile'])->name('admin.course-profile');
     Route::get('/subject',[SubjectController::class,'index'])->name('admin.subject');
     Route::get('/website',[WebsiteController::class,'index'])->name('admin.website');
     Route::get('/report',[ReportController::class,'index'])->name('admin.report');
@@ -105,6 +109,13 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::view('/skip','tutor.skip')->name('skip');
     Route::get('/assessment/{id}',[AssessmentController::class,'index'])->name('tutor.test');
     Route::post('/assessment',[AssessmentController::class,'store'])->name('tutor.assessment');
+
+    //Course CRUD
+    Route::get('/course',[TutorCourseController::class,'index'])->name('tutor.course');
+    Route::get('/addcourse', [TutorCourseController::class,'create'])->name('tutor.addcourse');
+    Route::post('/srtorecourse', [TutorCourseController::class,'store'])->name('tutor.storecourse');
+    Route::get('/course/{id}/edit', [TutorCourseController::class,'edit'])->name('tutor.course.edit');
+    Route::post('/course/{id}/update', [TutorCourseController::class,'update'])->name('tutor.course.update');
 });
 
 /*
@@ -156,12 +167,12 @@ Route::post('/validate_otp',[ResetPasswordController::class,'checkOtp'])->name('
 Route::view('/resetPassword','auth.reset')->name('reset.password');
 Route::post('/updatePassword',[ResetPasswordController::class,'updatePassword'])->name('update.password');
 Route::post('/resendOtp',[ResetPasswordController::class,'resendOtp'])->name('resend.otp');
-// Route::post('/logged',[LoginController::class,'logged'])->name('logged')->middleware('guest');;
 Route::view('/','welcome');
 Route::view('/tutor','frontend.tutor');
 Route::view('/student','frontend.student');
 Route::view('/subject','frontend.subject');
 Route::view('/course','frontend.course');
+Route::get('/findtutor',[FrontTutorController::class,'index']);
 
 /*
 |--------------------------------------------------------------------------

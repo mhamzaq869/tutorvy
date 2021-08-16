@@ -98,6 +98,16 @@
             color:#00132D;
             font-size:22px;
         }
+        .activeDot {
+    width: 14px;
+    border: 2px solid #fff;
+    position: relative;
+    height: 14px;
+    right: 9px;
+    top: 39px;
+    background: green;
+    border-radius: 50%;
+}
     </style>
 
     <div class="content" style="width: 100%;background-color: #FBFBFB !important;">

@@ -16,6 +16,8 @@
     <link href="{{ asset('assets/css/chat.css') }}" rel="stylesheet">
     <!-- fonawsome -->
     <link href="{{ asset('assets/css/fontawesome.min.css') }}" rel="stylesheet">
+      <!-- Dropify CSS -->
+      <link rel="stylesheet" href="{{ asset('assets/css/dropify.css')}}" />
     <!-- Styles -->
     @include('tutor.layouts.css')
 
@@ -36,12 +38,22 @@
      <!-- custom js -->
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
      <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
+    
      <script src="{{ asset('assets/js/mobile.js') }}"></script>
      <script src="{{ asset('assets/js/history.js') }}"></script>
      <script src="{{ asset('assets/js/subject.js') }}"></script>
      <script src="{{ asset('assets/js/homePage.js') }}"></script>
      <script src="{{ asset('assets/js/clander.js') }}"></script>
+
+     <script src="{{ asset('assets/js/dropify.js')}}"></script>
+     <script src="{{ asset('assets/js/course.js')}}"></script>
+
      @include('js_files.chat')
 
+<script>
+      $(document).ready(function(){
+        $(".dropify").dropify();
+    })
+</script>
 </body>
 </html>

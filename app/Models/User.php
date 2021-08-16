@@ -44,6 +44,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'role',
         'status',
     ];
+
+
     protected $appends = ['address','status_text','day','month','year','subjects'];
 
     /**
@@ -94,6 +96,18 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Teach::class);
     }
+    public function education()
+    {
+        return $this->hasMany(Education::class);
+    }
+    public function professional()
+    {
+        return $this->hasMany(Professional::class);
+    }
+    public function course()
+    {
+        return $this->hasMany(Course::class);
+    }
 
      /**
      * Accessor ot Mutator
@@ -115,14 +129,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->attributes['year'] = date('y',strtotime($this->dob));
     }
 
-    public function education()
-    {
-        return $this->hasMany(Education::class);
-    }
-    public function professional()
-    {
-        return $this->hasMany(Professional::class);
-    }
+
     public function getAddressAttribute(){
 
         $city = $this->city != null ? $this->city : '---' ;

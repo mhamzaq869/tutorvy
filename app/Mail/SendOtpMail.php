@@ -11,15 +11,14 @@ class SendOtpMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $data;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct()
     {
-        $this->data = $data;
+
     }
 
     /**
@@ -29,6 +28,7 @@ class SendOtpMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.otpcode');
+        return $this->view('mail.otpcode')
+                    ->subject('Verification code for Verify Your Email Address');
     }
 }
