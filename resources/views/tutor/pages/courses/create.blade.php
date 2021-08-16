@@ -2,7 +2,11 @@
 
 @section('content')
 <link href="{{ asset('assets/css/course.css') }}" rel="stylesheet">
-
+<style>
+    .dropify-wrapper{
+        height:120px;
+    }
+</style>
   <!--section start  -->
 
   <div class="container-fluid pb-4">
@@ -49,30 +53,34 @@
             </div>
             <div class="col-md-5 mt-5">
                 <div class="mt-5"><br />
-                    <div class="bg-edit">
-                        <div class="text-center">
+                    <div class="bg-edit text-center"> 
+                            <label for="" class="pt-2 ">Intro Video</label>
+                            <input type="file" class="dropify" name="video" id="video" >
+                        <!-- <div class="text-center">
                             <div class="text-center">
-                                <input type="file" id="file" name="video" class="repeat-image-2" />
+                                <input type="file" id="file" name="video" class="dropify" />
                                 <label for="file">
-                                    <img src="../assets/img/ico/Icon-feather-image.svg" class="repeat-image-2 mt-2"
+                                    <img src="{{asset('admin/assets/img/ico/Icon-feather-image.svg') }}" class="repeat-image-2 mt-2"
                                         style="height: 63px;" alt="repeat" />
                                 </label>
                             </div>
                             <p class="paragraph-text">Upload intro video</p>
-                        </div>
+                        </div> -->
                     </div>
-                    <div class="bg-edit mt-4">
-                        <div class="text-center">
-                            <!-- <img src="../assets/img/ico/Icon-feather-upload-cloud.svg" alt="asd" class="mt-4" /> -->
+                    <div class="bg-edit mt-4 text-center">
+                        <label for=""  class="pt-2 ">Course Thumbnail</label>
+                            <input type="file" class="dropify" name="thumbnail" id="thumbnail" data-default-file="https://www.youtube.com/watch?v=bUZZvsuRHHY">
+                        <!-- <div class="text-center">
+                            <img src="../assets/img/ico/Icon-feather-upload-cloud.svg" alt="asd" class="mt-4" />
                             <div class="text-center">
                                 <input type="file" id="file" name="thumbnail" class="repeat-image-2" />
                                 <label for="file">
-                                    <img src="../assets/img/ico/Icon-feather-upload-cloud.svg"
+                                    <img src="{{asset('admin/assets/img/ico/Icon-feather-upload-cloud.svg') }}"
                                         class="repeat-image-2 mt-2" style="height: 63px;" alt="repeat" />
                                 </label>
                             </div>
                             <p class="paragraph-text">Upload course thumbnail </p>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -121,7 +129,7 @@
                             <div class="col-md-1 ">
                                 <span class="checkbox-edit"> <input type="checkbox" name="basic_home_work" id=""> </span>
                             </div>
-                            <div class="col-md-11 m-0 p-0 pl-2">
+                            <div class="col-md-10 ">
                                 <span class="paragraph-text"> Home work</span>
                             </div>
                         </div>
@@ -129,7 +137,7 @@
                             <div class="col-md-1">
                                 <span class="checkbox-edit"> <input type="checkbox" name="basic_quiz" id=""> </span>
                             </div>
-                            <div class="col-md-11 m-0 p-0 pl-2">
+                            <div class="col-md-10 ">
                                 <span class="paragraph-text"> Quiz</span>
                             </div>
                         </div>
@@ -137,7 +145,7 @@
                             <div class="col-md-1">
                                 <span class="checkbox-edit"> <input type="checkbox"  name="basic_final" id=""> </span>
                             </div>
-                            <div class="col-md-11 m-0 p-0 pl-2">
+                            <div class="col-md-10 ">
                                 <span class="paragraph-text"> Final test</span>
                             </div>
                         </div>
@@ -145,7 +153,7 @@
                             <div class="col-md-1">
                                 <span class="checkbox-edit"> <input type="checkbox"  name="basic_one_one" id=""> </span>
                             </div>
-                            <div class="col-md-11 m-0 p-0 pl-2">
+                            <div class="col-md-10 ">
                                 <span class="paragraph-text"> One to one session with tutor</span>
                             </div>
                         </div>
@@ -153,7 +161,7 @@
                             <div class="col-md-1">
                                 <span class="checkbox-edit"> <input type="checkbox"  name="basic_note" id=""> </span>
                             </div>
-                            <div class="col-md-11 m-0 p-0 pl-2">
+                            <div class="col-md-10 ">
                                 <span class="paragraph-text"> Note</span>
                             </div>
                         </div>
@@ -183,16 +191,22 @@
                                 <option>2 hour</option>
                             </select>
                         </div>
-                        <div class="text-center mt-4">
+                        <h3 class="mt-3 pb-2">
+                        Price
+                    </h3>
+                    <div class="input-options mt-2">
+                       <input type="text" class="form-control" placeholder="$23">
+                    </div>
+                        <!-- <div class="text-center mt-4">
                             <input type="submit" class="schedule-btn w-50 " value="Submit course" />
-                        </div>
+                        </div> -->
 
                 </div>
 
                 <div class="col-md-4 border-right mb-1">
 
                     <div class="text-center heading-forth">
-                        standard
+                        Standard
                     </div>
                     <div class="adddivs-1">
                         <div class="input-serachs mt-2">
@@ -219,7 +233,7 @@
                         <div class="col-md-1 ">
                             <span class="checkbox-edit"> <input type="checkbox" name="standard_home_work" id=""> </span>
                         </div>
-                        <div class="col-md-11 m-0 p-0 pl-2">
+                        <div class="col-md-10 ">
                             <span class="paragraph-text"> Home work</span>
                         </div>
                     </div>
@@ -227,7 +241,7 @@
                         <div class="col-md-1">
                             <span class="checkbox-edit"> <input type="checkbox" name="standard_quiz" id=""> </span>
                         </div>
-                        <div class="col-md-11 m-0 p-0 pl-2">
+                        <div class="col-md-10 ">
                             <span class="paragraph-text"> Quiz</span>
                         </div>
                     </div>
@@ -235,7 +249,7 @@
                         <div class="col-md-1">
                             <span class="checkbox-edit"> <input type="checkbox"  name="standard_final" id=""> </span>
                         </div>
-                        <div class="col-md-11 m-0 p-0 pl-2">
+                        <div class="col-md-10 ">
                             <span class="paragraph-text"> Final test</span>
                         </div>
                     </div>
@@ -243,7 +257,7 @@
                         <div class="col-md-1">
                             <span class="checkbox-edit"> <input type="checkbox"  name="standard_one_one" id=""> </span>
                         </div>
-                        <div class="col-md-11 m-0 p-0 pl-2">
+                        <div class="col-md-10 ">
                             <span class="paragraph-text"> One to one session with tutor</span>
                         </div>
                     </div>
@@ -251,7 +265,7 @@
                         <div class="col-md-1">
                             <span class="checkbox-edit"> <input type="checkbox"  name="standard_note" id=""> </span>
                         </div>
-                        <div class="col-md-11 m-0 p-0 pl-2">
+                        <div class="col-md-10 ">
                             <span class="paragraph-text"> Note</span>
                         </div>
                     </div>
@@ -281,15 +295,21 @@
                             <option>2 hour</option>
                         </select>
                     </div>
-                    <div class="text-center mt-4">
-                        <input type="submit" class="schedule-btn w-50 " value="Submit course" />
+                    <h3 class="mt-3 pb-2">
+                        Price
+                    </h3>
+                    <div class="input-options mt-2">
+                       <input type="text" class="form-control" placeholder="$23">
                     </div>
+                    <!-- <div class="text-center mt-4">
+                        <input type="submit" class="schedule-btn w-50 " value="Submit course" />
+                    </div> -->
 
                 </div>
                 <div class="col-md-4 border-right mb-1">
 
                     <div class="text-center heading-forth">
-                        advance
+                        Advance
                     </div>
                     <div class="adddivs-1">
                         <div class="input-serachs mt-2">
@@ -316,7 +336,7 @@
                         <div class="col-md-1 ">
                             <span class="checkbox-edit"> <input type="checkbox" name="advance_home_work" id=""> </span>
                         </div>
-                        <div class="col-md-11 m-0 p-0 pl-2">
+                        <div class="col-md-10 ">
                             <span class="paragraph-text"> Home work</span>
                         </div>
                     </div>
@@ -324,7 +344,7 @@
                         <div class="col-md-1">
                             <span class="checkbox-edit"> <input type="checkbox" name="advance_quiz" id=""> </span>
                         </div>
-                        <div class="col-md-11 m-0 p-0 pl-2">
+                        <div class="col-md-10 ">
                             <span class="paragraph-text"> Quiz</span>
                         </div>
                     </div>
@@ -332,7 +352,7 @@
                         <div class="col-md-1">
                             <span class="checkbox-edit"> <input type="checkbox"  name="advance_final" id=""> </span>
                         </div>
-                        <div class="col-md-11 m-0 p-0 pl-2">
+                        <div class="col-md-10 ">
                             <span class="paragraph-text"> Final test</span>
                         </div>
                     </div>
@@ -340,7 +360,7 @@
                         <div class="col-md-1">
                             <span class="checkbox-edit"> <input type="checkbox"  name="advance_one_one" id=""> </span>
                         </div>
-                        <div class="col-md-11 m-0 p-0 pl-2">
+                        <div class="col-md-10 ">
                             <span class="paragraph-text"> One to one session with tutor</span>
                         </div>
                     </div>
@@ -348,7 +368,7 @@
                         <div class="col-md-1">
                             <span class="checkbox-edit"> <input type="checkbox"  name="advance_note" id=""> </span>
                         </div>
-                        <div class="col-md-11 m-0 p-0 pl-2">
+                        <div class="col-md-10 ">
                             <span class="paragraph-text"> Note</span>
                         </div>
                     </div>
@@ -378,14 +398,30 @@
                             <option>2 hour</option>
                         </select>
                     </div>
+                    <h3 class="mt-3 pb-2">
+                        Price
+                    </h3>
+                    <div class="input-options mt-2">
+                       <input type="text" class="form-control" placeholder="$23">
+                    </div>
+                    <!-- <div class="text-center mt-4">
+                        <input type="submit" class="schedule-btn w-50 " value="Submit course" />
+                    </div> -->
+
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
                     <div class="text-center mt-4">
                         <input type="submit" class="schedule-btn w-50 " value="Submit course" />
                     </div>
-
                 </div>
+                <div class="col-md-4"></div>
             </div>
         </div>
     </form>
 </div>
 <!-- end section -->
+<script>
+  
+</script>
 @endsection

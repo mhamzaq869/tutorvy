@@ -183,12 +183,12 @@
     font-weight: 400;
     color: #00132D;
 }
+
 .number-4 {
     font-size: 14px;
     font-family: "Poppins";
     font-weight: 400;
     color: #00132D;
-
 }
 
 .line-image {
@@ -320,23 +320,31 @@
     stroke-miterlimit: 10;
 }
 
+
 /* Transparent box ensuring arms center properly. */
 
 .sizing-box {
     fill: none;
 }
 
+
 /* Make all arms rotate around the same center point. */
+
 
 /* Optional: Use transition for animation. */
 
-#hour, #minute, #second {
+#hour,
+#minute,
+#second {
     transform-origin: 300px 300px;
     transition: transform .5s ease-in-out;
 }
-.book-icons{
+
+.book-icons {
     height: 70px;
 }
+
+
 /* how its work section */
 
 .text-hows {
@@ -478,7 +486,7 @@
 }
 
 .card:hover {
-    transform: scale(0.9);
+    /* transform: scale(0.9); */
     box-shadow: 1px 1px 15px rgb(207, 204, 204);
 }
 
@@ -571,10 +579,6 @@
     width: 50%;
     margin: auto;
     border-radius: 8px;
-
-
-
-
 }
 
 .input-subs {
@@ -583,7 +587,6 @@
     padding-bottom: 30px;
     width: 100%;
     margin: auto;
-
 }
 
 .carousel-control-next-icon {
@@ -602,6 +605,7 @@
     background-color: transparent;
 }
 
+
 /* Style the buttons inside the tab */
 
 .tab button {
@@ -618,17 +622,20 @@
     padding: 10px 1px;
 }
 
+
 /* Change background color of buttons on hover */
 
 .tab button:hover {
     color: #1173FF;
 }
 
+
 /* Create an active/current tablink class */
 
 .tab button.active {
     color: #1173FF;
 }
+
 
 /* Style the tab content */
 
@@ -663,6 +670,7 @@
     display: none;
 }
 
+
 /* media query */
 
 @media screen and (max-width: 600px) {
@@ -675,12 +683,12 @@
     .text-class {
         font-size: 28px;
         margin-top: 25px;
-
     }
-    .text-xs-center-1{
+    .text-xs-center-1 {
         text-align: center !important;
     }
 }
+
 
 /*homepage media query */
 
@@ -716,6 +724,7 @@
         margin-top: 70px !important;
     }
 }
+
 
 /* image icon respoive media query*/
 
@@ -835,6 +844,7 @@
     }
 }
 
+
 /* mobile responsive */
 
 @media screen and (max-width: 600px) {
@@ -857,8 +867,8 @@
         left: 95px;
     }
     .take-demo {
-margin-top: -50px;
-padding-bottom: 100px;
+        margin-top: -50px;
+        padding-bottom: 100px;
     }
     .number-2 {
         margin-left: 20px;
@@ -885,7 +895,7 @@ padding-bottom: 100px;
         padding: 0px;
         /* background-color: red; */
     }
-    ::-webkit-scrollbar {
+     ::-webkit-scrollbar {
         display: none;
     }
     .flex-scroll {
@@ -970,35 +980,35 @@ padding-bottom: 100px;
         width: 75% !important;
         margin: auto 90px !important;
     }
-  .input-sub input{
-      margin-left: 5px;
-  }
-  .book-icons{
-      height: 40px;
-  }
-  .number-4 {
-    font-size: 10px;
-    font-family: "Poppins";
-    font-weight: 400;
-    color: #00132D;
-    text-align: center !important;
-    margin-left: 10px;
-}
-.div-center-icons{
-    text-align: center !important;
-    margin: auto 20px !important;
-}
-.refund-text{
-    margin:0px;
-}
-.bg-tutor{
-margin-left: 20px;
-margin-right: 20px;
-}
-#section-tutor{
-    height: 400px;
-}
-.course-text{
-    text-align: left !important;
-}
+    .input-sub input {
+        margin-left: 5px;
+    }
+    .book-icons {
+        height: 40px;
+    }
+    .number-4 {
+        font-size: 10px;
+        font-family: "Poppins";
+        font-weight: 400;
+        color: #00132D;
+        text-align: center !important;
+        margin-left: 10px;
+    }
+    .div-center-icons {
+        text-align: center !important;
+        margin: auto 20px !important;
+    }
+    .refund-text {
+        margin: 0px;
+    }
+    .bg-tutor {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    #section-tutor {
+        height: 400px;
+    }
+    .course-text {
+        text-align: left !important;
+    }
 }

@@ -45,7 +45,7 @@
                                     <option value="6">6 Months</option>
                                     <option value="12">12 Months</option>
                                 </select> -->
-                                <select class="form-select form-select-lg " id="day" name="day" data-select2-id="select2-data-day" tabindex="-1" aria-hidden="true">
+                                <select class="form-control form-select-lg " id="day" name="day" >
                                     <option value="">Select</option>
                                     <option value="1">1 Months</option>
                                     <option value="6">6 Months</option>
