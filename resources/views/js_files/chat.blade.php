@@ -16,17 +16,22 @@
         this.activeUsers = activeUsers
     })
     .joining(user => {
+        console.log('joining'+user.first_name)
+        $('#activeDot_'+user.id).removeClass('offlice');
+        
         this.activeUsers.push(user)
     })
     .leaving(user => {
+        console.log('leaving'+user)
+        $('#activeDot_'+user.id).addClass('offlice');
+
         this.activeUsers = this.activeUsers.filter(u => u.id != user.id);
     })
-    
+
     // Channel to send & listen message
 
     Echo.join(`App.User.{{Auth::user()->id}}`).here( users => {
-        console.log(users)
-        console.log('User is here')
+      
     })
     .listen('NewMessage', (event) => { 
         console.log(event)
@@ -59,6 +64,8 @@
                 $('#chatArea').append(msg);
 
             }
+            incrementUnseenMessagesCount(event.message.sender_id)
+
         // }
                 // this.incrementUnseenMessagesCount(event.message.sender_id)
                 // this.fireNotification()
@@ -157,6 +164,12 @@
                 }
             },
         });
+
+    }
+
+    function incrementUnseenMessagesCount(sender_id){
+
+        
 
     }
 

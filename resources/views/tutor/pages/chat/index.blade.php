@@ -99,15 +99,18 @@
             font-size:22px;
         }
         .activeDot {
-    width: 14px;
-    border: 2px solid #fff;
-    position: relative;
-    height: 14px;
-    right: 9px;
-    top: 39px;
-    background: green;
-    border-radius: 50%;
-}
+            width: 14px;
+            border: 2px solid #fff;
+            position: relative;
+            height: 14px;
+            right: 9px;
+            top: 39px;
+            background: green;
+            border-radius: 50%;
+        }
+        .offlice{
+            background: gray !important;
+        }
     </style>
 
     <div class="content" style="width: 100%;background-color: #FBFBFB !important;">
@@ -128,6 +131,7 @@
                             <a href="#" class="chatLeft" id="chatClient_1" onclick="selectUser(`{{$student->id}}`)">
                                 <div class="container-fluid m-0 p-0 img-chats">
                                     <img src="{{asset('admin/assets/img/logo/harram.jpg')}}" class="leftImg ml-1">
+                                    <span class="activeDot" id="activeDot_{{$student->id}}"></span>
                                     <div class="img-chat">
 
                                         <div class="row">
@@ -140,11 +144,11 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-10">
-                                                <p class="massage-client">It is a long distae... </p>
+                                                <p class="massage-client" id="recent_msg_{{$student->id}}">It is a long distae... </p>
 
                                             </div>
                                             <div class="col-md-2">
-                                                <span class="dot pl-2 ">2 </span>
+                                                <span class="dot pl-2 " id="unseen_msg_cnt_{{$student->id}}">2 </span>
                                             </div>
                                         </div>
                                     </div>
@@ -161,6 +165,7 @@
                                 <div class="container-fluid m-0 p-0 img-chats">
 
                                     <img src="{{ asset('admin/assets/img/logo/harram.jpg')}}">
+
                                     <div class="img-chat">
                                         <div class="row">
                                             <div class="col-12">
@@ -196,6 +201,13 @@
                     </div>
                     <div class="container-fluid mb-3">
                         <div class="search-type ">
+                        <div class="row">
+                            <div class="col-md-2 col-4">
+                            </div>
+                            <div class="col-md-10">
+                                <span class="text-muted" id="typingUser"></span>
+                            </div>
+                        </div>
                             <div class="row">
                                 <div class="col-md-2 col-4">
                                     <a href="#">
@@ -208,7 +220,7 @@
                                     </a>
                                 </div>
                                 <div class="col-md-10 col-8">
-                                    <span class="text-muted" id="typingUser"></span>
+                                    
                                     <form id="chat_form" action="{{ route('store.text') }}">
                                         
                                         <input type="search" id="msg" class="w-100" alt="message" onKeyUp="sendTypingEvent()">
