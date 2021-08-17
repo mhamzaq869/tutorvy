@@ -34,6 +34,9 @@
             text-align:center;
             font-size:30px !important;
         }
+        .card{
+            height:auto !important;
+        }
 </style>
 @section('content')
  <!--section start  -->
@@ -257,156 +260,387 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <span class="heading-fifth" style="font-weight: 600;">Timing</span>
+                                                <p class="paragraph-text-2 mt-1">2 weeks ( Tuesday, Wednesday, Thursday) - 2pm to
+                                                    4pm</p>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-0 w-100 div-1">
+                                            <div class="col-md-12">
+                                                <table class="table table-borderless">
+                                                    <thea>
+                                                        <tr>
+                                                            <th scope="col"></th>
+                                                            <th scope="col">Mon</th>
+                                                            <th scope="col"> &nbsp;&nbsp;&nbsp;Tue </th>
+                                                            <th scope="col">Wed</th>
+                                                            <th scope="col">Thu</th>
+                                                            <th scope="col">Fri</th>
+                                                            <th scope="col">Sat</th>
+                                                            <th scope="col">Sun</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <!-- classes table time and topics -->
+                                                            <tr>
+                                                                <td class="pt-4">
+                                                                    <span>2pm</span>
+                                                                    <p class="mt-5">4pm</p>
+                                                                </td>
+                            
+                                                                <td class="pt-4 pb-0"></td>
+                                                                <td class="m-0 p-0">
+                                                                    <div class="bg-color-apporve pl-2 pr-3 m-0 p-0">
+                                                                        <span class="heading-fifth">
+                                                                            Live class
+                                                                        </span>
+                                                                        <p class="paragraph-text-1">
+                                                                            2pm
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                            Jump start into
+                                                                            <br /> your live class with <br />
+                                                                            students.
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="m-0 p-0">
+                                                                    <div class="bg-color-apporve1 pl-2 pr-3 m-0 p-0">
+                                                                        <span class="heading-fifth">
+                                                                            Live class
+                                                                        </span>
+                                                                        <p class="paragraph-text-1">
+                                                                            2pm
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                            Jump start into
+                                                                            <br />your live class with <br />
+                                                                            students.
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                            
+                                                                <td class="m-0 p-0">
+                                                                    <div class="bg-color-apporve3 pl-2 pr-3 m-0 p-0">
+                                                                        <span class="heading-fifth">
+                                                                            Live class
+                                                                        </span>
+                                                                        <p class="paragraph-text-1">
+                                                                            2pm
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                            Jump start into
+                                                                            <br /> your live class with <br />
+                                                                            students.
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                            
+                            
+                                                            </tr>
+                            
+                                                        </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-5 pb-5">
+                                            <div class="col-md-4">
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">6 classes</span>
+                                                </div>
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">Home work</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">Quiz</span>
+                                                </div>
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">Final test</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="view-bookings" >
+                                                    $99
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="panel" id="two-panel">
                 
                                     <div class="container-fluid ">
                                         <div class="panel-title">Take-Away Skills</div>
-                                        <div class="container-fluid ">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <span class="heading-forth ml-2">Course outline</span>
-                
-                                                    <div id="main">
-                                                        <!-- first -->
-                                                        <div class="container-fluid m-0 p-0 border-bottom pb-3">
-                                                            <div class="accordion" id="faq">
-                                                                <div class="card m-0 p-0">
-                                                                    <div class="card-header" id="faqhead3">
-                                                                        <a href="#"
-                                                                            class=" bg-color btn-header-link collapsed"
-                                                                            data-toggle="collapse" data-target="#faq11"
-                                                                            aria-expanded="true" aria-controls="faq11">
-                                                                            <img class="mr-2"
-                                                                                src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                            Introduction to chemisty</a>
-                                                                    </div>
-                                                                    <div id="faq11" class="collapse border-radius"
-                                                                        aria-labelledby="faqhead3" data-parent="#faq">
-                                                                        <div class="card-body">
-                                                                            Anim pariatur cliche reprehenderit, enim
-                                                                            eiusmod high life accusamus terry
-                                                                            richardson.
-                                                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-12">
+                                                <span class="heading-forth ml-2">Course outline</span>
+            
+                                                <div id="main">
+                                                    <!-- first -->
+                                                    <div class="container-fluid m-0 p-0 border-bottom pb-3">
+                                                        <div class="accordion" id="faq">
+                                                            <div class="card m-0 p-0">
+                                                                <div class="card-header" id="faqhead3">
+                                                                    <a href="#"
+                                                                        class=" bg-color btn-header-link collapsed"
+                                                                        data-toggle="collapse" data-target="#faq11"
+                                                                        aria-expanded="true" aria-controls="faq11">
+                                                                        <img class="mr-2"
+                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                        Introduction to chemisty</a>
+                                                                </div>
+                                                                <div id="faq11" class="collapse border-radius"
+                                                                    aria-labelledby="faqhead3" data-parent="#faq">
+                                                                    <div class="card-body">
+                                                                        Anim pariatur cliche reprehenderit, enim
+                                                                        eiusmod high life accusamus terry
+                                                                        richardson.
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <!-- second -->
-                                                            <div class="accordion" id="faq">
-                                                                <div class="card m-0 p-0">
-                                                                    <div class="card-header" id="faqhead">
-                                                                        <a href="#"
-                                                                            class="bg-color btn-header-link collapsed"
-                                                                            data-toggle="collapse" data-target="#faq11"
-                                                                            aria-expanded="true" aria-controls="faq11">
-                                                                            <img class="mr-2"
-                                                                                src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                            Periodic table
-                                                                        </a>
-                                                                    </div>
-                                                                    <div id="faq11" class="collapse show border-radius"
-                                                                        aria-labelledby="faqhead3" data-parent="#faq11">
-                                                                        <div class="card-body">
-                                                                            Anim pariatur cliche reprehenderit, enim
-                                                                            eiusmod high life accusamus terry
-                                                                            richardson.
-                                                                        </div>
+                                                        </div>
+                                                        <!-- second -->
+                                                        <div class="accordion" id="faq">
+                                                            <div class="card m-0 p-0">
+                                                                <div class="card-header" id="faqhead">
+                                                                    <a href="#"
+                                                                        class="bg-color btn-header-link collapsed"
+                                                                        data-toggle="collapse" data-target="#faq11"
+                                                                        aria-expanded="true" aria-controls="faq11">
+                                                                        <img class="mr-2"
+                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                        Periodic table
+                                                                    </a>
+                                                                </div>
+                                                                <div id="faq11" class="collapse show border-radius"
+                                                                    aria-labelledby="faqhead3" data-parent="#faq11">
+                                                                    <div class="card-body">
+                                                                        Anim pariatur cliche reprehenderit, enim
+                                                                        eiusmod high life accusamus terry
+                                                                        richardson.
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <!-- third -->
-                                                            <div class="accordion" id="faq">
-                                                                <div class="card m-0 p-0">
-                                                                    <div class="card-header" id="faqhead3">
-                                                                        <a href="#"
-                                                                            class="bg-color btn-header-link collapsed"
-                                                                            data-toggle="collapse" data-target="#faq12"
-                                                                            aria-expanded="true" aria-controls="faq12">
-                                                                            <img class="mr-2"
-                                                                                src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                            Atomic structure
-                                                                        </a>
-                                                                    </div>
-                                                                    <div id="faq12" class="collapse border-radius"
-                                                                        aria-labelledby="faqhead3" data-parent="#faq">
-                                                                        <div class="card-body">
-                                                                            Anim pariatur cliche reprehenderit, enim
-                                                                            eiusmod high life accusamus terry
-                                                                            richardson.
-                                                                        </div>
+                                                        </div>
+                                                        <!-- third -->
+                                                        <div class="accordion" id="faq">
+                                                            <div class="card m-0 p-0">
+                                                                <div class="card-header" id="faqhead3">
+                                                                    <a href="#"
+                                                                        class="bg-color btn-header-link collapsed"
+                                                                        data-toggle="collapse" data-target="#faq12"
+                                                                        aria-expanded="true" aria-controls="faq12">
+                                                                        <img class="mr-2"
+                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                        Atomic structure
+                                                                    </a>
+                                                                </div>
+                                                                <div id="faq12" class="collapse border-radius"
+                                                                    aria-labelledby="faqhead3" data-parent="#faq">
+                                                                    <div class="card-body">
+                                                                        Anim pariatur cliche reprehenderit, enim
+                                                                        eiusmod high life accusamus terry
+                                                                        richardson.
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <!-- forth -->
-                                                            <div class="accordion" id="faq">
-                                                                <div class="card m-0 p-0">
-                                                                    <div class="card-header" id="faqhead3">
-                                                                        <a href="#"
-                                                                            class="bg-color btn-header-link collapsed"
-                                                                            data-toggle="collapse" data-target="#faq13"
-                                                                            aria-expanded="true" aria-controls="faq13">
-                                                                            <img class="mr-2"
-                                                                                src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                            Molecule structure</a>
-                                                                    </div>
-                                                                    <div id="faq13" class="collapse border-radius"
-                                                                        aria-labelledby="faqhead3" data-parent="#faq13">
-                                                                        <div class="card-body">
-                                                                            Anim pariatur cliche reprehenderit, enim
-                                                                            eiusmod high life accusamus terry
-                                                                            richardson.
-                                                                        </div>
+                                                        </div>
+                                                        <!-- forth -->
+                                                        <div class="accordion" id="faq">
+                                                            <div class="card m-0 p-0">
+                                                                <div class="card-header" id="faqhead3">
+                                                                    <a href="#"
+                                                                        class="bg-color btn-header-link collapsed"
+                                                                        data-toggle="collapse" data-target="#faq13"
+                                                                        aria-expanded="true" aria-controls="faq13">
+                                                                        <img class="mr-2"
+                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                        Molecule structure</a>
+                                                                </div>
+                                                                <div id="faq13" class="collapse border-radius"
+                                                                    aria-labelledby="faqhead3" data-parent="#faq13">
+                                                                    <div class="card-body">
+                                                                        Anim pariatur cliche reprehenderit, enim
+                                                                        eiusmod high life accusamus terry
+                                                                        richardson.
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <!-- fifth -->
-                                                            <div class="accordion" id="faq">
-                                                                <div class="card m-0 p-0">
-                                                                    <div class="card-header" id="faqhead3">
-                                                                        <a href="#"
-                                                                            class="bg-color btn-header-link collapsed"
-                                                                            data-toggle="collapse" data-target="#faq14"
-                                                                            aria-expanded="true" aria-controls="faq14">
-                                                                            <img class="mr-2"
-                                                                                src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                            Chemical bonds</a>
-                                                                    </div>
-                                                                    <div id="faq14" class="collapse border-radius"
-                                                                        aria-labelledby="faqhead3" data-parent="#faq14">
-                                                                        <div class="card-body">
-                                                                            Anim pariatur cliche reprehenderit, enim
-                                                                            eiusmod high life accusamus terry
-                                                                            richardson.
-                                                                        </div>
+                                                        </div>
+                                                        <!-- fifth -->
+                                                        <div class="accordion" id="faq">
+                                                            <div class="card m-0 p-0">
+                                                                <div class="card-header" id="faqhead3">
+                                                                    <a href="#"
+                                                                        class="bg-color btn-header-link collapsed"
+                                                                        data-toggle="collapse" data-target="#faq14"
+                                                                        aria-expanded="true" aria-controls="faq14">
+                                                                        <img class="mr-2"
+                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                        Chemical bonds</a>
+                                                                </div>
+                                                                <div id="faq14" class="collapse border-radius"
+                                                                    aria-labelledby="faqhead3" data-parent="#faq14">
+                                                                    <div class="card-body">
+                                                                        Anim pariatur cliche reprehenderit, enim
+                                                                        eiusmod high life accusamus terry
+                                                                        richardson.
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <!-- sixth -->
-                                                            <div class="accordion" id="faq">
-                                                                <div class="card m-0 p-0">
-                                                                    <div class="card-header" id="faqhead3">
-                                                                        <a href="#"
-                                                                            class="bg-color btn-header-link collapsed"
-                                                                            data-toggle="collapse" data-target="#faq15"
-                                                                            aria-expanded="true" aria-controls="faq15">
-                                                                            <img class="mr-2"
-                                                                                src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                            Chemistry in 21 century
-                                                                        </a>
-                                                                    </div>
-                                                                    <div id="faq15" class="collapse border-radius show"
-                                                                        aria-labelledby="faqhead3" data-parent="#faq">
-                                                                        <div class="card-body">
-                                                                            Anim pariatur cliche reprehenderit, enim
-                                                                            eiusmod high life accusamus terry
-                                                                            richardson.
-                                                                        </div>
+                                                        </div>
+                                                        <!-- sixth -->
+                                                        <div class="accordion" id="faq">
+                                                            <div class="card m-0 p-0">
+                                                                <div class="card-header" id="faqhead3">
+                                                                    <a href="#"
+                                                                        class="bg-color btn-header-link collapsed"
+                                                                        data-toggle="collapse" data-target="#faq15"
+                                                                        aria-expanded="true" aria-controls="faq15">
+                                                                        <img class="mr-2"
+                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                        Chemistry in 21 century
+                                                                    </a>
+                                                                </div>
+                                                                <div id="faq15" class="collapse border-radius show"
+                                                                    aria-labelledby="faqhead3" data-parent="#faq">
+                                                                    <div class="card-body">
+                                                                        Anim pariatur cliche reprehenderit, enim
+                                                                        eiusmod high life accusamus terry
+                                                                        richardson.
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-0 w-100 div-1">
+                                            <div class="col-md-12">
+                                                <table class="table table-borderless">
+                                                    <thea>
+                                                        <tr>
+                                                            <th scope="col"></th>
+                                                            <th scope="col">Mon</th>
+                                                            <th scope="col"> &nbsp;&nbsp;&nbsp;Tue </th>
+                                                            <th scope="col">Wed</th>
+                                                            <th scope="col">Thu</th>
+                                                            <th scope="col">Fri</th>
+                                                            <th scope="col">Sat</th>
+                                                            <th scope="col">Sun</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <!-- classes table time and topics -->
+                                                            <tr>
+                                                                <td class="pt-4">
+                                                                    <span>2pm</span>
+                                                                    <p class="mt-5">4pm</p>
+                                                                </td>
+                            
+                                                                <td class="pt-4 pb-0"></td>
+                                                                <td class="m-0 p-0">
+                                                                    <div class="bg-color-apporve pl-2 pr-3 m-0 p-0">
+                                                                        <span class="heading-fifth">
+                                                                            Live class
+                                                                        </span>
+                                                                        <p class="paragraph-text-1">
+                                                                            2pm
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                            Jump start into
+                                                                            <br /> your live class with <br />
+                                                                            students.
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="m-0 p-0">
+                                                                    <div class="bg-color-apporve1 pl-2 pr-3 m-0 p-0">
+                                                                        <span class="heading-fifth">
+                                                                            Live class
+                                                                        </span>
+                                                                        <p class="paragraph-text-1">
+                                                                            2pm
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                            Jump start into
+                                                                            <br />your live class with <br />
+                                                                            students.
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                            
+                                                                <td class="m-0 p-0">
+                                                                    <div class="bg-color-apporve3 pl-2 pr-3 m-0 p-0">
+                                                                        <span class="heading-fifth">
+                                                                            Live class
+                                                                        </span>
+                                                                        <p class="paragraph-text-1">
+                                                                            2pm
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                            Jump start into
+                                                                            <br /> your live class with <br />
+                                                                            students.
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                            
+                            
+                                                            </tr>
+                            
+                                                        </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-5 pb-5">
+                                            <div class="col-md-4">
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">6 classes</span>
+                                                </div>
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">Home work</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">Quiz</span>
+                                                </div>
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">Final test</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="view-bookings" >
+                                                    $97
                                                 </div>
                                             </div>
                                         </div>
@@ -562,132 +796,120 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="row mt-0 w-100 div-1">
+                                            <div class="col-md-12">
+                                                <table class="table table-borderless">
+                                                    <thea>
+                                                        <tr>
+                                                            <th scope="col"></th>
+                                                            <th scope="col">Mon</th>
+                                                            <th scope="col"> &nbsp;&nbsp;&nbsp;Tue </th>
+                                                            <th scope="col">Wed</th>
+                                                            <th scope="col">Thu</th>
+                                                            <th scope="col">Fri</th>
+                                                            <th scope="col">Sat</th>
+                                                            <th scope="col">Sun</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <!-- classes table time and topics -->
+                                                            <tr>
+                                                                <td class="pt-4">
+                                                                    <span>2pm</span>
+                                                                    <p class="mt-5">4pm</p>
+                                                                </td>
+                            
+                                                                <td class="pt-4 pb-0"></td>
+                                                                <td class="m-0 p-0">
+                                                                    <div class="bg-color-apporve pl-2 pr-3 m-0 p-0">
+                                                                        <span class="heading-fifth">
+                                                                            Live class
+                                                                        </span>
+                                                                        <p class="paragraph-text-1">
+                                                                            2pm
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                            Jump start into
+                                                                            <br /> your live class with <br />
+                                                                            students.
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="m-0 p-0">
+                                                                    <div class="bg-color-apporve1 pl-2 pr-3 m-0 p-0">
+                                                                        <span class="heading-fifth">
+                                                                            Live class
+                                                                        </span>
+                                                                        <p class="paragraph-text-1">
+                                                                            2pm
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                            Jump start into
+                                                                            <br />your live class with <br />
+                                                                            students.
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                            
+                                                                <td class="m-0 p-0">
+                                                                    <div class="bg-color-apporve3 pl-2 pr-3 m-0 p-0">
+                                                                        <span class="heading-fifth">
+                                                                            Live class
+                                                                        </span>
+                                                                        <p class="paragraph-text-1">
+                                                                            2pm
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                            Jump start into
+                                                                            <br /> your live class with <br />
+                                                                            students.
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                            
+                            
+                                                            </tr>
+                            
+                                                        </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-5 pb-5">
+                                            <div class="col-md-4">
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">6 classes</span>
+                                                </div>
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">Home work</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">Quiz</span>
+                                                </div>
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">Final test</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="view-bookings" >
+                                                    $98
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                
-                        <div class="container-fluid ">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <span class="heading-fifth" style="font-weight: 600;">Timing</span>
-                                    <p class="paragraph-text-2 mt-1">2 weeks ( Tuesday, Wednesday, Thursday) - 2pm to
-                                        4pm</p>
-                                </div>
-                
-                            </div>
-                            <div class="row mt-0 w-100 div-1">
-                                <div class="col-md-12">
-                                    <table class="table table-borderless">
-                                        <thea>
-                                            <tr>
-                                                <th scope="col"></th>
-                                                <th scope="col">Mon</th>
-                                                <th scope="col"> &nbsp;&nbsp;&nbsp;Tue </th>
-                                                <th scope="col">Wed</th>
-                                                <th scope="col">Thu</th>
-                                                <th scope="col">Fri</th>
-                                                <th scope="col">Sat</th>
-                                                <th scope="col">Sun</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                                <!-- classes table time and topics -->
-                                                <tr>
-                                                    <td class="pt-4">
-                                                        <span>2pm</span>
-                                                        <p class="mt-5">4pm</p>
-                                                    </td>
-                
-                                                    <td class="pt-4 pb-0"></td>
-                                                    <td class="m-0 p-0">
-                                                        <div class="bg-color-apporve pl-2 pr-3 m-0 p-0">
-                                                            <span class="heading-fifth">
-                                                                Live class
-                                                            </span>
-                                                            <p class="paragraph-text-1">
-                                                                2pm
-                                                            </p>
-                                                            <p class="paragraph-text">
-                                                                Jump start into
-                                                                <br /> your live class with <br />
-                                                                students.
-                                                            </p>
-                                                        </div>
-                                                    </td>
-                                                    <td class="m-0 p-0">
-                                                        <div class="bg-color-apporve1 pl-2 pr-3 m-0 p-0">
-                                                            <span class="heading-fifth">
-                                                                Live class
-                                                            </span>
-                                                            <p class="paragraph-text-1">
-                                                                2pm
-                                                            </p>
-                                                            <p class="paragraph-text">
-                                                                Jump start into
-                                                                <br />your live class with <br />
-                                                                students.
-                                                            </p>
-                                                        </div>
-                                                    </td>
-                
-                                                    <td class="m-0 p-0">
-                                                        <div class="bg-color-apporve3 pl-2 pr-3 m-0 p-0">
-                                                            <span class="heading-fifth">
-                                                                Live class
-                                                            </span>
-                                                            <p class="paragraph-text-1">
-                                                                2pm
-                                                            </p>
-                                                            <p class="paragraph-text">
-                                                                Jump start into
-                                                                <br /> your live class with <br />
-                                                                students.
-                                                            </p>
-                                                        </div>
-                                                    </td>
-                
-                
-                                                </tr>
-                
-                                            </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mt-5 pb-5">
-                            <div class="col-md-4">
-                                <div class="d-flex pb-3">
-                                    <span>
-                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                    </span>
-                                    <span class="ml-3 heading-fifth mt-1">6 classes</span>
-                                </div>
-                                <div class="d-flex pb-3">
-                                    <span>
-                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                    </span>
-                                    <span class="ml-3 heading-fifth mt-1">Home work</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="d-flex pb-3">
-                                    <span>
-                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                    </span>
-                                    <span class="ml-3 heading-fifth mt-1">Quiz</span>
-                                </div>
-                                <div class="d-flex pb-3">
-                                    <span>
-                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                    </span>
-                                    <span class="ml-3 heading-fifth mt-1">Final test</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="view-bookings" >
-                                    
-                                    $99
                                 </div>
                             </div>
                         </div>

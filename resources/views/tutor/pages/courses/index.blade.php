@@ -195,7 +195,6 @@
 }
 .pending_hover:hover .overlay{
     display:block;
-
 }
 .overlay{
     position: absolute;
@@ -209,7 +208,6 @@
     text-align: center;
     display: none;
     transition: 5s all;
-
 }
 .overlay span{
     margin-top: 68%;
@@ -381,16 +379,15 @@
                
                 
                 <div class="col-md-4 text-center">
-                    <div class="">
+                    <div class="card border-only" >
                         <div class="card-body ">
-                            <div class="add-new" style="margin-top:46%;">
+                            <div class="add-new" style="margin-top:46%;margin-bottom: 37%;">
                                 <a href="{{route('tutor.addcourse')}}">
                                     <img src="{{asset('assets/images/ico/add-new.png')}}" alt="add-new">
                                 </a>
                             </div>
                         </div>
                     </div>
-                   
                 </div>
             </div>
         </div>

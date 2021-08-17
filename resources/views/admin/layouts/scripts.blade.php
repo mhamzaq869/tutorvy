@@ -11,9 +11,17 @@
     <!-- Custom js -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('/admin/assets/js/mobile.js')}}"></script>
+     <script src="{{ asset('assets/js/multiselect.js')}}"></script>
     <script src="{{ asset('/admin/assets/js/global.js')}}"></script>
+    <script src="{{ asset('assets/js/course.js')}}"></script>
+
+    <script src="{{ asset('assets/js/dropify.js')}}"></script>
+
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOIfEfDtYJRmL9ALc-bcfJPukqy_8OCwQ&libraries=places&callback=initAutocomplete"></script> -->
     <script type="text/javascript">
+    $(document).ready(function(){
+        $(".dropify").dropify();
+    })
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -335,6 +343,7 @@
     <!-- end graph js -->
     <script>
         $(document).ready(function ($) {
+           
             $('#TypeFeed').change(function () {
 
                 $.ajax({

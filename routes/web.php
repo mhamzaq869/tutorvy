@@ -69,6 +69,7 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
     Route::get('/course',[CourseController::class,'index'])->name('admin.course');
     Route::get('/course-request/{id}',[CourseController::class,'courseRequest'])->name('admin.course-request');
     Route::get('/course-profile',[CourseController::class,'courseProfile'])->name('admin.course-profile');
+    Route::get('/course-edit',[CourseController::class,'editCourseProfile'])->name('admin.course-edit');
     Route::get('/subject',[SubjectController::class,'index'])->name('admin.subject');
     Route::get('/website',[WebsiteController::class,'index'])->name('admin.website');
     Route::get('/report',[ReportController::class,'index'])->name('admin.report');

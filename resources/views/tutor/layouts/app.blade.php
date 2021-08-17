@@ -19,6 +19,10 @@
       <!-- Dropify CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/multiselect.css')}}" />
     <link rel="stylesheet" href="{{ asset('assets/css/dropify.css')}}" />
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" />
     <!-- Styles -->
     @include('tutor.layouts.css')
 
@@ -48,12 +52,40 @@
      <script src="{{ asset('assets/js/dropify.js')}}"></script>
      <script src="{{ asset('assets/js/multiselect.js')}}"></script>
      <script src="{{ asset('assets/js/course.js')}}"></script>
-
+     <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+     
+    <!-- add before </body> -->
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
      @include('js_files.chat')
 
 <script>
+     /*
+We need to register the required plugins to do image manipulation and previewing.
+*/
+FilePond.registerPlugin(
+  FilePondPluginImagePreview,
+);
+
+// Select the file input and use create() to turn it into a pond
+// in this example we pass properties along with the create method
+// we could have also put these on the file input element itself
+FilePond.create(
+	document.querySelector('.filepond'),
+	{
+	labelIdle: `Drag & Drop your picture or <span class="filepond--label-action">Browse</span>`,
+    imagePreviewHeight: 170,
+    imageCropAspectRatio: '1:1',
+    imageResizeTargetWidth: 200,
+    imageResizeTargetHeight: 200,
+    stylePanelLayout: 'compact circle',
+    styleLoadIndicatorPosition: 'center bottom',
+    styleButtonRemoveItemPosition: 'center bottom'
+	}
+);
       $(document).ready(function(){
         $(".dropify").dropify();
+       
     })
 </script>
 </body>
