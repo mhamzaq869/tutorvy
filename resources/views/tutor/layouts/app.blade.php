@@ -13,7 +13,10 @@
     <link href="{{ asset('assets/images/ico/side-icons.png') }}" rel="icon">
     <!-- bootstrap link -->
     <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
+    
     <link href="{{ asset('assets/css/chat.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/registration.css') }}" rel="stylesheet">
+
     <!-- fonawsome -->
     <link href="{{ asset('assets/css/fontawesome.min.css') }}" rel="stylesheet">
       <!-- Dropify CSS -->
@@ -52,6 +55,8 @@
      <script src="{{ asset('assets/js/dropify.js')}}"></script>
      <script src="{{ asset('assets/js/multiselect.js')}}"></script>
      <script src="{{ asset('assets/js/course.js')}}"></script>
+     <script src="{{ asset('assets/js/registration.js') }}"></script>
+
      <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
      
     <!-- add before </body> -->

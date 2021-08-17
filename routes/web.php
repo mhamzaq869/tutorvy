@@ -136,6 +136,7 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
 
     Route::get('/dashboard',[StudentHomeController::class,'index'])->name('student.dashboard');
     Route::get('/chat',[StdChatController::class,'index'])->name('student.chat');
+    Route::get('/book-now',[StudentHomeController::class,'bookNow'])->name('student.book-now');
     
 
 
