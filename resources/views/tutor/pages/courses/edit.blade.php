@@ -86,17 +86,21 @@
                         <div class="text-center heading-forth">
                             Basic
                         </div>
-                        <div class="adddivs-1">
-                            @foreach ($course->outline->where('level',1) as $basic)
+                        <div class="adddivs-1" id="basicNew">
+                            @forelse ($course->outline->where('level',1) as $i=>$basic)
                             <div class="input-serachs mt-2">
-                                <input type="search" name="basic_title[]" value="{{$basic->title}}" placeholder="Write course outline" />
+                                <input type="search" name="basic_title[{{$i}}]" value="{{$basic->title}}" placeholder="Write course outline" />
                             </div>
                             <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
-                            name="basic_explain[]" rows="6">{{$basic->explain}}</textarea>
-                            @endforeach
+                            name="basic_explain[{{$i}}]" rows="6">{{$basic->explain}}</textarea>
+                            @empty
+                            <div class="input-serachs mt-2">
+                                <input type="search" name="basic_title[1]" value="Title" placeholder="Write course outline" />
+                            </div>
+                            <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
+                            name="basic_explain[1]" rows="6">Explain</textarea>
+                            @endforelse
                         </div>
-                        <div id="basicNew"></div>
-
                         <div class="text-center basicMore paid-text-1 btn w-100 mt-3 buttonAdd-1">
                            <a href="#basicNew"> + Add more </a>
                         </div>
@@ -196,18 +200,23 @@
                     <div class="text-center heading-forth">
                         standard
                     </div>
-                    <div class="adddivs-1">
+                    <div class="adddivs-1" id="standardNew">
 
-                        @foreach ($course->outline->where('level',2) as $standard)
+                        @forelse ($course->outline->where('level',2) as $standard)
                         <div class="input-serachs mt-2">
                             <input type="search" name="standard_title[]" value="{{$standard->title}}" placeholder="Write course outline" />
                         </div>
                         <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
                         name="standard_explain[]" rows="6">{{$standard->explain}}</textarea>
-                        @endforeach
+                        @empty
+                        <div class="input-serachs mt-2">
+                            <input type="search" name="standard_title[]" value="Title" placeholder="Write course outline" />
+                        </div>
+                        <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
+                        name="standard_explain[]" rows="6">Explain</textarea>
+                        @endforelse
                     </div>
 
-                    <div id="standardNew"></div>
                     <div class="text-center standardMore paid-text-1 btn w-100 mt-3 buttonAdd-1">
                         <a href="#standardNew"> + Add more </a>
                     </div>
@@ -308,22 +317,25 @@
                     <div class="text-center heading-forth">
                         advance
                     </div>
-                    <div class="adddivs-1">
-                        @foreach ($course->outline->where('level',3) as $advance)
+                    <div class="adddivs-1" id="advNew">
+                        @forelse ($course->outline->where('level',3) as $advance)
                         <div class="input-serachs mt-2">
                             <input type="search" name="advance_title[]" value="{{$advance->title}}" placeholder="Write course outline" />
                         </div>
                         <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
                         name="advance_explain[]" rows="6">{{$advance->explain}}</textarea>
-                        @endforeach
+                        @empty
+                        <div class="input-serachs mt-2">
+                            <input type="search" name="advance_title[]" value="Title" placeholder="Write course outline" />
+                        </div>
+                        <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
+                        name="advance_explain[]" rows="6">Explain</textarea>
+                        @endforelse
                     </div>
-                    <div id="advNew"></div>
                     <div class="text-center paid-text-1 advMore btn w-100 mt-3 buttonAdd-1">
                         <a href="#advNew"> + Add more </a>
                     </div>
-                    <div class="adddiv-1">
-
-                    </div>
+                    <div class="adddiv-1"></div>
                     <div class="w-100 border-bottom">&nbsp;</div>
 
                     <div class="mt-3 row">
@@ -373,12 +385,12 @@
                     <div class="input-options mt-3">
                         <select name="advance_duration">
                             <option disabled selected>Course duration</option>
-                            <option @if($course->advance_duration == 1) @endif value="1">1 week</option>
-                            <option @if($course->advance_duration == 2) @endif value="2">2 week</option>
-                            <option @if($course->advance_duration == 3) @endif value="3">3 week</option>
-                            <option @if($course->advance_duration == 4) @endif value="4">4 week</option>
-                            <option @if($course->advance_duration == 5) @endif value="5">5 week</option>
-                            <option @if($course->advance_duration == 6) @endif value="6">6 week</option>
+                            <option @if($course->advance_duration == 1) selected @endif value="1">1 week</option>
+                            <option @if($course->advance_duration == 2) selected @endif value="2">2 week</option>
+                            <option @if($course->advance_duration == 3) selected @endif value="3">3 week</option>
+                            <option @if($course->advance_duration == 4) selected @endif value="4">4 week</option>
+                            <option @if($course->advance_duration == 5) selected @endif value="5">5 week</option>
+                            <option @if($course->advance_duration == 6) selected @endif value="6">6 week</option>
                         </select>
                     </div>
 
@@ -433,5 +445,46 @@
     $(function() {
         $("#adv_days").multiselect('select',@json($advance_days));
     });
+
+
+    var counter = 1;
+    var counter2 = 1;
+    var counter3 = 1;
+    $(".basicMore").click(function() {
+        counter++;
+        var html = `
+                    <div class="input-serachs mt-2">
+                        <input type="search" name="basic_title[` + counter + `]"  placeholder="Write course outline" />
+                    </div>
+                    <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
+                    name="basic_explain[` + counter + `]" rows="6">Explaine</textarea>`
+
+        $('#basicNew').append(html);
+    });
+    $(".standardMore").click(function() {
+        counter2++;
+        var html = ` <div class="adddivs-1" id="rec_` + counter2 + `">
+                    <div class="input-serachs mt-2">
+                        <input type="search" name="standard_title[` + counter2 + `]"  placeholder="Write course outline" />
+                    </div>
+                    <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
+                    name="standard_explain[` + counter2 + `]" rows="6">Explaine</textarea>
+                </div>`
+
+        $('#standardNew').append(html);
+    });
+    $(".advMore").click(function() {
+        counter3++;
+        var html = ` <div class="adddivs-1" id="rec_` + counter3 + `">
+                    <div class="input-serachs mt-2">
+                        <input type="search" name="advance_title[` + counter3 + `]"  placeholder="Write course outline" />
+                    </div>
+                    <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
+                    name="advance_explain[` + counter3 + `]" rows="6">Explaine</textarea>
+                </div>`
+
+        $('#advNew').append(html);
+    });
+
 </script>
 @endsection

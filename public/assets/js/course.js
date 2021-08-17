@@ -1,6 +1,6 @@
-var counter = 0;
-var counter2 = 0;
-var counter3 = 0;
+var counter = 1;
+var counter2 = 1;
+var counter3 = 1;
 $(".basicMore").click(function() {
     counter++;
     var html = ` <div class="adddivs-1" id="rec_` + counter + `">

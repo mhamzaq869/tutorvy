@@ -30,6 +30,7 @@ class CreateCoursesTable extends Migration
             $table->string('basic_days')->nullable();
             $table->string('basic_start_time')->nullable();
             $table->string('basic_end_time')->nullable();
+            $table->string('basic_price')->nullable();
             $table->string('standard_home_work')->nullable();
             $table->string('standard_quiz')->nullable();
             $table->string('standard_one_one')->nullable();
@@ -39,6 +40,7 @@ class CreateCoursesTable extends Migration
             $table->string('standard_days')->nullable();
             $table->string('standard_start_time')->nullable();
             $table->string('standard_end_time')->nullable();
+            $table->string('standard_price')->nullable();
             $table->string('advance_home_work')->nullable();
             $table->string('advance_quiz')->nullable();
             $table->string('advance_one_one')->nullable();
@@ -48,7 +50,8 @@ class CreateCoursesTable extends Migration
             $table->string('advance_days')->nullable();
             $table->string('advance_start_time')->nullable();
             $table->string('advance_end_time')->nullable();
-            $table->string('price')->nullable();
+            $table->string('advance_price')->nullable();
+            $table->string('status')->comment('0-pending,1-approved,2-rejected')->default(0);
             $table->timestamps();
         });
     }

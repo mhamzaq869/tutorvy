@@ -91,19 +91,14 @@
                         <div class="text-center heading-forth">
                             Basic
                         </div>
-                        <div class="adddivs-1">
+                        <div class="adddivs-1" id="basicNew">
                             <div class="input-serachs mt-2">
                                 <input type="search" name="basic_title[]" placeholder="Write course outline" />
                             </div>
                             <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
                             name="basic_explain[]" rows="6">Explaine</textarea>
-                            <div class="input-serachs mt-2">
-                                <input type="search" name="basic_title[]"  placeholder="Write course outline" />
-                            </div>
-                            <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
-                            name="basic_explain[]" rows="6">Explaine</textarea>
                         </div>
-                        <div id="basicNew"></div>
+                        {{-- <div id="basicNew"></div> --}}
 
                         <div class="text-center basicMore paid-text-1 btn w-100 mt-3 buttonAdd-1">
                            <a href="#basicNew"> + Add more </a>
@@ -204,19 +199,13 @@
                     <div class="text-center heading-forth">
                         Standard
                     </div>
-                    <div class="adddivs-1">
+                    <div class="adddivs-1" id="standardNew">
                         <div class="input-serachs mt-2">
                             <input type="search" name="standard_title[]" placeholder="Write course outline" />
                         </div>
                         <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
                         name="standard_explain[]" rows="6">Explaine</textarea>
-                        <div class="input-serachs mt-2">
-                            <input type="search" name="standard_title[]"  placeholder="Write course outline" />
-                        </div>
-                        <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
-                        name="standard_explain[]" rows="6">Explaine</textarea>
                     </div>
-                    <div id="standardNew"></div>
 
                     <div class="text-center standardMore paid-text-1 btn w-100 mt-3 buttonAdd-1">
                         <a href="#standardNew"> + Add more </a>
@@ -313,20 +302,14 @@
                     <div class="text-center heading-forth">
                         Advance
                     </div>
-                    <div class="adddivs-1">
+                    <div class="adddivs-1" id="advNew">
                         <div class="input-serachs mt-2">
                             <input type="search" name="advance_title[]" placeholder="Write course outline" />
                         </div>
                         <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
                         name="advance_explain[]" rows="6">Explaine</textarea>
-                        <div class="input-serachs mt-2">
-                            <input type="search" name="advance_title[]"  placeholder="Write course outline" />
-                        </div>
-                        <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
-                        name="advance_explain[]" rows="6">Explaine</textarea>
                     </div>
 
-                    <div id="advNew"></div>
                     <div class="text-center paid-text-1 advMore btn w-100 mt-3 buttonAdd-1">
                         <a href="#advNew"> + Add more </a>
                     </div>
@@ -375,12 +358,12 @@
                     <div class="input-options mt-3">
                         <select name="advance_duration">
                             <option disabled selected>Course duration</option>
-                            <option @if($course->advance_duration == 1) selected @endif value="1">1 week</option>
-                            <option @if($course->advance_duration == 2) selected @endif value="2">2 week</option>
-                            <option @if($course->advance_duration == 3) selected @endif value="3">3 week</option>
-                            <option @if($course->advance_duration == 4) selected @endif value="4">4 week</option>
-                            <option @if($course->advance_duration == 5) selected @endif value="5">5 week</option>
-                            <option @if($course->advance_duration == 6) selected @endif value="6">6 week</option>
+                            <option value="1">1 week</option>
+                            <option value="2">2 week</option>
+                            <option value="3">3 week</option>
+                            <option value="4">4 week</option>
+                            <option value="5">5 week</option>
+                            <option value="6">6 week</option>
                         </select>
                     </div>
 
