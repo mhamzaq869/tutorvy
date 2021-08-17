@@ -2,19 +2,16 @@
 
 @section('content')
 <link href="{{ asset('assets/css/course.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
 <style>
     .dropify-wrapper {
         height: 120px;
     }
 
 </style>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0rc.0/dist/js/select2.min.js"></script>
 
-  <!--section start  -->
-
-  <div class="container-fluid pb-4">
+<div class="container-fluid pb-4">
     <h1 class="mt-5">
         Add Course </h1>
 </div>
@@ -152,7 +149,7 @@
                             </div>
                         </div>
                         <div class="input-options mt-3">
-                            <select name="basic_duration" class="js-example-placeholder-multiple" multiple="multiple">
+                            <select name="basic_duration">
                                 <option disabled selected>Course duration</option>
                                 <option value="1" @if($course->basic_duration == 1) selected @endif>1 hour</option>
                                 <option value="2" @if($course->basic_duration == 2) selected @endif>2 hour</option>
@@ -163,10 +160,15 @@
                             Timing
                         </h3>
                         <div class="input-options mt-2">
-                            <select name="basic_days">
-                                <option disabled selected>Select days</option>
-                                <option>1 hour</option>
-                                <option>2 hour</option>
+                            <select name="basic_days"  multiple role="multiselect">
+                                <option disabled selected required>Select days</option>
+                                <option value="monday">Monday</option>
+                                <option value="tuesday">Tuesday</option>
+                                <option value="wednesday">Wednesday</option>
+                                <option value="thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                                <option value="Sunday">Sunday</option>
                             </select>
                         </div>
                         <div class="input-options mt-2">
@@ -261,10 +263,15 @@
                         Timing
                     </h3>
                     <div class="input-options mt-2">
-                        <select name="standard_days">
-                            <option disabled selected>Select days</option>
-                            <option>1 hour</option>
-                            <option>2 hour</option>
+                        <select name="standard_days"  multiple role="multiselect">
+                            <option disabled selected required>Select days</option>
+                            <option value="monday">Monday</option>
+                            <option value="tuesday">Tuesday</option>
+                            <option value="wednesday">Wednesday</option>
+                            <option value="thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
                         </select>
                     </div>
                     <div class="input-options mt-2">
@@ -332,7 +339,9 @@
                     </div>
                     <div class="mt-3 row">
                         <div class="col-md-1">
-                            <span class="checkbox-edit"> <input type="checkbox" @if($course->advance_one_one != null) checked @endif  name="advance_one_one" id=""> </span>
+                            <span class="checkbox-edit">
+                                <input type="checkbox" @if($course->advance_one_one != null) checked @endif  name="advance_one_one" id="">
+                            </span>
                         </div>
                         <div class="col-md-11 m-0 p-0 pl-2">
                             <span class="paragraph-text"> One to one session with tutor</span>
@@ -340,7 +349,9 @@
                     </div>
                     <div class="mt-3 row">
                         <div class="col-md-1">
-                            <span class="checkbox-edit"> <input type="checkbox" @if($course->advance_note != null) checked @endif name="advance_note" id=""> </span>
+                            <span class="checkbox-edit">
+                                <input type="checkbox" @if($course->advance_note != null) checked @endif name="advance_note" id="">
+                            </span>
                         </div>
                         <div class="col-md-11 m-0 p-0 pl-2">
                             <span class="paragraph-text"> Note</span>
@@ -358,10 +369,15 @@
                         Timing
                     </h3>
                     <div class="input-options mt-2">
-                        <select name="advance_days">
-                            <option disabled selected>Select days</option>
-                            <option>1 hour</option>
-                            <option>2 hour</option>
+                        <select name="advance_days" multiple role="multiselect">
+                            <option disabled selected required>Select days</option>
+                            <option value="monday">Monday</option>
+                            <option value="tuesday">Tuesday</option>
+                            <option value="wednesday">Wednesday</option>
+                            <option value="thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
                         </select>
                     </div>
                     <div class="input-options mt-2">
@@ -372,6 +388,7 @@
                             <option>2 hour</option>
                         </select>
                     </div>
+
                     <div class="text-center mt-4">
                         <input type="submit" class="schedule-btn w-50 " value="Submit course" />
                     </div>
@@ -382,10 +399,5 @@
     </form>
 </div>
 
-<script>
-    $(".js-example-placeholder-multiple").select2({
-        placeholder: "Select days"
-    });
-</script>
 <!-- end section -->
 @endsection

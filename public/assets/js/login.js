@@ -13,14 +13,15 @@ $(".submit2").click(function () {
   }
 })
 //
-$(".toggle-password").click(function () {
-
+$("#togglepass").click(function () {
   $(this).toggleClass("fa-eye fa-eye-slash");
-  var input = $($(this).attr("toggle"));
-  if (input.attr("type") == "password") {
-    input.attr("type", "text");
+  var input = $("#pswd").val();
+
+  if ($("#pswd").attr("type") == "password") {
+
+      $("#pswd").attr("type", "");
   } else {
-    input.attr("type", "password");
+    $("#pswd").attr("type", "password");
   }
 })
 

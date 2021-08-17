@@ -2,6 +2,7 @@
 
 @section('content')
 <link href="{{ asset('assets/css/course.css') }}" rel="stylesheet">
+
 <style>
     .dropify-wrapper{
         height:120px;
@@ -60,31 +61,12 @@
                     <div class="bg-edit text-center">
                             <label for="" class="pt-2 ">Intro Video</label>
                             <input type="file" class="dropify" name="video" id="video" >
-                        <!-- <div class="text-center">
-                            <div class="text-center">
-                                <input type="file" id="file" name="video" class="dropify" />
-                                <label for="file">
-                                    <img src="{{asset('admin/assets/img/ico/Icon-feather-image.svg') }}" class="repeat-image-2 mt-2"
-                                        style="height: 63px;" alt="repeat" />
-                                </label>
-                            </div>
-                            <p class="paragraph-text">Upload intro video</p>
-                        </div> -->
+
                     </div>
                     <div class="bg-edit mt-4 text-center">
                         <label for=""  class="pt-2 ">Course Thumbnail</label>
-                            <input type="file" class="dropify" name="thumbnail" id="thumbnail" data-default-file="https://www.youtube.com/watch?v=bUZZvsuRHHY">
-                        <!-- <div class="text-center">
-                            <img src="../assets/img/ico/Icon-feather-upload-cloud.svg" alt="asd" class="mt-4" />
-                            <div class="text-center">
-                                <input type="file" id="file" name="thumbnail" class="repeat-image-2" />
-                                <label for="file">
-                                    <img src="{{asset('admin/assets/img/ico/Icon-feather-upload-cloud.svg') }}"
-                                        class="repeat-image-2 mt-2" style="height: 63px;" alt="repeat" />
-                                </label>
-                            </div>
-                            <p class="paragraph-text">Upload course thumbnail </p>
-                        </div> -->
+                            <input type="file" class="dropify" name="thumbnail" id="thumbnail" >
+
                     </div>
                 </div>
             </div>
@@ -168,10 +150,15 @@
                             </div>
                         </div>
                         <div class="input-options mt-3">
-                            <select name="basic_duration">
-                                <option disabled selected>Course duration</option>
-                                <option>1 hour</option>
-                                <option>2 hour</option>
+                            <select name="basic_duration" >
+                                <option disabled selected required>Select days</option>
+                                <option value="monday">Monday</option>
+                                <option value="tuesday">Tuesday</option>
+                                <option value="wednesday">Wednesday</option>
+                                <option value="thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                                <option value="Sunday">Sunday</option>
                             </select>
                         </div>
 
@@ -179,10 +166,15 @@
                             Timing
                         </h3>
                         <div class="input-options mt-2">
-                            <select name="basic_days">
-                                <option disabled selected>Select days</option>
-                                <option>1 hour</option>
-                                <option>2 hour</option>
+                            <select name="basic_days"  multiple role="multiselect">
+                                <option disabled selected required>Select days</option>
+                                <option value="monday">Monday</option>
+                                <option value="tuesday">Tuesday</option>
+                                <option value="wednesday">Wednesday</option>
+                                <option value="thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                                <option value="Sunday">Sunday</option>
                             </select>
                         </div>
                         <div class="input-options mt-2">
@@ -281,10 +273,15 @@
                         Timing
                     </h3>
                     <div class="input-options mt-2">
-                        <select name="standard_days">
-                            <option disabled selected>Select days</option>
-                            <option>1 hour</option>
-                            <option>2 hour</option>
+                        <select name="standard_days" multiple role="multiselect">
+                            <option disabled selected required>Select days</option>
+                            <option value="monday">Monday</option>
+                            <option value="tuesday">Tuesday</option>
+                            <option value="wednesday">Wednesday</option>
+                            <option value="thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
                         </select>
                     </div>
                     <div class="input-options mt-2">
@@ -382,12 +379,12 @@
                         Timing
                     </h3>
                     <div class="input-options mt-2">
-                        <select name="advance_days" id="adv_days">
-                            <option disabled selected>Select days</option>
-                            <option value="Monday">Monday</option>
-                            <option value="Tuesday">Tuesday</option>
-                            <option value="Wednesday">Wednesday</option>
-                            <option value="Thursday">Thursday</option>
+                        <select name="advance_days" multiple role="multiselect">
+                            <option disabled selected required>Select days</option>
+                            <option value="monday">Monday</option>
+                            <option value="tuesday">Tuesday</option>
+                            <option value="wednesday">Wednesday</option>
+                            <option value="thursday">Thursday</option>
                             <option value="Friday">Friday</option>
                             <option value="Saturday">Saturday</option>
                             <option value="Sunday">Sunday</option>
