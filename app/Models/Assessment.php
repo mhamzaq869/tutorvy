@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Admin\Subject;
 use App\Models\Admin\SubjectCategory;
-
+use App\Models\User;
 class Assessment extends Model
 {
     use HasFactory;
@@ -35,12 +35,12 @@ class Assessment extends Model
 
     public function user()
     {
-        return $this->belongsTo(Assessment::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function subjectCategory()
+    public function subject()
     {
-        return $this->belongsTo(SubjectCategory::class);
+        return $this->belongsTo(Subject::class);
     }
     public function getSubNameAttribute()
     {

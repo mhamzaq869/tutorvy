@@ -1,7 +1,7 @@
 @extends('tutor.layouts.app')
 
 @section('content')
-    <link href="{{ asset('assets/css/course.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/css/course.css') }}" rel="stylesheet">
 
     <!--section start  -->
 
@@ -61,7 +61,7 @@
                             </div>
 
                             <a href="{{route('tutor.course.edit',[$course->id])}}">
-                                <button class="mt-3 w-100 schedule-btn1">Edit Course</button>
+                                <button class="text-center paid-text-1 btn w-100 mt-3 buttonAdd-1">Edit Course</button>
                             </a>
                         </div>
                     </div>

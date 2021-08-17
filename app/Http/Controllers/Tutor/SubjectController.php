@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin\SubjectCategory;
+use App\Models\Admin\Subject;
 class SubjectController extends Controller
 {
     /**
@@ -14,6 +15,8 @@ class SubjectController extends Controller
      */
 
     public function index(){
-        return view('tutor.pages.subject.index');
+
+        $subjects = Subject::paginate(10);
+        return view('tutor.pages.subject.index',compact('subjects'));
     }
 }

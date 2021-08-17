@@ -130,7 +130,7 @@
                                             <input type="submit" class="submit schedule-btn w-25 mt-3 float-right" value="Submit">
                                     </div>
                                     @if(isset($user))
-                                    <span toggle="#password-field pr-5" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                    <span toggle="#password-field" id="togglepass" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                     <p class="checkboxs d-inline-block w-100 mt-4">
                                         <input style="width: 15px;" type="checkbox" class="checkbox">
                                         <span style="position: absolute;left: 55px;font-size: 16px;font-family: Poppins;">
@@ -188,7 +188,7 @@
                             </div>
                             <div class="col-md-6 text-right">
                                 <div class="social-Icon ml-4" style="font-size: 14px;color: #1173FF;font-family: Poppins;">
-                                    <a href="./login.html" class="mr-4" > Back to signin</a>
+                                    <a href="{{route('login')}}" class="mr-4" > Back to signin</a>
                                 </div>
                             </div>
 
@@ -248,7 +248,7 @@
             })
         </script>
     </section>
-    
+
 </body>
 
 </html>
