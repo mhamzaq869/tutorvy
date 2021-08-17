@@ -46,7 +46,7 @@
                 Subjects
             </p>
         </div>
-      
+
         @if(Auth::user()->teach)
             <div class="content" style="width: 100%;background-color: #FBFBFB !important;">
 
@@ -55,53 +55,36 @@
                     <div class="container-fluid">
                         <p class="heading-third mt-5">My Subjects</p>
                         <div class="row">
+                            @foreach (Auth::user()->teach as $teach)
                             <div class="col-md-2 p-0 ml-2" >
-                                <div class="  card h-auto card-shadow p-0 ">
-                                    <div class="card-body ">
-                                        
-                                        <!-- <div class="images text-center">
-                                            <img src="../assets/images/ico/botal-ico.png" alt="botal" style="width: 45px;"
-                                            class="mt-3">
-                                        </div> -->
-                                        <span class="badge badge-pill badge-success mt-1">Approved</span>
-
-                                        <div class="" style="display: flex;">
-                                        
-                                            <p class="heading-fifth mr-3 pt-2 mb-0" >Chemistry</p>
-                                            <a class="appOpt" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-h"></i></a>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                <a class="dropdown-item" href="#">Disable</a>
-                                                <a class="dropdown-item" href="#">Remove</a>
+                                <div class="card-deck " style="width: 100%;">
+                                    <div class="card h-auto card-shadow p-0">
+                                        <div class="card-body ">
+                                            <span class="badge badge-pill badge-approve mt-1">Approved</span>
+                                            <div class="" style="display: flex;">
+                                                <p class="heading-fifth mr-3 pt-2 mb-0" >{{$teach->subject->name}}</p>
+                                                <a href="#" class="view-bookings mb-0 text-decoration-none">Add</a>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="container-fluid">
                         <p class="heading-first mt-3 ">Pending Subjects</p>
                         <div class="row">
 
-                           
+
                             <div class="card-deck " style="width: 100%;">
                                 <div class="col-md-2 p-0 ml-2" >
                                     <div class="  card h-auto card-shadow p-0">
                                         <div class="card-body ">
-                                           
-                                            <!-- <div class="images text-center">
-                                                <img src="../assets/images/ico/botal-ico.png" alt="botal" style="width: 45px;"
-                                                class="mt-3">
-                                            </div> -->
-                                            <span class="badge badge-pill badge-pending mt-1">Pending</span>
-
+                                            <span class="badge badge-pill badge-new mt-1">Pending</span>
                                             <div class="" style="display: flex;">
-                                            
                                                 <p class="heading-fifth mr-3 pt-2 mb-0" >Chemistry</p>
-
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -111,69 +94,37 @@
                     <!-- Cards -->
                     <div class="container-fluid">
                         <p class="heading-first mt-3 ">Add subjects</p>
+                        <input class="ml-3 mr-3 form-control w-25 mb-4 " type="search" placeholder="Type a name"
+                            aria-label="Search" id="search">
                         <div class="row">
-
-                            <input class="ml-3 mr-3 form-control w-25 mb-4 " type="search" placeholder="Type a name"
-                                aria-label="Search" id="search">
-                            <div class="card-deck " style="width: 100%;">
+                            @foreach ($subjects as $i => $subject)
+                             @if ((Auth::user()->teach[$i]->subject_id ?? null) != $subject->id)
                                 <div class="col-md-2 p-0 ml-2" >
-                                    <div class="  card h-auto card-shadow p-0 ">
-                                        <div class="card-body ">
-                                            <!-- <div class="images text-center">
-                                                <img src="../assets/images/ico/botal-ico.png" alt="botal" style="width: 45px;"
-                                                class="mt-3">
-                                            </div> -->
-                                            <span class="badge badge-pill  badge-new mt-1">New</span>
-                                            <div class="" style="display: flex;">
-                                                <p class="heading-fifth mr-3 pt-2 mb-0" >Chemistry</p>
-                                                <a href="#"><p class="view-bookings mb-0" >Add</p></a>
-
+                                    <div class="card-deck " style="width: 100%;">
+                                        <div class="card h-auto card-shadow p-0">
+                                            <div class="card-body ">
+                                                <span class="badge badge-pill  badge-pending mt-1">New</span>
+                                                <div class="" style="display: flex;">
+                                                    <p class="heading-fifth mr-3 pt-2 mb-0" >{{$subject->name}}</p>
+                                                    <a href="{{route('tutor.test',[$subject->id])}}"><p class="view-bookings mb-0" >Add</p></a>
+                                                </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="col-md-2  " style="padding-right: 0;">
-                                    <div class=" cards card-shadow ">
-                                        <div class="card-body ">
-                                            <h4 class="card-title" style="visibility: hidden;position: absolute;">
-                                                chemistry</h4>
-                                            
-                                            <div class="" style="display: flex;">
-                                                <p class="heading-fifth mr-3" style="margin-top: 30px;">Chemistry</p>
-                                                <a href="#"><p class="view-bookings " style="margin-top: 30px;">Add</p></a>
+                                @endif
 
-                                            </div>
+                            @endforeach
 
-                                        </div>
-                                    </div>
-                                </div> -->
-                                <div class="col-md-2 p-0 ml-2" >
-                                    <div class="  card h-auto card-shadow p-0 ">
-                                        <div class="card-body ">
-                                            <!-- <div class="images text-center">
-                                                <img src="../assets/images/ico/botal-ico.png" alt="botal" style="width: 45px;"
-                                                class="mt-3">
-                                            </div> -->
-                                            <span class="badge badge-pill badge-new mt-1">New</span>
-                                            <div class="" style="display: flex;">
-                                                <p class="heading-fifth mr-3 pt-2 mb-0" >Chemistry</p>
-                                                <a href="#"><p class="view-bookings mb-0" >Add</p></a>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
                     </div>
 
                 </div>
 
 
             </div>
+
+            {{$subjects->links()}}
+
 
         @else
             <!-- no subject start -->

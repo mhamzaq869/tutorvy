@@ -227,7 +227,7 @@
 }
 </style>
 @section('content')
-    <link href="{{ asset('assets/css/course.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/css/course.css') }}" rel="stylesheet">
 
     <!--section start  -->
 
@@ -303,7 +303,7 @@
                                     <!-- <canvas id="myChart" width="400" height="400"></canvas> -->
                                 </div>
                                 <div class="col-md-12 text-center learning-button">
-                                    <a href="{{route('tutor.addcourse')}}" class="no-decor">
+                                    <a href="{{route('tutor.course.edit',[$course->id])}}" class="no-decor">
                                         Edit Course
                                     </a>
                                 </div>
@@ -376,7 +376,7 @@
                                     <!-- <canvas id="myChart" width="400" height="400"></canvas> -->
                                 </div>
                                 <div class="col-md-12 text-center learning-button">
-                                    <a href="{{route('tutor.addcourse')}}" class="no-decor">
+                                    <a href="{{route('tutor.course.edit',[$course->id])}}" class="no-decor">
                                         Edit Course
                                     </a>
                                 </div>

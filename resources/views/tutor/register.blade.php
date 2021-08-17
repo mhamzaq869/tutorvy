@@ -344,7 +344,7 @@
                                                         <div class="input-text col-md-6">
                                                             <select name="degree[]" onchange="checkLevel(this)" class="form-select form-select-lg mb-3">
                                                                 @foreach ($degrees as $degree)
-                                                                    <option  level="{{$degree->level}}" value="{{$degree->id}}" @if($education[$i] == $degree->id) selected @endif>{{$degree->name}}</option>
+                                                                    <option  value="{{$degree->id}}" @if($education[$i] == $degree->id) selected @endif>{{$degree->name}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -407,7 +407,7 @@
                                                             <select name="degree[]" onchange="checkLevel(this)" class="form-select form-select-lg mb-3">
                                                                 <option value="0" selected>Degree</option>
                                                                 @foreach ($degrees as $degree)
-                                                                <option level="{{$degree->level}}" value="{{$degree->id}}">{{$degree->name}}</option>
+                                                                <option  value="{{$degree->id}}">{{$degree->name}}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -745,12 +745,13 @@
         <script src="{{ asset('assets/js/intlTelInput.js') }}"></script>
         <script src="{{ asset('assets/js/registration.js') }}"></script>
         <script src="{{ asset('assets/js/yearpicker.js')}}"></script>
-        <script src="{{ asset('assets/js/languages.json')}}"></script>
+        <script src="{{ asset('assets/js/languages.js')}}"></script>
         <script src="{{ asset('assets/js/googleapi.js')}}"></script>
         <script src="{{ asset('assets/js/multiselect.js')}}"></script>
         <script src="{{ asset('assets/js/dropify.js')}}"></script>
         <script src="{{ asset('assets/js/jquery.validate.js') }} "></script>
         <script>
+
 
 
              for(var i=1; i<=31; i++){
@@ -777,7 +778,6 @@
                var short = $(this).countrySelect("getSelectedCountryData");
                $("#country_short").val(short.iso2);
             });
-
 
             // var languages_list = {...};
             (function () {
@@ -875,113 +875,13 @@
                 <div class="col-md-12 mt-3">
                     <a href="#" class="removeFields" onclick="removeFields(` + count_field + `)"> Remove Fields</a>
                 </div>
-                </div>
+            </div>
 
-                </div>`;
+            </div>`;
                 $('.customer_records_dynamic').append(html);
                 $('.dropify').dropify();
-                $(".form-select").select2();
+                // $(".form-select").select2();
             });
-
-            $('.moreExperience').click(function(){
-                count_field_2++;
-
-                let html2 = `<div id="record2_`+count_field_2+`">  
-                             @isset($user)
-                            @forelse ($user->professional as $profession)
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="element">
-                                        <div class="row">
-                                            <div class="input-text col-md-6">
-                                                <input name="designation[` + count_field_2 + `]" class="form-control" placeholder="Designation: Senior Developer at Google" value="{{$profession->designation}}">
-                                            </div>
-                                            <div class="input-text col-md-6">
-                                                <input name="organization[` + count_field_2 + `]" class="form-control" placeholder="Organization"
-                                                value="{{$profession->organization}}">
-                                            </div>
-
-                                        </div>
-                                        <div class="row my-3">
-                                            <div class="input-text col-md-6">
-                                                <input type="date" class="form-control" name="degree_start[` + count_field_2 + `]" placeholder="Starting date"
-                                                value="{{$profession->start_date ?? ''}}">
-                                            </div>
-                                            <div class="input-text col-md-6">
-                                                <input type="date" class="form-control" name="degree_end[` + count_field_2 + `]" placeholder="Ending Date"
-                                                value="{{$profession->end_date ?? ''}}">
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            @empty
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="element">
-                                        <div class="row">
-                                            <div class="input-text col-md-6">
-                                                <input name="designation[` + count_field_2 + `]" class="form-control" title="Designation: Senior Developer at Google"  placeholder="Designation">
-                                            </div>
-                                            <div class="input-text col-md-6">
-                                                <input name="organization[` + count_field_2 + `]" class="form-control" title="Organization Like Google" placeholder="Organization">
-
-                                            </div>
-                                        </div>
-                                        <div class="row my-3">
-                                            <div class="input-text col-md-6">
-                                                <input type="date" class="form-control" name="degree_start[` + count_field_2 + `]" placeholder="Starting date"
-                                                value="">
-                                            </div>
-                                            <div class="input-text col-md-6">
-                                                <input type="date" class="form-control" name="degree_end[` + count_field_2 + `]" placeholder="Ending Date"
-                                                value="">
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            @endforelse
-                        @else
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="element">
-                                    <div class="row">
-                                        <div class="input-text col-md-6">
-                                            <input name="designation[` + count_field_2 + `]" class="form-control" title="Designation: Senior Developer at Google"  placeholder="Designation">
-                                        </div>
-                                        <div class="input-text col-md-6">
-                                            <input name="organization[` + count_field_2 + `]" class="form-control" title="Organization Like Google" placeholder="Organization">
-                                        </div>
-                                    </div>
-                                    <div class="row my-3">
-                                        <div class="input-text col-md-6">
-                                            <input type="date" class="form-control" name="degree_start[` + count_field_2 + `]" placeholder="Starting date"
-                                            value="">
-                                        </div>
-                                        <div class="input-text col-md-6">
-                                            <input type="date" class="form-control" name="degree_end[` + count_field_2 + `]" placeholder="Ending Date"
-                                            value="">
-                                        </div>
-                                    </div>
-                                    <div class="row my-3">
-                                        <div class="input-text col-md-12">
-                                            <a href="#" onclick="removeFields2(` + count_field_2 + `)"> Remove Fields</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        @endisset`
-
-                $('.results').append(html2);
-
-
-                                                    
-            })
 
            function university(){
                var code = $("#country_short").val()
@@ -999,11 +899,12 @@
             function checkLevel(opt){
                 var level = opt.options[opt.selectedIndex].getAttribute('level');
                 var teach_levels = document.getElementById("levels").options;
-                    
+
                 for(var i=0; i<teach_levels.length; i++){
                     if(level >= teach_levels[i].value){
-                        $("#levels").html("<option value='"+teach_levels[i].value+"'>"+teach_levels[i].innerHTML+"</option>");
+
                         for(var j=0; j<i; j++){
+                            $("#levels").html("<option value='"+teach_levels[i].value+"'>"+teach_levels[i].innerHTML+"</option>");
                         }
                     }
                 }

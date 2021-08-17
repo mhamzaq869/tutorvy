@@ -96,7 +96,7 @@
                                     <div class="container-fluid card 1">
                                         <div class="text-home">
                                             <p class="number-booking">
-                                                02
+                                               {{round(Auth::user()->teach->count(),2)}}
                                             </p>
                                             <p class="class-booking mt-4">
                                                 Total Subjects

@@ -8,7 +8,7 @@
             </span>
             <div id="mySidenav" class="sidenav">
                 <p class="ml-5 mb-2">
-                    <img src="../assets/images/logo/logo.png" alt="logo">
+                    <img src="{{asset('assets/images/logo/logo.png') }}" alt="logo">
                 </p>
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
                     &times;
@@ -16,49 +16,49 @@
                 <ul>
                     <li class="btn w-100 mt-3 active">
                         <a href="#" data-toggle="" aria-expanded="false" class="">
-                            <img src="../assets/images/ico/dash-ico.png" alt="dash-ico" class=" mr-2">
+                            <img src="{{asset('assets/images/ico/dash-ico.png') }}" alt="dash-ico" class=" mr-2">
                             Dashboard
                         </a>
                     </li>
                     <li class="btn w-100">
                         <a href="./Booking/Booking.html" data-toggle="" aria-expanded="false">
-                            <img src="../assets/images/ico/book-icons.png" alt="book-ico" class=" mr-2">
+                            <img src="{{asset('assets/images/ico/book-icons.png') }}" alt="book-ico" class=" mr-2">
                             Bookings
                         </a>
                     </li>
                     <li class="btn w-100">
                         <a href="#">
-                            <img src="../assets/images/ico/class-ico.png" alt="class-ico" class=" mr-2">
+                            <img src="{{asset('assets/images/ico/class-ico.png') }}" alt="class-ico" class=" mr-2">
                             Classroom
                         </a>
                     </li>
                     <li class="btn w-100">
                         <a href="#">
-                            <img src="../assets/images/ico/subject-ico.png" alt="subject-ico" class=" mr-2">
+                            <img src="{{asset('assets/images/ico/subject-ico.png') }}" alt="subject-ico" class=" mr-2">
                             Subjects
                         </a>
                     </li>
                     <li class="btn w-100">
                         <a href="./clander/clander.html">
-                            <img src="../assets/images/ico/class-ico.png" alt="class-ico" class=" mr-2">
+                            <img src="{{asset('assets/images/ico/class-ico.png') }}" alt="class-ico" class=" mr-2">
                             calendar
                         </a>
                     </li>
                     <li class="btn w-100">
                         <a href="#">
-                            <img src="../assets/images/ico/history-ico.png" alt="history-ico" class=" mr-2">
+                            <img src="{{asset('assets/images/ico/history-ico.png') }}" alt="history-ico" class=" mr-2">
                             History
                         </a>
                     </li>
                     <li class="btn w-100">
                         <a href="#">
-                            <img src="../assets/images/ico/payment-ico.png" alt="payment-ico" class=" mr-2">
+                            <img src="{{asset('assets/images/ico/payment-ico.png') }}" alt="payment-ico" class=" mr-2">
                             Payment
                         </a>
                     </li>
                     <li class="btn w-100">
                         <a href="./setting/setting.html">
-                            <img src="../assets/images/ico/setting-ico.png" alt="setting-ico" class=" mr-2">
+                            <img src="{{asset('assets/images/ico/setting-ico.png') }}" alt="setting-ico" class=" mr-2">
                             Settings
                         </a>
                     </li>
@@ -71,7 +71,7 @@
                 </li>
                 <li>
                     <div class="notification mt-2 ml-3">
-                        <img src="../assets/images/ico/Notification.png" alt="notifiaction">
+                        <img src="{{asset('assets/images/ico/Notification.png') }}" alt="notifiaction">
                         <span class="notification-text">
                             4
                         </span>
@@ -97,7 +97,7 @@
                                 <div class="row">
                                     <div class="col-md-1">
                                         <img class="avatar mt-2 mb-2 "
-                                            src="../assets/images/notifiaction/Layer.png" alt="Layer">
+                                            src="{{asset('assets/images/notifiaction/Layer.png') }}" alt="Layer">
                                     </div>
                                     <div class="col-md-9">
                                         <div class="notification-flex">
@@ -123,7 +123,7 @@
                                 <div class="row">
                                     <div class="col-md-1">
                                         <img class="avatar mt-2 mb-2 "
-                                            src="../assets/images/notifiaction/star-ico.png" alt="Layer">
+                                            src="{{asset('assets/images/notifiaction/star-ico.png') }}" alt="Layer">
                                     </div>
                                     <div class="col-md-9">
                                         <div class="notification-flex">
@@ -140,7 +140,7 @@
                                         </span>
                                     </div>
                                     <div class="col-md-1">
-                                        <img class="dot-image" src="../assets/images/ico/3dot.png"
+                                        <img class="dot-image" src="{{asset('assets/images/ico/3dot.png') }}"
                                             alt="dot-ico">
                                     </div>
                                 </div>
@@ -152,7 +152,7 @@
                                 <div class="row">
                                     <div class="col-md-1">
                                         <img class="avatar mt-2 mb-2 "
-                                            src="../assets/images/notifiaction/bach-ico.png" alt="Layer">
+                                            src="{{asset('assets/images/notifiaction/bach-ico.png') }}" alt="Layer">
                                     </div>
                                     <div class="col-md-9">
                                         <div class="notification-flex">
@@ -169,7 +169,7 @@
                                         </span>
                                     </div>
                                     <div class="col-md-1">
-                                        <img class="dot-image" src="../assets/images/ico/3dot.png"
+                                        <img class="dot-image" src="{{asset('assets/images/ico/3dot.png') }}"
                                             alt="dot-ico">
 
                                     </div>
@@ -179,7 +179,7 @@
                                 <div class="row">
                                     <div class="col-md-1">
                                         <img class="avatar mt-2 mb-2 "
-                                            src="../assets/images/notifiaction/tick-ico.png" alt="Layer">
+                                            src="{{asset('assets/images/notifiaction/tick-ico.png') }}" alt="Layer">
                                     </div>
                                     <div class="col-md-9">
                                         <div class="notification-flex">
@@ -196,7 +196,7 @@
                                         </span>
                                     </div>
                                     <div class="col-md-1">
-                                        <img class="dot-image" src="../assets/images/ico/3dot.png"
+                                        <img class="dot-image" src="{{asset('assets/images/ico/3dot.png') }}"
                                             alt="dot-ico">
                                     </div>
                                 </div>
@@ -206,7 +206,7 @@
                 </li>
                 <li class="nav-item" id="imageDropdown" data-toggle="dropdown"
                     style="position: absolute;right: 15px;">
-                    <img src="../assets/images/logo/profile-image.png" alt="logo"
+                    <img src="{{asset('assets/images/logo/profile-image.png') }}" alt="logo"
                         style="width: 35px;border-radius: 30px;">
                     <div class="dropdown classdrop" style="position: absolute;right:99px;top: 7px; ">
                         <ul class="dropdown-menu classdrop " style="padding-bottom: 5px;padding-top: 5px;"
@@ -237,9 +237,9 @@
 <!-- side navbar of icons button with navbar -->
 <nav class="navbar navbar-expand-lg mb-4 pb-2" style="width: 100%;background-color: #FBFBFB !important;">
     <button onclick="navicon()" class="sidenav-toggle rotate">
-        <img src="../assets/images/ico/side-arrow-icon.jpg" alt="side-arrow" style="width: 20px;">
+        <img src="{{asset('assets/images/ico/side-arrow-icon.jpg') }}" alt="side-arrow" style="width: 20px;">
     </button>
-    <img id="sideicons-side" src="../assets/images/ico/side-icons.png" alt="sideicons"
+    <img id="sideicons-side" src="{{asset('assets/images/ico/side-icons.png') }}" alt="sideicons"
         style="position: absolute;left: 30px;margin-top: 10px; display: none;">
     <div class="box" id="box" style="float: left;">
         <form class="input-nav">
@@ -253,7 +253,7 @@
                     <div class="row">
                         <div class="col-xs-2 pull-right">
                             <div class="notification">
-                                <img src="../assets/images/ico/Notification.png" alt="notification-ico">
+                                <img src="{{asset('assets/images/ico/Notification.png') }}" alt="notification-ico">
                                 <span class="notification-text">
                                     4
                                 </span>
@@ -279,7 +279,7 @@
                                         <div class="row">
                                             <div class="col-md-1">
                                                 <img class="avatar mt-2"
-                                                    src="../assets/images/notifiaction/Layer.png"
+                                                    src="{{asset('assets/images/notifiaction/Layer.png') }}"
                                                     alt="Layer">
                                             </div>
                                             <div class="col-md-9">
@@ -298,7 +298,7 @@
                                                 </span>
                                             </div>
                                             <div class="col-md-1">
-                                                <img class="dot-image" src="../assets/images/ico/3dot.png"
+                                                <img class="dot-image" src="{{asset('assets/images/ico/3dot.png') }}"
                                                     alt="dot-ico">
                                             </div>
                                         </div>
@@ -307,7 +307,7 @@
                                         <div class="row">
                                             <div class="col-md-1">
                                                 <img class="avatar mt-2"
-                                                    src="../assets/images/notifiaction/Layer.png"
+                                                    src="{{asset('assets/images/notifiaction/Layer.png') }}"
                                                     alt="Layer">
                                             </div>
                                             <div class="col-md-9">
@@ -326,7 +326,7 @@
                                                 </span>
                                             </div>
                                             <div class="col-md-1">
-                                                <img class="dot-image" src="../assets/images/ico/3dot.png"
+                                                <img class="dot-image" src="{{asset('assets/images/ico/3dot.png') }}"
                                                     alt="dot-ico">
                                             </div>
                                         </div>
@@ -338,7 +338,7 @@
                                         <div class="row">
                                             <div class="col-md-1">
                                                 <img class="avatar mt-2"
-                                                    src="../assets/images/notifiaction/Layer.png"
+                                                    src="{{asset('assets/images/notifiaction/Layer.png') }}"
                                                     alt="Layer">
                                             </div>
                                             <div class="col-md-9">
@@ -357,7 +357,7 @@
                                                 </span>
                                             </div>
                                             <div class="col-md-1">
-                                                <img class="dot-image" src="../assets/images/ico/3dot.png"
+                                                <img class="dot-image" src="{{asset('assets/images/ico/3dot.png') }}"
                                                     alt="dot-ico">
                                             </div>
                                         </div>
@@ -366,7 +366,7 @@
                                         <div class="row">
                                             <div class="col-md-1">
                                                 <img class="avatar mt-2"
-                                                    src="../assets/images/notifiaction/Layer.png"
+                                                    src="{{asset('assets/images/notifiaction/Layer.png') }}"
                                                     alt="Layer">
                                             </div>
                                             <div class="col-md-9">
@@ -385,7 +385,7 @@
                                                 </span>
                                             </div>
                                             <div class="col-md-1">
-                                                <img class="dot-image" src="../assets/images/ico/3dot.png"
+                                                <img class="dot-image" src="{{asset('assets/images/ico/3dot.png') }}"
                                                     alt="dot-ico">
                                             </div>
                                         </div>
@@ -398,7 +398,7 @@
             </li>
             <li class="nav-item pr-4">
                 <a class="nav-link" href="{{ route('tutor.chat')}}">
-                    <img src="../assets/images/ico/email.png" alt="img-email"
+                    <img src="{{asset('assets/images/ico/email.png') }}" alt="img-email"
                         style="width: 20px;cursor: pointer !important;">
                 </a>
             </li>
@@ -408,7 +408,7 @@
                         data-toggle="dropdown" aria-expanded="true">
                         Harram
                     </a>
-                    <img class="profile-img" src="../assets/images/ico/profile-boy.png"
+                    <img class="profile-img" src="{{asset('assets/images/ico/profile-boy.png') }}"
                         data-toggle="dropdown" alt="profile">
                     <ul class="dropdown-menu classdrop classdrop1 ">
                         <li>

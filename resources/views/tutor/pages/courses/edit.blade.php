@@ -2,10 +2,16 @@
 
 @section('content')
 <link href="{{ asset('assets/css/course.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+<style>
+    .dropify-wrapper {
+        height: 120px;
+    }
 
-  <!--section start  -->
+</style>
 
-  <div class="container-fluid pb-4">
+
+<div class="container-fluid pb-4">
     <h1 class="mt-5">
         Add Course </h1>
 </div>
@@ -28,8 +34,9 @@
                             <div class="input-options mt-2">
                                 <select name="subject">
                                     <option disabled selected>Subject</option>
-                                    <option value="1">Chemistry</option>
-                                    <option value="2">Physice</option>
+                                    @foreach (Auth::user()->teach as $teach)
+                                    <option value="{{$teach->subject_id}}" @if($teach->subject_id == $teach->subject->id) selected @endif>{{$teach->subject->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -45,31 +52,18 @@
             </div>
             <div class="col-md-5 mt-5">
                 <div class="mt-5"><br />
-                    <div class="bg-edit">
-                        <div class="text-center">
-                            <div class="text-center">
-                                <input type="file" id="file" name="video" class="repeat-image-2" />
-                                <label for="file">
-                                    <img src="../assets/img/ico/Icon-feather-image.svg" class="repeat-image-2 mt-2"
-                                        style="height: 63px;" alt="repeat" />
-                                </label>
-                            </div>
-                            <p class="paragraph-text">Upload intro video</p>
-                        </div>
+                    <div class="bg-edit text-center">
+                        <label for="" class="pt-2 ">Intro Video</label>
+                        <input type="file" class="dropify" name="video" id="video"
+                        data-default-file="{{asset($course->video)}}">
                     </div>
-                    <div class="bg-edit mt-4">
-                        <div class="text-center">
-                            <!-- <img src="../assets/img/ico/Icon-feather-upload-cloud.svg" alt="asd" class="mt-4" /> -->
-                            <div class="text-center">
-                                <input type="file" id="file" name="thumbnail" class="repeat-image-2" />
-                                <label for="file">
-                                    <img src="../assets/img/ico/Icon-feather-upload-cloud.svg"
-                                        class="repeat-image-2 mt-2" style="height: 63px;" alt="repeat" />
-                                </label>
-                            </div>
-                            <p class="paragraph-text">Upload course thumbnail </p>
-                        </div>
-                    </div>
+                </div>
+                <div class="bg-edit mt-4 text-center">
+                    <label for="" class="pt-2 ">Course Thumbnail</label>
+                    <input type="file" class="dropify" name="thumbnail" id="thumbnail"
+                        data-default-file="{{asset($course->thumbnail)}}">
+
+                </div>
                 </div>
             </div>
         </div>
@@ -93,6 +87,7 @@
                             Basic
                         </div>
                         <div class="adddivs-1">
+
                             <div class="input-serachs mt-2">
                                 <input type="search" name="basic_title[]" placeholder="Write course outline" />
                             </div>
@@ -156,8 +151,8 @@
                         <div class="input-options mt-3">
                             <select name="basic_duration">
                                 <option disabled selected>Course duration</option>
-                                <option>1 hour</option>
-                                <option>2 hour</option>
+                                <option value="1" @if($course->basic_duration == 1) selected @endif>1 hour</option>
+                                <option value="2" @if($course->basic_duration == 2) selected @endif>2 hour</option>
                             </select>
                         </div>
 
@@ -165,10 +160,15 @@
                             Timing
                         </h3>
                         <div class="input-options mt-2">
-                            <select name="basic_days">
-                                <option disabled selected>Select days</option>
-                                <option>1 hour</option>
-                                <option>2 hour</option>
+                            <select name="basic_days"  multiple role="multiselect">
+                                <option disabled selected required>Select days</option>
+                                <option value="monday">Monday</option>
+                                <option value="tuesday">Tuesday</option>
+                                <option value="wednesday">Wednesday</option>
+                                <option value="thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                                <option value="Saturday">Saturday</option>
+                                <option value="Sunday">Sunday</option>
                             </select>
                         </div>
                         <div class="input-options mt-2">
@@ -263,10 +263,15 @@
                         Timing
                     </h3>
                     <div class="input-options mt-2">
-                        <select name="standard_days">
-                            <option disabled selected>Select days</option>
-                            <option>1 hour</option>
-                            <option>2 hour</option>
+                        <select name="standard_days"  multiple role="multiselect">
+                            <option disabled selected required>Select days</option>
+                            <option value="monday">Monday</option>
+                            <option value="tuesday">Tuesday</option>
+                            <option value="wednesday">Wednesday</option>
+                            <option value="thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
                         </select>
                     </div>
                     <div class="input-options mt-2">
@@ -334,7 +339,9 @@
                     </div>
                     <div class="mt-3 row">
                         <div class="col-md-1">
-                            <span class="checkbox-edit"> <input type="checkbox" @if($course->advance_one_one != null) checked @endif  name="advance_one_one" id=""> </span>
+                            <span class="checkbox-edit">
+                                <input type="checkbox" @if($course->advance_one_one != null) checked @endif  name="advance_one_one" id="">
+                            </span>
                         </div>
                         <div class="col-md-11 m-0 p-0 pl-2">
                             <span class="paragraph-text"> One to one session with tutor</span>
@@ -342,7 +349,9 @@
                     </div>
                     <div class="mt-3 row">
                         <div class="col-md-1">
-                            <span class="checkbox-edit"> <input type="checkbox" @if($course->advance_note != null) checked @endif name="advance_note" id=""> </span>
+                            <span class="checkbox-edit">
+                                <input type="checkbox" @if($course->advance_note != null) checked @endif name="advance_note" id="">
+                            </span>
                         </div>
                         <div class="col-md-11 m-0 p-0 pl-2">
                             <span class="paragraph-text"> Note</span>
@@ -360,10 +369,15 @@
                         Timing
                     </h3>
                     <div class="input-options mt-2">
-                        <select name="advance_days">
-                            <option disabled selected>Select days</option>
-                            <option>1 hour</option>
-                            <option>2 hour</option>
+                        <select name="advance_days" multiple role="multiselect">
+                            <option disabled selected required>Select days</option>
+                            <option value="monday">Monday</option>
+                            <option value="tuesday">Tuesday</option>
+                            <option value="wednesday">Wednesday</option>
+                            <option value="thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
                         </select>
                     </div>
                     <div class="input-options mt-2">
@@ -374,6 +388,7 @@
                             <option>2 hour</option>
                         </select>
                     </div>
+
                     <div class="text-center mt-4">
                         <input type="submit" class="schedule-btn w-50 " value="Submit course" />
                     </div>
@@ -383,5 +398,6 @@
         </div>
     </form>
 </div>
+
 <!-- end section -->
 @endsection
