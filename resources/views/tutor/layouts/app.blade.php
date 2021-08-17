@@ -17,7 +17,7 @@
     <!-- fonawsome -->
     <link href="{{ asset('assets/css/fontawesome.min.css') }}" rel="stylesheet">
       <!-- Dropify CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/multiselect.css')}}" />   
+    <link rel="stylesheet" href="{{ asset('assets/css/multiselect.css')}}" />
     <link rel="stylesheet" href="{{ asset('assets/css/dropify.css')}}" />
     <!-- Styles -->
     @include('tutor.layouts.css')
@@ -49,8 +49,8 @@
      <script src="{{ asset('assets/js/multiselect.js')}}"></script>
      <script src="{{ asset('assets/js/course.js')}}"></script>
 
-     @include('js_files.chat')
-
+    @include('js_files.chat')
+    @yield('scripts')
 <script>
       $(document).ready(function(){
         $(".dropify").dropify();

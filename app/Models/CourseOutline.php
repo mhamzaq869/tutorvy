@@ -21,8 +21,11 @@ class CourseOutline extends Model
         'explain',
     ];
 
+
     public function course()
     {
         return $this->belongsTo(Course::class);
     }
+
+
 }

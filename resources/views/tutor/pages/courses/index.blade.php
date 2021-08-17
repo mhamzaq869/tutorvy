@@ -238,10 +238,12 @@
     </div>
     <div class="container-fluid mt-3">
         <div class="container pt-4 pb-4 profile-header">
+            @if ($rej_course->count() != 0)
             <div class="row">
                 <div class="col-md-12">
                     <h2>Pending Courses</h2>
                 </div>
+                @foreach ($pen_course as $course)
                 <div class="col-md-4 pending_hover">
                     <div class="card">
                         <div class="overlay">
@@ -254,7 +256,7 @@
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                
+
                                 <div class="col-md-5 ">
                                     <span class="che-text border-round">
                                         chemistry
@@ -302,24 +304,27 @@
                                         <p>Seats Left</p></div>
                                     <!-- <canvas id="myChart" width="400" height="400"></canvas> -->
                                 </div>
-                                <div class="col-md-12 text-center learning-button">
-                                    <a href="{{route('tutor.course.edit',[$course->id])}}" class="no-decor">
-                                        Edit Course
-                                    </a>
-                                </div>
+
                             </div>
                         </div>
                     </div>
-                   
+
                 </div>
+                @endforeach
             </div>
+            @endif
+
+            @if ($rej_course->count() != 0)
             <div class="row mt-3">
                 <div class="col-md-12">
-                    <h2>My Courses</h2>
+                    <h2>Rejected Courses</h2>
                 </div>
-                @foreach ($courses as $course)
-                <div class="col-md-4">
+                @foreach ($rej_course as $course)
+                <div class="col-md-4 pending_hover">
                     <div class="card">
+                        <div class="overlay">
+                            <span class="border-round btn">Rejected Course</span>
+                        </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
@@ -327,7 +332,7 @@
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                
+
                                 <div class="col-md-5 ">
                                     <span class="che-text border-round">
                                         chemistry
@@ -375,8 +380,84 @@
                                         <p>Seats Left</p></div>
                                     <!-- <canvas id="myChart" width="400" height="400"></canvas> -->
                                 </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                @endforeach
+            </div>
+            @endif
+
+
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <h2>My Courses</h2>
+                </div>
+                @foreach ($app_course as $course)
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @if ($course->thumbnail)
+                                    <img src="{{asset($course->thumbnail)}}" class="border-round" alt="Avatar" style="width:100%" >
+                                    @else
+                                    <img src="{{asset('assets/images/NoPath.png')}}" class="border-round" alt="Avatar" style="width:100%" >
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+
+                                <div class="col-md-5 ">
+                                    <span class="che-text border-round">
+                                       {{$course->subject->name}}
+                                    </span>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="row">
+                                        <div class="col-md-7 text-right">
+                                            <ul class="list-inline">
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-5 text-right">
+                                            <h2 class="price">${{$course->basic_price}}</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-md-12">
+                                    <h6>{{$course->title}}</h6>
+                                    <hr>
+                                </div>
+                                <div class="col-md-8">
+                                    <h6>Next batch is starting from 24 April, 2021</h6>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <div class="progress blue">
+                                        <span class="progress-left">
+                                            <span class="progress-bar"></span>
+                                        </span>
+                                        <span class="progress-right">
+                                            <span class="progress-bar"></span>
+                                        </span>
+                                        <div class="progress-value">
+                                            <span>5</span>
+                                            <span>Seats Left</span>
+                                        </div>
+                                    </div>
+                                    <div class="head text-center">
+                                        <p>Seats Left</p></div>
+                                </div>
                                 <div class="col-md-12 text-center learning-button">
-                                    <a href="{{route('tutor.course.edit',[$course->id])}}" class="no-decor">
+                                    <a href="{{ route('tutor.course.edit',[$course->id]) }}" class="no-decor">
                                         Edit Course
                                     </a>
                                 </div>
@@ -384,9 +465,8 @@
                         </div>
                     </div>
                 </div>
-               @endforeach
-               
-                
+                @endforeach
+
                 <div class="col-md-4 text-center">
                     <div class="">
                         <div class="card-body ">
@@ -397,12 +477,12 @@
                             </div>
                         </div>
                     </div>
-                   
+
                 </div>
             </div>
         </div>
     </div>
     <!-- end section -->
-    
-               
+
+
 @endsection

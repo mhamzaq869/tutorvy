@@ -26,6 +26,7 @@ class Course extends Model
         'thumbnail',
     ];
 
+
     public function levels()
     {
         return $this->hasMany(CourseLevel::class);
@@ -42,4 +43,5 @@ class Course extends Model
     {
         return $this->hasMany(CourseOutline::class);
     }
+
 }
