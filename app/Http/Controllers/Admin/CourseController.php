@@ -23,11 +23,12 @@ class CourseController extends Controller
         $approved_courses = Course::where('status',1)->get();
         $requested_courses = Course::where('status',0)->get();
 
-        return view('admin.pages.courses.index');
+        return view('admin.pages.courses.index',compact('approved_courses','requested_courses'));
     }
-    public function courseRequest()
+    public function courseRequest($id)
     {
-        return view('admin.pages.courses.course_req');
+        $course = Course::with('outline')->where('status',0)->where('id',$id)->first();
+        return view('admin.pages.courses.course_req',compact('course'));
     }
     public function courseProfile()
     {

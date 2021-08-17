@@ -53,9 +53,9 @@
                 <div class="col-md-5 bg-white pb-5">
                     <div class=" mt-4">
                         <h3 class="">
-                            How to create your online courses in 3 steps.
+                            {{$course->title}}
                         </h3>
-                        <p class="paragraph-text-1">Chemistry course</p>
+                        <p class="paragraph-text-1">{{$course->subject_name}} course</p>
                         <iframe width="100%" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY"
                             style="border-radius: 8px;">
                         </iframe>
@@ -86,9 +86,7 @@
                         </div>
                         <h3 class="mt-4">About course</h3>
                         <p class="paragraph-text-2 mt-2 pb-4">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit reprehenderit dolores
-                            impedit cumque cum. Similique incidunt excepturi dolorem sapiente officiis! Ad,
-                            quibusdam rerum. Ipsam qui quaerat totam accusamus pariatur fugiat?
+                            {{$course->about}}
                         <div class="row">
                             <div class="col-md-12">
                                 <div class=" float-right">

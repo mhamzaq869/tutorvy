@@ -26,6 +26,9 @@ class Course extends Model
         'thumbnail',
     ];
 
+    protected $appends = ['tutor_name','subject_name'];
+
+
     public function levels()
     {
         return $this->hasMany(CourseLevel::class);
@@ -41,5 +44,17 @@ class Course extends Model
     public function outline()
     {
         return $this->hasMany(CourseOutline::class);
+    }
+
+    public function getTutorNameAttribute()
+    {
+        $user = User::where('id',$this->user_id)->first();
+        return "{$user->first_name} {$user->last_name}";
+    }
+
+    public function getSubjectNameAttribute()
+    {
+        $subject = Subject::where('id',$this->subject_id)->first();
+        return "{$subject->name}";
     }
 }
