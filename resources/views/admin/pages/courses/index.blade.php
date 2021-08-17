@@ -106,15 +106,16 @@
                     </thead>
                     <tbody>
                         <!-- staff table data -->
+                        @foreach($requested_courses as $course)
                         <tr>
                             <td class="pt-4">
                                 <span>01</span>
                             </td>
                             <td class="pt-4">
-                                <span>How to create your online courses in 3 steps.</span>
+                                <span>{{$course->title}}</span>
                             </td>
-                            <td class="pt-4">Chemistry</td>
-                            <td class="pt-4">Alexandra Felix</td>
+                            <td class="pt-4">{{$course->subject_name}}</td>
+                            <td class="pt-4">{{$course->tutor_name}}</td>
                             <td class="pt-4">
                                 <div class="container ">
                                     <div class="row float-right">
@@ -129,17 +130,11 @@
                                                     class="mr-2 cursor-1">
                                             </a>
                                         </div>
-                                        <div class="col-md-2">
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </div>
                                     </div>
                                 </div>
                             </td>
                             <td class="pt-3 d-flex">
-                                <a  class="btn cencel-btn w-50 mr-2" href="{{route('admin.course-request')}}">
+                                <a  class="btn cencel-btn w-50 mr-2" href="{{route('admin.course-request',[$course->id])}}">
                                     View
                                 </a>
                                 <a class="btn schedule-btn w-50" href="#" data-toggle="modal"
@@ -148,218 +143,7 @@
                                 </a>
                             </td>
                         </tr>
-
-                        <tr>
-                            <td class="pt-4">
-                                <span>01</span>
-                            </td>
-                            <td class="pt-4">
-                                <span>How to create your online courses in 3 steps.</span>
-                            </td>
-                            <td class="pt-4">Chemistry</td>
-                            <td class="pt-4">Alexandra Felix</td>
-                            <td class="pt-4">
-                                <div class="container ">
-                                    <div class="row float-right">
-                                        <div class="col-md-1">
-                                             <a href="#"><img data-toggle="modal" data-target="#exampleModalCenter"
-                                                src="{{ asset('admin/assets/img/ico/delete-icon.svg') }}" alt="a"
-                                                class="mr-3 cursor-1"></a>
-                                        </div>
-                                        <div class="col-md-1">
-                                            <a href="../tutor-manage/edit-course.html">
-                                                <img src="{{ asset('admin/assets/img/ico/edit-icon.svg') }}" alt="a"
-                                                    class="mr-2 cursor-1">
-                                            </a>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="pt-3 d-flex">
-                                <a  class="btn cencel-btn w-50 mr-2" href="#">
-                                    View
-                                </a>
-                                <a class="btn schedule-btn w-50" href="#" data-toggle="modal"
-                                    data-target="#exampleModalCenterd">
-                                    Assign
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="pt-4">
-                                <span>01</span>
-                            </td>
-                            <td class="pt-4">
-                                <span>How to create your online courses in 3 steps.</span>
-                            </td>
-                            <td class="pt-4">Chemistry</td>
-                            <td class="pt-4">Alexandra Felix</td>
-                            <td class="pt-4">
-                                <div class="container ">
-                                    <div class="row float-right">
-                                        <div class="col-md-1">
-                                             <a href="#"><img data-toggle="modal" data-target="#exampleModalCenter"
-                                                src="{{ asset('admin/assets/img/ico/delete-icon.svg') }}" alt="a"
-                                                class="mr-3 cursor-1"></a>
-                                        </div>
-                                        <div class="col-md-1">
-                                            <a href="../tutor-manage/edit-course.html">
-                                                <img src="{{ asset('admin/assets/img/ico/edit-icon.svg') }}" alt="a"
-                                                    class="mr-2 cursor-1">
-                                            </a>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="pt-3 d-flex">
-                                <a  class="btn cencel-btn w-50 mr-2" href="#">
-                                    View
-                                </a>
-                                <a class="btn schedule-btn w-50" href="#" data-toggle="modal"
-                                    data-target="#exampleModalCenterd">
-                                    Assign
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="pt-4">
-                                <span>01</span>
-                            </td>
-                            <td class="pt-4">
-                                <span>How to create your online courses in 3 steps.</span>
-                            </td>
-                            <td class="pt-4">Chemistry</td>
-                            <td class="pt-4">Alexandra Felix</td>
-                            <td class="pt-4">
-                                <div class="container ">
-                                    <div class="row float-right">
-                                        <div class="col-md-1">
-                                             <a href="#"><img data-toggle="modal" data-target="#exampleModalCenter"
-                                                src="{{ asset('admin/assets/img/ico/delete-icon.svg') }}" alt="a"
-                                                class="mr-3 cursor-1"></a>
-                                        </div>
-                                        <div class="col-md-1">
-                                            <a href="../tutor-manage/edit-course.html">
-                                                <img src="{{ asset('admin/assets/img/ico/edit-icon.svg') }}" alt="a"
-                                                    class="mr-2 cursor-1">
-                                            </a>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="pt-3 d-flex">
-                                <a  class="btn cencel-btn w-50 mr-2" href="#">
-                                    View
-                                </a>
-                                <a class="btn schedule-btn w-50" href="#" data-toggle="modal"
-                                    data-target="#exampleModalCenterd">
-                                    Assign
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="pt-4">
-                                <span>01</span>
-                            </td>
-                            <td class="pt-4">
-                                <span>How to create your online courses in 3 steps.</span>
-                            </td>
-                            <td class="pt-4">Chemistry</td>
-                            <td class="pt-4">Alexandra Felix</td>
-                            <td class="pt-4">
-                                <div class="container ">
-                                    <div class="row float-right">
-                                        <div class="col-md-1">
-                                             <a href="#"><img data-toggle="modal" data-target="#exampleModalCenter"
-                                                src="{{ asset('admin/assets/img/ico/delete-icon.svg') }}" alt="a"
-                                                class="mr-3 cursor-1"></a>
-                                        </div>
-                                        <div class="col-md-1">
-                                            <a href="../tutor-manage/edit-course.html">
-                                                <img src="{{ asset('admin/assets/img/ico/edit-icon.svg') }}" alt="a"
-                                                    class="mr-2 cursor-1">
-                                            </a>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="pt-3 d-flex">
-                                <a  class="btn cencel-btn w-50 mr-2" href="#">
-                                    View
-                                </a>
-                                <a class="btn schedule-btn w-50" href="#" data-toggle="modal"
-                                    data-target="#exampleModalCenterd">
-                                    Assign
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="pt-4">
-                                <span>01</span>
-                            </td>
-                            <td class="pt-4">
-                                <span>How to create your online courses in 3 steps.</span>
-                            </td>
-                            <td class="pt-4">Chemistry</td>
-                            <td class="pt-4">Alexandra Felix</td>
-                            <td class="pt-4">
-                                <div class="container ">
-                                    <div class="row float-right">
-                                        <div class="col-md-1">
-                                             <a href="#"><img data-toggle="modal" data-target="#exampleModalCenter"
-                                                src="{{ asset('admin/assets/img/ico/delete-icon.svg') }}" alt="a"
-                                                class="mr-3 cursor-1"></a>
-                                        </div>
-                                        <div class="col-md-1">
-                                            <a href="../tutor-manage/edit-course.html">
-                                                <img src="{{ asset('admin/assets/img/ico/edit-icon.svg') }}" alt="a"
-                                                    class="mr-2 cursor-1">
-                                            </a>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label class="switch">
-                                                <input type="checkbox">
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="pt-3 d-flex">
-                                <a  class="btn cencel-btn w-50 mr-2" href="#">
-                                    View
-                                </a>
-                                <a class="btn schedule-btn w-50" href="#" data-toggle="modal"
-                                    data-target="#exampleModalCenterd">
-                                    Assign
-                                </a>
-                            </td>
-                        </tr>
-
+                        @endforeach
                         <!-- end data -->
                     </tbody>
                 </table>
@@ -492,158 +276,6 @@
                         </td>
                         <td class="pt-3 d-flex">
                             <a href="{{route('admin.course-profile')}}" class="btn schedule-btn w-100 mr-2" href="#">
-                                View
-                            </a>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="pt-4">
-                            <span>01</span>
-                        </td>
-                        <td class="pt-4">
-                            <span>How to create your online courses in 3 steps.</span>
-                        </td>
-                        <td class="pt-4">Chemistry</td>
-                        <td class="pt-4">Alexandra Felix</td>
-                        <td class="pt-4">
-                            <div class="container ">
-                                <div class="row float-right">
-                                    <div class="col-md-1">
-                                        <img data-toggle="modal" data-target="#exampleModalCenter"
-                                            src="{{ asset('admin/assets/img/ico/delete-icon.svg') }}" alt="a" class="mr-3 cursor-1">
-                                    </div>
-                                    <div class="col-md-1">
-                                        <a href="../tutor-manage/edit-course.html">
-                                            <img src="{{ asset('admin/assets/img/ico/edit-icon.svg') }}" alt="a"
-                                                class="mr-2 cursor-1">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label class="switch">
-                                            <input type="checkbox">
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="pt-3 d-flex">
-                            <a href="approve-comment.html" class="btn schedule-btn w-100 mr-2" href="#">
-                                View
-                            </a>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="pt-4">
-                            <span>01</span>
-                        </td>
-                        <td class="pt-4">
-                            <span>How to create your online courses in 3 steps.</span>
-                        </td>
-                        <td class="pt-4">Chemistry</td>
-                        <td class="pt-4">Alexandra Felix</td>
-                        <td class="pt-4">
-                            <div class="container ">
-                                <div class="row float-right">
-                                    <div class="col-md-1">
-                                        <img data-toggle="modal" data-target="#exampleModalCenter"
-                                            src="{{ asset('admin/assets/img/ico/delete-icon.svg') }}" alt="a" class="mr-3 cursor-1">
-                                    </div>
-                                    <div class="col-md-1">
-                                        <a href="../tutor-manage/edit-course.html">
-                                            <img src="{{ asset('admin/assets/img/ico/edit-icon.svg') }}" alt="a"
-                                                class="mr-2 cursor-1">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label class="switch">
-                                            <input type="checkbox">
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="pt-3 d-flex">
-                            <a href="approve-comment.html" class="btn schedule-btn w-100 mr-2" href="#">
-                                View
-                            </a>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="pt-4">
-                            <span>01</span>
-                        </td>
-                        <td class="pt-4">
-                            <span>How to create your online courses in 3 steps.</span>
-                        </td>
-                        <td class="pt-4">Chemistry</td>
-                        <td class="pt-4">Alexandra Felix</td>
-                        <td class="pt-4">
-                            <div class="container ">
-                                <div class="row float-right">
-                                    <div class="col-md-1">
-                                        <img data-toggle="modal" data-target="#exampleModalCenter"
-                                            src="{{ asset('admin/assets/img/ico/delete-icon.svg') }}" alt="a" class="mr-3 cursor-1">
-                                    </div>
-                                    <div class="col-md-1">
-                                        <a href="../tutor-manage/edit-course.html">
-                                            <img src="{{ asset('admin/assets/img/ico/edit-icon.svg') }}" alt="a"
-                                                class="mr-2 cursor-1">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label class="switch">
-                                            <input type="checkbox">
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="pt-3 d-flex">
-                            <a href="approve-comment.html" class="btn schedule-btn w-100 mr-2" href="#">
-                                View
-                            </a>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="pt-4">
-                            <span>01</span>
-                        </td>
-                        <td class="pt-4">
-                            <span>How to create your online courses in 3 steps.</span>
-                        </td>
-                        <td class="pt-4">Chemistry</td>
-                        <td class="pt-4">Alexandra Felix</td>
-                        <td class="pt-4">
-                            <div class="container ">
-                                <div class="row float-right">
-                                    <div class="col-md-1">
-                                        <img data-toggle="modal" data-target="#exampleModalCenter"
-                                            src="{{ asset('admin/assets/img/ico/delete-icon.svg') }}" alt="a" class="mr-3 cursor-1">
-                                    </div>
-                                    <div class="col-md-1">
-                                        <a href="../tutor-manage/edit-course.html">
-                                            <img src="{{ asset('admin/assets/img/ico/edit-icon.svg') }}" alt="a"
-                                                class="mr-2 cursor-1">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label class="switch">
-                                            <input type="checkbox">
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="pt-3 d-flex">
-                            <a href="approve-comment.html" class="btn schedule-btn w-100 mr-2" href="#">
                                 View
                             </a>
 
