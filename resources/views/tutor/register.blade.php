@@ -745,7 +745,7 @@
         <script src="{{ asset('assets/js/intlTelInput.js') }}"></script>
         <script src="{{ asset('assets/js/registration.js') }}"></script>
         <script src="{{ asset('assets/js/yearpicker.js')}}"></script>
-        <script src="{{ asset('assets/js/languages.json')}}"></script>
+        <script type="application/json" src="{{ asset('assets/js/languages.json')}}"></script>
         <script src="{{ asset('assets/js/googleapi.js')}}"></script>
         <script src="{{ asset('assets/js/multiselect.js')}}"></script>
         <script src="{{ asset('assets/js/dropify.js')}}"></script>
