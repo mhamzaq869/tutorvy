@@ -17,7 +17,7 @@
     <!-- fonawsome -->
     <link href="{{ asset('assets/css/fontawesome.min.css') }}" rel="stylesheet">
       <!-- Dropify CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/multiselect.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/multiselect.css')}}" />   
     <link rel="stylesheet" href="{{ asset('assets/css/dropify.css')}}" />
     <!-- Styles -->
     @include('tutor.layouts.css')

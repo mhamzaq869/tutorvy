@@ -37,8 +37,9 @@
                             <div class="input-options mt-2">
                                 <select name="subject">
                                     <option disabled selected>Subject</option>
-                                    <option value="1">Chemistry</option>
-                                    <option value="2">Physice</option>
+                                    @foreach (Auth::user()->teach as $teach)
+                                    <option value="{{$teach->subject_id}}" @if($teach->subject_id == $teach->subject->id) selected @endif>{{$teach->subject->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -151,14 +152,13 @@
                         </div>
                         <div class="input-options mt-3">
                             <select name="basic_duration" >
-                                <option disabled selected required>Select days</option>
-                                <option value="monday">Monday</option>
-                                <option value="tuesday">Tuesday</option>
-                                <option value="wednesday">Wednesday</option>
-                                <option value="thursday">Thursday</option>
-                                <option value="Friday">Friday</option>
-                                <option value="Saturday">Saturday</option>
-                                <option value="Sunday">Sunday</option>
+                                <option disabled selected required>Course Duration</option>
+                                <option value="1">1 week</option>
+                                <option value="2">2 week</option>
+                                <option value="3">3 week</option>
+                                <option value="4">4 week</option>
+                                <option value="5">5 week</option>
+                                <option value="6">6 week</option>
                             </select>
                         </div>
 
@@ -166,7 +166,7 @@
                             Timing
                         </h3>
                         <div class="input-options mt-2">
-                            <select name="basic_days"  multiple role="multiselect">
+                            <select name="basic_days[]"  multiple role="multiselect">
                                 <option disabled selected required>Select days</option>
                                 <option value="monday">Monday</option>
                                 <option value="tuesday">Tuesday</option>
@@ -179,8 +179,7 @@
                         </div>
                         <div class="input-options mt-2">
                             <select name="basic_time">
-                                <option disabled selected>Select time
-                                </option>
+                                <option disabled selected>Select time</option>
                                 <option>1 hour</option>
                                 <option>2 hour</option>
                             </select>
@@ -264,8 +263,12 @@
                     <div class="input-options mt-3">
                         <select name="standard_duration">
                             <option disabled selected>Course duration</option>
-                            <option>1 hour</option>
-                            <option>2 hour</option>
+                            <option value="1">1 week</option>
+                            <option value="2">2 week</option>
+                            <option value="3">3 week</option>
+                            <option value="4">4 week</option>
+                            <option value="5">5 week</option>
+                            <option value="6">6 week</option>
                         </select>
                     </div>
 
@@ -273,7 +276,7 @@
                         Timing
                     </h3>
                     <div class="input-options mt-2">
-                        <select name="standard_days" multiple role="multiselect">
+                        <select name="standard_days[]" multiple role="multiselect">
                             <option disabled selected required>Select days</option>
                             <option value="monday">Monday</option>
                             <option value="tuesday">Tuesday</option>
@@ -370,8 +373,12 @@
                     <div class="input-options mt-3">
                         <select name="advance_duration">
                             <option disabled selected>Course duration</option>
-                            <option>1 hour</option>
-                            <option>2 hour</option>
+                            <option value="1">1 week</option>
+                            <option value="2">2 week</option>
+                            <option value="3">3 week</option>
+                            <option value="4">4 week</option>
+                            <option value="5">5 week</option>
+                            <option value="6">6 week</option>
                         </select>
                     </div>
 
@@ -379,7 +386,7 @@
                         Timing
                     </h3>
                     <div class="input-options mt-2">
-                        <select name="advance_days" multiple role="multiselect">
+                        <select name="advance_days[]" multiple role="multiselect">
                             <option disabled selected required>Select days</option>
                             <option value="monday">Monday</option>
                             <option value="tuesday">Tuesday</option>
@@ -392,8 +399,7 @@
                     </div>
                     <div class="input-options mt-2">
                         <select name="advance_time">
-                            <option disabled selected>Select time
-                            </option>
+                            <option disabled selected>Select Time</option>
                             <option>1 hour</option>
                             <option>2 hour</option>
                         </select>
@@ -402,11 +408,9 @@
                         Price
                     </h3>
                     <div class="input-options mt-2">
-                       <input type="text" class="form-control" placeholder="$23">
+                       <input type="number" name="price" class="form-control" placeholder="$23">
                     </div>
-                    <!-- <div class="text-center mt-4">
-                        <input type="submit" class="schedule-btn w-50 " value="Submit course" />
-                    </div> -->
+
 
                 </div>
 

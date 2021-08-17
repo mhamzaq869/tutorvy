@@ -45,6 +45,7 @@ class CreateCoursesTable extends Migration
             $table->string('advance_duration')->nullable();
             $table->string('advance_days')->nullable();
             $table->string('advance_time')->nullable();
+            $table->string('price')->nullable();
             $table->timestamps();
         });
     }

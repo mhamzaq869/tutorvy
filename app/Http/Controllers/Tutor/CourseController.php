@@ -68,7 +68,7 @@ class CourseController extends Controller
         $courselevel->basic_final        = $request->basic_final ?? null;
         $courselevel->basic_note         = $request->basic_note ?? null;
         $courselevel->basic_duration     = $request->basic_duration ?? null;
-        $courselevel->basic_days         = $request->basic_days ?? null;
+        $courselevel->basic_days         = json_encode($request->basic_days) ?? null;
         $courselevel->basic_time         = $request->basic_time ?? null;
         $courselevel->standard_home_work = $request->standard_home_work ?? null;
         $courselevel->standard_quiz      = $request->standard_quiz ?? null;
@@ -76,7 +76,7 @@ class CourseController extends Controller
         $courselevel->standard_final     = $request->standard_final ?? null;
         $courselevel->standard_note      = $request->standard_note ?? null;
         $courselevel->standard_duration  = $request->standard_duration ?? null;
-        $courselevel->standard_days      = $request->standard_days ?? null;
+        $courselevel->standard_days      = json_encode($request->standard_days) ?? null;
         $courselevel->standard_time      = $request->standard_time ?? null;
         $courselevel->advance_home_work  = $request->advance_home_work ?? null;
         $courselevel->advance_quiz       = $request->advance_quiz ?? null;
@@ -84,7 +84,7 @@ class CourseController extends Controller
         $courselevel->advance_final      = $request->advance_final ?? null;
         $courselevel->advance_note       = $request->advance_note ?? null;
         $courselevel->advance_duration   = $request->advance_duration ?? null;
-        $courselevel->advance_days       = $request->advance_days ?? null;
+        $courselevel->advance_days       = json_encode($request->advance_days) ?? null;
         $courselevel->advance_time       = $request->advance_time ?? null;
 
         $courselevel->save();
