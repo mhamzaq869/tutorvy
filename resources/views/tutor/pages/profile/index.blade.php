@@ -1,7 +1,37 @@
 @extends('tutor.layouts.app')
-
+<style>
+    .card{
+        height:100% !important;
+    }
+    .chee {
+    background-color: transparent !important;
+    border-right: 5px solid transparent !important;
+}
+.proPic{
+border-radius:50%;
+border:1px solid #1173FF;
+}
+.dropdown-menu .show{
+    transform: translate3d(130px, 43px, 0px) !important;
+}
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 3px 15px;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
+.filepond{
+    width:200px;
+    height:200px;
+}
+</style>
 @section('content')
-    <div class="container">
+    <!-- <div class="container">
         <p class="heading-first ml-3 mr-3">
             Profile
         </p>
@@ -258,6 +288,131 @@
                             distribution of letters, as opposed to using
                             Content here content making it look like readable English.
                         </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="heading-first">Edit Profile</h1>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link active" id="v-pills-General-tab" data-toggle="pill" href="#v-pills-General" role="tab" aria-controls="v-pills-General" aria-selected="true">General</a>
+                            <a class="nav-link" id="v-pills-Education-tab" data-toggle="pill" href="#v-pills-Education" role="tab" aria-controls="v-pills-Education" aria-selected="false">Education</a>
+                            <a class="nav-link" id="v-pills-Subjects-tab" data-toggle="pill" href="#v-pills-Subjects" role="tab" aria-controls="v-pills-Subjects" aria-selected="false">Subjects</a>
+                            <a class="nav-link" id="v-pills-Work-tab" data-toggle="pill" href="#v-pills-Work" role="tab" aria-controls="v-pills-Work" aria-selected="false">Work Experience</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="tab-content" id="v-pills-tabContent chang_photo">
+                            <div class="tab-pane fade show active chee" id="v-pills-General" role="tabpanel" aria-labelledby="v-pills-General-tab">
+                                <form action="">
+                                    <div class="row">
+                                    
+                                        <div class="col-md-12">
+                                            <h1>Change Photo</h1>
+                                        </div>
+                                        <div class="col-md-12 mt-3">
+                                            <input type="file" 
+                                            class="filepond"
+                                            name="filepond"
+                                            accept="image/png, image/jpeg, image/gif" />
+                                    
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <label for="exampleName">Name</label>
+                                                <input type="text" class="form-control" id="exampleName" aria-describedby="emailHelp">
+                                                <small id="nameHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="exampleText">About</label>
+                                                <textarea class="form-control" id="exampleText" aria-describedby="emailHelp"></textarea>
+                                                <small id="textHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                                <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit">Save Changes</button>
+                                        </div>
+                                    
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade chee" id="v-pills-Education" role="tabpanel" aria-labelledby="v-pills-Education-tab">
+                                <form action="">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h1>Education</h1>
+                                        </div>
+                                       
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="exampleText">About</label>
+                                                <textarea class="form-control" id="exampleText" aria-describedby="emailHelp"></textarea>
+                                                <small id="textHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                                <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit">Save Changes</button>
+                                        </div>
+                                    
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade chee" id="v-pills-Subjects" role="tabpanel" aria-labelledby="v-pills-Subjects-tab">
+                                <form action="">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h1>Subjects</h1>
+                                        </div>
+                                       
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="exampleText">About</label>
+                                                <textarea class="form-control" id="exampleText" aria-describedby="emailHelp"></textarea>
+                                                <small id="textHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                                <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit">Save Changes</button>
+                                        </div>
+                                    
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade chee" id="v-pills-Work" role="tabpanel" aria-labelledby="v-pills-Work-tab">
+                                <form action="">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h1>Work Experience</h1>
+                                        </div>
+                                       
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="exampleText">About</label>
+                                                <textarea class="form-control" id="exampleText" aria-describedby="emailHelp"></textarea>
+                                                <small id="textHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                                <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit">Save Changes</button>
+                                        </div>
+                                    
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -24,6 +24,9 @@
     <link href="{{ asset('admin/assets/css/tutor.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/assets/css/mobile.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/assets/css/home-main.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/css/multiselect.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/dropify.css')}}" />
+
 
 
 

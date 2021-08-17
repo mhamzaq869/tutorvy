@@ -33,4 +33,8 @@ class CourseController extends Controller
     {
         return view('admin.pages.courses.course_profile');
     }
+    public function editCourseProfile()
+    {
+        return view('admin.pages.courses.course_edit');
+    }
 }
