@@ -34,6 +34,9 @@
             text-align:center;
             font-size:30px !important;
         }
+        .card{
+            height:auto !important;
+        }
 </style>
 @section('content')
  <!--section start  -->
@@ -322,14 +325,134 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <span class="heading-fifth" style="font-weight: 600;">Timing</span>
+                                                <p class="paragraph-text-2 mt-1">2 weeks ( Tuesday, Wednesday, Thursday) - 2pm to
+                                                    4pm</p>
+                                            </div>
+                            
+                                        </div>
+                                        <div class="row mt-0 w-100 div-1">
+                                            <div class="col-md-12">
+                                                <table class="table table-borderless">
+                                                    <thea>
+                                                        <tr>
+                                                            <th scope="col"></th>
+                                                            <th scope="col">Mon</th>
+                                                            <th scope="col"> &nbsp;&nbsp;&nbsp;Tue </th>
+                                                            <th scope="col">Wed</th>
+                                                            <th scope="col">Thu</th>
+                                                            <th scope="col">Fri</th>
+                                                            <th scope="col">Sat</th>
+                                                            <th scope="col">Sun</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <!-- classes table time and topics -->
+                                                            <tr>
+                                                                <td class="pt-4">
+                                                                    <span>2pm</span>
+                                                                    <p class="mt-5">4pm</p>
+                                                                </td>
+                            
+                                                                <td class="pt-4 pb-0"></td>
+                                                                <td class="m-0 p-0">
+                                                                    <div class="bg-color-apporve pl-2 pr-3 m-0 p-0">
+                                                                        <span class="heading-fifth">
+                                                                            Live class
+                                                                        </span>
+                                                                        <p class="paragraph-text-1">
+                                                                            2pm
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                            Jump start into
+                                                                            <br /> your live class with <br />
+                                                                            students.
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="m-0 p-0">
+                                                                    <div class="bg-color-apporve1 pl-2 pr-3 m-0 p-0">
+                                                                        <span class="heading-fifth">
+                                                                            Live class
+                                                                        </span>
+                                                                        <p class="paragraph-text-1">
+                                                                            2pm
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                            Jump start into
+                                                                            <br />your live class with <br />
+                                                                            students.
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                            
+                                                                <td class="m-0 p-0">
+                                                                    <div class="bg-color-apporve3 pl-2 pr-3 m-0 p-0">
+                                                                        <span class="heading-fifth">
+                                                                            Live class
+                                                                        </span>
+                                                                        <p class="paragraph-text-1">
+                                                                            2pm
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                            Jump start into
+                                                                            <br /> your live class with <br />
+                                                                            students.
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                            
+                            
+                                                            </tr>
+                            
+                                                        </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-5 pb-5">
+                                            <div class="col-md-4">
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">6 classes</span>
+                                                </div>
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">Home work</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">Quiz</span>
+                                                </div>
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">Final test</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="view-bookings" >
+                                                    $99
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="panel" id="two-panel">
                 
                                     <div class="container-fluid ">
                                         <div class="panel-title">Take-Away Skills</div>
-                                        <div class="container-fluid ">
-                                            <div class="row">
+                                            <div class="row mt-3">
                                                 <div class="col-md-12">
                                                     <span class="heading-forth ml-2">Course outline</span>
                 
@@ -472,6 +595,126 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                            <div class="col-md-12">
+                                                <span class="heading-fifth" style="font-weight: 600;">Timing</span>
+                                                <p class="paragraph-text-2 mt-1">2 weeks ( Tuesday, Wednesday, Thursday) - 2pm to
+                                                    4pm</p>
+                                            </div>
+                            
+                                        </div>
+                                        <div class="row mt-0 w-100 div-1">
+                                            <div class="col-md-12">
+                                                <table class="table table-borderless">
+                                                    <thea>
+                                                        <tr>
+                                                            <th scope="col"></th>
+                                                            <th scope="col">Mon</th>
+                                                            <th scope="col"> &nbsp;&nbsp;&nbsp;Tue </th>
+                                                            <th scope="col">Wed</th>
+                                                            <th scope="col">Thu</th>
+                                                            <th scope="col">Fri</th>
+                                                            <th scope="col">Sat</th>
+                                                            <th scope="col">Sun</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <!-- classes table time and topics -->
+                                                            <tr>
+                                                                <td class="pt-4">
+                                                                    <span>2pm</span>
+                                                                    <p class="mt-5">4pm</p>
+                                                                </td>
+                            
+                                                                <td class="pt-4 pb-0"></td>
+                                                                <td class="m-0 p-0">
+                                                                    <div class="bg-color-apporve pl-2 pr-3 m-0 p-0">
+                                                                        <span class="heading-fifth">
+                                                                            Live class
+                                                                        </span>
+                                                                        <p class="paragraph-text-1">
+                                                                            2pm
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                            Jump start into
+                                                                            <br /> your live class with <br />
+                                                                            students.
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="m-0 p-0">
+                                                                    <div class="bg-color-apporve1 pl-2 pr-3 m-0 p-0">
+                                                                        <span class="heading-fifth">
+                                                                            Live class
+                                                                        </span>
+                                                                        <p class="paragraph-text-1">
+                                                                            2pm
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                            Jump start into
+                                                                            <br />your live class with <br />
+                                                                            students.
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                            
+                                                                <td class="m-0 p-0">
+                                                                    <div class="bg-color-apporve3 pl-2 pr-3 m-0 p-0">
+                                                                        <span class="heading-fifth">
+                                                                            Live class
+                                                                        </span>
+                                                                        <p class="paragraph-text-1">
+                                                                            2pm
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                            Jump start into
+                                                                            <br /> your live class with <br />
+                                                                            students.
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                            
+                            
+                                                            </tr>
+                            
+                                                        </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-5 pb-5">
+                                            <div class="col-md-4">
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">6 classes</span>
+                                                </div>
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">Home work</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">Quiz</span>
+                                                </div>
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">Final test</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="view-bookings" >
+                                                    $98
                                                 </div>
                                             </div>
                                         </div>
@@ -627,131 +870,128 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <span class="heading-fifth" style="font-weight: 600;">Timing</span>
+                                                <p class="paragraph-text-2 mt-1">2 weeks ( Tuesday, Wednesday, Thursday) - 2pm to
+                                                    4pm</p>
+                                            </div>
+                            
+                                        </div>
+                                        <div class="row mt-0 w-100 div-1">
+                                            <div class="col-md-12">
+                                                <table class="table table-borderless">
+                                                    <thea>
+                                                        <tr>
+                                                            <th scope="col"></th>
+                                                            <th scope="col">Mon</th>
+                                                            <th scope="col"> &nbsp;&nbsp;&nbsp;Tue </th>
+                                                            <th scope="col">Wed</th>
+                                                            <th scope="col">Thu</th>
+                                                            <th scope="col">Fri</th>
+                                                            <th scope="col">Sat</th>
+                                                            <th scope="col">Sun</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <!-- classes table time and topics -->
+                                                            <tr>
+                                                                <td class="pt-4">
+                                                                    <span>2pm</span>
+                                                                    <p class="mt-5">4pm</p>
+                                                                </td>
+                            
+                                                                <td class="pt-4 pb-0"></td>
+                                                                <td class="m-0 p-0">
+                                                                    <div class="bg-color-apporve pl-2 pr-3 m-0 p-0">
+                                                                        <span class="heading-fifth">
+                                                                            Live class
+                                                                        </span>
+                                                                        <p class="paragraph-text-1">
+                                                                            2pm
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                            Jump start into
+                                                                            <br /> your live class with <br />
+                                                                            students.
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="m-0 p-0">
+                                                                    <div class="bg-color-apporve1 pl-2 pr-3 m-0 p-0">
+                                                                        <span class="heading-fifth">
+                                                                            Live class
+                                                                        </span>
+                                                                        <p class="paragraph-text-1">
+                                                                            2pm
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                            Jump start into
+                                                                            <br />your live class with <br />
+                                                                            students.
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                            
+                                                                <td class="m-0 p-0">
+                                                                    <div class="bg-color-apporve3 pl-2 pr-3 m-0 p-0">
+                                                                        <span class="heading-fifth">
+                                                                            Live class
+                                                                        </span>
+                                                                        <p class="paragraph-text-1">
+                                                                            2pm
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                            Jump start into
+                                                                            <br /> your live class with <br />
+                                                                            students.
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                            
+                            
+                                                            </tr>
+                            
+                                                        </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-5 pb-5">
+                                            <div class="col-md-4">
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">6 classes</span>
+                                                </div>
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">Home work</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">Quiz</span>
+                                                </div>
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">Final test</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="view-bookings" >
+                                                    $94
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                
-                        <div class="container-fluid ">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <span class="heading-fifth" style="font-weight: 600;">Timing</span>
-                                    <p class="paragraph-text-2 mt-1">2 weeks ( Tuesday, Wednesday, Thursday) - 2pm to
-                                        4pm</p>
-                                </div>
-                
-                            </div>
-                            <div class="row mt-0 w-100 div-1">
-                                <div class="col-md-12">
-                                    <table class="table table-borderless">
-                                        <thea>
-                                            <tr>
-                                                <th scope="col"></th>
-                                                <th scope="col">Mon</th>
-                                                <th scope="col"> &nbsp;&nbsp;&nbsp;Tue </th>
-                                                <th scope="col">Wed</th>
-                                                <th scope="col">Thu</th>
-                                                <th scope="col">Fri</th>
-                                                <th scope="col">Sat</th>
-                                                <th scope="col">Sun</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                                <!-- classes table time and topics -->
-                                                <tr>
-                                                    <td class="pt-4">
-                                                        <span>2pm</span>
-                                                        <p class="mt-5">4pm</p>
-                                                    </td>
-                
-                                                    <td class="pt-4 pb-0"></td>
-                                                    <td class="m-0 p-0">
-                                                        <div class="bg-color-apporve pl-2 pr-3 m-0 p-0">
-                                                            <span class="heading-fifth">
-                                                                Live class
-                                                            </span>
-                                                            <p class="paragraph-text-1">
-                                                                2pm
-                                                            </p>
-                                                            <p class="paragraph-text">
-                                                                Jump start into
-                                                                <br /> your live class with <br />
-                                                                students.
-                                                            </p>
-                                                        </div>
-                                                    </td>
-                                                    <td class="m-0 p-0">
-                                                        <div class="bg-color-apporve1 pl-2 pr-3 m-0 p-0">
-                                                            <span class="heading-fifth">
-                                                                Live class
-                                                            </span>
-                                                            <p class="paragraph-text-1">
-                                                                2pm
-                                                            </p>
-                                                            <p class="paragraph-text">
-                                                                Jump start into
-                                                                <br />your live class with <br />
-                                                                students.
-                                                            </p>
-                                                        </div>
-                                                    </td>
-                
-                                                    <td class="m-0 p-0">
-                                                        <div class="bg-color-apporve3 pl-2 pr-3 m-0 p-0">
-                                                            <span class="heading-fifth">
-                                                                Live class
-                                                            </span>
-                                                            <p class="paragraph-text-1">
-                                                                2pm
-                                                            </p>
-                                                            <p class="paragraph-text">
-                                                                Jump start into
-                                                                <br /> your live class with <br />
-                                                                students.
-                                                            </p>
-                                                        </div>
-                                                    </td>
-                
-                
-                                                </tr>
-                
-                                            </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mt-5 pb-5">
-                            <div class="col-md-4">
-                                <div class="d-flex pb-3">
-                                    <span>
-                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                    </span>
-                                    <span class="ml-3 heading-fifth mt-1">6 classes</span>
-                                </div>
-                                <div class="d-flex pb-3">
-                                    <span>
-                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                    </span>
-                                    <span class="ml-3 heading-fifth mt-1">Home work</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="d-flex pb-3">
-                                    <span>
-                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                    </span>
-                                    <span class="ml-3 heading-fifth mt-1">Quiz</span>
-                                </div>
-                                <div class="d-flex pb-3">
-                                    <span>
-                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                    </span>
-                                    <span class="ml-3 heading-fifth mt-1">Final test</span>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="view-bookings" >
-                                    $99
                                 </div>
                             </div>
                         </div>

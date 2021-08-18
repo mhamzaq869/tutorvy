@@ -14,4 +14,7 @@ class HomeController extends Controller
     public function index(){
         return view('student.pages.index');
     }
+    public function bookNow(){
+        return view('student.pages.booking.book_now');
+    }
 }

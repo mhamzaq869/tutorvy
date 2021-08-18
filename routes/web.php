@@ -67,8 +67,9 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
     Route::get('/student/profile/{id}',[StudentController::class,'profile'])->name('admin.studentProfile');
 
     Route::get('/course',[CourseController::class,'index'])->name('admin.course');
-    Route::get('/course-request',[CourseController::class,'courseRequest'])->name('admin.course-request');
+    Route::get('/course-request/{id}',[CourseController::class,'courseRequest'])->name('admin.course-request');
     Route::get('/course-profile',[CourseController::class,'courseProfile'])->name('admin.course-profile');
+    Route::get('/course-edit',[CourseController::class,'editCourseProfile'])->name('admin.course-edit');
     Route::get('/subject',[SubjectController::class,'index'])->name('admin.subject');
     Route::get('/website',[WebsiteController::class,'index'])->name('admin.website');
     Route::get('/report',[ReportController::class,'index'])->name('admin.report');
@@ -135,6 +136,7 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
 
     Route::get('/dashboard',[StudentHomeController::class,'index'])->name('student.dashboard');
     Route::get('/chat',[StdChatController::class,'index'])->name('student.chat');
+    Route::get('/book-now',[StudentHomeController::class,'bookNow'])->name('student.book-now');
     
 
 

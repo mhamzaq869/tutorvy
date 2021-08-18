@@ -605,31 +605,31 @@
                                                         </div>
                                                         @endforelse
                                                     @else
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="element">
-                                                                <div class="row">
-                                                                    <div class="input-text col-md-6">
-                                                                        <input name="designation[]" class="form-control" title="Designation: Senior Developer at Google"  placeholder="Designation">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="element">
+                                                                    <div class="row">
+                                                                        <div class="input-text col-md-6">
+                                                                            <input name="designation[]" class="form-control" title="Designation: Senior Developer at Google"  placeholder="Designation">
+                                                                        </div>
+                                                                        <div class="input-text col-md-6">
+                                                                            <input name="organization[]" class="form-control" title="Organization Like Google" placeholder="Organization">
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="input-text col-md-6">
-                                                                        <input name="organization[]" class="form-control" title="Organization Like Google" placeholder="Organization">
+                                                                    <div class="row my-3">
+                                                                        <div class="input-text col-md-6">
+                                                                            <input type="date" class="form-control" name="degree_start[]" placeholder="Starting date"
+                                                                            value="">
+                                                                        </div>
+                                                                        <div class="input-text col-md-6">
+                                                                            <input type="date" class="form-control" name="degree_end[]" placeholder="Ending Date"
+                                                                            value="">
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="row my-3">
-                                                                    <div class="input-text col-md-6">
-                                                                        <input type="date" class="form-control" name="degree_start[]" placeholder="Starting date"
-                                                                        value="">
-                                                                    </div>
-                                                                    <div class="input-text col-md-6">
-                                                                        <input type="date" class="form-control" name="degree_end[]" placeholder="Ending Date"
-                                                                        value="">
-                                                                    </div>
-                                                                </div>
 
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
                                                     @endisset
                                                     <!-- <button  class="element1">aa</button> -->
 
@@ -824,64 +824,6 @@
             });
 
 
-            $('.extra-fields-customer').click(function() {
-                // alert("Tech");
-                count_field++;
-                var html = `<div class=" customer_records mt-5" id="record_` + count_field + `">
-                <div class="row">
-                    <div class="input-text col-md-6">
-                        <select name="degree[` + count_field + `]" onchange="checkLevel(this)" class="form-select form-select-lg mb-3">
-                            <option  selected="">Degree</option>
-                            @foreach ($degrees as $degree)
-                               <option  value="{{$degree->id}}">{{$degree->name}}</option>
-                            @endforeach
-
-                        </select>
-                    </div>
-
-                    <div class="input-text col-md-6">
-                        <select name="major[` + count_field + `]" class="form-select form-select-lg mb-3">
-                            <option value="0" selected="">Major</option>
-                            @foreach ($subjects as $subject)
-                                <option value="{{$subject->id}}" @if($subject->id ==( $user->userdetail->subject_id ?? 0)) selected @endif>{{$subject->name}}</option>
-                            @endforeach
-                        </select>
-
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="input-text col-md-6">
-                        <select name="institute[` + count_field + `]" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                            <option value="0">Institute</option>
-                            <option value="1">Punjab University</option>
-                            <option value="2">Virtual University Of Pakistan</option>
-                        </select>
-                        <!--<input list="instiuteList" name="institute[]" id="browser">
-                        <datalist id="instiuteList">
-                            <option value="Institute">
-                            <option value="Punjab University">
-                            <option value="Virtual University Of Pakistan">
-                        </datalist>-->
-                    </div>
-                    <div class="input-text col-md-6">
-                        <input type="date" name="graduate_year[` + count_field + `]" class=" yearpicker form-control" id="grad-yea">
-                    </div>
-
-                </div>
-                <div class="row mt-3">
-                <div class="col-md-12">
-                    <input type="file" class="dropify" name="upload[` + count_field + `]" id="">
-                </div>
-                <div class="col-md-12 mt-3">
-                    <a href="#" class="removeFields" onclick="removeFields(` + count_field + `)"> Remove Fields</a>
-                </div>
-            </div>
-
-            </div>`;
-                $('.customer_records_dynamic').append(html);
-                $('.dropify').dropify();
-                // $(".form-select").select2();
-            });
 
            function university(){
                var code = $("#country_short").val()

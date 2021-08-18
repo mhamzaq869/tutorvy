@@ -195,7 +195,6 @@
 }
 .pending_hover:hover .overlay{
     display:block;
-
 }
 .overlay{
     position: absolute;
@@ -209,7 +208,6 @@
     text-align: center;
     display: none;
     transition: 5s all;
-
 }
 .overlay span{
     margin-top: 68%;
@@ -230,13 +228,10 @@
 <link href="{{ asset('assets/css/course.css') }}" rel="stylesheet">
 
     <!--section start  -->
-
-    <div class="container-fluid">
+    <div class="container-fluid mt-3">
         <h1 class="">
             Courses
         </h1>
-    </div>
-    <div class="container-fluid mt-3">
         <div class="container pt-4 pb-4 profile-header">
             @if ($pen_course->count() != 0)
             <div class="row">
@@ -361,7 +356,6 @@
                                         <p>Seats Left</p></div>
                                     <!-- <canvas id="myChart" width="400" height="400"></canvas> -->
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -435,16 +429,15 @@
                 @endforeach
 
                 <div class="col-md-4 text-center">
-                    <div class="">
+                    <div class="card border-only" >
                         <div class="card-body ">
-                            <div class="add-new" style="margin-top:46%;">
+                            <div class="add-new" style="margin-top:46%;margin-bottom: 37%;">
                                 <a href="{{route('tutor.addcourse')}}">
                                     <img src="{{asset('assets/images/ico/add-new.png')}}" alt="add-new">
                                 </a>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
