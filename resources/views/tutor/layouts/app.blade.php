@@ -47,7 +47,6 @@
      <script src="{{ asset('assets/js/clander.js') }}"></script>
      <script src="{{ asset('assets/js/dropify.js')}}"></script>
      <script src="{{ asset('assets/js/multiselect.js')}}"></script>
-     <script src="{{ asset('assets/js/course.js')}}"></script>
 
     @include('js_files.chat')
     @yield('scripts')

@@ -43,7 +43,6 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
 
         if($request->hasFile('video')){
             $video_path = "storage/course/video/".$request->video->getClientOriginalName();
@@ -73,6 +72,7 @@ class CourseController extends Controller
         $courselevel->basic_days         = json_encode($request->basic_days) ?? null;
         $courselevel->basic_start_time   = $request->basic_start_time ?? null;
         $courselevel->basic_end_time     = $request->basic_end_time ?? null;
+        $courselevel->basic_price        = $request->basic_price ?? null;
         $courselevel->standard_home_work = $request->standard_home_work ?? null;
         $courselevel->standard_quiz      = $request->standard_quiz ?? null;
         $courselevel->standard_one_one   = $request->standard_one_one ?? null;
@@ -80,8 +80,9 @@ class CourseController extends Controller
         $courselevel->standard_note      = $request->standard_note ?? null;
         $courselevel->standard_duration  = $request->standard_duration ?? null;
         $courselevel->standard_days      = json_encode($request->standard_days) ?? null;
-        $courselevel->standard_start_time= $request->start_time ?? null;
-        $courselevel->standard_end_time  = $request->end_time ?? null;
+        $courselevel->standard_start_time= $request->standard_start_time ?? null;
+        $courselevel->standard_end_time  = $request->standard_end_time ?? null;
+        $courselevel->standard_price     = $request->standard_price ?? null;
         $courselevel->advance_home_work  = $request->advance_home_work ?? null;
         $courselevel->advance_quiz       = $request->advance_quiz ?? null;
         $courselevel->advance_one_one    = $request->advance_one_one ?? null;
@@ -91,6 +92,7 @@ class CourseController extends Controller
         $courselevel->advance_days       = json_encode($request->advance_days) ?? null;
         $courselevel->advance_start_time = $request->advance_start_time ?? null;
         $courselevel->advance_end_time   = $request->advance_end_time ?? null;
+        $courselevel->advance_price      = $request->advance_price ?? null;
 
         $courselevel->save();
 
@@ -136,7 +138,6 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request->all());
         if($request->hasFile('video')){
             $video_path = "storage/course/video/".$request->video->getClientOriginalName();
             $request->video->storeAs('course/video/',$request->video->getClientOriginalName(),'public');
@@ -165,6 +166,7 @@ class CourseController extends Controller
         $courselevel->basic_days         = json_encode($request->basic_days) ?? $courselevel->basic_days;
         $courselevel->basic_start_time   = $request->basic_start_time ?? $courselevel->basic_start_time;
         $courselevel->basic_end_time     = $request->basic_end_time ?? $courselevel->basic_end_time;
+        $courselevel->basic_price        = $request->basic_price ?? $courselevel->basic_price;
         $courselevel->standard_home_work = $request->standard_home_work ?? $courselevel->standard_home_work;
         $courselevel->standard_quiz      = $request->standard_quiz ?? $courselevel->standard_quiz;
         $courselevel->standard_one_one   = $request->standard_one_one ?? $courselevel->standard_one_one;
@@ -174,6 +176,7 @@ class CourseController extends Controller
         $courselevel->standard_days      = json_encode($request->standard_days) ?? $courselevel->standard_days;
         $courselevel->standard_start_time= $request->start_time ??  $courselevel->standard_start_time;
         $courselevel->standard_end_time  = $request->end_time ?? $courselevel->standard_end_time;
+        $courselevel->standard_price     = $request->price ?? $courselevel->standard_price;
         $courselevel->advance_home_work  = $request->advance_home_work ?? $courselevel->advance_home_work;
         $courselevel->advance_quiz       = $request->advance_quiz ?? $courselevel->advance_quiz;
         $courselevel->advance_one_one    = $request->advance_one_one ?? $courselevel->advance_one_one;
@@ -183,6 +186,7 @@ class CourseController extends Controller
         $courselevel->advance_days       = json_encode($request->advance_days) ?? $courselevel->advance_days;
         $courselevel->advance_start_time = $request->advance_start_time ?? $courselevel->advance_start_time;
         $courselevel->advance_end_time   = $request->advance_end_time ?? $courselevel->advance_end_time;
+        $courselevel->advance_price      = $request->advance_price ?? $courselevel->advance_price;
 
         $courselevel->save();
 
@@ -236,7 +240,6 @@ class CourseController extends Controller
      * @param  array $reques
      */
     private function standardOutline($request){
-        dd($request->standard_title );
         foreach($request->standard_title as $i=>$data){
             CourseOutline::create([
                 'course_id' => $request->id,

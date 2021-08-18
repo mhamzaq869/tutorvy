@@ -16,9 +16,10 @@ class CourseOutline extends Model
      * @var array
      */
     protected $fillable = [
-        'course_level_id',
+        'course_id',
         'title',
         'explain',
+        'level',
     ];
 
 

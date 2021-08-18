@@ -415,6 +415,7 @@
 <!-- end section -->
 @endsection
 @section('scripts')
+<script src="{{ asset('assets/js/course.js')}}"></script>
 <script>
     $(function() {
         $("#basic_days,#standard_days,#advance_days").multiselect();

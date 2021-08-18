@@ -89,10 +89,10 @@
                         <div class="adddivs-1" id="basicNew">
                             @forelse ($course->outline->where('level',1) as $i=>$basic)
                             <div class="input-serachs mt-2">
-                                <input type="search" name="basic_title[{{$i}}]" value="{{$basic->title}}" placeholder="Write course outline" />
+                                <input type="search" name="basic_title[]" value="{{$basic->title}}" placeholder="Write course outline" />
                             </div>
                             <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
-                            name="basic_explain[{{$i}}]" rows="6">{{$basic->explain}}</textarea>
+                            name="basic_explain[]" rows="6">{{$basic->explain}}</textarea>
                             @empty
                             <div class="input-serachs mt-2">
                                 <input type="search" name="basic_title[1]" value="Title" placeholder="Write course outline" />
@@ -178,10 +178,10 @@
                         <div class="input-options mt-2">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="datetime-local" name="standard_start_time" class="form-control texteara-s mt-2 pt-2 mb-2">
+                                    <input type="datetime-local" name="standard_start_time" value="{{$course->basic_start_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="datetime-local" name="standard_end_time" class="form-control texteara-s mt-2 pt-2 mb-2">
+                                    <input type="datetime-local" name="standard_end_time" value="{{$course->basic_end_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
                                 </div>
                             </div>
                             <h3 class="mt-3 pb-2">
@@ -294,10 +294,10 @@
                     <div class="input-options mt-2">
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="datetime-local" name="standard_start_time" class="form-control texteara-s mt-2 pt-2 mb-2">
+                                <input type="datetime-local" name="standard_start_time" value="{{$course->standard_start_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
                             </div>
                             <div class="col-md-6">
-                                <input type="datetime-local" name="standard_end_time" class="form-control texteara-s mt-2 pt-2 mb-2">
+                                <input type="datetime-local" name="standard_end_time" value="{{$course->standard_end_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
                             </div>
                         </div>
                         <h3 class="mt-3 pb-2">
@@ -394,6 +394,7 @@
                         </select>
                     </div>
 
+
                     <h3 class="mt-3 pb-2">
                         Timing
                     </h3>
@@ -410,13 +411,14 @@
                             <option value="Sunday">Sunday</option>
                         </select>
                     </div>
+
                     <div class="input-options mt-2">
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="datetime-local" name="advance_start_time" class="form-control texteara-s mt-2 pt-2 mb-2">
+                                <input type="datetime-local" name="advance_start_time" value="{{$course->advance_start_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
                             </div>
                             <div class="col-md-6">
-                                <input type="datetime-local" name="advance_end_time" class="form-control texteara-s mt-2 pt-2 mb-2">
+                                <input type="datetime-local" name="advance_end_time" value="{{$course->advance_end_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
                             </div>
                         </div>
                         <h3 class="mt-3 pb-2">
@@ -429,8 +431,10 @@
                 </div>
             </div>
         </div>
-    </form>
+
+   </form>
 </div>
+
 <!-- end section -->
 @endsection
 
@@ -447,17 +451,17 @@
     });
 
 
-    var counter = 1;
+    var counter = {{$course->outline->count() - 2}};
     var counter2 = 1;
     var counter3 = 1;
     $(".basicMore").click(function() {
         counter++;
         var html = `
                     <div class="input-serachs mt-2">
-                        <input type="search" name="basic_title[` + counter + `]"  placeholder="Write course outline" />
+                        <input type="search" name="basic_title[]" value="title" placeholder="Write course outline" />
                     </div>
                     <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
-                    name="basic_explain[` + counter + `]" rows="6">Explaine</textarea>`
+                    name="basic_explain[]" rows="6">Explain</textarea>`
 
         $('#basicNew').append(html);
     });
