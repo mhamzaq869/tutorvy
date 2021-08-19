@@ -80,7 +80,7 @@ class RegisterController extends Controller
         $user = User::with(['education','professional','userdetail'])->where('ip',$_SERVER['REMOTE_ADDR'])->first();
         $subjects = Subject::all();
         $degrees = Degree::all();
-        $institutes = Institute::all();
+        $institutes = Institute::select('name','id')->get();
 
 
         return view('tutor.register',compact('user','subjects','degrees','institutes'));
@@ -111,6 +111,7 @@ class RegisterController extends Controller
     {
         // Get a validator for an incoming registration request
         // from Tutor/Student Registor Form .
+        // dd($request->all());
 
         $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
@@ -128,7 +129,7 @@ class RegisterController extends Controller
          */
 
         if($request->role == 2):
-            $user = User::updateOrCreate(["email" => $request->email],[
+            $user = User::updateOrCreate(["email" => $request->email,"ip" => $request->ip],[
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
@@ -150,7 +151,6 @@ class RegisterController extends Controller
         else:
           $user = $this->registerStudent($request);
         endif;
-
 
         /**
          * Userdetail Model/Table is only for Tutor , so here is checking ( 2 represent tutor)
@@ -233,7 +233,7 @@ class RegisterController extends Controller
                 "user_id" => $user->id,
                 "degree_id" => $request->degree[$i],
                 "subject_id" => $request->major[$i],
-                "institute" => $request->institute[$i],
+                "institute_id" => $request->institute[$i],
                 "year" => $request->graduate_year[$i],
                 "docs" => $docs[$i] ?? null,
             ],['user_id']);

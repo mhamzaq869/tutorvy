@@ -18,7 +18,6 @@
     <link href="{{ asset('assets/css/fontawesome.min.css') }}" rel="stylesheet">
     <!-- Styles -->
     @include('student.layouts.css')
-
 </head>
 <body>
     <div class="wrapper" id="wrapper">
@@ -41,7 +40,7 @@
     </script>
      <!-- custom js -->
      <script src="{{ asset('/admin/assets/js/jquery.js ')}}"></script>
-    <script src="{{ asset('/admin/assets/js/jquery-ui.js')}}"></script>
+     <script src="{{ asset('/admin/assets/js/jquery-ui.js')}}"></script>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
      <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
      <script src="{{ asset('assets/js/mobile.js') }}"></script>
@@ -51,5 +50,6 @@
      <script src="{{ asset('assets/js/clander.js') }}"></script>
      <script src="{{ asset('assets/js/global.js') }}"></script>
      @include('js_files.chat')
+     @yield('scripts')
 </body>
 </html>

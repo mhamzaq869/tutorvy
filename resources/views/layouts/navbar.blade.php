@@ -47,13 +47,15 @@
                                                         data-toggle="dropdown" aria-expanded="true">
                                                         {{Auth::user()->first_name}}
                                                     </a>
-                                                    @if (Auth::user()->picture)
-                                                    <img class="profile-img" src="{{Auth::user()->picture}}"
-                                                    data-toggle="dropdown" alt="profile">
+                                                    @auth
+                                                        @if(Auth::user()->picture)
+                                                        <img class="profile-img w-25" src="{{asset(Auth::user()->picture) }}" data-toggle="dropdown" alt="profile">
+                                                        @else
+                                                        <img class="profile-img w-25" src="{{asset('assets/images/ico/porfile-main.png') }}" data-toggle="dropdown" alt="profile">
+                                                        @endif
                                                     @else
-                                                    <img class="profile-img" src="../assets/images/ico/profile-boy.png"
-                                                        data-toggle="dropdown" alt="profile">
-                                                    @endif
+                                                        <img class="profile-img w-25" src="{{asset('assets/images/ico/porfile-main.png') }}" data-toggle="dropdown" alt="profile">
+                                                    @endauth
 
                                                     <ul class="dropdown-menu classdrop classdrop1 ">
                                                         <li>

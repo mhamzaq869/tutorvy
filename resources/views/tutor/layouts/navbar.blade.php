@@ -406,10 +406,18 @@
                 <div class="dropdown d-flex ">
                     <a class="nav-link profile-name d-flex pl-4 mr-3 mt-1 pb-1" href="#"
                         data-toggle="dropdown" aria-expanded="true">
-                        Harram
+                        {{Auth::user()->first_name}}
                     </a>
-                    <img class="profile-img" src="{{asset('assets/images/ico/profile-boy.png') }}"
-                        data-toggle="dropdown" alt="profile">
+                    @auth
+                        @if(Auth::user()->picture)
+                        <img class="profile-img" src="{{asset(Auth::user()->picture) }}" data-toggle="dropdown" alt="profile">
+                        @else
+                        <img class="profile-img" src="{{asset('assets/images/ico/porfile-main.png') }}" data-toggle="dropdown" alt="profile">
+                        @endif
+                    @else
+                        <img class="profile-img" src="{{asset('assets/images/ico/porfile-main.png') }}" data-toggle="dropdown" alt="profile">
+                    @endauth
+
                     <ul class="dropdown-menu classdrop classdrop1 ">
                         <li>
                             <a tabindex="-1" class="" href="{{route('tutor.profile')}}">

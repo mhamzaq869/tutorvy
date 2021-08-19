@@ -164,7 +164,7 @@
                         </h3>
                         <div class="input-options mt-2">
                             <select name="basic_days" id="basic_days" multiple role="multiselect">
-                                @php $basic_days = json_decode($course->basic_days); @endphp
+                                @php $basic_days = json_decode($course->basic_days) ?? 0; @endphp
                                 <option disabled selected required>Select days</option>
                                 <option value="monday">Monday</option>
                                 <option value="tuesday">Tuesday</option>
@@ -280,7 +280,7 @@
                     </h3>
                     <div class="input-options mt-2">
                         <select name="standard_days" id="standard_days" multiple role="multiselect">
-                            @php $standard_days = json_decode($course->standard_days); @endphp
+                            @php $standard_days = json_decode($course->standard_days) ?? 0; @endphp
                             <option disabled selected required>Select days</option>
                             <option value="monday">Monday</option>
                             <option value="tuesday">Tuesday</option>
@@ -400,7 +400,7 @@
                     </h3>
                     <div class="input-options mt-2">
                         <select name="advance_days" id="adv_days" multiple role="multiselect">
-                            @php $advance_days = json_decode($course->advance_days); @endphp
+                            @php $advance_days = json_decode($course->advance_days) ?? 0 ; @endphp
                             <option disabled selected required>Select days</option>
                             <option value="monday">Monday</option>
                             <option value="tuesday">Tuesday</option>

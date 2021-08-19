@@ -16,19 +16,23 @@
 
             <span class="fa fa-search form-control-feedback"></span>
 
-            <select class="w-100 mt-3 select-o">
+            <select class="w-100 mt-3 form-control py-2" id="subject">
                 <option value="">Subject</option>
+                @foreach ($subjects as $subject)
+                <option value="{{$subject->id}}"> {{$subject->name}}</option>
+                @endforeach
             </select>
-            <select class="w-100 mt-3 select-o">
+            <select class="w-100 mt-3 form-control py-2">
                 <option value="">Location</option>
+
             </select>
-            <select class="w-100 mt-3 select-o">
+            <select class="w-100 mt-3 form-control py-2">
                 <option value="">Rate</option>
             </select>
-            <select class="w-100 mt-3 select-o">
+            <select class="w-100 mt-3 form-control py-2">
                 <option value="">Rating</option>
             </select>
-            <select class="w-100 mt-3 select-o">
+            <select class="w-100 mt-3 form-control py-2">
                 <option value="">Language</option>
             </select>
 
@@ -41,10 +45,10 @@
                             <div class="row" style="line-height: 0.8;">
                                 <div class="col-md-2">
                                     <div class="popover__wrapper mt-0">
-                                        <a href="../Profile/profile.html">
+                                        <a href="{{route('student.tutor.show',[$tutor->id])}}">
                                             <h2 class="popover__title">
                                                 @if($tutor->picture)
-                                                <img src="{{asset('assets/images/ico/hom-profile.png') }}" alt="home-profile">
+                                                <img src="{{asset($tutor->picture) }}" class="w-100" alt="home-profile">
                                                 @else
                                                 <img src="{{asset('assets/images/ico/hom-profile.png') }}" alt="home-profile">
                                                 @endif
@@ -54,8 +58,11 @@
                                             <div class="col-md-12">
                                                 <div class="row" style="line-height: 0.8;">
                                                     <div class="col-md-2 mt-3">
-                                                        <img src="{{asset('assets/images/ico/hom-profile.png') }}"
-                                                            alt="home-profile">
+                                                        @if($tutor->picture)
+                                                        <img src="{{asset($tutor->picture) }}" class="w-100" alt="home-profile">
+                                                        @else
+                                                        <img src="{{asset('assets/images/ico/hom-profile.png') }}" alt="home-profile">
+                                                        @endif
                                                     </div>
                                                     <div class="col-md-10 mt-4">
                                                         <div class="d-flex ml-5 ">
@@ -197,4 +204,20 @@
     </div>
 </div>
 
+@endsection
+
+@section('scripts')
+<script src="{{asset('assets/js/filterajax.js')}}"></script>
+<script src="{{asset('assets/js/countrySelect.js')}}"></script>
+<script>
+            $("#country_selector").countrySelect({
+                defaultCountry: "ca",
+                preferredCountries: ['ca', 'gb', 'us', 'pk']
+            });
+
+            $("#country_selector").on('change', function(){
+               var short = $(this).countrySelect("getSelectedCountryData");
+               $("#country_short").val(short.iso2);
+            });
+</script>
 @endsection

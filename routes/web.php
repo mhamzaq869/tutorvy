@@ -105,8 +105,8 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::get('/history',[HistoryController::class,'index'])->name('tutor.history');
     Route::get('/payment',[PaymentController::class,'index'])->name('tutor.payment');
     Route::get('/subjects',[TutorSubjectController::class,'index'])->name('tutor.subject');
+    Route::get('/removesubjects/{id}',[TutorSubjectController::class,'destroy'])->name('tutor.remove.subject');
     Route::get('/settings',[TutorSettingController::class,'index'])->name('tutor.settings');
-    Route::get('/profile',[ProfileController::class,'index'])->name('tutor.profile');
     Route::view('/skip','tutor.skip')->name('skip');
     Route::get('/assessment/{id}',[AssessmentController::class,'index'])->name('tutor.test');
     Route::post('/assessment',[AssessmentController::class,'store'])->name('tutor.assessment');
@@ -117,6 +117,13 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::post('/srtorecourse', [TutorCourseController::class,'store'])->name('tutor.storecourse');
     Route::get('/course/{id}/edit', [TutorCourseController::class,'edit'])->name('tutor.course.edit');
     Route::post('/course/{id}/update', [TutorCourseController::class,'update'])->name('tutor.course.update');
+
+    //Profile Routes
+    Route::get('/profile',[ProfileController::class,'index'])->name('tutor.profile');
+    Route::post('/updateprofile/{id}',[ProfileController::class,'profileUpdate'])->name('tutor.profile.update');
+    Route::post('/updateedu/{id}',[ProfileController::class,'profileUpdate'])->name('tutor.profile.edu');
+    Route::post('/updateprofession/{id}',[ProfileController::class,'profileUpdate'])->name('tutor.profile.profession');
+
 });
 
 /*
@@ -137,7 +144,7 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     Route::get('/dashboard',[StudentHomeController::class,'index'])->name('student.dashboard');
     Route::get('/chat',[StdChatController::class,'index'])->name('student.chat');
     Route::get('/book-now',[StudentHomeController::class,'bookNow'])->name('student.book-now');
-    
+
 
 
     // Route::get('/booking',[BookingController::class,'index'])->name('tutor.booking');
@@ -146,6 +153,8 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     // Route::get('/history',[HistoryController::class,'index'])->name('tutor.history');
     // Route::get('/payment',[PaymentController::class,'index'])->name('tutor.payment');
     Route::get('/tutor',[StudentTutorController::class,'index'])->name('student.tutor');
+    Route::get('/viewtutor/{id}',[StudentTutorController::class,'show'])->name('student.tutor.show');
+    Route::get('/tutorfilter/{?id}',[StudentTutorController::class,'filter'])->name('student.tutor.filter');
     // Route::get('/settings',[TutorSettingController::class,'index'])->name('tutor.settings');
     Route::get('/profile',[StudentProfileController::class,'index'])->name('student.profile');
 

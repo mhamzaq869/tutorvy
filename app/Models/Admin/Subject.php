@@ -33,7 +33,7 @@ class Subject extends Model
 
     public function education()
     {
-        return $this->belongsTo(Education::class);
+        return $this->hasMany(Education::class);
     }
     public function user()
     {

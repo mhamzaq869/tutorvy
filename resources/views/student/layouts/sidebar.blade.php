@@ -3,7 +3,7 @@
      <div class="sidebar-header">
          <div class="logoImage">
              <a href="{{ route('student.dashboard')}}">
-                 <img class="mt-2 mb-1 w-50 ml-5 mr-4" src="../assets/images/logo/logo.png" alt="logoImage">
+                 <img class="mt-2 mb-1 w-50 ml-5 mr-4" src="{{asset('assets/images/logo/logo.png')}}" alt="logoImage">
              </a>
          </div>
      </div>
@@ -12,7 +12,7 @@
          <ol class="list-unstyled id-sideicons componentsX click-sideicon" style="display: none;" id="sidenav-show">
              <li id="btns-sideicons" class="btn @if(\Request::path() === 'student/dashboard') active @endif w-100">
                  <a href="{{route('student.dashboard')}}" data-toggle="" aria-expanded="false">
-                     <img class="mr-2 dasborad-sid" src="../assets/images/ico/dash-ico.png" alt="dasborad-ico">
+                     <img class="mr-2 dasborad-sid" src="{{asset('assets/images/ico/dash-ico.png')}}" alt="dasborad-ico">
                      <span class="dasborad-show mt-3">
                          Dashboard
                      </span>
@@ -28,7 +28,7 @@
              </li>
              <li class="btn mt-3">
                  <a href="./classroom/classroom.html">
-                     <img class="class-sid mr-2" src="assets/images/ico/class-ico.png" alt="class-ico">
+                     <img class="class-sid mr-2" src="{{asset('assets/images/ico/class-ico.png')}}" alt="class-ico">
                      <span class="class-show mt-3">
                          Classroom
                      </span>
@@ -36,7 +36,7 @@
              </li>
              <li class="btn mt-3">
                 <a href="./Subjects/subject.html">
-                    <img class="subject-sid mr-2" src="assets/img/ico/find-ico.png" alt="Tutor">
+                    <img class="subject-sid mr-2" src="{{asset('assets/img/ico/find-ico.png')}}" alt="Tutor">
                     <span class="subject-show mt-3">
                         Find a Tutor
                     </span>
@@ -44,7 +44,7 @@
             </li>
              <li class="btn mt-3">
                  <a href="./clander/clander.html">
-                     <img class="calande-sid mr-2" src="../assets/images/ico/calender-ico.png" alt="calender-ico">
+                     <img class="calande-sid mr-2" src="{{asset('assets/images/ico/calender-ico.png')}}" alt="calender-ico">
                      <span class="calande-show mt-3">
                          Calendar
                      </span>
@@ -52,7 +52,7 @@
              </li>
              <li class="btn mt-3">
                  <a href="./History/history.html">
-                     <img class="history-sid mr-2" src="../assets/images/ico/history-ico.png" alt="history-ico">
+                     <img class="history-sid mr-2" src="{{asset('assets/images/ico/history-ico.png')}}" alt="history-ico">
                      <span class="history-show mt-3">
                          History
                      </span>
@@ -60,7 +60,7 @@
              </li>
              <li class="btn mt-3">
                 <a href="./payment/payment.html">
-                    <img class="payment-sid mr-2" src="assets/img/ico/payment-ico.png" alt="payment-ico">
+                    <img class="payment-sid mr-2" src="{{asset('assets/img/ico/payment-ico.png')}}" alt="payment-ico">
                     <span class="payment-show mt-3">
                         Wallet
                     </span>
@@ -68,7 +68,7 @@
             </li>
              <li class="btn mt-3">
                  <a href="./setting/setting.html">
-                     <img class="setting-sid mr-2" src="../assets/images/ico/setting-ico.png" alt="setting-ico">
+                     <img class="setting-sid mr-2" src="{{asset('assets/images/ico/setting-ico.png')}}" alt="setting-ico">
                      <span class="setting-show mt-3">
                          Settings
                      </span>
@@ -81,19 +81,19 @@
          <ul class="list-unstyled componentsX" id="sidenav-hide">
              <li class="btn @if(\Request::path() === 'student/dashboard') active @endif  w-100 mt-3">
                  <a href="{{route('student.dashboard')}}" data-toggle="" aria-expanded="false">
-                     <img src="../assets/images/ico/dash-ico.png" alt="dasborad-ico" class=" mr-2">
+                     <img src="{{asset('assets/images/ico/dash-ico.png')}}" alt="dasborad-ico" class=" mr-2">
                      Dashboard
                  </a>
              </li>
              <li class="btn @if(\Request::path() === 'tutor/booking') active @endif w-100">
                  <a href="{{route('tutor.booking')}}" aria-expanded="false" class="">
-                     <img src="../assets/images/ico/book-icons.png" alt="book-ico" class=" mr-2">
+                     <img src="{{asset('assets/images/ico/book-icons.png')}}" alt="book-ico" class=" mr-2">
                      Bookings
                  </a>
              </li>
              <li class="btn @if(\Request::path() === 'tutor/classroom') active @endif w-100">
                  <a href="{{route('tutor.classroom')}}">
-                     <img src="../assets/images/ico/class-ico.png" alt="class-ico" class=" mr-2">
+                     <img src="{{asset('assets/images/ico/class-ico.png')}}" alt="class-ico" class=" mr-2">
                      Classroom
                  </a>
              </li>
@@ -105,13 +105,13 @@
             </li>
              <li class="btn @if(\Request::path() === 'tutor/calendar') active @endif w-100">
                  <a href="{{route('tutor.calendar')}}">
-                     <img src="../assets/images/ico/calender-ico.png" alt="calender-ico" class=" mr-2">
+                     <img src="{{asset('assets/images/ico/calender-ico.png')}}" alt="calender-ico" class=" mr-2">
                      Calendar
                  </a>
              </li>
              <li class="btn @if(\Request::path() === 'tutor/history') active @endif w-100">
                  <a href="{{route('tutor.history')}}">
-                     <img src="../assets/images/ico/history-ico.png" alt="history-ico" class=" mr-2">
+                     <img src="{{asset('assets/images/ico/history-ico.png')}}" alt="history-ico" class=" mr-2">
                      History
                  </a>
              </li>
@@ -123,7 +123,7 @@
              </li>
              <li class="btn @if(\Request::path() === 'tutor/settings') active @endif w-100">
                  <a href="{{route('tutor.settings')}}">
-                     <img src="../assets/images/ico/setting-ico.png" alt="setting-ico" class=" mr-2">
+                     <img src="{{asset('assets/images/ico/setting-ico.png')}}" alt="setting-ico" class=" mr-2">
                      Settings
                  </a>
              </li>
@@ -134,7 +134,7 @@
              <div class="imageside">
                  <br />
                  <br />
-                 <img src="../assets/images/backgrounds/man.svg" alt="background-image">
+                 <img src="{{asset('assets/images/backgrounds/man.svg') }}" alt="background-image">
                  <div class="support">
                      <div class="text-side">
                          <p class="ml-2 mr-2 mt-2 pt-3 pt-2 support-text">
@@ -145,7 +145,7 @@
                          </p>
                          <p class="ml-2 mr-2 support-text2">
                              LEARN MORE &nbsp;
-                             <img src="../assets/images/ico/arrow-left.png" alt="left-arrow-ico">
+                             <img src="{{asset('assets/images/ico/arrow-left.png')}}" alt="left-arrow-ico">
                          </p>
                      </div>
                  </div>

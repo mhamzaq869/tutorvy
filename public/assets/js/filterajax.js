@@ -1,18 +1,11 @@
 
-function getvalue(id){
-    document.getElementById(id).addEventListener('change', function(){
-       return this.value;
-    });
-}
+console.log(getvalue("subject"));
 
-console.log(getvalue("range"));
+
+
 
 var totalRecord = 0;
 var category = getvalue("range");
-
-
-
-
 var brand = getCheckboxValues('brand');
 var material = getCheckboxValues('material');
 var size = getCheckboxValues('size');
@@ -51,3 +44,9 @@ $(window).scroll(function() {
 });
 
 
+function getvalue(id){
+    document.getElementById(id).addEventListener('change', function(e){
+       e = this.value;
+       return e;
+    });
+}

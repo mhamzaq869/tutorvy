@@ -8,24 +8,19 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" ></script>
-
     <!--favicon --->
     <link href="{{ asset('assets/images/ico/side-icons.png') }}" rel="icon">
     <!-- bootstrap link -->
     <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
 
     <link href="{{ asset('assets/css/chat.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/registration.css') }}" rel="stylesheet">
 
     <!-- fonawsome -->
     <link href="{{ asset('assets/css/fontawesome.min.css') }}" rel="stylesheet">
       <!-- Dropify CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/multiselect.css')}}" />
     <link rel="stylesheet" href="{{ asset('assets/css/dropify.css')}}" />
-    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
 
-    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet" />
-    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" />
     <!-- Styles -->
     @include('tutor.layouts.css')
 
@@ -46,6 +41,7 @@
      <!-- custom js -->
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/intlTelInput.js"></script>
      <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
      <script src="{{ asset('assets/js/mobile.js') }}"></script>
      <script src="{{ asset('assets/js/history.js') }}"></script>
@@ -54,44 +50,13 @@
      <script src="{{ asset('assets/js/clander.js') }}"></script>
      <script src="{{ asset('assets/js/dropify.js')}}"></script>
      <script src="{{ asset('assets/js/multiselect.js')}}"></script>
-     <script src="{{ asset('assets/js/registration.js') }}"></script>
 
-     <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
-
-    <!-- add before </body> -->
-    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
-    <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
      @include('js_files.chat')
-
-    @include('js_files.chat')
-    @yield('scripts')
+     @yield('scripts')
 <script>
-     /*
-We need to register the required plugins to do image manipulation and previewing.
-*/
-FilePond.registerPlugin(
-  FilePondPluginImagePreview,
-);
 
-// Select the file input and use create() to turn it into a pond
-// in this example we pass properties along with the create method
-// we could have also put these on the file input element itself
-FilePond.create(
-	document.querySelector('.filepond'),
-	{
-	labelIdle: `Drag & Drop your picture or <span class="filepond--label-action">Browse</span>`,
-    imagePreviewHeight: 170,
-    imageCropAspectRatio: '1:1',
-    imageResizeTargetWidth: 200,
-    imageResizeTargetHeight: 200,
-    stylePanelLayout: 'compact circle',
-    styleLoadIndicatorPosition: 'center bottom',
-    styleButtonRemoveItemPosition: 'center bottom'
-	}
-);
-      $(document).ready(function(){
+    $(document).ready(function(){
         $(".dropify").dropify();
-
     })
 </script>
 </body>
