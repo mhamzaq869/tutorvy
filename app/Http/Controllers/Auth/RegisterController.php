@@ -211,8 +211,12 @@ class RegisterController extends Controller
                 $upload->storeAs('docs',$upload->getClientOriginalName(),'public');
                 $docs[] =  $path;
             }
+        }else{
+            $docss = Education::where('user_id',$user->id)->get();
+            foreach($docss as $upload){
+                $docs[] =  $upload->docs;
+            }
         }
-
 
         if($user->education){
             $user->education->each(function($record) {
@@ -229,14 +233,14 @@ class RegisterController extends Controller
 
         for($i=0; $i<count($request->degree); $i++){
 
-            Education::upsert([
+            Education::updateOrCreate([
                 "user_id" => $user->id,
                 "degree_id" => $request->degree[$i],
                 "subject_id" => $request->major[$i],
                 "institute_id" => $request->institute[$i],
                 "year" => $request->graduate_year[$i],
-                "docs" => $docs[$i] ?? null,
-            ],['user_id']);
+                "docs" => $docs[$i],
+            ]);
         }
 
 

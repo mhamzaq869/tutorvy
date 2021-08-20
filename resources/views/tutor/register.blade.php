@@ -478,7 +478,7 @@
                                                                 <select name="degree[]" onchange="checkLevel(this)"
                                                                     class="form-select form-select-lg mb-3">
                                                                     @foreach ($degrees as $degree)
-                                                                        <option value="{{ $degree->id }}" @if ($education[$i] == $degree->id) selected @endif>
+                                                                        <option level="{{ $degree->level }}"  value="{{ $degree->id }}" @if ($education->degree_id == $degree->id) selected @endif>
                                                                             {{ $degree->name }}</option>
                                                                     @endforeach
                                                                 </select>
@@ -497,17 +497,11 @@
                                                         </div>
                                                         <div class="row mt-3">
                                                             <div class="input-text col-md-6">
-                                                                {{-- <select name="institute[]" class="form-select form-select-lg mb-3"
-                                                                aria-label=".form-select-lg example" >
-                                                                @foreach ($institutes as $institute)
-                                                                    <option  value="{{$institute->id}}" @if ($education->institute_id == $institute->id) selected @endif>{{$institute->name}}</option>
-                                                                @endforeach
+                                                                <input type="hidden" name="institute[]" id="inst_id" value="{{$education->institute_id}}">
 
-                                                            </select> --}}
                                                                 <input class="form-control bs-autocomplete" id="ac-demo"
-                                                                    value="" name="institute[]"
                                                                     placeholder="Type two characters of a Institute name..."
-                                                                    type="" data-source="demo_source.php"
+                                                                    data-source="demo_source.php"
                                                                     data-hidden_field_id="city-code" data-item_id="id"
                                                                     data-item_label="name" autocomplete="off">
                                                             </div>
@@ -534,7 +528,7 @@
                                                                     class="form-select form-select-lg mb-3">
                                                                     <option value="0" selected>Degree</option>
                                                                     @foreach ($degrees as $degree)
-                                                                        <option value="{{ $degree->id }}">
+                                                                        <option level="{{ $degree->level }}" value="{{ $degree->id }}">
                                                                             {{ $degree->name }}</option>
                                                                     @endforeach
                                                                 </select>
@@ -554,12 +548,10 @@
                                                         </div>
                                                         <div class="row mt-3">
                                                             <div class="input-text col-md-6">
+                                                                <input type="hidden" name="institute[]" id="inst_id" value="">
                                                                 <input class="form-control bs-autocomplete" id="ac-demo"
-                                                                    value="" name="institute[]"
                                                                     placeholder="Type two characters of a Institute name..."
-                                                                    type="" data-source="demo_source.php"
-                                                                    data-hidden_field_id="city-code" data-item_id="id"
-                                                                    data-item_label="name" autocomplete="off">
+                                                                     data-item_label="name"  autocomplete="off">
 
                                                             </div>
                                                             <div class="input-text col-md-6">
@@ -953,10 +945,10 @@
                 var html = `<div class=" customer_records mt-5" id="record_` + count_field + `">
                 <div class="row">
                     <div class="input-text col-md-6">
-                        <select name="degree[` + count_field + `]" onchange="checkLevel(this)" class="form-select form-select-lg mb-3">
+                        <select name="degree[` + count_field + `]" onchange="checkLevel(this)" onchange="checkLevel(this)" class="form-select form-select-lg mb-3">
                             <option  selected="">Degree</option>
                             @foreach ($degrees as $degree)
-                                <option value="{{ $degree->id }}" @if ($education[$i] == $degree->id) selected @endif>{{ $degree->name }}</option>
+                                <option value="{{ $degree->id }}">{{ $degree->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -965,7 +957,7 @@
                         <select name="major[` + count_field + `]" class="form-select form-select-lg mb-3">
                             <option value="0" selected="">Major</option>
                             @foreach ($subjects as $subject)
-                                <option value="{{ $subject->id }}" @if ($subject->id == $education->subject_id) selected @endif>{{ $subject->name }}</option>
+                                <option value="{{ $subject->id }}">{{ $subject->name }}</option>
                             @endforeach
                         </select>
 
@@ -1056,16 +1048,15 @@
 
             function checkLevel(opt) {
                 var level = opt.options[opt.selectedIndex].getAttribute('level');
-                var teach_levels = document.getElementById("levels").options;
 
-                for (var i = 0; i < teach_levels.length; i++) {
-                    if (level >= teach_levels[i].value) {
-
-                        for (var j = 0; j < i; j++) {
-                            $("#levels").html("<option value='" + teach_levels[i].value + "'>" + teach_levels[i].innerHTML +
-                                "</option>");
-                        }
-                    }
+                if (level == 1) {
+                    $("#levels").html("<option value='1'>Basic</option>");
+                }
+                if (level == 2) {
+                    $("#levels").html("<option value='1'>Basic</option><option value='2'>Intermediate</option>");
+                }
+                if (level == 3) {
+                    $("#levels").html("<option value='1'>Basic</option><option value='2'>Intermediate</option><option value='3'>Expert</option>");
                 }
             }
 
@@ -1121,6 +1112,7 @@
                                 _this.val(ui.item[_data.item_label]);
                                 _hidden_field.val(ui.item[_data.item_id]);
                                 event.preventDefault();
+                                $("#inst_id").val(ui.item.id)
                             }
                         })
                         .data('ui-autocomplete')._renderItem = function(ul, item) {
