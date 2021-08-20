@@ -16,6 +16,11 @@
 }
 #step_2 span{
     margin-left:58%;
+}.text-green{
+    color:#21B573;
+}
+.rank_icon img{
+    width:23px;
 }
 </style>
 @section('content')
@@ -44,7 +49,7 @@
                         <li rel-index="1" class="bordr-none  chee" id="step_2">
                             <a href="#step-2" aria-controls="step-2" class="disabled" role="tab" data-toggle="tab">
                                 <span>
-                                    <img class="mt-3" src="../assets/images/ico/profile-ico.png" alt="img">
+                                    <img class="mt-3" src="../assets/images/ico/bag-icon.png" alt="img">
                                 </span>
                             </a>
                             <p class="register-content">Find Tutor</p>
@@ -145,7 +150,24 @@
                         style="padding-bottom: 100px;background-color: white;">
                         <div class="col-md-12 ">
                             <div class="card">
-                                
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <p><span class="text-green pr-3">Top Ranked</span> <span class="rank_icon"><img src="../assets/images/ico/rank.png" alt=""></span> </p>
+                                                        
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-3 bg-dark">
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

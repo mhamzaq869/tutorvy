@@ -14,6 +14,7 @@
     <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
 
     <link href="{{ asset('assets/css/chat.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/registration.css') }}" rel="stylesheet">
 
     <!-- fonawsome -->
     <link href="{{ asset('assets/css/fontawesome.min.css') }}" rel="stylesheet">
@@ -48,6 +49,7 @@
      <script src="{{ asset('assets/js/subject.js') }}"></script>
      <script src="{{ asset('assets/js/homePage.js') }}"></script>
      <script src="{{ asset('assets/js/clander.js') }}"></script>
+     <script src="{{ asset('assets/js/registration.js') }}"></script>
      <script src="{{ asset('assets/js/dropify.js')}}"></script>
      <script src="{{ asset('assets/js/multiselect.js')}}"></script>
 
