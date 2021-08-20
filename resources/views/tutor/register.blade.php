@@ -497,12 +497,11 @@
                                                         </div>
                                                         <div class="row mt-3">
                                                             <div class="input-text col-md-6">
-                                                                <input type="hidden" name="institute[]" id="inst_id" value="{{$education->institute_id}}">
+                                                                <input type="hidden" name="institute[]" id="inst_id_{{$i}}" value="{{$education->institute_id}}">
 
-                                                                <input class="form-control bs-autocomplete" id="ac-demo"
+                                                                <input class="form-control bs-autocomplete" id="{{$i}}"
                                                                     placeholder="Type two characters of a Institute name..."
-                                                                    data-source="demo_source.php"
-                                                                    data-hidden_field_id="city-code" data-item_id="id"
+                                                                    value="{{$education->institute->name}}"
                                                                     data-item_label="name" autocomplete="off">
                                                             </div>
                                                             <div class="input-text col-md-6">
@@ -597,11 +596,10 @@
                                                     <div class="row mt-3">
                                                         <div class="input-text col-md-6">
                                                             <input type="hidden" name="institute[]" id="inst_id" value="">
-                                                           
                                                                 <input class="form-control bs-autocomplete" id="ac-demo"
                                                                     placeholder="Type two characters of a Institute name..."
                                                                     data-source="demo_source.php"
-                                                                    data-hidden_field_id="city-code" data-item_id="id"
+                                                                    data-item_id="22"
                                                                     data-item_label="name" autocomplete="off">
                                                         </div>
                                                         <div class="input-text col-md-6">
@@ -616,15 +614,6 @@
                                                         </div>
 
                                                     </div>
-
-                                                    <!-- <div class="button-wrapper mt-4">
-                                                        <span class="label" style="position: relative">
-                                                            <input type="file" name="upload[]" id="upload" class="upload-box" placeholder="Upload File"
-                                                            accept=".doc,.pdf,.png,.jpg,.jpeg">
-                                                            <img src="../assets/images/ico/attach.png" class="w-25 "
-                                                                alt="i">Attach degrees
-                                                        </span>
-                                                    </div> -->
                                                 </div>
                                                 <hr />
                                             @endisset
@@ -961,7 +950,7 @@
                     <div class="input-text col-md-6">
 
                         <input type="hidden" name="institute[` + count_field + `]" id="inst_id_` + count_field + `" value="">
-                                                           
+
                         <input class="form-control bs-autocomplete" id="ac-demo"
                             placeholder="Type two characters of a Institute name..."
                             data-source="demo_source.php"

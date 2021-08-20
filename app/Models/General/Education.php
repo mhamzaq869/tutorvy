@@ -25,7 +25,7 @@ class Education extends Model
         'user_id',
         'degree_id',
         'subject_id',
-        'institute',
+        'institute_id',
         'year',
         'docs',
     ];

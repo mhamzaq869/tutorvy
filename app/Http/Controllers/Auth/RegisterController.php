@@ -111,7 +111,7 @@ class RegisterController extends Controller
     {
         // Get a validator for an incoming registration request
         // from Tutor/Student Registor Form .
-        // dd($request->all());
+        dd($request->all());
 
         $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
@@ -119,7 +119,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['required', 'string', 'min:8'],
             'phone' => ['required'],
-            'gender' => ['required'],
+            'gender' => ['r  equired'],
         ]);
         $request->ip = $_SERVER['REMOTE_ADDR'];
         $request->dob = $request->year.'-'.$request->month.'-'.$request->day;
