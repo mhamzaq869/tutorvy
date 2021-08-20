@@ -596,19 +596,13 @@
                                                     </div>
                                                     <div class="row mt-3">
                                                         <div class="input-text col-md-6">
-                                                            <select name="institute[]"
-                                                                class="form-select form-select-lg mb-3"
-                                                                aria-label=".form-select-lg example">
-                                                                <option value="0">Institute</option>
-                                                                <option value="1">Punjab University</option>
-                                                                <option value="2">Virtual University Of Pakistan</option>
-                                                            </select>
-                                                            <!--<input list="instiuteList" name="institute[]" id="browser">
-                                                                    <datalist id="instiuteList">
-                                                                        <option value="Institute">
-                                                                        <option value="Punjab University">
-                                                                        <option value="Virtual University Of Pakistan">
-                                                                    </datalist>-->
+                                                            <input type="hidden" name="institute[]" id="inst_id" value="">
+                                                           
+                                                                <input class="form-control bs-autocomplete" id="ac-demo"
+                                                                    placeholder="Type two characters of a Institute name..."
+                                                                    data-source="demo_source.php"
+                                                                    data-hidden_field_id="city-code" data-item_id="id"
+                                                                    data-item_label="name" autocomplete="off">
                                                         </div>
                                                         <div class="input-text col-md-6">
                                                             <input type="date" name="graduate_year[]"
@@ -966,8 +960,12 @@
                 <div class="row mt-3">
                     <div class="input-text col-md-6">
 
-                            <input class="form-control bs-autocomplete ui-autocomplete-input" id="ac-demo"
-                            name="institute[]" placeholder="Type two characters of a Institute name..."
+                        <input type="hidden" name="institute[` + count_field + `]" id="inst_id_` + count_field + `" value="">
+                                                           
+                        <input class="form-control bs-autocomplete" id="ac-demo"
+                            placeholder="Type two characters of a Institute name..."
+                            data-source="demo_source.php"
+                            data-hidden_field_id="city-code" data-item_id="id"
                             data-item_label="name" autocomplete="off">
 
                     </div>
@@ -989,6 +987,66 @@
                 $('.customer_records_dynamic').append(html);
                 $('.dropify').dropify();
                 // $(".form-select").select2();
+                (function() {
+                "use strict";
+                var cities = @json($institutes);
+
+                $('.bs-autocomplete').each(function() {
+                    var _this = $(this),
+                        _data = _this.data(),
+                        _hidden_field = $('#' + _data.hidden_field_id);
+
+                    _this.after(
+                            '<div class="bs-autocomplete-feedback form-control-feedback"><div class="loader">Loading...</div></div>'
+                            )
+                        .parent('.form-group').addClass('has-feedback');
+
+                    var feedback_icon = _this.next('.bs-autocomplete-feedback');
+                    feedback_icon.hide();
+
+                    _this.autocomplete({
+                            minLength: 2,
+                            autoFocus: true,
+
+                            source: function(request, response) {
+                                var _regexp = new RegExp(request.term, 'i');
+                                var data = cities.filter(function(item) {
+                                    return item.name.match(_regexp);
+                                });
+                                response(data);
+                            },
+
+                            search: function() {
+                                feedback_icon.show();
+                                _hidden_field.val('');
+                            },
+
+                            response: function() {
+                                feedback_icon.hide();
+                            },
+
+                            focus: function(event, ui) {
+                                _this.val(ui.item[_data.item_label]);
+                                event.preventDefault();
+                            },
+
+                            select: function(event, ui) {
+                                _this.val(ui.item[_data.item_label]);
+                                _hidden_field.val(ui.item[_data.item_id]);
+                                event.preventDefault();
+                                $("#inst_id_" + count_field + "").val(ui.item.id)
+                            }
+                        })
+                        .data('ui-autocomplete')._renderItem = function(ul, item) {
+                            return $('<li></li>')
+                                .data("item.autocomplete", item)
+                                .append('<a>' + item[_data.item_label] + '</a>')
+                                .appendTo(ul);
+                        };
+                    // end autocomplete
+                });
+            })();
+
             });
             $("#register").validate({
                 rules: {
