@@ -179,6 +179,7 @@ Route::view('/resetPassword','auth.reset')->name('reset.password');
 Route::post('/updatePassword',[ResetPasswordController::class,'updatePassword'])->name('update.password');
 Route::post('/resendOtp',[ResetPasswordController::class,'resendOtp'])->name('resend.otp');
 Route::view('/','welcome');
+Route::view('/role','role');
 Route::view('/tutor','frontend.tutor');
 Route::view('/student','frontend.student');
 Route::view('/subject','frontend.subject');
