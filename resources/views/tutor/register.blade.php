@@ -41,7 +41,8 @@
 
 
     <style>
-        .error {
+        .error,
+        #teach_error {
             color: red !important;
             font-weight: 500;
         }
@@ -806,7 +807,7 @@
                                         <div class="container-fluid">
                                             <div class="row">
                                                 <div class="input-text col-md-6 d-block">
-                                                    <select name="teach"
+                                                    {{-- <select name="teach"
                                                         class="form-select form-select-lg mb-3 @error('teach') is-invalid @enderror"
                                                         required>
                                                         <option disabled selected>I want to teach</option>
@@ -815,6 +816,22 @@
                                                                 {{ $subject->name }}</option>
                                                         @endforeach
                                                     </select>
+                                                    @error('teach')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror --}}
+
+                                                    <select name="teach"
+                                                        class="form-select form-select-lg mb-3 @error('teach') is-invalid @enderror"
+                                                        id="teacher">
+                                                        <option disabled selected>I want to teach</option>
+                                                        @foreach ($subjects as $subject)
+                                                            <option value="{{ $subject->id }}" @if ($subject->id == ($user->userdetail->subject_id ?? 0)) selected @endif>
+                                                                {{ $subject->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <label for="" id="teach_error"><strong> This field is required </strong>  </label>
                                                     @error('teach')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -859,7 +876,7 @@
                                         </div>
                                         <div class="col-8" style="float: right;">
 
-                                            <button type="submit" id="finish"
+                                            <button type="button" id="finish"
                                                 class="btn btn-lg   schedule-btn  nextBtn  pull-right">&nbsp;
                                                 Finsh&nbsp;
                                             </button>
@@ -907,6 +924,7 @@
                     startYear: 1950,
                     endYear: 2050,
                 });
+                $("#teach_error").hide();
             });
 
             $("#country_selector").countrySelect({
@@ -1064,9 +1082,6 @@
                     },
                     gender: {
                         required: true
-                    },
-                    teach: {
-                        required: true
                     }
                 },
                 messages: {
@@ -1181,6 +1196,20 @@
                     // end autocomplete
                 });
             })();
+
+
+            $("#finish").click(function(){
+                    var x = $("#teacher").val();
+                    if(x == null){
+                        $("#teach_error").show();
+                        $("#teach_error").focus();
+                    }
+                    else{
+                        $("#teach_error").hide();
+                        $("#finish").attr("type","submit");
+                    }
+            });
+
         </script>
     </section>
 </body>
