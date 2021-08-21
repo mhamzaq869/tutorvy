@@ -30,7 +30,7 @@ class Education extends Model
         'docs',
     ];
 
-    protected $appends = ['c_year','day','month'];
+    protected $appends = ['c_year'];
 
     public function subject()
     {

@@ -18,9 +18,10 @@ class TutorController extends Controller
 
     public function filterTutor(Request $request)
     {
-        $user = User::tutor()->active()->verified()->range($request->range)->location($request->locat)
+        $user = User::with(['education','professional','teach'])->tutor()->active()->verified()->range($request->range)->location($request->locat)
                     ->language($request->lang)->gender($request->gender)
                     ->get();
+
         return response($user,201);
     }
 }

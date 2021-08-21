@@ -1,88 +1,6 @@
 @extends('tutor.layouts.app')
 <link href="{{ asset('assets/css/registration.css') }}" rel="stylesheet">
-<style>
-  .chee {
-    background-color: transparent !important;
-    border-right: 5px solid transparent !important;
-    padding-left: 20px;
-}
-.liner {
-    width: 25%  !important;
-}
-#step_1{
-    margin-left:23%;
-}
-#step_1 span{
-    margin-left:34%;
-}
-#step_2 span{
-    margin-left:58%;
-}.text-green{
-    color:#21B573;
-}
-.rank_icon img{
-    width:23px;
-}
-.round-border{
-    border-radius:50%;
-    width:100%;
-}
-.text-grey{
-color:#949CA7;
-}
-.text-yellow{
-    color:#FAAF3A;
-}
-.card{
-    height:auto !important ;
-}
-.info-1{
-    margin-left:0 !important;
-}
-.info{
-    background:#C6DDFF;
-    font-size:12px;
-    padding:5px 10px;
-    margin-left:5px;
-    border-radius:4px;
-    margin-top:5px;
-}
-.lingo{
-    background:#F8D9D8 !important;
-}
-.edu{
-    background:#C9EDDD !important;
-
-}
-.scrol-about{
-    height:62px;
-    overflow-y:auto;
-}
-.bg-price{
-    background: #F5F9FF;
-}
-.f-60{
-    font-size:60px;
-    font-weight:500;
-}
-.mt-30{
-    margin-top:30px;
-}
-.btn-general{
-    background:#1173FF;
-    color:#fff;
-    border-radius:4px;
-    font-size:14px;
-    padding: 5px 29px;
-    border:1px solid #1173FF;
-    font-weight:600;
-    transition:all 0.9s;
-}
-.btn-general:hover{
-    color:#1173FF;
-    background:#fff;
-}
-</style>
+<link href="{{ asset('assets/css/booknow.css') }}" rel="stylesheet">
 @section('content')
  <!-- top Fixed navbar End -->
  <section>
@@ -142,7 +60,7 @@ color:#949CA7;
                                 </div>
                                 <div class="row mt-3">
                                     <div class="input-text col-md-12 ">
-                                        <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Write Your Answer"></textarea>
+                                        <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Write brief about your question"></textarea>
                                     </div>
                                 </div>
                               <div class="row mt-3">
