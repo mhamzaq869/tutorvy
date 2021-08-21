@@ -2,13 +2,15 @@
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" rel="stylesheet">
 
 @section('content')
-<style>
+    <style>
         .chatLeft:hover {
             text-decoration: none;
         }
+
         .w-100 {
             width: 100%;
         }
+
         .rightChatIcon {
             font-size: 25px;
             padding-left: 9px;
@@ -16,12 +18,15 @@
             padding-right: 19px;
             color: #00132D;
         }
+
         .rightChatIcon:hover {
             text-decoration: none;
         }
+
         .f-28 {
             font-size: 28px;
         }
+
         .sendRight {
             right: 28px;
             position: absolute;
@@ -29,12 +34,14 @@
             color: #00132D;
             font-size: 20px;
         }
+
         .chatArea {
             height: 365px;
             padding-left: 0px;
             padding-right: 0;
-            overflow-y:scroll;
+            overflow-y: scroll;
         }
+
         .headIcon {
             font-size: 28px;
             padding-top: 4px;
@@ -42,12 +49,15 @@
             color: #00132D;
             font-weight: 400;
         }
+
         .activate {
             background: #fff;
         }
-        .sender{
-            float:right;
+
+        .sender {
+            float: right;
         }
+
         .reciever p,
         .sender p {
             width: 300px;
@@ -55,28 +65,34 @@
             border-radius: 5px;
             padding: 5px;
         }
+
         .reciever p:hover,
         .sender p:hover {
             cursor: pointer;
         }
-        .recDull{
+
+        .recDull {
             position: absolute;
             left: 34%;
             color: #BCC0C7;
         }
+
         .dull {
             position: absolute;
             right: 2%;
             color: #BCC0C7;
         }
+
         .chatTime {
             float: right;
             font-size: 12px;
         }
+
         .line-box2 {
             border-bottom: 1px solid #D6DBE2;
             margin-bottom: 10px;
         }
+
         .textMenu2 {
             color: #00132D;
             position: absolute;
@@ -84,20 +100,24 @@
             left: 45%;
             display: none;
         }
-        .textMenu{
+
+        .textMenu {
             color: #00132D;
             position: absolute;
             top: 28%;
             right: 45%;
         }
+
         .textMenu2 i,
         .textMenu i {
             font-size: 22px;
         }
-        .search-box-icon{
-            color:#00132D;
-            font-size:22px;
+
+        .search-box-icon {
+            color: #00132D;
+            font-size: 22px;
         }
+
         .activeDot {
             width: 14px;
             border: 2px solid #fff;
@@ -108,9 +128,11 @@
             background: green;
             border-radius: 50%;
         }
-        .offlice{
+
+        .offlice {
             background: gray !important;
         }
+
     </style>
 
     <div class="content" style="width: 100%;background-color: #FBFBFB !important;">
@@ -127,16 +149,17 @@
                             </a>
                         </div>
                         <div class="line-box"></div>
-                        @foreach($tutors as $tutor)
-                            <a href="#" class="chatLeft" id="chatClient_1" onclick="selectUser(`{{$tutor->id}}`)">
+                        @foreach ($tutors as $tutor)
+                            <a href="#" class="chatLeft" id="chatClient_1" onclick="selectUser(`{{ $tutor->id }}`)">
                                 <div class="container-fluid m-0 p-0 img-chats">
-                                    <img src="{{ asset('admin/assets/img/logo/harram.jpg')}}" class="leftImg ml-1">
-                                    <span class="activeDot" id="activeDot_{{$tutor->id}}"></span>
+                                    <img src="{{ asset('admin/assets/img/logo/harram.jpg') }}" class="leftImg ml-1">
+                                    <span class="activeDot" id="activeDot_{{ $tutor->id }}"></span>
                                     <div class="img-chat">
 
                                         <div class="row">
                                             <div class="col-10">
-                                                <p class="name-client">{{ $tutor->first_name }} {{ $tutor->last_name }}</p>
+                                                <p class="name-client">{{ $tutor->first_name }} {{ $tutor->last_name }}
+                                                </p>
                                             </div>
                                             <div class="col-md-2">
                                                 <p class="time-chat">11:25</p>
@@ -144,11 +167,12 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-10">
-                                                <p class="massage-client" id="recent_msg_{{$tutor->id}}">It is a long distae... </p>
+                                                <p class="massage-client" id="recent_msg_{{ $tutor->id }}">It is a long
+                                                    distae... </p>
 
                                             </div>
                                             <div class="col-md-2">
-                                                <span class="dot pl-2 " id="unseen_msg_cnt_{{$tutor->id}}">2 </span>
+                                                <span class="dot pl-2 " id="unseen_msg_cnt_{{ $tutor->id }}">2 </span>
                                             </div>
                                         </div>
                                     </div>
@@ -164,7 +188,7 @@
                             <a class="navbar-brand pb-0" href="#">
                                 <div class="container-fluid m-0 p-0 img-chats">
 
-                                    <img src="{{ asset('admin/assets/img/logo/harram.jpg')}}">
+                                    <img src="{{ asset('admin/assets/img/logo/harram.jpg') }}">
                                     <div class="img-chat">
                                         <div class="row">
                                             <div class="col-12">
@@ -195,8 +219,8 @@
                     <div class="line-box2"></div>
 
                     <div class="row chatArea p-5 bg-white" id="chatArea">
-                        
-                        
+
+
                     </div>
                     <div class="container-fluid mb-3">
                         <div class="search-type ">
@@ -214,7 +238,8 @@
                                 <div class="col-md-10 col-8">
                                     <span class="text-muted" id="typingUser"></span>
                                     <form id="chat_form" action="{{ route('store.text') }}">
-                                        <input type="search" id="msg" class="w-100" alt="message" onKeyUp="sendTypingEvent()">
+                                        <input type="search" id="msg" class="w-100" alt="message"
+                                            onKeyUp="sendTypingEvent()">
                                         <a href="" class="sendRight" type="submit">
                                             <i class="fa fa-paper-plane f-28"></i>
                                         </a>
@@ -261,5 +286,3 @@
         });
     </script>
 @endsection
-
-

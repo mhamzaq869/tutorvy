@@ -157,7 +157,7 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     Route::get('/tutorfilter/{?id}',[StudentTutorController::class,'filter'])->name('student.tutor.filter');
     // Route::get('/settings',[TutorSettingController::class,'index'])->name('tutor.settings');
     Route::get('/profile',[StudentProfileController::class,'index'])->name('student.profile');
-    
+
 });
 /*
 |--------------------------------------------------------------------------
@@ -185,6 +185,7 @@ Route::view('/student','frontend.student');
 Route::view('/subject','frontend.subject');
 Route::view('/course','frontend.course');
 Route::get('/findtutor',[FrontTutorController::class,'index']);
+Route::post('/findtutor',[FrontTutorController::class,'filterTutor'])->name('find.tutor');
 
 /*
 |--------------------------------------------------------------------------

@@ -77,7 +77,7 @@ class RegisterController extends Controller
      */
     protected function showRegistrationForm()
     {
-        $user = User::with(['education','professional','userdetail'])->where('ip',$_SERVER['REMOTE_ADDR'])->first();
+        $user = User::with(['education','professional'])->where('ip',$_SERVER['REMOTE_ADDR'])->first();
         $subjects = Subject::all();
         $degrees = Degree::all();
         $institutes = Institute::select('name','id')->get();
@@ -143,6 +143,8 @@ class RegisterController extends Controller
             'cnic_security' => $request->cnic ?? $request->security,
             'language' => $request->language,
             'lang_short' => $request->lang_short,
+            'student_level' => $request->student_level,
+            'hourly_rate' => $request->hour_rate,
             'gender' => $request->gender,
             'bio' => $request->bio,
             ]);
@@ -195,17 +197,10 @@ class RegisterController extends Controller
 
     private function updateOrCreatedetail($user,$request)
     {
-        Userdetail::upsert([
-            'user_id' => $user->id,
-            'ip' => $request->ip,
-            'student_level' => $request->student_level,
-            'hourly_rate' => $request->hour_rate,
-        ],['user_id']);
 
         $docs = [];
         $docss = Education::where('user_id',$user->id)->get();
 
-        // dd($docss[0]->docs);
         if($request->has('exist_img')){
             foreach($request->exist_img as $img){
                 array_push($docs,$img);

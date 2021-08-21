@@ -50,6 +50,6 @@ class Teach extends Model
     public function getVerifiedByNameAttribute()
     {
        $user = User::where('id',$this->verified_by)->first();
-       return $user->name;
+       return $user->name ?? '';
     }
 }

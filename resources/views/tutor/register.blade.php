@@ -827,7 +827,7 @@
                                                         id="teacher">
                                                         <option disabled selected>I want to teach</option>
                                                         @foreach ($subjects as $subject)
-                                                            <option value="{{ $subject->id }}" @if ($subject->id == ($user->userdetail->subject_id ?? 0)) selected @endif>
+                                                            <option value="{{ $subject->id }}" @if ($subject->id == ($user->student_level ?? 0)) selected @endif>
                                                                 {{ $subject->name }}</option>
                                                         @endforeach
                                                     </select>
@@ -858,17 +858,17 @@
                                                 <select name="hour_rate" class="form-select form-select-lg mb-3"
                                                     aria-label=".form-select-lg example">
                                                     <option disabled>Per hour charges</option>
-                                                    <option @if (isset($user) && $user->userdetail->hourly_rate == 5) selected @endif value="5">$5</option>
-                                                    <option @if (isset($user) && $user->userdetail->hourly_rate == 10) selected @else selected @endif
+                                                    <option @if (isset($user) && $user->hourly_rate == 5) selected @endif value="5">$5</option>
+                                                    <option @if (isset($user) && $user->hourly_rate == 10) selected @else selected @endif
                                                         value="10">$10</option>
-                                                    <option @if (isset($user) && $user->userdetail->hourly_rate == 15) selected @endif value="15">$15</option>
-                                                    <option @if (isset($user) && $user->userdetail->hourly_rate == 20) selected @endif value="20">$20</option>
-                                                    <option @if (isset($user) && $user->userdetail->hourly_rate == 25) selected @endif value="25">$25</option>
-                                                    <option @if (isset($user) && $user->userdetail->hourly_rate == 30) selected @endif value="30">$30</option>
-                                                    <option @if (isset($user) && $user->userdetail->hourly_rate == 35) selected @endif value="35">$35</option>
-                                                    <option @if (isset($user) && $user->userdetail->hourly_rate == 40) selected @endif value="40">$40</option>
-                                                    <option @if (isset($user) && $user->userdetail->hourly_rate == 45) selected @endif value="45">$45</option>
-                                                    <option @if (isset($user) && $user->userdetail->hourly_rate == 50) selected @endif value="50">$50</option>
+                                                    <option @if (isset($user) && $user->hourly_rate == 15) selected @endif value="15">$15</option>
+                                                    <option @if (isset($user) && $user->hourly_rate == 20) selected @endif value="20">$20</option>
+                                                    <option @if (isset($user) && $user->hourly_rate == 25) selected @endif value="25">$25</option>
+                                                    <option @if (isset($user) && $user->hourly_rate == 30) selected @endif value="30">$30</option>
+                                                    <option @if (isset($user) && $user->hourly_rate == 35) selected @endif value="35">$35</option>
+                                                    <option @if (isset($user) && $user->hourly_rate == 40) selected @endif value="40">$40</option>
+                                                    <option @if (isset($user) && $user->hourly_rate == 45) selected @endif value="45">$45</option>
+                                                    <option @if (isset($user) && $user->hourly_rate == 50) selected @endif value="50">$50</option>
 
                                                 </select>
 

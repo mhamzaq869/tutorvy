@@ -1,4 +1,5 @@
 @extends('tutor.layouts.app')
+<link href="{{ asset('assets/css/registration.css') }}" rel="stylesheet">
 <style>
   .chee {
     background-color: transparent !important;
@@ -33,7 +34,7 @@
         </p>
     </div>
     <div class="container">
-        <div class="row bg-white ml-2 mr-2">
+        <div class="row bg-white w-75 ml-auto mr-auto">
             <div class="col-md-12">
                 <div class="board">
                     <ul class="nav nav-tabs">
@@ -75,7 +76,7 @@
                                             placeholder="Type your Topic" value="">
                                     </div>
                                 </div><div class="row mt-3">
-                                    <div class="input-text col-md-8">
+                                    <div class="input-text col-md-12">
                                         <input type="text"class="form-control " name=""
                                             placeholder="What is the Question?" value="">
                                     </div>
@@ -139,7 +140,7 @@
 
                                     <button id="step-1-next" type="button"
                                         class="btn btn-lg btn-registration schedule-btn  nextBtn pull-right ml-4 ">
-                                        &nbsp; Apply Filters &nbsp;
+                                        &nbsp; Continue &nbsp;
                                     </button>
                                 </div>
                             </div>
@@ -155,11 +156,11 @@
                                         <div class="col-md-9">
                                                 <div class="row">
                                                     <div class="col-md-9">
-                                                        
+
                                                     </div>
                                                     <div class="col-md-3">
                                                         <p><span class="text-green pr-3">Top Ranked</span> <span class="rank_icon"><img src="../assets/images/ico/rank.png" alt=""></span> </p>
-                                                        
+
                                                     </div>
                                                 </div>
                                         </div>
