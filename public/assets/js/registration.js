@@ -1498,7 +1498,8 @@ let count_field_2 = 0;
 
 $('.moreExperience').click(function() {
     // alert("Tech");
-    count_field_2++;
+    count_field_2 = document.querySelectorAll(".element").length;
+    console.log(count_field_2)
     var html = `<div id="record2_` + count_field_2 + `">
     <div class="row">
         <div class="col-md-12">

@@ -82,7 +82,6 @@ class RegisterController extends Controller
         $degrees = Degree::all();
         $institutes = Institute::select('name','id')->get();
 
-
         return view('tutor.register',compact('user','subjects','degrees','institutes'));
     }
 
@@ -94,7 +93,6 @@ class RegisterController extends Controller
     protected function showStudentRegistrationForm()
     {
         $user = User::where('ip',$_SERVER['REMOTE_ADDR'])->first();
-
         return view('student.auth.register',compact('user'));
     }
 
@@ -111,7 +109,7 @@ class RegisterController extends Controller
     {
         // Get a validator for an incoming registration request
         // from Tutor/Student Registor Form .
-        dd($request->all());
+        // dd($request->all());
 
         $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
@@ -205,14 +203,22 @@ class RegisterController extends Controller
         ],['user_id']);
 
         $docs = [];
+        $docss = Education::where('user_id',$user->id)->get();
+
+        // dd($docss[0]->docs);
+        if($request->has('exist_img')){
+            foreach($request->exist_img as $img){
+                array_push($docs,$img);
+            }
+        }
         if($request->hasFile('upload')){
-            foreach($request->upload as $upload){
+            foreach($request->upload as $i => $upload){
                 $path = 'storage/docs/'.$upload->getClientOriginalName();
                 $upload->storeAs('docs',$upload->getClientOriginalName(),'public');
-                $docs[] =  $path;
+                // $docs[] =  $path;
+                array_push($docs,$path);
             }
         }else{
-            $docss = Education::where('user_id',$user->id)->get();
             foreach($docss as $upload){
                 $docs[] =  $upload->docs;
             }
@@ -232,7 +238,6 @@ class RegisterController extends Controller
         }
 
         for($i=0; $i<count($request->degree); $i++){
-
             Education::updateOrCreate([
                 "user_id" => $user->id,
                 "degree_id" => $request->degree[$i],

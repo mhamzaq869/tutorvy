@@ -286,7 +286,8 @@
                                             <div class="row mt-5">
                                                 <div class="input-text col-md-6 d-block">
                                                     <input type="" class="form-control csd" name="first_name"
-                                                        placeholder="First Name" value="{{ $user->first_name ?? '' }}">
+                                                        placeholder="First Name"
+                                                        value="{{ $user->first_name ?? '' }}">
                                                     {{-- @error('first_name')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{$message}}</strong>
@@ -478,7 +479,8 @@
                                                                 <select name="degree[]" onchange="checkLevel(this)"
                                                                     class="form-select form-select-lg mb-3">
                                                                     @foreach ($degrees as $degree)
-                                                                        <option level="{{ $degree->level }}"  value="{{ $degree->id }}" @if ($education->degree_id == $degree->id) selected @endif>
+                                                                        <option level="{{ $degree->level }}"
+                                                                            value="{{ $degree->id }}" @if ($education->degree_id == $degree->id) selected @endif>
                                                                             {{ $degree->name }}</option>
                                                                     @endforeach
                                                                 </select>
@@ -497,11 +499,15 @@
                                                         </div>
                                                         <div class="row mt-3">
                                                             <div class="input-text col-md-6">
-                                                                <input type="hidden" name="institute[]" id="inst_id_{{$i}}" value="{{$education->institute_id}}">
+                                                                <input type="hidden" name="institute[]"
+                                                                    id="inst_id_{{ $i }}"
+                                                                    value="{{ $education->institute_id }}">
 
-                                                                <input class="form-control bs-autocomplete" id="{{$i}}"
+                                                                <input class="form-control bs-autocomplete"
+                                                                    id="{{ $i }}"
                                                                     placeholder="Type two characters of a Institute name..."
-                                                                    value="{{$education->institute->name}}"
+                                                                    value="{{ $education->institute->name }}"
+                                                                    data-hidden_field_id="city-code" data-item_id="id"
                                                                     data-item_label="name" autocomplete="off">
                                                             </div>
                                                             <div class="input-text col-md-6">
@@ -512,6 +518,7 @@
                                                         </div>
                                                         <div class="row mt-3">
                                                             <div class="col-md-12">
+                                                                <input hidden name="exist_img[]" value="{{$education->docs}}">
                                                                 <input type="file" class="dropify" name="upload[]" id=""
                                                                     data-default-file="{{ asset($education->docs) }}">
                                                             </div>
@@ -527,7 +534,8 @@
                                                                     class="form-select form-select-lg mb-3">
                                                                     <option value="0" selected>Degree</option>
                                                                     @foreach ($degrees as $degree)
-                                                                        <option level="{{ $degree->level }}" value="{{ $degree->id }}">
+                                                                        <option level="{{ $degree->level }}"
+                                                                            value="{{ $degree->id }}">
                                                                             {{ $degree->name }}</option>
                                                                     @endforeach
                                                                 </select>
@@ -547,10 +555,11 @@
                                                         </div>
                                                         <div class="row mt-3">
                                                             <div class="input-text col-md-6">
-                                                                <input type="hidden" name="institute[]" id="inst_id" value="">
+                                                                <input type="hidden" name="institute[]" id="inst_id_0"
+                                                                    value="">
                                                                 <input class="form-control bs-autocomplete" id="ac-demo"
                                                                     placeholder="Type two characters of a Institute name..."
-                                                                     data-item_label="name"  autocomplete="off">
+                                                                    data-item_label="name" autocomplete="off">
 
                                                             </div>
                                                             <div class="input-text col-md-6">
@@ -596,11 +605,11 @@
                                                     <div class="row mt-3">
                                                         <div class="input-text col-md-6">
                                                             <input type="hidden" name="institute[]" id="inst_id" value="">
-                                                                <input class="form-control bs-autocomplete" id="ac-demo"
-                                                                    placeholder="Type two characters of a Institute name..."
-                                                                    data-source="demo_source.php"
-                                                                    data-item_id="22"
-                                                                    data-item_label="name" autocomplete="off">
+
+                                                            <input class="form-control bs-autocomplete" id="ac-demo"
+                                                                placeholder="Type two characters of a Institute name..."
+                                                                data-source="demo_source.php" data-item_id="22"
+                                                                data-item_label="name" autocomplete="off">
                                                         </div>
                                                         <div class="input-text col-md-6">
                                                             <input type="date" name="graduate_year[]"
@@ -923,8 +932,8 @@
             })();
 
             $('.extra-fields-customer').click(function() {
-                // alert("Tech");
-                count_field++;
+                count_field = document.querySelectorAll(".customer_records").length;
+
                 var html = `<div class=" customer_records mt-5" id="record_` + count_field + `">
                 <div class="row">
                     <div class="input-text col-md-6">
@@ -973,69 +982,69 @@
             </div>
 
             </div>`;
-                $('.customer_records_dynamic').append(html);
-                $('.dropify').dropify();
+            $('.customer_records_dynamic').append(html);
+            $('.dropify').dropify();
                 // $(".form-select").select2();
                 (function() {
-                "use strict";
-                var cities = @json($institutes);
+                    "use strict";
+                    var cities = @json($institutes);
 
-                $('.bs-autocomplete').each(function() {
-                    var _this = $(this),
-                        _data = _this.data(),
-                        _hidden_field = $('#' + _data.hidden_field_id);
+                    $('.bs-autocomplete').each(function() {
+                        var _this = $(this),
+                            _data = _this.data(),
+                            _hidden_field = $('#' + _data.hidden_field_id);
 
-                    _this.after(
-                            '<div class="bs-autocomplete-feedback form-control-feedback"><div class="loader">Loading...</div></div>'
+                        _this.after(
+                                '<div class="bs-autocomplete-feedback form-control-feedback"><div class="loader">Loading...</div></div>'
                             )
-                        .parent('.form-group').addClass('has-feedback');
+                            .parent('.form-group').addClass('has-feedback');
 
-                    var feedback_icon = _this.next('.bs-autocomplete-feedback');
-                    feedback_icon.hide();
+                        var feedback_icon = _this.next('.bs-autocomplete-feedback');
+                        feedback_icon.hide();
 
-                    _this.autocomplete({
-                            minLength: 2,
-                            autoFocus: true,
+                        _this.autocomplete({
+                                minLength: 2,
+                                autoFocus: true,
 
-                            source: function(request, response) {
-                                var _regexp = new RegExp(request.term, 'i');
-                                var data = cities.filter(function(item) {
-                                    return item.name.match(_regexp);
-                                });
-                                response(data);
-                            },
+                                source: function(request, response) {
+                                    var _regexp = new RegExp(request.term, 'i');
+                                    var data = cities.filter(function(item) {
+                                        return item.name.match(_regexp);
+                                    });
+                                    response(data);
+                                },
 
-                            search: function() {
-                                feedback_icon.show();
-                                _hidden_field.val('');
-                            },
+                                search: function() {
+                                    feedback_icon.show();
+                                    _hidden_field.val('');
+                                },
 
-                            response: function() {
-                                feedback_icon.hide();
-                            },
+                                response: function() {
+                                    feedback_icon.hide();
+                                },
 
-                            focus: function(event, ui) {
-                                _this.val(ui.item[_data.item_label]);
-                                event.preventDefault();
-                            },
+                                focus: function(event, ui) {
+                                    _this.val(ui.item[_data.item_label]);
+                                    event.preventDefault();
+                                },
 
-                            select: function(event, ui) {
-                                _this.val(ui.item[_data.item_label]);
-                                _hidden_field.val(ui.item[_data.item_id]);
-                                event.preventDefault();
-                                $("#inst_id_" + count_field + "").val(ui.item.id)
-                            }
-                        })
-                        .data('ui-autocomplete')._renderItem = function(ul, item) {
-                            return $('<li></li>')
-                                .data("item.autocomplete", item)
-                                .append('<a>' + item[_data.item_label] + '</a>')
-                                .appendTo(ul);
-                        };
-                    // end autocomplete
-                });
-            })();
-
+                                select: function(event, ui) {
+                                    _this.val(ui.item[_data.item_label]);
+                                    _hidden_field.val(ui.item[_data.item_id]);
+                                    event.preventDefault();
+                                    $("#inst_id_" + count_field + "").val(ui.item.id)
+                                    console.log(event)
+                                }
+                            })
+                            .data('ui-autocomplete')._renderItem = function(ul, item) {
+                                return $('<li></li>')
+                                    .data("item.autocomplete", item)
+                                    .append('<a>' + item[_data.item_label] + '</a>')
+                                    .appendTo(ul);
+                            };
+                        // end autocomplete
+                    });
+                })();
             });
             $("#register").validate({
                 rules: {
@@ -1073,8 +1082,6 @@
                 $(".form-select").select2();
             });
 
-
-
             function university() {
 
                 $.ajax({
@@ -1103,7 +1110,9 @@
                     $("#levels").html("<option value='1'>Basic</option><option value='2'>Intermediate</option>");
                 }
                 if (level == 3) {
-                    $("#levels").html("<option value='1'>Basic</option><option value='2'>Intermediate</option><option value='3'>Expert</option>");
+                    $("#levels").html(
+                        "<option value='1'>Basic</option><option value='2'>Intermediate</option><option value='3'>Expert</option>"
+                    );
                 }
             }
 
@@ -1123,7 +1132,7 @@
 
                     _this.after(
                             '<div class="bs-autocomplete-feedback form-control-feedback"><div class="loader">Loading...</div></div>'
-                            )
+                        )
                         .parent('.form-group').addClass('has-feedback');
 
                     var feedback_icon = _this.next('.bs-autocomplete-feedback');
@@ -1159,7 +1168,8 @@
                                 _this.val(ui.item[_data.item_label]);
                                 _hidden_field.val(ui.item[_data.item_id]);
                                 event.preventDefault();
-                                $("#inst_id").val(ui.item.id)
+                                $("#inst_id_0").val(ui.item.id)
+
                             }
                         })
                         .data('ui-autocomplete')._renderItem = function(ul, item) {
@@ -1171,8 +1181,6 @@
                     // end autocomplete
                 });
             })();
-
-
         </script>
     </section>
 </body>
