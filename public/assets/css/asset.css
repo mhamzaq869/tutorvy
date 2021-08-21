@@ -1,6 +1,7 @@
 /* fonts */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,500;0,600;0,700;1,700&display=swap');
+
 /* Navigation navbar css */
 
 .start-header {
@@ -55,7 +56,8 @@
     padding-right: 0;
 }
 
-.navbar-toggler:active, .navbar-toggler:focus {
+.navbar-toggler:active,
+.navbar-toggler:focus {
     outline: none;
 }
 
@@ -68,7 +70,8 @@
     transition: all 300ms linear;
 }
 
-.navbar-light .navbar-toggler-icon:after, .navbar-light .navbar-toggler-icon:before {
+.navbar-light .navbar-toggler-icon:after,
+.navbar-light .navbar-toggler-icon:before {
     width: 24px;
     position: absolute;
     height: 1px;
@@ -148,13 +151,16 @@
     transition: all 200ms linear;
 }
 
+
 /* sroll bar */
+
 
 /* width */
 
 ::-webkit-scrollbar {
     width: 7px;
 }
+
 
 /* Track */
 
@@ -163,12 +169,14 @@
     border-radius: 10px;
 }
 
+
 /* Handle */
 
 ::-webkit-scrollbar-thumb {
     background: #00132D;
     border-radius: 10px;
 }
+
 
 /* Handle on hover */
 
@@ -268,7 +276,9 @@
     /* background-color: #45CCFF; */
 }
 
+
 /*  */
+
 
 /*  */
 
@@ -338,6 +348,7 @@
     outline: none;
 }
 
+
 /* button css */
 
 .button-blue {
@@ -348,6 +359,7 @@
     position: relative;
     top: -4px;
 }
+
 
 /**
  * Inspiration for this project found at:
@@ -375,6 +387,7 @@
     transform-origin: center;
     /* 4 */
 }
+
 
 /**
    * 1. Rotate by -90 degree to make the starting point of the
@@ -455,7 +468,9 @@
     color: #1173FF !important;
 }
 
+
 /* */
+
 
 /* footer */
 
@@ -512,6 +527,7 @@ footer a:hover {
     color: #D6DBE2 !important;
 }
 
+
 /**Sub Navigation**/
 
 .subnavigation-container {
@@ -545,6 +561,7 @@ footer a:hover {
     color: black;
 }
 
+
 /* preloader */
 
 .preloader {
@@ -561,6 +578,7 @@ footer a:hover {
     background: white;
     top: 0;
 }
+
 
 /* scroll to top */
 
@@ -637,6 +655,7 @@ footer a:hover {
     text-decoration: none;
 }
 
+
 /* mobile viow nav meida query */
 
 @media screen and (max-width: 600px) {
@@ -667,6 +686,7 @@ footer a:hover {
         top: -100px;
     }
 }
+
 
 /* navbar */
 
@@ -829,4 +849,23 @@ footer a:hover {
         height: 45px;
         width: 130px;
     }
+}
+
+
+/* Aug 21 2021**/
+
+.btn-general {
+    background: #1173FF;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    padding: 5px 29px;
+    border: 1px solid #1173FF;
+    font-weight: 600;
+    transition: all 0.9s;
+}
+
+.btn-general:hover {
+    color: #1173FF;
+    background: #fff;
 }
