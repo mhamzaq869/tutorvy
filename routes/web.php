@@ -180,6 +180,7 @@ Route::post('/updatePassword',[ResetPasswordController::class,'updatePassword'])
 Route::post('/resendOtp',[ResetPasswordController::class,'resendOtp'])->name('resend.otp');
 Route::view('/','welcome');
 Route::view('/role','role');
+Route::get('/register_role',[GeneralController::class,'loginOnRole'])->name('register.role');
 Route::view('/tutor','frontend.tutor');
 Route::view('/student','frontend.student');
 Route::view('/subject','frontend.subject');

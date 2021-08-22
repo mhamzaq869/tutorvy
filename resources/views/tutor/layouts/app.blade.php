@@ -14,7 +14,7 @@
     <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
 
     <link href="{{ asset('assets/css/chat.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/registration.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('assets/css/registration.css') }}" rel="stylesheet"> --}}
 
     <!-- fonawsome -->
     <link href="{{ asset('assets/css/fontawesome.min.css') }}" rel="stylesheet">
