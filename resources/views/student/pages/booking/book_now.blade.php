@@ -1,28 +1,6 @@
 @extends('tutor.layouts.app')
-<style>
-  .chee {
-    background-color: transparent !important;
-    border-right: 5px solid transparent !important;
-    padding-left: 20px;
-}
-.liner {
-    width: 25%  !important;
-}
-#step_1{
-    margin-left:23%;
-}
-#step_1 span{
-    margin-left:34%;
-}
-#step_2 span{
-    margin-left:58%;
-}.text-green{
-    color:#21B573;
-}
-.rank_icon img{
-    width:23px;
-}
-</style>
+<link href="{{ asset('assets/css/registration.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/css/booknow.css') }}" rel="stylesheet">
 @section('content')
  <!-- top Fixed navbar End -->
  <section>
@@ -33,7 +11,7 @@
         </p>
     </div>
     <div class="container">
-        <div class="row bg-white ml-2 mr-2">
+        <div class="row bg-white ml-2 mr-2 card">
             <div class="col-md-12">
                 <div class="board">
                     <ul class="nav nav-tabs">
@@ -75,14 +53,14 @@
                                             placeholder="Type your Topic" value="">
                                     </div>
                                 </div><div class="row mt-3">
-                                    <div class="input-text col-md-8">
+                                    <div class="input-text col-md-12">
                                         <input type="text"class="form-control " name=""
                                             placeholder="What is the Question?" value="">
                                     </div>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="input-text col-md-12 ">
-                                        <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Write Your Answer"></textarea>
+                                        <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Write brief about your question"></textarea>
                                     </div>
                                 </div>
                               <div class="row mt-3">
@@ -138,8 +116,8 @@
                                         value=" Save for Later"> -->
 
                                     <button id="step-1-next" type="button"
-                                        class="btn btn-lg btn-registration schedule-btn  nextBtn pull-right ml-4 ">
-                                        &nbsp; Apply Filters &nbsp;
+                                        class="btn-general  nextBtn pull-right  mb-3">
+                                        &nbsp; Continue &nbsp;
                                     </button>
                                 </div>
                             </div>
@@ -153,18 +131,72 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-9">
-                                                <div class="row">
-                                                    <div class="col-md-9">
-                                                        
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <p><span class="text-green pr-3">Top Ranked</span> <span class="rank_icon"><img src="../assets/images/ico/rank.png" alt=""></span> </p>
-                                                        
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <div class="row">
+                                                        <div class="col-md-2 col-6">
+                                                            <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
+                                                        </div>
+                                                        <div class="col-md-5 col-6">
+                                                            <h3>Danish Jaffery</h3>
+                                                            <p class="mb-0"><img src="../assets/images/ico/red-icon.png" alt="" class=""> Associate Professor at UKAS</p>
+                                                            <p><img src="../assets/images/ico/location-pro.png" alt="" class=""> Lahore,Pakistan</p>
+                                                        </div>
+                                                        <div class="col-md-4 col-12">
+                                                            <p>
+                                                                <i class="fa fa-star text-yellow"></i>
+                                                                <i class="fa fa-star text-yellow"></i>
+                                                                <i class="fa fa-star text-yellow"></i>
+                                                                <i class="fa fa-star text-yellow"></i>  4.0
+                                                                <small class="text-grey">(25 reviews)</small>
+                                                            </p>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-md-3">
+                                                    <p><span class="text-green pr-3">Top Ranked</span> <span class="rank_icon"><img src="../assets/images/ico/rank.png" alt=""></span> </p>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col-md-4">
+                                                    <p class="mb-2">Subject</p>
+                                                    <p> <span class="info-1 info">Computer Science</span><span class="info">Maths</span></p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <p class="mb-2">Languages</p>
+                                                    <p>
+                                                        <span class="info-1 info lingo">French</span>
+                                                        <span class="info lingo">English</span>
+                                                        <span class="info lingo">Urdu</span>
+                                                    </p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                <p class="mb-2">Education</p>
+                                                    <p>
+                                                        <span class="info-1 info edu">Govt College Lahore Pakistan</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col-md-12">
+                                                    <p><strong> About Tutor </strong></p>
+                                                    <p class="scrol-about">
+                                                        Lorem ipsum dolor sit amet,  est commodi pariatur deserunt distinctio consectetur necessitatibus vitae obcaecati magni recusandae blanditiis sint porro placeat. Quia voluptates atque rerum ipsa architecto.
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-3 bg-dark">
-
+                                        <div class="col-md-3 bg-price text-center">
+                                            <div class="row mt-30">
+                                                <div class="col-md-12">
+                                                    <p>starting from</p>
+                                                    <h1 class="f-60">$51</h1>
+                                                    <p>per hour</p>
+                                                    <button type="button" class=" btn-general">
+                                                            &nbsp; Book Class &nbsp;
+                                                        </button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

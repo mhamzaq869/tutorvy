@@ -25,12 +25,12 @@ class Education extends Model
         'user_id',
         'degree_id',
         'subject_id',
-        'institute',
+        'institute_id',
         'year',
         'docs',
     ];
 
-    protected $appends = ['c_year','day','month'];
+    protected $appends = ['c_year'];
 
     public function subject()
     {

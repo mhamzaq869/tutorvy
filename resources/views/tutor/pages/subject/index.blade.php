@@ -43,6 +43,15 @@
 
     }
 
+    svg:not(:root) {
+    overflow: hidden;
+    width: 20px;
+    padding-top:3px;
+}
+.flex-1{
+    opacity:0 ;
+}
+
 </style>
 @section('content')
     <!-- top Fixed navbar End -->
@@ -142,12 +151,18 @@
                                 @endforeach
                             </div>
                         </div>
+
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {{ $subjects->links() }}
+                                
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="col-md-12">
-
-                        {{ $subjects->links() }}
-                    </div>
+                  
 
 
                 @else

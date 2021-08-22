@@ -24,6 +24,7 @@
     <link href="{{ asset('assets/css/asset.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/tutor.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/modal.css') }}" rel="stylesheet">
+    <script src="assets/js/jquery.js"></script>
 
 </head>
 <body>

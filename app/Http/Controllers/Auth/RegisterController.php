@@ -77,11 +77,10 @@ class RegisterController extends Controller
      */
     protected function showRegistrationForm()
     {
-        $user = User::with(['education','professional','userdetail'])->where('ip',$_SERVER['REMOTE_ADDR'])->first();
+        $user = User::with(['education','professional'])->where('ip',$_SERVER['REMOTE_ADDR'])->first();
         $subjects = Subject::all();
         $degrees = Degree::all();
         $institutes = Institute::select('name','id')->get();
-
 
         return view('tutor.register',compact('user','subjects','degrees','institutes'));
     }
@@ -94,7 +93,6 @@ class RegisterController extends Controller
     protected function showStudentRegistrationForm()
     {
         $user = User::where('ip',$_SERVER['REMOTE_ADDR'])->first();
-
         return view('student.auth.register',compact('user'));
     }
 
@@ -119,7 +117,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['required', 'string', 'min:8'],
             'phone' => ['required'],
-            'gender' => ['required'],
+            'gender' => ['r  equired'],
         ]);
         $request->ip = $_SERVER['REMOTE_ADDR'];
         $request->dob = $request->year.'-'.$request->month.'-'.$request->day;
@@ -145,6 +143,8 @@ class RegisterController extends Controller
             'cnic_security' => $request->cnic ?? $request->security,
             'language' => $request->language,
             'lang_short' => $request->lang_short,
+            'student_level' => $request->student_level,
+            'hourly_rate' => $request->hour_rate,
             'gender' => $request->gender,
             'bio' => $request->bio,
             ]);
@@ -197,22 +197,23 @@ class RegisterController extends Controller
 
     private function updateOrCreatedetail($user,$request)
     {
-        Userdetail::upsert([
-            'user_id' => $user->id,
-            'ip' => $request->ip,
-            'student_level' => $request->student_level,
-            'hourly_rate' => $request->hour_rate,
-        ],['user_id']);
 
         $docs = [];
+        $docss = Education::where('user_id',$user->id)->get();
+
+        if($request->has('exist_img')){
+            foreach($request->exist_img as $img){
+                array_push($docs,$img);
+            }
+        }
         if($request->hasFile('upload')){
-            foreach($request->upload as $upload){
+            foreach($request->upload as $i => $upload){
                 $path = 'storage/docs/'.$upload->getClientOriginalName();
                 $upload->storeAs('docs',$upload->getClientOriginalName(),'public');
-                $docs[] =  $path;
+                // $docs[] =  $path;
+                array_push($docs,$path);
             }
         }else{
-            $docss = Education::where('user_id',$user->id)->get();
             foreach($docss as $upload){
                 $docs[] =  $upload->docs;
             }
@@ -232,7 +233,6 @@ class RegisterController extends Controller
         }
 
         for($i=0; $i<count($request->degree); $i++){
-
             Education::updateOrCreate([
                 "user_id" => $user->id,
                 "degree_id" => $request->degree[$i],

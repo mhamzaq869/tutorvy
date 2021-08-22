@@ -19,7 +19,7 @@ class GeneralController extends Controller
         //     "name" => ""
         // ]);
 
-        $result = Institute::select('name','id')->get();
+        $result = Institute::select('name')->get();
         return response($result,200);
         // ini_set('max_execution_time', 780);
         // $result = Http::get('http://universities.hipolabs.com/search',[

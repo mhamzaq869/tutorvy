@@ -41,7 +41,8 @@
 
 
     <style>
-        .error {
+        .error,
+        #teach_error {
             color: red !important;
             font-weight: 500;
         }
@@ -286,7 +287,8 @@
                                             <div class="row mt-5">
                                                 <div class="input-text col-md-6 d-block">
                                                     <input type="" class="form-control csd" name="first_name"
-                                                        placeholder="First Name" value="{{ $user->first_name ?? '' }}">
+                                                        placeholder="First Name"
+                                                        value="{{ $user->first_name ?? '' }}">
                                                     {{-- @error('first_name')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{$message}}</strong>
@@ -478,7 +480,8 @@
                                                                 <select name="degree[]" onchange="checkLevel(this)"
                                                                     class="form-select form-select-lg mb-3">
                                                                     @foreach ($degrees as $degree)
-                                                                        <option level="{{ $degree->level }}"  value="{{ $degree->id }}" @if ($education->degree_id == $degree->id) selected @endif>
+                                                                        <option level="{{ $degree->level }}"
+                                                                            value="{{ $degree->id }}" @if ($education->degree_id == $degree->id) selected @endif>
                                                                             {{ $degree->name }}</option>
                                                                     @endforeach
                                                                 </select>
@@ -497,11 +500,14 @@
                                                         </div>
                                                         <div class="row mt-3">
                                                             <div class="input-text col-md-6">
-                                                                <input type="hidden" name="institute[]" id="inst_id" value="{{$education->institute_id}}">
+                                                                <input type="hidden" name="institute[]"
+                                                                    id="inst_id_{{ $i }}"
+                                                                    value="{{ $education->institute_id }}">
 
-                                                                <input class="form-control bs-autocomplete" id="ac-demo"
+                                                                <input class="form-control bs-autocomplete"
+                                                                    id="{{ $i }}"
                                                                     placeholder="Type two characters of a Institute name..."
-                                                                    data-source="demo_source.php"
+                                                                    value="{{ $education->institute->name }}"
                                                                     data-hidden_field_id="city-code" data-item_id="id"
                                                                     data-item_label="name" autocomplete="off">
                                                             </div>
@@ -513,6 +519,7 @@
                                                         </div>
                                                         <div class="row mt-3">
                                                             <div class="col-md-12">
+                                                                <input hidden name="exist_img[]" value="{{$education->docs}}">
                                                                 <input type="file" class="dropify" name="upload[]" id=""
                                                                     data-default-file="{{ asset($education->docs) }}">
                                                             </div>
@@ -528,7 +535,8 @@
                                                                     class="form-select form-select-lg mb-3">
                                                                     <option value="0" selected>Degree</option>
                                                                     @foreach ($degrees as $degree)
-                                                                        <option level="{{ $degree->level }}" value="{{ $degree->id }}">
+                                                                        <option level="{{ $degree->level }}"
+                                                                            value="{{ $degree->id }}">
                                                                             {{ $degree->name }}</option>
                                                                     @endforeach
                                                                 </select>
@@ -548,10 +556,11 @@
                                                         </div>
                                                         <div class="row mt-3">
                                                             <div class="input-text col-md-6">
-                                                                <input type="hidden" name="institute[]" id="inst_id" value="">
+                                                                <input type="hidden" name="institute[]" id="inst_id_0"
+                                                                    value="">
                                                                 <input class="form-control bs-autocomplete" id="ac-demo"
                                                                     placeholder="Type two characters of a Institute name..."
-                                                                     data-item_label="name"  autocomplete="off">
+                                                                    data-item_label="name" autocomplete="off">
 
                                                             </div>
                                                             <div class="input-text col-md-6">
@@ -597,12 +606,11 @@
                                                     <div class="row mt-3">
                                                         <div class="input-text col-md-6">
                                                             <input type="hidden" name="institute[]" id="inst_id" value="">
-                                                           
-                                                                <input class="form-control bs-autocomplete" id="ac-demo"
-                                                                    placeholder="Type two characters of a Institute name..."
-                                                                    data-source="demo_source.php"
-                                                                    data-hidden_field_id="city-code" data-item_id="id"
-                                                                    data-item_label="name" autocomplete="off">
+
+                                                            <input class="form-control bs-autocomplete" id="ac-demo"
+                                                                placeholder="Type two characters of a Institute name..."
+                                                                data-source="demo_source.php" data-item_id="22"
+                                                                data-item_label="name" autocomplete="off">
                                                         </div>
                                                         <div class="input-text col-md-6">
                                                             <input type="date" name="graduate_year[]"
@@ -616,15 +624,6 @@
                                                         </div>
 
                                                     </div>
-
-                                                    <!-- <div class="button-wrapper mt-4">
-                                                        <span class="label" style="position: relative">
-                                                            <input type="file" name="upload[]" id="upload" class="upload-box" placeholder="Upload File"
-                                                            accept=".doc,.pdf,.png,.jpg,.jpeg">
-                                                            <img src="../assets/images/ico/attach.png" class="w-25 "
-                                                                alt="i">Attach degrees
-                                                        </span>
-                                                    </div> -->
                                                 </div>
                                                 <hr />
                                             @endisset
@@ -808,7 +807,7 @@
                                         <div class="container-fluid">
                                             <div class="row">
                                                 <div class="input-text col-md-6 d-block">
-                                                    <select name="teach"
+                                                    {{-- <select name="teach"
                                                         class="form-select form-select-lg mb-3 @error('teach') is-invalid @enderror"
                                                         required>
                                                         <option disabled selected>I want to teach</option>
@@ -817,6 +816,22 @@
                                                                 {{ $subject->name }}</option>
                                                         @endforeach
                                                     </select>
+                                                    @error('teach')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror --}}
+
+                                                    <select name="teach"
+                                                        class="form-select form-select-lg mb-3 @error('teach') is-invalid @enderror"
+                                                        id="teacher">
+                                                        <option disabled selected>I want to teach</option>
+                                                        @foreach ($subjects as $subject)
+                                                            <option value="{{ $subject->id }}" @if ($subject->id == ($user->student_level ?? 0)) selected @endif>
+                                                                {{ $subject->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <label for="" id="teach_error"><strong> This field is required </strong>  </label>
                                                     @error('teach')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -843,17 +858,17 @@
                                                 <select name="hour_rate" class="form-select form-select-lg mb-3"
                                                     aria-label=".form-select-lg example">
                                                     <option disabled>Per hour charges</option>
-                                                    <option @if (isset($user) && $user->userdetail->hourly_rate == 5) selected @endif value="5">$5</option>
-                                                    <option @if (isset($user) && $user->userdetail->hourly_rate == 10) selected @else selected @endif
+                                                    <option @if (isset($user) && $user->hourly_rate == 5) selected @endif value="5">$5</option>
+                                                    <option @if (isset($user) && $user->hourly_rate == 10) selected @else selected @endif
                                                         value="10">$10</option>
-                                                    <option @if (isset($user) && $user->userdetail->hourly_rate == 15) selected @endif value="15">$15</option>
-                                                    <option @if (isset($user) && $user->userdetail->hourly_rate == 20) selected @endif value="20">$20</option>
-                                                    <option @if (isset($user) && $user->userdetail->hourly_rate == 25) selected @endif value="25">$25</option>
-                                                    <option @if (isset($user) && $user->userdetail->hourly_rate == 30) selected @endif value="30">$30</option>
-                                                    <option @if (isset($user) && $user->userdetail->hourly_rate == 35) selected @endif value="35">$35</option>
-                                                    <option @if (isset($user) && $user->userdetail->hourly_rate == 40) selected @endif value="40">$40</option>
-                                                    <option @if (isset($user) && $user->userdetail->hourly_rate == 45) selected @endif value="45">$45</option>
-                                                    <option @if (isset($user) && $user->userdetail->hourly_rate == 50) selected @endif value="50">$50</option>
+                                                    <option @if (isset($user) && $user->hourly_rate == 15) selected @endif value="15">$15</option>
+                                                    <option @if (isset($user) && $user->hourly_rate == 20) selected @endif value="20">$20</option>
+                                                    <option @if (isset($user) && $user->hourly_rate == 25) selected @endif value="25">$25</option>
+                                                    <option @if (isset($user) && $user->hourly_rate == 30) selected @endif value="30">$30</option>
+                                                    <option @if (isset($user) && $user->hourly_rate == 35) selected @endif value="35">$35</option>
+                                                    <option @if (isset($user) && $user->hourly_rate == 40) selected @endif value="40">$40</option>
+                                                    <option @if (isset($user) && $user->hourly_rate == 45) selected @endif value="45">$45</option>
+                                                    <option @if (isset($user) && $user->hourly_rate == 50) selected @endif value="50">$50</option>
 
                                                 </select>
 
@@ -861,7 +876,7 @@
                                         </div>
                                         <div class="col-8" style="float: right;">
 
-                                            <button type="submit" id="finish"
+                                            <button type="button" id="finish"
                                                 class="btn btn-lg   schedule-btn  nextBtn  pull-right">&nbsp;
                                                 Finsh&nbsp;
                                             </button>
@@ -909,6 +924,7 @@
                     startYear: 1950,
                     endYear: 2050,
                 });
+                $("#teach_error").hide();
             });
 
             $("#country_selector").countrySelect({
@@ -934,8 +950,8 @@
             })();
 
             $('.extra-fields-customer').click(function() {
-                // alert("Tech");
-                count_field++;
+                count_field = document.querySelectorAll(".customer_records").length;
+
                 var html = `<div class=" customer_records mt-5" id="record_` + count_field + `">
                 <div class="row">
                     <div class="input-text col-md-6">
@@ -961,7 +977,7 @@
                     <div class="input-text col-md-6">
 
                         <input type="hidden" name="institute[` + count_field + `]" id="inst_id_` + count_field + `" value="">
-                                                           
+
                         <input class="form-control bs-autocomplete" id="ac-demo"
                             placeholder="Type two characters of a Institute name..."
                             data-source="demo_source.php"
@@ -984,69 +1000,69 @@
             </div>
 
             </div>`;
-                $('.customer_records_dynamic').append(html);
-                $('.dropify').dropify();
+            $('.customer_records_dynamic').append(html);
+            $('.dropify').dropify();
                 // $(".form-select").select2();
                 (function() {
-                "use strict";
-                var cities = @json($institutes);
+                    "use strict";
+                    var cities = @json($institutes);
 
-                $('.bs-autocomplete').each(function() {
-                    var _this = $(this),
-                        _data = _this.data(),
-                        _hidden_field = $('#' + _data.hidden_field_id);
+                    $('.bs-autocomplete').each(function() {
+                        var _this = $(this),
+                            _data = _this.data(),
+                            _hidden_field = $('#' + _data.hidden_field_id);
 
-                    _this.after(
-                            '<div class="bs-autocomplete-feedback form-control-feedback"><div class="loader">Loading...</div></div>'
+                        _this.after(
+                                '<div class="bs-autocomplete-feedback form-control-feedback"><div class="loader">Loading...</div></div>'
                             )
-                        .parent('.form-group').addClass('has-feedback');
+                            .parent('.form-group').addClass('has-feedback');
 
-                    var feedback_icon = _this.next('.bs-autocomplete-feedback');
-                    feedback_icon.hide();
+                        var feedback_icon = _this.next('.bs-autocomplete-feedback');
+                        feedback_icon.hide();
 
-                    _this.autocomplete({
-                            minLength: 2,
-                            autoFocus: true,
+                        _this.autocomplete({
+                                minLength: 2,
+                                autoFocus: true,
 
-                            source: function(request, response) {
-                                var _regexp = new RegExp(request.term, 'i');
-                                var data = cities.filter(function(item) {
-                                    return item.name.match(_regexp);
-                                });
-                                response(data);
-                            },
+                                source: function(request, response) {
+                                    var _regexp = new RegExp(request.term, 'i');
+                                    var data = cities.filter(function(item) {
+                                        return item.name.match(_regexp);
+                                    });
+                                    response(data);
+                                },
 
-                            search: function() {
-                                feedback_icon.show();
-                                _hidden_field.val('');
-                            },
+                                search: function() {
+                                    feedback_icon.show();
+                                    _hidden_field.val('');
+                                },
 
-                            response: function() {
-                                feedback_icon.hide();
-                            },
+                                response: function() {
+                                    feedback_icon.hide();
+                                },
 
-                            focus: function(event, ui) {
-                                _this.val(ui.item[_data.item_label]);
-                                event.preventDefault();
-                            },
+                                focus: function(event, ui) {
+                                    _this.val(ui.item[_data.item_label]);
+                                    event.preventDefault();
+                                },
 
-                            select: function(event, ui) {
-                                _this.val(ui.item[_data.item_label]);
-                                _hidden_field.val(ui.item[_data.item_id]);
-                                event.preventDefault();
-                                $("#inst_id_" + count_field + "").val(ui.item.id)
-                            }
-                        })
-                        .data('ui-autocomplete')._renderItem = function(ul, item) {
-                            return $('<li></li>')
-                                .data("item.autocomplete", item)
-                                .append('<a>' + item[_data.item_label] + '</a>')
-                                .appendTo(ul);
-                        };
-                    // end autocomplete
-                });
-            })();
-
+                                select: function(event, ui) {
+                                    _this.val(ui.item[_data.item_label]);
+                                    _hidden_field.val(ui.item[_data.item_id]);
+                                    event.preventDefault();
+                                    $("#inst_id_" + count_field + "").val(ui.item.id)
+                                    console.log(event)
+                                }
+                            })
+                            .data('ui-autocomplete')._renderItem = function(ul, item) {
+                                return $('<li></li>')
+                                    .data("item.autocomplete", item)
+                                    .append('<a>' + item[_data.item_label] + '</a>')
+                                    .appendTo(ul);
+                            };
+                        // end autocomplete
+                    });
+                })();
             });
             $("#register").validate({
                 rules: {
@@ -1066,9 +1082,6 @@
                     },
                     gender: {
                         required: true
-                    },
-                    teach: {
-                        required: true
                     }
                 },
                 messages: {
@@ -1083,8 +1096,6 @@
                 $(".dropify").dropify();
                 $(".form-select").select2();
             });
-
-
 
             function university() {
 
@@ -1114,7 +1125,9 @@
                     $("#levels").html("<option value='1'>Basic</option><option value='2'>Intermediate</option>");
                 }
                 if (level == 3) {
-                    $("#levels").html("<option value='1'>Basic</option><option value='2'>Intermediate</option><option value='3'>Expert</option>");
+                    $("#levels").html(
+                        "<option value='1'>Basic</option><option value='2'>Intermediate</option><option value='3'>Expert</option>"
+                    );
                 }
             }
 
@@ -1134,7 +1147,7 @@
 
                     _this.after(
                             '<div class="bs-autocomplete-feedback form-control-feedback"><div class="loader">Loading...</div></div>'
-                            )
+                        )
                         .parent('.form-group').addClass('has-feedback');
 
                     var feedback_icon = _this.next('.bs-autocomplete-feedback');
@@ -1170,7 +1183,8 @@
                                 _this.val(ui.item[_data.item_label]);
                                 _hidden_field.val(ui.item[_data.item_id]);
                                 event.preventDefault();
-                                $("#inst_id").val(ui.item.id)
+                                $("#inst_id_0").val(ui.item.id)
+
                             }
                         })
                         .data('ui-autocomplete')._renderItem = function(ul, item) {
@@ -1183,6 +1197,18 @@
                 });
             })();
 
+
+            $("#finish").click(function(){
+                    var x = $("#teacher").val();
+                    if(x == null){
+                        $("#teach_error").show();
+                        $("#teach_error").focus();
+                    }
+                    else{
+                        $("#teach_error").hide();
+                        $("#finish").attr("type","submit");
+                    }
+            });
 
         </script>
     </section>

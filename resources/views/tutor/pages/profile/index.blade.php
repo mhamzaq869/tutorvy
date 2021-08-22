@@ -603,7 +603,7 @@
                                                     aria-label=".form-select-lg example">
                                                     <option value="Institute">Institute</option>
                                                     @foreach ($institutes as $institute)
-                                                        <option value="{{ $institute->id }}" @if ($education->institute == $institute->id) selected @endif>{{ $institute->name }}
+                                                        <option value="{{ $institute->id }}" @if ($education->institute_id   == $institute->id) selected @endif>{{ $institute->name }}
                                                         </option>
                                                     @endforeach
                                                 </select>
