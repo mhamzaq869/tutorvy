@@ -80,6 +80,10 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
     Route::post('/staff/insert',[StaffController::class,'insertStaff'])->name('admin.insertStaff');
     Route::get('/staff/profile/{id}',[StaffController::class,'staffProfile'])->name('admin.staffProfile');
 
+    Route::get('/role',[StaffController::class,'role'])->name('admin.role');
+    Route::post('/role/insert-role',[StaffController::class,'insertRole'])->name('admin.insertRole');
+    Route::post('/role/delete-role',[StaffController::class,'deleteRole'])->name('admin.deleteRole');
+
 
 
     Route::get('/knowledge',[KnowledgeController::class,'index'])->name('admin.knowledge');
