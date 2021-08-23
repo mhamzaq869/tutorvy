@@ -34,12 +34,12 @@ class TutorController extends Controller
         foreach($tutor_assessments as $assessment){
          
             $tutor = User::with(['education','professional','userdetail','teach'])->where('id',$assessment->user_id)->where('role',2)->first();
-
+// return $tutor;
             $assessment->tutor = $tutor;
             array_push($new_requests,$assessment);
         
         }
-       
+    //    return $new_requests;
         return view('admin.pages.tutors.index',compact('new_requests','approved_tutors','staff_members'));
     }
 
@@ -144,5 +144,22 @@ class TutorController extends Controller
             'status'=>'200',
             'message' => $message
         ]);
+    }
+
+
+    public function tutor_Request($id)
+    {
+        
+        // return view('admin.pages.tutors.tutor_req');
+        $course = Course::with('outline')->where('status',0)->where('id',$id)->first();
+
+        return view('admin.pages.courses.course_req',compact('course'));
+
+    }
+    public function tutorProfile()
+    {
+        // return view('admin.pages.tutors.tutor_profile');
+        return view('admin.pages.courses.course_profile');
+
     }
 }

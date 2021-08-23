@@ -720,11 +720,23 @@ a[data-toggle="collapse"] {
 
 /* border right */
 
-.active,
-.btn:hover {
+.scroll-nav .active,
+.scroll-nav .btn:hover {
     background-color: #F2F8FF;
     border-right: 5px solid #1173FF;
     padding-left: 20px;
+}
+
+.nav-link.active {
+    border-bottom: 5px solid #1173FF;
+    background-color: white !important;
+    transition: all linear 0.1s;
+    color: #1173FF;
+    opacity: 1;
+}
+
+.nav {
+    padding: 5px;
 }
 
 .container-calendar {

@@ -60,8 +60,8 @@
                         <img src="{{ asset('/admin/assets/img/sidebar/staff-icon.svg')}}" alt="class-ico" class=" mr-2"> Staff Members
                     </a>
                 </li>
-                <li class="btn @if(\Request::path() === 'admin/staff') active @endif w-100">
-                    <a href="{{route('admin.staff')}}">
+                <li class="btn @if(\Request::path() === 'admin/role') active @endif w-100">
+                    <a href="{{route('admin.role')}}">
                         <img src="{{ asset('/admin/assets/img/sidebar/staff-icon.svg')}}" alt="class-ico" class=" mr-2"> Roles Manager
                     </a>
                 </li>

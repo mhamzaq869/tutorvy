@@ -55,7 +55,7 @@
 
                         @foreach($roles as $role)
                         <tr>
-                            <td class="pt-4">
+                            <td class="pt-3">
                                 <span id="role_id">{{ $role->id }}</span>
                             </td>
                             <td class="pt-3 alex-name-2">
@@ -183,12 +183,13 @@
                     <h3 class="mt-3">
                         Add Role
                     </h3>
-                    <form id="add_role_form">
+                    <form id="edit_role_form">
                         <div class="container mt-3">
                             <div class="row pb-3">
                                 <div class="col-md-12">
                                     <div class="input-serach">
-                                        <input type="text" name="name"  id="edit_name" placeholder="Enter Name" class="w-100" />
+                                        <input type="hidden" id="edit_id">
+                                        <input type="text" name="edit_name"  id="edit_name" placeholder="Enter Name" class="w-100" />
                                     </div>
                                 </div>
                             </div>
@@ -197,7 +198,7 @@
                                 </div>
                                 <div class="col-md-7 d-flex">
                                     <button type="button" class="cencel-btn" data-dismiss="modal">Cancel</button>
-                                    <button class="schedule-btn ml-3 edit_role" id="edit_noe" style="width: 130px;" type="submit">Edit Role</button>
+                                    <button class="schedule-btn ml-3 edit_role"  style="width: 130px;" type="submit">Edit Role</button>
                                 </div>
                             </div>
                         </div>

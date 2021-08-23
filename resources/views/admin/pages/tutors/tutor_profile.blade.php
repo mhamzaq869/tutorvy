@@ -1,48 +1,43 @@
 @extends('admin.layouts.app')
 <style>
-    /*23 August 2021*/
+     .circlechart {
+            float: left;
+            padding: 20px;
+        }
 
-.circlechart {
-    float: left;
-    padding: 20px;
-}
+        .div-1 {
+            width: 3px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
 
-.div-1 {
-    width: 3px;
-    overflow-x: auto;
-    white-space: nowrap;
-}
+        .div-1::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
 
-.div-1::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
-}
+        .div-1::-webkit-scrollbar-track {
+            border-radius: 4px;
+            /* -webkit-box-shadow: inset 0 0 6px red; */
+        }
 
-.div-1::-webkit-scrollbar-track {
-    border-radius: 4px;
-    /* -webkit-box-shadow: inset 0 0 6px red; */
-}
+        .div-1::-webkit-scrollbar-thumb {
+            /* border-radius: 10px; */
+            background-color: #1173FF;
+            /* outline: 1px solid #1173FF; */
+        }
 
-.div-1::-webkit-scrollbar-thumb {
-    /* border-radius: 10px; */
-    background-color: #1173FF;
-    /* outline: 1px solid #1173FF; */
-}
-
-.div-1::-webkit-scrollbar:vertical {
-    display: none;
-}
-
-.view-bookings {
-    text-align: center;
-    font-size: 30px !important;
-}
-
-.card {
-    height: auto !important;
-}
+        .div-1::-webkit-scrollbar:vertical {
+            display: none;
+        }
+        .view-bookings{
+            text-align:center;
+            font-size:30px !important;
+        }
+        .card{
+            height:auto !important;
+        }
 </style>
-
 @section('content')
  <!--section start  -->
  <div class="container-fluid pb-4">
@@ -58,9 +53,9 @@
                 <div class="col-md-5 bg-white pb-5">
                     <div class=" mt-4">
                         <h3 class="">
-                            {{$course->title}}
+                            How to create your online courses in 3 steps.
                         </h3>
-                        <p class="paragraph-text-1">{{$course->subject_name}} course</p>
+                        <p class="paragraph-text-1">Chemistry course</p>
                         <iframe width="100%" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY"
                             style="border-radius: 8px;">
                         </iframe>
@@ -91,16 +86,81 @@
                         </div>
                         <h3 class="mt-4">About course</h3>
                         <p class="paragraph-text-2 mt-2 pb-4">
-                            {{$course->about}}
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class=" float-right">
-                                    <button data-toggle="modal" data-target="#exampleModalCenterss" class="cencel-btn">
-                                        Reject
-                                    </button>
-                                    <button class="schedule-btn">
-                                        Accpet
-                                    </button>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit reprehenderit dolores
+                            impedit cumque cum. Similique incidunt excepturi dolorem sapiente officiis! Ad,
+                            quibusdam rerum. Ipsam qui quaerat totam accusamus pariatur fugiat?</p>
+                          <div class="row bg-std-reviews container-center pb-3">
+                            <div class="col-md-6">
+                                <div class="container">
+                                    <div class="row mt-3">
+                                        <div class="col-md-4">
+                                            <img src="{{asset('admin/assets/img/ico/profile-boy.png')}}" alt="image-boy">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <span class="heading-forth ">Harram Laraib</span>
+                                            <p class="paragraph-text ">Student</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <span class="view-date mt-3">02 March 2021</span>
+                            </div>
+                            <div class="container-fluid mt-3">
+                                <div class="star-fa1 ml-3 mt-0">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="paragraph-text1">4.0</span>
+                                </div>
+                                <p class="paragraph-texts mt-2 ml-3">
+                                    It is a long established fact that a reader will be distracted by the readable
+                                    content of a page when looking at0 its lyout. The
+                                    of using Lorem Ipsum is that it has more-or-less normal distribution of letters.
+                                </p>
+                            </div>
+                            <!-- tutor reply -->
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-11 pt-3 bg-white">
+                                        <div class="container-fluid">
+                                            <span class="heading-fifth">Tutor replied</span>
+                                            <hr />
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                <img src="{{asset('admin/assets/img/ico/profile-boy.png')}}" alt="image"
+                                                                    class="img-round">
+                                                            </div>
+                                                            <div class="col-md-8 pl-4">
+                                                                <span class="heading-forth">Ali Raza</span>
+                                                                <p class="paragraph-text">Tutor</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <span class="view-date mt-3 mr-3">02 March 2021</span>
+                                                </div>
+                                                <div class="container mt-2">
+                                                    <div class="star-fa1 ml-3 mt-0">
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star checked"></span>
+                                                        <span class="fa fa-star"></span>
+                                                        <span class="paragraph-text1">4.0</span>
+                                                    </div>
+                                                    <p class="paragraph-texts col-md-12 mt-2">
+                                                        Thank you for your reply
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -127,31 +187,140 @@
                                                 <div id="main">
                                                     <!-- first -->
                                                     <div class="container-fluid m-0 p-0 border-bottom pb-3">
-                                                    @foreach($course->outline as $outline)
-                                                        @if($outline->level == 1)   
-                                                            <div class="accordion active" id="faq">
-                                                                    <div class="card m-0 p-0">
-                                                                        
-                                                                            <div class="card-header" id="outlinehead{{$outline->id}}">
-                                                                                <a href="#" 
-                                                                                    class=" bg-color btn-header-link collapsed"
-                                                                                    data-toggle="collapse" data-target="#outline{{$outline->id}}"
-                                                                                    aria-expanded="true" aria-controls="outline{{$outline->id}}">
-                                                                                    <img class="mr-2"
-                                                                                        src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                                    {{$outline->title}}</a>
-                                                                            </div>
-                                                                            <div id="outline{{$outline->id}}" class="collapse show border-radius"
-                                                                                aria-labelledby="{{$outline->id}}" data-parent="#outline{{$outline->id}}">
-                                                                                <div class="card-body">
-                                                                                    {{$outline->explain}}
-                                                                                </div>
-                                                                            </div>
-                                                                        
+                                                        <div class="accordion" id="faq">
+                                                            <div class="card m-0 p-0">
+                                                                <div class="card-header" id="faqhead3">
+                                                                    <a href="#"
+                                                                        class=" bg-color btn-header-link collapsed"
+                                                                        data-toggle="collapse" data-target="#faq3"
+                                                                        aria-expanded="true" aria-controls="faq3">
+                                                                        <img class="mr-2"
+                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                        Introduction to chemisty</a>
+                                                                </div>
+                                                                <div id="faq3" class="collapse border-radius"
+                                                                    aria-labelledby="faqhead3" data-parent="#faq">
+                                                                    <div class="card-body">
+                                                                        Anim pariatur cliche reprehenderit, enim
+                                                                        eiusmod high life accusamus terry
+                                                                        richardson.
                                                                     </div>
                                                                 </div>
-                                                            @endif
-                                                        @endforeach
+                                                            </div>
+                                                        </div>
+                                                        <!-- second -->
+                                                        <div class="accordion" id="faq">
+                                                            <div class="card m-0 p-0">
+                                                                <div class="card-header" id="faqhead3">
+                                                                    <a href="#"
+                                                                        class="bg-color btn-header-link collapsed"
+                                                                        data-toggle="collapse" data-target="#faq4"
+                                                                        aria-expanded="true" aria-controls="faq3">
+                                                                        <img class="mr-2"
+                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                        Periodic table
+                                                                    </a>
+                                                                </div>
+                                                                <div id="faq4" class="collapse show border-radius"
+                                                                    aria-labelledby="faqhead3" data-parent="#faq">
+                                                                    <div class="card-body">
+                                                                        Anim pariatur cliche reprehenderit, enim
+                                                                        eiusmod high life accusamus terry
+                                                                        richardson.
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- third -->
+                                                        <div class="accordion" id="faq">
+                                                            <div class="card m-0 p-0">
+                                                                <div class="card-header" id="faqhead3">
+                                                                    <a href="#"
+                                                                        class="bg-color btn-header-link collapsed"
+                                                                        data-toggle="collapse" data-target="#faq5"
+                                                                        aria-expanded="true" aria-controls="faq3">
+                                                                        <img class="mr-2"
+                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                        Atomic structure
+                                                                    </a>
+                                                                </div>
+                                                                <div id="faq5" class="collapse border-radius"
+                                                                    aria-labelledby="faqhead3" data-parent="#faq">
+                                                                    <div class="card-body">
+                                                                        Anim pariatur cliche reprehenderit, enim
+                                                                        eiusmod high life accusamus terry
+                                                                        richardson.
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- forth -->
+                                                        <div class="accordion" id="faq">
+                                                            <div class="card m-0 p-0">
+                                                                <div class="card-header" id="faqhead3">
+                                                                    <a href="#"
+                                                                        class="bg-color btn-header-link collapsed"
+                                                                        data-toggle="collapse" data-target="#faq8"
+                                                                        aria-expanded="true" aria-controls="faq3">
+                                                                        <img class="mr-2"
+                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                        Molecule structure</a>
+                                                                </div>
+                                                                <div id="faq8" class="collapse border-radius"
+                                                                    aria-labelledby="faqhead3" data-parent="#faq">
+                                                                    <div class="card-body">
+                                                                        Anim pariatur cliche reprehenderit, enim
+                                                                        eiusmod high life accusamus terry
+                                                                        richardson.
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- fifth -->
+                                                        <div class="accordion" id="faq">
+                                                            <div class="card m-0 p-0">
+                                                                <div class="card-header" id="faqhead3">
+                                                                    <a href="#"
+                                                                        class="bg-color btn-header-link collapsed"
+                                                                        data-toggle="collapse" data-target="#faq6"
+                                                                        aria-expanded="true" aria-controls="faq3">
+                                                                        <img class="mr-2"
+                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                        Chemical bonds</a>
+                                                                </div>
+                                                                <div id="faq6" class="collapse border-radius"
+                                                                    aria-labelledby="faqhead3" data-parent="#faq">
+                                                                    <div class="card-body">
+                                                                        Anim pariatur cliche reprehenderit, enim
+                                                                        eiusmod high life accusamus terry
+                                                                        richardson.
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- sixth -->
+                                                        <div class="accordion" id="faq">
+                                                            <div class="card m-0 p-0">
+                                                                <div class="card-header" id="faqhead3">
+                                                                    <a href="#"
+                                                                        class="bg-color btn-header-link collapsed"
+                                                                        data-toggle="collapse" data-target="#faq7"
+                                                                        aria-expanded="true" aria-controls="faq3">
+                                                                        <img class="mr-2"
+                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                        Chemistry in 21 century
+                                                                    </a>
+                                                                </div>
+                                                                <div id="faq7" class="collapse border-radius show"
+                                                                    aria-labelledby="faqhead3" data-parent="#faq">
+                                                                    <div class="card-body">
+                                                                        Anim pariatur cliche reprehenderit, enim
+                                                                        eiusmod high life accusamus terry
+                                                                        richardson.
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -162,6 +331,7 @@
                                                 <p class="paragraph-text-2 mt-1">2 weeks ( Tuesday, Wednesday, Thursday) - 2pm to
                                                     4pm</p>
                                             </div>
+                            
                                         </div>
                                         <div class="row mt-0 w-100 div-1">
                                             <div class="col-md-12">
@@ -282,143 +452,144 @@
                 
                                     <div class="container-fluid ">
                                         <div class="panel-title">Take-Away Skills</div>
-                                        <div class="row mt-3">
-                                            <div class="col-md-12">
-                                                <span class="heading-forth ml-2">Course outline</span>
-            
-                                                <div id="main">
-                                                    <!-- first -->
-                                                    <div class="container-fluid m-0 p-0 border-bottom pb-3">
-                                                        <div class="accordion" id="faq">
-                                                            <div class="card m-0 p-0">
-                                                                <div class="card-header" id="faqhead3">
-                                                                    <a href="#"
-                                                                        class=" bg-color btn-header-link collapsed"
-                                                                        data-toggle="collapse" data-target="#faq11"
-                                                                        aria-expanded="true" aria-controls="faq11">
-                                                                        <img class="mr-2"
-                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                        Introduction to chemisty</a>
-                                                                </div>
-                                                                <div id="faq11" class="collapse border-radius"
-                                                                    aria-labelledby="faqhead3" data-parent="#faq">
-                                                                    <div class="card-body">
-                                                                        Anim pariatur cliche reprehenderit, enim
-                                                                        eiusmod high life accusamus terry
-                                                                        richardson.
+                                            <div class="row mt-3">
+                                                <div class="col-md-12">
+                                                    <span class="heading-forth ml-2">Course outline</span>
+                
+                                                    <div id="main">
+                                                        <!-- first -->
+                                                        <div class="container-fluid m-0 p-0 border-bottom pb-3">
+                                                            <div class="accordion" id="faq">
+                                                                <div class="card m-0 p-0">
+                                                                    <div class="card-header" id="faqhead3">
+                                                                        <a href="#"
+                                                                            class=" bg-color btn-header-link collapsed"
+                                                                            data-toggle="collapse" data-target="#faq11"
+                                                                            aria-expanded="true" aria-controls="faq11">
+                                                                            <img class="mr-2"
+                                                                                src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                            Introduction to chemisty</a>
+                                                                    </div>
+                                                                    <div id="faq11" class="collapse border-radius"
+                                                                        aria-labelledby="faqhead3" data-parent="#faq">
+                                                                        <div class="card-body">
+                                                                            Anim pariatur cliche reprehenderit, enim
+                                                                            eiusmod high life accusamus terry
+                                                                            richardson.
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <!-- second -->
-                                                        <div class="accordion" id="faq">
-                                                            <div class="card m-0 p-0">
-                                                                <div class="card-header" id="faqhead">
-                                                                    <a href="#"
-                                                                        class="bg-color btn-header-link collapsed"
-                                                                        data-toggle="collapse" data-target="#faq11"
-                                                                        aria-expanded="true" aria-controls="faq11">
-                                                                        <img class="mr-2"
-                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                        Periodic table
-                                                                    </a>
-                                                                </div>
-                                                                <div id="faq11" class="collapse show border-radius"
-                                                                    aria-labelledby="faqhead3" data-parent="#faq11">
-                                                                    <div class="card-body">
-                                                                        Anim pariatur cliche reprehenderit, enim
-                                                                        eiusmod high life accusamus terry
-                                                                        richardson.
+                                                            <!-- second -->
+                                                            <div class="accordion" id="faq">
+                                                                <div class="card m-0 p-0">
+                                                                    <div class="card-header" id="faqhead">
+                                                                        <a href="#"
+                                                                            class="bg-color btn-header-link collapsed"
+                                                                            data-toggle="collapse" data-target="#faq11"
+                                                                            aria-expanded="true" aria-controls="faq11">
+                                                                            <img class="mr-2"
+                                                                                src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                            Periodic table
+                                                                        </a>
+                                                                    </div>
+                                                                    <div id="faq11" class="collapse show border-radius"
+                                                                        aria-labelledby="faqhead3" data-parent="#faq11">
+                                                                        <div class="card-body">
+                                                                            Anim pariatur cliche reprehenderit, enim
+                                                                            eiusmod high life accusamus terry
+                                                                            richardson.
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <!-- third -->
-                                                        <div class="accordion" id="faq">
-                                                            <div class="card m-0 p-0">
-                                                                <div class="card-header" id="faqhead3">
-                                                                    <a href="#"
-                                                                        class="bg-color btn-header-link collapsed"
-                                                                        data-toggle="collapse" data-target="#faq12"
-                                                                        aria-expanded="true" aria-controls="faq12">
-                                                                        <img class="mr-2"
-                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                        Atomic structure
-                                                                    </a>
-                                                                </div>
-                                                                <div id="faq12" class="collapse border-radius"
-                                                                    aria-labelledby="faqhead3" data-parent="#faq">
-                                                                    <div class="card-body">
-                                                                        Anim pariatur cliche reprehenderit, enim
-                                                                        eiusmod high life accusamus terry
-                                                                        richardson.
+                                                            <!-- third -->
+                                                            <div class="accordion" id="faq">
+                                                                <div class="card m-0 p-0">
+                                                                    <div class="card-header" id="faqhead3">
+                                                                        <a href="#"
+                                                                            class="bg-color btn-header-link collapsed"
+                                                                            data-toggle="collapse" data-target="#faq12"
+                                                                            aria-expanded="true" aria-controls="faq12">
+                                                                            <img class="mr-2"
+                                                                                src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                            Atomic structure
+                                                                        </a>
+                                                                    </div>
+                                                                    <div id="faq12" class="collapse border-radius"
+                                                                        aria-labelledby="faqhead3" data-parent="#faq">
+                                                                        <div class="card-body">
+                                                                            Anim pariatur cliche reprehenderit, enim
+                                                                            eiusmod high life accusamus terry
+                                                                            richardson.
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <!-- forth -->
-                                                        <div class="accordion" id="faq">
-                                                            <div class="card m-0 p-0">
-                                                                <div class="card-header" id="faqhead3">
-                                                                    <a href="#"
-                                                                        class="bg-color btn-header-link collapsed"
-                                                                        data-toggle="collapse" data-target="#faq13"
-                                                                        aria-expanded="true" aria-controls="faq13">
-                                                                        <img class="mr-2"
-                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                        Molecule structure</a>
-                                                                </div>
-                                                                <div id="faq13" class="collapse border-radius"
-                                                                    aria-labelledby="faqhead3" data-parent="#faq13">
-                                                                    <div class="card-body">
-                                                                        Anim pariatur cliche reprehenderit, enim
-                                                                        eiusmod high life accusamus terry
-                                                                        richardson.
+                                                            <!-- forth -->
+                                                            <div class="accordion" id="faq">
+                                                                <div class="card m-0 p-0">
+                                                                    <div class="card-header" id="faqhead3">
+                                                                        <a href="#"
+                                                                            class="bg-color btn-header-link collapsed"
+                                                                            data-toggle="collapse" data-target="#faq13"
+                                                                            aria-expanded="true" aria-controls="faq13">
+                                                                            <img class="mr-2"
+                                                                                src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                            Molecule structure</a>
+                                                                    </div>
+                                                                    <div id="faq13" class="collapse border-radius"
+                                                                        aria-labelledby="faqhead3" data-parent="#faq13">
+                                                                        <div class="card-body">
+                                                                            Anim pariatur cliche reprehenderit, enim
+                                                                            eiusmod high life accusamus terry
+                                                                            richardson.
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <!-- fifth -->
-                                                        <div class="accordion" id="faq">
-                                                            <div class="card m-0 p-0">
-                                                                <div class="card-header" id="faqhead3">
-                                                                    <a href="#"
-                                                                        class="bg-color btn-header-link collapsed"
-                                                                        data-toggle="collapse" data-target="#faq14"
-                                                                        aria-expanded="true" aria-controls="faq14">
-                                                                        <img class="mr-2"
-                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                        Chemical bonds</a>
-                                                                </div>
-                                                                <div id="faq14" class="collapse border-radius"
-                                                                    aria-labelledby="faqhead3" data-parent="#faq14">
-                                                                    <div class="card-body">
-                                                                        Anim pariatur cliche reprehenderit, enim
-                                                                        eiusmod high life accusamus terry
-                                                                        richardson.
+                                                            <!-- fifth -->
+                                                            <div class="accordion" id="faq">
+                                                                <div class="card m-0 p-0">
+                                                                    <div class="card-header" id="faqhead3">
+                                                                        <a href="#"
+                                                                            class="bg-color btn-header-link collapsed"
+                                                                            data-toggle="collapse" data-target="#faq14"
+                                                                            aria-expanded="true" aria-controls="faq14">
+                                                                            <img class="mr-2"
+                                                                                src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                            Chemical bonds</a>
+                                                                    </div>
+                                                                    <div id="faq14" class="collapse border-radius"
+                                                                        aria-labelledby="faqhead3" data-parent="#faq14">
+                                                                        <div class="card-body">
+                                                                            Anim pariatur cliche reprehenderit, enim
+                                                                            eiusmod high life accusamus terry
+                                                                            richardson.
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <!-- sixth -->
-                                                        <div class="accordion" id="faq">
-                                                            <div class="card m-0 p-0">
-                                                                <div class="card-header" id="faqhead3">
-                                                                    <a href="#"
-                                                                        class="bg-color btn-header-link collapsed"
-                                                                        data-toggle="collapse" data-target="#faq15"
-                                                                        aria-expanded="true" aria-controls="faq15">
-                                                                        <img class="mr-2"
-                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                        Chemistry in 21 century
-                                                                    </a>
-                                                                </div>
-                                                                <div id="faq15" class="collapse border-radius show"
-                                                                    aria-labelledby="faqhead3" data-parent="#faq">
-                                                                    <div class="card-body">
-                                                                        Anim pariatur cliche reprehenderit, enim
-                                                                        eiusmod high life accusamus terry
-                                                                        richardson.
+                                                            <!-- sixth -->
+                                                            <div class="accordion" id="faq">
+                                                                <div class="card m-0 p-0">
+                                                                    <div class="card-header" id="faqhead3">
+                                                                        <a href="#"
+                                                                            class="bg-color btn-header-link collapsed"
+                                                                            data-toggle="collapse" data-target="#faq15"
+                                                                            aria-expanded="true" aria-controls="faq15">
+                                                                            <img class="mr-2"
+                                                                                src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                            Chemistry in 21 century
+                                                                        </a>
+                                                                    </div>
+                                                                    <div id="faq15" class="collapse border-radius show"
+                                                                        aria-labelledby="faqhead3" data-parent="#faq">
+                                                                        <div class="card-body">
+                                                                            Anim pariatur cliche reprehenderit, enim
+                                                                            eiusmod high life accusamus terry
+                                                                            richardson.
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -426,6 +597,13 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                            <div class="col-md-12">
+                                                <span class="heading-fifth" style="font-weight: 600;">Timing</span>
+                                                <p class="paragraph-text-2 mt-1">2 weeks ( Tuesday, Wednesday, Thursday) - 2pm to
+                                                    4pm</p>
+                                            </div>
+                            
                                         </div>
                                         <div class="row mt-0 w-100 div-1">
                                             <div class="col-md-12">
@@ -536,7 +714,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="view-bookings" >
-                                                    $97
+                                                    $98
                                                 </div>
                                             </div>
                                         </div>
@@ -692,6 +870,14 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <span class="heading-fifth" style="font-weight: 600;">Timing</span>
+                                                <p class="paragraph-text-2 mt-1">2 weeks ( Tuesday, Wednesday, Thursday) - 2pm to
+                                                    4pm</p>
+                                            </div>
+                            
+                                        </div>
                                         <div class="row mt-0 w-100 div-1">
                                             <div class="col-md-12">
                                                 <table class="table table-borderless">
@@ -801,7 +987,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="view-bookings" >
-                                                    $98
+                                                    $94
                                                 </div>
                                             </div>
                                         </div>

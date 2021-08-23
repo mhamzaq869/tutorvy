@@ -12,8 +12,9 @@ use App\Models\Role;
 class StaffController extends Controller
 {
     public function index(){
+        $roles = Role::all();
         $users = User::whereNotIn('role', [1,2,3])->get();
-        return view('admin.pages.staff.index',compact('users'));
+        return view('admin.pages.staff.index',compact('users','roles'));
     }
     public function role(){
         $roles = Role::all();
@@ -53,7 +54,20 @@ class StaffController extends Controller
     
     }
 
+    public function updateRole(Request $request){
+        // console.log($request->name);
+        $role = Role::where('id',$request->id)->update([
+            'name' => $request->name,
+            
+        ]);
 
+        return response()->json([
+            'status'=>'200',
+            'message' => 'Role Updated.'
+        ]);
+
+    
+    }
 
     public function insertStaff(Request $request){
 
