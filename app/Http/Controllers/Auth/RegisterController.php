@@ -172,7 +172,6 @@ class RegisterController extends Controller
             Auth::login($user);
 
             User::find(Auth::user()->id)->update(['ip' => null,'status' => 1]);
-            Userdetail::where('user_id',Auth::user()->id)->update(['ip' => null]);
 
             if(Auth::user()->role == 2):
                 return view('tutor.skip',compact('request'));
@@ -203,19 +202,16 @@ class RegisterController extends Controller
 
         if($request->has('exist_img')){
             foreach($request->exist_img as $img){
-                array_push($docs,$img);
+                if($img != null){
+                    array_push($docs,$img);
+                }
             }
         }
         if($request->hasFile('upload')){
             foreach($request->upload as $i => $upload){
                 $path = 'storage/docs/'.$upload->getClientOriginalName();
                 $upload->storeAs('docs',$upload->getClientOriginalName(),'public');
-                // $docs[] =  $path;
                 array_push($docs,$path);
-            }
-        }else{
-            foreach($docss as $upload){
-                $docs[] =  $upload->docs;
             }
         }
 
@@ -239,7 +235,7 @@ class RegisterController extends Controller
                 "subject_id" => $request->major[$i],
                 "institute_id" => $request->institute[$i],
                 "year" => $request->graduate_year[$i],
-                "docs" => $docs[$i],
+                "docs" => $docs[$i] ?? '',
             ]);
         }
 
