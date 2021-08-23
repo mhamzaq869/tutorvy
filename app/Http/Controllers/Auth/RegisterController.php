@@ -117,7 +117,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['required', 'string', 'min:8'],
             'phone' => ['required'],
-            'gender' => ['r  equired'],
+            'gender' => ['required'],
         ]);
         $request->ip = $_SERVER['REMOTE_ADDR'];
         $request->dob = $request->year.'-'.$request->month.'-'.$request->day;
@@ -172,8 +172,7 @@ class RegisterController extends Controller
             Auth::login($user);
 
             User::find(Auth::user()->id)->update(['ip' => null,'status' => 1]);
-            Userdetail::where('user_id',Auth::user()->id)->update(['ip' => null]);
-
+        
             if(Auth::user()->role == 2):
                 return view('tutor.skip',compact('request'));
             else:
@@ -203,7 +202,9 @@ class RegisterController extends Controller
 
         if($request->has('exist_img')){
             foreach($request->exist_img as $img){
-                array_push($docs,$img);
+                if($img != null){
+                    array_push($docs,$img);
+                }
             }
         }
         if($request->hasFile('upload')){
@@ -213,12 +214,9 @@ class RegisterController extends Controller
                 // $docs[] =  $path;
                 array_push($docs,$path);
             }
-        }else{
-            foreach($docss as $upload){
-                $docs[] =  $upload->docs;
-            }
         }
 
+        // dd($docs,$docss);
         if($user->education){
             $user->education->each(function($record) {
                 $record->delete(); // <-- direct deletion
@@ -239,7 +237,7 @@ class RegisterController extends Controller
                 "subject_id" => $request->major[$i],
                 "institute_id" => $request->institute[$i],
                 "year" => $request->graduate_year[$i],
-                "docs" => $docs[$i],
+                "docs" => $docs[$i] ?? '',
             ]);
         }
 

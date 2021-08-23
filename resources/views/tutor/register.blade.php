@@ -507,7 +507,7 @@
                                                                 <input class="form-control bs-autocomplete"
                                                                     id="{{ $i }}"
                                                                     placeholder="Type two characters of a Institute name..."
-                                                                    value="{{ $education->institute->name }}"
+                                                                    value="{{ $education->institute->name ?? ''}}"
                                                                     data-hidden_field_id="city-code" data-item_id="id"
                                                                     data-item_label="name" autocomplete="off">
                                                             </div>
@@ -1082,7 +1082,11 @@
                     },
                     gender: {
                         required: true
-                    }
+                    },
+                    phone: {
+                        required: true
+                    },
+                    
                 },
                 messages: {
                     email: {

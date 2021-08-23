@@ -47,44 +47,50 @@ function verifyTutor(id,status,assess_status){
       reason = $('#t_reject_reason').val();
     }
 
+    this.changeTutorStatus(id,status,reason);
 
-    $.ajax({
-        url: "/admin/tutor/verify-tutor",
-        type:"POST",
-        data:{
-          id:id,
-          verify:status,
-          reason
-        },
-        success:function(response){
-          // console.log(response);
-          if(response.status == 200) {
+    // $.ajax({
+    //     url: "/admin/tutor/verify-tutor",
+    //     type:"POST",
+    //     data:{
+    //       id:id,
+    //       verify:status,
+    //       reason
+    //     },
+    //     success:function(response){
+    //       // console.log(response);
+    //       if(response.status == 200) {
 
-            $('#tutorRejectModal').modal('hide')
+    //         $('#tutorRejectModal').modal('hide')
 
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: response.message,
-                showConfirmButton: false,
-                timer: 2500
-            })
-            setInterval(function(){
-                window.location.href = request_;
-            }, 1500);
-          }
-        },
-    });
+    //         Swal.fire({
+    //             position: 'top-end',
+    //             icon: 'success',
+    //             title: response.message,
+    //             showConfirmButton: false,
+    //             timer: 2500
+    //         })
+    //         setInterval(function(){
+    //             window.location.href = request_;
+    //         }, 1500);
+    //       }
+    //     },
+    // });
 
 }
 
-function changeTutorStatus(id){
+function changeTutorStatus(id,st = null,reason = null){
 
-    var status = 0;
-
-    if ($('#t_status').is(":checked"))
-    {
-        status = 1;
+    var status ;
+    if(st == null){
+      if ($('#t_status').is(":checked"))
+      {
+          status = 1; //  Enabled
+      }else{
+          status = 3; // Disabled
+      }
+    }else{
+      status = st;
     }
 
     $.ajax({
@@ -92,7 +98,8 @@ function changeTutorStatus(id){
         type:"POST",
         data:{
           id:id,
-          status:status
+          status:status,
+          reason:reason
         },
         success:function(response){
           // console.log(response);
@@ -104,7 +111,19 @@ function changeTutorStatus(id){
                 title: response.message,
                 showConfirmButton: false,
                 timer: 2500
-            })
+            }) 
+
+            if(status == 2){
+              $('#tutorRejectModal').modal('hide');
+              setInterval(function(){
+                window.location.href = request_;
+              }, 1500);
+            }else{
+              setInterval(function(){
+                window.location.href = request_;
+              }, 1500);
+            }
+            
             
           }
         },

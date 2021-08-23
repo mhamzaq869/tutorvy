@@ -139,9 +139,9 @@
                                             </td>
                                             <td class="pt-4">{{$request->sub_name}}</td>
                                             <td class="pt-4">{{$request->tutor->address}}</td>
-                                            <td class="pt-4">{{$request->tutor->userdetail->std_level}}</td>
-                                            <td class="pt-4">{{$request->tutor->userdetail->availability != NULL ? $request->tutor->userdetail->availability : '---'}}</td>
-                                            <td class="pt-4">{{$request->tutor->userdetail->hourly_rate}}</td>
+                                            <td class="pt-4">{{$request->tutor->std_level}}</td>
+                                            <td class="pt-4">{{$request->tutor->availability != NULL ? $request->tutor->availability : '---'}}</td>
+                                            <td class="pt-4">{{$request->tutor->hourly_rate}}</td>
                                             <td class="pt-3 text-right">
                                                 <a href="{{ route('admin.tutorRequest',[$request->tutor->id,$request->id]) }}" class="cencel-btn btn">
                                                     View
@@ -287,9 +287,9 @@
                                         </td>
                                         <td class="pt-4">{{$tutor->subjects}}</td>
                                         <td class="pt-4">{{$tutor->address}}</td>
-                                        <td class="pt-4">{{$tutor->userdetail->std_level}}</td>
-                                        <td class="pt-4">{{$tutor->userdetail->availability != NULL ? $tutor->userdetail->availability : '---'}}</td>
-                                        <td class="pt-4">{{$tutor->userdetail->hourly_rate}}</td>
+                                        <td class="pt-4">{{$tutor->std_level}}</td>
+                                        <td class="pt-4">{{$tutor->availability != NULL ? $tutor->availability : '---'}}</td>
+                                        <td class="pt-4">{{$tutor->hourly_rate}}</td>
                                         <td class="pt-4 text-right">
                                             <a href="setting.html">
                                                 <img src="{{ asset('admin/assets/img/ico/edit-icon.svg')}}" alt="image"

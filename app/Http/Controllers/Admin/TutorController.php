@@ -24,37 +24,34 @@ class TutorController extends Controller
     {
         $staff_members = User::whereNotIn('role', [1,2,3])->get();
 
-        // $tutors = User::with('userdetail')->with('assessment')->where('role',2)->get();
-        $approved_tutors = User::with(['education','professional','userdetail','teach'])->where('role',2)->where('verify',1)->get();
+        $approved_tutors = User::with(['education','professional','teach'])->where('role',2)->whereNotIn('status',[0,2])->get();
         
         $new_requests = array();
 
         $tutor_assessments = Assessment::where('status',0)->get();
             
         foreach($tutor_assessments as $assessment){
-         
-            $tutor = User::with(['education','professional','userdetail','teach'])->where('id',$assessment->user_id)->where('role',2)->first();
+            $tutor = User::with(['education','professional','teach'])->where('id',$assessment->user_id)->where('status',0)->where('role',2)->first();
             if($tutor){
                 $assessment->tutor = $tutor;
                 array_push($new_requests,$assessment);
             }
-            
         }
        
         return view('admin.pages.tutors.index',compact('new_requests','approved_tutors','staff_members'));
     }
 
     public function profile($id){
-        $tutor = User::with(['education','professional','userdetail','teach'])->where('id',$id)->where('role',2)->where('status',1)->first();
-        $approved_courses = Course::where('user_id',$id)->where('active',1)->get();
-        $requested_courses = Course::where('user_id',$id)->where('active',0)->get();
+        $tutor = User::with(['education','professional','teach'])->where('id',$id)->where('role',2)->where('status',1)->first();
+        $approved_courses = Course::where('user_id',$id)->where('status',1)->get();
+        $requested_courses = Course::where('user_id',$id)->where('status',0)->get();
 
         return view('admin.pages.tutors.profile',compact('tutor','approved_courses','requested_courses'));
     }
 
     public function subjects($id){
 
-        $tutor = User::with(['userdetail','teach'])->where('id',$id)->where('role',2)->where('status',1)->first();
+        $tutor = User::with(['teach'])->where('id',$id)->where('role',2)->whereNotIn('status',[0,2])->first();
         $pending_subjects = Assessment::where('user_id',$id)->where('status',0)->get();
 
         return view('admin.pages.tutors.tutor_subjects',compact('tutor','pending_subjects'));
@@ -62,7 +59,7 @@ class TutorController extends Controller
 
     public function tutorRequest($id,$assess_id){
 
-        $tutor = User::with('userdetail')->where('id',$id)->where('role',2)->first();
+        $tutor = User::where('id',$id)->where('role',2)->first();
         $tutor_assessment =  Assessment::where('id',$assess_id)->first();
         
         return view('admin.pages.tutors.request',compact('tutor','tutor_assessment'));
@@ -111,11 +108,15 @@ class TutorController extends Controller
 
         $tutor = User::where('id',$request->id)->first();
         $tutor->status = $request->status;
+        $tutor->reject_note = $request->reason;
+
         $tutor->save();
 
         $message = '';
         if($request->status == 1){
             $message = 'Tutor Status Enabled.';
+        }elseif($request->status == 2){
+            $message = 'Tutor Rejected.';
         }else{
             $message = 'Tutor Status Disabled.';
         }
@@ -127,23 +128,4 @@ class TutorController extends Controller
 
     }
 
-    public function verifyTutor(Request $request){
-
-        $tutor = User::where('id',$request->id)->first();
-        $tutor->verify = $request->verify;
-        $tutor->reject_note = $request->reason;
-        $tutor->save();
-
-        $message = '';
-        if($request->status == 1){
-            $message = 'Tutor Verified.';
-        }else{
-            $message = 'Tutor Request Rejected.';
-        }
-
-        return response()->json([
-            'status'=>'200',
-            'message' => $message
-        ]);
-    }
 }

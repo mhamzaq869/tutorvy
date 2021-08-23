@@ -51,7 +51,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
-    protected $appends = ['address','status_text','day','month','year','subjects'];
+    protected $appends = ['address','status_text','day','month','year','subjects','std_level'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -79,10 +79,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @return userdetail class
      */
-    public function userdetail()
-    {
-        return $this->hasOne(Userdetail::class);
-    }
+    
     public function userdetailIp()
     {
         return $this->hasOne(Userdetail::class,'ip','ip');
@@ -223,6 +220,23 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         if(!empty($gender)){
             return $query->where('gender',$gender);
+        }
+    }
+
+    public function getStdLevelAttribute(){
+
+        $level = $this->student_level;
+        if($level != null){
+
+            if($level == 1){
+                return 'Basic';
+            }elseif($level == 1){
+                return 'Intermediate';
+            }else{
+                return 'Expert';
+            }
+        }else{
+            return '---';
         }
     }
 }

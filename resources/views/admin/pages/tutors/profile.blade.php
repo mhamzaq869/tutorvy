@@ -248,7 +248,7 @@
                     <div class="col-md-3 col-6">
                         <div class="">
                             <img src="{{asset('admin/assets/img/ico/green-icon.svg')}}" alt="image" />
-                            <span class="heading-third-number ml-2">${{$tutor->userdetail->hourly_rate}}</span>
+                            <span class="heading-third-number ml-2">${{$tutor->hourly_rate}}</span>
                             <p class="notification-text2 notification-text21">Per hour rate</p>
                         </div>
                     </div>

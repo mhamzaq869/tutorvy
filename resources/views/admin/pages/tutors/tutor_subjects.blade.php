@@ -106,9 +106,9 @@
                             <td class="pt-4">
                                 <span>{{ $appr_sub->sub_name }}</span>
                             </td>
-                            <td class="pt-4">{{ ($tutor->userdetail != null ? $tutor->userdetail->std_level : '---' )  }}</td>
-                            <td class="pt-4">{{ ($tutor->userdetail != null ? $tutor->userdetail->availability != NULL ? $tutor->userdetail->availability : '---' : '---')}}</td>
-                            <td class="pt-4">{{ ($tutor->userdetail != null ? $tutor->userdetail->hourly_rate : '---') }}$</td>
+                            <td class="pt-4">{{  $tutor->std_level != null ? $tutor->std_level : '---'  }}</td>
+                            <td class="pt-4">{{ $tutor->availability != null ? $tutor->availability : '---' }}</td>
+                            <td class="pt-4">{{ $tutor->hourly_rate != null ? $tutor->hourly_rate : '---' }}$</td>
                             <td class="pt-4">15</td>
                             <td class="pt-4">{{$appr_sub->verified_by_name}}</td>
                             <td class="pt-4 d-flex">
