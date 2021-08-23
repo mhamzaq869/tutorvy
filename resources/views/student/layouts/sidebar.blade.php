@@ -18,8 +18,8 @@
                      </span>
                  </a>
              </li>
-             <li class="btn mt-3 mt-3">
-                 <a href="./Booking/BookingNo.html" aria-expanded="false">
+             <li class="btn mt-3 mt-3 @if(\Request::path() === 'student/bookings') active @endif">
+                 <a href="{{route('student.bookings')}}" aria-expanded="false">
                      <img class="mr-2 book-sid" src="{{asset('assets/images/ico/book-icons.png')}}" alt="book-ico">
                      <span class="book-show mt-3">
                          Bookings
@@ -85,8 +85,8 @@
                      Dashboard
                  </a>
              </li>
-             <li class="btn @if(\Request::path() === 'tutor/booking') active @endif w-100">
-                 <a href="{{route('tutor.booking')}}" aria-expanded="false" class="">
+             <li class="btn @if(\Request::path() === 'student/bookings') active @endif w-100">
+                 <a href="{{route('student.bookings')}}" aria-expanded="false" class="">
                      <img src="{{asset('assets/images/ico/book-icons.png')}}" alt="book-ico" class=" mr-2">
                      Bookings
                  </a>

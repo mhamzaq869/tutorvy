@@ -8,4 +8,4 @@
    <!-- custom javascript -->
    <script src="assets/js/home.js"></script>
    <script src="assets/js/global.js"></script>
-
+   @yield('scripts')

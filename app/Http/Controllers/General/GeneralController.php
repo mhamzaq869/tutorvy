@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\User;
 use App\Models\General\Institute;
+use Illuminate\Support\Facades\Auth;
 class GeneralController extends Controller
 {
 
@@ -52,5 +53,30 @@ class GeneralController extends Controller
         if($user == 1){
             return true;
         }
+    }
+
+
+
+    public function loginOnRole(Request $request)
+    {
+        // dd($request->all());
+
+        if($request->has('student')):
+            User::find(Auth::user()->id)->update([
+                'role' => 3,
+                'status' => 1
+            ]);
+
+            return redirect()->route('student.dashboard');
+        elseif($request->has('tutor')):
+            User::find(Auth::user()->id)->update([
+                'role' => 2,
+                'status' => 1
+            ]);
+
+            return redirect()->route('tutor.dashboard');
+        endif;
+
+        return redirect()->back();
     }
 }

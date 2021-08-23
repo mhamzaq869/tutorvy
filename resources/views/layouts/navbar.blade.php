@@ -67,6 +67,10 @@
                                                             <a tabindex="-1" class="" href="{{route('student.profile')}}">
                                                                 Profile
                                                             </a>
+                                                            @else
+                                                            <a tabindex="-1" class="" href="{{url('role')}}">
+                                                                Profile
+                                                            </a>
                                                             @endif
                                                         </li>
                                                         <li>

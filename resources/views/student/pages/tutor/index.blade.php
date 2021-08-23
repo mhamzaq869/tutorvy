@@ -189,7 +189,7 @@
                             <div class="text-center mt-5">
                                 <p class="paragraph-text1">starting from</p>
                                 <p class="" style="font-size: 64px;font-family: 'poppins';line-height: 1;">
-                                    ${{$tutor->userdetail->hourly_rate ?? 0}}
+                                    ${{$tutor->hourly_rate ?? 0}}
                                 </p>
                                 <p class="paragraph-text1 mb-5" style="line-height: 1;">Per hour</p>
                                 <button class="cencel-btn w-100 mt-5">Massge</button>

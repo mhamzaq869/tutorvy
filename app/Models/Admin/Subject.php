@@ -5,6 +5,7 @@ namespace App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Admin\SubjectCategory;
+use App\Models\Booking;
 use App\Models\General\Education;
 use App\Models\General\Teach;
 use App\Models\Course;
@@ -50,8 +51,12 @@ class Subject extends Model
     {
         return $this->hasMany(Course::class);
     }
-    public function getCatNameAttribute(){
-
+    public function booking()
+    {
+        return $this->hasMany(Booking::class);
+    }
+    public function getCatNameAttribute()
+    {
         $id = $this->category_id;
         $category = SubjectCategory::where('id',$id)->first();
 

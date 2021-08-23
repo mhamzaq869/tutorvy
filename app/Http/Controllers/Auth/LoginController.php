@@ -65,10 +65,13 @@ class LoginController extends Controller
 
         if($request->filled('valid_email','password','role')){
             if(Auth::attempt(['email' => $request->valid_email, 'password' => $request->password,'role'=>$request->role,'status' => 1])){
-                Session::put('user',$request->valid_email);
                 if($request->role == 2){
                     return redirect()->route('tutor.dashboard');
                 }
+                if($request->role == 3){
+                    return redirect()->route('student.dashboard');
+                }
+                Session::put('user',$request->valid_email);
             }
             else{
                 $user = User::where('email',$request->valid_email)->where('role','!=',1)->first();
@@ -100,9 +103,20 @@ class LoginController extends Controller
         $user = Socialite::driver('google')->user();
         $user->user['provider'] = 'google';
 
-        $this->_registerOrLogin($user->user);
+        $data = $this->_registerOrLogin($user->user);
+        Auth::login($data);
 
-        return redirect()->route('tutor.dashboard');
+        if($data->role == 2){
+            return redirect()->route('tutor.dashboard');
+        }
+
+        if($data->role == 3){
+            return redirect()->route('student.dashboard');
+        }
+
+        if(!$data->role){
+            return redirect('role');
+        }
     }
 
      /*
@@ -123,7 +137,7 @@ class LoginController extends Controller
                     ]);
             }
 
-            Auth::login($user);
+            return $user;
 
         }catch(Exception $e){
 

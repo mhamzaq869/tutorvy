@@ -13,6 +13,7 @@ use App\Models\General\Professional;
 use App\Models\General\Teach;
 use App\Models\General\Message;
 use App\Models\Review;
+use PhpParser\Node\Expr\Empty_;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -42,6 +43,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'language',
         'lang_short',
         'bio',
+        'student_level',
+        'hourly_rate',
         'provider',
         'role',
         'status',
@@ -113,7 +116,12 @@ class User extends Authenticatable implements MustVerifyEmail
     public function review(){
         return $this->morphMany(Review::class,'reviewable');
     }
-
+    public function booking(){
+        return $this->hasMany(Booking::class);
+    }
+    public function bookedTutor(){
+        return $this->hasMany(Booking::class,'booked_tutor','id');
+    }
      /**
      * Accessor ot Mutator
      */
@@ -178,5 +186,43 @@ class User extends Authenticatable implements MustVerifyEmail
                 $q->where('recipient_id', $this->id);
             })
             ->orderBy('id', 'ASC')->get();
+    }
+
+    // Scopes for Filteration
+    public function scopeTutor($query)
+    {
+        return $query->where('role',2);
+    }
+    public function scopeActive($query)
+    {
+        return $query->where('status',1);
+    }
+    public function scopeVerified($query)
+    {
+        return $query->where('verify',1);
+    }
+    public function scopeRange($query,$range=null)
+    {
+        if(!Empty($range)){
+            return $query->where('hourly_rate',$range);
+        }
+    }
+    public function scopeLocation($query,$loca=null)
+    {
+        if(!empty($loca)){
+            return $query->where('city',$loca);
+        }
+    }
+    public function scopeLanguage($query,$language=null)
+    {
+        if(!empty($language)){
+            return $query->where('language',$language);
+        }
+    }
+    public function scopeGender($query,$gender=null)
+    {
+        if(!empty($gender)){
+            return $query->where('gender',$gender);
+        }
     }
 }
