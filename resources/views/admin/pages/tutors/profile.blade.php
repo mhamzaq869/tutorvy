@@ -58,7 +58,7 @@
 
                         <div class="col-md-4 text-center">
                             <label class="switch" style="position: relative;left: -10px;top:5px;width: 60px;">
-                                <input type="checkbox">
+                                <input type="checkbox" onchange="changeTutorStatus(`{{$tutor->id}}`)" {{ ($tutor->status == 1) ? 'checked' : ''}}>
                                 <span class="slider round"></span>
                             </label>
                         </div>
@@ -248,7 +248,7 @@
                     <div class="col-md-3 col-6">
                         <div class="">
                             <img src="{{asset('admin/assets/img/ico/green-icon.svg')}}" alt="image" />
-                            <span class="heading-third-number ml-2">$50</span>
+                            <span class="heading-third-number ml-2">${{$tutor->userdetail->hourly_rate}}</span>
                             <p class="notification-text2 notification-text21">Per hour rate</p>
                         </div>
                     </div>
@@ -307,71 +307,56 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @if(sizeof($approved_courses) > 0)
+                                    @foreach($approved_courses as $course)
+                                        @php
+                                            $count = 1;
+                                        @endphp
+                                        <tr>
+                                            <td class="pt-4">{{$count}}</td>
+                                            <td class="pt-4">{{$course->subject_name}}</td>
+                                            <td class="pt-4">{{$course->title}}</td>
+                                            <td class="text-center pt-4">26</td>
+                                            <td class="pt-4"> <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star"></span>
+                                                <span class="paragraph-text1">4.0</span>
+                                            </td>
+                                            <td class="pt-4">
+                                                <img src="{{asset('admin/assets/img/ico/delete-icon.svg')}}" alt="2" data-toggle="modal"
+                                                    data-target="#exampleModalCenters" />
+                                            </td>
+                                            <td class="pt-4">
+                                                <a href="edit-course.html"> <img src="{{asset('admin/assets/img/ico/edit-icon.svg')}}"
+                                                        alt="1" /></a>
+                                            </td>
+                                            <td class="pt-4">
+                                                <label class="switch"
+                                                    style="position: relative;left: -10px;width: 60px;">
+                                                    <input type="checkbox">
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </td>
+                                            <td class="pt-3">
+                                                <a href="course.html" class="schedule-btn btn">
+                                                    View</a>
+                                            </td>
+                                        </tr>
+                                        @php
+                                            $count++;
+                                        @endphp
+                                    @endforeach
+                                @else
                                 <tr>
-                                    <td class="pt-4">01</td>
-                                    <td class="pt-4">Chemistry</td>
-                                    <td class="pt-4">How to create</td>
-                                    <td class="text-center pt-4">26</td>
-                                    <td class="pt-4"> <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="paragraph-text1">4.0</span>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>No Record Found.
                                     </td>
-                                    <td class="pt-4">
-                                        <img src="{{asset('admin/assets/img/ico/delete-icon.svg')}}" alt="2" data-toggle="modal"
-                                            data-target="#exampleModalCenters" />
-                                    </td>
-                                    <td class="pt-4">
-                                        <a href="edit-course.html"> <img src="{{asset('admin/assets/img/ico/edit-icon.svg')}}"
-                                                alt="1" /></a>
-                                    </td>
-                                    <td class="pt-4">
-                                        <label class="switch"
-                                            style="position: relative;left: -10px;width: 60px;">
-                                            <input type="checkbox">
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </td>
-                                    <td class="pt-3">
-                                        <a href="course.html" class="schedule-btn btn">
-                                            View</a>
-                                    </td>
+                                    <td></td>
                                 </tr>
-                                <!-- modal of upgrade -->
-
-                                <tr>
-                                    <td class="pt-4">01</td>
-                                    <td class="pt-4">Chemistry</td>
-                                    <td class="pt-4">How to create</td>
-                                    <td class="text-center pt-4">26</td>
-                                    <td class="pt-4"> <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="paragraph-text1">4.0</span>
-                                    </td>
-                                    <td class="pt-4">
-                                        <img src="{{asset('admin/assets/img/ico/delete-icon.png')}}" alt="2" data-toggle="modal"
-                                            data-target="#exampleModalCenters" />
-                                    </td>
-                                    <td class="pt-4">
-                                        <a href="edit-course.html">
-                                            <img src="{{asset('admin/assets/img/ico/edit-icon.png')}}" alt="1" />
-                                        </a>
-                                    </td>
-                                    <td class="pt-4">
-                                        <label class="switch"
-                                            style="position: relative;left: -10px;width: 60px;">
-                                            <input type="checkbox">
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </td>
-                                    <td class="pt-3">
-                                        <a href="course.html" class="schedule-btn btn">
-                                            View</a>
-                                    </td>
-                                </tr>
+                                @endif    
                             </tbody>
                         </table>
                     </div>
@@ -510,37 +495,39 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            @if(sizeof($requested_courses) > 0)
+                                @foreach($requested_courses as $course)
+                                    @php
+                                        $count = 1;
+                                    @endphp
+                                    <tr>
+                                        <td class="pt-4">{{$count}}</td>
+                                        <td class="pt-4">{{$course->subject_name}}</td>
+                                        <td class="pt-4">{{$course->title}}</td>
+                                        <td class="pt-3">
+                                        </td>
+                                        <td class="pt-3 float-right">
+                                            <a href="approve.html" class="btn cencel-btn">
+                                                View
+                                            </a>
+                                            <button class="schedule-btn" data-toggle="modal"
+                                                data-target="#exampleModalCenterd">Assign</button>
+                                        </td>
+                                    </tr>
+                                    @php
+                                        $count++;
+                                    @endphp
+                                @endforeach
+                            @else
                                 <tr>
-                                    <td class="pt-4">01</td>
-                                    <td class="pt-4">Chemistry</td>
-                                    <td class="pt-4">How to create your online
-                                        courses in 3 steps.</td>
-                                    <td class="pt-3">
+                                    <td></td>
+                                   
+                                    <td></td>
+                                    <td>No Record Found.
                                     </td>
-                                    <td class="pt-3 float-right">
-                                        <a href="approve.html" class="btn cencel-btn">
-                                            View
-                                        </a>
-                                        <button class="schedule-btn" data-toggle="modal"
-                                            data-target="#exampleModalCenterd">Assign</button>
-                                    </td>
+                                    <td></td>
                                 </tr>
-                                <tr>
-                                    <td class="pt-4">01</td>
-                                    <td class="pt-4">Chemistry</td>
-                                    <td class="pt-4">How to create your online
-                                        courses in 3 steps.</td>
-                                    <td class="pt-3">
-                                    </td>
-                                    <td class="pt-3 float-right">
-                                        <a href="approve.html" class="btn cencel-btn">
-                                            View
-                                        </a>
-                                        <button class="schedule-btn" data-toggle="modal"
-                                            data-target="#exampleModalCenterd">Assign</button>
-                                    </td>
-                                </tr>
-
+                            @endif 
                             </tbody>
                         </table>
                     </div>
@@ -832,4 +819,9 @@
     </div>
 </div>
 
+@endsection
+
+<!-- Extra js to perfome function using ajax. -->
+@section('js') 
+@include('js_files.admin.tutor')
 @endsection

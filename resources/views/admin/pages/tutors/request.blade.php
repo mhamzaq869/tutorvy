@@ -16,7 +16,7 @@
                 <h3 class="mt-3 mb-0">{{ $tutor->first_name }} {{ $tutor->last_name }}</h3>
                 <p class="heading-fifth mt-2 line-height-1">Tutor</p>
                 <hr />
-                @if($tutor->status == 1)
+                @if($tutor->verify == 1)
                 <h6><span class="badge badge-success">Approved</span></h6>
                 @else
 
@@ -71,7 +71,7 @@
                             <textarea class="form-control" rows="5" placeholder="Write reason" id="t_reject_reason"></textarea>
                             <div class="mt-4 d-flex" style="position: absolute;right: 30px;">
                                 <button class="cencel-btn w-150 mr-4" data-dismiss="modal">Cencel</button>
-                                <button class="schedule-btn w-150" onclick="verifyTutor(`{{$tutor->id}}`,2,`{{$tutor_assessment->status}}`)">Send</button>
+                                <button class="schedule-btn w-150" onclick="verifyTutor(`{{$tutor->id}}`,0,`{{$tutor_assessment->status}}`)">Send</button>
                             </div>
                         </div>
                     </div>
@@ -219,8 +219,10 @@
 
 <!-- Extra js to perfome function using ajax. -->
 @section('js')
+
+
 <script>
     let request_ = "{{$request_}}";
 </script>    
-<script src="{{ asset('/admin/assets/js/pages/tutor.js')}}"></script>
+@include('js_files.admin.tutor')
 @endsection

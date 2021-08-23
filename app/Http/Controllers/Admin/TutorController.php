@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Course;
 use App\Models\Assessment;
 use App\Models\General\Teach;
 
@@ -24,7 +25,7 @@ class TutorController extends Controller
         $staff_members = User::whereNotIn('role', [1,2,3])->get();
 
         // $tutors = User::with('userdetail')->with('assessment')->where('role',2)->get();
-        $approved_tutors = User::with(['education','professional','userdetail','teach'])->where('role',2)->where('status',1)->get();
+        $approved_tutors = User::with(['education','professional','userdetail','teach'])->where('role',2)->where('verify',1)->get();
         
         $new_requests = array();
 
@@ -44,8 +45,10 @@ class TutorController extends Controller
 
     public function profile($id){
         $tutor = User::with(['education','professional','userdetail','teach'])->where('id',$id)->where('role',2)->where('status',1)->first();
-        
-        return view('admin.pages.tutors.profile',compact('tutor'));
+        $approved_courses = Course::where('user_id',$id)->where('active',1)->get();
+        $requested_courses = Course::where('user_id',$id)->where('active',0)->get();
+
+        return view('admin.pages.tutors.profile',compact('tutor','approved_courses','requested_courses'));
     }
 
     public function subjects($id){
@@ -103,10 +106,30 @@ class TutorController extends Controller
         ]);
     }
 
-    public function verifyTutor(Request $request){
+    public function tutorStatus(Request $request){
 
         $tutor = User::where('id',$request->id)->first();
         $tutor->status = $request->status;
+        $tutor->save();
+
+        $message = '';
+        if($request->status == 1){
+            $message = 'Tutor Status Enabled.';
+        }else{
+            $message = 'Tutor Status Disabled.';
+        }
+
+        return response()->json([
+            'status'=>'200',
+            'message' => $message
+        ]);
+
+    }
+
+    public function verifyTutor(Request $request){
+
+        $tutor = User::where('id',$request->id)->first();
+        $tutor->verify = $request->verify;
         $tutor->reject_note = $request->reason;
         $tutor->save();
 

@@ -1,3 +1,5 @@
+<script type="text/javascript">
+
 function verifyAssessment(id,status){
     let reason = null;
     if(status == 2){
@@ -51,7 +53,7 @@ function verifyTutor(id,status,assess_status){
         type:"POST",
         data:{
           id:id,
-          status:status,
+          verify:status,
           reason
         },
         success:function(response){
@@ -75,3 +77,38 @@ function verifyTutor(id,status,assess_status){
     });
 
 }
+
+function changeTutorStatus(id){
+
+    var status = 0;
+
+    if ($('#t_status').is(":checked"))
+    {
+        status = 1;
+    }
+
+    $.ajax({
+        url: "{{route('admin.tutorStatus')}}",
+        type:"POST",
+        data:{
+          id:id,
+          status:status
+        },
+        success:function(response){
+          // console.log(response);
+          if(response.status == 200) {
+
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: response.message,
+                showConfirmButton: false,
+                timer: 2500
+            })
+            
+          }
+        },
+    });
+
+}
+</script>
