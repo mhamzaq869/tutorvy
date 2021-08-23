@@ -296,6 +296,12 @@
                                                     class="edit-image" />
                                             </a>
                                         </td>
+                                        <td class="pt-4 text-right">
+                                            <label class="switch mt-0">
+                                                <input type="checkbox" id="t_status" onchange="changeTutorStatus(`{{$tutor->id}}`)" {{ ($tutor->status == 1) ? 'checked' : ''}} >
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
                                         <td class="pt-3 text-right">
                                             <a href="{{ route('admin.tutorProfile',[$tutor->id]) }}" class="cencel-btn btn">
                                                 View
@@ -346,4 +352,9 @@
             </div>
         </div>
     </div>
+@endsection
+
+<!-- Extra js to perfome function using ajax. -->
+@section('js') 
+@include('js_files.admin.tutor')
 @endsection

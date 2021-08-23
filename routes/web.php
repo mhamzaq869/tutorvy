@@ -62,6 +62,7 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
     Route::get('tutor/assessment/{assessment_id}',[TutorController::class,'tutorAssessment'])->name('admin.tutotAssessment');
     Route::post('tutor/verify-assessment',[TutorController::class,'verifyAssessment'])->name('admin.verifyAssessment');
     Route::post('tutor/verify-tutor',[TutorController::class,'verifyTutor'])->name('admin.verifyTutor');
+    Route::post('tutor/change-tutor-status',[TutorController::class,'tutorStatus'])->name('admin.tutorStatus');
 
 
     Route::get('/student',[StudentController::class,'index'])->name('admin.student');
@@ -79,6 +80,10 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
     Route::get('/staff',[StaffController::class,'index'])->name('admin.staff');
     Route::post('/staff/insert',[StaffController::class,'insertStaff'])->name('admin.insertStaff');
     Route::get('/staff/profile/{id}',[StaffController::class,'staffProfile'])->name('admin.staffProfile');
+
+    Route::get('/role',[StaffController::class,'role'])->name('admin.role');
+    Route::post('/role/insert-role',[StaffController::class,'insertRole'])->name('admin.insertRole');
+    Route::post('/role/delete-role',[StaffController::class,'deleteRole'])->name('admin.deleteRole');
 
 
 

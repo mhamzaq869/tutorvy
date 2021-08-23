@@ -122,140 +122,31 @@
                                                 <div id="main">
                                                     <!-- first -->
                                                     <div class="container-fluid m-0 p-0 border-bottom pb-3">
-                                                        <div class="accordion" id="faq">
-                                                            <div class="card m-0 p-0">
-                                                                <div class="card-header" id="faqhead3">
-                                                                    <a href="#"
-                                                                        class=" bg-color btn-header-link collapsed"
-                                                                        data-toggle="collapse" data-target="#faq3"
-                                                                        aria-expanded="true" aria-controls="faq3">
-                                                                        <img class="mr-2"
-                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                        Introduction to chemisty</a>
-                                                                </div>
-                                                                <div id="faq3" class="collapse border-radius"
-                                                                    aria-labelledby="faqhead3" data-parent="#faq">
-                                                                    <div class="card-body">
-                                                                        Anim pariatur cliche reprehenderit, enim
-                                                                        eiusmod high life accusamus terry
-                                                                        richardson.
+                                                    @foreach($course->outline as $outline)
+                                                        @if($outline->level == 1)   
+                                                            <div class="accordion active" id="faq">
+                                                                    <div class="card m-0 p-0">
+                                                                        
+                                                                            <div class="card-header" id="outlinehead{{$outline->id}}">
+                                                                                <a href="#" 
+                                                                                    class=" bg-color btn-header-link collapsed"
+                                                                                    data-toggle="collapse" data-target="#outline{{$outline->id}}"
+                                                                                    aria-expanded="true" aria-controls="outline{{$outline->id}}">
+                                                                                    <img class="mr-2"
+                                                                                        src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                                    {{$outline->title}}</a>
+                                                                            </div>
+                                                                            <div id="outline{{$outline->id}}" class="collapse show border-radius"
+                                                                                aria-labelledby="{{$outline->id}}" data-parent="#outline{{$outline->id}}">
+                                                                                <div class="card-body">
+                                                                                    {{$outline->explain}}
+                                                                                </div>
+                                                                            </div>
+                                                                        
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- second -->
-                                                        <div class="accordion" id="faq">
-                                                            <div class="card m-0 p-0">
-                                                                <div class="card-header" id="faqhead3">
-                                                                    <a href="#"
-                                                                        class="bg-color btn-header-link collapsed"
-                                                                        data-toggle="collapse" data-target="#faq4"
-                                                                        aria-expanded="true" aria-controls="faq3">
-                                                                        <img class="mr-2"
-                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                        Periodic table
-                                                                    </a>
-                                                                </div>
-                                                                <div id="faq4" class="collapse show border-radius"
-                                                                    aria-labelledby="faqhead3" data-parent="#faq">
-                                                                    <div class="card-body">
-                                                                        Anim pariatur cliche reprehenderit, enim
-                                                                        eiusmod high life accusamus terry
-                                                                        richardson.
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- third -->
-                                                        <div class="accordion" id="faq">
-                                                            <div class="card m-0 p-0">
-                                                                <div class="card-header" id="faqhead3">
-                                                                    <a href="#"
-                                                                        class="bg-color btn-header-link collapsed"
-                                                                        data-toggle="collapse" data-target="#faq5"
-                                                                        aria-expanded="true" aria-controls="faq3">
-                                                                        <img class="mr-2"
-                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                        Atomic structure
-                                                                    </a>
-                                                                </div>
-                                                                <div id="faq5" class="collapse border-radius"
-                                                                    aria-labelledby="faqhead3" data-parent="#faq">
-                                                                    <div class="card-body">
-                                                                        Anim pariatur cliche reprehenderit, enim
-                                                                        eiusmod high life accusamus terry
-                                                                        richardson.
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- forth -->
-                                                        <div class="accordion" id="faq">
-                                                            <div class="card m-0 p-0">
-                                                                <div class="card-header" id="faqhead3">
-                                                                    <a href="#"
-                                                                        class="bg-color btn-header-link collapsed"
-                                                                        data-toggle="collapse" data-target="#faq8"
-                                                                        aria-expanded="true" aria-controls="faq3">
-                                                                        <img class="mr-2"
-                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                        Molecule structure</a>
-                                                                </div>
-                                                                <div id="faq8" class="collapse border-radius"
-                                                                    aria-labelledby="faqhead3" data-parent="#faq">
-                                                                    <div class="card-body">
-                                                                        Anim pariatur cliche reprehenderit, enim
-                                                                        eiusmod high life accusamus terry
-                                                                        richardson.
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- fifth -->
-                                                        <div class="accordion" id="faq">
-                                                            <div class="card m-0 p-0">
-                                                                <div class="card-header" id="faqhead3">
-                                                                    <a href="#"
-                                                                        class="bg-color btn-header-link collapsed"
-                                                                        data-toggle="collapse" data-target="#faq6"
-                                                                        aria-expanded="true" aria-controls="faq3">
-                                                                        <img class="mr-2"
-                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                        Chemical bonds</a>
-                                                                </div>
-                                                                <div id="faq6" class="collapse border-radius"
-                                                                    aria-labelledby="faqhead3" data-parent="#faq">
-                                                                    <div class="card-body">
-                                                                        Anim pariatur cliche reprehenderit, enim
-                                                                        eiusmod high life accusamus terry
-                                                                        richardson.
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- sixth -->
-                                                        <div class="accordion" id="faq">
-                                                            <div class="card m-0 p-0">
-                                                                <div class="card-header" id="faqhead3">
-                                                                    <a href="#"
-                                                                        class="bg-color btn-header-link collapsed"
-                                                                        data-toggle="collapse" data-target="#faq7"
-                                                                        aria-expanded="true" aria-controls="faq3">
-                                                                        <img class="mr-2"
-                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                        Chemistry in 21 century
-                                                                    </a>
-                                                                </div>
-                                                                <div id="faq7" class="collapse border-radius show"
-                                                                    aria-labelledby="faqhead3" data-parent="#faq">
-                                                                    <div class="card-body">
-                                                                        Anim pariatur cliche reprehenderit, enim
-                                                                        eiusmod high life accusamus terry
-                                                                        richardson.
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                            @endif
+                                                        @endforeach
                                                     </div>
                                                 </div>
                                             </div>

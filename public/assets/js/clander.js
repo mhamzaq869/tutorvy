@@ -17,7 +17,7 @@ createYear = generate_year_range(1970, 2050);
 /** or
  * createYear = generate_year_range( 1970, currentYear );
  */
-if(document.getElementById("year")){
+if (document.getElementById("year")) {
     document.getElementById("year").innerHTML = createYear;
 }
 
@@ -117,6 +117,7 @@ function showCalendar(month, year) {
         tbl.appendChild(row);
     }
 }
+
 function daysInMonth(iMonth, iYear) {
     return 32 - new Date(iYear, iMonth, 32).getDate();
 }
