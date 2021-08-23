@@ -116,7 +116,12 @@ class User extends Authenticatable implements MustVerifyEmail
     public function review(){
         return $this->morphMany(Review::class,'reviewable');
     }
-
+    public function booking(){
+        return $this->hasMany(Booking::class);
+    }
+    public function bookedTutor(){
+        return $this->hasMany(Booking::class,'booked_tutor','id');
+    }
      /**
      * Accessor ot Mutator
      */

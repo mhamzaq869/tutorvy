@@ -328,7 +328,7 @@
                                 </p>
                                 <p class="paragraph-text1 mb-5" style="line-height: 1;">Per hour</p>
                                 <button class="cencel-btn w-100 mt-5">Massge</button>
-                                <button class="schedule-btn w-100 mt-3">Book class</button>
+                                <a href="{{route('student.direct.booking',[$tutor->id])}}" class="btn schedule-btn w-100 mt-3">Book class</a>
                             </div>
                         </div>
                     </div>
@@ -352,12 +352,9 @@
             var gender = $("input[name=optradio]:checked").val()
             var avail = $("#avail").val()
 
-
-            console.log(range, locat,lang,gender)
-
             $.ajax({
                 type: 'POST',
-                url: "{{ route('find.tutor') }}",
+                url: "{{ route('student.tutor.filter') }}",
                 dataType: "json",
                 data: {
                     _token: "{{ csrf_token() }}",
@@ -421,9 +418,8 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                 <p class="mb-2">Education</p>
-                                                    <p>`+data.education.forEach(edu => {+`
+                                                    <p>`+data.education.forEach(edu => {})`
                                                         <span class="info-1 info edu d-inline-block">`+edu.institute.name+`</span>
-                                                    `+})+`
                                                     </p>
                                                 </div>
                                             </div>

@@ -21,6 +21,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\General\GeneralController;
 use App\Http\Controllers\Tutor\HomeController as TutorHomeController;
 use App\Http\Controllers\Tutor\BookingController;
+use App\Http\Controllers\Student\BookingController as StudentBookingController;
 use App\Http\Controllers\Tutor\CalendarController;
 use App\Http\Controllers\Tutor\ClassController;
 use App\Http\Controllers\Tutor\SubjectController as TutorSubjectController;
@@ -143,18 +144,19 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
 
     Route::get('/dashboard',[StudentHomeController::class,'index'])->name('student.dashboard');
     Route::get('/chat',[StdChatController::class,'index'])->name('student.chat');
-    Route::get('/book-now',[StudentHomeController::class,'bookNow'])->name('student.book-now');
 
-
-
-    // Route::get('/booking',[BookingController::class,'index'])->name('tutor.booking');
+    //Bookings
+    Route::get('/bookings',[StudentBookingController::class,'index'])->name('student.bookings');
+    Route::get('/book-now',[StudentBookingController::class,'bookNow'])->name('student.book-now');
+    Route::get('/booking/{id}/tutor',[StudentBookingController::class,'directBooking'])->name('student.direct.booking');
+    Route::post('/booked',[StudentBookingController::class,'booked'])->name('student.booked.tutor');
     // Route::get('/classroom',[ClassController::class,'index'])->name('tutor.classroom');
     // Route::get('/calendar',[CalendarController::class,'index'])->name('tutor.calendar');
     // Route::get('/history',[HistoryController::class,'index'])->name('tutor.history');
     // Route::get('/payment',[PaymentController::class,'index'])->name('tutor.payment');
     Route::get('/tutor',[StudentTutorController::class,'index'])->name('student.tutor');
     Route::get('/viewtutor/{id}',[StudentTutorController::class,'show'])->name('student.tutor.show');
-    Route::get('/tutorfilter/{?id}',[StudentTutorController::class,'filter'])->name('student.tutor.filter');
+    Route::get('/tutorfilter/{id?}',[StudentTutorController::class,'filter'])->name('student.tutor.filter');
     // Route::get('/settings',[TutorSettingController::class,'index'])->name('tutor.settings');
     Route::get('/profile',[StudentProfileController::class,'index'])->name('student.profile');
 
@@ -174,19 +176,21 @@ Route::get('/login/google/callback', [LoginController::class,'handleGoogleCallba
 Route::get('/student/register',[RegisterController::class,'showStudentRegistrationForm'])->name('student.register')->middleware('guest');
 Route::post('/register',[RegisterController::class,'register'])->middleware('guest');
 Route::view('/logged','auth.loginpass')->name('logged')->middleware('guest');
+//Reset Password
 Route::post('/validate_otp',[ResetPasswordController::class,'checkOtp'])->name('check.otp');
 Route::view('/resetPassword','auth.reset')->name('reset.password');
 Route::post('/updatePassword',[ResetPasswordController::class,'updatePassword'])->name('update.password');
 Route::post('/resendOtp',[ResetPasswordController::class,'resendOtp'])->name('resend.otp');
+
+
 Route::view('/','welcome');
 Route::view('/role','role');
-Route::get('/register_role',[GeneralController::class,'loginOnRole'])->name('register.role');
+Route::get('/register_role',[GeneralController  ::class,'loginOnRole'])->name('register.role');
 Route::view('/tutor','frontend.tutor');
 Route::view('/student','frontend.student');
 Route::view('/subject','frontend.subject');
 Route::view('/course','frontend.course');
-Route::get('/findtutor',[FrontTutorController::class,'index']);
-Route::post('/findtutor',[FrontTutorController::class,'filterTutor'])->name('find.tutor');
+Route::get('/findtutor',[FrontTutorController::class,'index'])->name('find.tutor');
 
 /*
 |--------------------------------------------------------------------------
