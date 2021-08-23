@@ -107,5 +107,5 @@
 <script>
     let request_ = "{{$request_}}";
 </script>    
-<script src="{{ asset('/admin/assets/js/pages/tutor.js')}}"></script>
+@include('js_files.admin.tutor')
 @endsection
