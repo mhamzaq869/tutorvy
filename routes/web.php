@@ -60,6 +60,10 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
 
     Route::get('tutor/request/{id}/{assess_id}',[TutorController::class,'tutorRequest'])->name('admin.tutorRequest');
     Route::get('tutor/assessment/{assessment_id}',[TutorController::class,'tutorAssessment'])->name('admin.tutotAssessment');
+    Route::get('/tutor-request/{id}',[TutorController::class,'tutor_Request'])->name('admin.tutor-request');
+    Route::get('/tutor-profile',[TutorController::class,'tutorProfile'])->name('admin.tutor-profile');
+
+
     Route::post('tutor/verify-assessment',[TutorController::class,'verifyAssessment'])->name('admin.verifyAssessment');
     Route::post('tutor/verify-tutor',[TutorController::class,'verifyTutor'])->name('admin.verifyTutor');
     Route::post('tutor/change-tutor-status',[TutorController::class,'tutorStatus'])->name('admin.tutorStatus');
@@ -72,7 +76,12 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
     Route::get('/course-request/{id}',[CourseController::class,'courseRequest'])->name('admin.course-request');
     Route::get('/course-profile',[CourseController::class,'courseProfile'])->name('admin.course-profile');
     Route::get('/course-edit',[CourseController::class,'editCourseProfile'])->name('admin.course-edit');
+
+
     Route::get('/subject',[SubjectController::class,'index'])->name('admin.subject');
+    Route::post('/subject/insert-subject',[SubjectController::class,'insertSubject'])->name('admin.insertSubject');
+
+
     Route::get('/website',[WebsiteController::class,'index'])->name('admin.website');
     Route::get('/report',[ReportController::class,'index'])->name('admin.report');
     Route::get('/integration',[IntegrationController::class,'index'])->name('admin.integration');
@@ -80,6 +89,11 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
     Route::get('/staff',[StaffController::class,'index'])->name('admin.staff');
     Route::post('/staff/insert',[StaffController::class,'insertStaff'])->name('admin.insertStaff');
     Route::get('/staff/profile/{id}',[StaffController::class,'staffProfile'])->name('admin.staffProfile');
+
+    Route::get('/role',[StaffController::class,'role'])->name('admin.role');
+    Route::post('/role/insert-role',[StaffController::class,'insertRole'])->name('admin.insertRole');
+    Route::post('/role/delete-role',[StaffController::class,'deleteRole'])->name('admin.deleteRole');
+    Route::post('/role/update-role',[StaffController::class,'updateRole'])->name('admin.updateRole');
 
 
 

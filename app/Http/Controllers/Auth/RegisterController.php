@@ -211,7 +211,6 @@ class RegisterController extends Controller
             foreach($request->upload as $i => $upload){
                 $path = 'storage/docs/'.$upload->getClientOriginalName();
                 $upload->storeAs('docs',$upload->getClientOriginalName(),'public');
-                // $docs[] =  $path;
                 array_push($docs,$path);
             }
         }

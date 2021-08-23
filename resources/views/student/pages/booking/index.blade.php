@@ -55,7 +55,7 @@
                                                         Time
                                                     </th>
                                                     <th scope="col">
-                                                        Student
+                                                        Teacher
                                                     </th>
                                                     <th scope="col">
                                                         Duration
@@ -118,7 +118,7 @@
                                                     <th scope="col">Subjects</th>
                                                     <th scope="col">Topic</th>
                                                     <th scope="col">Time</th>
-                                                    <th scope="col">Student</th>
+                                                    <th scope="col">Teacher</th>
                                                     <th scope="col">Duration</th>
                                                     <th scope="col">Payment</th>
                                                     <!-- <th scope="col">Review</th> -->
@@ -304,7 +304,7 @@
                                                     <th scope="col">Subjects</th>
                                                     <th scope="col">Topic</th>
                                                     <th scope="col">Time</th>
-                                                    <th scope="col">Student</th>
+                                                    <th scope="col">Teacher</th>
                                                     <th scope="col">Duration</th>
                                                     <th scope="col">Payment</th>
                                                     <!-- <th scope="col">Review</th> -->
@@ -479,7 +479,7 @@
                                                     <th scope="col">Subjects</th>
                                                     <th scope="col">Topic</th>
                                                     <th scope="col">Time</th>
-                                                    <th scope="col">Student</th>
+                                                    <th scope="col">Teacher</th>
                                                     <th scope="col">Duration</th>
                                                     <th scope="col">Payment</th>
                                                     <th scope="col">Review</th>

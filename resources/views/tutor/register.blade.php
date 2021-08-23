@@ -1080,6 +1080,9 @@
                     last_name: {
                         required: true
                     },
+                    phone: {
+                        required: true
+                    },
                     gender: {
                         required: true
                     },

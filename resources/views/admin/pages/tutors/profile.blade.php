@@ -1,5 +1,10 @@
 @extends('admin.layouts.app')
 @section('content')
+<style>
+    .w-30{
+        width:30%;
+    }
+</style>
 
 <div class="container-fluid pb-4 mt-5">
     <h1>< Tutor profile </h1>
@@ -298,8 +303,7 @@
                                     <th scope="col">Subject</th>
                                     <th scope="col">Title </th>
                                     <th scope="col">Student</th>
-                                    <th scope="col" style="position: relative;left: -2px;"> <span
-                                            style="visibility: hidden;">asd</span>reviews </th>
+                                    <th scope="col" > Reviews </th>
                                     <th scope="col"></th>
                                     <th scope="col"></th>
                                     <th scope="col"></th>
@@ -317,11 +321,11 @@
                                             <td class="pt-4">{{$course->subject_name}}</td>
                                             <td class="pt-4">{{$course->title}}</td>
                                             <td class="text-center pt-4">26</td>
-                                            <td class="pt-4"> <span class="fa fa-star checked"></span>
+                                            <td class="pt-4 text-center"> <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star checked"></span>
                                                 <span class="fa fa-star"></span>
-                                                <span class="paragraph-text1">4.0</span>
+                                                <span class="paragraph-text1 ">(4.0)</span>
                                             </td>
                                             <td class="pt-4">
                                                 <img src="{{asset('admin/assets/img/ico/delete-icon.svg')}}" alt="2" data-toggle="modal"
@@ -339,7 +343,7 @@
                                                 </label>
                                             </td>
                                             <td class="pt-3">
-                                                <a href="course.html" class="schedule-btn btn">
+                                                <a href="{{route('admin.course-profile')}}" class="schedule-btn btn">
                                                     View</a>
                                             </td>
                                         </tr>
@@ -491,7 +495,6 @@
                                     <th scope="col">Subject</th>
                                     <th scope="col">Title</th>
                                     <th scope="col"></th>
-                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -503,11 +506,9 @@
                                     <tr>
                                         <td class="pt-4">{{$count}}</td>
                                         <td class="pt-4">{{$course->subject_name}}</td>
-                                        <td class="pt-4">{{$course->title}}</td>
-                                        <td class="pt-3">
-                                        </td>
+                                        <td class="pt-4 w-30" >{{$course->title}}</td>
                                         <td class="pt-3 float-right">
-                                            <a href="approve.html" class="btn cencel-btn">
+                                            <a href="{{route('admin.course-request',[$course->id])}}" class="btn cencel-btn">
                                                 View
                                             </a>
                                             <button class="schedule-btn" data-toggle="modal"

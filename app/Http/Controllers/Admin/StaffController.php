@@ -7,12 +7,66 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use App\Models\Role;
 
 class StaffController extends Controller
 {
     public function index(){
+        $roles = Role::all();
         $users = User::whereNotIn('role', [1,2,3])->get();
-        return view('admin.pages.staff.index',compact('users'));
+        return view('admin.pages.staff.index',compact('users','roles'));
+    }
+    public function role(){
+        $roles = Role::all();
+        return view('admin.pages.role.index',compact('roles'));
+    }
+
+    public function insertRole(Request $request){
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+        ]);
+
+        $role = Role::create([
+            'name' => $request->name,
+        ]);
+
+        return response()->json([
+            'status'=>'200',
+            'message' => 'Role Added.'
+        ]);
+
+    
+    }
+
+    public function deleteRole(Request $request){
+
+
+        $role = Role::destroy([
+            'id' => $request->id,
+        ]);
+
+        return response()->json([
+            'status'=>'200',
+            'message' => 'Role Deleted.'
+        ]);
+
+    
+    }
+
+    public function updateRole(Request $request){
+        // console.log($request->name);
+        $role = Role::where('id',$request->id)->update([
+            'name' => $request->name,
+            
+        ]);
+
+        return response()->json([
+            'status'=>'200',
+            'message' => 'Role Updated.'
+        ]);
+
+    
     }
 
     public function insertStaff(Request $request){
