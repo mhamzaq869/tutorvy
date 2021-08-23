@@ -34,11 +34,11 @@
 <style>
     .card_test{
         margin-left: 300px;
-        margin-right: 300px;   
+        margin-right: 300px;
         box-shadow: 0 16px 16px -22px #777;
         border: #00000005;border-radius: 8px;
     }
-    
+
 </style>
 </head>
 
@@ -70,7 +70,7 @@
                         <div class="container">
                             <div class="input-test ml-5 mr-5 mb-0">
                                 <br />
-                                <input type="" name="question_1" class="form-control" placeholder="Question1" required>
+                                <input type="" name="question_1" class="form-control" required placeholder="Question1" required>
 
                             </div>
                             <div class="input-answer ml-5 mr-5 mb-0">

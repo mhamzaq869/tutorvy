@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin\SubjectCategory;
 use App\Models\Admin\Subject;
+use App\Models\Assessment;
+
 class SubjectController extends Controller
 {
     /**
@@ -16,7 +18,15 @@ class SubjectController extends Controller
 
     public function index(){
 
-        $subjects = Subject::paginate(10);
+        $subjects = Subject::paginate(15);
         return view('tutor.pages.subject.index',compact('subjects'));
+    }
+
+    public function destroy($id)
+    {
+        $assessmet = Assessment::where('subject_id',$id)->where('user_id',Auth::user()->id)->first();
+        $assessmet->delete();
+
+        return redirect()->back();
     }
 }

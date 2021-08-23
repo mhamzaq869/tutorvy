@@ -86,26 +86,25 @@
                         <div class="text-center heading-forth">
                             Basic
                         </div>
-                        <div class="adddivs-1">
-
+                        <div class="adddivs-1" id="basicNew">
+                            @forelse ($course->outline->where('level',1) as $i=>$basic)
                             <div class="input-serachs mt-2">
-                                <input type="search" name="basic_title[]" placeholder="Write course outline" />
+                                <input type="search" name="basic_title[]" value="{{$basic->title}}" placeholder="Write course outline" />
                             </div>
                             <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
-                            name="basic_explain[]" rows="6">Explaine</textarea>
+                            name="basic_explain[]" rows="6">{{$basic->explain}}</textarea>
+                            @empty
                             <div class="input-serachs mt-2">
-                                <input type="search" name="basic_title[]"  placeholder="Write course outline" />
+                                <input type="search" name="basic_title[1]" value="Title" placeholder="Write course outline" />
                             </div>
                             <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
-                            name="basic_explain[]" rows="6">Explaine</textarea>
+                            name="basic_explain[1]" rows="6">Explain</textarea>
+                            @endforelse
+                        </div>
+                        <div class="text-center basicMore paid-text-1 btn w-100 mt-3 buttonAdd-1">
+                           <a href="#basicNew"> + Add more </a>
                         </div>
 
-                        <div class="text-center paid-text-1 btn w-100 mt-3 buttonAdd-1">
-                            + Add more
-                        </div>
-                        <div class="adddiv-1">
-
-                        </div>
                         <div class="w-100 border-bottom">&nbsp;</div>
 
                         <div class="mt-3 row">
@@ -151,8 +150,12 @@
                         <div class="input-options mt-3">
                             <select name="basic_duration">
                                 <option disabled selected>Course duration</option>
-                                <option value="1" @if($course->basic_duration == 1) selected @endif>1 hour</option>
-                                <option value="2" @if($course->basic_duration == 2) selected @endif>2 hour</option>
+                                <option @if($course->basic_duration == 1) selected @endif value="1">1 week</option>
+                                <option @if($course->basic_duration == 2) selected @endif value="2">2 week</option>
+                                <option @if($course->basic_duration == 3) selected @endif value="3">3 week</option>
+                                <option @if($course->basic_duration == 4) selected @endif value="4">4 week</option>
+                                <option @if($course->basic_duration == 5) selected @endif value="5">5 week</option>
+                                <option @if($course->basic_duration == 6) selected @endif value="6">6 week</option>
                             </select>
                         </div>
 
@@ -160,7 +163,8 @@
                             Timing
                         </h3>
                         <div class="input-options mt-2">
-                            <select name="basic_days"  multiple role="multiselect">
+                            <select name="basic_days" id="basic_days" multiple role="multiselect">
+                                @php $basic_days = json_decode($course->basic_days) ?? 0; @endphp
                                 <option disabled selected required>Select days</option>
                                 <option value="monday">Monday</option>
                                 <option value="tuesday">Tuesday</option>
@@ -172,16 +176,22 @@
                             </select>
                         </div>
                         <div class="input-options mt-2">
-                            <select name="basic_time">
-                                <option disabled selected>Select time
-                                </option>
-                                <option>1 hour</option>
-                                <option>2 hour</option>
-                            </select>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="datetime-local" name="standard_start_time" value="{{$course->basic_start_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="datetime-local" name="standard_end_time" value="{{$course->basic_end_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
+                                </div>
+                            </div>
+                            <h3 class="mt-3 pb-2">
+                                Price
+                            </h3>
+                            <div class="input-options mt-2">
+                               <input type="number" name="basic_price" class="form-control" value="{{$course->basic_price}}" placeholder="Add course price">
+                            </div>
                         </div>
-                        <div class="text-center mt-4">
-                            <input type="submit" class="schedule-btn w-50 " value="Submit course" />
-                        </div>
+
 
                 </div>
 
@@ -190,25 +200,27 @@
                     <div class="text-center heading-forth">
                         standard
                     </div>
-                    <div class="adddivs-1">
+                    <div class="adddivs-1" id="standardNew">
+
+                        @forelse ($course->outline->where('level',2) as $standard)
                         <div class="input-serachs mt-2">
-                            <input type="search" name="standard_title[]"  placeholder="Write course outline" />
+                            <input type="search" name="standard_title[]" value="{{$standard->title}}" placeholder="Write course outline" />
                         </div>
                         <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
-                        name="standard_explain[]" rows="6">Explaine</textarea>
+                        name="standard_explain[]" rows="6">{{$standard->explain}}</textarea>
+                        @empty
                         <div class="input-serachs mt-2">
-                            <input type="search" name="standard_title[]"  placeholder="Write course outline" />
+                            <input type="search" name="standard_title[]" value="Title" placeholder="Write course outline" />
                         </div>
                         <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
-                        name="standard_explain[]" rows="6">Explaine</textarea>
+                        name="standard_explain[]" rows="6">Explain</textarea>
+                        @endforelse
                     </div>
 
-                    <div class="text-center paid-text-1 btn w-100 mt-3 buttonAdd-1">
-                        + Add more
+                    <div class="text-center standardMore paid-text-1 btn w-100 mt-3 buttonAdd-1">
+                        <a href="#standardNew"> + Add more </a>
                     </div>
-                    <div class="adddiv-1">
 
-                    </div>
                     <div class="w-100 border-bottom">&nbsp;</div>
 
                     <div class="mt-3 row">
@@ -254,8 +266,12 @@
                     <div class="input-options mt-3">
                         <select name="standard_duration">
                             <option disabled selected>Course duration</option>
-                            <option>1 hour</option>
-                            <option>2 hour</option>
+                            <option @if($course->standard_duration == 1) selected @endif value="1">1 week</option>
+                            <option @if($course->standard_duration == 2) selected @endif value="2">2 week</option>
+                            <option @if($course->standard_duration == 3) selected @endif value="3">3 week</option>
+                            <option @if($course->standard_duration == 4) selected @endif value="4">4 week</option>
+                            <option @if($course->standard_duration == 5) selected @endif value="5">5 week</option>
+                            <option @if($course->standard_duration == 6) selected @endif value="6">6 week</option>
                         </select>
                     </div>
 
@@ -263,7 +279,8 @@
                         Timing
                     </h3>
                     <div class="input-options mt-2">
-                        <select name="standard_days"  multiple role="multiselect">
+                        <select name="standard_days" id="standard_days" multiple role="multiselect">
+                            @php $standard_days = json_decode($course->standard_days) ?? 0; @endphp
                             <option disabled selected required>Select days</option>
                             <option value="monday">Monday</option>
                             <option value="tuesday">Tuesday</option>
@@ -275,15 +292,23 @@
                         </select>
                     </div>
                     <div class="input-options mt-2">
-                        <select name="standard_time">
-                            <option disabled selected>Select time
-                            </option>
-                            <option>1 hour</option>
-                            <option>2 hour</option>
-                        </select>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="datetime-local" name="standard_start_time" value="{{$course->standard_start_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="datetime-local" name="standard_end_time" value="{{$course->standard_end_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
+                            </div>
+                        </div>
+                        <h3 class="mt-3 pb-2">
+                            Price
+                        </h3>
+                        <div class="input-options mt-2">
+                           <input type="number" name="standard_price" class="form-control" value="{{$course->standard_price}}" placeholder="Add course price">
+                        </div>
                     </div>
                     <div class="text-center mt-4">
-                        <input type="submit" class="schedule-btn w-50 " value="Submit course" />
+                        <input type="submit" class="schedule-btn w-50 " value="Update course" />
                     </div>
 
                 </div>
@@ -292,25 +317,25 @@
                     <div class="text-center heading-forth">
                         advance
                     </div>
-                    <div class="adddivs-1">
+                    <div class="adddivs-1" id="advNew">
+                        @forelse ($course->outline->where('level',3) as $advance)
                         <div class="input-serachs mt-2">
-                            <input type="search" name="advance_title[]" placeholder="Write course outline" />
+                            <input type="search" name="advance_title[]" value="{{$advance->title}}" placeholder="Write course outline" />
                         </div>
                         <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
-                        name="advance_explain[]" rows="6">Explaine</textarea>
+                        name="advance_explain[]" rows="6">{{$advance->explain}}</textarea>
+                        @empty
                         <div class="input-serachs mt-2">
-                            <input type="search" name="advance_title[]"  placeholder="Write course outline" />
+                            <input type="search" name="advance_title[]" value="Title" placeholder="Write course outline" />
                         </div>
                         <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
-                        name="advance_explain[]" rows="6">Explaine</textarea>
+                        name="advance_explain[]" rows="6">Explain</textarea>
+                        @endforelse
                     </div>
-
-                    <div class="text-center paid-text-1 btn w-100 mt-3 buttonAdd-1">
-                        + Add more
+                    <div class="text-center paid-text-1 advMore btn w-100 mt-3 buttonAdd-1">
+                        <a href="#advNew"> + Add more </a>
                     </div>
-                    <div class="adddiv-1">
-
-                    </div>
+                    <div class="adddiv-1"></div>
                     <div class="w-100 border-bottom">&nbsp;</div>
 
                     <div class="mt-3 row">
@@ -360,16 +385,22 @@
                     <div class="input-options mt-3">
                         <select name="advance_duration">
                             <option disabled selected>Course duration</option>
-                            <option>1 hour</option>
-                            <option>2 hour</option>
+                            <option @if($course->advance_duration == 1) selected @endif value="1">1 week</option>
+                            <option @if($course->advance_duration == 2) selected @endif value="2">2 week</option>
+                            <option @if($course->advance_duration == 3) selected @endif value="3">3 week</option>
+                            <option @if($course->advance_duration == 4) selected @endif value="4">4 week</option>
+                            <option @if($course->advance_duration == 5) selected @endif value="5">5 week</option>
+                            <option @if($course->advance_duration == 6) selected @endif value="6">6 week</option>
                         </select>
                     </div>
+
 
                     <h3 class="mt-3 pb-2">
                         Timing
                     </h3>
                     <div class="input-options mt-2">
-                        <select name="advance_days" multiple role="multiselect">
+                        <select name="advance_days" id="adv_days" multiple role="multiselect">
+                            @php $advance_days = json_decode($course->advance_days) ?? 0 ; @endphp
                             <option disabled selected required>Select days</option>
                             <option value="monday">Monday</option>
                             <option value="tuesday">Tuesday</option>
@@ -380,24 +411,84 @@
                             <option value="Sunday">Sunday</option>
                         </select>
                     </div>
+
                     <div class="input-options mt-2">
-                        <select name="advance_time">
-                            <option disabled selected>Select time
-                            </option>
-                            <option>1 hour</option>
-                            <option>2 hour</option>
-                        </select>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="datetime-local" name="advance_start_time" value="{{$course->advance_start_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="datetime-local" name="advance_end_time" value="{{$course->advance_end_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
+                            </div>
+                        </div>
+                        <h3 class="mt-3 pb-2">
+                            Price
+                        </h3>
+                        <div class="input-options mt-2">
+                             <input type="number" name="advance_price" class="form-control" value="{{$course->advance_price}}" placeholder="Add course price">
+                        </div>
                     </div>
-
-                    <div class="text-center mt-4">
-                        <input type="submit" class="schedule-btn w-50 " value="Submit course" />
-                    </div>
-
                 </div>
             </div>
         </div>
-    </form>
+
+   </form>
 </div>
 
 <!-- end section -->
+@endsection
+
+@section('scripts')
+<script>
+    $(function() {
+        $("#basic_days").multiselect('select',@json($basic_days));
+    });
+    $(function() {
+        $("#standard_days").multiselect('select',@json($standard_days));
+    });
+    $(function() {
+        $("#adv_days").multiselect('select',@json($advance_days));
+    });
+
+
+    var counter = {{$course->outline->count() - 2}};
+    var counter2 = 1;
+    var counter3 = 1;
+    $(".basicMore").click(function() {
+        counter++;
+        var html = `
+                    <div class="input-serachs mt-2">
+                        <input type="search" name="basic_title[]" value="title" placeholder="Write course outline" />
+                    </div>
+                    <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
+                    name="basic_explain[]" rows="6">Explain</textarea>`
+
+        $('#basicNew').append(html);
+    });
+    $(".standardMore").click(function() {
+        counter2++;
+        var html = ` <div class="adddivs-1" id="rec_` + counter2 + `">
+                    <div class="input-serachs mt-2">
+                        <input type="search" name="standard_title[` + counter2 + `]"  placeholder="Write course outline" />
+                    </div>
+                    <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
+                    name="standard_explain[` + counter2 + `]" rows="6">Explaine</textarea>
+                </div>`
+
+        $('#standardNew').append(html);
+    });
+    $(".advMore").click(function() {
+        counter3++;
+        var html = ` <div class="adddivs-1" id="rec_` + counter3 + `">
+                    <div class="input-serachs mt-2">
+                        <input type="search" name="advance_title[` + counter3 + `]"  placeholder="Write course outline" />
+                    </div>
+                    <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
+                    name="advance_explain[` + counter3 + `]" rows="6">Explaine</textarea>
+                </div>`
+
+        $('#advNew').append(html);
+    });
+
+</script>
 @endsection

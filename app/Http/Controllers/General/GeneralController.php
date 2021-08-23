@@ -18,7 +18,7 @@ class GeneralController extends Controller
         //     "name" => ""
         // ]);
 
-        $result = Institute::where('country_code',$request->name)->get();
+        $result = Institute::select('name')->get();
         return response($result,200);
         // ini_set('max_execution_time', 780);
         // $result = Http::get('http://universities.hipolabs.com/search',[

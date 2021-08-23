@@ -15,11 +15,11 @@ class CreateProfessionalsTable extends Migration
     {
         Schema::create('professionals', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->string('designation');
-            $table->string('organization');
-            $table->string('start_date');
-            $table->string('end_date');
+            $table->integer('user_id')->nullable();
+            $table->string('designation')->nullable();
+            $table->string('organization')->nullable();
+            $table->string('start_date')->nullable();
+            $table->string('end_date')->nullable();
             $table->timestamps();
         });
     }

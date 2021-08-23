@@ -669,8 +669,10 @@
     $.fn.multiselect.Constructor = Multiselect;
 
     // Automatically init selects by their data-role.
-    $(function() {
-        $("select[role='multiselect']").multiselect();
-    });
+    // $(function() {
+    //     $("select[role='multiselect']").multiselect();
+    // });
+
+
 
 }(window.jQuery);

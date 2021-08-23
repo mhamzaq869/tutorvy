@@ -45,7 +45,12 @@ class Course extends Model
     {
         return $this->hasMany(CourseOutline::class);
     }
-
+    public function review(){
+        return $this->morphMany(Review::class,'reviewable');
+    }
+    /**
+     * Accessor ot Mutator
+     */
     public function getTutorNameAttribute()
     {
         $user = User::where('id',$this->user_id)->first();

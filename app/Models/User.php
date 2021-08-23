@@ -12,6 +12,7 @@ use App\Models\General\Education;
 use App\Models\General\Professional;
 use App\Models\General\Teach;
 use App\Models\General\Message;
+use App\Models\Review;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -35,8 +36,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'city',
         'country',
         'country_short',
-        'security',
-        'cnic',
+        'type',
+        'cnic_security',
+        'gender',
         'language',
         'lang_short',
         'bio',
@@ -108,6 +110,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Course::class);
     }
+    public function review(){
+        return $this->morphMany(Review::class,'reviewable');
+    }
 
      /**
      * Accessor ot Mutator
@@ -126,7 +131,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
     public function getYearAttribute()
     {
-        return $this->attributes['year'] = date('y',strtotime($this->dob));
+        return $this->attributes['year'] = date('Y',strtotime($this->dob));
     }
 
 
@@ -166,7 +171,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function messages_between($user)
     {
-        
+
         return Message::where(['sender_id' => $this->id, 'recipient_id' => $user->id])
             ->orWhere(function ($q) use ($user) {
                 $q->where('sender_id', $user->id);

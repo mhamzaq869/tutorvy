@@ -126,7 +126,7 @@ class LoginController extends Controller
             Auth::login($user);
 
         }catch(Exception $e){
-            
+
             dd($e->getMessage());
         }
 

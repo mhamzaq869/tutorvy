@@ -1496,6 +1496,48 @@ let count_field_2 = 0;
 // });
 
 
+$('.moreExperience').click(function() {
+    // alert("Tech");
+    count_field_2 = document.querySelectorAll(".element").length;
+    console.log(count_field_2)
+    var html = `<div id="record2_` + count_field_2 + `">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="element">
+                <div class="row">
+                    <div class="input-text col-md-6">
+                        <input name="designation[` + count_field_2 + `]" class="form-control" placeholder="Designation: Senior Developer at Google" value="">
+                    </div>
+                    <div class="input-text col-md-6">
+                        <input name="organization[` + count_field_2 + `]" class="form-control" placeholder="Organization"
+                        value="">
+                    </div>
+
+                </div>
+                <div class="row my-3">
+                    <div class="input-text col-md-6">
+                        <input type="date" class="form-control" name="degree_start[` + count_field_2 + `]" placeholder="Starting date"
+                        value="">
+                    </div>
+                    <div class="input-text col-md-6">
+                        <input type="date" class="form-control" name="degree_end[` + count_field_2 + `]" placeholder="Ending Date"
+                        value="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <a href="#" class="removeFields" onclick="removeFields2(` + count_field_2 + `)"> Remove Fields</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div>`;
+    $('.results').append(html);
+    $('.dropify').dropify();
+    // $(".form-select").select2();
+});
 
 function removeFields(id) {
     $('#record_' + id + '').empty();

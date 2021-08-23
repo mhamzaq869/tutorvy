@@ -37,8 +37,9 @@
                             <div class="input-options mt-2">
                                 <select name="subject">
                                     <option disabled selected>Subject</option>
-                                    <option value="1">Chemistry</option>
-                                    <option value="2">Physice</option>
+                                    @foreach (Auth::user()->teach as $teach)
+                                    <option value="{{$teach->subject_id}}" @if($teach->subject_id == $teach->subject->id) selected @endif>{{$teach->subject->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -90,19 +91,14 @@
                         <div class="text-center heading-forth">
                             Basic
                         </div>
-                        <div class="adddivs-1">
+                        <div class="adddivs-1" id="basicNew">
                             <div class="input-serachs mt-2">
                                 <input type="search" name="basic_title[]" placeholder="Write course outline" />
                             </div>
                             <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
                             name="basic_explain[]" rows="6">Explaine</textarea>
-                            <div class="input-serachs mt-2">
-                                <input type="search" name="basic_title[]"  placeholder="Write course outline" />
-                            </div>
-                            <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
-                            name="basic_explain[]" rows="6">Explaine</textarea>
                         </div>
-                        <div id="basicNew"></div>
+                        {{-- <div id="basicNew"></div> --}}
 
                         <div class="text-center basicMore paid-text-1 btn w-100 mt-3 buttonAdd-1">
                            <a href="#basicNew"> + Add more </a>
@@ -151,14 +147,13 @@
                         </div>
                         <div class="input-options mt-3">
                             <select name="basic_duration" >
-                                <option disabled selected required>Select days</option>
-                                <option value="monday">Monday</option>
-                                <option value="tuesday">Tuesday</option>
-                                <option value="wednesday">Wednesday</option>
-                                <option value="thursday">Thursday</option>
-                                <option value="Friday">Friday</option>
-                                <option value="Saturday">Saturday</option>
-                                <option value="Sunday">Sunday</option>
+                                <option disabled selected required>Course Duration</option>
+                                <option value="1">1 week</option>
+                                <option value="2">2 week</option>
+                                <option value="3">3 week</option>
+                                <option value="4">4 week</option>
+                                <option value="5">5 week</option>
+                                <option value="6">6 week</option>
                             </select>
                         </div>
 
@@ -166,7 +161,7 @@
                             Timing
                         </h3>
                         <div class="input-options mt-2">
-                            <select name="basic_days"  multiple role="multiselect">
+                            <select name="basic_days[]" id="basic_days"  multiple role="multiselect">
                                 <option disabled selected required>Select days</option>
                                 <option value="monday">Monday</option>
                                 <option value="tuesday">Tuesday</option>
@@ -178,18 +173,20 @@
                             </select>
                         </div>
                         <div class="input-options mt-2">
-                            <select name="basic_time">
-                                <option disabled selected>Select time
-                                </option>
-                                <option>1 hour</option>
-                                <option>2 hour</option>
-                            </select>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="datetime-local" name="basic_start_time" class="form-control texteara-s mt-2 pt-2 mb-2">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="datetime-local" name="basic_end_time" class="form-control texteara-s mt-2 pt-2 mb-2">
+                                </div>
+                            </div>
                         </div>
                         <h3 class="mt-3 pb-2">
                         Price
                     </h3>
                     <div class="input-options mt-2">
-                       <input type="text" class="form-control" placeholder="$23">
+                       <input type="number" name="basic_price" class="form-control" placeholder="Add course price">
                     </div>
                         <!-- <div class="text-center mt-4">
                             <input type="submit" class="schedule-btn w-50 " value="Submit course" />
@@ -202,19 +199,13 @@
                     <div class="text-center heading-forth">
                         Standard
                     </div>
-                    <div class="adddivs-1">
+                    <div class="adddivs-1" id="standardNew">
                         <div class="input-serachs mt-2">
                             <input type="search" name="standard_title[]" placeholder="Write course outline" />
                         </div>
                         <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
                         name="standard_explain[]" rows="6">Explaine</textarea>
-                        <div class="input-serachs mt-2">
-                            <input type="search" name="standard_title[]"  placeholder="Write course outline" />
-                        </div>
-                        <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
-                        name="standard_explain[]" rows="6">Explaine</textarea>
                     </div>
-                    <div id="standardNew"></div>
 
                     <div class="text-center standardMore paid-text-1 btn w-100 mt-3 buttonAdd-1">
                         <a href="#standardNew"> + Add more </a>
@@ -264,8 +255,12 @@
                     <div class="input-options mt-3">
                         <select name="standard_duration">
                             <option disabled selected>Course duration</option>
-                            <option>1 hour</option>
-                            <option>2 hour</option>
+                            <option value="1">1 week</option>
+                            <option value="2">2 week</option>
+                            <option value="3">3 week</option>
+                            <option value="4">4 week</option>
+                            <option value="5">5 week</option>
+                            <option value="6">6 week</option>
                         </select>
                     </div>
 
@@ -273,7 +268,7 @@
                         Timing
                     </h3>
                     <div class="input-options mt-2">
-                        <select name="standard_days" multiple role="multiselect">
+                        <select name="standard_days[]" id="standard_days" multiple role="multiselect">
                             <option disabled selected required>Select days</option>
                             <option value="monday">Monday</option>
                             <option value="tuesday">Tuesday</option>
@@ -285,22 +280,21 @@
                         </select>
                     </div>
                     <div class="input-options mt-2">
-                        <select name="standard_time">
-                            <option disabled selected>Select time
-                            </option>
-                            <option>1 hour</option>
-                            <option>2 hour</option>
-                        </select>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="datetime-local" name="standard_start_time" class="form-control texteara-s mt-2 pt-2 mb-2">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="datetime-local" name="standard_end_time" class="form-control texteara-s mt-2 pt-2 mb-2">
+                            </div>
+                        </div>
                     </div>
                     <h3 class="mt-3 pb-2">
                         Price
                     </h3>
                     <div class="input-options mt-2">
-                       <input type="text" class="form-control" placeholder="$23">
+                       <input type="number" name="standard_price" class="form-control" placeholder="Add course price">
                     </div>
-                    <!-- <div class="text-center mt-4">
-                        <input type="submit" class="schedule-btn w-50 " value="Submit course" />
-                    </div> -->
 
                 </div>
                 <div class="col-md-4 border-right mb-1">
@@ -308,20 +302,14 @@
                     <div class="text-center heading-forth">
                         Advance
                     </div>
-                    <div class="adddivs-1">
+                    <div class="adddivs-1" id="advNew">
                         <div class="input-serachs mt-2">
                             <input type="search" name="advance_title[]" placeholder="Write course outline" />
                         </div>
                         <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
                         name="advance_explain[]" rows="6">Explaine</textarea>
-                        <div class="input-serachs mt-2">
-                            <input type="search" name="advance_title[]"  placeholder="Write course outline" />
-                        </div>
-                        <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
-                        name="advance_explain[]" rows="6">Explaine</textarea>
                     </div>
 
-                    <div id="advNew"></div>
                     <div class="text-center paid-text-1 advMore btn w-100 mt-3 buttonAdd-1">
                         <a href="#advNew"> + Add more </a>
                     </div>
@@ -370,8 +358,12 @@
                     <div class="input-options mt-3">
                         <select name="advance_duration">
                             <option disabled selected>Course duration</option>
-                            <option>1 hour</option>
-                            <option>2 hour</option>
+                            <option value="1">1 week</option>
+                            <option value="2">2 week</option>
+                            <option value="3">3 week</option>
+                            <option value="4">4 week</option>
+                            <option value="5">5 week</option>
+                            <option value="6">6 week</option>
                         </select>
                     </div>
 
@@ -379,7 +371,7 @@
                         Timing
                     </h3>
                     <div class="input-options mt-2">
-                        <select name="advance_days" multiple role="multiselect">
+                        <select name="advance_days[]" id="advance_days" multiple role="multiselect">
                             <option disabled selected required>Select days</option>
                             <option value="monday">Monday</option>
                             <option value="tuesday">Tuesday</option>
@@ -391,23 +383,21 @@
                         </select>
                     </div>
                     <div class="input-options mt-2">
-                        <select name="advance_time">
-                            <option disabled selected>Select time
-                            </option>
-                            <option>1 hour</option>
-                            <option>2 hour</option>
-                        </select>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="datetime-local" name="advance_start_time" class="form-control texteara-s mt-2 pt-2 mb-2">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="datetime-local" name="advance_end_time" class="form-control texteara-s mt-2 pt-2 mb-2">
+                            </div>
+                        </div>
                     </div>
                     <h3 class="mt-3 pb-2">
                         Price
                     </h3>
                     <div class="input-options mt-2">
-                       <input type="text" class="form-control" placeholder="$23">
+                       <input type="number" name="advance_price" class="form-control" placeholder="Add course price">
                     </div>
-                    <!-- <div class="text-center mt-4">
-                        <input type="submit" class="schedule-btn w-50 " value="Submit course" />
-                    </div> -->
-
                 </div>
 
                 <div class="col-md-4"></div>
@@ -422,11 +412,13 @@
     </form>
 </div>
 
-<script>
-$('#adv_days').multiselect({
-    columns: 1,
-    placeholder: 'Select Languages'
-});
-</script>
 <!-- end section -->
+@endsection
+@section('scripts')
+<script src="{{ asset('assets/js/course.js')}}"></script>
+<script>
+    $(function() {
+        $("#basic_days,#standard_days,#advance_days").multiselect();
+    });
+</script>
 @endsection
