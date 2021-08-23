@@ -49,7 +49,7 @@
             <a href="">
                 <a href="./report.html">
                     <h1 class="heading-first mt-5">
-                        < Course </h1>
+                         Course </h1>
                 </a>
             </a>
         </div>
@@ -58,9 +58,9 @@
                 <div class="col-md-5 bg-white pb-5">
                     <div class=" mt-4">
                         <h3 class="">
-                            {{$course->title}}
+                            Title
                         </h3>
-                        <p class="paragraph-text-1">{{$course->subject_name}} course</p>
+                        <p class="paragraph-text-1">Subject Name</p>
                         <iframe width="100%" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY"
                             style="border-radius: 8px;">
                         </iframe>
@@ -91,7 +91,7 @@
                         </div>
                         <h3 class="mt-4">About course</h3>
                         <p class="paragraph-text-2 mt-2 pb-4">
-                            {{$course->about}}
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis rerum facilis odio nostrum aspernatur labore voluptate. Officia necessitatibus, doloremque id qui, aperiam corrupti cum laborum ratione, error velit esse officiis numquam facere!
                         <div class="row">
                             <div class="col-md-12">
                                 <div class=" float-right">
@@ -127,31 +127,28 @@
                                                 <div id="main">
                                                     <!-- first -->
                                                     <div class="container-fluid m-0 p-0 border-bottom pb-3">
-                                                    @foreach($course->outline as $outline)
-                                                        @if($outline->level == 1)   
+                                                     
                                                             <div class="accordion active" id="faq">
                                                                     <div class="card m-0 p-0">
                                                                         
-                                                                            <div class="card-header" id="outlinehead{{$outline->id}}">
+                                                                            <div class="card-header" id="outlinehead">
                                                                                 <a href="#" 
                                                                                     class=" bg-color btn-header-link collapsed"
-                                                                                    data-toggle="collapse" data-target="#outline{{$outline->id}}"
-                                                                                    aria-expanded="true" aria-controls="outline{{$outline->id}}">
+                                                                                    data-toggle="collapse" data-target="#outline"
+                                                                                    aria-expanded="true" aria-controls="outline">
                                                                                     <img class="mr-2"
                                                                                         src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                                    {{$outline->title}}</a>
+                                                                                  titile</a>
                                                                             </div>
-                                                                            <div id="outline{{$outline->id}}" class="collapse show border-radius"
-                                                                                aria-labelledby="{{$outline->id}}" data-parent="#outline{{$outline->id}}">
+                                                                            <div id="outline" class="collapse show border-radius"
+                                                                                aria-labelledby="" data-parent="#outline">
                                                                                 <div class="card-body">
-                                                                                    {{$outline->explain}}
+                                                                                    explain
                                                                                 </div>
                                                                             </div>
                                                                         
                                                                     </div>
                                                                 </div>
-                                                            @endif
-                                                        @endforeach
                                                     </div>
                                                 </div>
                                             </div>

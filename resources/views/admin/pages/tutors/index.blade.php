@@ -303,7 +303,7 @@
                                             </label>
                                         </td>
                                         <td class="pt-3 text-right">
-                                            <a href="{{ route('admin.tutorProfile',[$tutor->id]) }}" class="cencel-btn btn">
+                                            <a href="{{ route('admin.tutorProfile',[$tutor->id]) }}" class="schedule-btn btn">
                                                 View
                                             </a>
                                         </td>

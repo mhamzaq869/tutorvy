@@ -1,15 +1,17 @@
-$('#add_role_form').on('submit', function(e) {
+$('#add_subject_form').on('submit', function(e) {
     // alert('asd');
     e.preventDefault();
 
-    let name = $("input[name=role_name]").val();
+    let name = $("#subject_name").val();
+    let sub_cat = $("#subject_category").val();
     // let _token   = $('meta[name="csrf_token"]').attr('content');
 
     $.ajax({
-        url: "/admin/role/insert-role",
+        url: "/admin/subject/insert-subject",
         type: "POST",
         data: {
-            name: name
+            name: name,
+            category_id: sub_cat,
         },
         success: function(response) {
             // console.log(response);
@@ -17,12 +19,11 @@ $('#add_role_form').on('submit', function(e) {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
-                    title: 'Role Added Successfully!',
+                    title: 'Subject Added Successfully!',
                     showConfirmButton: false,
                     timer: 2500
                 })
-                $('.role_modal').modal('hide')
-                $("#add_role_form")[0].reset();
+                $('#new_subject_model').modal('hide');
                 location.reload();
             }
         },
@@ -59,13 +60,14 @@ function delRole(id) {
     })
 }
 
-function editRole(id) {
+function editSubject(id) {
     // alert("In");
     let tre = $(".alex-name_" + id + " ").text();
     let name = tre;
-    $("#edit_name").val(tre);
+    $("#edit_subject_name").val(tre);
     $("#edit_id").val(id);
-    $('#edit-role').modal('show');
+    $("#edit_subject_cat_id").val(id);
+    $('#edit-subject-model').modal('show');
 }
 $("#edit_role_form").submit(function(e) {
 
