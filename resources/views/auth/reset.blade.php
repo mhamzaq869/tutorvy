@@ -90,7 +90,7 @@
 
                         <div class="social-Icon ml-4"
                             style="margin-top: 250px;font-size: 14px;color: #1173FF;font-family: Poppins;">
-                            <a href="./login.html"> Back to signin</a>
+                            <a href="{{route('login')}}"> Back to signin</a>
                         </div>
                     </div>
                 </div>

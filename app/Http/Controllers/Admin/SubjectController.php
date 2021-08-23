@@ -46,4 +46,19 @@ class SubjectController extends Controller
         }
         return "added Subjects" ;
     }
+
+    public function insertSubject(Request $request){
+        $subject = Subject::create([
+            'name' => $request->name,
+            'category_id' => $request->category_id,
+        ]);
+
+        return response()->json([
+            'status'=>'200',
+            'message' => 'Subject Added.'
+        ]);
+
+    
+    }
+
 }
