@@ -123,7 +123,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach($new_requests as $request)
-                                        
+                                        @if($request)
                                         <tr>
                                             <td class="pt-4">
                                                 <!-- -->
@@ -152,7 +152,7 @@
                                                     data-target="#exampleModalCenter">Assign</button>
                                             </td>
                                         </tr>
-                                       
+                                       @endif
                                     @endforeach
                                     
                                 </tbody>

@@ -34,10 +34,11 @@ class TutorController extends Controller
         foreach($tutor_assessments as $assessment){
          
             $tutor = User::with(['education','professional','userdetail','teach'])->where('id',$assessment->user_id)->where('role',2)->first();
-
-            $assessment->tutor = $tutor;
-            array_push($new_requests,$assessment);
-        
+            if($tutor){
+                $assessment->tutor = $tutor;
+                array_push($new_requests,$assessment);
+            }
+            
         }
        
         return view('admin.pages.tutors.index',compact('new_requests','approved_tutors','staff_members'));

@@ -106,9 +106,9 @@
                             <td class="pt-4">
                                 <span>{{ $appr_sub->sub_name }}</span>
                             </td>
-                            <td class="pt-4">{{ $tutor->userdetail->std_level }}</td>
-                            <td class="pt-4">{{$tutor->userdetail->availability != NULL ? $tutor->userdetail->availability : '---'}}</td>
-                            <td class="pt-4">{{$tutor->userdetail->hourly_rate}}$</td>
+                            <td class="pt-4">{{ ($tutor->userdetail != null ? $tutor->userdetail->std_level : '---' )  }}</td>
+                            <td class="pt-4">{{ ($tutor->userdetail != null ? $tutor->userdetail->availability != NULL ? $tutor->userdetail->availability : '---' : '---')}}</td>
+                            <td class="pt-4">{{ ($tutor->userdetail != null ? $tutor->userdetail->hourly_rate : '---') }}$</td>
                             <td class="pt-4">15</td>
                             <td class="pt-4">{{$appr_sub->verified_by_name}}</td>
                             <td class="pt-4 d-flex">
@@ -232,9 +232,9 @@
                             <td class="pt-4">
                                 <span>{{ $pend_reqs->sub_name }}</span>
                             </td>
-                            <td class="pt-4">{{ $tutor->userdetail->std_level }}</td>
-                            <td class="pt-4">{{$tutor->userdetail->availability != NULL ? $tutor->userdetail->availability : '---'}}</td>
-                            <td class="pt-4">{{$tutor->userdetail->hourly_rate}}$</td>
+                            <td class="pt-4">{{ ($tutor->userdetail != null ? $tutor->userdetail->std_level : '---' )  }}</td>
+                            <td class="pt-4">{{ ($tutor->userdetail != null ? $tutor->userdetail->availability != NULL ? $tutor->userdetail->availability : '---' : '---')}}</td>
+                            <td class="pt-4">{{ ($tutor->userdetail != null ? $tutor->userdetail->hourly_rate : '---') }}$</td>
                             <td class="pt-4">15</td>
                             <td class="pt-4">Harram</td>
                             <td class="pt-3 d-flex">
