@@ -111,10 +111,7 @@
                                 </div>
                             <div class="row mt-3">
                                 <div class="col-12" >
-                                    <!-- <input type="submit"
-                                        class="btn btn-registration btn-lg cencel-btn nextBtn pull-right ml-5"
-                                        value=" Save for Later"> -->
-
+                                 
                                     <button id="step-1-next" type="button"
                                         class="btn-general  nextBtn pull-right  mb-3">
                                         &nbsp; Continue &nbsp;
