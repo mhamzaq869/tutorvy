@@ -51,7 +51,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
-    protected $appends = ['address','status_text','day','month','year','subjects','std_level'];
+    protected $appends = ['address','status_text','day','month','year','subjects','std_level','requests'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -230,7 +230,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
             if($level == 1){
                 return 'Basic';
-            }elseif($level == 1){
+            }elseif($level == 2){
                 return 'Intermediate';
             }else{
                 return 'Expert';
@@ -238,5 +238,11 @@ class User extends Authenticatable implements MustVerifyEmail
         }else{
             return '---';
         }
+    }
+
+    public function getRequestsAttribute(){
+
+        $tutor_assessments = Assessment::where('user_id',$this->id)->where('status',0)->get();
+        return $tutor_assessments;
     }
 }

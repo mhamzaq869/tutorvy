@@ -123,11 +123,10 @@
                                 </thead>
                                 <tbody>
                                     @foreach($new_requests as $request)
-                                        @if($request)
                                         <tr>
                                             <td class="pt-4">
                                                 <!-- -->
-                                                {{ $request->tutor->first_name }} {{ $request->tutor->last_name }}
+                                                {{ $request->first_name }} {{ $request->last_name }}
                                                 <!-- <span data-toggle="tooltip" title="Harram Laraib Ali">Har***</span> -->
                                             </td>
                                             <td class="pt-4">
@@ -135,15 +134,25 @@
                                             </td>
                                             <td class="pt-4">
                                                 <span data-toggle="tooltip"
-                                                    title="{{$request->tutor->email}}">{{Str::limit($request->tutor->email, 3, $end='***')}}</span>
+                                                    title="{{$request->email}}">{{Str::limit($request->email, 3, $end='***')}}</span>
                                             </td>
-                                            <td class="pt-4">{{$request->sub_name}}</td>
-                                            <td class="pt-4">{{$request->tutor->address}}</td>
-                                            <td class="pt-4">{{$request->tutor->std_level}}</td>
-                                            <td class="pt-4">{{$request->tutor->availability != NULL ? $request->tutor->availability : '---'}}</td>
-                                            <td class="pt-4">{{$request->tutor->hourly_rate}}</td>
+                                            <td class="pt-4">{{$request->subject_name}}</td>
+                                            <td class="pt-4">{{$request->city != NULL ? $request->city.', ' : '---'}}{{$request->country != NULL ? $request->country : '---'}}</td>
+                                           
+                                            @if($request->student_level == 1)
+                                            <td class="pt-4">Basic</td>
+                                            @elseif($request->student_level == 2)
+                                            <td class="pt-4">Intermediate</td>
+                                            @elseif($request->student_level == 3)
+                                            <td class="pt-4">Expert</td>
+                                            @else
+                                            <td class="pt-4">---</td>
+                                            @endif
+                                            
+                                            <td class="pt-4">---</td>
+                                            <td class="pt-4">{{$request->hourly_rate}}</td>
                                             <td class="pt-3 text-right">
-                                                <a href="{{ route('admin.tutorRequest',[$request->tutor->id,$request->id]) }}" class="cencel-btn btn">
+                                                <a href="{{ route('admin.tutorRequest',[$request->id,$request->assessment_id !=null ? $request->assessment_id : '']) }}" class="cencel-btn btn">
                                                     View
                                                 </a>
                                             </td>
@@ -152,7 +161,6 @@
                                                     data-target="#exampleModalCenter">Assign</button>
                                             </td>
                                         </tr>
-                                       @endif
                                     @endforeach
                                     
                                 </tbody>

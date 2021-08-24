@@ -23,8 +23,15 @@
                 <div class="pb-5 mt-4">
                     <button class="cencel-btn" data-toggle="modal" data-target="#tutorRejectModal"
                         style="width: 110px;">Reject</button>
+                    @if($tutor_assessment != null)
                     <button class="schedule-btn" 
-                        style="width: 110px;" onclick="verifyTutor(`{{$tutor->id}}`,2,`{{$tutor_assessment->status}}`)">Accept</button>
+                        style="width: 110px;" onclick="verifyTutor(`{{$tutor->id}}`,2,`{{$tutor_assessment->status}}`)">Accept
+                    </button>
+                    @else
+                    <button class="schedule-btn" 
+                        style="width: 110px;" onclick="verifyTutor(`{{$tutor->id}}`,2)">Accept
+                    </button>
+                    @endif
                 </div>
 
                 @endif
@@ -44,9 +51,13 @@
                             </h3>
 
                             <button type="button" class="cencel-btn w-25" data-dismiss="modal">Cancel</button>
-                            <a href="{{ route('admin.tutotAssessment',[$tutor_assessment->id]) }}">
-                                <button class="schedule-btn w-25">View</button>
-                            </a>
+                             @if($tutor_assessment != null)
+
+                                <a href="{{ route('admin.tutotAssessment',[$tutor_assessment->id]) }}">
+                                    <button class="schedule-btn w-25">View</button>
+                                </a>
+
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -71,7 +82,11 @@
                             <textarea class="form-control" rows="5" placeholder="Write reason" id="t_reject_reason"></textarea>
                             <div class="mt-4 d-flex" style="position: absolute;right: 30px;">
                                 <button class="cencel-btn w-150 mr-4" data-dismiss="modal">Cencel</button>
+                                @if($tutor_assessment != null)
                                 <button class="schedule-btn w-150" onclick="verifyTutor(`{{$tutor->id}}`,3,`{{$tutor_assessment->status}}`)">Send</button>
+                                @else
+                                <button class="schedule-btn w-150" onclick="verifyTutor(`{{$tutor->id}}`,3)">Send</button>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -173,6 +188,7 @@
                             <th scope="row">
                                 <p class="heading-fifth">Subject</p>
                             </th>
+                            @if($tutor_assessment != null)
                             <td class="d-flex">
                                 <p class="paragraph-text">
                                     {{$tutor_assessment->sub_name}}
@@ -186,6 +202,13 @@
                                     View
                                 </a>
                                 @endif
+                            @else
+                            <td class="d-flex">
+                                <p class="paragraph-text">
+                                    No Assessment Provided.
+                                </p>
+                            </td>
+                            @endif
                                 
                             </td>
                         </tr>

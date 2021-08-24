@@ -35,8 +35,19 @@ function verifyAssessment(id,status){
 
 }
 
-function verifyTutor(id,status,assess_status){
+function verifyTutor(id,status,assess_status = null){
     let reason = null;
+
+    if(assess_status == null && status == 2){
+      Swal.fire({
+          position: 'top-end',
+          icon: 'warning',
+          title: 'No Assessment Provided.',
+          showConfirmButton: false,
+          timer: 2500
+      }) 
+      return false;
+    }
 
     if(status == 2 && assess_status == 0){
       $('#tutorAcceptModal').modal('show')

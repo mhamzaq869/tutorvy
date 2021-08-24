@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Course;
 use App\Models\Assessment;
 use App\Models\General\Teach;
+use DB;
 
 class TutorController extends Controller
 {
@@ -26,18 +27,22 @@ class TutorController extends Controller
 
         $approved_tutors = User::with(['education','professional','teach'])->where('role',2)->where('status',2)->get();
         
-        $new_requests = array();
+        // $new_requests = array();
 
-        $tutor_assessments = Assessment::where('status',0)->get();
-            
-        foreach($tutor_assessments as $assessment){
-            $tutor = User::with(['education','professional','teach'])->where('id',$assessment->user_id)->where('role',2)->first();
-            if($tutor){
-                $assessment->tutor = $tutor;
-                array_push($new_requests,$assessment);
-            }
-        }
-    //    return $new_requests;
+        $tutor_assessments = Assessment::get();
+        $new_requests = User::with(['education','professional','teach'])->where('role',2)->where('status',1)->get();
+
+      
+        $new_requests = DB::table('users')
+            ->select('users.*','assessments.id as assessment_id','subjects.name as subject_name')
+            ->leftJoin('assessments', 'users.id', '=', 'assessments.user_id')
+            ->leftJoin('subjects', 'subjects.id', '=', 'assessments.subject_id')
+            ->where('users.role',2)
+            ->where('users.status',1)
+            ->orwhere('users.status',2)
+            ->where('assessments.status',0)
+            ->get();
+
         return view('admin.pages.tutors.index',compact('new_requests','approved_tutors','staff_members'));
     }
 
@@ -57,11 +62,11 @@ class TutorController extends Controller
         return view('admin.pages.tutors.tutor_subjects',compact('tutor','pending_subjects'));
     }
 
-    public function tutorRequest($id,$assess_id){
+    public function tutorRequest($id,$assess_id = null){
 
         $tutor = User::where('id',$id)->where('role',2)->first();
         $tutor_assessment =  Assessment::where('id',$assess_id)->first();
-        
+        // return $tutor;
         return view('admin.pages.tutors.request',compact('tutor','tutor_assessment'));
     }
 
