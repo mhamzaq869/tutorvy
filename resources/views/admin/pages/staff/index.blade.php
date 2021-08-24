@@ -432,7 +432,7 @@
 <!-- Extra js to perfome function using ajax. -->
 @section('js')
   
-@include('js_files.admin.staffjs')
+@include('js_files.admin.staffJs')
 @endsection
 
 

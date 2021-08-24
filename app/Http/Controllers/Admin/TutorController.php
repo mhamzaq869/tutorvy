@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Course;
 use App\Models\Assessment;
 use App\Models\General\Teach;
+use DB;
 
 class TutorController extends Controller
 {
@@ -24,20 +25,24 @@ class TutorController extends Controller
     {
         $staff_members = User::whereNotIn('role', [1,2,3])->get();
 
-        $approved_tutors = User::with(['education','professional','teach'])->where('role',2)->whereNotIn('status',[0,2])->get();
+        $approved_tutors = User::with(['education','professional','teach'])->where('role',2)->where('status',2)->get();
         
-        $new_requests = array();
+        // $new_requests = array();
 
-        $tutor_assessments = Assessment::where('status',0)->get();
-            
-        foreach($tutor_assessments as $assessment){
-            $tutor = User::with(['education','professional','teach'])->where('id',$assessment->user_id)->where('status',0)->where('role',2)->first();
-            if($tutor){
-                $assessment->tutor = $tutor;
-                array_push($new_requests,$assessment);
-            }
-        }
-    //    return $new_requests;
+        $tutor_assessments = Assessment::get();
+        $new_requests = User::with(['education','professional','teach'])->where('role',2)->where('status',1)->get();
+
+      
+        $new_requests = DB::table('users')
+            ->select('users.*','assessments.id as assessment_id','subjects.name as subject_name')
+            ->leftJoin('assessments', 'users.id', '=', 'assessments.user_id')
+            ->leftJoin('subjects', 'subjects.id', '=', 'assessments.subject_id')
+            ->where('users.role',2)
+            ->where('users.status',1)
+            ->orwhere('users.status',2)
+            ->where('assessments.status',0)
+            ->get();
+
         return view('admin.pages.tutors.index',compact('new_requests','approved_tutors','staff_members'));
     }
 
@@ -57,11 +62,11 @@ class TutorController extends Controller
         return view('admin.pages.tutors.tutor_subjects',compact('tutor','pending_subjects'));
     }
 
-    public function tutorRequest($id,$assess_id){
+    public function tutorRequest($id,$assess_id = null){
 
         $tutor = User::where('id',$id)->where('role',2)->first();
         $tutor_assessment =  Assessment::where('id',$assess_id)->first();
-        
+        // return $tutor;
         return view('admin.pages.tutors.request',compact('tutor','tutor_assessment'));
     }
 
@@ -113,9 +118,9 @@ class TutorController extends Controller
         $tutor->save();
 
         $message = '';
-        if($request->status == 1){
+        if($request->status == 2){
             $message = 'Tutor Status Enabled.';
-        }elseif($request->status == 2){
+        }elseif($request->status == 3){
             $message = 'Tutor Rejected.';
         }else{
             $message = 'Tutor Status Disabled.';
@@ -128,7 +133,7 @@ class TutorController extends Controller
 
     }
 
-    public function tutor_course_request($id)
+    public function tutor_Request($id)
     {
         
         // return view('admin.pages.tutors.tutor_req');
@@ -137,18 +142,10 @@ class TutorController extends Controller
         return view('admin.pages.courses.course_req',compact('course'));
 
     }
-    public function tutor_course_profile()
+    public function tutorProfile()
     {
         // return view('admin.pages.tutors.tutor_profile');
         return view('admin.pages.courses.course_profile');
 
     }
-
-    public function tutor_subject_class()
-    {
-        // return view('admin.pages.tutors.tutor_profile');
-        return view('admin.pages.tutors.tutor_sub_class');
-
-    }
-    
 }
