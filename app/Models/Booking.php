@@ -47,11 +47,11 @@ class Booking extends Model
     // Scopes for Filteration
     public function scopeToday($query)
     {
-        return $query->where(DB::raw('Date(created_at)'),date('Y-m-d'));
+        return $query->where(DB::raw('Date(created_at)'),'"'.date('Y-m-d').'"');
     }
     public function scopeTomorrow($query)
     {
-        return $query->where(DB::raw('Date(created_at)'),'<=',date('Y-m-d',strtotime($this->created_at."+1 day")));
+        return $query->where(DB::raw('Date(created_at)'),'<=','"'.date('Y-m-d',strtotime($this->created_at."+1 d")).'"');
     }
     public function scopeStatus($query,$status)
     {

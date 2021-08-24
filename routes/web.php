@@ -115,6 +115,9 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
 
     Route::get('/dashboard',[TutorHomeController::class,'index'])->name('tutor.dashboard');
     Route::get('/booking',[BookingController::class,'index'])->name('tutor.booking');
+    Route::get('/booking-detail/{id}',[BookingController::class,'bookingDetail'])->name('tutor.booking.detail');
+
+
     Route::get('/chat',[ChatController::class,'index'])->name('tutor.chat');
     Route::get('/classroom',[ClassController::class,'index'])->name('tutor.classroom');
     Route::get('/calendar',[CalendarController::class,'index'])->name('tutor.calendar');

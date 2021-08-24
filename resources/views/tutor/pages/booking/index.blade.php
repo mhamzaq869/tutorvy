@@ -2,7 +2,7 @@
 <style>
 
 
-  
+
 </style>
 @section('content')
  <!-- top Fixed navbar End -->
@@ -71,19 +71,19 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-
+                                                @foreach ($today as $booking)
                                                 <tr>
                                                     <td class="pt-4">
-                                                        Chemistry
+                                                       {{$booking->subject->name}}
                                                     </td>
                                                     <td class="pt-4">
-                                                        Atomic
+                                                       {{$booking->topic}}
                                                     </td>
                                                     <td class="pt-4">
                                                         5pm -07 Feb 2021
                                                     </td>
                                                     <td class="pt-4">
-                                                        Harram Laraib
+                                                        {{$booking->user->fullname}}
                                                     </td>
                                                     <td class="pt-4">
                                                         &nbsp;00:30:00
@@ -93,158 +93,14 @@
                                                     </td>
 
                                                     <td style="text-align: center;">
-                                                        <a href="./bookingDetails.html">
+                                                        <a href="{{route('tutor.booking.detail',[$booking->id])}}">
                                                             <button class="schedule-btn" type="button">
                                                                 View details
                                                             </button>
                                                         </a>
                                                     </td>
                                                 </tr>
-
-
-                                                <tr>
-                                                    <td class="pt-4">
-                                                        Chemistry
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        Atomic
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        5pm -07 Feb 2021
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        &nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        &nbsp;500$
-                                                    </td>
-                                                    <td style="text-align: center;">
-                                                        <a href="./bookingDetails.html">
-                                                            <button type="button" class="schedule-btn">
-                                                                View details
-                                                            </button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pt-4">
-                                                        Chemistry
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        Atomic
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        5pm -07 Feb 2021
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        &nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        &nbsp;500$
-                                                    </td>
-                                                    <td style="text-align: center;">
-                                                        <a href="./bookingDetails.html">
-                                                            <button type="button" class="schedule-btn">
-                                                                View details
-                                                            </button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pt-4">
-                                                        Chemistry
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        Atomic
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        5pm -07 Feb 2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-
-                                                    <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html">
-                                                            <button type="button" class="schedule-btn">
-                                                                View details
-                                                            </button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-                                                    <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html">
-                                                            <button type="button" class="schedule-btn">
-                                                                View details
-                                                            </button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-                                                    <td style="text-align: center;">
-                                                        <a href="./bookingDetails.html">
-                                                            <button type="button" class="schedule-btn">
-                                                                View details
-                                                            </button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-                                                    <td style="text-align: center;">
-                                                        <a href="./bookingDetails.html">
-                                                            <button type="button" class="schedule-btn">
-                                                                View details
-                                                            </button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-
-
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -269,165 +125,40 @@
                                                     <th scope="col">Student</th>
                                                     <th scope="col">Duration</th>
                                                     <th scope="col">Payment</th>
-                                                    <!-- <th scope="col">Review</th> -->
-                                                    <!-- <th scope="col"></th> -->
                                                     <th scope="col"></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-
+                                                @foreach ($tomorrow as $booking)
                                                 <tr>
-                                                    <td class="pt-4"> Chemistry
+                                                    <td class="pt-4">
+                                                       {{$booking->subject->name}}
                                                     </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
+                                                    <td class="pt-4">
+                                                       {{$booking->topic}}
                                                     </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
+                                                    <td class="pt-4">
+                                                        5pm -07 Feb 2021
                                                     </td>
-                                                    <td class="pt-4">&nbsp;500$
+                                                    <td class="pt-4">
+                                                        {{$booking->user->fullname}}
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        &nbsp;00:30:00
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        &nbsp;500$
                                                     </td>
 
                                                     <td style="text-align: center;">
-                                                        <a href="./bookingDetails.html">
-                                                            <button type="button" class="schedule-btn">
+                                                        <a href="{{route('tutor.booking.detail',[$booking->id])}}">
+                                                            <button class="schedule-btn" type="button">
                                                                 View details
                                                             </button>
                                                         </a>
                                                     </td>
                                                 </tr>
-
-
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-
-                                                    <td style="text-align: center;">
-                                                        <a href="./bookingDetails.html">
-                                                            <button type="button" class="schedule-btn">
-                                                                View details
-                                                            </button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-
-                                                    <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html">
-                                                            <button type="button" class="schedule-btn">
-                                                                View details
-                                                            </button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-
-                                                    <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html">
-                                                            <button type="button" class="schedule-btn">
-                                                                View details
-                                                            </button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-                                                    <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html">
-                                                            <button type="button" class="schedule-btn">
-                                                                View details
-                                                            </button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-                                                    <td style="text-align: center;">
-                                                        <a href="./bookingDetails.html">
-                                                            <button type="button" class="schedule-btn">
-                                                                View details
-                                                            </button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-                                                    <td style="text-align: center;">
-                                                        <a href="./bookingDetails.html">
-                                                            <button type="button" class="schedule-btn">
-                                                                View details
-                                                            </button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-
+                                                @endforeach
 
                                             </tbody>
                                         </table>
@@ -455,154 +186,41 @@
                                                     <th scope="col">Student</th>
                                                     <th scope="col">Duration</th>
                                                     <th scope="col">Payment</th>
-                                                    <!-- <th scope="col">Review</th> -->
-                                                    <!-- <th scope="col"></th> -->
                                                     <th scope="col"></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
 
+                                                @foreach ($pending as $booking)
                                                 <tr>
-                                                    <td class="pt-4"> Chemistry
+                                                    <td class="pt-4">
+                                                       {{$booking->subject->name}}
                                                     </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
+                                                    <td class="pt-4">
+                                                       {{$booking->topic}}
                                                     </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
+                                                    <td class="pt-4">
+                                                        5pm -07 Feb 2021
                                                     </td>
-                                                    <td class="pt-4">&nbsp;500$
+                                                    <td class="pt-4">
+                                                        {{$booking->user->fullname}}
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        &nbsp;00:30:00
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        &nbsp;500$
                                                     </td>
 
-                                                    <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
-                                                                type="button" class="schedule-btn">View
-                                                                details</button></a>
+                                                    <td style="text-align: center;">
+                                                        <a href="{{route('tutor.booking.detail',[$booking->id])}}">
+                                                            <button class="schedule-btn" type="button">
+                                                                View details
+                                                            </button>
+                                                        </a>
                                                     </td>
                                                 </tr>
-
-
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-
-                                                    <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
-                                                                type="button" class="schedule-btn">View
-                                                                details</button></a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-
-                                                    <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
-                                                                type="button" class="schedule-btn">View
-                                                                details</button></a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-
-                                                    <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
-                                                                type="button" class="schedule-btn">View
-                                                                details</button></a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-
-                                                    <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
-                                                                type="button" class="schedule-btn">View
-                                                                details</button></a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-
-                                                    <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
-                                                                type="button" class="schedule-btn">View
-                                                                details</button></a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-
-                                                    <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
-                                                                type="button" class="schedule-btn">View
-                                                                details</button></a>
-                                                    </td>
-                                                </tr>
-
+                                                @endforeach
 
                                             </tbody>
                                         </table>
@@ -637,185 +255,36 @@
                                             </thead>
                                             <tbody>
 
+                                                @foreach ($delivered as $booking)
                                                 <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
+                                                    <td class="pt-4">
+                                                       {{$booking->subject->name}}
                                                     </td>
                                                     <td class="pt-4">
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star"></span>
+                                                       {{$booking->topic}}
                                                     </td>
-                                                    <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
-                                                                type="button" class="schedule-btn">View
-                                                                details</button></a>
+                                                    <td class="pt-4">
+                                                        5pm -07 Feb 2021
                                                     </td>
-                                                </tr>
+                                                    <td class="pt-4">
+                                                        {{$booking->user->fullname}}
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        &nbsp;00:30:00
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        &nbsp;500$
+                                                    </td>
 
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star"></span>
-                                                    </td>
-                                                    <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
-                                                                type="button" class="schedule-btn">View
-                                                                details</button></a>
+                                                    <td style="text-align: center;">
+                                                        <a href="{{route('tutor.booking.detail',[$booking->id])}}">
+                                                            <button class="schedule-btn" type="button">
+                                                                View details
+                                                            </button>
+                                                        </a>
                                                     </td>
                                                 </tr>
-
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star"></span>
-                                                    </td>
-                                                    <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
-                                                                type="button" class="schedule-btn">View
-                                                                details</button></a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star"></span>
-                                                    </td>
-                                                    <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
-                                                                type="button" class="schedule-btn">View
-                                                                details</button></a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star"></span>
-                                                    </td>
-                                                    <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
-                                                                type="button" class="schedule-btn">View
-                                                                details</button></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star"></span>
-                                                    </td>
-                                                    <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
-                                                                type="button" class="schedule-btn">View
-                                                                details</button></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star"></span>
-                                                    </td>
-                                                    <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
-                                                                type="button" class="schedule-btn">View
-                                                                details</button></a>
-                                                    </td>
-                                                </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
