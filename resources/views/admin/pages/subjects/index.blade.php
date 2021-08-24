@@ -112,7 +112,7 @@
                             @foreach($subjects as $subject)
                             <tr>
                                 <td class="pt-4">
-                                    <span class="sub-name_{{ $subject->category_id }}">{{$subject->cat_name}}</span>
+                                    <span id="sub-cat_{{ $subject->category_id }}">{{$subject->cat_name}}</span>
                                 </td>
                                 <td class="pt-4 alex-name-2">
                                     <span class="sub-name_{{ $subject->id }}">{{ $subject->name }}</span>
@@ -130,7 +130,7 @@
                                     <div class="container">
                                         <div class="row float-right">
                                             <div class="col-md-1">
-                                                <img data-toggle="modal" data-target="#exampleModalCenter"
+                                                <img onclick="delSubject({{ $subject->id }})"
                                                     src="{{ asset('/admin/assets/img/ico/delete-icon.svg')}}" alt="a"
                                                     class="mr-3 cursor-1">
                                             </div>
@@ -184,8 +184,8 @@
 
     <!-- end section -->
     <!-- delete modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="delete-subject" tabindex="-1" role="dialog"
+        aria-labelledby="delete-subjectTitle" aria-hidden="true">
         <div class="modal-dialog  modal-dialog-centered" role="document">
             <div class="modal-content modals">
                 <div class="modal-body modal-bodys">
@@ -198,10 +198,8 @@
                             Are you sure you want to remove Subject?
                         </p>
 
-                        <button type="button" class="cencel-btn w-25" data-dismiss="modal">Yes</button>
-                        <a href="">
-                            <button class="schedule-btn w-25">No</button>
-                        </a>
+                        <button type="button" class="schedule-btn w-25" id="Yes">Yes</button>
+                        <button class="cencel-btn w-25" data-dismiss="modal" >No</button>
                     </div>
                 </div>
             </div>
@@ -289,6 +287,7 @@
                                 <div class="row pb-3">
                                     <div class="col-md-12">
                                         <div class="input-serach">
+                                            <input type="hidden" id="edit_id">
                                             <input class="w-100 subject-input" type="" name="edit_subject_name" id="edit_subject_name"
                                                 placeholder="Advance chemistry" />
                                         </div>
@@ -317,4 +316,9 @@
     <!-- end -->
 
 
+@endsection
+<!-- Extra js to perfome function using ajax. -->
+@section('js')
+  
+@include('js_files.admin.subjectjs')
 @endsection

@@ -104,7 +104,7 @@
                         @foreach($tutor->teach as $appr_sub)
                         <tr>
                             <td class="pt-4">
-                                <span>{{ $appr_sub->sub_name }}</span>
+                                <span>{{ $appr_sub->sub_name}}</span>
                             </td>
                             <td class="pt-4">{{  $tutor->std_level != null ? $tutor->std_level : '---'  }}</td>
                             <td class="pt-4">{{ $tutor->availability != null ? $tutor->availability : '---' }}</td>
@@ -114,7 +114,7 @@
                             <td class="pt-4 d-flex">
                                 <span>
                                     <a href="" data-toggle="modal" data-target="#exampleModalCenter">
-                                        <img src="../assets/img/ico/delete-icon.png" alt="image" />
+                                        <img src="{{ asset('/admin/assets/img/ico/delete-icon.svg')}}" alt="image" />
                                     </a>
 
                                 </span>
@@ -124,12 +124,12 @@
                                 </label>
                             </td>
                             <td class="pt-3 text-right">
-                                <a href="class.html" class="btn cencel-btn w-100">
+                                <a href="{{route('admin.tutor-class')}}" class="btn cencel-btn w-100">
                                     View all classes
                                 </a>
                             </td>
                             <td class="pt-3 text-right">
-                                <a href="test.html" class="schedule-btn btn">
+                                <a href="{{route('admin.tutotAssessment',[$appr_sub->sub_name])}}" class="schedule-btn btn">
                                     View test
                                 </a>
                             </td>

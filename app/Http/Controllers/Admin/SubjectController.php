@@ -60,5 +60,37 @@ class SubjectController extends Controller
 
     
     }
+    
+    public function deleteSubject(Request $request){
+
+
+        $subject = Subject::destroy([
+            'id' => $request->id,
+        ]);
+
+        return response()->json([
+            'status'=>'200',
+            'message' => 'Subject Deleted.'
+        ]);
+
+    
+    }
+
+    public function updateSubject(Request $request){
+        // console.log($request->name);
+        $subject = Subject::where('id',$request->id)->update([
+            'name' => $request->name,
+            'category_id' => $request->category_id,
+            
+        ]);
+
+        return response()->json([
+            'status'=>'200',
+            'message' => 'Subject Updated.'
+        ]);
+
+    
+    }
+
 
 }

@@ -1,3 +1,4 @@
+<script>
 $('#add_subject_form').on('submit', function(e) {
     // alert('asd');
     e.preventDefault();
@@ -103,3 +104,4 @@ function delSubject(id) {
         });
     })
 }
+</script>
