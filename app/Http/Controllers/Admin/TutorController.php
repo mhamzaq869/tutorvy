@@ -31,7 +31,7 @@ class TutorController extends Controller
         $tutor_assessments = Assessment::where('status',0)->get();
             
         foreach($tutor_assessments as $assessment){
-            $tutor = User::with(['education','professional','teach'])->where('id',$assessment->user_id)->where('status',0)->where('role',2)->first();
+            $tutor = User::with(['education','professional','teach'])->where('id',$assessment->user_id)->where('role',2)->first();
             if($tutor){
                 $assessment->tutor = $tutor;
                 array_push($new_requests,$assessment);
