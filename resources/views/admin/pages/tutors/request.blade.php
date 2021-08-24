@@ -16,7 +16,7 @@
                 <h3 class="mt-3 mb-0">{{ $tutor->first_name }} {{ $tutor->last_name }}</h3>
                 <p class="heading-fifth mt-2 line-height-1">Tutor</p>
                 <hr />
-                @if($tutor->status == 1)
+                @if($tutor->status == 2)
                 <h6><span class="badge badge-success">Approved</span></h6>
                 @else
 
@@ -24,7 +24,7 @@
                     <button class="cencel-btn" data-toggle="modal" data-target="#tutorRejectModal"
                         style="width: 110px;">Reject</button>
                     <button class="schedule-btn" 
-                        style="width: 110px;" onclick="verifyTutor(`{{$tutor->id}}`,1,`{{$tutor_assessment->status}}`)">Accept</button>
+                        style="width: 110px;" onclick="verifyTutor(`{{$tutor->id}}`,2,`{{$tutor_assessment->status}}`)">Accept</button>
                 </div>
 
                 @endif
@@ -71,7 +71,7 @@
                             <textarea class="form-control" rows="5" placeholder="Write reason" id="t_reject_reason"></textarea>
                             <div class="mt-4 d-flex" style="position: absolute;right: 30px;">
                                 <button class="cencel-btn w-150 mr-4" data-dismiss="modal">Cencel</button>
-                                <button class="schedule-btn w-150" onclick="verifyTutor(`{{$tutor->id}}`,2,`{{$tutor_assessment->status}}`)">Send</button>
+                                <button class="schedule-btn w-150" onclick="verifyTutor(`{{$tutor->id}}`,3,`{{$tutor_assessment->status}}`)">Send</button>
                             </div>
                         </div>
                     </div>

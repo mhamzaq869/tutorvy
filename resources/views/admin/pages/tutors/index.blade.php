@@ -298,7 +298,7 @@
                                         </td>
                                         <td class="pt-4 text-right">
                                             <label class="switch mt-0">
-                                                <input type="checkbox" id="t_status" onchange="changeTutorStatus(`{{$tutor->id}}`)" {{ ($tutor->status == 1) ? 'checked' : ''}} >
+                                                <input type="checkbox" id="t_status" onchange="changeTutorStatus(`{{$tutor->id}}`)" {{ ($tutor->status == 2) ? 'checked' : ''}} >
                                                 <span class="slider round"></span>
                                             </label>
                                         </td>

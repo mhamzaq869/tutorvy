@@ -38,12 +38,12 @@ function verifyAssessment(id,status){
 function verifyTutor(id,status,assess_status){
     let reason = null;
 
-    if(status == 1 && assess_status == 0){
+    if(status == 2 && assess_status == 0){
       $('#tutorAcceptModal').modal('show')
       return false;
     }
 
-    if(status == 2){
+    if(status == 3){
       reason = $('#t_reject_reason').val();
     }
 
@@ -85,9 +85,9 @@ function changeTutorStatus(id,st = null,reason = null){
     if(st == null){
       if ($('#t_status').is(":checked"))
       {
-          status = 1; //  Enabled
+          status = 2; //  Enabled
       }else{
-          status = 3; // Disabled
+          status = 0; // Disabled
       }
     }else{
       status = st;
@@ -113,7 +113,7 @@ function changeTutorStatus(id,st = null,reason = null){
                 timer: 2500
             }) 
 
-            if(status == 2){
+            if(status == 3){
               $('#tutorRejectModal').modal('hide');
               setInterval(function(){
                 window.location.href = request_;

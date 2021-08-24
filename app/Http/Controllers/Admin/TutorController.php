@@ -24,7 +24,7 @@ class TutorController extends Controller
     {
         $staff_members = User::whereNotIn('role', [1,2,3])->get();
 
-        $approved_tutors = User::with(['education','professional','teach'])->where('role',2)->whereNotIn('status',[0,2])->get();
+        $approved_tutors = User::with(['education','professional','teach'])->where('role',2)->where('status',2)->get();
         
         $new_requests = array();
 
@@ -113,9 +113,9 @@ class TutorController extends Controller
         $tutor->save();
 
         $message = '';
-        if($request->status == 1){
+        if($request->status == 2){
             $message = 'Tutor Status Enabled.';
-        }elseif($request->status == 2){
+        }elseif($request->status == 3){
             $message = 'Tutor Rejected.';
         }else{
             $message = 'Tutor Status Disabled.';
@@ -128,7 +128,7 @@ class TutorController extends Controller
 
     }
 
-    public function tutor_course_request($id)
+    public function tutor_Request($id)
     {
         
         // return view('admin.pages.tutors.tutor_req');
@@ -137,18 +137,10 @@ class TutorController extends Controller
         return view('admin.pages.courses.course_req',compact('course'));
 
     }
-    public function tutor_course_profile()
+    public function tutorProfile()
     {
         // return view('admin.pages.tutors.tutor_profile');
         return view('admin.pages.courses.course_profile');
 
     }
-
-    public function tutor_subject_class()
-    {
-        // return view('admin.pages.tutors.tutor_profile');
-        return view('admin.pages.tutors.tutor_sub_class');
-
-    }
-    
 }
