@@ -51,7 +51,7 @@ class CourseController extends Controller
 
         if($request->hasFile('thumbnail')){
             $thumbnail_path = "storage/course/thumbnail/".$request->thumbnail->getClientOriginalName();
-            $request->video->storeAs('course/thumbnail/',$request->thumbnail->getClientOriginalName(),'public');
+            $request->thumbnail->storeAs('course/thumbnail/',$request->thumbnail->getClientOriginalName(),'public');
         }
 
 

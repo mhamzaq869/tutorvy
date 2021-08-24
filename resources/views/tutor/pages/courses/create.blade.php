@@ -46,11 +46,7 @@
                         <div class="mt-3">
                             <div class="mb-3">
                                 <label class="form-label heading-forth">About course</label>
-                                <textarea class="form-control texteara-s" name="about" rows="7">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus,
-                                    inventore ratione! Laboriosam vitae repellendus modi fugit. Architecto numquam labore,
-                                    perferendis eius autem quaerat, beatae repellendus possimus cupiditate, illo dolorem voluptatibus!
-                                </textarea>
+                                <textarea class="form-control texteara-s" name="about" rows="7" placeholder='Course Description'></textarea>
                             </div>
 
                         </div>

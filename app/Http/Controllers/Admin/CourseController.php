@@ -28,7 +28,7 @@ class CourseController extends Controller
     public function courseRequest($id)
     {
         $course = Course::with('outline')->where('status',0)->where('id',$id)->first();
-        
+        // return $course;
         return view('admin.pages.courses.course_req',compact('course'));
     }
     public function courseProfile()
