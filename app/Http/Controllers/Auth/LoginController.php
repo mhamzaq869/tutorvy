@@ -64,7 +64,7 @@ class LoginController extends Controller
         */
 
         if($request->filled('valid_email','password','role')){
-            if(Auth::attempt(['email' => $request->valid_email, 'password' => $request->password,'role'=>$request->role,'status' => 1])){
+            if(Auth::attempt(['email' => $request->valid_email, 'password' => $request->password,'role'=>$request->role,'status' => [1,2] ])){
                 if($request->role == 2){
                     return redirect()->route('tutor.dashboard');
                 }
