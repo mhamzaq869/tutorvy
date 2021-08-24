@@ -765,7 +765,7 @@
             </div>
             <!-- bookings end -->
             <!-- chatbox -->
-            <div class="chatbox-holder" style="display: none;">
+            <div class="chatbox-holder" style="display: ;">
                 <div class="chatbox chatbox-min">
                     <div class="chatbox-top">
                         <div class="chatbox-avatar">

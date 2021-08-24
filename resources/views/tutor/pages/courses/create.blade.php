@@ -92,7 +92,7 @@
                                 <input type="search" name="basic_title[]" placeholder="Write course outline" />
                             </div>
                             <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
-                            name="basic_explain[]" rows="6">Explaine</textarea>
+                            name="basic_explain[]" rows="6" placeholder="Explain Here"></textarea>
                         </div>
                         {{-- <div id="basicNew"></div> --}}
 
@@ -171,10 +171,12 @@
                         <div class="input-options mt-2">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="datetime-local" name="basic_start_time" class="form-control texteara-s mt-2 pt-2 mb-2">
+                                    <input type="text" name="basic_start_time" class="form-control texteara-s mt-2 pt-2 mb-2"  placeholder="From"
+                                    onfocus="(this.type='time')">
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="datetime-local" name="basic_end_time" class="form-control texteara-s mt-2 pt-2 mb-2">
+                                    <input type="text" name="basic_end_time" class="form-control texteara-s mt-2 pt-2 mb-2" placeholder="To"
+                                        onfocus="(this.type='time')">
                                 </div>
                             </div>
                         </div>
@@ -200,7 +202,7 @@
                             <input type="search" name="standard_title[]" placeholder="Write course outline" />
                         </div>
                         <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
-                        name="standard_explain[]" rows="6">Explaine</textarea>
+                        name="standard_explain[]" rows="6" placeholder="Explain Here"></textarea>
                     </div>
 
                     <div class="text-center standardMore paid-text-1 btn w-100 mt-3 buttonAdd-1">
@@ -278,10 +280,12 @@
                     <div class="input-options mt-2">
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="datetime-local" name="standard_start_time" class="form-control texteara-s mt-2 pt-2 mb-2">
+                                <input type="text" name="standard_start_time" class="form-control texteara-s mt-2 pt-2 mb-2"placeholder="From"
+                                    onfocus="(this.type='time')">
                             </div>
                             <div class="col-md-6">
-                                <input type="datetime-local" name="standard_end_time" class="form-control texteara-s mt-2 pt-2 mb-2">
+                                <input type="text" name="standard_end_time" class="form-control texteara-s mt-2 pt-2 mb-2"placeholder="To"
+                                    onfocus="(this.type='time')">
                             </div>
                         </div>
                     </div>
@@ -303,7 +307,7 @@
                             <input type="search" name="advance_title[]" placeholder="Write course outline" />
                         </div>
                         <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
-                        name="advance_explain[]" rows="6">Explaine</textarea>
+                        name="advance_explain[]" rows="6" placeholder="Explain Here"></textarea>
                     </div>
 
                     <div class="text-center paid-text-1 advMore btn w-100 mt-3 buttonAdd-1">
@@ -381,10 +385,12 @@
                     <div class="input-options mt-2">
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="datetime-local" name="advance_start_time" class="form-control texteara-s mt-2 pt-2 mb-2">
+                                <input type="text" name="advance_start_time" class="form-control texteara-s mt-2 pt-2 mb-2" placeholder="From"
+                                    onfocus="(this.type='time')">
                             </div>
                             <div class="col-md-6">
-                                <input type="datetime-local" name="advance_end_time" class="form-control texteara-s mt-2 pt-2 mb-2">
+                                <input type="text" name="advance_end_time" class="form-control texteara-s mt-2 pt-2 mb-2" placeholder="To"
+                                    onfocus="(this.type='time')">
                             </div>
                         </div>
                     </div>
@@ -414,7 +420,10 @@
 <script src="{{ asset('assets/js/course.js')}}"></script>
 <script>
     $(function() {
-        $("#basic_days,#standard_days,#advance_days").multiselect();
+        $("#basic_days,#standard_days,#advance_days").multiselect({
+        selectedList: 4 // 0-based index
+        });
     });
+   
 </script>
 @endsection

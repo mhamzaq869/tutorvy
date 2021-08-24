@@ -178,10 +178,10 @@
                         <div class="input-options mt-2">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="datetime-local" name="standard_start_time" value="{{$course->basic_start_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
+                                    <input type="time" name="standard_start_time" value="{{$course->basic_start_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="datetime-local" name="standard_end_time" value="{{$course->basic_end_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
+                                    <input type="time" name="standard_end_time" value="{{$course->basic_end_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
                                 </div>
                             </div>
                             <h3 class="mt-3 pb-2">
@@ -294,10 +294,10 @@
                     <div class="input-options mt-2">
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="datetime-local" name="standard_start_time" value="{{$course->standard_start_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
+                                <input type="time" name="standard_start_time" value="{{$course->standard_start_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
                             </div>
                             <div class="col-md-6">
-                                <input type="datetime-local" name="standard_end_time" value="{{$course->standard_end_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
+                                <input type="time" name="standard_end_time" value="{{$course->standard_end_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
                             </div>
                         </div>
                         <h3 class="mt-3 pb-2">
@@ -415,10 +415,10 @@
                     <div class="input-options mt-2">
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="datetime-local" name="advance_start_time" value="{{$course->advance_start_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
+                                <input type="time" name="advance_start_time" value="{{$course->advance_start_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
                             </div>
                             <div class="col-md-6">
-                                <input type="datetime-local" name="advance_end_time" value="{{$course->advance_end_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
+                                <input type="time" name="advance_end_time" value="{{$course->advance_end_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
                             </div>
                         </div>
                         <h3 class="mt-3 pb-2">

@@ -37,5 +37,40 @@
         <!--End Main-->
         @include('layouts.footer')
     </section>
+
+    <!-- <div class="modal fade support_modal show" id="support-modal" tabindex="-1" role="dialog" aria-labelledby="support-modal" style="padding-right: 7px; display: block;">
+        <div class="modal-dialog  modal-dialog-centered" role="document">
+            <div class="modal-content modals">
+                <div class="modal-body modal-bodys">
+                    <div class="container text-center pb-3 pt-3">
+                        <img src="{{asset('')}}" alt="verfiy">
+                        <h3 class="mt-3">
+                            Add Role
+                        </h3>
+                        <form id="edit_role_form">
+                            <div class="container mt-3">
+                                <div class="row pb-3">
+                                    <div class="col-md-12">
+                                        <div class="input-serach">
+                                            <input type="hidden" id="edit_id" value="13">
+                                            <input type="text" name="edit_name" id="edit_name" placeholder="Enter Name" class="w-100">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                    </div>
+                                    <div class="col-md-7 d-flex">
+                                        <button type="button" class="cencel-btn" data-dismiss="modal">Cancel</button>
+                                        <button class="schedule-btn ml-3 edit_role" style="width: 130px;" type="submit">Edit Role</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
 </body>
 </html>

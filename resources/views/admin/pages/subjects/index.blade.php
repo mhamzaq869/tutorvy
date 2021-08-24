@@ -1,5 +1,16 @@
 @extends('admin.layouts.app')
+<style>
+    
+svg:not(:root) {
+    overflow: hidden;
+    width: 20px;
+    padding-top: 3px;
+}
 
+.flex-1 {
+    opacity: 0;
+}
+</style>
 @section('content')
     <!--section start  -->
     <div class="container-fluid mt-5">
@@ -157,27 +168,38 @@
                     <!-- end table -->
                 </div>
             </div>
-
+            <!-- <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ $subjects->links() }}
+                    </div>
+                </div>
+            </div> -->
             <div class="container-fluid">
                 <nav aria-label="Page navigation" class="mt-4">
                     <ul class="pagination bg-white pagination-example-1">
                         <li class="page-item">
-                            <a class="page-link" href="#" tabindex="-1">
+                            <a class="page-link" href="{{$subjects->previousPageUrl()}}" tabindex="-1">
                                 <img src="{{ asset('/admin/assets/img/ico/arrow-left-1.png')}}" alt="image" />
                             </a>
                         </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link page-link-1" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        @if($subjects->onFirstPage())
+                            <li class="page-item"><a class="page-link" href="{{$subjects->url(1)}}" style="display:none;">1</a></li>
+                        @else
+                        <li class="page-item"><a class="page-link" href="{{$subjects->url(1)}}">1</a></li>
+                            @endif
+                        <li class="page-item"><a class="page-link page-link-1" href="#">{{$subjects->currentPage()}}</a></li>
+                        <li class="page-item"><a class="page-link " href="#">.....</a></li>
+  
+                        <li class="page-item"><a class="page-link" href="{{$subjects->url($subjects->lastPage())}}"> {{$subjects->lastPage()}} </a></li>
                         <li class="page-item">
-                            <a class="page-link" href="#">
+                            <a class="page-link" href="{{$subjects->nextPageUrl()}}">
                                 <img src="{{ asset('/admin/assets/img/ico/arrow-right-1.png')}}" alt="image" />
                             </a>
                         </li>
                     </ul>
                 </nav>
             </div>
-
         </div>
     </div>
     </div>
