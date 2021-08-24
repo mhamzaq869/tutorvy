@@ -26,7 +26,10 @@ class BookingController extends Controller
 
         return view('student.pages.booking.book_now');
     }
+    public function bookingDetail(){
 
+        return view('student.pages.booking.booking_detail');
+    }
     public function directBooking($id)
     {
         $tutor = User::with('teach')->find($id);

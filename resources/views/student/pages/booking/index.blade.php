@@ -89,7 +89,7 @@
                                                     </td>
 
                                                     <td style="text-align: center;">
-                                                        <a href="./bookingDetails.html">
+                                                        <a href="{{route('student.booking-detail')}}">
                                                             <button class="schedule-btn" type="button">
                                                                 View details
                                                             </button>
@@ -142,7 +142,7 @@
                                                     </td>
 
                                                     <td style="text-align: center;">
-                                                        <a href="./bookingDetails.html">
+                                                        <a href="{{route('student.booking-detail')}}">
                                                             <button type="button" class="schedule-btn">
                                                                 View details
                                                             </button>
@@ -165,7 +165,7 @@
                                                     </td>
 
                                                     <td style="text-align: center;">
-                                                        <a href="./bookingDetails.html">
+                                                        <a href="{{route('student.booking-detail')}}">
                                                             <button type="button" class="schedule-btn">
                                                                 View details
                                                             </button>
@@ -187,7 +187,7 @@
                                                     </td>
 
                                                     <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html">
+                                                        <a href="{{route('student.booking-detail')}}">
                                                             <button type="button" class="schedule-btn">
                                                                 View details
                                                             </button>
@@ -209,7 +209,7 @@
                                                     </td>
 
                                                     <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html">
+                                                        <a href="{{route('student.booking-detail')}}">
                                                             <button type="button" class="schedule-btn">
                                                                 View details
                                                             </button>
@@ -230,7 +230,7 @@
                                                     <td class="pt-4">&nbsp;500$
                                                     </td>
                                                     <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html">
+                                                        <a href="{{route('student.booking-detail')}}">
                                                             <button type="button" class="schedule-btn">
                                                                 View details
                                                             </button>
@@ -251,7 +251,7 @@
                                                     <td class="pt-4">&nbsp;500$
                                                     </td>
                                                     <td style="text-align: center;">
-                                                        <a href="./bookingDetails.html">
+                                                        <a href="{{route('student.booking-detail')}}">
                                                             <button type="button" class="schedule-btn">
                                                                 View details
                                                             </button>
@@ -272,7 +272,7 @@
                                                     <td class="pt-4">&nbsp;500$
                                                     </td>
                                                     <td style="text-align: center;">
-                                                        <a href="./bookingDetails.html">
+                                                        <a href="{{route('student.booking-detail')}}">
                                                             <button type="button" class="schedule-btn">
                                                                 View details
                                                             </button>
@@ -328,13 +328,11 @@
                                                     </td>
 
                                                     <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
+                                                        <a href="{{route('student.booking-detail')}}"> <button
                                                                 type="button" class="schedule-btn">View
                                                                 details</button></a>
                                                     </td>
                                                 </tr>
-
-
                                                 <tr>
                                                     <td class="pt-4"> Chemistry
                                                     </td>
@@ -349,27 +347,7 @@
                                                     </td>
 
                                                     <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
-                                                                type="button" class="schedule-btn">View
-                                                                details</button></a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-
-                                                    <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
+                                                        <a href="{{route('student.booking-detail')}}"> <button
                                                                 type="button" class="schedule-btn">View
                                                                 details</button></a>
                                                     </td>
@@ -389,7 +367,7 @@
                                                     </td>
 
                                                     <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
+                                                        <a href="{{route('student.booking-detail')}}"> <button
                                                                 type="button" class="schedule-btn">View
                                                                 details</button></a>
                                                     </td>
@@ -409,7 +387,7 @@
                                                     </td>
 
                                                     <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
+                                                        <a href="{{route('student.booking-detail')}}"> <button
                                                                 type="button" class="schedule-btn">View
                                                                 details</button></a>
                                                     </td>
@@ -429,7 +407,7 @@
                                                     </td>
 
                                                     <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
+                                                        <a href="{{route('student.booking-detail')}}"> <button
                                                                 type="button" class="schedule-btn">View
                                                                 details</button></a>
                                                     </td>
@@ -449,7 +427,27 @@
                                                     </td>
 
                                                     <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
+                                                        <a href="{{route('student.booking-detail')}}"> <button
+                                                                type="button" class="schedule-btn">View
+                                                                details</button></a>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="pt-4"> Chemistry
+                                                    </td>
+                                                    <td class="pt-4"> Atomic </td>
+                                                    <td class="pt-4">5pm -07 Feb
+                                                        2021 </td>
+                                                    <td class="pt-4">Harram Laraib
+                                                    </td>
+                                                    <td class="pt-4">&nbsp;00:30:00
+                                                    </td>
+                                                    <td class="pt-4">&nbsp;500$
+                                                    </td>
+
+                                                    <td style="text-align: center   ;">
+                                                        <a href="{{route('student.booking-detail')}}"> <button
                                                                 type="button" class="schedule-btn">View
                                                                 details</button></a>
                                                     </td>
@@ -509,7 +507,7 @@
                                                         <span class="fa fa-star"></span>
                                                     </td>
                                                     <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
+                                                        <a href="{{route('student.booking-detail')}}"> <button
                                                                 type="button" class="schedule-btn">View
                                                                 details</button></a>
                                                     </td>
@@ -535,7 +533,7 @@
                                                         <span class="fa fa-star"></span>
                                                     </td>
                                                     <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
+                                                        <a href="{{route('student.booking-detail')}}"> <button
                                                                 type="button" class="schedule-btn">View
                                                                 details</button></a>
                                                     </td>
@@ -561,7 +559,7 @@
                                                         <span class="fa fa-star"></span>
                                                     </td>
                                                     <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
+                                                        <a href="{{route('student.booking-detail')}}"> <button
                                                                 type="button" class="schedule-btn">View
                                                                 details</button></a>
                                                     </td>
@@ -587,7 +585,7 @@
                                                         <span class="fa fa-star"></span>
                                                     </td>
                                                     <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
+                                                        <a href="{{route('student.booking-detail')}}"> <button
                                                                 type="button" class="schedule-btn">View
                                                                 details</button></a>
                                                     </td>
@@ -613,7 +611,7 @@
                                                         <span class="fa fa-star"></span>
                                                     </td>
                                                     <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
+                                                        <a href="{{route('student.booking-detail')}}"> <button
                                                                 type="button" class="schedule-btn">View
                                                                 details</button></a>
                                                     </td>
@@ -638,7 +636,7 @@
                                                         <span class="fa fa-star"></span>
                                                     </td>
                                                     <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
+                                                        <a href="{{route('student.booking-detail')}}"> <button
                                                                 type="button" class="schedule-btn">View
                                                                 details</button></a>
                                                     </td>
@@ -663,7 +661,7 @@
                                                         <span class="fa fa-star"></span>
                                                     </td>
                                                     <td style="text-align: center   ;">
-                                                        <a href="./bookingDetails.html"> <button
+                                                        <a href="{{route('student.booking-detail')}}"> <button
                                                                 type="button" class="schedule-btn">View
                                                                 details</button></a>
                                                     </td>

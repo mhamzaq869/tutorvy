@@ -445,26 +445,26 @@
 
                                                 </div>
 
-                                                <div class="container form-group mt-3" style="padding-right: 20px;">
-                                                    <textarea class="form-control" name="bio"
-                                                        id="exampleFormControlTextarea1" rows="5"
-                                                        placeholder="Write about yourself...">{{ $user->bio ?? '' }}</textarea>
-                                                </div>
-                                                <br />
-                                                <div class="row ml-2 mt-4">
-                                                    <div class="col-6">
-                                                    </div>
-                                                    <div class="col-6" style="display: flex;">
-                                                        <input type="submit"
-                                                            class="btn btn-registration btn-lg cencel-btn nextBtn pull-right ml-5"
-                                                            value=" Save for Later">
+                                                <div class="container form-group mt-3">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <textarea class="form-control" name="bio"
+                                                            id="exampleFormControlTextarea1" rows="5"
+                                                            placeholder="Write about yourself...">{{ $user->bio ?? '' }}</textarea>
+                                                        </div>
+                                                        <div class="col-md-12 text-right mt-3">
+                                                            <!-- <input type="submit"
+                                                                class="btn btn-registration btn-lg cencel-btn nextBtn pull-right ml-5"
+                                                                value=" Save for Later"> -->
 
-                                                        <button id="step-1-next" type="button"
-                                                            class="btn btn-lg btn-registration schedule-btn  nextBtn pull-right ml-4 ">
-                                                            &nbsp; Continue &nbsp;
-                                                        </button>
+                                                            <button id="step-1-next" type="button"
+                                                                class="btn btn-lg btn-registration schedule-btn  nextBtn pull-right  ">
+                                                                &nbsp; Continue &nbsp;
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                              
                                             </div>
                                         </div>
                                     </div>

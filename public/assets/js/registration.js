@@ -3,7 +3,7 @@
 setTimeout(function() {
     $('#preloaderbody').fadeOut(); // or fade, css //display however you'd like.
 }, 250);
-
+var isValid = false;
 $(function() {
     // Nav Tab stuff
     $('.nav-tabs > li > a').click(function() {
@@ -16,17 +16,30 @@ $(function() {
             });
         }
     });
+    // $(".form-control , .form-select").change(function() {
+    //     var ter = $("input[name = first_name]").val();
+    //     var ter2 = $("input[name = last_name]").val();
+    //     var ter3 = $("input[name = email]").val();
+    //     var ter4 = $("input[name = password]").val();
+    //     var ter5 = $("input[name = phone]").val();
+    //     var ter6 = $("select[name = gender]").val();
+    //     if (ter == "" || ter2 == "" || ter3 == "" || ter4 == "" || ter5 == "" || ter6 == "") {
+    //         $('#step-1-next').attr("type", "submit");
+    //     } else if (ter != "" || ter2 != "" || ter3 != "" || ter4 != "" || ter5 != "") {
+    //         $('#step-1-next').attr("type", "button");
+    //         isValid = true;
+    //     }
+    // })
     $('#step-1-next').click(function() {
         // Check values here
-        var isValid = true;
-
+        isValid = true;
         if (isValid) {
             $('.nav-tabs > li:nth-of-type(2) > a').removeClass('disabled').click();
         }
     });
     $('#step-2-next').click(function() {
         // Check values here
-        var isValid = true;
+
 
         if (isValid) {
             $('.nav-tabs > li:nth-of-type(3) > a').removeClass('disabled').click();
