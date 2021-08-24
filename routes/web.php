@@ -60,8 +60,9 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
 
     Route::get('tutor/request/{id}/{assess_id}',[TutorController::class,'tutorRequest'])->name('admin.tutorRequest');
     Route::get('tutor/assessment/{assessment_id}',[TutorController::class,'tutorAssessment'])->name('admin.tutotAssessment');
-    Route::get('/tutor-request/{id}',[TutorController::class,'tutor_Request'])->name('admin.tutor-request');
-    Route::get('/tutor-profile',[TutorController::class,'tutorProfile'])->name('admin.tutor-profile');
+    Route::get('/tutor-request/{id}',[TutorController::class,'tutor_course_Request'])->name('admin.tutor-request');
+    Route::get('/tutor-profile',[TutorController::class,'tutor_course_profile'])->name('admin.tutor-profile');
+    Route::get('/tutor-class',[TutorController::class,'tutor_subject_class'])->name('admin.tutor-class');
 
 
     Route::post('tutor/verify-assessment',[TutorController::class,'verifyAssessment'])->name('admin.verifyAssessment');
@@ -80,6 +81,9 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
 
     Route::get('/subject',[SubjectController::class,'index'])->name('admin.subject');
     Route::post('/subject/insert-subject',[SubjectController::class,'insertSubject'])->name('admin.insertSubject');
+    Route::post('/subject/update-subject',[SubjectController::class,'updateSubject'])->name('admin.updateSubject');
+    Route::post('/subject/delete-subject',[SubjectController::class,'deleteSubject'])->name('admin.deleteSubject');
+
 
 
     Route::get('/website',[WebsiteController::class,'index'])->name('admin.website');

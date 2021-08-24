@@ -128,7 +128,7 @@ class TutorController extends Controller
 
     }
 
-    public function tutor_Request($id)
+    public function tutor_course_request($id)
     {
         
         // return view('admin.pages.tutors.tutor_req');
@@ -137,10 +137,18 @@ class TutorController extends Controller
         return view('admin.pages.courses.course_req',compact('course'));
 
     }
-    public function tutorProfile()
+    public function tutor_course_profile()
     {
         // return view('admin.pages.tutors.tutor_profile');
         return view('admin.pages.courses.course_profile');
 
     }
+
+    public function tutor_subject_class()
+    {
+        // return view('admin.pages.tutors.tutor_profile');
+        return view('admin.pages.tutors.tutor_sub_class');
+
+    }
+    
 }
