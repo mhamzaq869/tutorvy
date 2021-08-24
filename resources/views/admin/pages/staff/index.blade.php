@@ -428,12 +428,11 @@
 </div>
 <!-- end modal -->
 @endsection
+
 <!-- Extra js to perfome function using ajax. -->
 @section('js')
-
-
-<script src="{{ asset('/admin/assets/js/pages/staff.js')}}"></script>
-<script src="{{ asset('/admin/assets/js/pages/role.js')}}"></script>
-
+  
+@include('js_files.admin.staffjs')
 @endsection
+
 

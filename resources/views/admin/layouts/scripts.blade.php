@@ -14,7 +14,7 @@
      <script src="{{ asset('assets/js/multiselect.js')}}"></script>
     <script src="{{ asset('/admin/assets/js/global.js')}}"></script>
     <script src="{{ asset('assets/js/course.js')}}"></script>
-    <script src="{{ asset('/admin/assets/js/pages/subjects.js')}}"></script>
+    <!-- <script src="{{ asset('/admin/assets/js/pages/subjects.js')}}"></script> -->
 
     <script src="{{ asset('assets/js/dropify.js')}}"></script>
 
