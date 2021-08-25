@@ -30,12 +30,25 @@
                                        Change email address
                                    </div>
                                    <div class="col-sm-6">
-
-                                        <small class="">Name</small>
-                                        <div class="form-group">
-                                            <input type="text" value="" class="form-control"
-                                                placeholder=" Enter New Name">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <small class="">Name</small>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" value="" class="form-control"
+                                                        placeholder="First Name">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                            <div class="form-group">
+                                                    <input type="text" value="" class="form-control"
+                                                        placeholder=" Last Name">
+                                                </div>
+                                            </div>
                                         </div>
+                                        
+                                       
                                         <small class="">Email Address</small>
                                         <div class="form-group">
                                             <input type="email" value="" class="form-control"
@@ -47,10 +60,24 @@
                                                 placeholder="03XX XXXXXXXX">
                                         </div> 
                                         <small class=" ">Address</small>
-                                        <div class="form-group ">
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <input type="text" value="" class="form-control"
+                                                    placeholder="City">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <div class="form-item">
+                                                    <input id="country_selector" class="form-control" name="country" type="">
+                                                    <input id="country_short" class="form-control" name="country_short" type="" hidden>
+                                                    <label for="country_selector" style="display:none;">Select a
+                                                        country here...</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="form-group ">
                                             <input type="text" value="" class="form-control"
                                                 placeholder="Complete Address">
-                                        </div> 
+                                        </div>  -->
                                         <div class="float-right">
                                             <button class="schedule-btn">Save changes</button>
                                         </div>
