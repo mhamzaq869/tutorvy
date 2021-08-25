@@ -118,32 +118,44 @@
                                         <th scope="col">Level</th>
                                         <th scope="col">Availability </th>
                                         <th scope="col">Rate</th>
+                                        <th scope="col">Status</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($new_requests as $tutor)
                                         <tr>
                                             <td class="pt-4">
                                                 <!-- -->
-                                                <span data-toggle="tooltip" title="Harram Laraib Ali">Har***</span>
+                                                <span data-toggle="tooltip" title="{{$tutor->first_name ?? '' }} {{$tutor->last_name ?? '' }}">{{Str::limit($tutor->first_name ?? $tutor->last_name, 3, $end='***')}}</span>
                                             </td>
                                             <td class="pt-4">
                                                 123123141
                                             </td>
                                             <td class="pt-4">
                                                 <span data-toggle="tooltip"
-                                                    title="">email****</span>
+                                                    title="{{$tutor->email ?? '' }}">{{Str::limit($tutor->email, 3, $end='***')}}</span>
                                             </td>
-                                            <td class="pt-4">subject name</td>
-                                            <td class="pt-4">Address</td>
-                                           
+                                            <td class="pt-4">{{$tutor->subject_name}}</td>
+                                            <td class="pt-4">{{$tutor->city != NULL ? $tutor->city.', ' : '---'}}{{$tutor->country != NULL ? $tutor->country : '---'}}</td>
+
+                                            @if($tutor->student_level == 1)
                                             <td class="pt-4">Basic</td>
+                                            @elseif($tutor->student_level == 2)
                                             <td class="pt-4">Intermediate</td>
+                                            @elseif($tutor->student_level == 3)
                                             <td class="pt-4">Expert</td>
+                                            @else
                                             <td class="pt-4">---</td>
+                                            @endif
                                             
                                             <td class="pt-4">---</td>
-                                            <td class="pt-4">rate</td>
+                                            <td class="pt-4">${{$tutor->hourly_rate}}</td>
+                                            @if($tutor->assess_status == 0)
+                                            <td class="pt-4"><span class="badge badge-warning all-tutor-badge"> Pending</span></td>
+                                            @elseif($tutor->assess_status == null && $tutor->status == 3)
+                                            <td class="pt-4"><span class="badge badge-danger all-tutor-badge"> Rejected</span></td>
+                                            @endif
                                             <td class="pt-3 text-right">
                                                 <a href="#" class="cencel-btn btn">
                                                     View
@@ -154,7 +166,7 @@
                                                     data-target="#exampleModalCenter">Assign</button>
                                             </td>
                                         </tr>
-                                    
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

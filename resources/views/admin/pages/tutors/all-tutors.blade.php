@@ -22,7 +22,7 @@
     <div class="container-fluid mt-3">
         <div class="row ml-1 mr-1">
             <div class="col-md-6">
-                <h3 class="heading-third-res">All Tutor Requests</h3>
+                <h3 class="heading-third-res">All Tutor</h3>
             </div>
             <!-- <div class="col-md-6 col-6 text-right">
                 <a href="all-tutor-request.html" class="view-bookings view-bookings-res">
@@ -123,26 +123,33 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($tutors as $tutor)
                                         <tr>
                                             <td class="pt-4">
                                                 <!-- -->
-                                                <span data-toggle="tooltip" title="Harram Laraib Ali">Har***</span>
+                                                <span data-toggle="tooltip" title="{{$tutor->first_name ?? '' }} {{$tutor->last_name ?? '' }}">{{Str::limit($tutor->first_name ?? $tutor->last_name, 3, $end='***')}}</span>
                                             </td>
                                             <td class="pt-4">
                                                 123123141
                                             </td>
                                             <td class="pt-4">
                                                 <span data-toggle="tooltip"
-                                                    title="">email****</span>
+                                                    title="{{$tutor->email ?? '' }}">{{Str::limit($tutor->email, 3, $end='***')}}</span>
                                             </td>
-                                            <td class="pt-4">subject name</td>
-                                            <td class="pt-4">Address</td>
+                                            <td class="pt-4">{{$tutor->subjects}}</td>
+                                            <td class="pt-4">{{$tutor->address}}</td>
                                            
-                                            <td class="pt-4">Basic</td>
+                                            <td class="pt-4">{{$tutor->std_level}}</td>
                                             
                                             <td class="pt-4">---</td>
-                                            <td class="pt-4">rate</td>
-                                            <td class="pt-4"><span class="badge badge-success all-tutor-badge"> Approve </span></td>
+                                            <td class="pt-4">${{$tutor->hourly_rate}}</td>
+                                            @if($tutor->status == 2)
+                                            <td class="pt-4"><span class="badge badge-success all-tutor-badge"> Approved</span></td>
+                                            @elseif($tutor->status == 0)
+                                            <td class="pt-4"><span class="badge badge-warning all-tutor-badge"> Disabled</span></td>
+                                            @elseif($tutor->status == 3)
+                                            <td class="pt-4"><span class="badge badge-danger all-tutor-badge"> Rejected</span></td>
+                                            @endif
                                             <td class="pt-3 text-right">
                                                 <a href="#" class="schedule-btn btn">
                                                     View
@@ -151,6 +158,7 @@
                                            
                                         </tr>
                                     
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
