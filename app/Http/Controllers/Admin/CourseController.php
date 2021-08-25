@@ -31,9 +31,10 @@ class CourseController extends Controller
         // return $course;
         return view('admin.pages.courses.course_req',compact('course'));
     }
-    public function courseProfile()
+    public function courseProfile($id)
     {
-        return view('admin.pages.courses.course_profile');
+        $course = Course::with('outline')->where('status',1)->where('id',$id)->first();
+        return view('admin.pages.courses.course_profile',compact('course'));
     }
     public function editCourseProfile()
     {

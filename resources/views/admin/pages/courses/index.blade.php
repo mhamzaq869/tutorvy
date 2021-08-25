@@ -243,45 +243,46 @@
                 </thead>
                 <tbody>
                     <!-- staff table data -->
-                    <tr>
-                        <td class="pt-4">
-                            <span>01</span>
-                        </td>
-                        <td class="pt-4">
-                            <span>How to create your online courses in 3 steps.</span>
-                        </td>
-                        <td class="pt-4">Chemistry</td>
-                        <td class="pt-4">Alexandra Felix</td>
-                        <td class="pt-4">
-                            <div class="container ">
-                                <div class="row float-right">
-                                    <div class="col-md-1">
-                                        <img data-toggle="modal" data-target="#exampleModalCenter"
-                                            src="{{ asset('admin/assets/img/ico/delete-icon.svg') }}" alt="a" class="mr-3 cursor-1">
-                                    </div>
-                                    <div class="col-md-1">
-                                        <a href="{{route('admin.course-edit')}}">
-                                            <img src="{{ asset('admin/assets/img/ico/edit-icon.svg') }}" alt="a"
-                                                class="mr-2 cursor-1">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label class="switch">
-                                            <input type="checkbox">
-                                            <span class="slider round"></span>
-                                        </label>
+                    @foreach($approved_courses as $course)
+                        <tr>
+                            <td class="pt-4">
+                                <span>01</span>
+                            </td>
+                            <td class="pt-4">
+                                <span>{{$course->title}}</span>
+                            </td>
+                            <td class="pt-4">{{$course->subject_name}}</td>
+                            <td class="pt-4">{{$course->tutor_name}}</td>
+                            <td class="pt-4">
+                                <div class="container ">
+                                    <div class="row float-right">
+                                        <div class="col-md-1">
+                                            <img data-toggle="modal" data-target="#exampleModalCenter"
+                                                src="{{ asset('admin/assets/img/ico/delete-icon.svg') }}" alt="a" class="mr-3 cursor-1">
+                                        </div>
+                                        <div class="col-md-1">
+                                            <a href="{{route('admin.course-edit')}}">
+                                                <img src="{{ asset('admin/assets/img/ico/edit-icon.svg') }}" alt="a"
+                                                    class="mr-2 cursor-1">
+                                            </a>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="switch">
+                                                <input type="checkbox" id="c_status" onchange="changeCourseStatus(`{{$course->id}}`)" {{ ($course->status == 1) ? 'checked' : ''}}>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </td>
-                        <td class="pt-3 d-flex">
-                            <a href="{{route('admin.course-profile')}}" class="btn schedule-btn w-100 mr-2" href="#">
-                                View
-                            </a>
+                            </td>
+                            <td class="pt-3 d-flex">
+                                <a href="{{route('admin.course-profile',[$course->id])}}" class="btn schedule-btn w-100 mr-2" href="#">
+                                    View
+                                </a>
 
-                        </td>
-                    </tr>
-
+                            </td>
+                        </tr>
+                    @endforeach
                     <!-- end data -->
                 </tbody>
             </table>

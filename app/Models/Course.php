@@ -65,47 +65,62 @@ class Course extends Model
 
     public function getCourseBasicDaysAttribute()
     {
-        $days = explode('[',$this->basic_days);
-        $days = explode(']',$days[1]);
-        $days = explode(',',$days[0]);
-
-        $d = array();
-        for($i=0;$i<sizeof($days);$i++){
-            array_push($d,$days[$i]);
+        if($this->basic_days != null){
+            $days = explode('[',$this->basic_days);
+            $days = explode(']',$days[1]);
+            $days = explode(',',$days[0]);
+    
+            $d = array();
+            for($i=0;$i<sizeof($days);$i++){
+                array_push($d,$days[$i]);
+            }
+    
+            $days = join(',',$d);
+            $days = str_replace('"',"",$days);
+            return $days;
+        }else{
+            return '---';
         }
-
-        $days = join(',',$d);
-        $days = str_replace('"',"",$days);
-        return $days;
+        
     }
     public function getCourseStandardDaysAttribute()
     {
-        $days = explode('[',$this->standard_days);
-        $days = explode(']',$days[1]);
-        $days = explode(',',$days[0]);
-
-        $d = array();
-        for($i=0;$i<sizeof($days);$i++){
-            array_push($d,$days[$i]);
+        if($this->standard_days != null){
+            $days = explode('[',$this->standard_days);
+            $days = explode(']',$days[1]);
+            $days = explode(',',$days[0]);
+    
+            $d = array();
+            for($i=0;$i<sizeof($days);$i++){
+                array_push($d,$days[$i]);
+            }
+    
+            $days = join(',',$d);
+            $days = str_replace('"',"",$days);
+            return $days;
+        }else{
+            return '---';
         }
-
-        $days = join(',',$d);
-        $days = str_replace('"',"",$days);
-        return $days;
+        
     }
     public function getCourseAdvanceDaysAttribute()
     {
-        $days = explode('[',$this->advance_days);
-        $days = explode(']',$days[1]);
-        $days = explode(',',$days[0]);
-
-        $d = array();
-        for($i=0;$i<sizeof($days);$i++){
-            array_push($d,$days[$i]);
+        if($this->advance_days != null){
+            $days = explode('[',$this->advance_days);
+            $days = explode(']',$days[1]);
+            $days = explode(',',$days[0]);
+    
+            $d = array();
+            for($i=0;$i<sizeof($days);$i++){
+                array_push($d,$days[$i]);
+            }
+    
+            $days = join(',',$d);
+            $days = str_replace('"',"",$days);
+            return $days;
+        }else{
+            return '---';
         }
-
-        $days = join(',',$d);
-        $days = str_replace('"',"",$days);
-        return $days;
+        
     }
 }
