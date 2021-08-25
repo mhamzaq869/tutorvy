@@ -2464,3 +2464,7 @@ button:hover {
         margin-top: 15px;
     }
 }
+
+.text-red {
+    color: red !important;
+}

@@ -41,8 +41,7 @@
 
 
     <style>
-        .error,
-        #teach_error {
+        .error {
             color: red !important;
             font-weight: 500;
         }
@@ -289,6 +288,7 @@
                                                     <input type="" class="form-control csd" name="first_name"
                                                         placeholder="First Name"
                                                         value="{{ $user->first_name ?? '' }}">
+                                                        <label for="" id="fname_error" class="text-red"><strong> This field is required </strong>  </label>
                                                     {{-- @error('first_name')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{$message}}</strong>
@@ -301,6 +301,7 @@
                                                         class="form-control @error('last_name') is-invalid @enderror"
                                                         name="last_name" placeholder="Last Name"
                                                         value="{{ $user->last_name ?? '' }}">
+                                                        <label for="" id="lname_error" class="text-red"><strong> This field is required </strong>  </label>
                                                     @error('last_name')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -313,6 +314,7 @@
                                                     class="form-control  @error('email') is-invalid @enderror"
                                                     name="email" placeholder="Enter Email Address"
                                                     value="{{ $user->email ?? '' }}">
+                                                    <label for="" id="email_error" class="text-red"><strong> This field is required </strong>  </label>
                                                 @error('email')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -323,6 +325,7 @@
                                                 <input type="password" name="password"
                                                     class="form-control  @error('password') is-invalid @enderror"
                                                     placeholder="Password">
+                                                    <label for="" id="password_error" class="text-red"><strong> This field is required </strong>  </label>
                                                 @error('password')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -366,6 +369,7 @@
                                                 <div class="col-md-12 mt-3 mb-3">
                                                     <input id="phone" name="phone" type="tel"
                                                         value="{{ $user->phone ?? '' }}">
+                                                        <label for="" id="phone_error" class="text-red"><strong> This field is required </strong>  </label>
                                                     @error('phone')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -438,7 +442,7 @@
                                                                 </option>
                                                                 <option value="other" @if (isset($user) && $user->gender === 'other') selected @endif>Other
                                                                 </option>
-                                                            </select>
+                                                            </select><label for="" id="gender_error" class="text-red"><strong> This field is required </strong>  </label>
 
                                                         </div>
                                                     </div>
@@ -925,6 +929,7 @@
                     endYear: 2050,
                 });
                 $("#teach_error").hide();
+                $(".text-red").hide();
             });
 
             $("#country_selector").countrySelect({

@@ -38,62 +38,127 @@ $(".advMore").click(function() {
 
     $('#advNew').append(html);
 });
-var counter = 0;
 
-$("#basic_day").on("select2:select", function (e) {
-    var value=   e.params.data.id;
-    alert(value);
-});
-$("#basic_day").on("select2:unselect", function (e) {
-    var value=   e.params.data.id;
-    alert(value);
-});
+$("#basic_day").on("select2:select", function(e) {
+    var value = e.params.data.id;
+    // alert(value);
+    let html = "";
+    html += `<div id="bas_` + value + `">
+                <span class="heading-forth"> ` + value + `</span>
+                <div class="input-serachs mt-2">
+                    <input type="txt" name="basic_course_title[` + value + `]" placeholder="Write Class Title" />
+                </div>
+                <div class="input-serachs mt-2 mb-2">
+                    <input type="txt" name="basic_course_title[` + value + `]" placeholder="Write Class Overview" />
+                </div>
+                <span class="heading-forth"> Timing</span>
+                <div class="input-options ">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" name="basic_start_time[` + value + `]" class="form-control texteara-s mt-2 pt-2 mb-2"  placeholder="From"
+                            onfocus="(this.type='time')">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" name="basic_end_time[` + value + `]" class="form-control texteara-s mt-2 pt-2 mb-2" placeholder="To"
+                                onfocus="(this.type='time')">
+                        </div>
+                    </div>
+                </div>
+            </div>`;
 
-// $("#basic_day").change(function() {
-
-//     var ter = $(this).val();
-
-
-//     // console.log(ter[counter]);
-//     // let html = "";
-//     // html += `<div id="` + ter[counter] + `">
-//     //             <span class="heading-forth"> ` + ter[counter] + `</span>
-//     //             <div class="input-serachs mt-2">
-//     //                 <input type="txt" name="course_title" placeholder="Write Class Title" />
-//     //             </div>
-//     //             <div class="input-serachs mt-2 mb-2">
-//     //                 <input type="txt" name="course_title" placeholder="Write Class Overview" />
-//     //             </div>
-//     //             <span class="heading-forth"> Timing</span>
-//     //             <div class="input-options ">
-//     //                 <div class="row">
-//     //                     <div class="col-md-6">
-//     //                         <input type="text" name="basic_start_time" class="form-control texteara-s mt-2 pt-2 mb-2"  placeholder="From"
-//     //                         onfocus="(this.type='time')">
-//     //                     </div>
-//     //                     <div class="col-md-6">
-//     //                         <input type="text" name="basic_end_time" class="form-control texteara-s mt-2 pt-2 mb-2" placeholder="To"
-//     //                             onfocus="(this.type='time')">
-//     //                     </div>
-//     //                 </div>
-//     //             </div>
-//     //         </div>`;
-
-//     // $("#extraFields").append(html);
-
-//     // alert(ter[counter]);
-//     // counter++;
-// })
-
-$("#basic_day option").click(function(e) {
-
-    var all = $("#basic_day :selected").map(function() {
-        alert(this.value);
-
-    }).get(); // all selected value
-
-    if (all.indexOf(this.value) != -1) { // check the condition your selecting or unselected  option
-        alert(this.value); // current selected element
-    }
+    $("#extraFields").append(html);
 
 });
+$("#basic_day").on("select2:unselect", function(e) {
+    var value = e.params.data.id;
+    // alert(value);
+    $("#bas_" + value).remove();
+});
+
+
+$("#standard_day").on("select2:select", function(e) {
+    var value = e.params.data.id;
+    // alert(value);
+    let html = "";
+    html += `<div id="standard_` + value + `">
+                <span class="heading-forth"> ` + value + `</span>
+                <div class="input-serachs mt-2">
+                    <input type="txt" name="standard_course_title[` + value + `]" placeholder="Write Class Title" />
+                </div>
+                <div class="input-serachs mt-2 mb-2">
+                    <input type="txt" name="standard_course_title[` + value + `]" placeholder="Write Class Overview" />
+                </div>
+                <span class="heading-forth"> Timing</span>
+                <div class="input-options ">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" name="standard_start_time[` + value + `]" class="form-control texteara-s mt-2 pt-2 mb-2"  placeholder="From"
+                            onfocus="(this.type='time')">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" name="standard_end_time[` + value + `]" class="form-control texteara-s mt-2 pt-2 mb-2" placeholder="To"
+                                onfocus="(this.type='time')">
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+
+    $("#standard_extraFields").append(html);
+
+});
+$("#standard_day").on("select2:unselect", function(e) {
+    var value = e.params.data.id;
+    // alert(value);
+    $("#standard_" + value).remove();
+});
+
+
+$("#advance_day").on("select2:select", function(e) {
+    var value = e.params.data.id;
+    // alert(value);
+    let html = "";
+    html += `<div id="advance_` + value + `">
+                <span class="heading-forth"> ` + value + `</span>
+                <div class="input-serachs mt-2">
+                    <input type="txt" name="advance_course_title[` + value + `]" placeholder="Write Class Title" />
+                </div>
+                <div class="input-serachs mt-2 mb-2">
+                    <input type="txt" name="advance_course_title[` + value + `]" placeholder="Write Class Overview" />
+                </div>
+                <span class="heading-forth"> Timing</span>
+                <div class="input-options ">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" name="advance_start_time[` + value + `]" class="form-control texteara-s mt-2 pt-2 mb-2"  placeholder="From"
+                            onfocus="(this.type='time')">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" name="advance_end_time[` + value + `]" class="form-control texteara-s mt-2 pt-2 mb-2" placeholder="To"
+                                onfocus="(this.type='time')">
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+
+    $("#advance_extraFields").append(html);
+
+});
+$("#advance_day").on("select2:unselect", function(e) {
+    var value = e.params.data.id;
+    // alert(value);
+    $("#advance_" + value).remove();
+});
+
+
+// $("#basic_day option").click(function(e) {
+
+//     var all = $("#basic_day :selected").map(function() {
+//         alert(this.value);
+
+//     }).get(); // all selected value
+
+//     if (all.indexOf(this.value) != -1) { // check the condition your selecting or unselected  option
+//         alert(this.value); // current selected element
+//     }
+
+// });

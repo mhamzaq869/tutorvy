@@ -32,7 +32,24 @@ $(function() {
     // })
     $('#step-1-next').click(function() {
         // Check values here
-        isValid = true;
+
+        var x = $("input[name = first_name]").val();
+        //     var ter2 = $("input[name = last_name]").val();
+        //     var ter3 = $("input[name = email]").val();
+        //     var ter4 = $("input[name = password]").val();
+        //     var ter5 = $("input[name = phone]").val();
+        //     var ter6 = $("select[name = gender]").val();
+        if (x == null) {
+            $("#fname_error").show();
+            $("#fname_error").focus();
+            isValid = false;
+
+        } else {
+            $("#fname_error").hide();
+            isValid = true;
+
+        }
+
         if (isValid) {
             $('.nav-tabs > li:nth-of-type(2) > a').removeClass('disabled').click();
         }

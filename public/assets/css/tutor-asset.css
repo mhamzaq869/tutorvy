@@ -2539,3 +2539,24 @@ select#paymentMethod option[value="others"] {
     color: inherit;
     padding-left: 5px
 }
+
+.country-select .selected-flag .arrow {
+    position: absolute;
+    top: 46%;
+    margin-top: -2px;
+    left: 35px;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid #555;
+    border-bottom: 9px;
+}
+
+.country-select.inside input,
+.country-select.inside input[type=text] {
+    padding-left: 52px !important;
+}
+
+.inside {
+    width: 100%;
+}
