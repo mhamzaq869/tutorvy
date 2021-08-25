@@ -94,7 +94,7 @@
                         {{$edu->degree->name}} {{$edu->subject->name}} {{ $edu->c_year }}
                     </p>
                     <p class="paragraph-text pt-0" style="line-height: 0;">
-                        {{$edu->institute->name}}
+                       
                     </p>
                     @endforeach
 

@@ -44,10 +44,10 @@ class CourseController extends Controller
     public function store(Request $request)
     {
 
-        if($request->hasFile('video')){
-            $video_path = "storage/course/video/".$request->video->getClientOriginalName();
-            $request->video->storeAs('course/video/',$request->video->getClientOriginalName(),'public');
-        }
+        // if($request->hasFile('video')){
+        //     $video_path = "storage/course/video/".$request->video->getClientOriginalName();
+        //     $request->video->storeAs('course/video/',$request->video->getClientOriginalName(),'public');
+        // }
 
         if($request->hasFile('thumbnail')){
             $thumbnail_path = "storage/course/thumbnail/".$request->thumbnail->getClientOriginalName();
@@ -61,7 +61,7 @@ class CourseController extends Controller
         $courselevel->title              = $request->course_title;
         $courselevel->subject_id         = $request->subject;
         $courselevel->about              = $request->about;
-        $courselevel->video              = $video_path ?? '';
+        $courselevel->video              = $request->video;
         $courselevel->thumbnail          = $thumbnail_path ?? '';
         $courselevel->basic_home_work    = $request->basic_home_work ?? null;
         $courselevel->basic_quiz         = $request->basic_quiz ?? null;
