@@ -14,7 +14,7 @@ class TutorController extends Controller
 
     public function index()
     {
-        $tutors = User::with(['education','professional','teach'])->where('role',2)->where('status',1)->get();
+        $tutors = User::with(['education','professional','teach'])->where('role',2)->where('status',2)->get();
         $subjects = Subject::all();
         return view('student.pages.tutor.index',compact('tutors','subjects'));
     }
@@ -22,7 +22,7 @@ class TutorController extends Controller
 
     public function show ($id)
     {
-        $tutor = User::with(['education','professional','userdetail','teach','course'])->find($id);
+        $tutor = User::with(['education','professional','teach','course'])->find($id);
         return view('student.pages.tutor.profile',compact('tutor'));
     }
 

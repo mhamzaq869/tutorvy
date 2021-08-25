@@ -39,57 +39,51 @@ $(".advMore").click(function() {
     $('#advNew').append(html);
 });
 var counter = 0;
-$("#basic_day").change(function() {
 
-    var ter = $(this).val();
-    if (bs_days_arr.length == 0 && ter.length == 1) {
-        bs_days_arr.push(ter);
-    } else if (ter.length != null && ter.length > 1) {
+$("#basic_day").on("select2:select", function (e) {
+    var value=   e.params.data.id;
+    alert(value);
+});
+$("#basic_day").on("select2:unselect", function (e) {
+    var value=   e.params.data.id;
+    alert(value);
+});
 
-        for (var i = 0; i <= ter.length; i++) {
-            bs_days_arr = 'sad,asda'.split()
-            console.log('bs' + bs_days_arr)
-            console.log('ter' + ter)
-            index = bs_days_arr.indexOf(ter[i]);
-            console.log(index)
-            if (index == -1) {
-                bs_days_arr.push(ter[i]);
-            }
-        }
+// $("#basic_day").change(function() {
 
-    }
-    // alert(bs_days_arr[1]);
+//     var ter = $(this).val();
 
-    console.log(ter[counter]);
-    let html = "";
-    html += `<div id="` + ter[counter] + `">
-                <span class="heading-forth"> ` + ter[counter] + `</span>
-                <div class="input-serachs mt-2">
-                    <input type="txt" name="course_title" placeholder="Write Class Title" />
-                </div>
-                <div class="input-serachs mt-2 mb-2">
-                    <input type="txt" name="course_title" placeholder="Write Class Overview" />
-                </div>
-                <span class="heading-forth"> Timing</span>
-                <div class="input-options ">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <input type="text" name="basic_start_time" class="form-control texteara-s mt-2 pt-2 mb-2"  placeholder="From"
-                            onfocus="(this.type='time')">
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" name="basic_end_time" class="form-control texteara-s mt-2 pt-2 mb-2" placeholder="To"
-                                onfocus="(this.type='time')">
-                        </div>
-                    </div>
-                </div>
-            </div>`;
 
-    // $("#extraFields").append(html);
+//     // console.log(ter[counter]);
+//     // let html = "";
+//     // html += `<div id="` + ter[counter] + `">
+//     //             <span class="heading-forth"> ` + ter[counter] + `</span>
+//     //             <div class="input-serachs mt-2">
+//     //                 <input type="txt" name="course_title" placeholder="Write Class Title" />
+//     //             </div>
+//     //             <div class="input-serachs mt-2 mb-2">
+//     //                 <input type="txt" name="course_title" placeholder="Write Class Overview" />
+//     //             </div>
+//     //             <span class="heading-forth"> Timing</span>
+//     //             <div class="input-options ">
+//     //                 <div class="row">
+//     //                     <div class="col-md-6">
+//     //                         <input type="text" name="basic_start_time" class="form-control texteara-s mt-2 pt-2 mb-2"  placeholder="From"
+//     //                         onfocus="(this.type='time')">
+//     //                     </div>
+//     //                     <div class="col-md-6">
+//     //                         <input type="text" name="basic_end_time" class="form-control texteara-s mt-2 pt-2 mb-2" placeholder="To"
+//     //                             onfocus="(this.type='time')">
+//     //                     </div>
+//     //                 </div>
+//     //             </div>
+//     //         </div>`;
 
-    // alert(ter[counter]);
-    counter++;
-})
+//     // $("#extraFields").append(html);
+
+//     // alert(ter[counter]);
+//     // counter++;
+// })
 
 $("#basic_day option").click(function(e) {
 
