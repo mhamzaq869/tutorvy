@@ -63,7 +63,7 @@
 
                         <div class="col-md-4 text-center">
                             <label class="switch" style="position: relative;left: -10px;top:5px;width: 60px;">
-                                <input type="checkbox" onchange="changeTutorStatus(`{{$tutor->id}}`)" {{ ($tutor->status == 1) ? 'checked' : ''}}>
+                                <input type="checkbox" onchange="changeTutorStatus(`{{$tutor->id}}`)" {{ ($tutor->status == 2) ? 'checked' : ''}}>
                                 <span class="slider round"></span>
                             </label>
                         </div>

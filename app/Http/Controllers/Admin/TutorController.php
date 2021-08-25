@@ -47,7 +47,7 @@ class TutorController extends Controller
     }
 
     public function profile($id){
-        $tutor = User::with(['education','professional','teach'])->where('id',$id)->where('role',2)->where('status',1)->first();
+        $tutor = User::with(['education','professional','teach'])->where('id',$id)->where('role',2)->where('status',2)->first();
         $approved_courses = Course::where('user_id',$id)->where('status',1)->get();
         $requested_courses = Course::where('user_id',$id)->where('status',0)->get();
 

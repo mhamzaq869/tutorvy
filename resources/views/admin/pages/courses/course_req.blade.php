@@ -99,11 +99,11 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class=" float-right">
-                                    <button data-toggle="modal" data-target="#exampleModalCenterss" class="cencel-btn">
+                                    <button data-toggle="modal" data-target="#rejectCourseModal" class="cencel-btn">
                                         Reject
                                     </button>
-                                    <button class="schedule-btn">
-                                        Accpet
+                                    <button class="schedule-btn" onclick="changeCourseStatus(`{{$course->id}}`,1)">
+                                        Accept
                                     </button>
                                 </div>
                             </div>
@@ -163,8 +163,8 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <span class="heading-fifth" style="font-weight: 600;">Timing</span>
-                                                <p class="paragraph-text-2 mt-1">{{ $course->basic_duration != null ? $course->basic_duration : 0 }} weeks ({{ $course->course_basic_days != null ? $course->course_basic_days : '---' }}) - 2pm to
-                                                    4pm</p>
+                                                <p class="paragraph-text-2 mt-1">{{ $course->basic_duration != null ? $course->basic_duration : 0 }} weeks ({{ $course->course_basic_days != null ? $course->course_basic_days : '---' }}) - {{date("g:i a", strtotime("$course->basic_start_time UTC"))}} to
+                                                 {{date("g:i a", strtotime("$course->basic_end_time UTC"))}}</p>
                                             </div>
                                         </div>
                                         <div class="row mt-0 w-100 div-1">
@@ -276,7 +276,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="view-bookings" >
-                                                    $99
+                                                    ${{$course->basic_price}}
                                                 </div>
                                             </div>
                                         </div>
@@ -322,8 +322,8 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <span class="heading-fifth" style="font-weight: 600;">Timing</span>
-                                                <p class="paragraph-text-2 mt-1">{{ $course->standard_duration != null ? $course->standard_duration : 0 }} weeks ({{ $course->course_standard_days != null ? $course->course_standard_days : '---' }}) - 2pm to
-                                                    4pm</p>
+                                                <p class="paragraph-text-2 mt-1">{{ $course->standard_duration != null ? $course->standard_duration : 0 }} weeks ({{ $course->course_standard_days != null ? $course->course_standard_days : '---' }}) - {{date("g:i a", strtotime("$course->standard_start_time UTC"))}} to
+                                                {{date("g:i a", strtotime("$course->standard_end_time UTC"))}}</p>
                                             </div>
                                         </div>
                                         <div class="row mt-0 w-100 div-1">
@@ -435,7 +435,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="view-bookings" >
-                                                    $97
+                                                    ${{$course->standard_price}}
                                                 </div>
                                             </div>
                                         </div>
@@ -482,8 +482,8 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <span class="heading-fifth" style="font-weight: 600;">Timing</span>
-                                                <p class="paragraph-text-2 mt-1">{{ $course->advance_duration != null ? $course->advance_duration : 0 }} weeks ({{ $course->course_advance_days != null ? $course->course_advance_days : '---' }}) - 2pm to
-                                                    4pm</p>
+                                                <p class="paragraph-text-2 mt-1">{{ $course->advance_duration != null ? $course->advance_duration : 0 }} weeks ({{ $course->course_advance_days != null ? $course->course_advance_days : '---' }}) - {{date("g:i a", strtotime("$course->advance_start_time UTC"))}} to
+                                                {{date("g:i a", strtotime("$course->advance_end_time UTC"))}}</p>
                                             </div>
                                         </div>
                                         <div class="row mt-0 w-100 div-1">
@@ -595,7 +595,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="view-bookings" >
-                                                    $98
+                                                    ${{$course->advance_price}}
                                                 </div>
                                             </div>
                                         </div>
@@ -609,7 +609,7 @@
         </div>  
         <!-- end section -->
                <!-- Modal reject-->
-               <div class="modal fade" id="exampleModalCenterss" tabindex="-1" role="dialog"
+               <div class="modal fade" id="rejectCourseModal" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
@@ -622,10 +622,10 @@
                                     <p class="paragraph-text">
                                         Write allegation that why are you rejecting course
                                     </p>
-                                    <textarea class="form-control" rows="5" placeholder="Write reason"></textarea>
+                                    <textarea class="form-control" rows="5" placeholder="Write reason" id="c_reject_reason"></textarea>
                                     <div class="mt-4 d-flex" style="position: absolute;right: 30px;">
                                         <button class="cencel-btn w-150 mr-4" data-dismiss="modal">Cancel</button>
-                                        <button class="schedule-btn w-150">Send</button>
+                                        <button class="schedule-btn w-150" onclick="changeCourseStatus(`{{$course->id}}`,2)">Send</button>
                                     </div>
                                 </div>
                             </div>
@@ -633,4 +633,10 @@
                     </div>
                 </div>
     
+@endsection
+
+<!-- Extra js to perfome function using ajax. -->
+@section('js')
+  
+@include('js_files.admin.course')
 @endsection

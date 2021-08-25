@@ -39,4 +39,28 @@ class CourseController extends Controller
     {
         return view('admin.pages.courses.course_edit');
     }
+
+    public function courseStatus(Request $request){
+
+        $course = Course::where('id',$request->id)->first();
+        $course->status = $request->status;
+        $course->reject_note = $request->reason;
+
+        $course->save();
+
+        $message = '';
+        if($request->status == 1){
+            $message = 'Course Status Enabled.';
+        }elseif($request->status == 2){
+            $message = 'Course Rejected.';
+        }else{
+            $message = 'Course Status Disabled.';
+        }
+
+        return response()->json([
+            'status'=>'200',
+            'message' => $message
+        ]);
+
+    }
 }
