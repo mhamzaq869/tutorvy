@@ -343,7 +343,7 @@
                                                 </label>
                                             </td>
                                             <td class="pt-3">
-                                                <a href="{{route('admin.course-profile')}}" class="schedule-btn btn">
+                                                <a href="{{route('admin.course-profile',[$course->id])}}" class="schedule-btn btn">
                                                     View</a>
                                             </td>
                                         </tr>

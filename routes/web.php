@@ -75,7 +75,7 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
 
     Route::get('/course',[CourseController::class,'index'])->name('admin.course');
     Route::get('/course-request/{id}',[CourseController::class,'courseRequest'])->name('admin.course-request');
-    Route::get('/course-profile',[CourseController::class,'courseProfile'])->name('admin.course-profile');
+    Route::get('/course-profile/{id}',[CourseController::class,'courseProfile'])->name('admin.course-profile');
     Route::get('/course-edit',[CourseController::class,'editCourseProfile'])->name('admin.course-edit');
     Route::post('course/change-course-status',[CourseController::class,'courseStatus'])->name('admin.courseStatus');
 
