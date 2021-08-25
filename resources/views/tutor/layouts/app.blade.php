@@ -21,6 +21,7 @@
       <!-- Dropify CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/multiselect.css')}}" />
     <link rel="stylesheet" href="{{ asset('assets/css/dropify.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/countrySelect.css')}}">
 
     <!--Select 2-->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -54,6 +55,8 @@
      <script src="{{ asset('assets/js/registration.js') }}"></script>
      <script src="{{ asset('assets/js/dropify.js')}}"></script>
      <script src="{{ asset('assets/js/multiselect.js')}}"></script>
+     <script src="{{ asset('assets/js/countrySelect.js')}}"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <!-- <script src="{{ asset('assets/js/jquery_ui_multiselector.js')}}"></script> -->
@@ -66,6 +69,16 @@
         $(".dropify").dropify();
         $('.js-multiSelect').select2();
     })
+    $("#country_selector").countrySelect({
+                defaultCountry: "{{ $user->country_short ?? '' }}",
+                preferredCountries: ['ca', 'gb', 'us', 'pk']
+            });
+
+            $("#country_selector").on('change', function() {
+                var short = $(this).countrySelect("getSelectedCountryData");
+                $("#country_short").val(short.iso2);
+            });
+
 </script>
 </body>
 </html>

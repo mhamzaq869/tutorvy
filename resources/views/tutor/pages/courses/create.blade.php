@@ -161,13 +161,13 @@
                         </h3>
                         <div class="input-options">
                             <select class="js-multiSelect" id="basic_day" name="basic_days[]" multiple="multiple">
-                                <option value="Monday" >Monday</option>
-                                <option value="Tuesday">Tuesday</option>
-                                <option value="Wednesday">Wednesday</option>
-                                <option value="Thursday">Thursday</option>
-                                <option value="Friday">Friday</option>
-                                <option value="Saturday">Saturday</option>
-                                <option value="Sunday">Sunday</option>
+                                <option value="1" >Monday</option>
+                                <option value="2">Tuesday</option>
+                                <option value="3">Wednesday</option>
+                                <option value="4">Thursday</option>
+                                <option value="5">Friday</option>
+                                <option value="6">Saturday</option>
+                                <option value="7">Sunday</option>
                             </select>
                         </div>
                         <!-- <div class="input-options mt-2">
@@ -182,10 +182,7 @@
                                 <option value="Sun">Sun</option>
                             </select>
                         </div> -->
-                        <div class=" mt-2" id="extraFields">
-                            
-                           
-                        </div>
+                        <div class=" mt-2" id="extraFields"></div>
                        
                         <h3 class="mt-2 pb-1">
                         Price
@@ -273,14 +270,14 @@
                     Schedule
                     </h3>
                     <div class="input-options mt-2">
-                        <select class="js-multiSelect" id="" name="standard_days[]" multiple="multiple">
-                                <option value="Monday" >Monday</option>
-                                <option value="Tuesday">Tuesday</option>
-                                <option value="Wednesday">Wednesday</option>
-                                <option value="Thursday">Thursday</option>
-                                <option value="Friday">Friday</option>
-                                <option value="Saturday">Saturday</option>
-                                <option value="Sunday">Sunday</option>
+                        <select class="js-multiSelect" id="standard_day" name="standard_days[]" multiple="multiple">
+                                <option value="1" >Monday</option>
+                                <option value="2">Tuesday</option>
+                                <option value="3">Wednesday</option>
+                                <option value="4">Thursday</option>
+                                <option value="5">Friday</option>
+                                <option value="6">Saturday</option>
+                                <option value="7">Sunday</option>
                             </select>
                         <!-- <select name="standard_days[]" id="standard_days" multiple role="multiselect">
                             <option disabled selected required>Select days</option>
@@ -293,6 +290,7 @@
                             <option value="Sunday">Sunday</option>
                         </select> -->
                     </div>
+                    <div class=" mt-2" id="standard_extraFields"></div>
                     <!-- <div class="input-options mt-2">
                         <div class="row">
                             <div class="col-md-6">
@@ -387,26 +385,17 @@
                         Schedule
                     </h3>
                     <div class="input-options mt-2">
-                        <select class="js-multiSelect" id="" name="advance_days[]" multiple="multiple">
-                                <option value="Monday" >Monday</option>
-                                <option value="Tuesday">Tuesday</option>
-                                <option value="Wednesday">Wednesday</option>
-                                <option value="Thursday">Thursday</option>
-                                <option value="Friday">Friday</option>
-                                <option value="Saturday">Saturday</option>
-                                <option value="Sunday">Sunday</option>
+                        <select class="js-multiSelect" id="advance_day" name="advance_days[]" multiple="multiple">
+                            <option value="1" >Monday</option>
+                                <option value="2">Tuesday</option>
+                                <option value="3">Wednesday</option>
+                                <option value="4">Thursday</option>
+                                <option value="5">Friday</option>
+                                <option value="6">Saturday</option>
+                                <option value="7">Sunday</option>
                             </select>
-                        <!-- <select name="advance_days[]" id="advance_days" multiple role="multiselect">
-                            <option disabled selected required>Select days</option>
-                            <option value="monday">Monday</option>
-                            <option value="tuesday">Tuesday</option>
-                            <option value="wednesday">Wednesday</option>
-                            <option value="thursday">Thursday</option>
-                            <option value="Friday">Friday</option>
-                            <option value="Saturday">Saturday</option>
-                            <option value="Sunday">Sunday</option>
-                        </select> -->
                     </div>
+                    <div class=" mt-2" id="advance_extraFields"></div>
                     <!-- <div class="input-options mt-2">
                         <div class="row">
                             <div class="col-md-6">

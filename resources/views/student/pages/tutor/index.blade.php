@@ -1,223 +1,140 @@
 @extends('student.layouts.app')
-
+<link href="{{ asset('assets/css/registration.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/css/booknow.css') }}" rel="stylesheet">
 @section('content')
-<div class="container">
-    <p class="mr-3 mb-2 heading-first">
-        Find a tutor
-    </p>
-    <div class="row">
-        <div class="col-md-3 mt-4" style="background-color: #ffffff;">
+ <!-- top Fixed navbar End -->
+ <section>
 
-            <p class="mb-3 pt-3  ml-2"
-                style="font-size: 16px;font-weight: 600;font-family: Poppins;color: #00132D;">
-                Advance search</p>
-            <input type="search" style="width: 100%;" class="form-control input12" data-search
-                placeholder="Search">
+    <div class="">
+        <p id="sidenav-toggles" class="heading-first  mr-3 mb-4 ml-2">
+            Find a Tutor
+        </p>
+    </div>
+    <div class="">
+        <div class="row bg-white ml-2 mr-2 ">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h5 class=""
+                                style="">
+                                Advance search</h5>
+                            </div>
+                            <div class="col-md-12 mt-2">
+                                <input type="search" style="width: 100%;" class="form-control input12" data-search
+                                placeholder="Search">
 
-            <span class="fa fa-search form-control-feedback"></span>
+                                <span class="fa fa-search form-control-feedback searchIcon"></span>
+                                <select class="w-100 mt-3 form-control py-2" id="subject">
+                                    <option value="">Subject</option>
+                                    @foreach ($subjects as $subject)
+                                    <option value="{{$subject->id}}"> {{$subject->name}}</option>
+                                    @endforeach
+                                </select>
+                                <select class="w-100 mt-3 form-control py-2">
+                                    <option value="">Location</option>
 
-            <select class="w-100 mt-3 form-control py-2" id="subject">
-                <option value="">Subject</option>
-                @foreach ($subjects as $subject)
-                <option value="{{$subject->id}}"> {{$subject->name}}</option>
-                @endforeach
-            </select>
-            <select class="w-100 mt-3 form-control py-2">
-                <option value="">Location</option>
-
-            </select>
-            <select class="w-100 mt-3 form-control py-2">
-                <option value="">Rate</option>
-            </select>
-            <select class="w-100 mt-3 form-control py-2">
-                <option value="">Rating</option>
-            </select>
-            <select class="w-100 mt-3 form-control py-2">
-                <option value="">Language</option>
-            </select>
-
-        </div>
-        <div class="col-md-9">
-            @foreach ($tutors as $tutor)
-                <div class="container mt-4 pb-4" style="background-color: white;border-radius: 8px;">
-                    <div class="row">
-                        <div class="col-md-9">
-                            <div class="row" style="line-height: 0.8;">
-                                <div class="col-md-2">
-                                    <div class="popover__wrapper mt-0">
-                                        <a href="{{route('student.tutor.show',[$tutor->id])}}">
-                                            <h2 class="popover__title">
-                                                @if($tutor->picture)
-                                                <img src="{{asset($tutor->picture) }}" class="w-100" alt="home-profile">
-                                                @else
-                                                <img src="{{asset('assets/images/ico/hom-profile.png') }}" alt="home-profile">
-                                                @endif
-                                            </h2>
-                                        </a>
-                                        <div class="popover__content">
-                                            <div class="col-md-12">
-                                                <div class="row" style="line-height: 0.8;">
-                                                    <div class="col-md-2 mt-3">
-                                                        @if($tutor->picture)
-                                                        <img src="{{asset($tutor->picture) }}" class="w-100" alt="home-profile">
-                                                        @else
-                                                        <img src="{{asset('assets/images/ico/hom-profile.png') }}" alt="home-profile">
-                                                        @endif
-                                                    </div>
-                                                    <div class="col-md-10 mt-4">
-                                                        <div class="d-flex ml-5 ">
-                                                            <p class="heading-third ml-1">
-                                                                {{$tutor->fullname}}
-                                                            </p>
-                                                            <div class=" ml-2">
-                                                                <span
-                                                                    class="fa fa-star checked text-warning"></span>
-                                                                <span
-                                                                    class="fa fa-star checked text-warning"></span>
-                                                                <span
-                                                                    class="fa fa-star checked text-warning"></span>
-                                                                <span
-                                                                    class="fa fa-star checked text-warning"></span>
-                                                                <span class="fa fa-star"></span>
-                                                            </div>
-
-                                                        </div>
-                                                        <div class="row ml-4">
-                                                            <div class="col-md-1 mr-2 ml-3">
-                                                                <img src="{{asset('assets/images/ico/red-icon.png') }}"
-                                                                    alt="red-icon">
-                                                            </div>
-                                                            <div class="col-md-9 m-0 p-0">
-                                                                <p class="text-pro">
-                                                                    {{$tutor->professional->last()->designation ?? '---'}}
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row  ml-4">
-                                                            <div class="col-md-1 ml-3">
-                                                                <img src="{{asset('assets/images/ico/location-pro.png') }}"
-                                                                    alt="location-pro">
-                                                            </div>
-                                                            <div class="col-md-9 m-0 p-0">
-                                                                <p class="heading-fifth ml-2">
-                                                                    Lahore, Pakistan
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
+                                </select>
+                                <select class="w-100 mt-3 form-control py-2">
+                                    <option value="">Rate</option>
+                                </select>
+                                <select class="w-100 mt-3 form-control py-2">
+                                    <option value="">Rating</option>
+                                </select>
+                                <select class="w-100 mt-3 form-control py-2">
+                                    <option value="">Language</option>
+                                </select>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 ">
+                @foreach ($tutors as $tutor)
+                <div class="card">
+                    <div class="card-body">
+                        
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="row">
+                                            <div class="col-md-2 col-6">
+                                                <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
+                                            </div>
+                                            <div class="col-md-5 col-6">
+                                                <h3>Danish Jaffery</h3>
+                                                <p class="mb-0"><img src="../assets/images/ico/red-icon.png" alt="" class=""> Associate Professor at UKAS</p>
+                                                <p><img src="../assets/images/ico/location-pro.png" alt="" class=""> Lahore,Pakistan</p>
+                                            </div>
+                                            <div class="col-md-4 col-12">
+                                                <p>
+                                                    <i class="fa fa-star text-yellow"></i>
+                                                    <i class="fa fa-star text-yellow"></i>
+                                                    <i class="fa fa-star text-yellow"></i>
+                                                    <i class="fa fa-star text-yellow"></i>  4.0
+                                                    <small class="text-grey">(25 reviews)</small>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-8 mt-4 m-0 p-0">
-                                    <div class="d-flex ml-3 ">
-                                        <p class="heading-third">{{$tutor->fullname}}</p>
-                                        <div class=" ml-2">
-                                            <span class="fa fa-star checked text-warning"></span>
-                                            <span class="fa fa-star checked text-warning"></span>
-                                            <span class="fa fa-star checked text-warning"></span>
-                                            <span class="fa fa-star checked text-warning"></span>
-                                            <span class="fa fa-star"></span>
-                                        </div>
-                                        <p class="ml-3 mt-1 paragraph-text1">4.0</p>
-                                        <p class="ml-3 mt-1 paragraph-text2">(25 review)</p>
-                                    </div>
-                                    <div class="row ml-1">
-                                        <div class="col-md-1 mr-2">
-                                            <img src="{{asset('assets/images/ico/red-icon.png') }}">
-                                        </div>
-                                        <div class="col-md-9 m-0 p-0">
-                                            <p class="text-pro">  {{$tutor->professional->last()->designation ?? '---'}} at {{$tutor->professional->last()->organization ?? '---'}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="row  ml-1">
-                                        <div class="col-md-1">
-                                            <img src="{{asset('assets/images/ico/location-pro.png') }}">
-                                        </div>
-                                        <div class="col-md-9 m-0 p-0">
-                                            <p class="heading-fifth ml-2"> {{$tutor->city}}, {{$tutor->country}} </p>
-                                        </div>
+                                    <div class="col-md-3">
+                                        <p class="text-right"><span class="text-green ">Top Ranked</span> <span class="rank_icon"><img src="../assets/images/ico/rank.png" alt=""></span> </p>
                                     </div>
                                 </div>
-                                <div class="col-md-2 mt-4">
-                                    <div class="d-flex justify-content-end">
-                                        <p class="rank-text mt-1" style="position: absolute;left: -30px;">Top
-                                            Rank</p>
-                                        <img class="" src="{{asset('assets/images/ico/rank.png') }}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="container-fluid mt-3">
-                                <div class="row">
-
-                                    <div class="col-md-4 m-0 p-0">
-                                        <p class="heading-fifth"> Subjects</p>
+                                <div class="row mt-2">
+                                    <div class="col-md-4">
+                                        <p class="mb-2">Subject</p>
+                                        <p> <span class="info-1 info">Computer Science</span><span class="info">Maths</span></p>
                                     </div>
                                     <div class="col-md-4">
-                                        <p class="heading-fifth"> Language</p>
+                                        <p class="mb-2">Languages</p>
+                                        <p>
+                                            <span class="info-1 info lingo">French</span>
+                                            <span class="info lingo">English</span>
+                                            <span class="info lingo">Urdu</span>
+                                        </p>
                                     </div>
                                     <div class="col-md-4">
-                                        <p class="heading-fifth"> Education</p>
+                                    <p class="mb-2">Education</p>
+                                        <p>
+                                            <span class="info-1 info edu">Govt College Lahore Pakistan</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-12 find_tutor">
+                                        <p><strong> About Tutor </strong></p>
+                                        <p class="scrol-about ">
+                                            Lorem ipsum dolor sit amet,  est commodi pariatur deserunt distinctio consectetur necessitatibus vitae obcaecati magni recusandae blanditiis sint porro placeat. Quia voluptates atque rerum ipsa architecto.
+                                        </p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="container-fluid mt-1 pb-3">
-                                <div class="row">
-                                    <div class="d-flex">
-                                        @foreach ($tutor->teach as $teach)
-                                        <button class="color-btn-std1 ml-2 py-1">{{$teach->sub_name ?? ''}}</button>
-                                        @endforeach
-                                        <button class="color-btn-std ml-2">{{$tutor->language ?? ''}}</button>
-                                        @foreach ($tutor->education as $edu)
-                                            <button class="color-btn-std3 ml-2">{{$edu->institute->name ?? ''}}</button>
-                                        @endforeach
+                            <div class="col-md-3 bg-price text-center">
+                                <div class="row mt-30">
+                                    <div class="col-md-12">
+                                        <p>starting from</p>
+                                        <h1 class="f-60">$51</h1>
+                                        <p>per hour</p>
+                                        <button type="button" class=" cencel-btn w-100">
+                                                &nbsp; Message &nbsp;
+                                            </button>
+                                        <button type="button" class=" btn-general w-100 mt-2" >
+                                                &nbsp; Book Class &nbsp;
+                                            </button>
                                     </div>
                                 </div>
                             </div>
-                            <p class="mt-3 heading-forth">About tutor</p>
-                            <div class="container-fluid m-0 p-0">
-                                <p class="paragraph-text1" style="opacity: 0.8;">
-                                  {{$tutor->bio}}
-                                </p>
-                            </div>
-
                         </div>
-                        <div class="col-md-3 pb-4" style="background-color: #ebf4ff;border-radius: 8px;">
-                            <div class="text-center mt-5">
-                                <p class="paragraph-text1">starting from</p>
-                                <p class="" style="font-size: 64px;font-family: 'poppins';line-height: 1;">
-                                    ${{$tutor->hourly_rate ?? 0}}
-                                </p>
-                                <p class="paragraph-text1 mb-5" style="line-height: 1;">Per hour</p>
-                                <button class="cencel-btn w-100 mt-5">Massge</button>
-                                <button class="schedule-btn w-100 mt-3">Book class</button>
-                            </div>
-                        </div>
+                        
                     </div>
-
                 </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
     </div>
-</div>
-
-@endsection
-
-@section('scripts')
-<script src="{{asset('assets/js/filterajax.js')}}"></script>
-<script src="{{asset('assets/js/countrySelect.js')}}"></script>
-<script>
-            $("#country_selector").countrySelect({
-                defaultCountry: "ca",
-                preferredCountries: ['ca', 'gb', 'us', 'pk']
-            });
-
-            $("#country_selector").on('change', function(){
-               var short = $(this).countrySelect("getSelectedCountryData");
-               $("#country_short").val(short.iso2);
-            });
-</script>
+</section>
 @endsection
