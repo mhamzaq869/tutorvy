@@ -421,7 +421,7 @@
                                                 </div>
                                                 <div class="d-flex pb-3">
                                                     <span>
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
                                                     </span>
                                                     <span class="ml-3 heading-fifth mt-1">Home work</span>
                                                 </div>

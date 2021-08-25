@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/multiselect.css')}}" />
     <link rel="stylesheet" href="{{ asset('assets/css/dropify.css')}}" />
 
+    <!--Select 2-->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <!-- Styles -->
     @include('tutor.layouts.css')
 
@@ -52,6 +54,8 @@
      <script src="{{ asset('assets/js/registration.js') }}"></script>
      <script src="{{ asset('assets/js/dropify.js')}}"></script>
      <script src="{{ asset('assets/js/multiselect.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <!-- <script src="{{ asset('assets/js/jquery_ui_multiselector.js')}}"></script> -->
 
      @include('js_files.chat')
@@ -60,6 +64,7 @@
 
     $(document).ready(function(){
         $(".dropify").dropify();
+        $('.js-multiSelect').select2();
     })
 </script>
 </body>
