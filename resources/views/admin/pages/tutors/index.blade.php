@@ -24,8 +24,8 @@
             <div class="col-md-6">
                 <h3 class="heading-third-res">New tutors requests</h3>
             </div>
-            <div class="col-md-6 col-12">
-                <a href="all-tutor-request.html" class="view-bookings view-bookings-res">
+            <div class="col-md-6 col-6 text-right">
+                <a href="{{route('admin.all-tutor-req')}}" class="view-bookings view-bookings-res">
                     View all tutor requests
                 </a>
             </div>
@@ -177,8 +177,8 @@
             <div class="col-md-6 col-6">
                 <h3>All tutors</h3>
             </div>
-            <div class="col-md-6 col-6">
-                <a href="all-tutor.html">
+            <div class="col-md-6 col-6 text-right">
+                <a href="{{route('admin.all-tutors')}}">
                     <p class="view-bookings">
                         View all tutor
                     </p>

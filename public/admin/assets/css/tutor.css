@@ -1,5 +1,9 @@
 /* HAEEDING FIFTH1 */
 
+.all-tutor-badge {
+    padding: 7px 15px !important;
+}
+
 .heading-fifth1 {
     font-size: 12px;
     font-family: "Poppins";
@@ -11,6 +15,7 @@
     text-decoration: none !important;
 }
 
+
 /* button view */
 
 .cencel-btn {
@@ -20,9 +25,11 @@
 .schedule-btn {
     width: 90px;
 }
-.schedule-btn-add{
+
+.schedule-btn-add {
     width: 160px !important;
 }
+
 .alex-name {
     position: relative;
     top: -3px;
@@ -34,6 +41,7 @@
     width: 120px !important;
     margin-left: 20px;
 }
+
 .alex-names {
     font-size: 16px;
     font-weight: 600;
@@ -69,7 +77,7 @@
 }
 
 .growth-top {
-    margin-top: 38px !important ;
+    margin-top: 38px !important;
 }
 
 .time-top {
@@ -132,6 +140,7 @@
     color: #1173FF;
 }
 
+
 /* ACTIVE SIDENAV TEXT ON TUTOR VIEW*/
 
 .active-text-1 {
@@ -189,6 +198,7 @@
     border-radius: 4px;
 }
 
+
 /* NOTIFICATION */
 
 .notification-text2 {
@@ -220,6 +230,7 @@
     position: relative;
     top: -30px;
 }
+
 
 /* RANK IMAGE CSS */
 
@@ -267,6 +278,7 @@
     box-shadow: 0 3px 6px rgba(223, 219, 219, 0.16), 0 3px 6px rgba(231, 231, 231, 0.23);
 }
 
+
 /* view bookings */
 
 .view-bookings-1 {
@@ -290,6 +302,7 @@
     width: 600px;
     background-color: white;
 }
+
 
 /* tab stwching css*/
 
@@ -343,15 +356,20 @@
     display: none;
 }
 
-#one:checked~.panels #one-panel, #two:checked~.panels #two-panel, #three:checked~.panels #three-panel {
+#one:checked~.panels #one-panel,
+#two:checked~.panels #two-panel,
+#three:checked~.panels #three-panel {
     display: block;
 }
 
-#one:checked~.tabs #one-tab, #two:checked~.tabs #two-tab, #three:checked~.tabs #three-tab {
+#one:checked~.tabs #one-tab,
+#two:checked~.tabs #two-tab,
+#three:checked~.tabs #three-tab {
     background: #fffffff6;
     color: #ffffff;
     background-color: #1173FF;
 }
+
 
 /*  */
 
@@ -366,16 +384,19 @@
     background-color: transparent !important;
     border: none;
 }
-.cke_top{
-background-color: transparent !important;
+
+.cke_top {
+    background-color: transparent !important;
 }
 
 #main {
     margin: 2px 0;
 }
-.yellow-rank{
+
+.yellow-rank {
     height: 50px;
 }
+
 #main #faq .card {
     border: 0;
 }
@@ -433,6 +454,7 @@ background-color: transparent !important;
     color: #222;
 }
 
+
 /* jquery loader CSS */
 
 .progress {
@@ -443,7 +465,8 @@ background-color: transparent !important;
     height: 80px;
 }
 
-.progress .track, .progress .fill {
+.progress .track,
+.progress .fill {
     fill: white;
     stroke-width: 10;
     transform: rotate(90deg)translate(0px, -80px);
@@ -469,7 +492,8 @@ background-color: transparent !important;
     stroke: #00132D;
 }
 
-.progress .value, .progress .text {
+.progress .value,
+.progress .text {
     font-family: 'Open Sans';
     fill: black;
     text-anchor: middle;
@@ -627,6 +651,7 @@ background-color: transparent !important;
     top: -10px;
 }
 
+
 /* webiste card css */
 
 .card-web {
@@ -641,17 +666,23 @@ background-color: transparent !important;
 .card-web:hover {
     box-shadow: 0 8px 16px 0 rgba(70, 69, 69, 0.2);
 }
+
+
 /* edit css of staff*/
-.input-option-1 select{
+
+.input-option-1 select {
     width: 100%;
     padding: 7px;
     border-radius: 4px;
     border: 1px solid #D6DBE2;
 }
-.input-option-1 select:focus{
+
+.input-option-1 select:focus {
     outline: none;
-    border-color: #1173FF ;
+    border-color: #1173FF;
 }
+
+
 /* media query  */
 
 @media only screen and (max-width: 700px) {
@@ -792,5 +823,6 @@ background-color: transparent !important;
     background-color: #c0d7f8;
     border-radius: 50px;
 }
+
 
 /* scroll x axises */
