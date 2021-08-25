@@ -54,12 +54,22 @@ class TutorController extends Controller
     }
 
     public function all_tutor_req(){
-    
-        return view('admin.pages.tutors.all-tutor-req');
+
+        $new_requests = DB::table('users')
+            ->select('users.*','assessments.status as assess_status','assessments.id as assessment_id','subjects.name as subject_name')
+            ->leftJoin('assessments', 'users.id', '=', 'assessments.user_id')
+            ->leftJoin('subjects', 'subjects.id', '=', 'assessments.subject_id')
+            ->where('users.role',2)
+            ->where('users.status',1)
+            ->orwhere('users.status',2)
+            ->where('assessments.status',0)
+            ->get();
+        return view('admin.pages.tutors.all-tutor-req',compact('new_requests'));
+
     }
     public function all_tutors(){
-    
-        return view('admin.pages.tutors.all-tutors');
+        $tutors = User::with(['education','professional','teach'])->where('role',2)->whereIn('status',[0,2,3])->get();
+        return view('admin.pages.tutors.all-tutors',compact('tutors'));
     }
 
 

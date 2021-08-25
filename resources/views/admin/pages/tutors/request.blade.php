@@ -81,7 +81,7 @@
                             </p>
                             <textarea class="form-control" rows="5" placeholder="Write reason" id="t_reject_reason"></textarea>
                             <div class="mt-4 d-flex" style="position: absolute;right: 30px;">
-                                <button class="cencel-btn w-150 mr-4" data-dismiss="modal">Cencel</button>
+                                <button class="cencel-btn w-150 mr-4" data-dismiss="modal">Cancel</button>
                                 @if($tutor_assessment != null)
                                 <button class="schedule-btn w-150" onclick="verifyTutor(`{{$tutor->id}}`,3,`{{$tutor_assessment->status}}`)">Send</button>
                                 @else
