@@ -54,11 +54,14 @@
                 </div>
             </div>
             <div class="col-md-5 mt-5">
-                <div class="mt-5"><br />
-                    <div class="bg-edit text-center">
-                            <label for="" class="pt-2 ">Intro Video</label>
-                            <input type="file" class="dropify" name="video" id="video" >
-
+                <div class="mt-4">
+                    <div style="padding-top:11px;">
+                            <!-- <label for="" class="pt-2 ">Intro Video</label>
+                            <input type="file" class="dropify" name="video" id="video" > -->
+                        <span class="heading-forth">Intro Video URL</span>
+                        <div class="input-serachs mt-2">
+                            <input type="url" name="video" placeholder="https://www.youtube.com/channel/UCTv6Gbid3HeUSYyLtV5sFOw/videos" />
+                        </div>
                     </div>
                     <div class="bg-edit mt-4 text-center">
                         <label for=""  class="pt-2 ">Course Thumbnail</label>

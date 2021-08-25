@@ -45,7 +45,6 @@ class TutorController extends Controller
 
         return view('admin.pages.tutors.index',compact('new_requests','approved_tutors','staff_members'));
     }
-
     public function profile($id){
         $tutor = User::with(['education','professional','teach'])->where('id',$id)->where('role',2)->where('status',2)->first();
         $approved_courses = Course::where('user_id',$id)->where('status',1)->get();
@@ -53,6 +52,17 @@ class TutorController extends Controller
 
         return view('admin.pages.tutors.profile',compact('tutor','approved_courses','requested_courses'));
     }
+
+    public function all_tutor_req(){
+    
+        return view('admin.pages.tutors.all-tutor-req');
+    }
+    public function all_tutors(){
+    
+        return view('admin.pages.tutors.all-tutors');
+    }
+
+
 
     public function subjects($id){
 
