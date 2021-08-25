@@ -56,6 +56,11 @@
     margin-left: 5px;
     border-radius: 4px;
     margin-top: 5px;
+    display: inline-block;
+}
+
+.f-14 {
+    font-size: 14px;
 }
 
 .lingo {
@@ -98,4 +103,15 @@
 .btn-general:hover {
     color: #1173FF;
     background: #fff;
+}
+
+.searchIcon {
+    position: absolute;
+    top: 18px;
+    right: 32px;
+}
+
+.find_tutor .scrol-about {
+    height: 75px;
+    overflow-y: auto;
 }
