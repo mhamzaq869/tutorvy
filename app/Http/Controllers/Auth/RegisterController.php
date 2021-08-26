@@ -93,7 +93,11 @@ class RegisterController extends Controller
     protected function showStudentRegistrationForm()
     {
         $user = User::where('ip',$_SERVER['REMOTE_ADDR'])->first();
-        return view('student.auth.register',compact('user'));
+        $degrees = Degree::all();
+        $subjects = Subject::all();
+
+
+        return view('student.pages.register',compact('user','degrees','subjects'));
     }
 
 

@@ -33,23 +33,51 @@ $(function() {
     $('#step-1-next').click(function() {
         // Check values here
 
-        var x = $("input[name = first_name]").val();
-        //     var ter2 = $("input[name = last_name]").val();
-        //     var ter3 = $("input[name = email]").val();
-        //     var ter4 = $("input[name = password]").val();
-        //     var ter5 = $("input[name = phone]").val();
-        //     var ter6 = $("select[name = gender]").val();
-        if (x == null) {
+        var a = $("input[name = first_name]").val();
+        var b = $("input[name = last_name]").val();
+        var c = $("input[name = email]").val();
+        var d = $("input[name = password]").val();
+        var e = $("input[name = phone]").val();
+        var f = $("select[name = gender]").val();
+        if (a == "") {
+            // alert("empty a");
             $("#fname_error").show();
             $("#fname_error").focus();
             isValid = false;
-
+        } else if (b == "") {
+            // alert("empty b");
+            $("#lname_error").show();
+            $("#lname_error").focus();
+            isValid = false;
+        } else if (c == "") {
+            // alert("empty c");
+            $("#email_error").show();
+            $("#email_error").focus();
+            isValid = false;
+        } else if (d == "") {
+            // alert("empty d");
+            $("#password_error").show();
+            $("#password_error").focus();
+            isValid = false;
+        } else if (e == "") {
+            // alert("empty e");
+            $("#phone_error").show();
+            $("#phone_error").focus();
+            isValid = false;
+        } else if (f == "") {
+            // alert("empty f");
+            $("#gender_error").show();
+            $("#gender_error").focus();
+            isValid = false;
         } else {
             $("#fname_error").hide();
+            $("#lname_error").hide();
+            $("#password_error").hide();
+            $("#phone_error").hide();
+            $("#gender_error").hide();
+            $("#email_error").hide();
             isValid = true;
-
         }
-
         if (isValid) {
             $('.nav-tabs > li:nth-of-type(2) > a').removeClass('disabled').click();
         }
