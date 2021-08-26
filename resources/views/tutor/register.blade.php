@@ -613,7 +613,7 @@
 
                                                             <input class="form-control bs-autocomplete" id="ac-demo"
                                                                 placeholder="Type two characters of a Institute name..."
-                                                                data-source="demo_source.php" data-item_id="22"
+                                                                data-source="demo_source.php" data-item_id="inst_id"
                                                                 data-item_label="name" autocomplete="off">
                                                         </div>
                                                         <div class="input-text col-md-6">
@@ -1195,7 +1195,7 @@
                                 _this.val(ui.item[_data.item_label]);
                                 _hidden_field.val(ui.item[_data.item_id]);
                                 event.preventDefault();
-                                $("#inst_id_0").val(ui.item.id)
+                                $("#inst_id").val(ui.item.id)
 
                             }
                         })

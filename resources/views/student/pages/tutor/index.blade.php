@@ -63,9 +63,9 @@
                                                     <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
                                                 </div>
                                                 <div class="col-md-5 col-6">
-                                                    <h3>Danish Jaffery</h3>
-                                                    <p class="mb-0"><img src="../assets/images/ico/red-icon.png" alt="" class=""> Associate Professor at UKAS</p>
-                                                    <p><img src="../assets/images/ico/location-pro.png" alt="" class=""> Lahore,Pakistan</p>
+                                                    <h3>{{$tutor->fullname}}</h3>
+                                                    <p class="mb-0"><img src="../assets/images/ico/red-icon.png" alt="" class="">  {{$tutor->professional->last()->designation ?? '---'}}</p>
+                                                    <p><img src="../assets/images/ico/location-pro.png" alt="" class="">{{$tutor->address}}</p>
                                                 </div>
                                                 <div class="col-md-4 col-12">
                                                     <p>
@@ -85,20 +85,23 @@
                                     <div class="row mt-2">
                                         <div class="col-md-4">
                                             <p class="mb-2">Subject</p>
-                                            <p> <span class="info-1 info">Computer Science</span><span class="info">Maths</span></p>
+                                            <p>
+                                            @foreach ($tutor->teach as $teach)
+                                            <span class="info-1 info">{{$teach->sub_name ?? ''}}</span>
+                                            @endforeach</p>
                                         </div>
                                         <div class="col-md-4">
                                             <p class="mb-2">Languages</p>
                                             <p>
-                                                <span class="info-1 info lingo">French</span>
-                                                <span class="info lingo">English</span>
-                                                <span class="info lingo">Urdu</span>
+                                                <span class="info-1 info lingo">{{$tutor->lang_short ?? ''}}</span>
                                             </p>
                                         </div>
                                         <div class="col-md-4">
                                         <p class="mb-2">Education</p>
                                             <p>
-                                                <span class="info-1 info edu">Govt College Lahore Pakistan</span>
+                                                @foreach ($tutor->education as $edu)
+                                                    <span class="info-1 info edu">{{$edu->institute->name ?? ''}}</span>
+                                                @endforeach
                                             </p>
                                         </div>
                                     </div>
@@ -106,7 +109,7 @@
                                         <div class="col-md-12 find_tutor">
                                             <p><strong> About Tutor </strong></p>
                                             <p class="scrol-about ">
-                                                Lorem ipsum dolor sit amet,  est commodi pariatur deserunt distinctio consectetur necessitatibus vitae obcaecati magni recusandae blanditiis sint porro placeat. Quia voluptates atque rerum ipsa architecto.
+                                                    {{$tutor->bio}}
                                             </p>
                                         </div>
                                     </div>
@@ -115,7 +118,7 @@
                                     <div class="row mt-30">
                                         <div class="col-md-12">
                                             <p>starting from</p>
-                                            <h1 class="f-60">$51</h1>
+                                            <h1 class="f-60">${{$tutor->hourly_rate}}</h1>
                                             <p>per hour</p>
                                             <button type="button" class=" cencel-btn w-100">
                                                     &nbsp; Message &nbsp;

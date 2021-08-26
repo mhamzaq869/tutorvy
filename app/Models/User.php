@@ -195,33 +195,33 @@ class User extends Authenticatable implements MustVerifyEmail
     }
     public function scopeActive($query)
     {
-        return $query->where('status',1);
+        return $query->where('status',2);
     }
-    public function scopeVerified($query)
-    {
-        return $query->where('verify',1);
-    }
+    // public function scopeVerified($query)
+    // {
+    //     return $query->where('verify',1);
+    // }
     public function scopeRange($query,$range=null)
     {
-        if(!Empty($range)){
-            return $query->where('hourly_rate',$range);
+        if($range != null){
+            return $query->where('hourly_rate','<=',$range);
         }
     }
     public function scopeLocation($query,$loca=null)
     {
-        if(!empty($loca)){
+        if($loca != null){
             return $query->where('city',$loca);
         }
     }
     public function scopeLanguage($query,$language=null)
     {
-        if(!empty($language)){
+        if($language != null){
             return $query->where('language',$language);
         }
     }
     public function scopeGender($query,$gender=null)
     {
-        if(!empty($gender)){
+        if($gender != null){
             return $query->where('gender',$gender);
         }
     }

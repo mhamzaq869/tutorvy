@@ -308,7 +308,7 @@
                                         <p>
                                             @foreach ($tutor->education as $edu)
                                                 <span
-                                                    class="info-1 info edu d-inline-block">{{ $edu->institute->name }}</span>
+                                                    class="info-1 info edu d-inline-block"></span>
                                             @endforeach
                                         </p>
                                     </div>
@@ -371,6 +371,7 @@
                     avail: avail
                 },
                 success: function(data) {
+                    console.log(data)
                     $('#preloaderbody').css('display','none')
                     if (data.length > 0) {
                         for (let element of data) {
@@ -430,7 +431,7 @@
                                         <p>
                                             @foreach ($tutor->education as $edu)
                                                 <span
-                                                    class="info-1 info edu d-inline-block">{{ $edu->institute->name }}</span>
+                                                    class="info-1 info edu d-inline-block"></span>
                                             @endforeach
                                         </p>
                                     </div>
