@@ -154,36 +154,41 @@
                             <div class="panels">
                                 <div class="panel " id="one-panel">
                                     <div class="container-fluid ">
+                                    <div class="panel-title">Course outline</div>
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <span class="heading-forth ml-2">Course outline</span>
+                                                <!-- <span class="heading-forth ml-2">Course outline</span> -->
                 
                                                 <div id="main">
                                                     <!-- first -->
                                                     <div class="container-fluid m-0 p-0 border-bottom pb-3">
-                                                    @foreach($course->outline as $outline)
-                                                        @if($outline->level == 1)   
-                                                            <div class="accordion active" id="faq">
-                                                                    <div class="card m-0 p-0">
-                                                                        
-                                                                            <div class="card-header" id="outlinehead{{$outline->id}}">
-                                                                                <a href="#" 
-                                                                                    class=" bg-color btn-header-link collapsed"
-                                                                                    data-toggle="collapse" data-target="#outline{{$outline->id}}"
-                                                                                    aria-expanded="true" aria-controls="outline{{$outline->id}}">
-                                                                                    <img class="mr-2"
-                                                                                        src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                                    {{$outline->title}}</a>
-                                                                            </div>
-                                                                            <div id="outline{{$outline->id}}" class="collapse show border-radius"
-                                                                                aria-labelledby="{{$outline->id}}" data-parent="#outline{{$outline->id}}">
-                                                                                <div class="card-body">
-                                                                                    {{$outline->explain}}
+                                                        @foreach($course->outline as $outline)
+                                                            @if($outline->level == 1)   
+                                                                @if($outline->title == '' && $outline->explain == '')
+                                                                <p>No Course Outline added.</p>
+                                                                @else
+                                                                <div class="accordion active" id="faq">
+                                                                        <div class="card m-0 p-0">
+                                                                            
+                                                                                <div class="card-header" id="outlinehead{{$outline->id}}">
+                                                                                    <a href="#" 
+                                                                                        class=" bg-color btn-header-link collapsed"
+                                                                                        data-toggle="collapse" data-target="#outline{{$outline->id}}"
+                                                                                        aria-expanded="true" aria-controls="outline{{$outline->id}}">
+                                                                                        <img class="mr-2"
+                                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                                        {{$outline->title}}</a>
                                                                                 </div>
-                                                                            </div>
-                                                                        
+                                                                                <div id="outline{{$outline->id}}" class="collapse show border-radius"
+                                                                                    aria-labelledby="{{$outline->id}}" data-parent="#outline{{$outline->id}}">
+                                                                                    <div class="card-body">
+                                                                                        {{$outline->explain}}
+                                                                                    </div>
+                                                                                </div>
+                                                                            
+                                                                        </div>
                                                                     </div>
-                                                                </div>
+                                                                @endif
                                                             @endif
                                                         @endforeach
                                                     </div>
@@ -237,7 +242,7 @@
                                                                     </div>
                                                                 </td>
                                                                 @else
-                                                                <td class="pt-4 pb-0"></td>
+                                                                <td class="pt-4 pb-0">---</td>
                                                                 @endif
 
                                                                 @if($class->day == 2)
@@ -255,7 +260,7 @@
                                                                     </div>
                                                                 </td>
                                                                 @else
-                                                                <td class="pt-4 pb-0"></td>
+                                                                <td class="pt-4 pb-0">---</td>
                                                                 @endif
                             
                                                                 @if($class->day == 3)
@@ -273,7 +278,7 @@
                                                                     </div>
                                                                 </td>
                                                                 @else
-                                                                <td class="pt-4 pb-0"></td>
+                                                                <td class="pt-4 pb-0">---</td>
                                                                 @endif
 
                                                                 @if($class->day == 4)
@@ -291,7 +296,7 @@
                                                                     </div>
                                                                 </td>
                                                                 @else
-                                                                <td class="pt-4 pb-0"></td>
+                                                                <td class="pt-4 pb-0">---</td>
                                                                 @endif
 
                                                                 @if($class->day == 5)
@@ -309,7 +314,7 @@
                                                                     </div>
                                                                 </td>
                                                                 @else
-                                                                <td class="pt-4 pb-0"></td>
+                                                                <td class="pt-4 pb-0">---</td>
                                                                 @endif
 
                                                                 @if($class->day == 6)
@@ -327,7 +332,7 @@
                                                                     </div>
                                                                 </td>
                                                                 @else
-                                                                <td class="pt-4 pb-0"></td>
+                                                                <td class="pt-4 pb-0">---</td>
                                                                 @endif
 
                                                                 @if($class->day == 7)
@@ -345,7 +350,7 @@
                                                                     </div>
                                                                 </td>
                                                                 @else
-                                                                <td class="pt-4 pb-0"></td>
+                                                                <td class="pt-4 pb-0">---</td>
                                                                 @endif
                                                             </tr>
                                                             @endforeach
@@ -411,7 +416,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="view-bookings" >
-                                                    ${{$course->basic_price}}
+                                                    ${{$course->basic_price ?? 0 }}
                                                 </div>
                                             </div>
                                         </div>
@@ -428,26 +433,30 @@
                                                     <div class="container-fluid m-0 p-0 border-bottom pb-3">
                                                         @foreach($course->outline as $outline)
                                                             @if($outline->level == 2) 
-                                                            <div class="accordion" id="faq">
-                                                                <div class="card m-0 p-0">
-                                                                    <div class="card-header" id="faqhead">
-                                                                        <a href="#"
-                                                                            class="bg-color btn-header-link collapsed"
-                                                                            data-toggle="collapse" data-target="#faq11"
-                                                                            aria-expanded="true" aria-controls="faq11">
-                                                                            <img class="mr-2"
-                                                                                src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                                {{$outline->title}}
-                                                                        </a>
-                                                                    </div>
-                                                                    <div id="faq11" class="collapse show border-radius"
-                                                                        aria-labelledby="faqhead3" data-parent="#faq11">
-                                                                        <div class="card-body">
-                                                                        {{$outline->explain}}
+                                                                @if($outline->title == '' && $outline->explain == '')
+                                                                    <p>No Course Outline added.</p>
+                                                                @else
+                                                                <div class="accordion" id="faq">
+                                                                    <div class="card m-0 p-0">
+                                                                        <div class="card-header" id="faqhead">
+                                                                            <a href="#"
+                                                                                class="bg-color btn-header-link collapsed"
+                                                                                data-toggle="collapse" data-target="#faq11"
+                                                                                aria-expanded="true" aria-controls="faq11">
+                                                                                <img class="mr-2"
+                                                                                    src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                                    {{$outline->title}}
+                                                                            </a>
+                                                                        </div>
+                                                                        <div id="faq11" class="collapse show border-radius"
+                                                                            aria-labelledby="faqhead3" data-parent="#faq11">
+                                                                            <div class="card-body">
+                                                                            {{$outline->explain}}
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                                @endif
                                                             @endif
                                                         @endforeach
                                                     </div>
@@ -543,34 +552,60 @@
                                             <div class="col-md-4">
                                                 <div class="d-flex pb-3">
                                                     <span>
+                                                        @if($course->standard_home_work == 'on')
                                                         <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                        @else
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                        @endif
                                                     </span>
-                                                    <span class="ml-3 heading-fifth mt-1">6 classes</span>
+                                                    <span class="ml-3 heading-fifth mt-1">Home Work</span>
                                                 </div>
                                                 <div class="d-flex pb-3">
                                                     <span>
+                                                        @if($course->standard_quiz == 'on')
                                                         <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                                    </span>
-                                                    <span class="ml-3 heading-fifth mt-1">Home work</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="d-flex pb-3">
-                                                    <span>
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                        @else
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                        @endif
                                                     </span>
                                                     <span class="ml-3 heading-fifth mt-1">Quiz</span>
                                                 </div>
                                                 <div class="d-flex pb-3">
                                                     <span>
+                                                    @if($course->standard_note == 'on')
                                                         <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                        @else
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                        @endif
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">Note</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                         @if($course->standard_one_one == 'on')
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                        @else
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                        @endif
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">One to One session</span>
+                                                </div>
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                         @if($course->standard_final == 'on')
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                        @else
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                        @endif
                                                     </span>
                                                     <span class="ml-3 heading-fifth mt-1">Final test</span>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="view-bookings" >
-                                                    ${{$course->standard_price}}
+                                                    ${{$course->standard_price ?? 0 }}
                                                 </div>
                                             </div>
                                         </div>
@@ -588,26 +623,30 @@
                                                     <div class="container-fluid m-0 p-0 border-bottom pb-3">
                                                     @foreach($course->outline as $outline)
                                                             @if($outline->level == 2) 
-                                                            <div class="accordion" id="faq">
-                                                                <div class="card m-0 p-0">
-                                                                    <div class="card-header" id="faqhead">
-                                                                        <a href="#"
-                                                                            class="bg-color btn-header-link collapsed"
-                                                                            data-toggle="collapse" data-target="#faq11"
-                                                                            aria-expanded="true" aria-controls="faq11">
-                                                                            <img class="mr-2"
-                                                                                src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                                {{$outline->title}}
-                                                                        </a>
-                                                                    </div>
-                                                                    <div id="faq11" class="collapse show border-radius"
-                                                                        aria-labelledby="faqhead3" data-parent="#faq11">
-                                                                        <div class="card-body">
-                                                                        {{$outline->explain}}
+                                                                @if($outline->title == '' && $outline->explain == '')
+                                                                    <p>No Course Outline added.</p>
+                                                                @else
+                                                                <div class="accordion" id="faq">
+                                                                    <div class="card m-0 p-0">
+                                                                        <div class="card-header" id="faqhead">
+                                                                            <a href="#"
+                                                                                class="bg-color btn-header-link collapsed"
+                                                                                data-toggle="collapse" data-target="#faq11"
+                                                                                aria-expanded="true" aria-controls="faq11">
+                                                                                <img class="mr-2"
+                                                                                    src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                                    {{$outline->title}}
+                                                                            </a>
+                                                                        </div>
+                                                                        <div id="faq11" class="collapse show border-radius"
+                                                                            aria-labelledby="faqhead3" data-parent="#faq11">
+                                                                            <div class="card-body">
+                                                                            {{$outline->explain}}
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                                @endif
                                                             @endif
                                                         @endforeach
                                                     </div>
@@ -649,34 +688,60 @@
                                             <div class="col-md-4">
                                                 <div class="d-flex pb-3">
                                                     <span>
+                                                        @if($course->advance_home_work == 'on')
                                                         <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                        @else
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                        @endif
                                                     </span>
-                                                    <span class="ml-3 heading-fifth mt-1">6 classes</span>
+                                                    <span class="ml-3 heading-fifth mt-1">Home Work</span>
                                                 </div>
                                                 <div class="d-flex pb-3">
                                                     <span>
+                                                        @if($course->advance_quiz == 'on')
                                                         <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                                    </span>
-                                                    <span class="ml-3 heading-fifth mt-1">Home work</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="d-flex pb-3">
-                                                    <span>
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                        @else
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                        @endif
                                                     </span>
                                                     <span class="ml-3 heading-fifth mt-1">Quiz</span>
                                                 </div>
                                                 <div class="d-flex pb-3">
                                                     <span>
+                                                    @if($course->advance_note == 'on')
                                                         <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                        @else
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                        @endif
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">Note</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                         @if($course->advance_one_one == 'on')
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                        @else
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                        @endif
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">One to One session</span>
+                                                </div>
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                         @if($course->advance_final == 'on')
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                        @else
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                        @endif
                                                     </span>
                                                     <span class="ml-3 heading-fifth mt-1">Final test</span>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="view-bookings" >
-                                                    ${{$course->advance_price}}
+                                                    ${{$course->advance_price ?? 0 }}
                                                 </div>
                                             </div>
                                         </div>
