@@ -1,21 +1,14 @@
-@extends('tutor.layouts.app')
+@extends('student.layouts.app')
 
 @section('content')
  <!-- top Fixed navbar End -->
- <section>
-    <div class="content-wrapper " style="overflow: hidden;">
-        <div class="container">
-            <a href="../classroom/createclass.html">
-                <p class="mr-3 heading-first">
-                    Classroom
-                </p>
-            </a>
-        </div>
-        <div class="container" style="margin-bottom: 15px">
+<div class="content-wrapper " style="overflow: hidden;">
+    <section id="classroomsection" style="display: flex;">
+        <div class="container-fluid m-0 p-0">
+            <p class="heading-first ml-3 mr-3"> Classroom</p>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="image-center-nobooking"
-                        style="text-align: center;margin-top: 5px;margin-bottom: 90px;">
+                    <div class="image-center-nobooking text-center mt-5">
                         <img src="../assets/images/ico/class-icon.png" alt="class-ico" style="width: 200px;">
                         <p class="nobooking-booking">Create New Classroom</p>
                         <P class="improve-booking">
@@ -70,8 +63,6 @@
                 </div>
             </div>
         </div>
-        <!-- end -->
-        <div class="line"></div>
-    </div>
-</section>
+    </section>
+</div>
 @endsection

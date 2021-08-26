@@ -16,6 +16,11 @@
     <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
     <!-- fonawsome -->
     <link href="{{ asset('assets/css/fontawesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/calender.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/css/countrySelect.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dropify.css')}}" />
+
+
     <!-- Styles -->
     @include('student.layouts.css')
 </head>

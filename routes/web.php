@@ -35,6 +35,8 @@ use App\Http\Controllers\Student\HomeController as StudentHomeController;
 use App\Http\Controllers\Student\ProfileController as StudentProfileController;
 use App\Http\Controllers\Student\TutorController as StudentTutorController;
 use App\Http\Controllers\Student\StudentClassController as StudentClassController;
+use App\Http\Controllers\Student\SettingController as StudentSettingController;
+
 use App\Http\Controllers\Tutor\ChatController;
 use App\Http\Controllers\Student\ChatController as StdChatController;
 use App\Http\Controllers\General\GenChatController;
@@ -181,13 +183,13 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     Route::get('/booking/{id}/tutor',[StudentBookingController::class,'directBooking'])->name('student.direct.booking');
     Route::post('/booked',[StudentBookingController::class,'booked'])->name('student.booked.tutor');
     Route::get('/classroom',[StudentClassController::class,'index'])->name('student.classroom');
-    // Route::get('/calendar',[CalendarController::class,'index'])->name('tutor.calendar');
+    Route::get('/calendar',[CalendarController::class,'calendarStudent'])->name('student.calendar');
     // Route::get('/history',[HistoryController::class,'index'])->name('tutor.history');
     // Route::get('/payment',[PaymentController::class,'index'])->name('tutor.payment');
     Route::get('/tutor',[StudentTutorController::class,'index'])->name('student.tutor');
     Route::get('/viewtutor/{id}',[StudentTutorController::class,'show'])->name('student.tutor.show');
     Route::get('/tutorfilter/{id?}',[StudentTutorController::class,'filter'])->name('student.tutor.filter');
-    // Route::get('/settings',[TutorSettingController::class,'index'])->name('tutor.settings');
+    Route::get('/settings',[StudentSettingController::class,'index'])->name('student.settings');
     Route::get('/profile',[StudentProfileController::class,'index'])->name('student.profile');
 
 });

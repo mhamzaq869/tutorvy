@@ -1031,3 +1031,8 @@ tr th {
         top: 0%;
     }
 }
+
+.moreBooking {
+    position: absolute;
+    right: 78px;
+}
