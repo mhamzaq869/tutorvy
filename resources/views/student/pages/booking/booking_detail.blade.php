@@ -1,174 +1,176 @@
-@extends('tutor.layouts.app')
+@extends('student.layouts.app')
 <link href="{{ asset('assets/css/registration.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/css/booknow.css') }}" rel="stylesheet">
 @section('content')
  <!-- top Fixed navbar End -->
- <section>
-    <div class="container">
-        <a class="container" href="">
-            <p class=" mr-3 mb-1 pt-0 booking-btns"
-                style=" font-size: 24px;font-weight: 500;font-family: Poppins;color: #00132D;">
-                <i class='fa fa-angle-left mr-1 ml-3'
-                    style='font-size:28px;font-weight: 500;position: relative;top: 2px;color: black;'> </i>
-                Bookings
-                details
-            </p>
-        </a>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header bg-white pb-0"
-                            style="border-bottom: 1px solid #D6DBE2; display: inline-flex;">
-                            <p class="col-md-6 col-xs-12 class-ch"
-                                style="margin-top: 10px; text-align: left;color: #00132D;font-size: 22px;font-family: Poppins;font-weight: 500;">
-                                Chemistry Class</p>
-                            <p style="text-align: right;" class="col-md-6 col-xs-12 class-btn-center">
-                                <button type="button" data-toggle="modal" data-target="#exampleModalCenter"
-                                    class="cencel-btn mr-2" style="font-size: 12px;width: 150px;"> Cancel
-                                    Bookings</button>
-                                <button type="button" data-toggle="modal" data-target="#exampleModalCente"
-                                    class="schedule-btn" style="font-size: 12px;width: 150px;"> Re-schedule
-                                    class</button>
-                            </p>
-                        </div>
-                        <card class="body">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-9">
-                                        <div class="row image1 mt-3 ml-1">
-                                        
-                                            <p> <img src= "{{ asset('assets/images/logo/boy.png') }}" alt="boy"
-                                                    style="width: 35px;border-radius: 30px;">
-                                            <p style="color: #00132D; font-family: Poppins;font-size: 14px;font-weight: 500;"
-                                                class="ml-2 mt-2"> Harram Laraib</p>
-                                            <p
-                                                style="position: relative;left: -100px;top: 27px;font-size: 12px;">
-                                                Student</p>
-                                            </p>
-
-                                        </div>
-                                        <div class="text1"
-                                            style="color: #00132D;font-size: 15px;font-family: Poppins;font-weight: 500;line-height: 2;">
-                                            Why doesn't the planet Uranus explode if it contains so much
-                                            hydrogen and methane?
-                                        </div>
-                                        <div class="text2"
-                                            style="color: #00132D;font-size: 14px;font-family: Poppins;font-weight: 400;">
-                                            There are many variations of passages of Lorem Ipsum available,
-                                            but
-                                            the majority have suffered in some form, by injected humour, or
-                                            randomised words which don't look even slightly believable. If
-                                            to
-                                            use a passage of Lorem Ipsum, you need to be sure there isn't
-                                            anything embarrassing hidden in the middle of text.
-                                        </div>
-                                        <div class="mt-4">
-                                            <div class="text3" style="display: flex;">
-                                                <span>
-                                                    <img class="book-details"
-                                                    
-                                                        src="{{ asset('assets/images/ico/Group 4689.png') }}" alt="gros">
-                                                    <span class="schedule">
-                                                        Schedule time:
-                                                    </span>
-                                                    <span class="time-details">
-                                                        7:30 pm
-                                                    </span>
-                                                </span>
-                                                <span class="ml-3">
-                                                    <img class="book-details"
-                                                        src="{{ asset('assets/images/ico/Group 4689.png') }}" alt="gros">
-                                                    <span class="schedule">
-
-                                                        Class duration:
-                                                    </span>
-                                                    <span class="time-details">
-                                                        30:00 mintues
-                                                    </span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="">
-                                            <div class="text3" style="display: flex;">
-                                                <span>
-                                                    <img class="book-details"
-                                                        src="{{ asset('assets/images/ico/Group 4689.png') }}" alt="gros">
-                                                    <span class="schedule">
-                                                        Schedule time:
-                                                    </span>
-                                                    <span class="time-details">
-                                                        7:30 pm
-                                                    </span>
-                                                </span>
-                                                <span class="ml-3">
-                                                    <img class="book-details"
-                                                        src="{{ asset('assets/images/ico/Group 4689.png') }}" alt="gros">
-                                                    <span class="schedule">
-
-                                                        Class duration:
-                                                    </span>
-                                                    <span class="time-details">
-                                                        30:00 mintues
-                                                    </span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3"></div>
-                                    <div class="container-fluid" style="">
-                                        <div class="col-md-12 mt-3">
-                                            <p
-                                                style="color: #00132D;font-size: 16px;font-family: Poppins;font-weight: 500;">
-                                                2 attachments</p>
-                                            <dov class="row">
-                                                <div class="col-md-3 col-sm-12 card bg-light mb-3"
-                                                    style="">
-                                                    <div class="container-fluid m-0 p-0">
-                                                        <div class="text-home mt-3" style="display: flex;">
-                                                            <p>
-                                                                <input style="display: none;" type="file"
-                                                                    id="fileinput" />
-                                                                <img src="{{ asset('assets/images/ico/word.png') }}"
-                                                                    alt="word">
-                                                            </p>
-                                                            <p class="ml-3 mr-3">
-                                                                Word Files</p>
-                                                        </div>
-                                                        <div class="iconside">
-                                                            <img src="{{ asset('assets/images/ico/download.png') }}" alt="o"
-                                                                id='btnLoad' value='download'
-                                                                onclick='downloadFile();'
-                                                                style="width: 30px;position: absolute;top: 10px;right: 10px;">
-                                                        </div>
-                                                    </div>
-                                                </div> &nbsp;&nbsp;
-                                                <div class="col-md-3 col-xs-12 bg-light  card mb-3"
-                                                    style="">
-                                                    <div class="container-fluid m-0 p-0">
-                                                        <div class="text-home mt-3" style="display: flex;">
-                                                            <p><img src="{{ asset('assets/images/ico/pptx.png') }}" alt="ga">
-                                                            </p>
-                                                            <p class="ml-3 mr-3">
-                                                                PPTX Files</p>
-                                                        </div>
-
-                                                        <div class="iconside">
-                                                            <img src="{{ asset('assets/images/ico/download.png') }}" alt="ag"
-                                                                style="width: 30px;position: absolute;top: 10px;right: 10px;">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4"></div>
+ <div class="content-wrapper " style="overflow: hidden;">
+    <section id="bookingDetailSection" style="display: flex;">
+        <div class="container-fluid m-0 p-0">
+            <a class="" href="">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- <p id="sidenav-toggles" class="heading-first  mr-3 mb-2 ml-2">
+                            Bookings
+                        </p> -->
+                        <p class="heading-first ml-3 mr-3">Booking Details</p>
+                    </div>
+                </div>
+            </a>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header bg-white pb-0"
+                                style="border-bottom: 1px solid #D6DBE2; display: inline-flex;">
+                                <p class="col-md-6 col-xs-12 class-ch"
+                                    style="margin-top: 10px; text-align: left;color: #00132D;font-size: 22px;font-family: Poppins;font-weight: 500;">
+                                    Chemistry Class</p>
+                                <p style="text-align: right;" class="col-md-6 col-xs-12 class-btn-center">
+                                    <button type="button" data-toggle="modal" data-target="#exampleModalCenter"
+                                        class="cencel-btn mr-2" style="font-size: 12px;width: 150px;"> Cancel
+                                        Bookings</button>
+                                    <button type="button" data-toggle="modal" data-target="#exampleModalCente"
+                                        class="schedule-btn" style="font-size: 12px;width: 150px;"> Re-schedule
+                                        class</button>
+                                </p>
                             </div>
+                            <card class="body">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <div class="row image1 mt-3 ml-1">
+                                            
+                                                <p> <img src= "{{ asset('assets/images/logo/boy.png') }}" alt="boy"
+                                                        style="width: 35px;border-radius: 30px;">
+                                                <p style="color: #00132D; font-family: Poppins;font-size: 14px;font-weight: 500;"
+                                                    class="ml-2 mt-2"> Harram Laraib</p>
+                                                <p
+                                                    style="position: relative;left: -100px;top: 27px;font-size: 12px;">
+                                                    Student</p>
+                                                </p>
+
+                                            </div>
+                                            <div class="text1"
+                                                style="color: #00132D;font-size: 15px;font-family: Poppins;font-weight: 500;line-height: 2;">
+                                                Why doesn't the planet Uranus explode if it contains so much
+                                                hydrogen and methane?
+                                            </div>
+                                            <div class="text2"
+                                                style="color: #00132D;font-size: 14px;font-family: Poppins;font-weight: 400;">
+                                                There are many variations of passages of Lorem Ipsum available,
+                                                but
+                                                the majority have suffered in some form, by injected humour, or
+                                                randomised words which don't look even slightly believable. If
+                                                to
+                                                use a passage of Lorem Ipsum, you need to be sure there isn't
+                                                anything embarrassing hidden in the middle of text.
+                                            </div>
+                                            <div class="mt-4">
+                                                <div class="text3" style="display: flex;">
+                                                    <span>
+                                                        <img class="book-details"
+                                                        
+                                                            src="{{ asset('assets/images/ico/Group 4689.png') }}" alt="gros">
+                                                        <span class="schedule">
+                                                            Schedule time:
+                                                        </span>
+                                                        <span class="time-details">
+                                                            7:30 pm
+                                                        </span>
+                                                    </span>
+                                                    <span class="ml-3">
+                                                        <img class="book-details"
+                                                            src="{{ asset('assets/images/ico/Group 4689.png') }}" alt="gros">
+                                                        <span class="schedule">
+
+                                                            Class duration:
+                                                        </span>
+                                                        <span class="time-details">
+                                                            30:00 mintues
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="">
+                                                <div class="text3" style="display: flex;">
+                                                    <span>
+                                                        <img class="book-details"
+                                                            src="{{ asset('assets/images/ico/Group 4689.png') }}" alt="gros">
+                                                        <span class="schedule">
+                                                            Schedule time:
+                                                        </span>
+                                                        <span class="time-details">
+                                                            7:30 pm
+                                                        </span>
+                                                    </span>
+                                                    <span class="ml-3">
+                                                        <img class="book-details"
+                                                            src="{{ asset('assets/images/ico/Group 4689.png') }}" alt="gros">
+                                                        <span class="schedule">
+
+                                                            Class duration:
+                                                        </span>
+                                                        <span class="time-details">
+                                                            30:00 mintues
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3"></div>
+                                        <div class="container-fluid" style="">
+                                            <div class="col-md-12 mt-3">
+                                                <p
+                                                    style="color: #00132D;font-size: 16px;font-family: Poppins;font-weight: 500;">
+                                                    2 attachments</p>
+                                                <dov class="row">
+                                                    <div class="col-md-3 col-sm-12 card bg-light mb-3"
+                                                        style="">
+                                                        <div class="container-fluid m-0 p-0">
+                                                            <div class="text-home mt-3" style="display: flex;">
+                                                                <p>
+                                                                    <input style="display: none;" type="file"
+                                                                        id="fileinput" />
+                                                                    <img src="{{ asset('assets/images/ico/word.png') }}"
+                                                                        alt="word">
+                                                                </p>
+                                                                <p class="ml-3 mr-3">
+                                                                    Word Files</p>
+                                                            </div>
+                                                            <div class="iconside">
+                                                                <img src="{{ asset('assets/images/ico/download.png') }}" alt="o"
+                                                                    id='btnLoad' value='download'
+                                                                    onclick='downloadFile();'
+                                                                    style="width: 30px;position: absolute;top: 10px;right: 10px;">
+                                                            </div>
+                                                        </div>
+                                                    </div> &nbsp;&nbsp;
+                                                    <div class="col-md-3 col-xs-12 bg-light  card mb-3"
+                                                        style="">
+                                                        <div class="container-fluid m-0 p-0">
+                                                            <div class="text-home mt-3" style="display: flex;">
+                                                                <p><img src="{{ asset('assets/images/ico/pptx.png') }}" alt="ga">
+                                                                </p>
+                                                                <p class="ml-3 mr-3">
+                                                                    PPTX Files</p>
+                                                            </div>
+
+                                                            <div class="iconside">
+                                                                <img src="{{ asset('assets/images/ico/download.png') }}" alt="ag"
+                                                                    style="width: 30px;position: absolute;top: 10px;right: 10px;">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4"></div>
+                                </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
        <!-- no bookings -->
             <!-- Modal -->
             <div class="modal " id="exampleModalCente" tabindex="-1" role="dialog" aria-hidden="true">
@@ -242,5 +244,9 @@
                     </div>
                 </div>
             </div>
+    </section>
+</div>
+ <section>
+    
 </section>
 @endsection
