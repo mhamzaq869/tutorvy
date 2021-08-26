@@ -16,9 +16,9 @@ class CreateCourseOutlinesTable extends Migration
         Schema::create('course_outlines', function (Blueprint $table) {
             $table->id();
             $table->integer('course_id');
-            $table->string('title');
-            $table->string('explain');
-            $table->integer('level');
+            $table->string('title')->nullable();
+            $table->text('explain')->nullable();
+            $table->integer('level')->nullable();
             $table->timestamps();
         });
     }

@@ -66,61 +66,71 @@ class Course extends Model
     public function getCourseBasicDaysAttribute()
     {
         if($this->basic_days != null){
-            $days = explode('[',$this->basic_days);
-            $days = explode(']',$days[1]);
-            $days = explode(',',$days[0]);
-    
-            $d = array();
-            for($i=0;$i<sizeof($days);$i++){
-                array_push($d,$days[$i]);
-            }
-    
-            $days = join(',',$d);
-            $days = str_replace('"',"",$days);
+            $days = $this->getDays($this->basic_days);
             return $days;
         }else{
             return '---';
         }
-        
     }
     public function getCourseStandardDaysAttribute()
     {
         if($this->standard_days != null){
-            $days = explode('[',$this->standard_days);
-            $days = explode(']',$days[1]);
-            $days = explode(',',$days[0]);
-    
-            $d = array();
-            for($i=0;$i<sizeof($days);$i++){
-                array_push($d,$days[$i]);
-            }
-    
-            $days = join(',',$d);
-            $days = str_replace('"',"",$days);
+            $days = $this->getDays($this->standard_days);
             return $days;
         }else{
             return '---';
         }
-        
     }
     public function getCourseAdvanceDaysAttribute()
     {
         if($this->advance_days != null){
-            $days = explode('[',$this->advance_days);
-            $days = explode(']',$days[1]);
-            $days = explode(',',$days[0]);
-    
-            $d = array();
-            for($i=0;$i<sizeof($days);$i++){
-                array_push($d,$days[$i]);
-            }
-    
-            $days = join(',',$d);
-            $days = str_replace('"',"",$days);
+            $days = $this->getDays($this->advance_days);
             return $days;
         }else{
             return '---';
         }
-        
+    }
+
+    public function getDays($days){
+
+        $days = json_decode($days);
+        $day_name = '';
+        $day_arr = array();
+
+        for($i = 0 ; $i < sizeof($days) ; $i++){
+
+            switch ($days[$i]) {
+                case "1":
+                    $day_name = "Monday";
+                    break;
+                case "2":
+                    $day_name = "Tuesday";
+                    break;
+                case "3":
+                    $day_name = "Wednesday";
+                    break;
+                case "4":
+                    $day_name = "Thursday";
+                    break;
+                case "5":
+                    $day_name = "Friday";
+                    break;
+                case "6":
+                    $day_name = "Satureday";
+                    break;
+                case "7":
+                    $day_name = "Sunday";
+                    break;
+                default:
+                    $day_name = "---";
+            }
+
+            array_push($day_arr , $day_name);
+            
+        }
+
+        $days = implode(',',$day_arr);
+        return $days;
+
     }
 }

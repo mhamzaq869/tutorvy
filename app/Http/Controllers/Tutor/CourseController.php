@@ -44,6 +44,8 @@ class CourseController extends Controller
     public function store(Request $request)
     {
 
+        // return ($request);
+
         // if($request->hasFile('video')){
         //     $video_path = "storage/course/video/".$request->video->getClientOriginalName();
         //     $request->video->storeAs('course/video/',$request->video->getClientOriginalName(),'public');
@@ -63,36 +65,45 @@ class CourseController extends Controller
         $courselevel->about              = $request->about;
         $courselevel->video              = $request->video;
         $courselevel->thumbnail          = $thumbnail_path ?? '';
-        $courselevel->basic_home_work    = $request->basic_home_work ?? null;
-        $courselevel->basic_quiz         = $request->basic_quiz ?? null;
-        $courselevel->basic_one_one      = $request->basic_one_one ?? null;
-        $courselevel->basic_final        = $request->basic_final ?? null;
-        $courselevel->basic_note         = $request->basic_note ?? null;
-        $courselevel->basic_duration     = $request->basic_duration ?? null;
-        $courselevel->basic_days         = json_encode($request->basic_days) ?? null;
-        $courselevel->basic_start_time   = $request->basic_start_time ?? null;
-        $courselevel->basic_end_time     = $request->basic_end_time ?? null;
-        $courselevel->basic_price        = $request->basic_price ?? null;
-        $courselevel->standard_home_work = $request->standard_home_work ?? null;
-        $courselevel->standard_quiz      = $request->standard_quiz ?? null;
-        $courselevel->standard_one_one   = $request->standard_one_one ?? null;
-        $courselevel->standard_final     = $request->standard_final ?? null;
-        $courselevel->standard_note      = $request->standard_note ?? null;
-        $courselevel->standard_duration  = $request->standard_duration ?? null;
-        $courselevel->standard_days      = json_encode($request->standard_days) ?? null;
-        $courselevel->standard_start_time= $request->standard_start_time ?? null;
-        $courselevel->standard_end_time  = $request->standard_end_time ?? null;
-        $courselevel->standard_price     = $request->standard_price ?? null;
-        $courselevel->advance_home_work  = $request->advance_home_work ?? null;
-        $courselevel->advance_quiz       = $request->advance_quiz ?? null;
-        $courselevel->advance_one_one    = $request->advance_one_one ?? null;
-        $courselevel->advance_final      = $request->advance_final ?? null;
-        $courselevel->advance_note       = $request->advance_note ?? null;
-        $courselevel->advance_duration   = $request->advance_duration ?? null;
-        $courselevel->advance_days       = json_encode($request->advance_days) ?? null;
-        $courselevel->advance_start_time = $request->advance_start_time ?? null;
-        $courselevel->advance_end_time   = $request->advance_end_time ?? null;
-        $courselevel->advance_price      = $request->advance_price ?? null;
+        $courselevel->basic_home_work    = $request->basic_home_work;
+        $courselevel->basic_quiz         = $request->basic_quiz;
+        $courselevel->basic_one_one      = $request->basic_one_one;
+        $courselevel->basic_final        = $request->basic_final;
+        $courselevel->basic_note         = $request->basic_note;
+        $courselevel->basic_duration     = $request->basic_duration;
+        $courselevel->basic_days         = json_encode($request->basic_days);
+        $courselevel->basic_class_title = json_encode($request->basic_class_title);
+        $courselevel->basic_class_overview = json_encode($request->basic_class_overview);
+        $courselevel->basic_class_start_time   = json_encode($request->basic_class_start_time);
+        $courselevel->basic_class_end_time     = json_encode($request->basic_class_end_time);
+        $courselevel->basic_price        = $request->basic_price;
+
+
+        $courselevel->standard_home_work = $request->standard_home_work;
+        $courselevel->standard_quiz      = $request->standard_quiz;
+        $courselevel->standard_one_one   = $request->standard_one_one ;
+        $courselevel->standard_final     = $request->standard_final ;
+        $courselevel->standard_note      = $request->standard_note ;
+        $courselevel->standard_duration  = $request->standard_duration ;
+        $courselevel->standard_days      = json_encode($request->standard_days) ;
+        $courselevel->standard_class_title = json_encode($request->standard_class_title);
+        $courselevel->standard_class_overview = json_encode($request->standard_class_overview);
+        $courselevel->standard_class_start_time= json_encode($request->standard_class_start_time) ;
+        $courselevel->standard_class_end_time  = json_encode($request->standard_class_end_time) ;
+        $courselevel->standard_price     = $request->standard_price;
+
+        $courselevel->advance_home_work  = $request->advance_home_work;
+        $courselevel->advance_quiz       = $request->advance_quiz;
+        $courselevel->advance_one_one    = $request->advance_one_one;
+        $courselevel->advance_final      = $request->advance_final;
+        $courselevel->advance_note       = $request->advance_note;
+        $courselevel->advance_duration   = $request->advance_duration;
+        $courselevel->advance_days       = json_encode($request->advance_days);
+        $courselevel->advance_class_title = json_encode($request->advance_class_title);
+        $courselevel->advance_class_overview = json_encode($request->advance_class_overview);
+        $courselevel->advance_class_start_time = json_encode($request->advance_class_start_time);
+        $courselevel->advance_class_end_time   = json_encode($request->advance_class_end_time);
+        $courselevel->advance_price      = $request->advance_price;
 
         $courselevel->save();
 
@@ -226,8 +237,8 @@ class CourseController extends Controller
         foreach($request->basic_title as $i => $data){
             CourseOutline::create([
                 'course_id' => $request->id,
-                'title' => $request->basic_title[$i] ?? null,
-                'explain' => $request->basic_explain[$i] ?? null,
+                'title' => $request->basic_title[$i],
+                'explain' => $request->basic_explain[$i],
                 'level' => 1,
             ]);
         }
@@ -243,8 +254,8 @@ class CourseController extends Controller
         foreach($request->standard_title as $i=>$data){
             CourseOutline::create([
                 'course_id' => $request->id,
-                'title' => $request->standard_title[$i] ?? null,
-                'explain' => $request->standard_explain[$i] ?? null,
+                'title' => $request->standard_title[$i],
+                'explain' => $request->standard_explain[$i],
                 'level' => 2,
             ]);
         }
@@ -258,8 +269,8 @@ class CourseController extends Controller
         foreach($request->advance_title as $i=>$data){
             CourseOutline::create([
                 'course_id' => $request->id,
-                'title' => $request->advance_title[$i] ?? null,
-                'explain' => $request->advance_explain[$i] ?? null,
+                'title' => $request->advance_title[$i],
+                'explain' => $request->advance_explain[$i],
                 'level' => 3,
             ]);
         }

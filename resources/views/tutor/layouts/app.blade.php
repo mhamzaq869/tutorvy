@@ -63,6 +63,8 @@
 
      @include('js_files.chat')
      @yield('scripts')
+    @yield('js')
+
 <script>
 
     $(document).ready(function(){

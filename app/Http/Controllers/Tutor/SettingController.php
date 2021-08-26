@@ -39,7 +39,6 @@ class SettingController extends Controller
             'new_password'     => 'required|min:6',
             'new_confirm_password' => 'required|same:new_password',
         ]);
-
  
         $user = User::find(auth()->user()->id);
 
@@ -52,8 +51,6 @@ class SettingController extends Controller
 
             return redirect()->back('success','Password updated');
         }
-
-       
 
     }
 }

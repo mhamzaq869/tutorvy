@@ -430,14 +430,9 @@
 
 <!-- end section -->
 @endsection
-@section('scripts')
-<script src="{{ asset('assets/js/course.js')}}"></script>
-<script>
-    $(function() {
-        $("#basic_days,#standard_days,#advance_days").multiselect({
-        selectedList: 4 // 0-based index
-        });
-    });
-   
-</script>
+
+<!-- Extra js to perfome function using ajax. -->
+@section('js')
+@include('js_files.tutor.course')
 @endsection
+
