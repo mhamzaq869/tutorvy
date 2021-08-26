@@ -6,7 +6,7 @@
     <section id="homesection" style="display: flex;">
         <!-- dashborad home -->
         <div class="container-fluid m-0 p-0">
-            <p class="heading-first ml-3 mr-3">Dashboard</p>
+            <p class="heading-first ml-3 mr-3">Dashboard23</p>
             <div class="col-md-12 col-sm-12">
                 <div class="container-fluid bg-homeimage">
                     <div class="row">
@@ -114,15 +114,271 @@
                     <!-- table start -->
                     <div class="container-fluid m-0 p-0">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <p class="heading-third pt-4 mb-3">
                                     Find a tutors</p>
                             </div>
-                            <div class="col-md-6 mt-4">
-                                <button type="button" style="float: right;" class="btn btn-primary"
-                                    data-toggle="modal" data-target="#exampleModalCenter">
-                                    Apply Filter
-                                </button>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-9 row">
+                                        <div class="col-md-3">
+                                            <select name="" id="" class="form-control">
+                                                <option value="Subject"> Subject</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select name="" id="" class="form-control">
+                                                <option value="Location"> Location</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select name="" id="" class="form-control">
+                                                <option value="Rate"> Rate</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select name="" id="" class="form-control">
+                                                <option value="Rating"> Rating</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button class="btn-general w-100">Apply Filters</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 scrollable h-666">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <div class="row">
+                                                            <div class="col-md-2 col-6">
+                                                                <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
+                                                            </div>
+                                                            <div class="col-md-6 col-6">
+                                                                <h3>Danish Jaffery</h3>
+                                                                <small class="mb-0"><img src="../assets/images/ico/red-icon.png" alt="" class=""> Associate Professor at UKAS</small>
+                                                                <p><small><img src="../assets/images/ico/location-pro.png" alt="" class=""> Lahore,Pakistan</small></p>
+                                                            </div>
+                                                            <div class="col-md-4 col-12">
+                                                                <p>
+                                                                    <i class="fa fa-star text-yellow"></i>
+                                                                    <i class="fa fa-star text-yellow"></i>
+                                                                    <i class="fa fa-star text-yellow"></i>
+                                                                    <i class="fa fa-star text-yellow"></i>  4.0
+                                                                    <small class="text-grey">(25 reviews)</small>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <p><span class="text-green pr-3">Top Ranked</span> <span class="rank_icon"><img src="../assets/images/ico/rank.png" alt=""></span> </p>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <div class="col-md-4">
+                                                        <p class="mb-2">Subject</p>
+                                                        <p> <span class="info-1 info">Computer Science</span><span class="info">Maths</span></p>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <p class="mb-2">Languages</p>
+                                                        <p>
+                                                            <span class="info-1 info lingo">French</span>
+                                                            <span class="info lingo">English</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                    <p class="mb-2">Education</p>
+                                                        <p>
+                                                            <span class="info-1 info edu">Govt College Lahore Pakistan</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <div class="col-md-12">
+                                                        <p><strong> About Tutor </strong></p>
+                                                        <p class="scrol-about">
+                                                            Lorem ipsum dolor sit amet,  est commodi pariatur deserunt distinctio consectetur necessitatibus vitae obcaecati magni recusandae blanditiis sint porro placeat. Quia voluptates atque rerum ipsa architecto.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 bg-price text-center">
+                                                <div class="row mt-30">
+                                                    <div class="col-md-12">
+                                                        <p>starting from</p>
+                                                        <h1 class="f-60">$51</h1>
+                                                        <p>per hour</p>
+                                                            <button type="button" class="p-2 cencel-btn w-100">
+                                                                &nbsp; Message &nbsp;
+                                                            </button>
+                                                        <button type="button" class=" btn-general w-100 mt-2 p-2">
+                                                                &nbsp; Book Class &nbsp;
+                                                            </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <div class="row">
+                                                            <div class="col-md-2 col-6">
+                                                                <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
+                                                            </div>
+                                                            <div class="col-md-6 col-6">
+                                                                <h3>Danish Jaffery</h3>
+                                                                <small class="mb-0"><img src="../assets/images/ico/red-icon.png" alt="" class=""> Associate Professor at UKAS</small>
+                                                                <p><small><img src="../assets/images/ico/location-pro.png" alt="" class=""> Lahore,Pakistan</small></p>
+                                                            </div>
+                                                            <div class="col-md-4 col-12">
+                                                                <p>
+                                                                    <i class="fa fa-star text-yellow"></i>
+                                                                    <i class="fa fa-star text-yellow"></i>
+                                                                    <i class="fa fa-star text-yellow"></i>
+                                                                    <i class="fa fa-star text-yellow"></i>  4.0
+                                                                    <small class="text-grey">(25 reviews)</small>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <p><span class="text-green pr-3">Top Ranked</span> <span class="rank_icon"><img src="../assets/images/ico/rank.png" alt=""></span> </p>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <div class="col-md-4">
+                                                        <p class="mb-2">Subject</p>
+                                                        <p> <span class="info-1 info">Computer Science</span><span class="info">Maths</span></p>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <p class="mb-2">Languages</p>
+                                                        <p>
+                                                            <span class="info-1 info lingo">French</span>
+                                                            <span class="info lingo">English</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                    <p class="mb-2">Education</p>
+                                                        <p>
+                                                            <span class="info-1 info edu">Govt College Lahore Pakistan</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <div class="col-md-12">
+                                                        <p><strong> About Tutor </strong></p>
+                                                        <p class="scrol-about">
+                                                            Lorem ipsum dolor sit amet,  est commodi pariatur deserunt distinctio consectetur necessitatibus vitae obcaecati magni recusandae blanditiis sint porro placeat. Quia voluptates atque rerum ipsa architecto.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 bg-price text-center">
+                                                <div class="row mt-30">
+                                                    <div class="col-md-12">
+                                                        <p>starting from</p>
+                                                        <h1 class="f-60">$51</h1>
+                                                        <p>per hour</p>
+                                                            <button type="button" class="p-2 cencel-btn w-100">
+                                                                &nbsp; Message &nbsp;
+                                                            </button>
+                                                        <button type="button" class=" btn-general w-100 mt-2 p-2">
+                                                                &nbsp; Book Class &nbsp;
+                                                            </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <div class="row">
+                                                            <div class="col-md-2 col-6">
+                                                                <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
+                                                            </div>
+                                                            <div class="col-md-6 col-6">
+                                                                <h3>Danish Jaffery</h3>
+                                                                <small class="mb-0"><img src="../assets/images/ico/red-icon.png" alt="" class=""> Associate Professor at UKAS</small>
+                                                                <p><small><img src="../assets/images/ico/location-pro.png" alt="" class=""> Lahore,Pakistan</small></p>
+                                                            </div>
+                                                            <div class="col-md-4 col-12">
+                                                                <p>
+                                                                    <i class="fa fa-star text-yellow"></i>
+                                                                    <i class="fa fa-star text-yellow"></i>
+                                                                    <i class="fa fa-star text-yellow"></i>
+                                                                    <i class="fa fa-star text-yellow"></i>  4.0
+                                                                    <small class="text-grey">(25 reviews)</small>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <p><span class="text-green pr-3">Top Ranked</span> <span class="rank_icon"><img src="../assets/images/ico/rank.png" alt=""></span> </p>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <div class="col-md-4">
+                                                        <p class="mb-2">Subject</p>
+                                                        <p> <span class="info-1 info">Computer Science</span><span class="info">Maths</span></p>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <p class="mb-2">Languages</p>
+                                                        <p>
+                                                            <span class="info-1 info lingo">French</span>
+                                                            <span class="info lingo">English</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                    <p class="mb-2">Education</p>
+                                                        <p>
+                                                            <span class="info-1 info edu">Govt College Lahore Pakistan</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <div class="col-md-12">
+                                                        <p><strong> About Tutor </strong></p>
+                                                        <p class="scrol-about">
+                                                            Lorem ipsum dolor sit amet,  est commodi pariatur deserunt distinctio consectetur necessitatibus vitae obcaecati magni recusandae blanditiis sint porro placeat. Quia voluptates atque rerum ipsa architecto.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 bg-price text-center">
+                                                <div class="row mt-30">
+                                                    <div class="col-md-12">
+                                                        <p>starting from</p>
+                                                        <h1 class="f-60">$51</h1>
+                                                        <p>per hour</p>
+                                                            <button type="button" class="p-2 cencel-btn w-100">
+                                                                &nbsp; Message &nbsp;
+                                                            </button>
+                                                        <button type="button" class=" btn-general w-100 mt-2 p-2">
+                                                                &nbsp; Book Class &nbsp;
+                                                            </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <!-- Button trigger modal -->
@@ -165,413 +421,7 @@
                             </div>
                         </div>
                         <div>
-
-                            <div style="overflow-y: scroll;height: 400px;">
-                                <div class="container-fluid mt-4"
-                                    style="background-color: white;border-radius: 8px;">
-                                    <div class="row">
-                                        <div class="col-md-9 m-0 p-0">
-                                            <div class="row" style="line-height: 0.8;">
-                                                <div class="col-md-2">
-                                                    <div class="popover__wrapper mt-0">
-                                                        <a href="../Profile/profile.html">
-                                                            <h2 class="popover__title">
-                                                                <img src="{{asset('assets/images/ico/hom-profile.png')}}"
-                                                                    alt="home-profile">
-                                                            </h2>
-                                                        </a>
-                                                        <div class="popover__content">
-                                                            <div class="col-md-12">
-                                                                <div class="row" style="line-height: 0.8;">
-                                                                    <div class="col-md-2 mt-3">
-                                                                        <img src="{{asset('assets/images/ico/hom-profile.png')}}"
-                                                                            alt="home-profile">
-                                                                    </div>
-                                                                    <div class="col-md-10 mt-4">
-                                                                        <div class="d-flex ml-5 ">
-                                                                            <p class="heading-third ml-1">
-                                                                                Harram
-                                                                            </p>
-                                                                            <div class=" ml-2">
-                                                                                <span
-                                                                                    class="fa fa-star checked text-warning"></span>
-                                                                                <span
-                                                                                    class="fa fa-star checked text-warning"></span>
-                                                                                <span
-                                                                                    class="fa fa-star checked text-warning"></span>
-                                                                                <span
-                                                                                    class="fa fa-star checked text-warning"></span>
-                                                                                <span
-                                                                                    class="fa fa-star"></span>
-                                                                            </div>
-
-                                                                        </div>
-                                                                        <div class="row ml-4">
-                                                                            <div class="col-md-1 mr-2 ml-3">
-                                                                                <img src="{{asset('assets/images/ico/red-icon.png')}}"
-                                                                                    alt="red-ico">
-                                                                            </div>
-                                                                            <div class="col-md-9 m-0 p-0">
-                                                                                <p class="text-pro">
-                                                                                    Associate Prof. at UKAS
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row  ml-4">
-                                                                            <div class="col-md-1 ml-3">
-                                                                                <img src="{{asset('assets/images/ico/location-pro.png')}}"
-                                                                                    alt="location-pro">
-                                                                            </div>
-                                                                            <div class="col-md-9 m-0 p-0">
-                                                                                <p
-                                                                                    class="heading-fifth ml-2">
-                                                                                    Lahore, Pakistan
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-8 mt-4">
-                                                    <div class="d-flex ml-3 ">
-                                                        <p class="heading-third">
-                                                            Harram
-                                                        </p>
-                                                        <div class=" ml-2">
-                                                            <span
-                                                                class="fa fa-star checked text-warning"></span>
-                                                            <span
-                                                                class="fa fa-star checked text-warning"></span>
-                                                            <span
-                                                                class="fa fa-star checked text-warning"></span>
-                                                            <span
-                                                                class="fa fa-star checked text-warning"></span>
-                                                            <span class="fa fa-star"></span>
-                                                        </div>
-                                                        <p class="ml-2 mt-1 paragraph-text1">
-                                                            4.0
-                                                        </p>
-                                                        <p class="ml-2 mt-1 paragraph-text2">
-                                                            (25 review)
-                                                        </p>
-                                                    </div>
-                                                    <div class="row ml-1">
-                                                        <div class="col-md-1 mr-2">
-                                                            <img src="{{asset('assets/images/ico/red-icon.png')}}"
-                                                                alt="red-ico">
-                                                        </div>
-                                                        <div class="col-md-9 m-0 p-0">
-                                                            <p class="text-pro">
-                                                                Associate Prof. at UKAS
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row  ml-1">
-                                                        <div class="col-md-1">
-                                                            <img src="{{asset('assets/images/ico/location-pro.png')}}"
-                                                                alt="location-pro">
-                                                        </div>
-                                                        <div class="col-md-9 m-0 p-0">
-                                                            <p class="heading-fifth ml-2">
-                                                                Lahore, Pakistan
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2 mt-4">
-                                                    <div class="d-flex justify-content-end">
-                                                        <p class="rank-text mt-1">
-                                                            TOP RANK
-                                                        </p>
-                                                        <img class="mr-1" src="{{asset('assets/images/ico/rank.png')}}"
-                                                            alt="rank">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="container-fluid mt-3">
-                                                <div class="row">
-                                                    <div class="col-md-4 m-0 p-0">
-                                                        <p class="heading-fifth">
-                                                            Subjects
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <p class="heading-fifth">
-                                                            Language
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <p class="heading-fifth">
-                                                            Education
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="container-fluid mt-1 pb-3">
-                                                <div class="row">
-                                                    <div class="d-flex">
-                                                        <button class="color-btn-std1">
-                                                            Computer
-                                                        </button>
-                                                        <button class="color-btn-std1  ml-2">
-                                                            Math
-                                                        </button>
-                                                        <button class="color-btn-std  ml-2">
-                                                            Franch
-                                                        </button>
-                                                        <button class="color-btn-std  ml-2">
-                                                            English
-                                                        </button>
-                                                        <button class="color-btn-std ml-2">
-                                                            Urdu
-                                                        </button>
-                                                        <button class="color-btn-std3 ml-2 ">
-                                                            University College
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <p class="mt-3 heading-forth">
-                                                About tutor
-                                            </p>
-                                            <div class="container-fluid m-0 p-0">
-                                                <p class="paragraph-text1" style="opacity: 0.8;">
-                                                    Lorem Ipsum is simply dummy text of the printing and
-                                                    typesetting industry. Lorem Ipsum has been the
-                                                    industry's
-                                                    standard dummy text ever since the 1500s, when an
-                                                    unknown
-                                                    printer took a galley of type and scrambled it to make a
-                                                    type specimen book.
-                                                </p>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-3"
-                                            style="background-color: #ebf4ff;border-radius: 8px;">
-                                            <div class="text-center mt-5">
-                                                <p class="paragraph-text1">starting from</p>
-                                                <p
-                                                    style="font-size: 64px;font-family: 'poppins';line-height: 1;">
-                                                    $15
-                                                </p>
-                                                <p class="paragraph-text1 mb-5" style="line-height: 1;">
-                                                    Per hour
-                                                </p>
-                                                <button class="cencel-btn w-100 mt-5">Massge</button>
-                                                <button class="schedule-btn w-100 mt-3">Book class</button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="container-fluid mt-4 "
-                                    style="background-color: white;border-radius: 8px;">
-                                    <div class="row">
-                                        <div class="col-md-9 m-0 p-0">
-                                            <div class="row" style="line-height: 0.8;">
-                                                <div class="col-md-2">
-                                                    <div class="popover__wrapper mt-0">
-                                                        <a href="../Profile/profile.html">
-                                                            <h2 class="popover__title">
-                                                                <img src="{{asset('assets/images/ico/hom-profile.png')}}"
-                                                                    alt="home-profile">
-                                                            </h2>
-                                                        </a>
-                                                        <div class="popover__content">
-                                                            <div class="col-md-12">
-                                                                <div class="row" style="line-height: 0.8;">
-                                                                    <div class="col-md-2 mt-3">
-                                                                        <img src="{{asset('assets/images/ico/hom-profile.png')}}"
-                                                                            alt="home-profile">
-                                                                    </div>
-                                                                    <div class="col-md-10 mt-4">
-                                                                        <div class="d-flex ml-5 ">
-                                                                            <p class="heading-third ml-1">
-                                                                                Harram
-                                                                            </p>
-                                                                            <div class=" ml-2">
-                                                                                <span
-                                                                                    class="fa fa-star checked text-warning"></span>
-                                                                                <span
-                                                                                    class="fa fa-star checked text-warning"></span>
-                                                                                <span
-                                                                                    class="fa fa-star checked text-warning"></span>
-                                                                                <span
-                                                                                    class="fa fa-star checked text-warning"></span>
-                                                                                <span
-                                                                                    class="fa fa-star"></span>
-                                                                            </div>
-
-                                                                        </div>
-                                                                        <div class="row ml-4">
-                                                                            <div class="col-md-1 mr-2 ml-3">
-                                                                                <img src="{{asset('assets/images/ico/red-icon.png')}}"
-                                                                                    alt="red-ico">
-                                                                            </div>
-                                                                            <div class="col-md-9 m-0 p-0">
-                                                                                <p class="text-pro">
-                                                                                    Associate Prof. at UKAS
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row  ml-4">
-                                                                            <div class="col-md-1 ml-3">
-                                                                                <img src="{{asset('assets/images/ico/location-pro.png')}}"
-                                                                                    alt="location-pro">
-                                                                            </div>
-                                                                            <div class="col-md-9 m-0 p-0">
-                                                                                <p
-                                                                                    class="heading-fifth ml-2">
-                                                                                    Lahore, Pakistan
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-8 mt-4">
-                                                    <div class="d-flex ml-3 ">
-                                                        <p class="heading-third">
-                                                            Harram
-                                                        </p>
-                                                        <div class=" ml-2">
-                                                            <span
-                                                                class="fa fa-star checked text-warning"></span>
-                                                            <span
-                                                                class="fa fa-star checked text-warning"></span>
-                                                            <span
-                                                                class="fa fa-star checked text-warning"></span>
-                                                            <span
-                                                                class="fa fa-star checked text-warning"></span>
-                                                            <span class="fa fa-star"></span>
-                                                        </div>
-                                                        <p class="ml-2 mt-1 paragraph-text1">
-                                                            4.0
-                                                        </p>
-                                                        <p class="ml-2 mt-1 paragraph-text2">
-                                                            (25 review)
-                                                        </p>
-                                                    </div>
-                                                    <div class="row ml-1">
-                                                        <div class="col-md-1 mr-2">
-                                                            <img src="{{asset('assets/images/ico/red-icon.png')}}"
-                                                                alt="red-ico">
-                                                        </div>
-                                                        <div class="col-md-9 m-0 p-0">
-                                                            <p class="text-pro">
-                                                                Associate Prof. at UKAS
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row  ml-1">
-                                                        <div class="col-md-1">
-                                                            <img src="{{asset('assets/images/ico/location-pro.png')}}"
-                                                                alt="location-pro">
-                                                        </div>
-                                                        <div class="col-md-9 m-0 p-0">
-                                                            <p class="heading-fifth ml-2">
-                                                                Lahore, Pakistan
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2 mt-4">
-                                                    <div class="d-flex justify-content-end">
-                                                        <p class="rank-text mt-1"
-                                                            style="position: absolute;left: -30px;">
-                                                            Top Rank
-                                                        </p>
-                                                        <img src="{{asset('assets/images/ico/rank.png')}}" alt="rank">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="container-fluid mt-3">
-                                                <div class="row">
-                                                    <div class="col-md-4 m-0 p-0">
-                                                        <p class="heading-fifth">
-                                                            Subjects
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <p class="heading-fifth">
-                                                            Language
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <p class="heading-fifth">
-                                                            Education
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="container-fluid mt-1 pb-3">
-                                                <div class="row">
-                                                    <div class="d-flex">
-                                                        <button class="color-btn-std1">
-                                                            Computer
-                                                        </button>
-                                                        <button class="color-btn-std1  ml-2">
-                                                            Math
-                                                        </button>
-                                                        <button class="color-btn-std  ml-2">
-                                                            Franch
-                                                        </button>
-                                                        <button class="color-btn-std  ml-2">
-                                                            English
-                                                        </button>
-                                                        <button class="color-btn-std ml-2">
-                                                            Urdu
-                                                        </button>
-                                                        <button class="color-btn-std3 ml-2 ">
-                                                            University College
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <p class="mt-3 heading-forth">
-                                                About tutor
-                                            </p>
-                                            <div class="container-fluid m-0 p-0">
-                                                <p class="paragraph-text1" style="opacity: 0.8;">
-                                                    Lorem Ipsum is simply dummy text of the printing and
-                                                    typesetting industry. Lorem Ipsum has been the
-                                                    industry's
-                                                    standard dummy text ever since the 1500s, when an
-                                                    unknown
-                                                    printer took a galley of type and scrambled it to make a
-                                                    type specimen book.
-                                                </p>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-3"
-                                            style="background-color: #ebf4ff;border-radius: 8px;">
-                                            <div class="text-center mt-5">
-                                                <p class="paragraph-text1">starting from</p>
-                                                <p
-                                                    style="font-size: 64px;font-family: 'poppins';line-height: 1;">
-                                                    $15
-                                                </p>
-                                                <p class="paragraph-text1 mb-5" style="line-height: 1;">
-                                                    Per hour
-                                                </p>
-                                                <button class="cencel-btn w-100 mt-5">Massge</button>
-                                                <button class="schedule-btn w-100 mt-3">Book class</button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
+                    </div>
                         <!-- end -->
                     </div>
                     <!-- table end -->
@@ -583,187 +433,214 @@
         </div>
         <!-- end dashborad home -->
         <div class="container-fluid m-0 p-0" style="width: 46%;" id="calcultor">
-            <div class="col-md-12 m-0 p-0">
-                <!-- clander -->
-                <div class="wrapper">
-
-                    <div class="container-calendar " style="width:100%;border-radius: 8px;">
-                        <h3 id="monthAndYear">&nbsp;</h3>
-                        <div class="button-container-calendar mt-3">
-                            <span id="previous" onclick="previous()">
-                                <img src="{{asset('assets/images/ico/side-arrow.png')}}" alt="arrow">
-                            </span>
-                            <span id="next" onclick="next()">
-                                <img src="{{asset('assets/images/ico/side-arrow1.png')}}" alt="arrow">
-                            </span>
-                        </div>
-                        <table class="table-calendar" id="calendar" data-lang="en">
-                            <thead id="thead-month"></thead>
-                            <tbody id="calendar-body"></tbody>
-                        </table>
-
-                        <div class="footer-container-calendar" style="display: none;">
-                            <label for="month">Jump To: </label>
-                            <select id="month" onchange="jump()">
-                                <option value=0>Jan</option>
-                                <option value=1>Feb</option>
-                                <option value=2>Mar</option>
-                                <option value=3>Apr</option>
-                                <option value=4>May</option>
-                                <option value=5>Jun</option>
-                                <option value=6>Jul</option>
-                                <option value=7>Aug</option>
-                                <option value=8>Sep</option>
-                                <option value=9>Oct</option>
-                                <option value=10>Nov</option>
-                                <option value=11>Dec</option>
-                            </select>
-                            <select id="year" onchange="jump()"></select>
+            <div class="col-md-12 mb-3">
+                <h3>Find a tutor <span class="pull-right "><small><a href="#"> View All</a></small></span></h3>
+                <div class="card ">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img src="{{asset('assets/images/logo/boy.jpg')}}"
+                                                                        alt="round-profile" class="round-border">
+                            </div>
+                            <div class="col-md-4 pt-1 pl-0">
+                                <small class=""><strong>Jaffery Abdul</strong></small>
+                                <p class="mb-0"><small >
+                                    <i class="fa fa-star text-yellow"></i>
+                                    <i class="fa fa-star text-yellow"></i>
+                                    <i class="fa fa-star text-yellow"></i>
+                                    <i class="fa fa-star text-yellow"></i>  4.0
+                                </small></p>
+                                <small><img src="{{asset('assets/images/ico/location-pro.png')}}" alt="" class=""> Lahore,Pakistan</small>
+                            </div>
+                            <div class="col-md-5">
+                                <button class=" btn-general btn-large mt-3">Book a class</button>
+                            </div>
+                            <div class="col-md-12">
+                                <hr>
+                            </div>
                         </div>
 
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img src="{{asset('assets/images/logo/boy.jpg')}}"
+                                                                        alt="round-profile" class="round-border">
+                            </div>
+                            <div class="col-md-4 pt-1 pl-0">
+                                <small class=""><strong>Jaffery Abdul</strong></small>
+                                <p class="mb-0"><small >
+                                    <i class="fa fa-star text-yellow"></i>
+                                    <i class="fa fa-star text-yellow"></i>
+                                    <i class="fa fa-star text-yellow"></i>
+                                    <i class="fa fa-star text-yellow"></i>  4.0
+                                </small></p>
+                                <small><img src="{{asset('assets/images/ico/location-pro.png')}}" alt="" class=""> Lahore,Pakistan</small>
+                            </div>
+                            <div class="col-md-5">
+                                <button class=" btn-general btn-large mt-3">Book a class</button>
+                            </div>
+                            <div class="col-md-12">
+                                <hr>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
-                <!-- clander end -->
+                
             </div>
+            <div class="col-md-12 card mb-3">
+                <div class="card-body">
+                    <div class="wrapper">
+                        <div class="container-calendar  p-0" style="width:100%;border-radius: 8px;">
+                            <h3 id="monthAndYear">&nbsp;</h3>
+                            <div class="button-container-calendar mt-3">
+                                <span id="previous" onclick="previous()">
+                                    <img src="{{asset('assets/images/ico/side-arrow.png')}}" alt="arrow">
+                                </span>
+                                <span id="next" onclick="next()">
+                                    <img src="{{asset('assets/images/ico/side-arrow1.png')}}" alt="arrow">
+                                </span>
+                            </div>
+                            <table class="table-calendar" id="calendar" data-lang="en">
+                                <thead id="thead-month"></thead>
+                                <tbody id="calendar-body"></tbody>
+                            </table>
 
-            <!-- bookings start -->
-            <div class="container-fluid clander1">
-                <div class="row rows-rap" style="display: flex;">
-                    <div class="col-md-7">
-                        <p class="heading-third">
-                            Today Bookings
+                            <div class="footer-container-calendar" style="display: none;">
+                                <label for="month">Jump To: </label>
+                                <select id="month" onchange="jump()">
+                                    <option value=0>Jan</option>
+                                    <option value=1>Feb</option>
+                                    <option value=2>Mar</option>
+                                    <option value=3>Apr</option>
+                                    <option value=4>May</option>
+                                    <option value=5>Jun</option>
+                                    <option value=6>Jul</option>
+                                    <option value=7>Aug</option>
+                                    <option value=8>Sep</option>
+                                    <option value=9>Oct</option>
+                                    <option value=10>Nov</option>
+                                    <option value=11>Dec</option>
+                                </select>
+                                <select id="year" onchange="jump()"></select>
+                            </div>
 
-                        </p>
-                    </div>
-                    <div class="col-md-5">
-                        <p class="view-bookings">
-                            View all Bookings
-                        </p>
-                    </div>
-                </div>
-                <div class="container-fluid">
-                    <div class="row row-bac">
-                        <div class="col-md-2">
-                            <img src="{{asset('assets/images/ico/botal-ico.png')}}" alt="botal-ico"
-                                style="margin-top: 32px;">
                         </div>
-                        <div class="col-md-10">
-                            <p class="mt-3 mb-2 periodic-cls">
-                                <a class="chemistry-tex1">
-                                    Chemistry class:
-                                </a>
-                                Periodic table
-                            </p>
-                            <p class="chemistry-tex2">
-                                It is a long established fact that a reader will be distracted by.
-                            </p>
-
-                            <div style="display: inline-flex;">
-                                <img src="{{asset('assets/images/ico/watch-icon.png')}}" alt="watch" class="watch-icon">
-                                <p class="time-chemistry">
-                                    5 PM - 07 Feburary 2021
-                                </p>
+                    </div>
+                     <!-- bookings start -->
+                    <div class="container-fluid clander1">
+                        <div class="row rows-rap" style="display: flex;">
+                            <div class="col-md-12">
+                                <h3>Today Bookings <span class="pull-right "><small><a href="#"> View All</a></small></span></h3>
                             </div>
                         </div>
-
-                    </div>
-                    <div class="row row-bac mt-3">
-                        <div class="col-md-2">
-                            <img src="{{asset('assets/images/ico/che-ico.png')}}" alt="botal-ico" style="margin-top: 32px;">
-                        </div>
-                        <div class="col-md-10">
-                            <p class="mt-3 mb-2 periodic-cls">
-                                <a class="chemistry-tex1">
-                                    Chemistry class:
-                                </a>
-                                Periodic table
-                            </p>
-                            <p class="chemistry-tex2">
-                                It is a long established fact that a reader will be distracted by.
-                            </p>
-
-                            <div style="display: inline-flex;">
-                                <img src="{{asset('assets/images/ico/watch-icon.png')}}" alt="watch" class="watch-icon">
-                                <p class="time-chemistry">
-                                    5 PM - 07 Feburary 2021
-                                </p>
+                        <div class="row row-bac">
+                            <div class="col-md-2">
+                                <img src="{{asset('assets/images/ico/botal-ico.png')}}" alt="botal-ico"
+                                    style="margin-top: 32px;">
                             </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="container-fluid clander1">
-                <div class="row rows-rap" style="display: flex;">
-                    <div class="col-md-7">
-                        <p class="heading-third">
-                            Upcomming
-
-                        </p>
-                    </div>
-                    <div class="col-md-5">
-                        <p class="view-bookings">
-                            View all Bookings
-                        </p>
-                    </div>
-                </div>
-                <div class="container-fluid">
-                    <div class="row row-bac">
-                        <div class="col-md-2">
-                            <img src="{{asset('assets/images/ico/botal-ico.png')}}" alt="botal-ico"
-                                style="margin-top: 32px;">
-                        </div>
-                        <div class="col-md-10">
-                            <p class="mt-3 mb-2 periodic-cls">
-                                <a class="chemistry-tex1">
-                                    Chemistry class:
-                                </a>
-                                Periodic table
-                            </p>
-                            <p class="chemistry-tex2">
-                                It is a long established fact that a reader will be distracted by.
-                            </p>
-
-                            <div style="display: inline-flex;">
-                                <img src="{{asset('assets/images/ico/watch-icon.png')}}" alt="watch" class="watch-icon">
-                                <p class="time-chemistry">
-                                    5 PM - 07 Feburary 2021
+                            <div class="col-md-10">
+                                <p class="mt-3 mb-2 periodic-cls">
+                                    <a class="chemistry-tex1">
+                                        Chemistry class:
+                                    </a>
+                                    Periodic table
                                 </p>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row row-bac mt-3">
-                        <div class="col-md-2">
-                            <img src="{{asset('assets/images/ico/che-ico.png')}}" alt="botal-ico" style="margin-top: 32px;">
-                        </div>
-                        <div class="col-md-10">
-                            <p class="mt-3 mb-2 periodic-cls">
-                                <a class="chemistry-tex1">
-                                    Chemistry class:
-                                </a>
-                                Periodic table
-                            </p>
-                            <p class="chemistry-tex2">
-                                It is a long established fact that a reader will be distracted by.
-                            </p>
-
-                            <div style="display: inline-flex;">
-                                <img src="{{asset('assets/images/ico/watch-icon.png')}}" alt="watch" class="watch-icon">
-                                <p class="time-chemistry">
-                                    5 PM - 07 Feburary 2021
+                                <p class="chemistry-tex2">
+                                    It is a long established fact that a reader will be distracted by.
                                 </p>
+
+                                <div style="display: inline-flex;">
+                                    <img src="{{asset('assets/images/ico/watch-icon.png')}}" alt="watch" class="watch-icon">
+                                    <p class="time-chemistry">
+                                        5 PM - 07 Feburary 2021
+                                    </p>
+                                </div>
                             </div>
+
                         </div>
+                        <div class="row row-bac mt-3">
+                            <div class="col-md-2">
+                                <img src="{{asset('assets/images/ico/che-ico.png')}}" alt="botal-ico" style="margin-top: 32px;">
+                            </div>
+                            <div class="col-md-10">
+                                <p class="mt-3 mb-2 periodic-cls">
+                                    <a class="chemistry-tex1">
+                                        Chemistry class:
+                                    </a>
+                                    Periodic table
+                                </p>
+                                <p class="chemistry-tex2">
+                                    It is a long established fact that a reader will be distracted by.
+                                </p>
 
+                                <div style="display: inline-flex;">
+                                    <img src="{{asset('assets/images/ico/watch-icon.png')}}" alt="watch" class="watch-icon">
+                                    <p class="time-chemistry">
+                                        5 PM - 07 Feburary 2021
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row rows-rap" style="display: flex;">
+                            <div class="col-md-12">
+                                <h3>Upcoming Bookings <span class="pull-right "><small><a href="#"> View All</a></small></span></h3>
+                            </div>
+                            
+                        </div>
+                        <div class="row row-bac">
+                            <div class="col-md-2">
+                                <img src="{{asset('assets/images/ico/botal-ico.png')}}" alt="botal-ico"
+                                    style="margin-top: 32px;">
+                            </div>
+                            <div class="col-md-10">
+                                <p class="mt-3 mb-2 periodic-cls">
+                                    <a class="chemistry-tex1">
+                                        Chemistry class:
+                                    </a>
+                                    Periodic table
+                                </p>
+                                <p class="chemistry-tex2">
+                                    It is a long established fact that a reader will be distracted by.
+                                </p>
+
+                                <div style="display: inline-flex;">
+                                    <img src="{{asset('assets/images/ico/watch-icon.png')}}" alt="watch" class="watch-icon">
+                                    <p class="time-chemistry">
+                                        5 PM - 07 Feburary 2021
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row row-bac mt-3">
+                            <div class="col-md-2">
+                                <img src="{{asset('assets/images/ico/che-ico.png')}}" alt="botal-ico" style="margin-top: 32px;">
+                            </div>
+                            <div class="col-md-10">
+                                <p class="mt-3 mb-2 periodic-cls">
+                                    <a class="chemistry-tex1">
+                                        Chemistry class:
+                                    </a>
+                                    Periodic table
+                                </p>
+                                <p class="chemistry-tex2">
+                                    It is a long established fact that a reader will be distracted by.
+                                </p>
+
+                                <div style="display: inline-flex;">
+                                    <img src="{{asset('assets/images/ico/watch-icon.png')}}" alt="watch" class="watch-icon">
+                                    <p class="time-chemistry">
+                                        5 PM - 07 Feburary 2021
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-                </div>
-
-            </div>
             <!-- bookings end -->
+                </div>
+            </div>
             <!-- chatbox -->
             <div class="chatbox-holder" style="display: ;">
                 <div class="chatbox chatbox-min">
