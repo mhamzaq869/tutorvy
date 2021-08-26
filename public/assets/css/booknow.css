@@ -98,11 +98,16 @@
     border: 1px solid #1173FF;
     font-weight: 600;
     transition: all 0.9s;
+    cursor: pointer;
 }
 
 .btn-general:hover {
     color: #1173FF;
     background: #fff;
+}
+
+.btn-large {
+    padding: 13px 20px !important;
 }
 
 .searchIcon {
@@ -114,4 +119,12 @@
 .find_tutor .scrol-about {
     height: 75px;
     overflow-y: auto;
+}
+
+.scrollable {
+    overflow-y: auto;
+}
+
+.h-666 {
+    height: 666px;
 }
