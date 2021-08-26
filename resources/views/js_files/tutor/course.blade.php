@@ -1,7 +1,16 @@
+<script>
+
+$(function() {
+    $("#basic_days,#standard_days,#advance_days").multiselect({
+    selectedList: 4 // 0-based index
+    });
+});
+
 var counter = 1;
 var counter2 = 1;
 var counter3 = 1;
 let bs_days_arr = [];
+
 $(".basicMore").click(function() {
     counter++;
     var html = ` <div class="adddivs-1" id="rec_` + counter + `">
@@ -42,24 +51,53 @@ $(".advMore").click(function() {
 $("#basic_day").on("select2:select", function(e) {
     var value = e.params.data.id;
     // alert(value);
+
+    var text;
+
+    switch(value) {
+    case "1":
+        text = "Monday";
+        break;
+    case "2":
+        text = "Tuesday";
+        break;
+    case "3":
+        text = "Wednesday";
+        break;
+    case "4":
+        text = "Thursday";
+        break;
+    case "5":
+        text = "Friday";
+        break;
+    case "6":
+        text = "Satureday";
+        break;
+    case "7":
+        text = "Sunday";
+        break;
+    default:
+        text = "---";
+    }
+
     let html = "";
     html += `<div id="bas_` + value + `">
-                <span class="heading-forth"> ` + value + `</span>
+                <span class="heading-forth"> ` + text + `</span>
                 <div class="input-serachs mt-2">
-                    <input type="txt" name="basic_course_title[` + value + `]" placeholder="Write Class Title" />
+                    <input type="txt" name="basic_class_title[` + value + `]" placeholder="Write Class Title" required />
                 </div>
                 <div class="input-serachs mt-2 mb-2">
-                    <input type="txt" name="basic_course_title[` + value + `]" placeholder="Write Class Overview" />
+                    <input type="txt" name="basic_class_overview[` + value + `]" placeholder="Write Class Overview" required />
                 </div>
                 <span class="heading-forth"> Timing</span>
                 <div class="input-options ">
                     <div class="row">
                         <div class="col-md-6">
-                            <input type="text" name="basic_start_time[` + value + `]" class="form-control texteara-s mt-2 pt-2 mb-2"  placeholder="From"
+                            <input type="text" name="basic_class_start_time[` + value + `]" class="form-control texteara-s mt-2 pt-2 mb-2" required  placeholder="From"
                             onfocus="(this.type='time')">
                         </div>
                         <div class="col-md-6">
-                            <input type="text" name="basic_end_time[` + value + `]" class="form-control texteara-s mt-2 pt-2 mb-2" placeholder="To"
+                            <input type="text" name="basic_class_end_time[` + value + `]" class="form-control texteara-s mt-2 pt-2 mb-2" required placeholder="To"
                                 onfocus="(this.type='time')">
                         </div>
                     </div>
@@ -79,24 +117,53 @@ $("#basic_day").on("select2:unselect", function(e) {
 $("#standard_day").on("select2:select", function(e) {
     var value = e.params.data.id;
     // alert(value);
+
+    var text;
+
+    switch(value) {
+    case "1":
+        text = "Monday";
+        break;
+    case "2":
+        text = "Tuesday";
+        break;
+    case "3":
+        text = "Wednesday";
+        break;
+    case "4":
+        text = "Thursday";
+        break;
+    case "5":
+        text = "Friday";
+        break;
+    case "6":
+        text = "Satureday";
+        break;
+    case "7":
+        text = "Sunday";
+        break;
+    default:
+        text = "---";
+    }
+
     let html = "";
     html += `<div id="standard_` + value + `">
                 <span class="heading-forth"> ` + value + `</span>
                 <div class="input-serachs mt-2">
-                    <input type="txt" name="standard_course_title[` + value + `]" placeholder="Write Class Title" />
+                    <input type="txt" name="standard_class_title[` + value + `]" placeholder="Write Class Title" required />
                 </div>
                 <div class="input-serachs mt-2 mb-2">
-                    <input type="txt" name="standard_course_title[` + value + `]" placeholder="Write Class Overview" />
+                    <input type="txt" name="standard_class_overview[` + value + `]" placeholder="Write Class Overview" required />
                 </div>
                 <span class="heading-forth"> Timing</span>
                 <div class="input-options ">
                     <div class="row">
                         <div class="col-md-6">
-                            <input type="text" name="standard_start_time[` + value + `]" class="form-control texteara-s mt-2 pt-2 mb-2"  placeholder="From"
+                            <input type="text" name="standard_class_start_time[` + value + `]" class="form-control texteara-s mt-2 pt-2 mb-2" required  placeholder="From"
                             onfocus="(this.type='time')">
                         </div>
                         <div class="col-md-6">
-                            <input type="text" name="standard_end_time[` + value + `]" class="form-control texteara-s mt-2 pt-2 mb-2" placeholder="To"
+                            <input type="text" name="standard_class_end_time[` + value + `]" class="form-control texteara-s mt-2 pt-2 mb-2" required placeholder="To"
                                 onfocus="(this.type='time')">
                         </div>
                     </div>
@@ -116,24 +183,53 @@ $("#standard_day").on("select2:unselect", function(e) {
 $("#advance_day").on("select2:select", function(e) {
     var value = e.params.data.id;
     // alert(value);
+
+    var text;
+
+    switch(value) {
+    case "1":
+        text = "Monday";
+        break;
+    case "2":
+        text = "Tuesday";
+        break;
+    case "3":
+        text = "Wednesday";
+        break;
+    case "4":
+        text = "Thursday";
+        break;
+    case "5":
+        text = "Friday";
+        break;
+    case "6":
+        text = "Satureday";
+        break;
+    case "7":
+        text = "Sunday";
+        break;
+    default:
+        text = "---";
+    }
+
     let html = "";
     html += `<div id="advance_` + value + `">
                 <span class="heading-forth"> ` + value + `</span>
                 <div class="input-serachs mt-2">
-                    <input type="txt" name="advance_course_title[` + value + `]" placeholder="Write Class Title" />
+                    <input type="txt" name="advance_class_title[` + value + `]" placeholder="Write Class Title" required />
                 </div>
                 <div class="input-serachs mt-2 mb-2">
-                    <input type="txt" name="advance_course_title[` + value + `]" placeholder="Write Class Overview" />
+                    <input type="txt" name="advance_class_overview[` + value + `]" placeholder="Write Class Overview" required />
                 </div>
                 <span class="heading-forth"> Timing</span>
                 <div class="input-options ">
                     <div class="row">
                         <div class="col-md-6">
-                            <input type="text" name="advance_start_time[` + value + `]" class="form-control texteara-s mt-2 pt-2 mb-2"  placeholder="From"
+                            <input type="text" name="advance_class_start_time[` + value + `]" class="form-control texteara-s mt-2 pt-2 mb-2" required  placeholder="From"
                             onfocus="(this.type='time')">
                         </div>
                         <div class="col-md-6">
-                            <input type="text" name="advance_end_time[` + value + `]" class="form-control texteara-s mt-2 pt-2 mb-2" placeholder="To"
+                            <input type="text" name="advance_class_end_time[` + value + `]" class="form-control texteara-s mt-2 pt-2 mb-2" required placeholder="To"
                                 onfocus="(this.type='time')">
                         </div>
                     </div>
@@ -149,16 +245,6 @@ $("#advance_day").on("select2:unselect", function(e) {
     $("#advance_" + value).remove();
 });
 
+   
+</script>
 
-// $("#basic_day option").click(function(e) {
-
-//     var all = $("#basic_day :selected").map(function() {
-//         alert(this.value);
-
-//     }).get(); // all selected value
-
-//     if (all.indexOf(this.value) != -1) { // check the condition your selecting or unselected  option
-//         alert(this.value); // current selected element
-//     }
-
-// });

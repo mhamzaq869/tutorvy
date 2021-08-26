@@ -132,7 +132,6 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::get('/payment',[PaymentController::class,'index'])->name('tutor.payment');
     Route::get('/subjects',[TutorSubjectController::class,'index'])->name('tutor.subject');
     Route::get('/removesubjects/{id}',[TutorSubjectController::class,'destroy'])->name('tutor.remove.subject');
-    Route::get('/settings',[TutorSettingController::class,'index'])->name('tutor.settings');
     Route::view('/skip','tutor.skip')->name('skip');
     Route::get('/assessment/{id}',[AssessmentController::class,'index'])->name('tutor.test');
     Route::post('/assessment',[AssessmentController::class,'store'])->name('tutor.assessment');
@@ -150,6 +149,10 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::post('/updateedu/{id}',[ProfileController::class,'profileUpdate'])->name('tutor.profile.edu');
     Route::post('/updateprofession/{id}',[ProfileController::class,'profileUpdate'])->name('tutor.profile.profession');
 
+    Route::get('/settings',[TutorSettingController::class,'index'])->name('tutor.settings');
+    Route::post('/change-password',[TutorSettingController::class,'changePassword'])->name('tutor.changePassword');
+
+    
 });
 
 /*

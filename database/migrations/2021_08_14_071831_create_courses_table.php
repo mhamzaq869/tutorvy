@@ -28,8 +28,12 @@ class CreateCoursesTable extends Migration
             $table->string('basic_note')->nullable();
             $table->string('basic_duration')->nullable();
             $table->string('basic_days')->nullable();
-            $table->string('basic_start_time')->nullable();
-            $table->string('basic_end_time')->nullable();
+
+            $table->string('basic_class_title')->nullable();
+            $table->string('basic_class_overview')->nullable();
+            $table->string('basic_class_start_time')->nullable();
+            $table->string('basic_class_end_time')->nullable();
+
             $table->string('basic_price')->nullable();
             $table->string('standard_home_work')->nullable();
             $table->string('standard_quiz')->nullable();
@@ -38,8 +42,12 @@ class CreateCoursesTable extends Migration
             $table->string('standard_note')->nullable();
             $table->string('standard_duration')->nullable();
             $table->string('standard_days')->nullable();
-            $table->string('standard_start_time')->nullable();
-            $table->string('standard_end_time')->nullable();
+
+            $table->string('standard_class_title')->nullable();
+            $table->string('standard_class_overview')->nullable();
+            $table->string('standard_class_start_time')->nullable();
+            $table->string('standard_class_end_time')->nullable();
+
             $table->string('standard_price')->nullable();
             $table->string('advance_home_work')->nullable();
             $table->string('advance_quiz')->nullable();
@@ -48,10 +56,14 @@ class CreateCoursesTable extends Migration
             $table->string('advance_note')->nullable();
             $table->string('advance_duration')->nullable();
             $table->string('advance_days')->nullable();
-            $table->string('advance_start_time')->nullable();
-            $table->string('advance_end_time')->nullable();
+
+            $table->string('advance_class_title')->nullable();
+            $table->string('advance_class_overview')->nullable();
+            $table->string('advance_class_start_time')->nullable();
+            $table->string('advance_class_end_time')->nullable();
+
             $table->string('advance_price')->nullable();
-            $table->string('status')->comment('0-pending,1-approved,2-rejected,3-enabled,4-disabled')->default(0);
+            $table->string('status')->comment('0-disabled,1-enabled&approved,2-rejected	')->default(0);
             $table->text('reject_note')->nullable();
             $table->timestamps();
         });

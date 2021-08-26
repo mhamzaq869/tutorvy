@@ -96,27 +96,38 @@
                                    <div class="col-md-12 font-light">
                                         Change password
                                    </div>
-                                   <div class="col-sm-6">
-                                        <small>Password</small>
-                                        <div class="form-group pass_show">
-                                            <input type="password" value="" class="form-control"
-                                                placeholder=" ***********">
+                                    
+                                        <div class="col-sm-6">
+                                        <form action="{{route('tutor.changePassword')}}" method="POST">
+                                        @csrf
+                                            <small>Password</small>
+                                            <div class="form-group pass_show">
+                                                <input type="password" name="current_password" class="form-control @error('current_password') is-invalid @enderror"
+                                                    placeholder=" ***********" >
+                                                    @error('error')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                            </div>
+                                            <small>New Password</small>
+                                            <div class="form-group pass_show">
+                                                <input type="password" name="new_password" class="form-control"
+                                                    placeholder="***********">
+                                            </div>
+                                            <small >Re-enter new
+                                                password</small>
+                                            <div class="form-group pass_show">
+                                                <input type="password" name="new_confirm_password" class="form-control"
+                                                    placeholder="***********">
+                                            </div>
+                                            <div class="float-right">
+                                                <button class="schedule-btn">Save changes</button>
+                                            </div>
+                                            </form>
                                         </div>
-                                        <small>New Password</small>
-                                        <div class="form-group pass_show">
-                                            <input type="password" value="" class="form-control"
-                                                placeholder="***********">
-                                        </div>
-                                        <small >Re-enter new
-                                            password</small>
-                                        <div class="form-group pass_show">
-                                            <input type="password" value="" class="form-control"
-                                                placeholder="***********">
-                                        </div>
-                                        <div class="float-right">
-                                            <button class="schedule-btn">Save changes</button>
-                                        </div>
-                                    </div>
+                                    
+                                   
                                </div>
                            </div>
                         </div>
