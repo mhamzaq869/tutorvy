@@ -681,14 +681,14 @@
                                                                         </div>
                                                                         <div class="row my-3">
                                                                             <div class="input-text col-md-6">
-                                                                                <input type="date" class="form-control"
+                                                                                <input  class="form-control"
                                                                                     name="degree_start[]"
-                                                                                    placeholder="Starting date"
+                                                                                    placeholder="Starting date" onfocus="(this.type='date')"
                                                                                     value="{{ $profession->start_date ?? '' }}">
                                                                             </div>
                                                                             <div class="input-text col-md-6">
-                                                                                <input type="date" class="form-control"
-                                                                                    name="degree_end[]"
+                                                                                <input class="form-control"
+                                                                                    name="degree_end[]" onfocus="(this.type='date')"
                                                                                     placeholder="Ending Date"
                                                                                     value="{{ $profession->end_date ?? '' }}">
                                                                             </div>
@@ -718,12 +718,12 @@
                                                                         </div>
                                                                         <div class="row my-3">
                                                                             <div class="input-text col-md-6">
-                                                                                <input type="date" class="form-control"
+                                                                                <input  onfocus="(this.type='date')" class="form-control"
                                                                                     name="degree_start[]"
                                                                                     placeholder="Starting date" value="">
                                                                             </div>
                                                                             <div class="input-text col-md-6">
-                                                                                <input type="date" class="form-control"
+                                                                                <input  onfocus="(this.type='date')" class="form-control"
                                                                                     name="degree_end[]"
                                                                                     placeholder="Ending Date" value="">
                                                                             </div>
@@ -752,12 +752,12 @@
                                                                     </div>
                                                                     <div class="row my-3">
                                                                         <div class="input-text col-md-6">
-                                                                            <input type="date" class="form-control"
+                                                                            <input  onfocus="(this.type='date')" class="form-control"
                                                                                 name="degree_start[]"
                                                                                 placeholder="Starting date" value="">
                                                                         </div>
                                                                         <div class="input-text col-md-6">
-                                                                            <input type="date" class="form-control"
+                                                                            <input onfocus="(this.type='date')" class="form-control"
                                                                                 name="degree_end[]"
                                                                                 placeholder="Ending Date" value="">
                                                                         </div>
@@ -798,7 +798,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <script>
                                         $(document).ready(function() {
                                             $(".clone").click(function() {
@@ -835,7 +834,7 @@
                                                                 {{ $subject->name }}</option>
                                                         @endforeach
                                                     </select>
-                                                    <label for="" id="teach_error"><strong> This field is required </strong>  </label>
+                                                    <label for="" id="teach_error" class="text-red"><strong> This field is required </strong>  </label>
                                                     @error('teach')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -1107,6 +1106,7 @@
             $(document).ready(function() {
                 $(".dropify").dropify();
                 $(".form-select").select2();
+                $(".text-red").hide();
             });
 
             function university() {

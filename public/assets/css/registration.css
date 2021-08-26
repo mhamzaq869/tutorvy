@@ -2468,3 +2468,21 @@ button:hover {
 .text-red {
     color: red !important;
 }
+
+.student_liner {
+    width: 26%;
+    right: 0;
+}
+
+.stu_reg .board ul {
+    justify-content: center;
+}
+
+.stu_reg .active,
+.stu_reg .btn:hover {
+    padding-left: 0;
+}
+
+.stu_reg .nav-tabs>li a {
+    margin-left: 28px;
+}
