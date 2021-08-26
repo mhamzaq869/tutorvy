@@ -399,6 +399,14 @@
                                                                 <option value="2" @if(isset($user) && $user->type == 2) selected @endif>Social security number</option>
                                                             </select>
                                                         </div>
+                                                        <div class="input-text col-md-6">
+                                                            <input id="textbox" type="number" @if (isset($user) && $user->type == 1) name="cnic" @else name="security" @endif class="form-control"
+                                                                placeholder="ID card number"
+                                                                value="{{ $user->cnic_security ?? '' }}">
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="row mt-2">
                                                         <div class="col-md-6 d-block">
                                                             <input type="" name="language" id="lang" hidden>
                                                             <select class="form-select form-select-lg mb-3"

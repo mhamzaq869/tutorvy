@@ -121,7 +121,6 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['required', 'string', 'min:8'],
             'phone' => ['required'],
-            'gender' => ['required'],
         ]);
         $request->ip = $_SERVER['REMOTE_ADDR'];
         $request->dob = $request->year.'-'.$request->month.'-'.$request->day;
@@ -279,7 +278,9 @@ class RegisterController extends Controller
                 'cnic_security' => $request->cnic ?? $request->security,
                 'language' => $request->language,
                 'lang_short' => $request->lang_short,
-                'gender' => $request->gender,
+                'std_degree' => $request->degree,
+                'std_subj' => $request->major,
+                'std_learn' => $request->subject,
                 'bio' => $request->bio,
             ],['id','email'],['ip']);
 
