@@ -114,7 +114,6 @@ class RegisterController extends Controller
         // Get a validator for an incoming registration request
         // from Tutor/Student Registor Form .
         // dd($request->all());
-
         $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
