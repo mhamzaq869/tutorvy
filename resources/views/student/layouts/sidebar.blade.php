@@ -26,8 +26,8 @@
                      </span>
                  </a>
              </li>
-             <li class="btn mt-3">
-                 <a href="./classroom/classroom.html">
+             <li class="btn mt-3 @if(\Request::path() === 'student/classroom') active @endif">
+                 <a href="{{route('student.classroom')}}" aria-expanded="false">
                      <img class="class-sid mr-2" src="{{asset('assets/images/ico/class-ico.png')}}" alt="class-ico">
                      <span class="class-show mt-3">
                          Classroom
@@ -91,8 +91,8 @@
                      Bookings
                  </a>
              </li>
-             <li class="btn @if(\Request::path() === 'tutor/classroom') active @endif w-100">
-                 <a href="{{route('tutor.classroom')}}">
+             <li class="btn @if(\Request::path() === 'student/classroom') active @endif w-100">
+                 <a href="{{route('student.classroom')}}">
                      <img src="{{asset('assets/images/ico/class-ico.png')}}" alt="class-ico" class=" mr-2">
                      Classroom
                  </a>

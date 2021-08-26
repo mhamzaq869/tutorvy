@@ -65,7 +65,8 @@ class Course extends Model
 
     public function getCourseBasicDaysAttribute()
     {
-        if($this->basic_days != null){
+        
+        if($this->basic_days != null && $this->basic_days != 'null'){
             $days = $this->getDays($this->basic_days);
             return $days;
         }else{
@@ -74,7 +75,7 @@ class Course extends Model
     }
     public function getCourseStandardDaysAttribute()
     {
-        if($this->standard_days != null){
+        if($this->standard_days != null && $this->standard_days != 'null'){
             $days = $this->getDays($this->standard_days);
             return $days;
         }else{
@@ -83,7 +84,7 @@ class Course extends Model
     }
     public function getCourseAdvanceDaysAttribute()
     {
-        if($this->advance_days != null){
+        if($this->advance_days != null && $this->advance_days != 'null'){
             $days = $this->getDays($this->advance_days);
             return $days;
         }else{
@@ -96,7 +97,7 @@ class Course extends Model
         $days = json_decode($days);
         $day_name = '';
         $day_arr = array();
-
+        
         for($i = 0 ; $i < sizeof($days) ; $i++){
 
             switch ($days[$i]) {

@@ -34,6 +34,7 @@ use App\Http\Controllers\Tutor\ProfileController;
 use App\Http\Controllers\Student\HomeController as StudentHomeController;
 use App\Http\Controllers\Student\ProfileController as StudentProfileController;
 use App\Http\Controllers\Student\TutorController as StudentTutorController;
+use App\Http\Controllers\Student\StudentClassController as StudentClassController;
 use App\Http\Controllers\Tutor\ChatController;
 use App\Http\Controllers\Student\ChatController as StdChatController;
 use App\Http\Controllers\General\GenChatController;
@@ -179,7 +180,7 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     Route::get('/booking-detail',[StudentBookingController::class,'bookingDetail'])->name('student.booking-detail');
     Route::get('/booking/{id}/tutor',[StudentBookingController::class,'directBooking'])->name('student.direct.booking');
     Route::post('/booked',[StudentBookingController::class,'booked'])->name('student.booked.tutor');
-    // Route::get('/classroom',[ClassController::class,'index'])->name('tutor.classroom');
+    Route::get('/classroom',[StudentClassController::class,'index'])->name('student.classroom');
     // Route::get('/calendar',[CalendarController::class,'index'])->name('tutor.calendar');
     // Route::get('/history',[HistoryController::class,'index'])->name('tutor.history');
     // Route::get('/payment',[PaymentController::class,'index'])->name('tutor.payment');

@@ -21,6 +21,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('admin/assets/css/asset.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/assets/css/course.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/assets/css/tutor.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/assets/css/mobile.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/assets/css/home-main.css') }}" rel="stylesheet">
