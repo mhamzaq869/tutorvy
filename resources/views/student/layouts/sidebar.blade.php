@@ -103,8 +103,8 @@
                     Find a Tutor
                 </a>
             </li>
-             <li class="btn @if(\Request::path() === 'tutor/calendar') active @endif w-100">
-                 <a href="{{route('tutor.calendar')}}">
+             <li class="btn @if(\Request::path() === 'student/calendar') active @endif w-100">
+                 <a href="{{route('student.calendar')}}">
                      <img src="{{asset('assets/images/ico/calender-ico.png')}}" alt="calender-ico" class=" mr-2">
                      Calendar
                  </a>
@@ -121,8 +121,8 @@
                     Wallet
                 </a>
              </li>
-             <li class="btn @if(\Request::path() === 'tutor/settings') active @endif w-100">
-                 <a href="{{route('tutor.settings')}}">
+             <li class="btn @if(\Request::path() === 'student/settings') active @endif w-100">
+                 <a href="{{route('student.settings')}}">
                      <img src="{{asset('assets/images/ico/setting-ico.png')}}" alt="setting-ico" class=" mr-2">
                      Settings
                  </a>

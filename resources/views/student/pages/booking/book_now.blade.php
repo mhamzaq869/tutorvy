@@ -1,4 +1,4 @@
-@extends('tutor.layouts.app')
+@extends('student.layouts.app')
 <link href="{{ asset('assets/css/registration.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/css/booknow.css') }}" rel="stylesheet">
 @section('content')

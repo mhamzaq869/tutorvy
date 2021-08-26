@@ -5,7 +5,7 @@
     width: 100%;
     font-family: 'poppins';
     font-size: 20px !important;
-    margin-top: 30px;
+    /* margin-top: 30px; */
 }
 
 .card {
@@ -32,9 +32,9 @@
     font-weight: 500;
     color: #00132D;
     /* margin-left: 100px; */
-    margin-right: 800px;
+    /* margin-right: 800px; */
     letter-spacing: 1px;
-    margin-top: 10px;
+    /* margin-top: 10px; */
     margin-left: 100px;
 }
 
@@ -105,7 +105,7 @@
 
 .day {
     display: inline-block;
-    width: 160px;
+    width: 173px;
     padding: 20px;
     text-align: left;
     vertical-align: top;
@@ -113,7 +113,7 @@
     background: white;
     position: relative;
     z-index: 100;
-    border: 0.9px solid #D6DBE2;
+    border: 0.9px solid #BED5EF;
 }
 
 

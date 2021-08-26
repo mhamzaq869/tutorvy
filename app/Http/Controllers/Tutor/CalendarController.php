@@ -14,4 +14,7 @@ class CalendarController extends Controller
     public function index(){
         return view('tutor.pages.calendar.index');
     }
+    public function calendarStudent(){
+        return view('student.pages.calendar.index');
+    }
 }
