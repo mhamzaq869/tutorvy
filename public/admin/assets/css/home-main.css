@@ -1046,12 +1046,18 @@ and also iPads specifically.
 .card {
     margin-top: 20px;
     width: 100% !important;
-    height: 132px;
+    height: auto;
     border-radius: 8px;
-    border: white;
     background-color: rgb(255, 255, 255) !important;
+    box-shadow: 1px 1px 15px rgb(238 235 235);
+    border: transparent;
     cursor: pointer;
-    transition: 0.4s;
+    transition: all 0.7s ease;
+}
+
+.card:hover {
+    /* transform: scale(0.9); */
+    box-shadow: 1px 1px 15px rgb(207 204 204);
 }
 
 .text-home-1 {
@@ -1167,4 +1173,8 @@ and also iPads specifically.
         white-space: nowrap !important;
         display: inline-block;
     }
+}
+
+.pt-24 {
+    padding-top: 24px !important;
 }

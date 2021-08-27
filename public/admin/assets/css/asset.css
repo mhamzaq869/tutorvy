@@ -1458,8 +1458,8 @@ tr th {
 }
 
 .list-ul {
-    overflow-y: scroll !important;
-    height: 550px !important;
+    overflow-y: auto !important;
+    height: 627px !important;
 }
 
 .setting-sid:hover+.setting-show {
@@ -1653,4 +1653,13 @@ tr th {
         background-color: red !important;
         display: block;
     }
+}
+
+
+/* 27 AUg 2021 */
+
+.tutor-img {
+    width: 40px;
+    padding-right: 5px;
+    border-radius: 50%;
 }

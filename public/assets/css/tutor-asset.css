@@ -386,8 +386,8 @@ ol li:hover {
 }
 
 .scroll-nav {
-    overflow-y: scroll;
-    height: 535px;
+    overflow-y: auto;
+    height: 643px;
     position: sticky;
     top: 85px;
 }

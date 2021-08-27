@@ -53,12 +53,19 @@
                 <div class="col-md-5 bg-white pb-5">
                     <div class=" mt-4">
                         <h3 class="">
-                            How to create your online courses in 3 steps.
+                                {{$course->title}}
                         </h3>
-                        <p class="paragraph-text-1">Chemistry course</p>
+                        <p class="paragraph-text-1">{{$course->subject_name}} course</p>
+                        @if($course->video != null && $course->video != '')
                         <iframe width="100%" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY"
                             style="border-radius: 8px;">
                         </iframe>
+                        @elseif($course->thumbnail != null && $course->thumbnail != '')
+                            <img width="100%" height="345" src="{{ asset($course->thumbnail) }}"></img>
+                        @else
+                            <img width="100%" height="345" src="{{ asset('admin/assets/img/login-image/loginImage.png') }}"></img>
+
+                        @endif
                         <div class="row pb-3 border-bottom mt-1">
                             <div class="col-md-6">
                                 <p class="heading-fifth heading-fifth-0">
@@ -68,8 +75,8 @@
                                     </span>
                                 </p>
                             </div>
-                            <div class="col-md-6">
-                                <div id="wrappers">
+                            <div class="col-md-6 col-xs-6 col-sm-6 col-6 text-center mt-2">
+                                <!-- <div id="wrappers">
 
                                     <div id="demo">
                                         <div class="circlechart" data-percentage="55">Seats left</div>
@@ -81,14 +88,25 @@
                                     <script>
                                         $('.circlechart').circlechart(); // Initialization
                                     </script>
-                                </div>
+                                </div> -->
+                                <div class="progress blue mb-1">
+                                            <span class="progress-left">
+                                                <span class="progress-bar"></span>
+                                            </span>
+                                            <span class="progress-right">
+                                                <span class="progress-bar"></span>
+                                            </span>
+                                            <div class="progress-value">
+                                                <span>5</span>
+                                                <span>Seats Left</span>
+                                            </div>
+                                        </div>
+                                        <small class="leftText">Seats Left</small>
                             </div>
                         </div>
                         <h3 class="mt-4">About course</h3>
                         <p class="paragraph-text-2 mt-2 pb-4">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit reprehenderit dolores
-                            impedit cumque cum. Similique incidunt excepturi dolorem sapiente officiis! Ad,
-                            quibusdam rerum. Ipsam qui quaerat totam accusamus pariatur fugiat?</p>
+                        {{$course->about}}</p>
                           <div class="row bg-std-reviews container-center pb-3">
                             <div class="col-md-6">
                                 <div class="container">
@@ -187,139 +205,35 @@
                                                 <div id="main">
                                                     <!-- first -->
                                                     <div class="container-fluid m-0 p-0 border-bottom pb-3">
-                                                        <div class="accordion" id="faq">
-                                                            <div class="card m-0 p-0">
-                                                                <div class="card-header" id="faqhead3">
-                                                                    <a href="#"
-                                                                        class=" bg-color btn-header-link collapsed"
-                                                                        data-toggle="collapse" data-target="#faq3"
-                                                                        aria-expanded="true" aria-controls="faq3">
-                                                                        <img class="mr-2"
-                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                        Introduction to chemisty</a>
-                                                                </div>
-                                                                <div id="faq3" class="collapse border-radius"
-                                                                    aria-labelledby="faqhead3" data-parent="#faq">
-                                                                    <div class="card-body">
-                                                                        Anim pariatur cliche reprehenderit, enim
-                                                                        eiusmod high life accusamus terry
-                                                                        richardson.
+                                                    @foreach($course->outline as $outline)
+                                                            @if($outline->level == 1)   
+                                                                @if($outline->title == '' && $outline->explain == '')
+                                                                <p>No Course Outline added.</p>
+                                                                @else
+                                                                <div class="accordion active" id="faq">
+                                                                        <div class="card m-0 p-0">
+                                                                            
+                                                                                <div class="card-header" id="outlinehead{{$outline->id}}">
+                                                                                    <a href="#" 
+                                                                                        class=" bg-color btn-header-link collapsed"
+                                                                                        data-toggle="collapse" data-target="#outline{{$outline->id}}"
+                                                                                        aria-expanded="true" aria-controls="outline{{$outline->id}}">
+                                                                                        <img class="mr-2"
+                                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                                        {{$outline->title}}</a>
+                                                                                </div>
+                                                                                <div id="outline{{$outline->id}}" class="collapse show border-radius"
+                                                                                    aria-labelledby="{{$outline->id}}" data-parent="#outline{{$outline->id}}">
+                                                                                    <div class="card-body">
+                                                                                        {{$outline->explain}}
+                                                                                    </div>
+                                                                                </div>
+                                                                            
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- second -->
-                                                        <div class="accordion" id="faq">
-                                                            <div class="card m-0 p-0">
-                                                                <div class="card-header" id="faqhead3">
-                                                                    <a href="#"
-                                                                        class="bg-color btn-header-link collapsed"
-                                                                        data-toggle="collapse" data-target="#faq4"
-                                                                        aria-expanded="true" aria-controls="faq3">
-                                                                        <img class="mr-2"
-                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                        Periodic table
-                                                                    </a>
-                                                                </div>
-                                                                <div id="faq4" class="collapse show border-radius"
-                                                                    aria-labelledby="faqhead3" data-parent="#faq">
-                                                                    <div class="card-body">
-                                                                        Anim pariatur cliche reprehenderit, enim
-                                                                        eiusmod high life accusamus terry
-                                                                        richardson.
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- third -->
-                                                        <div class="accordion" id="faq">
-                                                            <div class="card m-0 p-0">
-                                                                <div class="card-header" id="faqhead3">
-                                                                    <a href="#"
-                                                                        class="bg-color btn-header-link collapsed"
-                                                                        data-toggle="collapse" data-target="#faq5"
-                                                                        aria-expanded="true" aria-controls="faq3">
-                                                                        <img class="mr-2"
-                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                        Atomic structure
-                                                                    </a>
-                                                                </div>
-                                                                <div id="faq5" class="collapse border-radius"
-                                                                    aria-labelledby="faqhead3" data-parent="#faq">
-                                                                    <div class="card-body">
-                                                                        Anim pariatur cliche reprehenderit, enim
-                                                                        eiusmod high life accusamus terry
-                                                                        richardson.
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- forth -->
-                                                        <div class="accordion" id="faq">
-                                                            <div class="card m-0 p-0">
-                                                                <div class="card-header" id="faqhead3">
-                                                                    <a href="#"
-                                                                        class="bg-color btn-header-link collapsed"
-                                                                        data-toggle="collapse" data-target="#faq8"
-                                                                        aria-expanded="true" aria-controls="faq3">
-                                                                        <img class="mr-2"
-                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                        Molecule structure</a>
-                                                                </div>
-                                                                <div id="faq8" class="collapse border-radius"
-                                                                    aria-labelledby="faqhead3" data-parent="#faq">
-                                                                    <div class="card-body">
-                                                                        Anim pariatur cliche reprehenderit, enim
-                                                                        eiusmod high life accusamus terry
-                                                                        richardson.
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- fifth -->
-                                                        <div class="accordion" id="faq">
-                                                            <div class="card m-0 p-0">
-                                                                <div class="card-header" id="faqhead3">
-                                                                    <a href="#"
-                                                                        class="bg-color btn-header-link collapsed"
-                                                                        data-toggle="collapse" data-target="#faq6"
-                                                                        aria-expanded="true" aria-controls="faq3">
-                                                                        <img class="mr-2"
-                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                        Chemical bonds</a>
-                                                                </div>
-                                                                <div id="faq6" class="collapse border-radius"
-                                                                    aria-labelledby="faqhead3" data-parent="#faq">
-                                                                    <div class="card-body">
-                                                                        Anim pariatur cliche reprehenderit, enim
-                                                                        eiusmod high life accusamus terry
-                                                                        richardson.
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- sixth -->
-                                                        <div class="accordion" id="faq">
-                                                            <div class="card m-0 p-0">
-                                                                <div class="card-header" id="faqhead3">
-                                                                    <a href="#"
-                                                                        class="bg-color btn-header-link collapsed"
-                                                                        data-toggle="collapse" data-target="#faq7"
-                                                                        aria-expanded="true" aria-controls="faq3">
-                                                                        <img class="mr-2"
-                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                        Chemistry in 21 century
-                                                                    </a>
-                                                                </div>
-                                                                <div id="faq7" class="collapse border-radius show"
-                                                                    aria-labelledby="faqhead3" data-parent="#faq">
-                                                                    <div class="card-body">
-                                                                        Anim pariatur cliche reprehenderit, enim
-                                                                        eiusmod high life accusamus terry
-                                                                        richardson.
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                                @endif
+                                                            @endif
+                                                        @endforeach
                                                         </div>
                                                     </div>
                                                 </div>
@@ -328,8 +242,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <span class="heading-fifth" style="font-weight: 600;">Timing</span>
-                                                <p class="paragraph-text-2 mt-1">2 weeks ( Tuesday, Wednesday, Thursday) - 2pm to
-                                                    4pm</p>
+                                                <p class="paragraph-text-2 mt-1">{{ $course->basic_duration != null ? $course->basic_duration : 0 }} weeks ({{ $course->course_basic_days != null ? $course->course_basic_days : '---' }})</p>
                                             </div>
                             
                                         </div>
@@ -350,99 +263,205 @@
                                                         </thead>
                                                         <tbody>
                                                             <!-- classes table time and topics -->
-                                                            <tr>
+                                                            @foreach($course->classes as $class)
+                                                            <tr class="wordBreak">
                                                                 <td class="pt-4">
-                                                                    <span>2pm</span>
-                                                                    <p class="mt-5">4pm</p>
+                                                                    <div class="w-150">
+                                                                        <span>{{date("g:i a", strtotime("$class->st_time UTC"))}} </span>
+                                                                        <p class="mt-5">{{date("g:i a", strtotime("$class->et_time UTC"))}}</p>
+                                                                    </div>
                                                                 </td>
-                            
-                                                                <td class="pt-4 pb-0"></td>
-                                                                <td class="m-0 p-0">
-                                                                    <div class="bg-color-apporve pl-2 pr-3 m-0 p-0">
+
+                                                                @if($class->day == 1)
+                                                                <td class="m-0 p-0 pt-4">
+                                                                    <div class="bg-color-apporve pl-2 pr-3 m-0 p-0 w-150">
                                                                         <span class="heading-fifth">
-                                                                            Live class
+                                                                        {{$class->title}}
                                                                         </span>
-                                                                        <p class="paragraph-text-1">
-                                                                            2pm
+                                                                        <p class="paragraph-text-1 mb-1">
+                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
                                                                         </p>
                                                                         <p class="paragraph-text">
-                                                                            Jump start into
-                                                                            <br /> your live class with <br />
-                                                                            students.
+                                                                        {{$class->overview}}
                                                                         </p>
                                                                     </div>
                                                                 </td>
-                                                                <td class="m-0 p-0">
-                                                                    <div class="bg-color-apporve1 pl-2 pr-3 m-0 p-0">
+                                                                @else
+                                                                <td class="pt-4 pb-0">---</td>
+                                                                @endif
+
+                                                                @if($class->day == 2)
+                                                                <td class="m-0 p-0 pt-4">
+                                                                    <div class="bg-color-apporve pl-2 pr-3 m-0 p-0 w-150 w-150">
                                                                         <span class="heading-fifth">
-                                                                            Live class
+                                                                        {{$class->title}}
                                                                         </span>
-                                                                        <p class="paragraph-text-1">
-                                                                            2pm
+                                                                        <p class="paragraph-text-1 mb-1">
+                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
                                                                         </p>
                                                                         <p class="paragraph-text">
-                                                                            Jump start into
-                                                                            <br />your live class with <br />
-                                                                            students.
+                                                                        {{$class->overview}}
                                                                         </p>
                                                                     </div>
                                                                 </td>
+                                                                @else
+                                                                <td class="pt-4 pb-0">---</td>
+                                                                @endif
                             
-                                                                <td class="m-0 p-0">
-                                                                    <div class="bg-color-apporve3 pl-2 pr-3 m-0 p-0">
+                                                                @if($class->day == 3)
+                                                                <td class="m-0 p-0 pt-4">
+                                                                    <div class="bg-color-apporve3 pl-2 pr-3 m-0 p-0 w-150">
                                                                         <span class="heading-fifth">
-                                                                            Live class
+                                                                        {{$class->title}}
                                                                         </span>
-                                                                        <p class="paragraph-text-1">
-                                                                            2pm
+                                                                        <p class="paragraph-text-1 mb-1">
+                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
                                                                         </p>
                                                                         <p class="paragraph-text">
-                                                                            Jump start into
-                                                                            <br /> your live class with <br />
-                                                                            students.
+                                                                        {{$class->overview}}
                                                                         </p>
                                                                     </div>
                                                                 </td>
-                            
-                            
+                                                                @else
+                                                                <td class="pt-4 pb-0">---</td>
+                                                                @endif
+
+                                                                @if($class->day == 4)
+                                                                <td class="m-0 p-0 pt-4">
+                                                                    <div class="bg-color-apporve pl-2 pr-3 m-0 p-0 w-150">
+                                                                        <span class="heading-fifth">
+                                                                        {{$class->title}}
+                                                                        </span>
+                                                                        <p class="paragraph-text-1 mb-1">
+                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                        {{$class->overview}}
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                                @else
+                                                                <td class="pt-4 pb-0">---</td>
+                                                                @endif
+
+                                                                @if($class->day == 5)
+                                                                <td class="m-0 p-0 pt-4">
+                                                                    <div class="bg-color-apporve pl-2 pr-3 m-0 p-0 w-150">
+                                                                        <span class="heading-fifth">
+                                                                        {{$class->title}}
+                                                                        </span>
+                                                                        <p class="paragraph-text-1 mb-1">
+                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                        {{$class->overview}}
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                                @else
+                                                                <td class="pt-4 pb-0">---</td>
+                                                                @endif
+
+                                                                @if($class->day == 6)
+                                                                <td class="m-0 p-0 pt-4">
+                                                                    <div class="bg-color-apporve pl-2 pr-3 m-0 p-0 w-150">
+                                                                        <span class="heading-fifth">
+                                                                        {{$class->title}}
+                                                                        </span>
+                                                                        <p class="paragraph-text-1 mb-1">
+                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                        {{$class->overview}}
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                                @else
+                                                                <td class="pt-4 pb-0">---</td>
+                                                                @endif
+
+                                                                @if($class->day == 7)
+                                                                <td class="m-0 p-0 pt-4">
+                                                                    <div class="bg-color-apporve3 pl-2 pr-3 m-0 p-0 w-150">
+                                                                        <span class="heading-fifth">
+                                                                        {{$class->title}}
+                                                                        </span>
+                                                                        <p class="paragraph-text-1 mb-1">
+                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                        {{$class->overview}}
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                                @else
+                                                                <td class="pt-4 pb-0">---</td>
+                                                                @endif
                                                             </tr>
+                                                            @endforeach
                             
                                                         </tbody>
                                                 </table>
                                             </div>
                                         </div>
                                         <div class="row mt-5 pb-5">
-                                            <div class="col-md-4">
+                                        <div class="col-md-4">
                                                 <div class="d-flex pb-3">
                                                     <span>
+                                                        @if($course->basic_home_work == 'on')
                                                         <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                                    </span>
-                                                    <span class="ml-3 heading-fifth mt-1">6 classes</span>
-                                                </div>
-                                                <div class="d-flex pb-3">
-                                                    <span>
+                                                        @else
                                                         <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                        @endif
                                                     </span>
-                                                    <span class="ml-3 heading-fifth mt-1">Home work</span>
+                                                    <span class="ml-3 heading-fifth mt-1">Home Work</span>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-4">
                                                 <div class="d-flex pb-3">
                                                     <span>
+                                                        @if($course->basic_quiz == 'on')
                                                         <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                        @else
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                        @endif
                                                     </span>
                                                     <span class="ml-3 heading-fifth mt-1">Quiz</span>
                                                 </div>
                                                 <div class="d-flex pb-3">
                                                     <span>
+                                                    @if($course->basic_note == 'on')
                                                         <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                        @else
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                        @endif
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">Note</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                         @if($course->basic_one_one == 'on')
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                        @else
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                        @endif
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">One to One session</span>
+                                                </div>
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                         @if($course->basic_final == 'on')
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                        @else
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                        @endif
                                                     </span>
                                                     <span class="ml-3 heading-fifth mt-1">Final test</span>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="view-bookings" >
-                                                    $99
+                                                    ${{$course->basic_price ?? 0 }}
                                                 </div>
                                             </div>
                                         </div>
@@ -457,142 +476,35 @@
                                                     <span class="heading-forth ml-2">Course outline</span>
                 
                                                     <div id="main">
-                                                        <!-- first -->
                                                         <div class="container-fluid m-0 p-0 border-bottom pb-3">
-                                                            <div class="accordion" id="faq">
-                                                                <div class="card m-0 p-0">
-                                                                    <div class="card-header" id="faqhead3">
-                                                                        <a href="#"
-                                                                            class=" bg-color btn-header-link collapsed"
-                                                                            data-toggle="collapse" data-target="#faq11"
-                                                                            aria-expanded="true" aria-controls="faq11">
-                                                                            <img class="mr-2"
-                                                                                src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                            Introduction to chemisty</a>
-                                                                    </div>
-                                                                    <div id="faq11" class="collapse border-radius"
-                                                                        aria-labelledby="faqhead3" data-parent="#faq">
-                                                                        <div class="card-body">
-                                                                            Anim pariatur cliche reprehenderit, enim
-                                                                            eiusmod high life accusamus terry
-                                                                            richardson.
+                                                            @foreach($course->outline as $outline)
+                                                                @if($outline->level == 2) 
+                                                                    @if($outline->title == '' && $outline->explain == '')
+                                                                        <p>No Course Outline added.</p>
+                                                                    @else
+                                                                    <div class="accordion" id="faq">
+                                                                        <div class="card m-0 p-0">
+                                                                            <div class="card-header" id="faqhead">
+                                                                                <a href="#"
+                                                                                    class="bg-color btn-header-link collapsed"
+                                                                                    data-toggle="collapse" data-target="#faq11"
+                                                                                    aria-expanded="true" aria-controls="faq11">
+                                                                                    <img class="mr-2"
+                                                                                        src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                                        {{$outline->title}}
+                                                                                </a>
+                                                                            </div>
+                                                                            <div id="faq11" class="collapse show border-radius"
+                                                                                aria-labelledby="faqhead3" data-parent="#faq11">
+                                                                                <div class="card-body">
+                                                                                {{$outline->explain}}
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- second -->
-                                                            <div class="accordion" id="faq">
-                                                                <div class="card m-0 p-0">
-                                                                    <div class="card-header" id="faqhead">
-                                                                        <a href="#"
-                                                                            class="bg-color btn-header-link collapsed"
-                                                                            data-toggle="collapse" data-target="#faq11"
-                                                                            aria-expanded="true" aria-controls="faq11">
-                                                                            <img class="mr-2"
-                                                                                src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                            Periodic table
-                                                                        </a>
-                                                                    </div>
-                                                                    <div id="faq11" class="collapse show border-radius"
-                                                                        aria-labelledby="faqhead3" data-parent="#faq11">
-                                                                        <div class="card-body">
-                                                                            Anim pariatur cliche reprehenderit, enim
-                                                                            eiusmod high life accusamus terry
-                                                                            richardson.
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- third -->
-                                                            <div class="accordion" id="faq">
-                                                                <div class="card m-0 p-0">
-                                                                    <div class="card-header" id="faqhead3">
-                                                                        <a href="#"
-                                                                            class="bg-color btn-header-link collapsed"
-                                                                            data-toggle="collapse" data-target="#faq12"
-                                                                            aria-expanded="true" aria-controls="faq12">
-                                                                            <img class="mr-2"
-                                                                                src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                            Atomic structure
-                                                                        </a>
-                                                                    </div>
-                                                                    <div id="faq12" class="collapse border-radius"
-                                                                        aria-labelledby="faqhead3" data-parent="#faq">
-                                                                        <div class="card-body">
-                                                                            Anim pariatur cliche reprehenderit, enim
-                                                                            eiusmod high life accusamus terry
-                                                                            richardson.
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- forth -->
-                                                            <div class="accordion" id="faq">
-                                                                <div class="card m-0 p-0">
-                                                                    <div class="card-header" id="faqhead3">
-                                                                        <a href="#"
-                                                                            class="bg-color btn-header-link collapsed"
-                                                                            data-toggle="collapse" data-target="#faq13"
-                                                                            aria-expanded="true" aria-controls="faq13">
-                                                                            <img class="mr-2"
-                                                                                src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                            Molecule structure</a>
-                                                                    </div>
-                                                                    <div id="faq13" class="collapse border-radius"
-                                                                        aria-labelledby="faqhead3" data-parent="#faq13">
-                                                                        <div class="card-body">
-                                                                            Anim pariatur cliche reprehenderit, enim
-                                                                            eiusmod high life accusamus terry
-                                                                            richardson.
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- fifth -->
-                                                            <div class="accordion" id="faq">
-                                                                <div class="card m-0 p-0">
-                                                                    <div class="card-header" id="faqhead3">
-                                                                        <a href="#"
-                                                                            class="bg-color btn-header-link collapsed"
-                                                                            data-toggle="collapse" data-target="#faq14"
-                                                                            aria-expanded="true" aria-controls="faq14">
-                                                                            <img class="mr-2"
-                                                                                src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                            Chemical bonds</a>
-                                                                    </div>
-                                                                    <div id="faq14" class="collapse border-radius"
-                                                                        aria-labelledby="faqhead3" data-parent="#faq14">
-                                                                        <div class="card-body">
-                                                                            Anim pariatur cliche reprehenderit, enim
-                                                                            eiusmod high life accusamus terry
-                                                                            richardson.
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- sixth -->
-                                                            <div class="accordion" id="faq">
-                                                                <div class="card m-0 p-0">
-                                                                    <div class="card-header" id="faqhead3">
-                                                                        <a href="#"
-                                                                            class="bg-color btn-header-link collapsed"
-                                                                            data-toggle="collapse" data-target="#faq15"
-                                                                            aria-expanded="true" aria-controls="faq15">
-                                                                            <img class="mr-2"
-                                                                                src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                            Chemistry in 21 century
-                                                                        </a>
-                                                                    </div>
-                                                                    <div id="faq15" class="collapse border-radius show"
-                                                                        aria-labelledby="faqhead3" data-parent="#faq">
-                                                                        <div class="card-body">
-                                                                            Anim pariatur cliche reprehenderit, enim
-                                                                            eiusmod high life accusamus terry
-                                                                            richardson.
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                                    @endif
+                                                                @endif
+                                                            @endforeach
                                                         </div>
                                                     </div>
                                                 </div>
@@ -600,8 +512,8 @@
                                             <div class="row">
                                             <div class="col-md-12">
                                                 <span class="heading-fifth" style="font-weight: 600;">Timing</span>
-                                                <p class="paragraph-text-2 mt-1">2 weeks ( Tuesday, Wednesday, Thursday) - 2pm to
-                                                    4pm</p>
+                                                <p class="paragraph-text-2 mt-1">{{ $course->standard_duration != null ? $course->standard_duration : 0 }} weeks ({{ $course->course_standard_days != null ? $course->course_standard_days : '---' }}) - {{date("g:i a", strtotime("$course->standard_start_time UTC"))}} to
+                                                {{date("g:i a", strtotime("$course->standard_end_time UTC"))}}</p>
                                             </div>
                             
                                         </div>
@@ -687,34 +599,60 @@
                                             <div class="col-md-4">
                                                 <div class="d-flex pb-3">
                                                     <span>
+                                                        @if($course->standard_home_work == 'on')
                                                         <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                        @else
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                        @endif
                                                     </span>
-                                                    <span class="ml-3 heading-fifth mt-1">6 classes</span>
+                                                    <span class="ml-3 heading-fifth mt-1">Home Work</span>
                                                 </div>
                                                 <div class="d-flex pb-3">
                                                     <span>
+                                                        @if($course->standard_quiz == 'on')
                                                         <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                                    </span>
-                                                    <span class="ml-3 heading-fifth mt-1">Home work</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="d-flex pb-3">
-                                                    <span>
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                        @else
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                        @endif
                                                     </span>
                                                     <span class="ml-3 heading-fifth mt-1">Quiz</span>
                                                 </div>
                                                 <div class="d-flex pb-3">
                                                     <span>
+                                                    @if($course->standard_note == 'on')
                                                         <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                        @else
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                        @endif
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">Note</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                         @if($course->standard_one_one == 'on')
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                        @else
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                        @endif
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">One to One session</span>
+                                                </div>
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                         @if($course->standard_final == 'on')
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                        @else
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                        @endif
                                                     </span>
                                                     <span class="ml-3 heading-fifth mt-1">Final test</span>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="view-bookings" >
-                                                    $98
+                                                    ${{$course->standard_price ?? 0 }}
                                                 </div>
                                             </div>
                                         </div>
@@ -730,142 +668,35 @@
                                                 <span class="heading-forth ml-2">Course outline</span>
                 
                                                 <div id="main">
-                                                    <!-- first -->
                                                     <div class="container-fluid m-0 p-0 border-bottom pb-3">
-                                                        <div class="accordion" id="faq">
-                                                            <div class="card m-0 p-0">
-                                                                <div class="card-header" id="faqhead3">
-                                                                    <a href="#"
-                                                                        class=" bg-color btn-header-link collapsed"
-                                                                        data-toggle="collapse" data-target="#faq21"
-                                                                        aria-expanded="true" aria-controls="faq21">
-                                                                        <img class="mr-2"
-                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                        Introduction to chemisty</a>
-                                                                </div>
-                                                                <div id="faq21" class="collapse border-radius"
-                                                                    aria-labelledby="faqhead3" data-parent="#faq21">
-                                                                    <div class="card-body">
-                                                                        Anim pariatur cliche reprehenderit, enim
-                                                                        eiusmod high life accusamus terry
-                                                                        richardson.
+                                                    @foreach($course->outline as $outline)
+                                                            @if($outline->level == 2) 
+                                                                @if($outline->title == '' && $outline->explain == '')
+                                                                    <p>No Course Outline added.</p>
+                                                                @else
+                                                                <div class="accordion" id="faq">
+                                                                    <div class="card m-0 p-0">
+                                                                        <div class="card-header" id="faqhead">
+                                                                            <a href="#"
+                                                                                class="bg-color btn-header-link collapsed"
+                                                                                data-toggle="collapse" data-target="#faq11"
+                                                                                aria-expanded="true" aria-controls="faq11">
+                                                                                <img class="mr-2"
+                                                                                    src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                                    {{$outline->title}}
+                                                                            </a>
+                                                                        </div>
+                                                                        <div id="faq11" class="collapse show border-radius"
+                                                                            aria-labelledby="faqhead3" data-parent="#faq11">
+                                                                            <div class="card-body">
+                                                                            {{$outline->explain}}
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- second -->
-                                                        <div class="accordion" id="faq">
-                                                            <div class="card m-0 p-0">
-                                                                <div class="card-header" id="faqhead3">
-                                                                    <a href="#"
-                                                                        class="bg-color btn-header-link collapsed"
-                                                                        data-toggle="collapse" data-target="#faq22"
-                                                                        aria-expanded="true" aria-controls="faq22">
-                                                                        <img class="mr-2"
-                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                        Periodic table
-                                                                    </a>
-                                                                </div>
-                                                                <div id="faq22" class="collapse show border-radius"
-                                                                    aria-labelledby="faqhead3" data-parent="#faq22">
-                                                                    <div class="card-body">
-                                                                        Anim pariatur cliche reprehenderit, enim
-                                                                        eiusmod high life accusamus terry
-                                                                        richardson.
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- third -->
-                                                        <div class="accordion" id="faq">
-                                                            <div class="card m-0 p-0">
-                                                                <div class="card-header" id="faqhead3">
-                                                                    <a href="#"
-                                                                        class="bg-color btn-header-link collapsed"
-                                                                        data-toggle="collapse" data-target="#faq23"
-                                                                        aria-expanded="true" aria-controls="faq23">
-                                                                        <img class="mr-2"
-                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                        Atomic structure
-                                                                    </a>
-                                                                </div>
-                                                                <div id="faq23" class="collapse border-radius"
-                                                                    aria-labelledby="faqhead3" data-parent="#faq23">
-                                                                    <div class="card-body">
-                                                                        Anim pariatur cliche reprehenderit, enim
-                                                                        eiusmod high life accusamus terry
-                                                                        richardson.
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- forth -->
-                                                        <div class="accordion" id="faq">
-                                                            <div class="card m-0 p-0">
-                                                                <div class="card-header" id="faqhead3">
-                                                                    <a href="#"
-                                                                        class="bg-color btn-header-link collapsed"
-                                                                        data-toggle="collapse" data-target="#faq24"
-                                                                        aria-expanded="true" aria-controls="faq24">
-                                                                        <img class="mr-2"
-                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                        Molecule structure</a>
-                                                                </div>
-                                                                <div id="faq24" class="collapse border-radius"
-                                                                    aria-labelledby="faqhead3" data-parent="#faq24">
-                                                                    <div class="card-body">
-                                                                        Anim pariatur cliche reprehenderit, enim
-                                                                        eiusmod high life accusamus terry
-                                                                        richardson.
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- fifth -->
-                                                        <div class="accordion" id="faq">
-                                                            <div class="card m-0 p-0">
-                                                                <div class="card-header" id="faqhead3">
-                                                                    <a href="#"
-                                                                        class="bg-color btn-header-link collapsed"
-                                                                        data-toggle="collapse" data-target="#faq25"
-                                                                        aria-expanded="true" aria-controls="faq25">
-                                                                        <img class="mr-2"
-                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                        Chemical bonds</a>
-                                                                </div>
-                                                                <div id="faq25" class="collapse border-radius"
-                                                                    aria-labelledby="faqhead3" data-parent="#faq25">
-                                                                    <div class="card-body">
-                                                                        Anim pariatur cliche reprehenderit, enim
-                                                                        eiusmod high life accusamus terry
-                                                                        richardson.
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- sixth -->
-                                                        <div class="accordion" id="faq">
-                                                            <div class="card m-0 p-0">
-                                                                <div class="card-header" id="faqhead3">
-                                                                    <a href="#"
-                                                                        class="bg-color btn-header-link collapsed"
-                                                                        data-toggle="collapse" data-target="#faq26"
-                                                                        aria-expanded="true" aria-controls="faq26">
-                                                                        <img class="mr-2"
-                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                        Chemistry in 21 century
-                                                                    </a>
-                                                                </div>
-                                                                <div id="faq26" class="collapse border-radius show"
-                                                                    aria-labelledby="faqhead3" data-parent="#faq26">
-                                                                    <div class="card-body">
-                                                                        Anim pariatur cliche reprehenderit, enim
-                                                                        eiusmod high life accusamus terry
-                                                                        richardson.
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                                @endif
+                                                            @endif
+                                                        @endforeach
                                                     </div>
                                                 </div>
                                             </div>
@@ -873,8 +704,8 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <span class="heading-fifth" style="font-weight: 600;">Timing</span>
-                                                <p class="paragraph-text-2 mt-1">2 weeks ( Tuesday, Wednesday, Thursday) - 2pm to
-                                                    4pm</p>
+                                                <p class="paragraph-text-2 mt-1">{{ $course->advance_duration != null ? $course->advance_duration : 0 }} weeks ({{ $course->course_advance_days != null ? $course->course_advance_days : '---' }}) - {{date("g:i a", strtotime("$course->advance_start_time UTC"))}} to
+                                                {{date("g:i a", strtotime("$course->advance_end_time UTC"))}}</p>
                                             </div>
                             
                                         </div>
@@ -960,34 +791,60 @@
                                             <div class="col-md-4">
                                                 <div class="d-flex pb-3">
                                                     <span>
+                                                        @if($course->advance_home_work == 'on')
                                                         <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                        @else
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                        @endif
                                                     </span>
-                                                    <span class="ml-3 heading-fifth mt-1">6 classes</span>
+                                                    <span class="ml-3 heading-fifth mt-1">Home Work</span>
                                                 </div>
                                                 <div class="d-flex pb-3">
                                                     <span>
+                                                        @if($course->advance_quiz == 'on')
                                                         <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                                    </span>
-                                                    <span class="ml-3 heading-fifth mt-1">Home work</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="d-flex pb-3">
-                                                    <span>
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                        @else
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                        @endif
                                                     </span>
                                                     <span class="ml-3 heading-fifth mt-1">Quiz</span>
                                                 </div>
                                                 <div class="d-flex pb-3">
                                                     <span>
+                                                    @if($course->advance_note == 'on')
                                                         <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                        @else
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                        @endif
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">Note</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                         @if($course->advance_one_one == 'on')
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                        @else
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                        @endif
+                                                    </span>
+                                                    <span class="ml-3 heading-fifth mt-1">One to One session</span>
+                                                </div>
+                                                <div class="d-flex pb-3">
+                                                    <span>
+                                                         @if($course->advance_final == 'on')
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                        @else
+                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                        @endif
                                                     </span>
                                                     <span class="ml-3 heading-fifth mt-1">Final test</span>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="view-bookings" >
-                                                    $94
+                                                    ${{$course->advance_price ?? 0 }}
                                                 </div>
                                             </div>
                                         </div>
@@ -1001,7 +858,7 @@
         </div>  
         <!-- end section -->
                <!-- Modal reject-->
-               <div class="modal fade" id="exampleModalCenterss" tabindex="-1" role="dialog"
+               <div class="modal fade" id="rejectCourseModal" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
@@ -1014,10 +871,10 @@
                                     <p class="paragraph-text">
                                         Write allegation that why are you rejecting course
                                     </p>
-                                    <textarea class="form-control" rows="5" placeholder="Write reason"></textarea>
+                                    <textarea class="form-control" rows="5" placeholder="Write reason" id="c_reject_reason"></textarea>
                                     <div class="mt-4 d-flex" style="position: absolute;right: 30px;">
                                         <button class="cencel-btn w-150 mr-4" data-dismiss="modal">Cancel</button>
-                                        <button class="schedule-btn w-150">Send</button>
+                                        <button class="schedule-btn w-150" onclick="changeCourseStatus(`{{$course->id}}`,2)">Send</button>
                                     </div>
                                 </div>
                             </div>

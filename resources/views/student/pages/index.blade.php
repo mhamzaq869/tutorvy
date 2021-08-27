@@ -6,7 +6,7 @@
     <section id="homesection" style="display: flex;">
         <!-- dashborad home -->
         <div class="container-fluid m-0 p-0">
-            <p class="heading-first ml-3 mr-3">Dashboard23</p>
+            <p class="heading-first ml-3 mr-3">Dashboard</p>
             <div class="col-md-12 col-sm-12">
                 <div class="container-fluid bg-homeimage">
                     <div class="row">
@@ -121,28 +121,28 @@
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-9 row">
-                                        <div class="col-md-3">
+                                        <div class="col-md-3 mt-2 w-100">
                                             <select name="" id="" class="form-control">
                                                 <option value="Subject"> Subject</option>
                                             </select>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-3 mt-2">
                                             <select name="" id="" class="form-control">
                                                 <option value="Location"> Location</option>
                                             </select>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-3 mt-2">
                                             <select name="" id="" class="form-control">
                                                 <option value="Rate"> Rate</option>
                                             </select>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-3 mt-2">
                                             <select name="" id="" class="form-control">
                                                 <option value="Rating"> Rating</option>
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-3 mt-2">
                                         <button class="btn-general w-100">Apply Filters</button>
                                     </div>
                                 </div>
@@ -156,15 +156,15 @@
                                                 <div class="row">
                                                     <div class="col-md-9">
                                                         <div class="row">
-                                                            <div class="col-md-2 col-6">
+                                                            <div class="col-md-2 col-3">
                                                                 <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
                                                             </div>
-                                                            <div class="col-md-6 col-6">
+                                                            <div class="col-md-6 col-9">
                                                                 <h3>Danish Jaffery</h3>
                                                                 <small class="mb-0"><img src="../assets/images/ico/red-icon.png" alt="" class=""> Associate Professor at UKAS</small>
                                                                 <p><small><img src="../assets/images/ico/location-pro.png" alt="" class=""> Lahore,Pakistan</small></p>
                                                             </div>
-                                                            <div class="col-md-4 col-12">
+                                                            <div class="col-md-4 col-6">
                                                                 <p>
                                                                     <i class="fa fa-star text-yellow"></i>
                                                                     <i class="fa fa-star text-yellow"></i>
@@ -175,7 +175,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-3 col-6">
                                                         <p><span class="text-green pr-3">Top Ranked</span> <span class="rank_icon"><img src="../assets/images/ico/rank.png" alt=""></span> </p>
                                                     </div>
                                                 </div>
@@ -225,7 +225,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="card mb-3">
                                     <div class="card-body">
                                         <div class="row">
@@ -233,15 +232,15 @@
                                                 <div class="row">
                                                     <div class="col-md-9">
                                                         <div class="row">
-                                                            <div class="col-md-2 col-6">
+                                                            <div class="col-md-2 col-3">
                                                                 <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
                                                             </div>
-                                                            <div class="col-md-6 col-6">
+                                                            <div class="col-md-6 col-9">
                                                                 <h3>Danish Jaffery</h3>
                                                                 <small class="mb-0"><img src="../assets/images/ico/red-icon.png" alt="" class=""> Associate Professor at UKAS</small>
                                                                 <p><small><img src="../assets/images/ico/location-pro.png" alt="" class=""> Lahore,Pakistan</small></p>
                                                             </div>
-                                                            <div class="col-md-4 col-12">
+                                                            <div class="col-md-4 col-6">
                                                                 <p>
                                                                     <i class="fa fa-star text-yellow"></i>
                                                                     <i class="fa fa-star text-yellow"></i>
@@ -252,84 +251,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
-                                                        <p><span class="text-green pr-3">Top Ranked</span> <span class="rank_icon"><img src="../assets/images/ico/rank.png" alt=""></span> </p>
-                                                    </div>
-                                                </div>
-                                                <div class="row mt-2">
-                                                    <div class="col-md-4">
-                                                        <p class="mb-2">Subject</p>
-                                                        <p> <span class="info-1 info">Computer Science</span><span class="info">Maths</span></p>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <p class="mb-2">Languages</p>
-                                                        <p>
-                                                            <span class="info-1 info lingo">French</span>
-                                                            <span class="info lingo">English</span>
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                    <p class="mb-2">Education</p>
-                                                        <p>
-                                                            <span class="info-1 info edu">Govt College Lahore Pakistan</span>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div class="row mt-2">
-                                                    <div class="col-md-12">
-                                                        <p><strong> About Tutor </strong></p>
-                                                        <p class="scrol-about">
-                                                            Lorem ipsum dolor sit amet,  est commodi pariatur deserunt distinctio consectetur necessitatibus vitae obcaecati magni recusandae blanditiis sint porro placeat. Quia voluptates atque rerum ipsa architecto.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 bg-price text-center">
-                                                <div class="row mt-30">
-                                                    <div class="col-md-12">
-                                                        <p>starting from</p>
-                                                        <h1 class="f-60">$51</h1>
-                                                        <p>per hour</p>
-                                                            <button type="button" class="p-2 cencel-btn w-100">
-                                                                &nbsp; Message &nbsp;
-                                                            </button>
-                                                        <button type="button" class=" btn-general w-100 mt-2 p-2">
-                                                                &nbsp; Book Class &nbsp;
-                                                            </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="card mb-3">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-9">
-                                                <div class="row">
-                                                    <div class="col-md-9">
-                                                        <div class="row">
-                                                            <div class="col-md-2 col-6">
-                                                                <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
-                                                            </div>
-                                                            <div class="col-md-6 col-6">
-                                                                <h3>Danish Jaffery</h3>
-                                                                <small class="mb-0"><img src="../assets/images/ico/red-icon.png" alt="" class=""> Associate Professor at UKAS</small>
-                                                                <p><small><img src="../assets/images/ico/location-pro.png" alt="" class=""> Lahore,Pakistan</small></p>
-                                                            </div>
-                                                            <div class="col-md-4 col-12">
-                                                                <p>
-                                                                    <i class="fa fa-star text-yellow"></i>
-                                                                    <i class="fa fa-star text-yellow"></i>
-                                                                    <i class="fa fa-star text-yellow"></i>
-                                                                    <i class="fa fa-star text-yellow"></i>  4.0
-                                                                    <small class="text-grey">(25 reviews)</small>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-3 col-6">
                                                         <p><span class="text-green pr-3">Top Ranked</span> <span class="rank_icon"><img src="../assets/images/ico/rank.png" alt=""></span> </p>
                                                     </div>
                                                 </div>
@@ -438,11 +360,11 @@
                 <div class="card ">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-3 col-3">
                                 <img src="{{asset('assets/images/logo/boy.jpg')}}"
                                                                         alt="round-profile" class="round-border">
                             </div>
-                            <div class="col-md-4 pt-1 pl-0">
+                            <div class="col-md-4  col-4 pt-1 pl-0">
                                 <small class=""><strong>Jaffery Abdul</strong></small>
                                 <p class="mb-0"><small >
                                     <i class="fa fa-star text-yellow"></i>
@@ -452,20 +374,19 @@
                                 </small></p>
                                 <small><img src="{{asset('assets/images/ico/location-pro.png')}}" alt="" class=""> Lahore,Pakistan</small>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-5 col-5">
                                 <button class=" btn-general btn-large mt-3">Book a class</button>
                             </div>
                             <div class="col-md-12">
                                 <hr>
                             </div>
                         </div>
-
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-3 col-3">
                                 <img src="{{asset('assets/images/logo/boy.jpg')}}"
                                                                         alt="round-profile" class="round-border">
                             </div>
-                            <div class="col-md-4 pt-1 pl-0">
+                            <div class="col-md-4  col-4 pt-1 pl-0">
                                 <small class=""><strong>Jaffery Abdul</strong></small>
                                 <p class="mb-0"><small >
                                     <i class="fa fa-star text-yellow"></i>
@@ -475,7 +396,7 @@
                                 </small></p>
                                 <small><img src="{{asset('assets/images/ico/location-pro.png')}}" alt="" class=""> Lahore,Pakistan</small>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-5 col-5">
                                 <button class=" btn-general btn-large mt-3">Book a class</button>
                             </div>
                             <div class="col-md-12">
