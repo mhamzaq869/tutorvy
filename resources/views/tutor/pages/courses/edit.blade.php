@@ -51,19 +51,26 @@
                 </div>
             </div>
             <div class="col-md-5 mt-5">
-                <div class="mt-5"><br />
-                    <div class="bg-edit text-center">
-                        <label for="" class="pt-2 ">Intro Video</label>
-                        <input type="file" class="dropify" name="video" id="video"
-                        data-default-file="{{asset($course->video)}}">
+                <div class="mt-3">
+                    <div class="mb-3">
+                        <label class="form-label heading-forth">Starting Date</label>
+                        <input type="text" name="basic_class_start_time[]" class="form-control texteara-s mt-2 pt-2 mb-2" required="" placeholder="From" onfocus="(this.type='date')">
                     </div>
                 </div>
-                <div class="bg-edit mt-4 text-center">
-                    <label for="" class="pt-2 ">Course Thumbnail</label>
-                    <input type="file" class="dropify" name="thumbnail" id="thumbnail"
-                        data-default-file="{{asset($course->thumbnail)}}">
+                <div class="mt-4">
+                    <div style="padding-top:11px;">
+                            <!-- <label for="" class="pt-2 ">Intro Video</label>
+                            <input type="file" class="dropify" name="video" id="video" > -->
+                        <span class="heading-forth">Intro Video URL</span>
+                        <div class="input-serachs mt-2">
+                            <input type="url"  name="video" data-default-file="{{asset($course->video)}}" placeholder="https://www.youtube.com/channel/UCTv6Gbid3HeUSYyLtV5sFOw/videos" />
+                        </div>
+                    </div>
+                    <div class="bg-edit mt-4 text-center">
+                        <label for=""  class="pt-2 ">Course Thumbnail</label>
+                            <input type="file" class="dropify" name="thumbnail" id="thumbnail"  data-default-file="{{asset($course->thumbnail)}}">
 
-                </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -617,7 +617,7 @@
                                     <div class="container-fluid ">
                                         <div class="panel-title">Note on Prerequisites</div>
                                         <div class="row mt-3">
-                                            <div class="col-md-12">
+                                            <div class="col-md-12 pl-0">
                                                 <span class="heading-forth ml-2">Course outline</span>
                                                 <div id="main">
                                                     <div class="container-fluid m-0 p-0 border-bottom pb-3">

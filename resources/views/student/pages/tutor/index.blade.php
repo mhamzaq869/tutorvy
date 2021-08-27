@@ -19,33 +19,159 @@
                                     style="">
                                     Advance search</h5>
                                 </div>
-                                <div class="col-md-12 mt-2">
+                                <!-- <div class="col-md-12 mt-2">
                                     <input type="search" style="width: 100%;" class="form-control input12" data-search
                                     placeholder="Search">
 
                                     <span class="fa fa-search form-control-feedback searchIcon"></span>
-                                    <select class="w-100 mt-3 form-control py-2" id="subject">
-                                        <option value="">Subject</option>
-                                        @foreach ($subjects as $subject)
-                                        <option value="{{$subject->id}}"> {{$subject->name}}</option>
-                                        @endforeach
-                                    </select>
-                                    <select class="w-100 mt-3 form-control py-2">
-                                        <option value="">Location</option>
+                                </div> -->
+                                <div class="col-md-12">
+                                    <div id="accordion">
+                                        <div class=" ">
+                                            <a href="#" class="" data-toggle="collapse" data-target="#subjectDiv" aria-expanded="true" aria-controls="subjectDiv">
+                                                <div class="tutorFilterHead" id="headingOne">
+                                                        Subject <span class="pull-right"><i class="fa fa-chevron-down"></i></span>
+                                                </div>
+                                            </a>
+                                            <div id="subjectDiv" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
+                                                <div class="card-body pl-2 pr-0 pt-0">
+                                                    <select class="w-100 form-control accSelect2" id="subject">
+                                                        <option value="">Search Subject</option>
+                                                        @foreach ($subjects as $subject)
+                                                        <option value="{{$subject->id}}"> {{$subject->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <hr class="m-0">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div id="accordion">
+                                        <div class=" ">
+                                            <a href="#" class="" data-toggle="collapse" data-target="#locationDiv" aria-expanded="true" aria-controls="locationDiv">
+                                                <div class="tutorFilterHead" id="headingOne">
+                                                        Location <span class="pull-right"><i class="fa fa-chevron-down"></i></span>
+                                                </div>
+                                            </a>
+                                            <div id="locationDiv" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
+                                                <div class="card-body pl-2 pr-0 pt-0">
+                                                    <select class="w-100 form-control accSelect2">
+                                                        <option value="">Search Location</option>
 
-                                    </select>
-                                    <select class="w-100 mt-3 form-control py-2">
-                                        <option value="">Rate</option>
-                                    </select>
-                                    <select class="w-100 mt-3 form-control py-2">
-                                        <option value="">Rating</option>
-                                    </select>
-                                    <select class="w-100 mt-3 form-control py-2">
-                                        <option value="">Language</option>
-                                    </select>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <hr class="m-0">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div id="accordion">
+                                        <div class=" ">
+                                            <a href="#" class="" data-toggle="collapse" data-target="#rateDiv" aria-expanded="true" aria-controls="rateDiv">
+                                                <div class="tutorFilterHead" id="headingOne">
+                                                    Rate <span class="pull-right"><i class="fa fa-chevron-down"></i></span>
+                                                </div>
+                                            </a>
+                                            <div id="rateDiv" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
+                                                <div class="card-body pl-2 pr-0 pt-0">
+                                                    <div class="">
+                                                        <p class="mb-0">$10 - $1000</p>
+                                                        <div class="range-slider">
+                                                            <input class="range-slider__range" type="range" id="range" value="100" min="0" max="500">
+                                                            <span class="range-slider__value"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr class="m-0">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-12">
+                                    <div id="accordion">
+                                        <div class=" ">
+                                            <a href="#" class="" data-toggle="collapse" data-target="#ratingDiv" aria-expanded="true" aria-controls="ratingDiv">
+                                                <div class="tutorFilterHead" id="headingOne">
+                                                    Rating <span class="pull-right"><i class="fa fa-chevron-down"></i></span>
+                                                </div>
+                                            </a>
+                                            <div id="ratingDiv" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
+                                                <div class="card-body pl-2 pr-0 pt-0">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                                        <label class="form-check-label" for="exampleRadios1">
+                                                        <p>
+                                                            <i class="fa fa-star text-yellow"></i>
+                                                            <i class="fa fa-star "></i>
+                                                            <i class="fa fa-star "></i>
+                                                            <i class="fa fa-star "></i> 
+                                                        </p>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                                        <label class="form-check-label" for="exampleRadios1">
+                                                        <p>
+                                                            <i class="fa fa-star text-yellow"></i>
+                                                            <i class="fa fa-star text-yellow"></i>
+                                                            <i class="fa fa-star "></i>
+                                                            <i class="fa fa-star "></i> 
+                                                        </p>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                                        <label class="form-check-label" for="exampleRadios1">
+                                                        <p>
+                                                            <i class="fa fa-star text-yellow"></i>
+                                                            <i class="fa fa-star text-yellow"></i>
+                                                            <i class="fa fa-star text-yellow"></i>
+                                                            <i class="fa fa-star "></i> 
+                                                        </p>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                                        <label class="form-check-label" for="exampleRadios1">
+                                                        <p>
+                                                            <i class="fa fa-star text-yellow"></i>
+                                                            <i class="fa fa-star text-yellow"></i>
+                                                            <i class="fa fa-star text-yellow"></i>
+                                                            <i class="fa fa-star text-yellow"></i> 
+                                                        </p>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr class="m-0">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-12">
+                                    <div id="accordion">
+                                        <div class=" ">
+                                            <a href="#" class="" data-toggle="collapse" data-target="#langDiv" aria-expanded="true" aria-controls="langDiv">
+                                                <div class="tutorFilterHead" id="headingOne">
+                                                    Language <span class="pull-right"><i class="fa fa-chevron-down"></i></span>
+                                                </div>
+                                            </a>
+                                            <div id="langDiv" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
+                                                <div class="card-body pl-2 pr-0 pt-0">
+                                                    <select class="w-100 form-control accSelect2">
+                                                        <option value="">Search Language</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <hr class="m-0">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        
                         </div>
                     </div>
                 </div>

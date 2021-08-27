@@ -199,7 +199,7 @@
                                 <div class="panel " id="one-panel">
                                     <div class="container-fluid ">
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-12 pl-0">
                                                 <span class="heading-forth ml-2">Course outline</span>
                 
                                                 <div id="main">
@@ -468,7 +468,6 @@
                                     </div>
                                 </div>
                                 <div class="panel" id="two-panel">
-                
                                     <div class="container-fluid ">
                                         <div class="panel-title">Take-Away Skills</div>
                                             <div class="row mt-3">
