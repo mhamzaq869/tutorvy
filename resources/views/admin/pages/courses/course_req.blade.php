@@ -62,7 +62,7 @@
                         </h3>
                         <p class="paragraph-text-1">{{$course->subject_name}} course</p>
                         @if($course->video != null && $course->video != '')
-                        <iframe width="100%" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY"
+                        <iframe width="100%" height="345" src="{{$course->video}}"
                             style="border-radius: 8px;">
                         </iframe>
                         @elseif($course->thumbnail != null && $course->thumbnail != '')

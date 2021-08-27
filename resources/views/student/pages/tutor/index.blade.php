@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div class="col-md-9 ">
-                    @foreach ($tutors as $tutor)
+                    @foreach ($available_tutors as $tutor)
                     <div class="card">
                         <div class="card-body">
                             
@@ -79,7 +79,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-3">
-                                            <p class="text-right"><span class="text-green ">Top Ranked</span> <span class="rank_icon"><img src="../assets/images/ico/rank.png" alt=""></span> </p>
+                                            <p class="text-right"><span class="text-green ">Verified</span> <span class="rank_icon"><img src="../assets/images/ico/bluebadge.png" alt=""></span> </p>
                                         </div>
                                     </div>
                                     <div class="row mt-2">

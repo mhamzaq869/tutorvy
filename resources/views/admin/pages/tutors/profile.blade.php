@@ -186,7 +186,7 @@
                             <div class="col-md-10">
                                 <p class="paragraph-text01 mb-0 mt-1">Language</p>
                                 <p class="heading-forth ml-1">
-                                    {{$tutor->language}}
+                                    {{$tutor->lang_short}}
                                 </p>
                                 </p>
                             </div>
@@ -198,7 +198,7 @@
                                     class="mt-1" />
                             </div>
                             <div class="col-md-10">
-                                <p class="paragraph-text01 mb-0 mt-1">Lahore</p>
+                                <p class="paragraph-text01 mb-0 mt-1">Address</p>
                                 <p class="heading-forth ml-1">
                                     {{$tutor->address}}
                                 </p>
@@ -210,25 +210,45 @@
                     <div class="container-fluid bg-white pt-4">
                         <h3>Education</h3>
                         <hr />
-                       
+                        @foreach($tutor->education as $edu)
+                        @php
+
+                            $year = '';
+                            if($edu->year != null){
+                                $y = explode('-',$edu->year);
+                                $year = $y[0];
+                            }
+
+                        @endphp
                         <div class="row mt-3">
-                            <div class="col-md-12">
-                                <span class="heading-third1"> BSC Chemistry </span>
-                                <span class="paragraph-text1 ml-3"> 2014
-                                </span>
-                                <p class="notification-text3 mt-2">University of Punjab Lahore, Pakistan</p>
+                                <div class="col-md-12">
+                                    <span class="heading-third1"> {{$edu->degree->name ?? ''}} </span>
+                                    <span class="paragraph-text1 ml-3"> {{ $year }}
+                                    </span>
+                                    <p class="notification-text3 mt-2">{{$edu->institute->name ?? ''}} </p>
+                                </div>
                             </div>
-                        </div>
+                        @endforeach
+
                     </div>
                     
                     <div class="container-fluid bg-white pt-4 mt-4">
                         <h3>Work experience</h3>
                         <hr />
                         @foreach($tutor->professional as $exp)
+                            @php
+
+                                $year = '';
+                                if($exp->end_date != null){
+                                    $y = explode('-',$exp->end_date);
+                                    $year = $y[0];
+                                }
+
+                            @endphp
                             <div class="row mt-3">
                                 <div class="col-md-12">
                                     <span class="heading-third1"> {{$exp->designation}} </span>
-                                    <span class="paragraph-text1 ml-3"> 2014
+                                    <span class="paragraph-text1 ml-3"> {{ $year }}
                                     </span>
                                     <p class="notification-text3 mt-2">{{$exp->organization}}</p>
                                 </div>

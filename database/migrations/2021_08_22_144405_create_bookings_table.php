@@ -26,7 +26,8 @@ class CreateBookingsTable extends Migration
             $table->string('class_time')->nullable();
             $table->string('duration')->nullable()->comment('lesson duration');
             $table->string('location')->nullable();
-            $table->integer('status')->nullable();
+            $table->integer('status')->nullable()->comment('1-Pending , 2-Payment Pending , 3-Approved , 4-Cancelled by tutor , 5-Cancelled by student , 6-Delivered');
+            $table->text('cancel_note')->nullable();
             $table->timestamps();
         });
     }

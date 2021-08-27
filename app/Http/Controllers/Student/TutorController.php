@@ -15,9 +15,23 @@ class TutorController extends Controller
     public function index()
     {
         $tutors = User::with(['education','professional','teach'])->where('role',2)->where('status',2)->get();
+        $available_tutors = array();
+        if(sizeof($tutors) > 0){
+            if(\Auth::user()->std_learn != null){
+                foreach($tutors as $tutor){
+                    if($tutor->teach != NULL){
+                        foreach($tutor->teach as $teach){
+                            if($teach->subject_id == \Auth::user()->std_learn){
+                                array_push($available_tutors,$tutor);
+                            }
+                        }
+                    }
+                }
+            }
+        }
         // return $tutors;
         $subjects = Subject::all();
-        return view('student.pages.tutor.index',compact('tutors','subjects'));
+        return view('student.pages.tutor.index',compact('available_tutors','subjects'));
     }
 
 
