@@ -1574,11 +1574,11 @@ $('.moreExperience').click(function() {
                 </div>
                 <div class="row my-3">
                     <div class="input-text col-md-6">
-                        <input type="date" class="form-control" name="degree_start[` + count_field_2 + `]" placeholder="Starting date"
+                        <input type="" class="form-control" onfocus="(this.type='date')"  placeholder="Starting date" name="degree_start[` + count_field_2 + `]" placeholder="Starting date"
                         value="">
                     </div>
                     <div class="input-text col-md-6">
-                        <input type="date" class="form-control" name="degree_end[` + count_field_2 + `]" placeholder="Ending Date"
+                        <input type="" class="form-control" onfocus="(this.type='date')"  placeholder="Starting date" name="degree_end[` + count_field_2 + `]" placeholder="Ending Date"
                         value="">
                     </div>
                 </div>

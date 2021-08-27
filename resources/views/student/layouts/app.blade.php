@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/countrySelect.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/dropify.css')}}" />
 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     <!-- Styles -->
     @include('student.layouts.css')
@@ -36,16 +37,10 @@
         <div>
 
     </div>
-    <script type="text/javascript">
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-    </script>
      <!-- custom js -->
      
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/intlTelInput.js"></script>
      <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
@@ -58,15 +53,26 @@
      <script src="{{ asset('assets/js/dropify.js')}}"></script>
      <script src="{{ asset('assets/js/multiselect.js')}}"></script>
      <script src="{{ asset('assets/js/countrySelect.js')}}"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
      @include('js_files.chat')
      @yield('scripts')
      <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
     $(document).ready(function(){
         $(".dropify").dropify();
         $('.js-multiSelect').select2();
+        $('.accSelect2').select2();
+        $("#year").yearpicker({
+                year: {{$user->year ?? '1990'}},
+                startYear: 1950,
+                endYear: 2050,
+            });
     })
     $("#country_selector").countrySelect({
                 defaultCountry: "{{ $user->country_short ?? '' }}",
@@ -78,20 +84,11 @@
                 $("#country_short").val(short.iso2);
             });
 
-</script>
-<script>
+
 
 for(var i=1; i<=31; i++){
    $("#day").append("<option value='"+i+"'"+ (i=={{$user->day ?? 1}} ? 'selected' : '')+">"+i+"</option>");
 }
-
-$(document).ready(function() {
-   $("#year").yearpicker({
-       year: {{$user->year ?? '1990'}},
-       startYear: 1950,
-       endYear: 2050,
-   });
-});
 
 $("#country_selector").countrySelect({
    defaultCountry: "{{$user->country_short ?? ''}}",
@@ -154,6 +151,8 @@ function langshort(opt){
    var val = opt.options[opt.selectedIndex].innerHTML;
    $("#lang").val(val)
 }
+
 </script>
+
 </body>
 </html>

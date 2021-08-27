@@ -54,18 +54,24 @@
                 </div>
             </div>
             <div class="col-md-5 mt-5">
+                <div class="mt-3">
+                    <div class="mb-3">
+                        <label class="form-label heading-forth">Starting Date</label>
+                        <input type="text" name="basic_class_start_time[]" class="form-control texteara-s mt-2 pt-2 mb-2" required="" placeholder="From" onfocus="(this.type='date')">
+                    </div>
+                </div>
                 <div class="mt-4">
                     <div style="padding-top:11px;">
                             <!-- <label for="" class="pt-2 ">Intro Video</label>
                             <input type="file" class="dropify" name="video" id="video" > -->
                         <span class="heading-forth">Intro Video URL</span>
                         <div class="input-serachs mt-2">
-                            <input type="url" name="video" placeholder="https://www.youtube.com/channel/UCTv6Gbid3HeUSYyLtV5sFOw/videos" />
+                            <input type="url"  name="video" placeholder="https://www.youtube.com/channel/UCTv6Gbid3HeUSYyLtV5sFOw/videos" />
                         </div>
                     </div>
                     <div class="bg-edit mt-4 text-center">
                         <label for=""  class="pt-2 ">Course Thumbnail</label>
-                            <input type="file" class="dropify" name="thumbnail" id="thumbnail" >
+                            <input type="file" class="dropify" name="thumbnail" id="thumbnail"  >
 
                     </div>
                 </div>
@@ -434,5 +440,56 @@
 <!-- Extra js to perfome function using ajax. -->
 @section('js')
 @include('js_files.tutor.course')
+<script type="text/javascript">
+$("#thumbnail").change(
+    function () {
+    //Get reference of FileUpload.
+    var fileUpload = document.getElementById("thumbnail");
+ 
+    //Check whether the file is valid Image.
+    var regex = new RegExp("([a-zA-Z0-9\s_\\.\-:])+(.jpg|.png|.gif)$");
+    if (regex.test(fileUpload.value.toLowerCase())) {
+ 
+        //Check whether HTML5 is supported.
+        if (typeof (fileUpload.files) != "undefined") {
+            //Initiate the FileReader object.
+            var reader = new FileReader();
+            //Read the contents of Image File.
+            reader.readAsDataURL(fileUpload.files[0]);
+            reader.onload = function (e) {
+                //Initiate the JavaScript Image object.
+                var image = new Image();
+ 
+                //Set the Base64 string return from FileReader as source.
+                image.src = e.target.result;
+                       
+                //Validate the File Height and Width.
+                image.onload = function () {
+                    var height = this.height;
+                    var width = this.width;
+                    if (height > 500 || width > 800) {
+                        alert("Height and Width must not exceed 100px.");
+                        $("#fileUpload").val("");
+                        return false;
+                    }
+                    $("#fileUpload").val();
+
+                    alert("Uploaded image has valid Height and Width.");
+                    return true;
+                };
+ 
+            }
+        } else {
+            alert("This browser does not support HTML5.");
+            return false;
+        }
+    } else {
+        alert("Please select a valid Image file.");
+        return false;
+    }
+}
+)
+
+</script>
 @endsection
 

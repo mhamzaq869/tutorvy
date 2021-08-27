@@ -1036,3 +1036,41 @@ tr th {
     position: absolute;
     right: 78px;
 }
+
+#accordion a {
+    text-decoration: none;
+}
+
+#accordion .tutorFilterHead {
+    padding: 10px;
+    color: #00132D;
+}
+
+#accordion .tutorFilterHead span {
+    color: #1173FF;
+}
+
+#accordion .select2 {
+    width: 97% !important;
+}
+
+#accordion .select2-container .select2-selection--single {
+    height: 40px;
+}
+
+#accordion .select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 35px;
+}
+
+#accordion .select2-container--default .select2-selection--single .select2-selection__arrow {
+    display: none;
+}
+
+#accordion input[type="radio"] {
+    height: 17px;
+}
+
+#accordion input,
+select {
+    width: auto !important;
+}

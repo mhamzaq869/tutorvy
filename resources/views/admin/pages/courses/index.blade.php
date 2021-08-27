@@ -27,8 +27,8 @@
                     Courses for approval
                 </h3>
             </div>
-            <div class="col-md-6">
-                <a href="all-courses.html" class="view-bookings w-100 text-right">View all courses for approval</a>
+            <div class="col-md-6 text-right">
+                <a href="#" class="view-bookings w-100 text-right">View all courses for approval</a>
             </div>
         </div>
     </div>
@@ -106,10 +106,13 @@
                     </thead>
                     <tbody>
                         <!-- staff table data -->
+                        <?php
+                        $counter =01
+                    ?>
                         @foreach($requested_courses as $course)
                         <tr>
                             <td class="pt-4">
-                                <span>01</span>
+                                <span>{{$counter}}</span>
                             </td>
                             <td class="pt-4">
                                 <span>{{$course->title}}</span>
@@ -143,6 +146,9 @@
                                 </a>
                             </td>
                         </tr>
+                        <?php
+                        $counter =$counter + 1
+                    ?>
                         @endforeach
                         <!-- end data -->
                     </tbody>
@@ -158,8 +164,8 @@
                     All courses
                 </h3>
             </div>
-            <div class="col-md-6">
-                <a href="all-courses-detail.html" class="view-bookings w-100 text-right">View all courses </a>
+            <div class="col-md-6 text-right">
+                <a href="#" class="view-bookings w-100 text-right">View all courses </a>
             </div>
         </div>
     </div>
@@ -243,10 +249,15 @@
                 </thead>
                 <tbody>
                     <!-- staff table data -->
+                    <?php
+                        $countere =1
+                    ?>
                     @foreach($approved_courses as $course)
+                   
+                    
                         <tr>
-                            <td class="pt-4">
-                                <span>01</span>
+                            <td class="pt-4 f">
+                                <span>{{$countere}}</span>
                             </td>
                             <td class="pt-4">
                                 <span>{{$course->title}}</span>
@@ -282,6 +293,9 @@
 
                             </td>
                         </tr>
+                        <?php
+                        $countere =$countere + 1
+                    ?>
                     @endforeach
                     <!-- end data -->
                 </tbody>
