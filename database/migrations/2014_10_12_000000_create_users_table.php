@@ -44,6 +44,8 @@ class CreateUsersTable extends Migration
             $table->string('provider')->default('direct');
             $table->integer('role')->nullable()->comment('1-admin 2-tutor 3-student 4-staff');
             $table->integer('status')->default(0)->comment('0-pending,1-approved/enabled,2-rejected,3-disabled' );
+            $table->integer('rating')->nullable();
+            
             $table->rememberToken();
             $table->timestamps();
         });

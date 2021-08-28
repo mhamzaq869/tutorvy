@@ -80,7 +80,7 @@
                                                     <div class="">
                                                         <p class="mb-0">$10 - $1000</p>
                                                         <div class="range-slider">
-                                                            <input class="range-slider__range" type="range" id="range" value="0" min="0" max="1000">
+                                                            <input class="range-slider__range" type="range" id="range" value="100" min="0" max="500">
                                                             <span class="range-slider__value"></span>
                                                         </div>
                                                     </div>
@@ -102,8 +102,8 @@
                                             <div id="ratingDiv" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
                                                 <div class="card-body pl-2 pr-0 pt-0">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="rating_filter" id="rating_filter" value="1" >
-                                                        <label class="form-check-label" for="rating_filter">
+                                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                                        <label class="form-check-label" for="exampleRadios1">
                                                         <p>
                                                             <i class="fa fa-star text-yellow"></i>
                                                             <i class="fa fa-star "></i>
@@ -113,8 +113,8 @@
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="rating_filter" id="rating_filter" value="2" >
-                                                        <label class="form-check-label" for="rating_filter">
+                                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                                        <label class="form-check-label" for="exampleRadios1">
                                                         <p>
                                                             <i class="fa fa-star text-yellow"></i>
                                                             <i class="fa fa-star text-yellow"></i>
@@ -124,8 +124,8 @@
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="rating_filter" id="rating_filter" value="3" >
-                                                        <label class="form-check-label" for="rating_filter">
+                                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                                        <label class="form-check-label" for="exampleRadios1">
                                                         <p>
                                                             <i class="fa fa-star text-yellow"></i>
                                                             <i class="fa fa-star text-yellow"></i>
@@ -135,8 +135,8 @@
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="rating_filter" id="rating_filter" value="4" checked>
-                                                        <label class="form-check-label" for="rating_filter">
+                                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                                        <label class="form-check-label" for="exampleRadios1">
                                                         <p>
                                                             <i class="fa fa-star text-yellow"></i>
                                                             <i class="fa fa-star text-yellow"></i>
@@ -175,7 +175,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-9 " id="tutors-list">
+                <div class="col-md-9 ">
                     @foreach ($available_tutors as $tutor)
                     <div class="card">
                         <div class="card-body">
@@ -190,34 +190,16 @@
                                                 </div>
                                                 <div class="col-md-5 col-6">
                                                     <h3>{{$tutor['first_name']}} {{$tutor['last_name']}}</h3>
-                                                    <p class="mb-0"><img src="../assets/images/ico/red-icon.png" alt="" class="">  {{$tutor['designation'] ?? '---'}}</p>
-                                                    <p class="mb-0"><img src="../assets/images/ico/location-pro.png" alt="" class="">{{ $tutor['city'] != NULL ? $tutor['city'].' , ' : '---' }} {{ $tutor['country'] != NULL ? $tutor['country']: '---' }}</p>
+                                                    <p class="mb-0"><img src="../assets/images/ico/red-icon.png" alt="" class="">  {{$tutor->designation ?? '---'}}</p>
+                                                    <p><img src="../assets/images/ico/location-pro.png" alt="" class="">{{$tutor->address}}</p>
                                                 </div>
                                                 <div class="col-md-4 col-12">
                                                     <p>
-                                                        @if($tutor['rating'] == 1)
-                                                        <i class="fa fa-star text-yellow"></i>
-                                                        <i class="fa fa-star "></i>
-                                                        <i class="fa fa-star "></i>
-                                                        <i class="fa fa-star "></i> 1.0
-                                                        @elseif($tutor['rating'] == 2)
-                                                        <i class="fa fa-star text-yellow"></i>
-                                                        <i class="fa fa-star text-yellow"></i>
-                                                        <i class="fa fa-star "></i>
-                                                        <i class="fa fa-star "></i>  2.0
-                                                        @elseif($tutor['rating'] == 3)
-                                                        <i class="fa fa-star text-yellow"></i>
-                                                        <i class="fa fa-star text-yellow"></i>
-                                                        <i class="fa fa-star text-yellow"></i>
-                                                        <i class="fa fa-star "></i>  3.0
-                                                        @else
                                                         <i class="fa fa-star text-yellow"></i>
                                                         <i class="fa fa-star text-yellow"></i>
                                                         <i class="fa fa-star text-yellow"></i>
                                                         <i class="fa fa-star text-yellow"></i>  4.0
-                                                        @endif
-                                                       
-                                                        <small class="text-grey">(0 reviews)</small>
+                                                        <small class="text-grey">(25 reviews)</small>
                                                     </p>
                                                 </div>
                                             </div>
@@ -228,33 +210,24 @@
                                     </div>
                                     <div class="row mt-2">
                                         <div class="col-md-4">
-                                            @php
-
-                                                $sub = explode(',',$tutor['subject_names']);
-                                                
-                                            @endphp
                                             <p class="mb-2">Subject</p>
                                             <p>
-                                            @for ($i=0 ; $i < sizeof($sub); $i++)
-                                            <span class="info-1 info">{{$sub[$i]}}</span>
-                                            @endfor
-                                           </p>
+                                            @foreach ($tutor->teach as $teach)
+                                            <span class="info-1 info">{{$teach->sub_name ?? ''}}</span>
+                                            @endforeach</p>
                                         </div>
                                         <div class="col-md-4">
                                             <p class="mb-2">Languages</p>
                                             <p>
-                                                <span class="info-1 info lingo">{{$tutor['lang_short'] ?? ''}}</span>
+                                                <span class="info-1 info lingo">{{$tutor->lang_short ?? ''}}</span>
                                             </p>
                                         </div>
                                         <div class="col-md-4">
                                         <p class="mb-2">Education</p>
-                                            @php
-                                                $inst = explode(',',$tutor['insti_names']);
-                                            @endphp
                                             <p>
-                                            @for ($i=0 ; $i < sizeof($inst); $i++)
-                                            <span class="info-1 info edu">{{$inst[$i]}}</span>
-                                            @endfor
+                                                @foreach ($tutor->education as $edu)
+                                                    <span class="info-1 info edu">{{$edu->institute->name ?? ''}}</span>
+                                                @endforeach
                                             </p>
                                         </div>
                                     </div>

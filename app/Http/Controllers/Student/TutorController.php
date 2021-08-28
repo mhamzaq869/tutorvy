@@ -2,49 +2,63 @@
 
 namespace App\Http\Controllers\Student;
 
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\General\Teach;
 use App\Models\Admin\Subject;
 use App\Models\Userdetail;
+use App\Models\General\ViewTutorData;
+use DB;
 
 class TutorController extends Controller
 {
 
     public function index()
     {
-        $tutors = User::with(['education','professional','teach'])->where('role',2)->where('status',2)->get();
-        $available_tutors = array();
-        if(sizeof($tutors) > 0){
-            if(\Auth::user()->std_learn != null){
-                foreach($tutors as $tutor){
-                    if($tutor->teach != NULL){
-                        foreach($tutor->teach as $teach){
-                            if($teach->subject_id == \Auth::user()->std_learn){
-                                array_push($available_tutors,$tutor);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        // return $tutors;
+        
+        $available_tutors = ViewTutorData::select("*")
+                        ->where('subjects', 'like', '%' . strval(\Auth::user()->std_learn) . '%')
+                        // ->where('lang_short', $request->language)
+                        // ->where('rating', $request->rating)
+                        ->get()
+                        ->toArray();
+        
         $subjects = Subject::all();
         return view('student.pages.tutor.index',compact('available_tutors','subjects'));
     }
 
+    public function filterTutor(Request $request)
+    {
+        $subject = $request->subject;
+        $rate = $request->price;
+        $where = '';
+        if($subject == '' || $subject == null){
+            $subject = \Auth::user()->std_learn;
+        }
+
+        if($rate == 0){
+            $rate = null;
+        }
+        $available_tutors = ViewTutorData::select("*")
+        ->where('subjects', 'like', '%' . strval($subject) . '%')
+        ->where('lang_short', $request->language)
+        ->where('rating', $request->rating)
+        ->get()
+        ->toArray();
+
+        return response()->json([
+            'tutors' => $available_tutors,
+            'status'=>'200',
+            'message' => 'success'
+        ]);
+    }
 
     public function show ($id)
     {
         $tutor = User::with(['education','professional','teach','course'])->find($id);
         return view('student.pages.tutor.profile',compact('tutor'));
     }
-
-    public function filter()
-    {
-
-    }
-
 
 }

@@ -47,6 +47,8 @@
      <script src="{{ asset('assets/js/mobile.js') }}"></script>
      <script src="{{ asset('assets/js/history.js') }}"></script>
      <script src="{{ asset('assets/js/subject.js') }}"></script>
+     <script src="{{ asset('assets/js/languages.js') }}"></script>
+
      <script src="{{ asset('assets/js/homePage.js') }}"></script>
      <script src="{{ asset('assets/js/clander.js') }}"></script>
      <script src="{{ asset('assets/js/registration.js') }}"></script>

@@ -197,6 +197,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $query->where('status',2);
     }
+    
     // public function scopeVerified($query)
     // {
     //     return $query->where('verify',1);

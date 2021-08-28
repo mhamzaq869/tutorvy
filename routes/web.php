@@ -188,7 +188,7 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     // Route::get('/payment',[PaymentController::class,'index'])->name('tutor.payment');
     Route::get('/tutor',[StudentTutorController::class,'index'])->name('student.tutor');
     Route::get('/viewtutor/{id}',[StudentTutorController::class,'show'])->name('student.tutor.show');
-    Route::get('/tutorfilter/{id?}',[StudentTutorController::class,'filter'])->name('student.tutor.filter');
+    Route::post('/tutorfilter',[StudentTutorController::class,'filterTutor'])->name('student.tutor.filter');
     Route::get('/settings',[StudentSettingController::class,'index'])->name('student.settings');
     Route::get('/profile',[StudentProfileController::class,'index'])->name('student.profile');
 
