@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\General\Teach;
 
 class BookingController extends Controller
 {
@@ -22,9 +23,10 @@ class BookingController extends Controller
         return view('student.pages.booking.index',compact('today','tomorrow','pending','delivered'));
     }
 
-    public function bookNow(){
+    public function bookNow($t_id){
 
-        return view('student.pages.booking.book_now');
+        $subjects = Teach::where('user_id',$t_id)->get();
+        return view('student.pages.booking.book_now',compact('t_id','subjects'));
     }
     public function bookingDetail(){
 
