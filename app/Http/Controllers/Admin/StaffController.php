@@ -12,15 +12,11 @@ use App\Models\Role;
 class StaffController extends Controller
 {
     public function index(){
-        $roles = Role::all();
-        $users = User::whereNotIn('role', [1,2,3])->get();
+        $roles = Role::whereNotIn('id', [1,2,3])->get();
+        $users = User::with('role')->whereNotIn('role', [1,2,3])->get();
         return view('admin.pages.staff.index',compact('users','roles'));
     }
-    public function role(){
-        $roles = Role::all();
-        return view('admin.pages.role.index',compact('roles'));
-    }
-
+   
     public function insertRole(Request $request){
 
         $request->validate([
