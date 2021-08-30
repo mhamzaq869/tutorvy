@@ -49,7 +49,7 @@ class TutorController extends Controller
         $tutor = User::with(['education','professional','teach'])->where('id',$id)->where('role',2)->where('status',2)->first();
         $approved_courses = Course::where('user_id',$id)->where('status',1)->get();
         $requested_courses = Course::where('user_id',$id)->where('status',0)->get();
-
+        
         return view('admin.pages.tutors.profile',compact('tutor','approved_courses','requested_courses'));
     }
 

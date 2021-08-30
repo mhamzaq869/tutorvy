@@ -21,8 +21,24 @@
                     <div class="card">
                         <div class="row card-body text-center">
                             <small class="mb-3">
+                                @if($tutor->rank == 1)
                                 <a class="ab_right" href="#" data-toggle="modal"
-                                data-target="#rankModal">Upgrade badge <img src="{{asset('admin/assets/img/ico/yellow-rank.png')}}" class="wd-30" alt="" widht="30"></a>
+                                    data-target="#rankModal">Upgrade badge <img src="/assets/images/ico/bluebadge.png" class="wd-30" alt="" widht="30">
+                                </a>
+                                @elseif($tutor->rank == 2)
+                                <a class="ab_right" href="#" data-toggle="modal"
+                                    data-target="#rankModal">Upgrade badge <img src="/assets/images/ico/yellow-rank.png" class="wd-30" alt="" widht="30">
+                                </a>
+                                @elseif($tutor->rank == 3)
+                                <a class="ab_right" href="#" data-toggle="modal"
+                                    data-target="#rankModal">Upgrade badge <img src="/assets/images/ico/rank.png" class="wd-30" alt="" widht="30">
+                                </a>
+                                @else
+                                <a class="ab_right" href="#" data-toggle="modal"
+                                    data-target="#rankModal">Upgrade badge <img src="/assets/images/ico/rank.png" class="wd-30" alt="" widht="30">
+                                </a>
+                                @endif
+                                
                             </small>
                             <div class="col-md-12 mt-2">
                                 <img src="{{asset('admin/assets/img/ico/porfile-main.svg')}}"
