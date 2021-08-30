@@ -826,3 +826,49 @@
 
 
 /* scroll x axises */
+
+.round-profile {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #1854AB;
+}
+
+.wd-30 {
+    width: 20px;
+}
+
+.ab_right {
+    position: absolute;
+    right: 3%;
+    top: 3%;
+}
+
+.ab_right:hover {
+    text-decoration: none;
+}
+
+.text-grey {
+    color: #6E7988;
+    font-weight: 500;
+}
+
+.view-bookings {
+    margin-top: 15px;
+}
+
+.f-14 {
+    font-size: 14px;
+}
+
+.f-16 {
+    font-size: 16px;
+}
+
+.rank-select:hover {
+    text-decoration: none;
+}
+
+.active-rank {
+    background: #6E7988;
+}
