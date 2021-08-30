@@ -219,7 +219,15 @@ function list_tutors(){
         }
 
     }else{
-        $('#tutors-list').html('No Record Found');
+        let no_rec_html = `<div class="card">
+                            <div class="card-body text-center">
+                                <img src="{{asset ('assets/images/ico/subject-con.png')}}" alt="">
+                                <h1 class="">No Services Found For Your Search</h1>
+                                <h3  class="">Try a new search for your subject from</h3>
+                                    <h3>  our community of tutors.</h3>
+                            </div>
+                        </div>`;
+        $('#tutors-list').html(no_rec_html);
     }
 
 }    
