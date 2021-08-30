@@ -91,7 +91,7 @@ function list_tutors(){
             let int_html = '';
             let sub_html = '';
             let rating_html = '';
-
+            let rank_html = '';
 
             for(var ins=0 ; ins < inst.length; ins++){ 
                 int_html +=` <span class="info-1 info edu">`+inst[ins]+`</span>`;
@@ -130,6 +130,14 @@ function list_tutors(){
                                 <small class="text-grey">(0 reviews)</small>`;
 
             }
+
+            if(tutors[i].rank == 1){
+                rank_html = `<p class="text-right"><span class="text-green ">Verified</span> <span class="rank_icon"><img src="../assets/images/ico/bluebadge.png" alt=""></span> </p>`;
+            }else if(tutors[i].rank == 2){
+                rank_html = `<p class="text-right"><span class="text-green ">Emerging</span> <span class="rank_icon"><img src="../assets/images/ico/yellow-rank.png" alt=""></span> </p>`;
+            }else if(tutors[i].rank == 3){
+                rank_html = `<p class="text-right"><span class="text-green ">Top Rank</span> <span class="rank_icon"><img src="../assets/images/ico/rank.png" alt=""></span> </p>`;
+            }
            
 
             let tutor_Card = `<div class="card">
@@ -156,7 +164,7 @@ function list_tutors(){
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <p class="text-right"><span class="text-green ">Verified</span> <span class="rank_icon"><img src="../assets/images/ico/bluebadge.png" alt=""></span> </p>
+                                                    `+rank_html+`
                                                 </div>
                                             </div>
                                             <div class="row mt-2">

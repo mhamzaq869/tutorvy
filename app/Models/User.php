@@ -51,6 +51,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'provider',
         'role',
         'status',
+        'rating',
+        'rank'
     ];
 
 

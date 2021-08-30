@@ -40,12 +40,11 @@ class CreateUsersTable extends Migration
             $table->integer('std_degree')->nullable();
             $table->integer('std_subj')->nullable();
             $table->integer('std_learn')->nullable();
-
             $table->string('provider')->default('direct');
             $table->integer('role')->nullable()->comment('1-admin 2-tutor 3-student 4-staff');
             $table->integer('status')->default(0)->comment('0-pending,1-approved/enabled,2-rejected,3-disabled' );
             $table->integer('rating')->nullable();
-            
+            $table->integer('rank')->default(0)->comment('0-New Tutor,1-Verified,2-Emerging Tutor,3-Top Rank');
             $table->rememberToken();
             $table->timestamps();
         });
