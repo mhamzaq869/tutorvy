@@ -33,7 +33,7 @@
                                                         Subject <span class="pull-right"><i class="fa fa-chevron-down"></i></span>
                                                 </div>
                                             </a>
-                                            <div id="subjectDiv" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
+                                            <div id="subjectDiv" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                                                 <div class="card-body pl-2 pr-0 pt-0">
                                                     <select class="w-100 form-control accSelect2" id="subjects-list">
                                                         <option value="">Search Subject</option>
@@ -55,7 +55,7 @@
                                                         Location <span class="pull-right"><i class="fa fa-chevron-down"></i></span>
                                                 </div>
                                             </a>
-                                            <div id="locationDiv" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
+                                            <div id="locationDiv" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                                                 <div class="card-body pl-2 pr-0 pt-0">
                                                     <select class="w-100 form-control accSelect2">
                                                         <option value="">Search Location</option>

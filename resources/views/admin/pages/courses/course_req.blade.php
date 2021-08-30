@@ -155,596 +155,620 @@
                                 <div class="panel " id="one-panel">
                                     <div class="container-fluid ">
                                     <div class="panel-title">Course outline</div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <!-- <span class="heading-forth ml-2">Course outline</span> -->
-                
-                                                <div id="main">
-                                                    <!-- first -->
-                                                    <div class="container-fluid m-0 p-0 border-bottom pb-3">
-                                                        @foreach($course->outline as $outline)
-                                                            @if($outline->level == 1)   
-                                                                @if($outline->title == '' && $outline->explain == '')
-                                                                <p>No Course Outline added.</p>
-                                                                @else
-                                                                <div class="accordion active" id="faq">
-                                                                        <div class="card m-0 p-0">
-                                                                            
-                                                                                <div class="card-header" id="outlinehead{{$outline->id}}">
-                                                                                    <a href="#" 
-                                                                                        class=" bg-color btn-header-link collapsed"
-                                                                                        data-toggle="collapse" data-target="#outline{{$outline->id}}"
-                                                                                        aria-expanded="true" aria-controls="outline{{$outline->id}}">
-                                                                                        <img class="mr-2"
-                                                                                            src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                                        {{$outline->title}}</a>
-                                                                                </div>
-                                                                                <div id="outline{{$outline->id}}" class="collapse show border-radius"
-                                                                                    aria-labelledby="{{$outline->id}}" data-parent="#outline{{$outline->id}}">
-                                                                                    <div class="card-body">
-                                                                                        {{$outline->explain}}
+                                        @if($course->basic_class_title == "null")
+                                            <div class="row mt-3">
+                                                <div class="col-md-12 text-center mt-5">
+                                                    <h3 class="">No basic package added yet</h3>
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <!-- <span class="heading-forth ml-2">Course outline</span> -->
+                    
+                                                    <div id="main">
+                                                        <!-- first -->
+                                                        <div class="container-fluid m-0 p-0 border-bottom pb-3">
+                                                            @foreach($course->outline as $outline)
+                                                                @if($outline->level == 1)   
+                                                                    @if($outline->title == '' && $outline->explain == '')
+                                                                    <p>No Course Outline added.</p>
+                                                                    @else
+                                                                    <div class="accordion active" id="faq">
+                                                                            <div class="card m-0 p-0">
+                                                                                
+                                                                                    <div class="card-header" id="outlinehead{{$outline->id}}">
+                                                                                        <a href="#" 
+                                                                                            class=" bg-color btn-header-link collapsed"
+                                                                                            data-toggle="collapse" data-target="#outline{{$outline->id}}"
+                                                                                            aria-expanded="true" aria-controls="outline{{$outline->id}}">
+                                                                                            <img class="mr-2"
+                                                                                                src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                                            {{$outline->title}}</a>
                                                                                     </div>
-                                                                                </div>
-                                                                            
+                                                                                    <div id="outline{{$outline->id}}" class="collapse show border-radius"
+                                                                                        aria-labelledby="{{$outline->id}}" data-parent="#outline{{$outline->id}}">
+                                                                                        <div class="card-body">
+                                                                                            {{$outline->explain}}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
+                                                                    @endif
                                                                 @endif
-                                                            @endif
-                                                        @endforeach
+                                                            @endforeach
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <span class="heading-fifth" style="font-weight: 600;">Timing</span>
-                                                <p class="paragraph-text-2 mt-1">{{ $course->basic_duration != null ? $course->basic_duration : 0 }} weeks ({{ $course->course_basic_days != null ? $course->course_basic_days : '---' }})</p>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span class="heading-fifth" style="font-weight: 600;">Timing</span>
+                                                    <p class="paragraph-text-2 mt-1">{{ $course->basic_duration != null ? $course->basic_duration : 0 }} weeks ({{ $course->course_basic_days != null ? $course->course_basic_days : '---' }})</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row ">
-                                            <div class="col-md-12 scrollable">
-                                                <table class="table table-borderless">
-                                                    <thea>
-                                                        <tr>
-                                                            <th scope="col"></th>
-                                                            <th scope="col w-150">Mon</th>
-                                                            <th scope="col w-150">Tue </th>
-                                                            <th scope="col w-150">Wed</th>
-                                                            <th scope="col w-150">Thu</th>
-                                                            <th scope="col w-150">Fri</th>
-                                                            <th scope="col w-150">Sat</th>
-                                                            <th scope="col w-150">Sun</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <!-- classes table time and topics -->
-                                                            @foreach($course->classes as $class)
-                                                            <tr class="wordBreak">
-                                                                <td class="pt-4">
-                                                                    <div class="w-150">
-                                                                        <span>{{date("g:i a", strtotime("$class->st_time UTC"))}} </span>
-                                                                        <p class="mt-5">{{date("g:i a", strtotime("$class->et_time UTC"))}}</p>
-                                                                    </div>
-                                                                </td>
-
-                                                                @if($class->day == 1)
-                                                                <td class="m-0 p-0 pt-4">
-                                                                    <div class="bg-color-apporve pl-2 pr-3 m-0 p-0 w-150">
-                                                                        <span class="heading-fifth">
-                                                                        {{$class->title}}
-                                                                        </span>
-                                                                        <p class="paragraph-text-1 mb-1">
-                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
-                                                                        </p>
-                                                                        <p class="paragraph-text">
-                                                                        {{$class->overview}}
-                                                                        </p>
-                                                                    </div>
-                                                                </td>
-                                                                @else
-                                                                <td class="pt-4 pb-0">---</td>
-                                                                @endif
-
-                                                                @if($class->day == 2)
-                                                                <td class="m-0 p-0 pt-4">
-                                                                    <div class="bg-color-apporve pl-2 pr-3 m-0 p-0 w-150 w-150">
-                                                                        <span class="heading-fifth">
-                                                                        {{$class->title}}
-                                                                        </span>
-                                                                        <p class="paragraph-text-1 mb-1">
-                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
-                                                                        </p>
-                                                                        <p class="paragraph-text">
-                                                                        {{$class->overview}}
-                                                                        </p>
-                                                                    </div>
-                                                                </td>
-                                                                @else
-                                                                <td class="pt-4 pb-0">---</td>
-                                                                @endif
-                            
-                                                                @if($class->day == 3)
-                                                                <td class="m-0 p-0 pt-4">
-                                                                    <div class="bg-color-apporve3 pl-2 pr-3 m-0 p-0 w-150">
-                                                                        <span class="heading-fifth">
-                                                                        {{$class->title}}
-                                                                        </span>
-                                                                        <p class="paragraph-text-1 mb-1">
-                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
-                                                                        </p>
-                                                                        <p class="paragraph-text">
-                                                                        {{$class->overview}}
-                                                                        </p>
-                                                                    </div>
-                                                                </td>
-                                                                @else
-                                                                <td class="pt-4 pb-0">---</td>
-                                                                @endif
-
-                                                                @if($class->day == 4)
-                                                                <td class="m-0 p-0 pt-4">
-                                                                    <div class="bg-color-apporve pl-2 pr-3 m-0 p-0 w-150">
-                                                                        <span class="heading-fifth">
-                                                                        {{$class->title}}
-                                                                        </span>
-                                                                        <p class="paragraph-text-1 mb-1">
-                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
-                                                                        </p>
-                                                                        <p class="paragraph-text">
-                                                                        {{$class->overview}}
-                                                                        </p>
-                                                                    </div>
-                                                                </td>
-                                                                @else
-                                                                <td class="pt-4 pb-0">---</td>
-                                                                @endif
-
-                                                                @if($class->day == 5)
-                                                                <td class="m-0 p-0 pt-4">
-                                                                    <div class="bg-color-apporve pl-2 pr-3 m-0 p-0 w-150">
-                                                                        <span class="heading-fifth">
-                                                                        {{$class->title}}
-                                                                        </span>
-                                                                        <p class="paragraph-text-1 mb-1">
-                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
-                                                                        </p>
-                                                                        <p class="paragraph-text">
-                                                                        {{$class->overview}}
-                                                                        </p>
-                                                                    </div>
-                                                                </td>
-                                                                @else
-                                                                <td class="pt-4 pb-0">---</td>
-                                                                @endif
-
-                                                                @if($class->day == 6)
-                                                                <td class="m-0 p-0 pt-4">
-                                                                    <div class="bg-color-apporve pl-2 pr-3 m-0 p-0 w-150">
-                                                                        <span class="heading-fifth">
-                                                                        {{$class->title}}
-                                                                        </span>
-                                                                        <p class="paragraph-text-1 mb-1">
-                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
-                                                                        </p>
-                                                                        <p class="paragraph-text">
-                                                                        {{$class->overview}}
-                                                                        </p>
-                                                                    </div>
-                                                                </td>
-                                                                @else
-                                                                <td class="pt-4 pb-0">---</td>
-                                                                @endif
-
-                                                                @if($class->day == 7)
-                                                                <td class="m-0 p-0 pt-4">
-                                                                    <div class="bg-color-apporve3 pl-2 pr-3 m-0 p-0 w-150">
-                                                                        <span class="heading-fifth">
-                                                                        {{$class->title}}
-                                                                        </span>
-                                                                        <p class="paragraph-text-1 mb-1">
-                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
-                                                                        </p>
-                                                                        <p class="paragraph-text">
-                                                                        {{$class->overview}}
-                                                                        </p>
-                                                                    </div>
-                                                                </td>
-                                                                @else
-                                                                <td class="pt-4 pb-0">---</td>
-                                                                @endif
+                                            <div class="row ">
+                                                <div class="col-md-12 scrollable">
+                                                    <table class="table table-borderless">
+                                                        <thea>
+                                                            <tr>
+                                                                <th scope="col"></th>
+                                                                <th scope="col w-150">Mon</th>
+                                                                <th scope="col w-150">Tue </th>
+                                                                <th scope="col w-150">Wed</th>
+                                                                <th scope="col w-150">Thu</th>
+                                                                <th scope="col w-150">Fri</th>
+                                                                <th scope="col w-150">Sat</th>
+                                                                <th scope="col w-150">Sun</th>
                                                             </tr>
-                                                            @endforeach
-                            
-                                                        </tbody>
-                                                </table>
+                                                            </thead>
+                                                            <tbody>
+                                                                <!-- classes table time and topics -->
+                                                                @foreach($course->classes as $class)
+                                                                <tr class="wordBreak">
+                                                                    <td class="pt-4">
+                                                                        <div class="w-150">
+                                                                            <span>{{date("g:i a", strtotime("$class->st_time UTC"))}} </span>
+                                                                            <p class="mt-5">{{date("g:i a", strtotime("$class->et_time UTC"))}}</p>
+                                                                        </div>
+                                                                    </td>
+
+                                                                    @if($class->day == 1)
+                                                                    <td class="m-0 p-0 pt-4">
+                                                                        <div class="bg-color-apporve pl-2 pr-3 m-0 p-0 w-150">
+                                                                            <span class="heading-fifth">
+                                                                            {{$class->title}}
+                                                                            </span>
+                                                                            <p class="paragraph-text-1 mb-1">
+                                                                            <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
+                                                                            </p>
+                                                                            <p class="paragraph-text">
+                                                                            {{$class->overview}}
+                                                                            </p>
+                                                                        </div>
+                                                                    </td>
+                                                                    @else
+                                                                    <td class="pt-4 pb-0">---</td>
+                                                                    @endif
+
+                                                                    @if($class->day == 2)
+                                                                    <td class="m-0 p-0 pt-4">
+                                                                        <div class="bg-color-apporve1 pl-2 pr-3 m-0 p-0 w-150 w-150">
+                                                                            <span class="heading-fifth">
+                                                                            {{$class->title}}
+                                                                            </span>
+                                                                            <p class="paragraph-text-1 mb-1">
+                                                                            <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
+                                                                            </p>
+                                                                            <p class="paragraph-text">
+                                                                            {{$class->overview}}
+                                                                            </p>
+                                                                        </div>
+                                                                    </td>
+                                                                    @else
+                                                                    <td class="pt-4 pb-0">---</td>
+                                                                    @endif
+                                
+                                                                    @if($class->day == 3)
+                                                                    <td class="m-0 p-0 pt-4">
+                                                                        <div class="bg-color-apporve3 pl-2 pr-3 m-0 p-0 w-150">
+                                                                            <span class="heading-fifth">
+                                                                            {{$class->title}}
+                                                                            </span>
+                                                                            <p class="paragraph-text-1 mb-1">
+                                                                            <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
+                                                                            </p>
+                                                                            <p class="paragraph-text">
+                                                                            {{$class->overview}}
+                                                                            </p>
+                                                                        </div>
+                                                                    </td>
+                                                                    @else
+                                                                    <td class="pt-4 pb-0">---</td>
+                                                                    @endif
+
+                                                                    @if($class->day == 4)
+                                                                    <td class="m-0 p-0 pt-4">
+                                                                        <div class="bg-color-apporve pl-2 pr-3 m-0 p-0 w-150">
+                                                                            <span class="heading-fifth">
+                                                                            {{$class->title}}
+                                                                            </span>
+                                                                            <p class="paragraph-text-1 mb-1">
+                                                                            <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
+                                                                            </p>
+                                                                            <p class="paragraph-text">
+                                                                            {{$class->overview}}
+                                                                            </p>
+                                                                        </div>
+                                                                    </td>
+                                                                    @else
+                                                                    <td class="pt-4 pb-0">---</td>
+                                                                    @endif
+
+                                                                    @if($class->day == 5)
+                                                                    <td class="m-0 p-0 pt-4">
+                                                                        <div class="bg-color-apporve1 pl-2 pr-3 m-0 p-0 w-150">
+                                                                            <span class="heading-fifth">
+                                                                            {{$class->title}}
+                                                                            </span>
+                                                                            <p class="paragraph-text-1 mb-1">
+                                                                            <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
+                                                                            </p>
+                                                                            <p class="paragraph-text">
+                                                                            {{$class->overview}}
+                                                                            </p>
+                                                                        </div>
+                                                                    </td>
+                                                                    @else
+                                                                    <td class="pt-4 pb-0">---</td>
+                                                                    @endif
+
+                                                                    @if($class->day == 6)
+                                                                    <td class="m-0 p-0 pt-4">
+                                                                        <div class="bg-color-apporve3 pl-2 pr-3 m-0 p-0 w-150">
+                                                                            <span class="heading-fifth">
+                                                                            {{$class->title}}
+                                                                            </span>
+                                                                            <p class="paragraph-text-1 mb-1">
+                                                                            <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
+                                                                            </p>
+                                                                            <p class="paragraph-text">
+                                                                            {{$class->overview}}
+                                                                            </p>
+                                                                        </div>
+                                                                    </td>
+                                                                    @else
+                                                                    <td class="pt-4 pb-0">---</td>
+                                                                    @endif
+
+                                                                    @if($class->day == 7)
+                                                                    <td class="m-0 p-0 pt-4">
+                                                                        <div class="bg-color-apporve pl-2 pr-3 m-0 p-0 w-150">
+                                                                            <span class="heading-fifth">
+                                                                            {{$class->title}}
+                                                                            </span>
+                                                                            <p class="paragraph-text-1 mb-1">
+                                                                            <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
+                                                                            </p>
+                                                                            <p class="paragraph-text">
+                                                                            {{$class->overview}}
+                                                                            </p>
+                                                                        </div>
+                                                                    </td>
+                                                                    @else
+                                                                    <td class="pt-4 pb-0">---</td>
+                                                                    @endif
+                                                                </tr>
+                                                                @endforeach
+                                
+                                                            </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row mt-5 pb-5">
-                                            <div class="col-md-4">
-                                                <div class="d-flex pb-3">
-                                                    <span>
-                                                        @if($course->basic_home_work == 'on')
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                                        @else
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
-                                                        @endif
-                                                    </span>
-                                                    <span class="ml-3 heading-fifth mt-1">Home Work</span>
+                                            <div class="row mt-5 pb-5">
+                                                <div class="col-md-4">
+                                                    <div class="d-flex pb-3">
+                                                        <span>
+                                                            @if($course->basic_home_work == 'on')
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                            @else
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                            @endif
+                                                        </span>
+                                                        <span class="ml-3 heading-fifth mt-1">Home Work</span>
+                                                    </div>
+                                                    <div class="d-flex pb-3">
+                                                        <span>
+                                                            @if($course->basic_quiz == 'on')
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                            @else
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                            @endif
+                                                        </span>
+                                                        <span class="ml-3 heading-fifth mt-1">Quiz</span>
+                                                    </div>
+                                                    <div class="d-flex pb-3">
+                                                        <span>
+                                                        @if($course->basic_note == 'on')
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                            @else
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                            @endif
+                                                        </span>
+                                                        <span class="ml-3 heading-fifth mt-1">Note</span>
+                                                    </div>
                                                 </div>
-                                                <div class="d-flex pb-3">
-                                                    <span>
-                                                        @if($course->basic_quiz == 'on')
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                                        @else
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
-                                                        @endif
-                                                    </span>
-                                                    <span class="ml-3 heading-fifth mt-1">Quiz</span>
+                                                <div class="col-md-4">
+                                                    <div class="d-flex pb-3">
+                                                        <span>
+                                                            @if($course->basic_one_one == 'on')
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                            @else
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                            @endif
+                                                        </span>
+                                                        <span class="ml-3 heading-fifth mt-1">One to One session</span>
+                                                    </div>
+                                                    <div class="d-flex pb-3">
+                                                        <span>
+                                                            @if($course->basic_final == 'on')
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                            @else
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                            @endif
+                                                        </span>
+                                                        <span class="ml-3 heading-fifth mt-1">Final test</span>
+                                                    </div>
                                                 </div>
-                                                <div class="d-flex pb-3">
-                                                    <span>
-                                                    @if($course->basic_note == 'on')
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                                        @else
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
-                                                        @endif
-                                                    </span>
-                                                    <span class="ml-3 heading-fifth mt-1">Note</span>
+                                                <div class="col-md-4">
+                                                    <div class="view-bookings" >
+                                                        ${{$course->basic_price ?? 0 }}
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <div class="d-flex pb-3">
-                                                    <span>
-                                                         @if($course->basic_one_one == 'on')
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                                        @else
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
-                                                        @endif
-                                                    </span>
-                                                    <span class="ml-3 heading-fifth mt-1">One to One session</span>
-                                                </div>
-                                                <div class="d-flex pb-3">
-                                                    <span>
-                                                         @if($course->basic_final == 'on')
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                                        @else
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
-                                                        @endif
-                                                    </span>
-                                                    <span class="ml-3 heading-fifth mt-1">Final test</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="view-bookings" >
-                                                    ${{$course->basic_price ?? 0 }}
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="panel" id="two-panel">
                 
                                     <div class="container-fluid ">
-                                        <div class="panel-title">Take-Away Skills</div>
-                                        <div class="row mt-3">
-                                            <div class="col-md-12">
-                                                <span class="heading-forth ml-2">Course outline</span>
-                                                <div id="main">
-                                                    <div class="container-fluid m-0 p-0 border-bottom pb-3">
-                                                        @foreach($course->outline as $outline)
-                                                            @if($outline->level == 2) 
-                                                                @if($outline->title == '' && $outline->explain == '')
-                                                                    <p>No Course Outline added.</p>
-                                                                @else
-                                                                <div class="accordion" id="faq">
-                                                                    <div class="card m-0 p-0">
-                                                                        <div class="card-header" id="faqhead">
-                                                                            <a href="#"
-                                                                                class="bg-color btn-header-link collapsed"
-                                                                                data-toggle="collapse" data-target="#faq11"
-                                                                                aria-expanded="true" aria-controls="faq11">
-                                                                                <img class="mr-2"
-                                                                                    src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                                    {{$outline->title}}
-                                                                            </a>
-                                                                        </div>
-                                                                        <div id="faq11" class="collapse show border-radius"
-                                                                            aria-labelledby="faqhead3" data-parent="#faq11">
-                                                                            <div class="card-body">
-                                                                            {{$outline->explain}}
+                                        <div class="panel-title">Course Outline</div>
+                                        @if($course->standard_class_title == "null")
+                                            <div class="row mt-3">
+                                                <div class="col-md-12 text-center mt-5">
+                                                    <h3 class="">No standard package added yet</h3>
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="row mt-3">
+                                                <div class="col-md-12">
+                                                    <span class="heading-forth ml-2">Course outline</span>
+                                                    <div id="main">
+                                                        <div class="container-fluid m-0 p-0 border-bottom pb-3">
+                                                            @foreach($course->outline as $outline)
+                                                                @if($outline->level == 2) 
+                                                                    @if($outline->title == '' && $outline->explain == '')
+                                                                        <p>No Course Outline added.</p>
+                                                                    @else
+                                                                    <div class="accordion" id="faq">
+                                                                        <div class="card m-0 p-0">
+                                                                            <div class="card-header" id="faqhead">
+                                                                                <a href="#"
+                                                                                    class="bg-color btn-header-link collapsed"
+                                                                                    data-toggle="collapse" data-target="#faq11"
+                                                                                    aria-expanded="true" aria-controls="faq11">
+                                                                                    <img class="mr-2"
+                                                                                        src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                                        {{$outline->title}}
+                                                                                </a>
+                                                                            </div>
+                                                                            <div id="faq11" class="collapse show border-radius"
+                                                                                aria-labelledby="faqhead3" data-parent="#faq11">
+                                                                                <div class="card-body">
+                                                                                {{$outline->explain}}
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
+                                                                    @endif
                                                                 @endif
-                                                            @endif
-                                                        @endforeach
+                                                            @endforeach
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <span class="heading-fifth" style="font-weight: 600;">Timing</span>
-                                                <p class="paragraph-text-2 mt-1">{{ $course->standard_duration != null ? $course->standard_duration : 0 }} weeks ({{ $course->course_standard_days != null ? $course->course_standard_days : '---' }}) - {{date("g:i a", strtotime("$course->standard_start_time UTC"))}} to
-                                                {{date("g:i a", strtotime("$course->standard_end_time UTC"))}}</p>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span class="heading-fifth" style="font-weight: 600;">Timing</span>
+                                                    <p class="paragraph-text-2 mt-1">{{ $course->standard_duration != null ? $course->standard_duration : 0 }} weeks ({{ $course->course_standard_days != null ? $course->course_standard_days : '---' }}) - {{date("g:i a", strtotime("$course->standard_start_time UTC"))}} to
+                                                    {{date("g:i a", strtotime("$course->standard_end_time UTC"))}}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row mt-0 w-100 div-1">
-                                            <div class="col-md-12">
-                                                <table class="table table-borderless">
-                                                    <thea>
-                                                        <tr>
-                                                            <th scope="col"></th>
-                                                            <th scope="col">Mon</th>
-                                                            <th scope="col"> &nbsp;&nbsp;&nbsp;Tue </th>
-                                                            <th scope="col">Wed</th>
-                                                            <th scope="col">Thu</th>
-                                                            <th scope="col">Fri</th>
-                                                            <th scope="col">Sat</th>
-                                                            <th scope="col">Sun</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <!-- classes table time and topics -->
+                                            <div class="row mt-0 w-100 div-1">
+                                                <div class="col-md-12">
+                                                    <table class="table table-borderless">
+                                                        <thea>
                                                             <tr>
-                                                                <td class="pt-4">
-                                                                    <span>2pm</span>
-                                                                    <p class="mt-5">4pm</p>
-                                                                </td>
-                            
-                                                                <td class="pt-4 pb-0"></td>
-                                                                <td class="m-0 p-0">
-                                                                    <div class="bg-color-apporve pl-2 pr-3 m-0 p-0">
-                                                                        <span class="heading-fifth">
-                                                                            Live class
-                                                                        </span>
-                                                                        <p class="paragraph-text-1">
-                                                                            2pm
-                                                                        </p>
-                                                                        <p class="paragraph-text">
-                                                                            Jump start into
-                                                                            <br /> your live class with <br />
-                                                                            students.
-                                                                        </p>
-                                                                    </div>
-                                                                </td>
-                                                                <td class="m-0 p-0">
-                                                                    <div class="bg-color-apporve1 pl-2 pr-3 m-0 p-0">
-                                                                        <span class="heading-fifth">
-                                                                            Live class
-                                                                        </span>
-                                                                        <p class="paragraph-text-1">
-                                                                            2pm
-                                                                        </p>
-                                                                        <p class="paragraph-text">
-                                                                            Jump start into
-                                                                            <br />your live class with <br />
-                                                                            students.
-                                                                        </p>
-                                                                    </div>
-                                                                </td>
-                            
-                                                                <td class="m-0 p-0">
-                                                                    <div class="bg-color-apporve3 pl-2 pr-3 m-0 p-0">
-                                                                        <span class="heading-fifth">
-                                                                            Live class
-                                                                        </span>
-                                                                        <p class="paragraph-text-1">
-                                                                            2pm
-                                                                        </p>
-                                                                        <p class="paragraph-text">
-                                                                            Jump start into
-                                                                            <br /> your live class with <br />
-                                                                            students.
-                                                                        </p>
-                                                                    </div>
-                                                                </td>
-                            
-                            
+                                                                <th scope="col"></th>
+                                                                <th scope="col">Mon</th>
+                                                                <th scope="col"> &nbsp;&nbsp;&nbsp;Tue </th>
+                                                                <th scope="col">Wed</th>
+                                                                <th scope="col">Thu</th>
+                                                                <th scope="col">Fri</th>
+                                                                <th scope="col">Sat</th>
+                                                                <th scope="col">Sun</th>
                                                             </tr>
-                            
-                                                        </tbody>
-                                                </table>
+                                                            </thead>
+                                                            <tbody>
+                                                                <!-- classes table time and topics -->
+                                                                <tr>
+                                                                    <td class="pt-4">
+                                                                        <span>2pm</span>
+                                                                        <p class="mt-5">4pm</p>
+                                                                    </td>
+                                
+                                                                    <td class="pt-4 pb-0"></td>
+                                                                    <td class="m-0 p-0">
+                                                                        <div class="bg-color-apporve pl-2 pr-3 m-0 p-0">
+                                                                            <span class="heading-fifth">
+                                                                                Live class
+                                                                            </span>
+                                                                            <p class="paragraph-text-1">
+                                                                                2pm
+                                                                            </p>
+                                                                            <p class="paragraph-text">
+                                                                                Jump start into
+                                                                                <br /> your live class with <br />
+                                                                                students.
+                                                                            </p>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="m-0 p-0">
+                                                                        <div class="bg-color-apporve1 pl-2 pr-3 m-0 p-0">
+                                                                            <span class="heading-fifth">
+                                                                                Live class
+                                                                            </span>
+                                                                            <p class="paragraph-text-1">
+                                                                                2pm
+                                                                            </p>
+                                                                            <p class="paragraph-text">
+                                                                                Jump start into
+                                                                                <br />your live class with <br />
+                                                                                students.
+                                                                            </p>
+                                                                        </div>
+                                                                    </td>
+                                
+                                                                    <td class="m-0 p-0">
+                                                                        <div class="bg-color-apporve3 pl-2 pr-3 m-0 p-0">
+                                                                            <span class="heading-fifth">
+                                                                                Live class
+                                                                            </span>
+                                                                            <p class="paragraph-text-1">
+                                                                                2pm
+                                                                            </p>
+                                                                            <p class="paragraph-text">
+                                                                                Jump start into
+                                                                                <br /> your live class with <br />
+                                                                                students.
+                                                                            </p>
+                                                                        </div>
+                                                                    </td>
+                                
+                                
+                                                                </tr>
+                                
+                                                            </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row mt-5 pb-5">
-                                            <div class="col-md-4">
-                                                <div class="d-flex pb-3">
-                                                    <span>
-                                                        @if($course->standard_home_work == 'on')
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                                        @else
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
-                                                        @endif
-                                                    </span>
-                                                    <span class="ml-3 heading-fifth mt-1">Home Work</span>
+                                            <div class="row mt-5 pb-5">
+                                                <div class="col-md-4">
+                                                    <div class="d-flex pb-3">
+                                                        <span>
+                                                            @if($course->standard_home_work == 'on')
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                            @else
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                            @endif
+                                                        </span>
+                                                        <span class="ml-3 heading-fifth mt-1">Home Work</span>
+                                                    </div>
+                                                    <div class="d-flex pb-3">
+                                                        <span>
+                                                            @if($course->standard_quiz == 'on')
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                            @else
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                            @endif
+                                                        </span>
+                                                        <span class="ml-3 heading-fifth mt-1">Quiz</span>
+                                                    </div>
+                                                    <div class="d-flex pb-3">
+                                                        <span>
+                                                        @if($course->standard_note == 'on')
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                            @else
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                            @endif
+                                                        </span>
+                                                        <span class="ml-3 heading-fifth mt-1">Note</span>
+                                                    </div>
                                                 </div>
-                                                <div class="d-flex pb-3">
-                                                    <span>
-                                                        @if($course->standard_quiz == 'on')
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                                        @else
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
-                                                        @endif
-                                                    </span>
-                                                    <span class="ml-3 heading-fifth mt-1">Quiz</span>
+                                                <div class="col-md-4">
+                                                    <div class="d-flex pb-3">
+                                                        <span>
+                                                            @if($course->standard_one_one == 'on')
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                            @else
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                            @endif
+                                                        </span>
+                                                        <span class="ml-3 heading-fifth mt-1">One to One session</span>
+                                                    </div>
+                                                    <div class="d-flex pb-3">
+                                                        <span>
+                                                            @if($course->standard_final == 'on')
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                            @else
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                            @endif
+                                                        </span>
+                                                        <span class="ml-3 heading-fifth mt-1">Final test</span>
+                                                    </div>
                                                 </div>
-                                                <div class="d-flex pb-3">
-                                                    <span>
-                                                    @if($course->standard_note == 'on')
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                                        @else
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
-                                                        @endif
-                                                    </span>
-                                                    <span class="ml-3 heading-fifth mt-1">Note</span>
+                                                <div class="col-md-4">
+                                                    <div class="view-bookings" >
+                                                        ${{$course->standard_price ?? 0 }}
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <div class="d-flex pb-3">
-                                                    <span>
-                                                         @if($course->standard_one_one == 'on')
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                                        @else
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
-                                                        @endif
-                                                    </span>
-                                                    <span class="ml-3 heading-fifth mt-1">One to One session</span>
-                                                </div>
-                                                <div class="d-flex pb-3">
-                                                    <span>
-                                                         @if($course->standard_final == 'on')
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                                        @else
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
-                                                        @endif
-                                                    </span>
-                                                    <span class="ml-3 heading-fifth mt-1">Final test</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="view-bookings" >
-                                                    ${{$course->standard_price ?? 0 }}
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @endif
                                     </div>
                 
                                 </div>
                                 <div class="panel" id="three-panel">
                 
                                     <div class="container-fluid ">
-                                        <div class="panel-title">Note on Prerequisites</div>
-                                        <div class="row mt-3">
-                                            <div class="col-md-12 pl-0">
-                                                <span class="heading-forth ml-2">Course outline</span>
-                                                <div id="main">
-                                                    <div class="container-fluid m-0 p-0 border-bottom pb-3">
-                                                    @foreach($course->outline as $outline)
-                                                            @if($outline->level == 2) 
-                                                                @if($outline->title == '' && $outline->explain == '')
-                                                                    <p>No Course Outline added.</p>
-                                                                @else
-                                                                <div class="accordion" id="faq">
-                                                                    <div class="card m-0 p-0">
-                                                                        <div class="card-header" id="faqhead">
-                                                                            <a href="#"
-                                                                                class="bg-color btn-header-link collapsed"
-                                                                                data-toggle="collapse" data-target="#faq11"
-                                                                                aria-expanded="true" aria-controls="faq11">
-                                                                                <img class="mr-2"
-                                                                                    src="{{asset('admin/assets/img/ico/round.png')}}" />
-                                                                                    {{$outline->title}}
-                                                                            </a>
-                                                                        </div>
-                                                                        <div id="faq11" class="collapse show border-radius"
-                                                                            aria-labelledby="faqhead3" data-parent="#faq11">
-                                                                            <div class="card-body">
-                                                                            {{$outline->explain}}
+                                        <div class="panel-title">Course Outline</div>
+                                        @if($course->advance_class_title == "null")
+                                            <div class="row mt-3">
+                                                <div class="col-md-12 text-center mt-5">
+                                                    <h3 class="">No advance package added yet</h3>
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="row mt-3">
+                                                <div class="col-md-12 pl-0">
+                                                    <span class="heading-forth ml-2">Course outline</span>
+                                                    <div id="main">
+                                                        <div class="container-fluid m-0 p-0 border-bottom pb-3">
+                                                        @foreach($course->outline as $outline)
+                                                                @if($outline->level == 2) 
+                                                                    @if($outline->title == '' && $outline->explain == '')
+                                                                        <p>No Course Outline added.</p>
+                                                                    @else
+                                                                    <div class="accordion" id="faq">
+                                                                        <div class="card m-0 p-0">
+                                                                            <div class="card-header" id="faqhead">
+                                                                                <a href="#"
+                                                                                    class="bg-color btn-header-link collapsed"
+                                                                                    data-toggle="collapse" data-target="#faq11"
+                                                                                    aria-expanded="true" aria-controls="faq11">
+                                                                                    <img class="mr-2"
+                                                                                        src="{{asset('admin/assets/img/ico/round.png')}}" />
+                                                                                        {{$outline->title}}
+                                                                                </a>
+                                                                            </div>
+                                                                            <div id="faq11" class="collapse show border-radius"
+                                                                                aria-labelledby="faqhead3" data-parent="#faq11">
+                                                                                <div class="card-body">
+                                                                                {{$outline->explain}}
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
+                                                                    @endif
                                                                 @endif
-                                                            @endif
-                                                        @endforeach
+                                                            @endforeach
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <span class="heading-fifth" style="font-weight: 600;">Timing</span>
-                                                <p class="paragraph-text-2 mt-1">{{ $course->advance_duration != null ? $course->advance_duration : 0 }} weeks ({{ $course->course_advance_days != null ? $course->course_advance_days : '---' }}) - {{date("g:i a", strtotime("$course->advance_start_time UTC"))}} to
-                                                {{date("g:i a", strtotime("$course->advance_end_time UTC"))}}</p>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span class="heading-fifth" style="font-weight: 600;">Timing</span>
+                                                    <p class="paragraph-text-2 mt-1">{{ $course->advance_duration != null ? $course->advance_duration : 0 }} weeks ({{ $course->course_advance_days != null ? $course->course_advance_days : '---' }}) - {{date("g:i a", strtotime("$course->advance_start_time UTC"))}} to
+                                                    {{date("g:i a", strtotime("$course->advance_end_time UTC"))}}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row mt-0 w-100 div-1">
-                                            <div class="col-md-12">
-                                                <table class="table table-borderless">
-                                                    <thea>
-                                                        <tr>
-                                                            <th scope="col"></th>
-                                                            <th scope="col">Mon</th>
-                                                            <th scope="col"> &nbsp;&nbsp;&nbsp;Tue </th>
-                                                            <th scope="col">Wed</th>
-                                                            <th scope="col">Thu</th>
-                                                            <th scope="col">Fri</th>
-                                                            <th scope="col">Sat</th>
-                                                            <th scope="col">Sun</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <!-- classes table time and topics -->
-                                                           
+                                            <div class="row mt-0 w-100 div-1">
+                                                <div class="col-md-12">
+                                                    <table class="table table-borderless">
+                                                        <thea>
+                                                            <tr>
+                                                                <th scope="col"></th>
+                                                                <th scope="col">Mon</th>
+                                                                <th scope="col"> &nbsp;&nbsp;&nbsp;Tue </th>
+                                                                <th scope="col">Wed</th>
+                                                                <th scope="col">Thu</th>
+                                                                <th scope="col">Fri</th>
+                                                                <th scope="col">Sat</th>
+                                                                <th scope="col">Sun</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <!-- classes table time and topics -->
                                                             
-                            
-                                                        </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <div class="row mt-5 pb-5">
-                                            <div class="col-md-4">
-                                                <div class="d-flex pb-3">
-                                                    <span>
-                                                        @if($course->advance_home_work == 'on')
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                                        @else
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
-                                                        @endif
-                                                    </span>
-                                                    <span class="ml-3 heading-fifth mt-1">Home Work</span>
-                                                </div>
-                                                <div class="d-flex pb-3">
-                                                    <span>
-                                                        @if($course->advance_quiz == 'on')
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                                        @else
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
-                                                        @endif
-                                                    </span>
-                                                    <span class="ml-3 heading-fifth mt-1">Quiz</span>
-                                                </div>
-                                                <div class="d-flex pb-3">
-                                                    <span>
-                                                    @if($course->advance_note == 'on')
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                                        @else
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
-                                                        @endif
-                                                    </span>
-                                                    <span class="ml-3 heading-fifth mt-1">Note</span>
+                                                                
+                                
+                                                            </tbody>
+                                                    </table>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <div class="d-flex pb-3">
-                                                    <span>
-                                                         @if($course->advance_one_one == 'on')
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                                        @else
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
-                                                        @endif
-                                                    </span>
-                                                    <span class="ml-3 heading-fifth mt-1">One to One session</span>
+                                            <div class="row mt-5 pb-5">
+                                                <div class="col-md-4">
+                                                    <div class="d-flex pb-3">
+                                                        <span>
+                                                            @if($course->advance_home_work == 'on')
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                            @else
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                            @endif
+                                                        </span>
+                                                        <span class="ml-3 heading-fifth mt-1">Home Work</span>
+                                                    </div>
+                                                    <div class="d-flex pb-3">
+                                                        <span>
+                                                            @if($course->advance_quiz == 'on')
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                            @else
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                            @endif
+                                                        </span>
+                                                        <span class="ml-3 heading-fifth mt-1">Quiz</span>
+                                                    </div>
+                                                    <div class="d-flex pb-3">
+                                                        <span>
+                                                        @if($course->advance_note == 'on')
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                            @else
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                            @endif
+                                                        </span>
+                                                        <span class="ml-3 heading-fifth mt-1">Note</span>
+                                                    </div>
                                                 </div>
-                                                <div class="d-flex pb-3">
-                                                    <span>
-                                                         @if($course->advance_final == 'on')
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
-                                                        @else
-                                                        <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
-                                                        @endif
-                                                    </span>
-                                                    <span class="ml-3 heading-fifth mt-1">Final test</span>
+                                                <div class="col-md-4">
+                                                    <div class="d-flex pb-3">
+                                                        <span>
+                                                            @if($course->advance_one_one == 'on')
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                            @else
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                            @endif
+                                                        </span>
+                                                        <span class="ml-3 heading-fifth mt-1">One to One session</span>
+                                                    </div>
+                                                    <div class="d-flex pb-3">
+                                                        <span>
+                                                            @if($course->advance_final == 'on')
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline.png')}}" alt="ico" />
+                                                            @else
+                                                            <img height="19px" class="mt-2" src="{{asset('admin/assets/img/ico/circle-outline-cross.png')}}" alt="ico" />
+                                                            @endif
+                                                        </span>
+                                                        <span class="ml-3 heading-fifth mt-1">Final test</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="view-bookings" >
+                                                        ${{$course->advance_price ?? 0 }}
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <div class="view-bookings" >
-                                                    ${{$course->advance_price ?? 0 }}
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
