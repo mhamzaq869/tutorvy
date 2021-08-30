@@ -16,7 +16,7 @@
                     <form action="">
                         <div class="row mt-5">
                                 <div class="input-text col-md-6">
-                                    <select name="institute[]" class="form-select form-select-lg"
+                                    <select name="institute[]" class="form-select form-select-lg w-100"
                                         aria-label=".form-select-lg example">
                                         <option value="Select SUbject">Select SUbject</option>
                                         <option value="1">1</option>
@@ -47,22 +47,11 @@
                             </div>
                             <div class="row mt-3">
                                 <div class="input-text col-md-6">
-                                    <select name="institute[]" class="form-select form-select-lg mb-3"
-                                        aria-label=".form-select-lg example">
-                                        <option value="">Class Date</option>
-                                        <option value="1">1</option>
-                                        <option value="1">1</option>
-                                        <option value="1">1</option>
-                                    </select>
+                                    <input type="" class="form-control"  onfocus="(this.type='date')" placeholder="Class Date">
                                 </div>
                                 <div class="input-text col-md-6">
-                                    <select name="institute[]" class="form-select form-select-lg mb-3"
-                                        aria-label=".form-select-lg example">
-                                        <option value="">Class Time</option>
-                                        <option value="1">1</option>
-                                        <option value="1">1</option>
-                                        <option value="1">1</option>
-                                    </select>
+                                <input type="" class="form-control"  onfocus="(this.type='time')" placeholder="Class Time">
+
                                 </div>
                             </div>
                             <div class="row mt-3">
