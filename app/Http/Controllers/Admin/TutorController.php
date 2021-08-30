@@ -135,10 +135,14 @@ class TutorController extends Controller
         $tutor->status = $request->status;
         $tutor->reject_note = $request->reason;
 
+        if($tutor->rank == 0 && $request->status == 2){
+            $tutor->rank = 1;
+        }
         $tutor->save();
 
         $message = '';
         if($request->status == 2){
+
             $message = 'Tutor Status Enabled.';
         }elseif($request->status == 3){
             $message = 'Tutor Rejected.';

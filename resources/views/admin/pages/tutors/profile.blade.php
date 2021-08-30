@@ -31,6 +31,24 @@
                             <div class="col-md-12 ">
                                 <p class="heading-forth name-text mt-2">{{ $tutor->first_name }} {{ $tutor->last_name }}</p>
                                 <p class="name-text1 paragraph-text1 mb-0 ">Tutor</p>
+                                
+                                @if($tutor->rating == 1)
+                                <p class="name-text1 paragraph-text1 mb-0">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star "></span>
+                                    <span class="fa fa-star "></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="paragraph-text1">4.0</span>
+                                </p>
+                                @elseif($tutor->rating == 2)
+                                <p class="name-text1 paragraph-text1 mb-0">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star "></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="paragraph-text1">4.0</span>
+                                </p>
+                                @elseif($tutor->rating == 3)
                                 <p class="name-text1 paragraph-text1 mb-0">
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star checked"></span>
@@ -38,6 +56,15 @@
                                     <span class="fa fa-star"></span>
                                     <span class="paragraph-text1">4.0</span>
                                 </p>
+                                @else
+                                <p class="name-text1 paragraph-text1 mb-0">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="paragraph-text1">4.0</span>
+                                </p>
+                                @endif
                             </div>
                             <div class="col-md-12">
                                 <div class="line-profile">&nbsp;</div>
