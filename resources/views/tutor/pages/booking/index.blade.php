@@ -80,7 +80,7 @@
                                                        {{$booking->topic}}
                                                     </td>
                                                     <td class="pt-4">
-                                                        5pm -07 Feb 2021
+                                                    {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
                                                     </td>
                                                     <td class="pt-4">
                                                         {{$booking->user->fullname}}
@@ -138,7 +138,7 @@
                                                        {{$booking->topic}}
                                                     </td>
                                                     <td class="pt-4">
-                                                        5pm -07 Feb 2021
+                                                        {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
                                                     </td>
                                                     <td class="pt-4">
                                                         {{$booking->user->fullname}}
@@ -200,7 +200,7 @@
                                                        {{$booking->topic}}
                                                     </td>
                                                     <td class="pt-4">
-                                                        5pm -07 Feb 2021
+                                                        {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
                                                     </td>
                                                     <td class="pt-4">
                                                         {{$booking->user->fullname}}
@@ -264,7 +264,7 @@
                                                        {{$booking->topic}}
                                                     </td>
                                                     <td class="pt-4">
-                                                        5pm -07 Feb 2021
+                                                        {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
                                                     </td>
                                                     <td class="pt-4">
                                                         {{$booking->user->fullname}}

@@ -56,6 +56,7 @@
      <script src="{{ asset('assets/js/multiselect.js')}}"></script>
      <script src="{{ asset('assets/js/countrySelect.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
      @include('js_files.chat')
      @yield('scripts')

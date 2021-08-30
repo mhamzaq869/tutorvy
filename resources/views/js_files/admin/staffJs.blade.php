@@ -2,7 +2,7 @@
 /* Staff Insert */
 
 $( '#add_staff_form' ).on( 'submit', function(e) {
-    alert('asd');
+    
     event.preventDefault();
 
     let name = $("input[name=name]").val();

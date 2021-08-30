@@ -11,60 +11,64 @@
         </p>
     </div>
     <div class="container">
-    <div class="col-md-12">
-                    <p class="heading-third mt-3">Personal information</p>
-                    <form action="">
-                        <div class="row mt-5">
-                                <div class="input-text col-md-6">
-                                    <select name="institute[]" class="form-select form-select-lg w-100"
-                                        aria-label=".form-select-lg example">
-                                        <option value="Select SUbject">Select SUbject</option>
-                                        <option value="1">1</option>
-                                        <option value="1">1</option>
-                                        <option value="1">1</option>
-                                    </select>
-                                </div>
-                                <div class="input-text col-md-6 d-block">
-                                    <input type="text" class="form-control " name=""
-                                        placeholder="Type your Topic" value="">
-                                </div>
-                            </div><div class="row mt-3">
-                                <div class="input-text col-md-12">
-                                    <input type="text"class="form-control " name=""
-                                        placeholder="What is the Question?" value="">
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="input-text col-md-12 ">
-                                    <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Write brief about your question"></textarea>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="  col-md-12">
-                                    <label for="" class="col-md-12 pl-0"><b>Upload any attachment if you want</b></label>
-                                    <input type="file" class="dropify" name="upload[]" id="" data-default-file="">
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="input-text col-md-6">
-                                    <input type="" class="form-control"  onfocus="(this.type='date')" placeholder="Class Date">
-                                </div>
-                                <div class="input-text col-md-6">
-                                <input type="" class="form-control"  onfocus="(this.type='time')" placeholder="Class Time">
+        <div class="col-md-12">
+            <p class="heading-third mt-3">Personal information</p>
+            <form action="{{route('student.booked.tutor')}}" method="post"  enctype="multipart/form-data" id="book_tutor_form">
+                <div class="row mt-5">
+                        <div class="input-text col-md-6">
+                            <select name="subject" class="form-select form-select-lg w-100"
+                                aria-label=".form-select-lg example" >
+                                <option value="Select Subject">Select Subject</option>
+                                @foreach($subjects as $subject)
+                                <option value="{{$subject->subject_id}}">{{$subject->sub_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="input-text col-md-6 d-block">
+                            <input type="text" class="form-control " name="topic"
+                                placeholder="Type your Topic" value="">
+                        </div>
+                        <div class="input-text col-md-6 d-block">
+                            <input type="text" class="form-control " hidden name="tutor_id" id="tutor_id"
+                                value="{{$t_id}}">
+                        </div>
+                    </div><div class="row mt-3">
+                        <div class="input-text col-md-12">
+                            <input type="text"class="form-control " name="question"
+                                placeholder="What is the Question?" value="">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="input-text col-md-12 ">
+                            <textarea name="brief" id="brief" cols="30" rows="5" class="form-control" placeholder="Write brief about your question"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <label for="" class="col-md-12 pl-0"><b>Upload any attachment if you want</b></label>
+                            <input type="file" class="form-control dropify" name="upload" id="" >
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="input-text col-md-6">
+                            <input type="" class="form-control" name="date"  onfocus="(this.type='date')" placeholder="Class Date">
+                        </div>
+                        <div class="input-text col-md-6">
+                        <input type="" class="form-control" name="time" onfocus="(this.type='time')" placeholder="Class Time">
 
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-12" >
-                                 
-                                    <button id="finish" type="button"  data-toggle="modal" data-target="#paymentModal"
-                                        class="btn-general   pull-right  mb-3">
-                                        &nbsp; Send Request &nbsp;
-                                    </button>
-                                </div>
-                            </div>
-                    </form>
-                </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12" >
+                            
+                            <button id="finish" type="submit"  
+                                class="btn-general   pull-right  mb-3">
+                                &nbsp; Send Request &nbsp;
+                            </button>
+                        </div>
+                    </div>
+            </form>
+        </div>
     </div>
     <div class="modal " id="paymentModal" tabindex="-1"
         role="dialog" aria-labelledby="paymentModalTitle"
@@ -127,4 +131,8 @@
         </div>
     </div>
 </section>
+@endsection
+
+@section('scripts')
+@include('js_files.student.bookingJs')
 @endsection

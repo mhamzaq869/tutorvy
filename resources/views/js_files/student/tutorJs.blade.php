@@ -92,7 +92,10 @@ function list_tutors(){
             let sub_html = '';
             let rating_html = '';
             let rank_html = '';
-
+            let t_id = tutors[i].id;
+            let url = "{{route('student.book-now', ':id')}}";
+            url = url.replace(':id', t_id);
+            console.log(t_id);
             for(var ins=0 ; ins < inst.length; ins++){ 
                 int_html +=` <span class="info-1 info edu">`+inst[ins]+`</span>`;
             }
@@ -204,7 +207,7 @@ function list_tutors(){
                                                     <button type="button" class=" cencel-btn w-100">
                                                             &nbsp; Message &nbsp;
                                                         </button>
-                                                    <button type="button" onclick="location.href = '{{route('student.book-now')}}';" class=" btn-general w-100 mt-2" >
+                                                    <button type="button" onclick="location.href = '`+url+`'" class=" btn-general w-100 mt-2" >
                                                             &nbsp; Book Class &nbsp;
                                                     </button>
                                                 </div>

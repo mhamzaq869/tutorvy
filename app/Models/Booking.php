@@ -42,12 +42,13 @@ class Booking extends Model
     }
     public function tutor()
     {
-        return $this->belongsTo(User::class,'id','booked_tutor');
+        return $this->belongsTo(User::class,'booked_tutor');
     }
     // Scopes for Filteration
     public function scopeToday($query)
     {
-        return $query->where(DB::raw('Date(created_at)'),'"'.date('Y-m-d').'"');
+        return $query->where(DB::raw('CAST(created_at as date)'),date('Y-m-d'));
+        
     }
     public function scopeTomorrow($query)
     {

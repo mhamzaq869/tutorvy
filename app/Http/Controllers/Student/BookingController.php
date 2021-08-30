@@ -15,11 +15,11 @@ class BookingController extends Controller
 
     public function index()
     {
-        $today = Booking::where('user_id',Auth::user()->id)->today()->get();
-        $tomorrow = Booking::where('user_id',Auth::user()->id)->tomorrow()->get();
-        $pending = Booking::where('user_id',Auth::user()->id)->status(0)->get();
-        $delivered = Booking::where('user_id',Auth::user()->id)->status(1)->get();
-
+        $today = Booking::with(['tutor'])->where('user_id',Auth::user()->id)->today()->get();
+        $tomorrow = Booking::with('tutor')->where('user_id',Auth::user()->id)->tomorrow()->get();
+        $pending = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(0)->get();
+        $delivered = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(1)->get();
+        
         return view('student.pages.booking.index',compact('today','tomorrow','pending','delivered'));
     }
 
@@ -28,9 +28,10 @@ class BookingController extends Controller
         $subjects = Teach::where('user_id',$t_id)->get();
         return view('student.pages.booking.book_now',compact('t_id','subjects'));
     }
-    public function bookingDetail(){
+    public function bookingDetail($id){
 
-        return view('student.pages.booking.booking_detail');
+        $booking = Booking::with(['tutor','user','subject'])->where('id',$id)->first();
+        return view('student.pages.booking.booking_detail',compact('booking'));
     }
     public function directBooking($id)
     {
@@ -42,12 +43,13 @@ class BookingController extends Controller
     public function booked(Request $request)
     {
         $attachments = [];
+        $path = '';
         if($request->hasFile('upload')){
-            foreach($request->upload as $i => $upload){
-                $path = 'storage/booking/docs/'.$upload->getClientOriginalName();
-                $upload->storeAs('booking/docs',$upload->getClientOriginalName(),'public');
-                array_push($attachments,$path);
-            }
+            // foreach($request->upload as $i => $upload){
+                $path = 'storage/booking/docs/'.$request->upload->getClientOriginalName();
+                $request->upload->storeAs('booking/docs',$request->upload->getClientOriginalName(),'public');
+                // array_push($attachments,$path);
+            // }
         }
 
        Booking::create([
@@ -57,13 +59,15 @@ class BookingController extends Controller
         'topic' => $request->topic,
         'question' => $request->question,
         'brief' => $request->brief,
-        'attachments' => json_encode($attachments),
+        'attachments' => $path,
         'class_date' => $request->date,
         'class_time' => $request->time,
-        'duration' => $request->duration,
-        'location' => $request->location,
+      
        ]);
 
-       return redirect()->back();
+       return response()->json([
+        'status'=>200,
+        'message' => 'success'
+    ]);
     }
 }

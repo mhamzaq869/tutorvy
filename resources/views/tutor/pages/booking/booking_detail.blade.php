@@ -91,11 +91,11 @@
                                 style="border-bottom: 1px solid #D6DBE2; display: inline-flex;">
                                 <p class="col-md-6 col-xs-12 class-ch"
                                     style="margin-top: 10px; text-align: left;color: #00132D;font-size: 22px;font-family: Poppins;font-weight: 500;">
-                                    {{$booking->topic}}
+                                    {{$booking->subject->name}} Class
                                 </p>
                                 <p style="text-align: right;" class="col-md-6 col-xs-12 class-btn-center">
                                     <button type="button" data-toggle="modal" data-target="#exampleModalCenter"
-                                        class="cencel-btn mr-2" style="font-size: 12px;width: 150px;"> Cencel
+                                        class="cencel-btn mr-2" style="font-size: 12px;width: 150px;"> Cancel
                                         Bookings</button>
                                     <button type="button" data-toggle="modal" data-target="#exampleModalCente"
                                         class="schedule-btn" style="font-size: 12px;width: 150px;"> Re-schedule
@@ -129,100 +129,87 @@
                                                {{$booking->brief}}
                                             </div>
                                             <div class="mt-4">
-                                                <div class="text3" style="display: flex;margin-left: -10px;">
+                                                <div class="text3" style="display: flex;">
                                                     <span>
-                                                        <img class="book-details" src="../assets/images//ico/Group 4689.png"
-                                                            alt="gros">
+                                                        <img class="book-details"
+                                                        
+                                                            src="{{ asset('assets/images/ico/Group 4689.png') }}" alt="gros">
                                                         <span class="schedule">
-                                                            Schedule time:
+                                                            Schedule Date:
                                                         </span>
                                                         <span class="time-details">
-                                                            7:30 pm
+                                                            {{$booking->class_date}}
                                                         </span>
                                                     </span>
-                                                    <span>
-                                                        <img class="book-details" src="../assets/images//ico/Group 4689.png"
-                                                            alt="gros">
+                                                    <span class="ml-3">
+                                                        <img class="book-details"
+                                                            src="{{ asset('assets/images/ico/Group 4689.png') }}" alt="gros">
                                                         <span class="schedule">
 
-                                                            Class duration:
+                                                            Schedule Time:
                                                         </span>
                                                         <span class="time-details">
-                                                            30:00 mintues
+                                                            {{$booking->class_time}}
                                                         </span>
                                                     </span>
                                                 </div>
                                             </div>
-                                            <div class="mt-2">
-                                                <div class="text3" style="display: flex;margin-left: -10px;">
-                                                    <span>
-                                                        <img class="book-details" src="../assets/images//ico/Group 4689.png"
-                                                            alt="gros">
-                                                        <span class="schedule">
-                                                            Schedule time:
-                                                        </span>
-                                                        <span class="time-details">
-                                                            7:30 pm
-                                                        </span>
-                                                    </span>
-                                                    <span>
-                                                        <img class="book-details" src="../assets/images//ico/Group 4689.png"
-                                                            alt="gros">
-                                                        <span class="schedule">
-
-                                                            Class duration:
-                                                        </span>
-                                                        <span class="time-details">
-                                                            30:00 mintues
-                                                        </span>
-                                                    </span>
-                                                </div>
-                                            </div>
+                                        
                                         </div>
                                         <div class="col-md-3"></div>
-                                        <div class="container-fluid" style="margin-left: -10px;">
-                                            <div class="row">
-                                                <div class="col-md-12 mt-3">
-                                                    <p class="ml-2"
-                                                        style="color: #00132D;font-size: 16px;font-family: Poppins;font-weight: 500;">
-                                                        2 attachments</p>
-                                                    <div class="row ml-1">
-                                                        <div class="col-md-3 col-sm-12  bg-light " style="height: 100px;">
-                                                            <div class="container-fluid m-0 p-0">
-                                                                <div class="text-home mt-3" style="display: flex;">
-                                                                    <p>
-                                                                        <input style="display: none;" type="file"
-                                                                            id="fileinput" /> <img
-                                                                            src="../assets/images/ico/word.png" alt="word">
-                                                                    </p>
-                                                                    <p class="ml-3 mr-3">
-                                                                        Word Files</p>
-                                                                </div>
-                                                                <div class="iconside">
-                                                                    <img src="../assets/images/ico/download.png" alt="o"
-                                                                        id='btnLoad' value='download'
-                                                                        onclick='downloadFile();'
-                                                                        style="width: 30px;position: absolute;top: 10px;right: 10px;">
-                                                                </div>
+                                        <div class="container-fluid" style="">
+                                            <div class="col-md-12 mt-3">
+                                                <p
+                                                    style="color: #00132D;font-size: 16px;font-family: Poppins;font-weight: 500;">
+                                                    2 attachments</p>
+                                                <div class="row">
+                                                    <div class="col-md-3 col-sm-12 card bg-light mb-3"
+                                                        style="">
+                                                        <div class="container-fluid m-0 p-0">
+                                                        <div class="text-home mt-3" style="display: flex;">
+                                                                <p>
+                                                                    <input style="display: none;" type="file"
+                                                                        id="fileinput" />
+                                                                    <img src="{{ asset($booking->attachments) }}"
+                                                                        alt="word" width="100" height="100">
+                                                                </p>
+                                                                <p class="ml-3 mr-3">
+                                                                    Image</p>
                                                             </div>
-                                                        </div> &nbsp;&nbsp;
-                                                        <div class="col-md-3 col-xs-12 bg-light " style="height: 100px;">
-                                                            <div class="container-fluid m-0 p-0">
-                                                                <div class="text-home mt-3" style="display: flex;">
-                                                                    <p><img src="../assets/images/ico/pptx.png" alt="ga">
-                                                                    </p>
-                                                                    <p class="ml-3 mr-3">
-                                                                        PPTX Files</p>
-                                                                </div>
+                                                            <div class="text-home mt-3" style="display: flex;">
+                                                                <p>
+                                                                    <input style="display: none;" type="file"
+                                                                        id="fileinput" />
+                                                                    <img src="{{ asset('assets/images/ico/word.png') }}"
+                                                                        alt="word">
+                                                                </p>
+                                                                <p class="ml-3 mr-3">
+                                                                    Word Files</p>
+                                                            </div>
+                                                            <div class="iconside">
+                                                                <img src="{{ asset('assets/images/ico/download.png') }}" alt="o"
+                                                                    id='btnLoad' value='download'
+                                                                    onclick='downloadFile();'
+                                                                    style="width: 30px;position: absolute;top: 10px;right: 10px;">
+                                                            </div>
+                                                        </div>
+                                                    </div> &nbsp;&nbsp;
+                                                    <div class="col-md-3 col-xs-12 bg-light  card mb-3"
+                                                        style="">
+                                                        <div class="container-fluid m-0 p-0">
+                                                            <div class="text-home mt-3" style="display: flex;">
+                                                                <p><img src="{{ asset('assets/images/ico/pptx.png') }}" alt="ga">
+                                                                </p>
+                                                                <p class="ml-3 mr-3">
+                                                                    PPTX Files</p>
+                                                            </div>
 
-                                                                <div class="iconside">
-                                                                    <img src="../assets/images/ico/download.png" alt="ag"
-                                                                        style="width: 30px;position: absolute;top: 10px;right: 10px;">
-                                                                </div>
+                                                            <div class="iconside">
+                                                                <img src="{{ asset('assets/images/ico/download.png') }}" alt="ag"
+                                                                    style="width: 30px;position: absolute;top: 10px;right: 10px;">
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4"></div>

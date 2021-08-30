@@ -249,7 +249,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item  mr-5">
-                <a href="{{route('student.book-now')}}">
+                <a href="">
                     <button class="booknow-btn">
                         Book Now
                     </button>

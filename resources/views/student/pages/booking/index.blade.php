@@ -80,10 +80,10 @@
                                                                 {{$booking->topic}}
                                                             </td>
                                                             <td class="pt-4">
-                                                                5pm -07 Feb 2021
+                                                                {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
                                                             </td>
                                                             <td class="pt-4">
-                                                                Harram Laraib
+                                                                {{$booking->tutor->first_name}} {{$booking->tutor->last_name}}
                                                             </td>
                                                             <td class="pt-4">
                                                                 &nbsp;00:30:00
@@ -93,7 +93,7 @@
                                                             </td>
 
                                                             <td style="text-align: center;">
-                                                                <a href="{{route('student.booking-detail')}}">
+                                                                <a href="{{route('student.booking-detail',[$booking->id])}}">
                                                                     <button class="schedule-btn" type="button">
                                                                         View details
                                                                     </button>
@@ -142,144 +142,13 @@
                                                             </td>
 
                                                             <td style="text-align: center;">
-                                                                <a href="{{route('student.booking-detail')}}">
+                                                                <a href="">
                                                                     <button type="button" class="schedule-btn">
                                                                         View details
                                                                     </button>
                                                                 </a>
                                                             </td>
                                                         </tr>
-
-
-                                                        <tr>
-                                                            <td class="pt-4"> Chemistry
-                                                            </td>
-                                                            <td class="pt-4"> Atomic </td>
-                                                            <td class="pt-4">5pm -07 Feb
-                                                                2021 </td>
-                                                            <td class="pt-4">Harram Laraib
-                                                            </td>
-                                                            <td class="pt-4">&nbsp;00:30:00
-                                                            </td>
-                                                            <td class="pt-4">&nbsp;500$
-                                                            </td>
-
-                                                            <td style="text-align: center;">
-                                                                <a href="{{route('student.booking-detail')}}">
-                                                                    <button type="button" class="schedule-btn">
-                                                                        View details
-                                                                    </button>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td class="pt-4"> Chemistry
-                                                            </td>
-                                                            <td class="pt-4"> Atomic </td>
-                                                            <td class="pt-4">5pm -07 Feb
-                                                                2021 </td>
-                                                            <td class="pt-4">Harram Laraib
-                                                            </td>
-                                                            <td class="pt-4">&nbsp;00:30:00
-                                                            </td>
-                                                            <td class="pt-4">&nbsp;500$
-                                                            </td>
-
-                                                            <td style="text-align: center   ;">
-                                                                <a href="{{route('student.booking-detail')}}">
-                                                                    <button type="button" class="schedule-btn">
-                                                                        View details
-                                                                    </button>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td class="pt-4"> Chemistry
-                                                            </td>
-                                                            <td class="pt-4"> Atomic </td>
-                                                            <td class="pt-4">5pm -07 Feb
-                                                                2021 </td>
-                                                            <td class="pt-4">Harram Laraib
-                                                            </td>
-                                                            <td class="pt-4">&nbsp;00:30:00
-                                                            </td>
-                                                            <td class="pt-4">&nbsp;500$
-                                                            </td>
-
-                                                            <td style="text-align: center   ;">
-                                                                <a href="{{route('student.booking-detail')}}">
-                                                                    <button type="button" class="schedule-btn">
-                                                                        View details
-                                                                    </button>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td class="pt-4"> Chemistry
-                                                            </td>
-                                                            <td class="pt-4"> Atomic </td>
-                                                            <td class="pt-4">5pm -07 Feb
-                                                                2021 </td>
-                                                            <td class="pt-4">Harram Laraib
-                                                            </td>
-                                                            <td class="pt-4">&nbsp;00:30:00
-                                                            </td>
-                                                            <td class="pt-4">&nbsp;500$
-                                                            </td>
-                                                            <td style="text-align: center   ;">
-                                                                <a href="{{route('student.booking-detail')}}">
-                                                                    <button type="button" class="schedule-btn">
-                                                                        View details
-                                                                    </button>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td class="pt-4"> Chemistry
-                                                            </td>
-                                                            <td class="pt-4"> Atomic </td>
-                                                            <td class="pt-4">5pm -07 Feb
-                                                                2021 </td>
-                                                            <td class="pt-4">Harram Laraib
-                                                            </td>
-                                                            <td class="pt-4">&nbsp;00:30:00
-                                                            </td>
-                                                            <td class="pt-4">&nbsp;500$
-                                                            </td>
-                                                            <td style="text-align: center;">
-                                                                <a href="{{route('student.booking-detail')}}">
-                                                                    <button type="button" class="schedule-btn">
-                                                                        View details
-                                                                    </button>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td class="pt-4"> Chemistry
-                                                            </td>
-                                                            <td class="pt-4"> Atomic </td>
-                                                            <td class="pt-4">5pm -07 Feb
-                                                                2021 </td>
-                                                            <td class="pt-4">Harram Laraib
-                                                            </td>
-                                                            <td class="pt-4">&nbsp;00:30:00
-                                                            </td>
-                                                            <td class="pt-4">&nbsp;500$
-                                                            </td>
-                                                            <td style="text-align: center;">
-                                                                <a href="{{route('student.booking-detail')}}">
-                                                                    <button type="button" class="schedule-btn">
-                                                                        View details
-                                                                    </button>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-
 
                                                     </tbody>
                                                 </table>
@@ -306,146 +175,36 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-
+                                                    @foreach ($pending as $booking)
                                                         <tr>
-                                                            <td class="pt-4"> Chemistry
+                                                            <td class="pt-4">
+                                                                {{$booking->subject->name}}
                                                             </td>
-                                                            <td class="pt-4"> Atomic </td>
-                                                            <td class="pt-4">5pm -07 Feb
-                                                                2021 </td>
-                                                            <td class="pt-4">Harram Laraib
+                                                            <td class="pt-4">
+                                                                {{$booking->topic}}
                                                             </td>
-                                                            <td class="pt-4">&nbsp;00:30:00
+                                                            <td class="pt-4">
+                                                                {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
                                                             </td>
-                                                            <td class="pt-4">&nbsp;500$
+                                                            <td class="pt-4">
+                                                            {{$booking->tutor->first_name}} {{$booking->tutor->last_name}}
+                                                            </td>
+                                                            <td class="pt-4">
+                                                                &nbsp;00:30:00
+                                                            </td>
+                                                            <td class="pt-4">
+                                                                &nbsp;500$
                                                             </td>
 
-                                                            <td style="text-align: center   ;">
-                                                                <a href="{{route('student.booking-detail')}}"> <button
-                                                                        type="button" class="schedule-btn">View
-                                                                        details</button></a>
+                                                            <td style="text-align: center;">
+                                                                <a href="{{route('student.booking-detail',[$booking->id])}}">
+                                                                    <button class="schedule-btn" type="button">
+                                                                        View details
+                                                                    </button>
+                                                                </a>
                                                             </td>
                                                         </tr>
-                                                        <tr>
-                                                            <td class="pt-4"> Chemistry
-                                                            </td>
-                                                            <td class="pt-4"> Atomic </td>
-                                                            <td class="pt-4">5pm -07 Feb
-                                                                2021 </td>
-                                                            <td class="pt-4">Harram Laraib
-                                                            </td>
-                                                            <td class="pt-4">&nbsp;00:30:00
-                                                            </td>
-                                                            <td class="pt-4">&nbsp;500$
-                                                            </td>
-
-                                                            <td style="text-align: center   ;">
-                                                                <a href="{{route('student.booking-detail')}}"> <button
-                                                                        type="button" class="schedule-btn">View
-                                                                        details</button></a>
-                                                            </td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td class="pt-4"> Chemistry
-                                                            </td>
-                                                            <td class="pt-4"> Atomic </td>
-                                                            <td class="pt-4">5pm -07 Feb
-                                                                2021 </td>
-                                                            <td class="pt-4">Harram Laraib
-                                                            </td>
-                                                            <td class="pt-4">&nbsp;00:30:00
-                                                            </td>
-                                                            <td class="pt-4">&nbsp;500$
-                                                            </td>
-
-                                                            <td style="text-align: center   ;">
-                                                                <a href="{{route('student.booking-detail')}}"> <button
-                                                                        type="button" class="schedule-btn">View
-                                                                        details</button></a>
-                                                            </td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td class="pt-4"> Chemistry
-                                                            </td>
-                                                            <td class="pt-4"> Atomic </td>
-                                                            <td class="pt-4">5pm -07 Feb
-                                                                2021 </td>
-                                                            <td class="pt-4">Harram Laraib
-                                                            </td>
-                                                            <td class="pt-4">&nbsp;00:30:00
-                                                            </td>
-                                                            <td class="pt-4">&nbsp;500$
-                                                            </td>
-
-                                                            <td style="text-align: center   ;">
-                                                                <a href="{{route('student.booking-detail')}}"> <button
-                                                                        type="button" class="schedule-btn">View
-                                                                        details</button></a>
-                                                            </td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td class="pt-4"> Chemistry
-                                                            </td>
-                                                            <td class="pt-4"> Atomic </td>
-                                                            <td class="pt-4">5pm -07 Feb
-                                                                2021 </td>
-                                                            <td class="pt-4">Harram Laraib
-                                                            </td>
-                                                            <td class="pt-4">&nbsp;00:30:00
-                                                            </td>
-                                                            <td class="pt-4">&nbsp;500$
-                                                            </td>
-
-                                                            <td style="text-align: center   ;">
-                                                                <a href="{{route('student.booking-detail')}}"> <button
-                                                                        type="button" class="schedule-btn">View
-                                                                        details</button></a>
-                                                            </td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td class="pt-4"> Chemistry
-                                                            </td>
-                                                            <td class="pt-4"> Atomic </td>
-                                                            <td class="pt-4">5pm -07 Feb
-                                                                2021 </td>
-                                                            <td class="pt-4">Harram Laraib
-                                                            </td>
-                                                            <td class="pt-4">&nbsp;00:30:00
-                                                            </td>
-                                                            <td class="pt-4">&nbsp;500$
-                                                            </td>
-
-                                                            <td style="text-align: center   ;">
-                                                                <a href="{{route('student.booking-detail')}}"> <button
-                                                                        type="button" class="schedule-btn">View
-                                                                        details</button></a>
-                                                            </td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td class="pt-4"> Chemistry
-                                                            </td>
-                                                            <td class="pt-4"> Atomic </td>
-                                                            <td class="pt-4">5pm -07 Feb
-                                                                2021 </td>
-                                                            <td class="pt-4">Harram Laraib
-                                                            </td>
-                                                            <td class="pt-4">&nbsp;00:30:00
-                                                            </td>
-                                                            <td class="pt-4">&nbsp;500$
-                                                            </td>
-
-                                                            <td style="text-align: center   ;">
-                                                                <a href="{{route('student.booking-detail')}}"> <button
-                                                                        type="button" class="schedule-btn">View
-                                                                        details</button></a>
-                                                            </td>
-                                                        </tr>
-
+                                                        @endforeach
 
                                                     </tbody>
                                                 </table>
@@ -472,7 +231,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-
+                                           
                                                 <tr>
                                                     <td class="pt-4"> Chemistry
                                                     </td>
@@ -493,161 +252,7 @@
                                                         <span class="fa fa-star"></span>
                                                     </td>
                                                     <td style="text-align: center   ;">
-                                                        <a href="{{route('student.booking-detail')}}"> <button
-                                                                type="button" class="schedule-btn">View
-                                                                details</button></a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star"></span>
-                                                    </td>
-                                                    <td style="text-align: center   ;">
-                                                        <a href="{{route('student.booking-detail')}}"> <button
-                                                                type="button" class="schedule-btn">View
-                                                                details</button></a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star"></span>
-                                                    </td>
-                                                    <td style="text-align: center   ;">
-                                                        <a href="{{route('student.booking-detail')}}"> <button
-                                                                type="button" class="schedule-btn">View
-                                                                details</button></a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star"></span>
-                                                    </td>
-                                                    <td style="text-align: center   ;">
-                                                        <a href="{{route('student.booking-detail')}}"> <button
-                                                                type="button" class="schedule-btn">View
-                                                                details</button></a>
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star"></span>
-                                                    </td>
-                                                    <td style="text-align: center   ;">
-                                                        <a href="{{route('student.booking-detail')}}"> <button
-                                                                type="button" class="schedule-btn">View
-                                                                details</button></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star"></span>
-                                                    </td>
-                                                    <td style="text-align: center   ;">
-                                                        <a href="{{route('student.booking-detail')}}"> <button
-                                                                type="button" class="schedule-btn">View
-                                                                details</button></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star"></span>
-                                                    </td>
-                                                    <td style="text-align: center   ;">
-                                                        <a href="{{route('student.booking-detail')}}"> <button
+                                                        <a href=""> <button
                                                                 type="button" class="schedule-btn">View
                                                                 details</button></a>
                                                     </td>
