@@ -76,7 +76,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="pt-4">{{ $staff->role }}</td>
+                                <td class="pt-4">{{ $staff->r_name }}</td>
                                 <td class="pt-4">
                                     <div class="container">
                                         <div class="row">
@@ -93,7 +93,7 @@
                                             </div>
                                             <div class="col-md-2">
                                                 <label class="switch">
-                                                    <input type="checkbox">
+                                                    <input type="checkbox" {{ ($staff->status == 1) ? 'checked' : ''}}>
                                                     <span class="slider round"></span>
                                                 </label>
                                             </div>

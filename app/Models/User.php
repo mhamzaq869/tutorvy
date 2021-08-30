@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Assessment;
+use App\Models\Role;
 use App\Models\Admin\Subject;
 use App\Models\General\Education;
 use App\Models\General\Professional;
@@ -56,7 +57,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
-    protected $appends = ['address','status_text','day','month','year','subjects','std_level','requests'];
+    protected $appends = ['address','status_text','day','month','year','subjects','std_level','requests','r_name'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -99,6 +100,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Subject::class);
     }
+    
     public function teach()
     {
         return $this->hasMany(Teach::class);
@@ -161,6 +163,17 @@ class User extends Authenticatable implements MustVerifyEmail
         }else{
             return 'Pending';
         }
+
+    }
+    public function getRNameAttribute(){
+
+       $id = $this->role;
+       $role = Role::where('id',$id)->first();
+       if($role){
+        return $role->name;
+       }else{
+           return '---';
+       }
 
     }
 
