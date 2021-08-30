@@ -101,6 +101,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        
                         @foreach($tutor->teach as $appr_sub)
                         <tr>
                             <td class="pt-4">
@@ -119,8 +120,8 @@
 
                                 </span>
                                 <label class="switch ml-3">
-                                    <input type="checkbox">
-                                    <span class="slider round"></span>
+                                    <input type="checkbox" {{ ($appr_sub->status == 1) ? 'checked' : ''}}>
+                                    <span class="slider round" ></span>
                                 </label>
                             </td>
                             <td class="pt-3 text-right">

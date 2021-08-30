@@ -76,9 +76,9 @@ class TutorController extends Controller
 
     public function subjects($id){
 
-        $tutor = User::with(['teach'])->where('id',$id)->where('role',2)->whereNotIn('status',[0,2])->first();
+        $tutor = User::with(['teach'])->where('id',$id)->where('role',2)->first();
         $pending_subjects = Assessment::where('user_id',$id)->where('status',0)->get();
-
+        
         return view('admin.pages.tutors.tutor_subjects',compact('tutor','pending_subjects'));
     }
 
