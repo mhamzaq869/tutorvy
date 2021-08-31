@@ -1,5 +1,16 @@
 @extends('admin.layouts.app')
+<style>
+    
+svg:not(:root) {
+    overflow: hidden;
+    width: 100%;
+    padding-top: 3px;
+}
 
+.flex-1 {
+    opacity: 0;
+}
+</style>
 @section('content')
 
     <!--section start  -->

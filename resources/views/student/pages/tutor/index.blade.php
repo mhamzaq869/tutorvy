@@ -105,6 +105,17 @@
                                                         <input class="form-check-input" type="radio" name="rating_filter" id="rating_filter" value="1" >
                                                         <label class="form-check-label" for="rating_filter">
                                                         <p>
+                                                            <i class="fa fa-star "></i>
+                                                            <i class="fa fa-star "></i>
+                                                            <i class="fa fa-star "></i>
+                                                            <i class="fa fa-star "></i> 
+                                                        </p>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="rating_filter" id="rating_filter" value="1" >
+                                                        <label class="form-check-label" for="rating_filter">
+                                                        <p>
                                                             <i class="fa fa-star text-yellow"></i>
                                                             <i class="fa fa-star "></i>
                                                             <i class="fa fa-star "></i>
@@ -179,9 +190,9 @@
                     @if(!$available_tutors)
                         <div class="card">
                             <div class="card-body text-center">
-                                <img src="{{asset ('assets/images/ico/subject-con.png')}}" alt="">
-                                <h1 class="">No Services Found For Your Search</h1>
-                                <h3  class="">Try a new search for your subject from</h3>
+                                <img src="http://127.0.0.1:8000/assets/images/ico/no-tutor.svg" alt="" width="200">
+                                <h1 class="">No Tutor Found For Your Search</h1>
+                                <h3 class="">Try a new search for your subject from</h3>
                                     <h3>  our community of tutors.</h3>
                             </div>
                         </div>

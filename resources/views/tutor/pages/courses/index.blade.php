@@ -212,18 +212,22 @@
     transition: 5s all;
 }
 .overlay span{
-    margin-top: 54%;
+    position: absolute;
     padding: 10px 36px;
     border-radius: 22px;
     background: #fff;
     color: #00132D;
+    top: 50%;
+    left: 12%;
 }
 .overlay span:hover{
-    margin-top: 54%;
+    position: absolute;
     padding: 10px 36px;
     border-radius: 22px;
     background: #fff;
     color: #00132D;
+    top: 50%;
+    left: 12%;
 }
 .leftSeat{
     position:absolute;
