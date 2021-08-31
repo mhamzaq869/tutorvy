@@ -28,7 +28,9 @@ class Booking extends Model
         'class_date',
         'class_time',
         'duration',
-        'location',
+        'cancel_note',
+        'reschedule_note',
+        'price'
     ];
 
 

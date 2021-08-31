@@ -1,13 +1,29 @@
 <script>
 
-function approveBookingModal(){
+function acceptBookingRequest(){
 
-    let book_date = "{{$booking->class_date}}";
-    let book_time = "{{$booking->class_time}}";
-    let book_duration = "{{$booking->class_duration}}";
-    let book_price = '{{tutor->hourly_rate}}';
+    $.ajax({
+        url: "{{route('tutor.booking.accept',[$booking->id])}}",
+        type:"GET",
+       
+        success:function(response){
+            // console.log(response);
+            if(response.status == 200) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Booking Approved Successfully!',
+                    showConfirmButton: false,
+                    timer: 2500
+                })
 
-    $('#').show();
+                $('#approveModel').modal('hide');
+                setInterval(function(){
+                    window.location.href = "{{ route('tutor.booking') }}";
+                }, 1500);
+            }
+        },
+    });
 
 }
 

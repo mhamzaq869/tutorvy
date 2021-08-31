@@ -15,12 +15,12 @@ class BookingController extends Controller
 
     public function index()
     {
-        $today = Booking::with(['tutor'])->where('user_id',Auth::user()->id)->today()->get();
-        $tomorrow = Booking::with('tutor')->where('user_id',Auth::user()->id)->tomorrow()->get();
-        $pending = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(0)->get();
-        $delivered = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(1)->get();
+        $today = Booking::with(['tutor'])->where('user_id',Auth::user()->id)->today()->status(0)->get();
+        $upcoming = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(2)->get();
+        $pending = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(1)->get();
+        $delivered = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(5)->get();
         
-        return view('student.pages.booking.index',compact('today','tomorrow','pending','delivered'));
+        return view('student.pages.booking.index',compact('today','upcoming','pending','delivered'));
     }
 
     public function bookNow($t_id){
@@ -52,22 +52,41 @@ class BookingController extends Controller
             // }
         }
 
-       Booking::create([
-        'user_id' => Auth::user()->id,
-        'booked_tutor' => $request->tutor_id,
-        'subject_id' =>$request->subject,
-        'topic' => $request->topic,
-        'question' => $request->question,
-        'brief' => $request->brief,
-        'attachments' => $path,
-        'class_date' => $request->date,
-        'class_time' => $request->time,
-      
-       ]);
+        $tutor = User::where('id',$request->tutor_id)->first();
+        $price = $tutor->hourly_rate * $request->duration;
 
-       return response()->json([
-        'status'=>200,
-        'message' => 'success'
-    ]);
+        Booking::create([
+
+            'user_id' => Auth::user()->id,
+            'booked_tutor' => $request->tutor_id,
+            'subject_id' =>$request->subject,
+            'topic' => $request->topic,
+            'question' => $request->question,
+            'brief' => $request->brief,
+            'attachments' => $path,
+            'class_date' => $request->date,
+            'class_time' => $request->time,
+            'duration' => $request->duration,
+            'price' => $price,
+        
+        ]);
+
+        return response()->json([
+            'status'=>200,
+            'message' => 'success'
+        ]);
+    }
+
+    function bookingPayment($id){
+
+        $booking = Booking::find($id);
+        $booking->status = 2;
+        $booking->save();
+
+        return response()->json([
+            'status'=>'200',
+            'message' => 'Booking accepted.'
+        ]);
+
     }
 }

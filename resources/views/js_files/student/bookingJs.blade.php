@@ -4,7 +4,8 @@
 $( '#book_tutor_form' ).on( 'submit', function(e) {
 
     event.preventDefault();
-    $('#tutor_id').val("{{$t_id}}");
+
+    $('#tutor_id').val("{{$t_id ?? '' }}");
     // let _token   = $('meta[name="csrf_token"]').attr('content');
 
     $.ajax({
@@ -33,5 +34,31 @@ $( '#book_tutor_form' ).on( 'submit', function(e) {
       },
      });
 });
+
+function payNow(){
+
+    $.ajax({
+        url: "{{route('student.booking.payment',[$booking->id ?? ''])}}",
+        type:"GET",
+       
+        success:function(response){
+            // console.log(response);
+            if(response.status == 200) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Booking scheduled & class also created.',
+                    showConfirmButton: false,
+                    timer: 2500
+                })
+
+                setInterval(function(){
+                    window.location.href = "{{ route('student.bookings') }}";
+                }, 1500);
+            }
+        },
+    });
+
+}
 
 </script>

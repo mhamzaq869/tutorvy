@@ -57,7 +57,7 @@
                             <input type="" class="form-control" name="time" onfocus="(this.type='time')" placeholder="Class Time">
                         </div>
                         <div class="input-text col-md-4">
-                            <input type="number" min="1" max="24" class="form-control" name="Duration" placeholder="Class Duration (in hours)">
+                            <input type="number" min="1" max="24" class="form-control" name="duration" placeholder="Class Duration (in hours)" required>
                         </div>
                     </div>
                     <div class="row mt-3">

@@ -83,10 +83,10 @@
                                                         {{$booking->user->fullname}}
                                                     </td>
                                                     <td class="pt-4">
-                                                        &nbsp;00:30:00
+                                                        &nbsp;{{$booking->duration}} Hour(s)
                                                     </td>
                                                     <td class="pt-4">
-                                                        &nbsp;500$
+                                                        &nbsp;${{$booking->price}}
                                                     </td>
 
                                                     <td style="text-align: center;">
@@ -139,10 +139,10 @@
                                                         {{$booking->user->fullname}}
                                                     </td>
                                                     <td class="pt-4">
-                                                        &nbsp;00:30:00
+                                                        &nbsp;{{$booking->duration}} Hour(s)
                                                     </td>
                                                     <td class="pt-4">
-                                                        &nbsp;500$
+                                                        &nbsp;${{$booking->price}}
                                                     </td>
 
                                                     <td style="text-align: center;">
@@ -197,10 +197,10 @@
                                                         {{$booking->user->fullname}}
                                                     </td>
                                                     <td class="pt-4">
-                                                        &nbsp;00:30:00
+                                                        &nbsp;{{$booking->duration}} Hour(s)
                                                     </td>
                                                     <td class="pt-4">
-                                                        &nbsp;500$
+                                                        &nbsp;${{$booking->price}}
                                                     </td>
 
                                                     <td style="text-align: center;">
@@ -259,10 +259,10 @@
                                                         {{$booking->user->fullname}}
                                                     </td>
                                                     <td class="pt-4">
-                                                        &nbsp;00:30:00
+                                                        &nbsp;{{$booking->duration}} Hour(s)
                                                     </td>
                                                     <td class="pt-4">
-                                                        &nbsp;500$
+                                                        &nbsp;${{$booking->price}}
                                                     </td>
 
                                                     <td style="text-align: center;">

@@ -15,10 +15,10 @@ class BookingController extends Controller
 
     public function index()
     {
-        $today = Booking::where('booked_tutor',Auth::user()->id)->today()->get();
-        $tomorrow = Booking::where('booked_tutor',Auth::user()->id)->tomorrow()->get();
-        $pending = Booking::where('booked_tutor',Auth::user()->id)->status(0)->get();
-        $delivered = Booking::where('booked_tutor',Auth::user()->id)->status(1)->get();
+        $today = Booking::where('booked_tutor',Auth::user()->id)->today()->status(0)->get();
+        $tomorrow = Booking::where('booked_tutor',Auth::user()->id)->status(2)->get();
+        $pending = Booking::where('booked_tutor',Auth::user()->id)->status(1)->get();
+        $delivered = Booking::where('booked_tutor',Auth::user()->id)->status(5)->get();
 
         return view('tutor.pages.booking.index',compact('today','tomorrow','pending','delivered'));
     }
@@ -32,6 +32,19 @@ class BookingController extends Controller
         return view('tutor.pages.booking.booking_detail',compact('booking','tutor'));
     }
 
+    public function acceptBooking($id){
+
+        $booking = Booking::find($id);
+        $booking->status = 1;
+        $booking->save();
+
+        return response()->json([
+            'status'=>'200',
+            'message' => 'Booking accepted.'
+        ]);
+    
+    }
+    
     /**
      *  Return Tutor Chat view
      */

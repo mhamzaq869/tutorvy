@@ -85,10 +85,10 @@
                                                                 {{$booking->tutor->first_name}} {{$booking->tutor->last_name}}
                                                             </td>
                                                             <td class="pt-4">
-                                                                &nbsp;00:30:00
+                                                                &nbsp;{{$booking->duration}} Hour(s)
                                                             </td>
                                                             <td class="pt-4">
-                                                                &nbsp;500$
+                                                                &nbsp;${{$booking->price}}
                                                             </td>
 
                                                             <td style="text-align: center;">
@@ -126,28 +126,35 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-
-                                                        <tr>
-                                                            <td class="pt-4"> Chemistry
-                                                            </td>
-                                                            <td class="pt-4"> Atomic </td>
-                                                            <td class="pt-4">5pm -07 Feb
-                                                                2021 </td>
-                                                            <td class="pt-4">Harram Laraib
-                                                            </td>
-                                                            <td class="pt-4">&nbsp;00:30:00
-                                                            </td>
-                                                            <td class="pt-4">&nbsp;500$
-                                                            </td>
-
-                                                            <td style="text-align: center;">
-                                                                <a href="">
-                                                                    <button type="button" class="schedule-btn">
-                                                                        View details
-                                                                    </button>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
+                                                        @foreach ($upcoming as $booking)
+                                                            <tr>
+                                                                <td class="pt-4">
+                                                                    {{$booking->subject->name}}
+                                                                </td>
+                                                                <td class="pt-4">
+                                                                    {{$booking->topic}}
+                                                                </td>
+                                                                <td class="pt-4">
+                                                                    {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
+                                                                </td>
+                                                                <td class="pt-4">
+                                                                {{$booking->tutor->first_name}} {{$booking->tutor->last_name}}
+                                                                </td>
+                                                                <td class="pt-4">
+                                                                    &nbsp;{{$booking->duration}} Hour(s)
+                                                                </td>
+                                                                <td class="pt-4">
+                                                                    &nbsp;${{$booking->price}}
+                                                                </td>
+                                                                <td class="pt-3 pb-3" style="text-align: center; " >
+                                                                    
+                                                                    <a href="{{route('student.booking-detail',[$booking->id])}}"  class="schedule-btn">
+                                                                        
+                                                                            View details
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
 
                                                     </tbody>
                                                 </table>
@@ -175,36 +182,7 @@
                                                     </thead>
                                                     <tbody>
                                                     <tr>
-                                                            <td class="pt-3">
-                                                                sdygf
-                                                            </td>
-                                                            <td class="pt-3">
-                                                                ef
-                                                            </td>
-                                                            <td class="pt-3">
-                                                                dsvsfsd
-                                                            </td>
-                                                            <td class="pt-3">
-                                                            segdrgf
-                                                            </td>
-                                                            <td class="pt-3">
-                                                                &nbsp;00:30:00
-                                                            </td>
-                                                            <td class="pt-3">
-                                                                &nbsp;500$
-                                                            </td>
 
-                                                            <td class="pt-3 pb-3" style="text-align: center; ">
-                                                                <a href="#"  class="cencel-btn mr-2">
-                                                                        
-                                                                        Make Payment
-                                                                </a>
-                                                                <a href="#"  class="schedule-btn">
-                                                                    
-                                                                        View details
-                                                                </a>
-                                                            </td>
-                                                        </tr>
                                                     @foreach ($pending as $booking)
                                                         <tr>
                                                             <td class="pt-4">
@@ -220,15 +198,14 @@
                                                             {{$booking->tutor->first_name}} {{$booking->tutor->last_name}}
                                                             </td>
                                                             <td class="pt-4">
-                                                                &nbsp;00:30:00
+                                                                &nbsp;{{$booking->duration}} Hour(s)
                                                             </td>
                                                             <td class="pt-4">
-                                                                &nbsp;500$
+                                                                &nbsp;${{$booking->price}}
                                                             </td>
-                                                            <td class="pt-3 pb-3" style="text-align: center; ">
-                                                                <a href="#"  class="cencel-btn mr-2">
-                                                                        
-                                                                        Make Payment
+                                                            <td class="pt-3 pb-3" style="text-align: center; " >
+                                                                <a class="cencel-btn mr-2" onclick="payNow()">
+                                                                    Pay Now
                                                                 </a>
                                                                 <a href="{{route('student.booking-detail',[$booking->id])}}"  class="schedule-btn">
                                                                     
@@ -263,32 +240,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                           
-                                                <tr>
-                                                    <td class="pt-4"> Chemistry
-                                                    </td>
-                                                    <td class="pt-4"> Atomic </td>
-                                                    <td class="pt-4">5pm -07 Feb
-                                                        2021 </td>
-                                                    <td class="pt-4">Harram Laraib
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;00:30:00
-                                                    </td>
-                                                    <td class="pt-4">&nbsp;500$
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star checked"></span>
-                                                        <span class="fa fa-star"></span>
-                                                    </td>
-                                                    <td style="text-align: center   ;">
-                                                        <a href=""> <button
-                                                                type="button" class="schedule-btn">View
-                                                                details</button></a>
-                                                    </td>
-                                                </tr>
+                                                
                                             </tbody>
                                         </table>
                                     </div>
@@ -299,4 +251,8 @@
         </div>
     </section>
 </div>
+@endsection
+
+@section('scripts')
+@include('js_files.student.bookingJs')
 @endsection

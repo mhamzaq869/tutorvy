@@ -67,32 +67,32 @@
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-6 col-6 col-sm-6 ">
-                                        <p>Approved Date: </p> 
+                                        <p>Schedule Date: </p> 
                                     </div>
                                     <div class="col-md-6 col-6 col-sm-6 text-right"> 
-                                        <p><strong> 23-11-2021 </strong></p> 
+                                        <p><strong> {{$booking->class_date}} </strong></p> 
                                     </div>
                                     <div class="col-md-6 col-6 col-sm-6">
-                                        <p>Approved Time: </p> 
+                                        <p>Schedule Time: </p> 
                                     </div>
                                     <div class="col-md-6 col-6 col-sm-6 text-right"> 
-                                        <p><strong> 23:11:20 AM </strong></p> 
+                                        <p><strong> {{date("g:i a", strtotime("$booking->class_time UTC"))}} </strong></p> 
                                     </div>
                                     <div class="col-md-6 col-6 col-sm-6">
-                                        <p>Approved Duration: </p> 
+                                        <p>Schedule Duration: </p> 
                                     </div>
                                     <div class="col-md-6 col-6 col-sm-6 text-right"> 
-                                        <p><strong> 3 Hours </strong></p> 
+                                        <p><strong> {{$booking->duration}} Hour(s)</strong></p> 
                                     </div>
                                     <div class="col-md-6 col-6 col-sm-6">
                                         <p>Total Fee: </p> 
                                     </div>
                                     <div class="col-md-6 col-6 col-sm-6 text-right"> 
-                                        <p><strong> $300  </strong></p> 
+                                        <p><strong> ${{$booking->price}}  </strong></p> 
                                     </div>
                                     <div class="col-md-12 text-right">
-                                    <button type="button" class="btn-general" data-dismiss="modal"
-                                        >Send</button>
+                                    <button type="button" class="btn-general" onclick="acceptBookingRequest()"
+                                        >Accept</button>
                                     </div>
                                 </div>
                             </div>
@@ -160,9 +160,11 @@
                                         <button type="button" data-toggle="modal" data-target="#exampleModalCente"
                                         class="schedule-btn" style="font-size: 12px;width: 150px;"> Re-schedule
                                         class</button>
-                                        <button type="button" data-toggle="modal" data-target="#approveModel"
-                                        class="schedule-btn" style="font-size: 12px;width: 150px;"> Approve
-                                        class</button>
+                                        @if($booking->status == 0)
+                                            <button type="button" data-toggle="modal" data-target="#approveModel"
+                                            class="schedule-btn" style="font-size: 12px;width: 150px;"> Approve
+                                            class</button>
+                                        @endif
                                 </p>
                             </div>
                             <card class="body">

@@ -24,8 +24,12 @@ class CreateBookingsTable extends Migration
             $table->string('attachments')->nullable();
             $table->string('class_date')->nullable();
             $table->string('class_time')->nullable();
+            $table->integer('duration')->nullable();
             $table->integer('status')->nullable()->comment('1-Pending , 2-Payment Pending , 3-Approved , 4-Cancelled by tutor , 5-Cancelled by student , 6-Delivered');
             $table->text('cancel_note')->nullable();
+            $table->text('reschedule_note')->nullable();
+            $table->double('price', 15, 2);
+
             $table->timestamps();
         });
     }
