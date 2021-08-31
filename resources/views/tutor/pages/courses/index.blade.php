@@ -210,14 +210,14 @@
     transition: 5s all;
 }
 .overlay span{
-    margin-top: 68%;
+    margin-top: 54%;
     padding: 10px 36px;
     border-radius: 22px;
     background: #fff;
     color: #00132D;
 }
 .overlay span:hover{
-    margin-top: 68%;
+    margin-top: 54%;
     padding: 10px 36px;
     border-radius: 22px;
     background: #fff;
@@ -232,14 +232,14 @@
         <h1 class="">
             Courses
         </h1>
-        <div class="container pt-4 pb-4 profile-header">
+        <div class=" profile-header">
             @if ($pen_course->count() != 0)
             <div class="row">
                 <div class="col-md-12">
                     <h2>Pending Courses</h2>
                 </div>
                 @foreach ($pen_course as $course)
-                    <div class="col-md-4 pending_hover">
+                    <div class="col-md-3 pending_hover">
                         <div class="card">
                             <div class="overlay">
                                 <span class="border-round btn">Approval Pending</span>
@@ -305,7 +305,7 @@
                     <h2>Rejected Courses</h2>
                 </div>
                 @foreach ($rej_course as $course)
-                <div class="col-md-4 pending_hover">
+                <div class="col-md-3 pending_hover">
                     <div class="card">
                         <div class="overlay">
                             <span class="border-round btn">Rejected Course</span>
@@ -371,7 +371,7 @@
                     <h2>My Courses</h2>
                 </div>
                 @foreach ($app_course as $course)
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
@@ -428,10 +428,10 @@
                 </div>
                 @endforeach
 
-                <div class="col-md-4 text-center">
+                <div class="col-md-3 text-center">
                     <div class="card border-only" >
                         <div class="card-body ">
-                            <div class="add-new" style="margin-top:46%;margin-bottom: 37%;">
+                            <div class="add-new" style="margin-top:40%;margin-bottom: 40%;">
                                 <a href="{{route('tutor.addcourse')}}">
                                     <img src="{{asset('assets/images/ico/add-new.png')}}" alt="add-new">
                                 </a>

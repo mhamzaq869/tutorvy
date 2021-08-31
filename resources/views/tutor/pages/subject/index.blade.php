@@ -20,12 +20,12 @@
 
     }
 
-    .badge {
+    /* .badge {
         position: absolute;
         right: -28px;
         top: -15px;
         z-index: 9;
-    }
+    } */
 
     .badge-new {
         background: #FAAF3A;
@@ -57,7 +57,7 @@
     <!-- top Fixed navbar End -->
     <section>
         <div class="content-wrapper " style="overflow: hidden;">
-            <div class="container">
+            <div class="container-fluid">
                 <p class="mr-3 mb-3 heading-first">
                     Subjects
                 </p>
@@ -66,7 +66,6 @@
             @if (Auth::user()->teach)
                 <div class="content" style="width: 100%;background-color: #FBFBFB !important;">
 
-                    <div class="container">
                         <!-- subject card -->
                         <div class="container-fluid">
                             <p class="heading-third mt-5">My Subjects</p>
@@ -108,7 +107,7 @@
                                                                 {{ $teach->subject->name }}</p>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <a href="{{route('tutor.remove.subject',[$teach->subject->id])}}" class="float-right mt-4 text-danger text-decoration-none">Remove</a>
+                                                            <a href="{{route('tutor.remove.subject',[$teach->subject->id])}}" class="float-right mt-2 text-danger text-decoration-none">Remove</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -130,14 +129,13 @@
                                             <div class="card-deck">
                                                 <div class="card h-auto card-shadow p-0">
                                                     <div class="card-body ">
-                                                        <span class="badge badge-pill  badge-pending mt-1">New</span>
                                                         <div class="row">
-                                                            <div class="col-md-8">
+                                                            <div class="col-md-9">
                                                                 <p class="heading-fifth mr-3 pt-2 mb-0 ">
                                                                     {{ $subject->name }}
                                                                 </p>
                                                             </div>
-                                                            <div class="col-md-4">
+                                                            <div class="col-md-3">
                                                                 <a href="{{ route('tutor.test', [$subject->id]) }}">
                                                                     <p class="view-bookings mb-0">Add</p>
                                                                 </a>
@@ -159,7 +157,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
 
                   
 

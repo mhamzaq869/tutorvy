@@ -45,7 +45,7 @@
     </div>
 
     <!--Approve Class Modal -->
-    <div class="modal " id="exampleModalCente" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal " id="approveModel" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content pt-4 pb-4">
                 <div class="modal-body">
@@ -53,33 +53,53 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="iconss" style="text-align: center;">
-                                    <img src="../assets/images/ico/watchs.png" width="60px">
+                                
+                                    <img src="{{asset ('admin/assets/img/ico/submit-test.png')}}" width="60px">
                                     <p
                                         style="font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 500;margin-top: 10px;">
                                         Approve Class</p>
                                     <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;"
                                         class="ml-4 mr-4">
                                         Send approved time for class.
-                                        class
                                     </p>
                                 </div>
-                                <div class="ml-4 mr-4">
-                                    <form>
-                                        <div style="display: flex;">
-                                            <input id="today2" class="inputtype mb-2" style="width: 170px;" type="date">
-                                            <input type="time" class="inputtype ml-5 mb-2" class="times"
-                                                style="width: 170px;" value="13:00" step="900">
-                                        </div>
-                                        <textarea class="form-control mt-3" rows="6" cols="50"
-                                            placeholder="Write reason"></textarea>
-                                    </form>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6 col-6 col-sm-6 ">
+                                        <p>Approved Date: </p> 
+                                    </div>
+                                    <div class="col-md-6 col-6 col-sm-6 text-right"> 
+                                        <p><strong> 23-11-2021 </strong></p> 
+                                    </div>
+                                    <div class="col-md-6 col-6 col-sm-6">
+                                        <p>Approved Time: </p> 
+                                    </div>
+                                    <div class="col-md-6 col-6 col-sm-6 text-right"> 
+                                        <p><strong> 23:11:20 AM </strong></p> 
+                                    </div>
+                                    <div class="col-md-6 col-6 col-sm-6">
+                                        <p>Approved Duration: </p> 
+                                    </div>
+                                    <div class="col-md-6 col-6 col-sm-6 text-right"> 
+                                        <p><strong> 3 Hours </strong></p> 
+                                    </div>
+                                    <div class="col-md-6 col-6 col-sm-6">
+                                        <p>Total Fee: </p> 
+                                    </div>
+                                    <div class="col-md-6 col-6 col-sm-6 text-right"> 
+                                        <p><strong> $300  </strong></p> 
+                                    </div>
+                                    <div class="col-md-12 text-right">
+                                    <button type="button" class="btn-general" data-dismiss="modal"
+                                        >Send</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="mt-4 mb-2" style="text-align: right;">
-                        <button type="button" class="schedule-btn" data-dismiss="modal"
-                            style="width: 130px;margin-right: 40px;">Send</button>
+                      
                     </div>
                 </div>
             </div>
@@ -140,7 +160,7 @@
                                         <button type="button" data-toggle="modal" data-target="#exampleModalCente"
                                         class="schedule-btn" style="font-size: 12px;width: 150px;"> Re-schedule
                                         class</button>
-                                        <button type="button" onclick="approveBookingModal()"
+                                        <button type="button" data-toggle="modal" data-target="#approveModel"
                                         class="schedule-btn" style="font-size: 12px;width: 150px;"> Approve
                                         class</button>
                                 </p>
