@@ -187,7 +187,7 @@
                     </div>
                 </div>
                 <div class="col-md-9 " id="tutors-list">
-                    @if(!$available_tutors)
+                    @if(sizeof($available_tutors) > 0 || $available_tutors == '[]' )
                         <div class="card">
                             <div class="card-body text-center">
                                 <img src="{{asset('assets/images/ico/no-tutor.svg')}}" alt="" width="200">
