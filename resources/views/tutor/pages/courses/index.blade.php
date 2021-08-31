@@ -36,6 +36,8 @@
 }
 .progress {
     margin-right: auto !important;
+    width: 51px !important;
+    height: 51px !important;
 }
 .progress:after{
     content: "";
@@ -62,7 +64,7 @@
     width: 100%;
     height: 100%;
     background: none;
-    border-width: 12px;
+    border-width: 6px;
     border-style: solid;
     position: absolute;
     top: 0;
@@ -92,9 +94,9 @@
     height: 90%;
     border-radius: 50%;
     background: transparent;
-    font-size: 24px;
+    font-size: 19px;
     color: #00132D;
-    line-height: 67px;
+    line-height: 45px;
     text-align: center;
     position: absolute;
     top: 5%;
@@ -223,38 +225,118 @@
     background: #fff;
     color: #00132D;
 }
+.leftSeat{
+    position:absolute;
+    top: 51px;
+}
+.course_thumb{
+    max-width: 100%;
+    height: 176px;
+}
 </style>
 @section('content')
 <link href="{{ asset('assets/css/course.css') }}" rel="stylesheet">
-
-    <!--section start  -->
-    <div class="container-fluid mt-3">
-        <h1 class="">
-            Courses
-        </h1>
-        <div class=" profile-header">
-            @if ($pen_course->count() != 0)
+<section>
+    <div class="content-wrapper " style="overflow: hidden;">
+        <!--section start  -->
+        <div class="container-fluid ">
             <div class="row">
-                <div class="col-md-12">
-                    <h2>Pending Courses</h2>
+                    <div class="col-md-12">
+                            <p class="mr-3 heading-first">
+                                < Courses
+                            </p>
+                    </div>
                 </div>
-                @foreach ($pen_course as $course)
+            <div class=" profile-header">
+                @if ($pen_course->count() != 0)
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Pending Courses</h2>
+                    </div>
+                    @foreach ($pen_course as $course)
+                        <div class="col-md-3 pending_hover">
+                            <div class="card">
+                                <div class="overlay">
+                                    <span class="border-round btn">Approval Pending</span>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12 text-center">
+                                            @if ($course->thumbnail)
+                                            <img src="{{asset($course->thumbnail)}}" class="border-round course_thumb" alt="Avatar"  >
+                                            @else
+                                            <img src="{{asset('assets/images/NoPath.png')}}" class="border-round course_thumb" alt="Avatar"  >
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-9">
+                                            <span class="che-text border-round">
+                                                {{$course->subject->name}}
+                                            </span>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <h2 class="price">${{$course->basic_price}}</h2>
+                                        </div>
+                                    </div>
+                                    <div class="row ">
+                                        <div class="col-md-12">
+                                            <h5>{{$course->title}}</h5>
+                                            <hr>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <p class="mt-2">Next batch is starting from {{date('d M, Y', strtotime($course->basic_start_time))}}</p>
+                                        </div>
+                                        <div class="col-md-4 text-center">
+                                            <div class="progress blue">
+                                                <span class="progress-left">
+                                                    <span class="progress-bar"></span>
+                                                </span>
+                                                <span class="progress-right">
+                                                    <span class="progress-bar"></span>
+                                                </span>
+                                                <div class="progress-value">
+                                                    <span>5</span>
+                                                </div>
+                                            </div>
+                                            <span class="leftSeat text-center">
+                                                <p>Seats Left</p>
+                                            </span>
+                                            <!-- <canvas id="myChart" width="400" height="400"></canvas> -->
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    @endforeach
+                </div>
+                @endif
+
+                @if ($rej_course->count() != 0)
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <h2>Rejected Courses</h2>
+                    </div>
+                    @foreach ($rej_course as $course)
                     <div class="col-md-3 pending_hover">
                         <div class="card">
                             <div class="overlay">
-                                <span class="border-round btn">Approval Pending</span>
+                                <span class="border-round btn">Rejected Course</span>
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 text-center">
                                         @if ($course->thumbnail)
-                                        <img src="{{asset($course->thumbnail)}}" class="border-round" alt="Avatar" style="width:100%" >
+                                        <img src="{{asset($course->thumbnail)}}" class="border-round course_thumb" alt="Avatar"  >
                                         @else
-                                        <img src="{{asset('assets/images/NoPath.png')}}" class="border-round" alt="Avatar" style="width:100%" >
+                                        <img src="{{asset('assets/images/NoPath.png')}}" class="border-round course_thumb" alt="Avatar"  >
                                         @endif
                                     </div>
                                 </div>
                                 <div class="row mt-3">
+
                                     <div class="col-md-9">
                                         <span class="che-text border-round">
                                             {{$course->subject->name}}
@@ -270,7 +352,7 @@
                                         <hr>
                                     </div>
                                     <div class="col-md-8">
-                                        <h5>Next batch is starting from {{date('d M, Y', strtotime($course->basic_start_time))}}</h5>
+                                    <p class="mt-2">Next batch is starting from {{date('d M, Y', strtotime($course->basic_start_time))}}</p>
                                     </div>
                                     <div class="col-md-4 text-center">
                                         <div class="progress blue">
@@ -282,167 +364,106 @@
                                             </span>
                                             <div class="progress-value">
                                                 <span>5</span>
-                                                <span>Seats Left</span>
+                                            
                                             </div>
                                         </div>
-                                        <div class="head text-center">
-                                            <p>Seats Left</p></div>
+                                        <span class="leftSeat text-center">
+                                                <p>Seats Left</p>
+                                            </span>
                                         <!-- <canvas id="myChart" width="400" height="400"></canvas> -->
                                     </div>
-
                                 </div>
                             </div>
                         </div>
 
                     </div>
-                @endforeach
-            </div>
-            @endif
-
-            @if ($rej_course->count() != 0)
-            <div class="row mt-3">
-                <div class="col-md-12">
-                    <h2>Rejected Courses</h2>
+                    @endforeach
                 </div>
-                @foreach ($rej_course as $course)
-                <div class="col-md-3 pending_hover">
-                    <div class="card">
-                        <div class="overlay">
-                            <span class="border-round btn">Rejected Course</span>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    @if ($course->thumbnail)
-                                    <img src="{{asset($course->thumbnail)}}" class="border-round" alt="Avatar" style="width:100%" >
-                                    @else
-                                    <img src="{{asset('assets/images/NoPath.png')}}" class="border-round" alt="Avatar" style="width:100%" >
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="row mt-3">
+                @endif
 
-                                <div class="col-md-9">
-                                    <span class="che-text border-round">
-                                        {{$course->subject->name}}
-                                    </span>
-                                </div>
-                                <div class="col-md-3">
-                                    <h2 class="price">${{$course->basic_price}}</h2>
-                                </div>
-                            </div>
-                            <div class="row ">
-                                <div class="col-md-12">
-                                    <h5>{{$course->title}}</h5>
-                                    <hr>
-                                </div>
-                                <div class="col-md-8">
-                                    <h5>Next batch is starting from {{date('d M, Y', strtotime($course->basic_start_time))}}</h5>
-                                </div>
-                                <div class="col-md-4 text-center">
-                                    <div class="progress blue">
-                                        <span class="progress-left">
-                                            <span class="progress-bar"></span>
-                                        </span>
-                                        <span class="progress-right">
-                                            <span class="progress-bar"></span>
-                                        </span>
-                                        <div class="progress-value">
-                                            <span>5</span>
-                                            <span>Seats Left</span>
-                                        </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <h2>My Courses</h2>
+                    </div>
+                    @foreach ($app_course as $course)
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        @if ($course->thumbnail)
+                                        <img src="{{asset($course->thumbnail)}}" class="border-round course_thumb" alt="Avatar" >
+                                        @else
+                                        <img src="{{asset('assets/images/NoPath.png')}}" class="border-round course_thumb" alt="Avatar" >
+                                        @endif
                                     </div>
-                                    <div class="head text-center">
-                                        <p>Seats Left</p></div>
-                                    <!-- <canvas id="myChart" width="400" height="400"></canvas> -->
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-9">
+                                        <span class="che-text border-round">
+                                            {{$course->subject->name}}
+                                        </span>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h2 class="price">${{$course->basic_price}}</h2>
+                                    </div>
+                                </div>
+                                <div class="row ">
+                                    <div class="col-md-12">
+                                        <h6>{{$course->title}}</h6>
+                                        <hr>
+                                    </div>
+                                    <div class="col-md-8">
+                                    <p class="mt-2">Next batch is starting from {{date('d M, Y', strtotime($course->basic_start_time))}}</p>
+                                    </div>
+                                    <div class="col-md-4 text-center">
+                                        <div class="progress blue">
+                                            <span class="progress-left">
+                                                <span class="progress-bar"></span>
+                                            </span>
+                                            <span class="progress-right">
+                                                <span class="progress-bar"></span>
+                                            </span>
+                                            <div class="progress-value">
+                                                <span>5</span>
+                                                
+                                            </div>
+                                        </div>
+                                        <span class="leftSeat text-center">
+                                                <p>Seats Left</p>
+                                            </span>
+                                    </div>
+                                    <div class="col-md-12 text-center learning-button mt-4">
+                                        <a href="{{ route('tutor.course.edit',[$course->id]) }}" class="no-decor">
+                                            Edit Course
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @endforeach
 
-                </div>
-                @endforeach
-            </div>
-            @endif
-
-
-            <div class="row mt-3">
-                <div class="col-md-12">
-                    <h2>My Courses</h2>
-                </div>
-                @foreach ($app_course as $course)
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    @if ($course->thumbnail)
-                                    <img src="{{asset($course->thumbnail)}}" class="border-round" alt="Avatar" style="width:100%" >
-                                    @else
-                                    <img src="{{asset('assets/images/NoPath.png')}}" class="border-round" alt="Avatar" style="width:100%" >
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-md-9">
-                                    <span class="che-text border-round">
-                                        {{$course->subject->name}}
-                                    </span>
-                                </div>
-                                <div class="col-md-3">
-                                    <h2 class="price">${{$course->basic_price}}</h2>
-                                </div>
-                            </div>
-                            <div class="row ">
-                                <div class="col-md-12">
-                                    <h6>{{$course->title}}</h6>
-                                    <hr>
-                                </div>
-                                <div class="col-md-8">
-                                    <h5>Next batch is starting from {{date('d M, Y', strtotime($course->basic_start_time))}}</h5>
-                                </div>
-                                <div class="col-md-4 text-center">
-                                    <div class="progress blue">
-                                        <span class="progress-left">
-                                            <span class="progress-bar"></span>
-                                        </span>
-                                        <span class="progress-right">
-                                            <span class="progress-bar"></span>
-                                        </span>
-                                        <div class="progress-value">
-                                            <span>5</span>
-                                            <span>Seats Left</span>
-                                        </div>
-                                    </div>
-                                    <div class="head text-center">
-                                        <p>Seats Left</p></div>
-                                </div>
-                                <div class="col-md-12 text-center learning-button">
-                                    <a href="{{ route('tutor.course.edit',[$course->id]) }}" class="no-decor">
-                                        Edit Course
+                    <div class="col-md-3 text-center">
+                        <div class="card border-only" >
+                            <div class="card-body ">
+                                <div class="add-new" style="margin-top:40%;margin-bottom: 40%;">
+                                    <a href="{{route('tutor.addcourse')}}">
+                                        <img src="{{asset('assets/images/ico/add-new.png')}}" alt="add-new">
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                @endforeach
-
-                <div class="col-md-3 text-center">
-                    <div class="card border-only" >
-                        <div class="card-body ">
-                            <div class="add-new" style="margin-top:40%;margin-bottom: 40%;">
-                                <a href="{{route('tutor.addcourse')}}">
-                                    <img src="{{asset('assets/images/ico/add-new.png')}}" alt="add-new">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
+        <!-- end section -->
     </div>
-    <!-- end section -->
+</section>
+
+    
 
 
 @endsection

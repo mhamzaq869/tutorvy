@@ -135,15 +135,16 @@
         </div>
     </div>
     <section>
-        <div class="container-fluid">
-            <a  href="./Booking.html">
-                <p class=" mr-3 mb-1 pt-0 booking-btns"
-                    style=" font-size: 24px;font-weight: 500;font-family: Poppins;color: #00132D;">
-                    <i class='fa fa-angle-left mr-1 ml-3'
-                        style='font-size:28px;font-weight: 500;position: relative;top: 2px;color: black;'> </i>
-                    Bookings details
-                </p>
-            </a>
+        <div class="content-wrapper " style="overflow: hidden;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                            <p class="mr-3 heading-first">
+                                < Booking Details
+                            </p>
+                    </div>
+                </div>
+                
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
@@ -185,11 +186,11 @@
                                             </div>
                                             <div class="text1"
                                                 style="color: #00132D;font-size: 15px;font-family: Poppins;font-weight: 500;line-height: 2;">
-                                               {{$booking->question}}
+                                                {{$booking->question}}
                                             </div>
                                             <div class="text2"
                                                 style="color: #00132D;font-size: 14px;font-family: Poppins;font-weight: 400;">
-                                               {{$booking->brief}}
+                                                {{$booking->brief}}
                                             </div>
                                             <div class="mt-4">
                                                 <div class="text3" style="display: flex;">
@@ -281,5 +282,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
     </section>
 @endsection

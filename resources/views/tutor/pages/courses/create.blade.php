@@ -76,10 +76,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container-fluid mt-3">
-            <div class="row">
-                <div class="col-md-7">
+            <div class="col-md-7">
+                <div class="container-fluid">
                     <h3 class="">Course levels</h3>
                     <p class="paragraph-text">
                         There are many variations of passages of Lorem Ipsum available, but the majority have
@@ -88,11 +86,9 @@
                     </p>
                 </div>
             </div>
-        </div>
-        <div class="container-fluid mt-3 pb-5">
-            <div class="row">
-                <div class="col-md-4 border-right mb-1">
-
+            <div class="col-md-5"></div>
+            <div class="col-md-4  border-right mb-1">
+                <div class="container-fluid">
                         <div class="text-center heading-forth">
                             Basic
                         </div>
@@ -106,7 +102,7 @@
                         {{-- <div id="basicNew"></div> --}}
 
                         <div class="text-center basicMore paid-text-1 btn w-100 mt-3 buttonAdd-1">
-                           <a href="#basicNew"> + Add more </a>
+                            <a href="#basicNew"> + Add more </a>
                         </div>
                         <div class="w-100 border-bottom">&nbsp;</div>
 
@@ -189,193 +185,194 @@
                             </select>
                         </div> -->
                         <div class=" mt-2" id="extraFields"></div>
-                       
+
                         <h3 class="mt-2 pb-1">
                         Price
-                    </h3>
-                    <div class="input-options mt-2">
-                       <input type="number" name="basic_price" class="form-control" placeholder="Add course price">
-                    </div>
+                        </h3>
+                        <div class="input-options mt-2">
+                            <input type="number" name="basic_price" class="form-control" placeholder="Add course price">
+                        </div>
                         <!-- <div class="text-center mt-4">
                             <input type="submit" class="schedule-btn w-50 " value="Submit course" />
-                        </div> -->
-
+                    </div> -->
                 </div>
-
-                <div class="col-md-4 border-right mb-1">
-
+            </div>
+            <div class="col-md-4 container-fluid border-right mb-1">
+                <div class="container-fluid">
                     <div class="text-center heading-forth">
-                        Standard
+                    Standard
                     </div>
                     <div class="adddivs-1" id="standardNew">
-                        <div class="input-serachs mt-2">
-                            <input type="search" name="standard_title[]" placeholder="Write course outline" />
-                        </div>
-                        <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
-                        name="standard_explain[]" rows="6" placeholder="Explain Here"></textarea>
+                    <div class="input-serachs mt-2">
+                        <input type="search" name="standard_title[]" placeholder="Write course outline" />
+                    </div>
+                    <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
+                    name="standard_explain[]" rows="6" placeholder="Explain Here"></textarea>
                     </div>
 
                     <div class="text-center standardMore paid-text-1 btn w-100 mt-3 buttonAdd-1">
-                        <a href="#standardNew"> + Add more </a>
+                    <a href="#standardNew"> + Add more </a>
                     </div>
                     <div class="w-100 border-bottom">&nbsp;</div>
 
                     <div class="mt-3 row">
-                        <div class="col-md-1 ">
-                            <span class="checkbox-edit"> <input type="checkbox" name="standard_home_work" id=""> </span>
-                        </div>
-                        <div class="col-md-10 ">
-                            <span class="paragraph-text"> Home work</span>
-                        </div>
+                    <div class="col-md-1 ">
+                        <span class="checkbox-edit"> <input type="checkbox" name="standard_home_work" id=""> </span>
+                    </div>
+                    <div class="col-md-10 ">
+                        <span class="paragraph-text"> Home work</span>
+                    </div>
                     </div>
                     <div class="mt-3 row">
-                        <div class="col-md-1">
-                            <span class="checkbox-edit"> <input type="checkbox" name="standard_quiz" id=""> </span>
-                        </div>
-                        <div class="col-md-10 ">
-                            <span class="paragraph-text"> Quiz</span>
-                        </div>
+                    <div class="col-md-1">
+                        <span class="checkbox-edit"> <input type="checkbox" name="standard_quiz" id=""> </span>
+                    </div>
+                    <div class="col-md-10 ">
+                        <span class="paragraph-text"> Quiz</span>
+                    </div>
                     </div>
                     <div class="mt-3 row">
-                        <div class="col-md-1">
-                            <span class="checkbox-edit"> <input type="checkbox"  name="standard_final" id=""> </span>
-                        </div>
-                        <div class="col-md-10 ">
-                            <span class="paragraph-text"> Final test</span>
-                        </div>
+                    <div class="col-md-1">
+                        <span class="checkbox-edit"> <input type="checkbox"  name="standard_final" id=""> </span>
+                    </div>
+                    <div class="col-md-10 ">
+                        <span class="paragraph-text"> Final test</span>
+                    </div>
                     </div>
                     <div class="mt-3 row">
-                        <div class="col-md-1">
-                            <span class="checkbox-edit"> <input type="checkbox"  name="standard_one_one" id=""> </span>
-                        </div>
-                        <div class="col-md-10 ">
-                            <span class="paragraph-text"> One to one session with tutor</span>
-                        </div>
+                    <div class="col-md-1">
+                        <span class="checkbox-edit"> <input type="checkbox"  name="standard_one_one" id=""> </span>
+                    </div>
+                    <div class="col-md-10 ">
+                        <span class="paragraph-text"> One to one session with tutor</span>
+                    </div>
                     </div>
                     <div class="mt-3 row">
-                        <div class="col-md-1">
-                            <span class="checkbox-edit"> <input type="checkbox"  name="standard_note" id=""> </span>
-                        </div>
-                        <div class="col-md-10 ">
-                            <span class="paragraph-text"> Note</span>
-                        </div>
+                    <div class="col-md-1">
+                        <span class="checkbox-edit"> <input type="checkbox"  name="standard_note" id=""> </span>
+                    </div>
+                    <div class="col-md-10 ">
+                        <span class="paragraph-text"> Note</span>
+                    </div>
                     </div>
                     <div class="input-options mt-3">
-                        <select name="standard_duration">
-                            <option disabled selected>Course duration</option>
-                            <option value="1">1 week</option>
-                            <option value="2">2 week</option>
-                            <option value="3">3 week</option>
-                            <option value="4">4 week</option>
-                            <option value="5">5 week</option>
-                            <option value="6">6 week</option>
-                        </select>
+                    <select name="standard_duration">
+                        <option disabled selected>Course duration</option>
+                        <option value="1">1 week</option>
+                        <option value="2">2 week</option>
+                        <option value="3">3 week</option>
+                        <option value="4">4 week</option>
+                        <option value="5">5 week</option>
+                        <option value="6">6 week</option>
+                    </select>
                     </div>
 
                     <h3 class="mt-3 pb-2">
                     Schedule
                     </h3>
                     <div class="input-options mt-2">
-                        <select class="js-multiSelect" id="standard_day" name="standard_days[]" multiple="multiple">
-                                <option value="1" >Monday</option>
-                                <option value="2">Tuesday</option>
-                                <option value="3">Wednesday</option>
-                                <option value="4">Thursday</option>
-                                <option value="5">Friday</option>
-                                <option value="6">Saturday</option>
-                                <option value="7">Sunday</option>
-                            </select>
-                        <!-- <select name="standard_days[]" id="standard_days" multiple role="multiselect">
-                            <option disabled selected required>Select days</option>
-                            <option value="monday">Monday</option>
-                            <option value="tuesday">Tuesday</option>
-                            <option value="wednesday">Wednesday</option>
-                            <option value="thursday">Thursday</option>
-                            <option value="Friday">Friday</option>
-                            <option value="Saturday">Saturday</option>
-                            <option value="Sunday">Sunday</option>
-                        </select> -->
+                    <select class="js-multiSelect" id="standard_day" name="standard_days[]" multiple="multiple">
+                            <option value="1" >Monday</option>
+                            <option value="2">Tuesday</option>
+                            <option value="3">Wednesday</option>
+                            <option value="4">Thursday</option>
+                            <option value="5">Friday</option>
+                            <option value="6">Saturday</option>
+                            <option value="7">Sunday</option>
+                        </select>
+                    <!-- <select name="standard_days[]" id="standard_days" multiple role="multiselect">
+                        <option disabled selected required>Select days</option>
+                        <option value="monday">Monday</option>
+                        <option value="tuesday">Tuesday</option>
+                        <option value="wednesday">Wednesday</option>
+                        <option value="thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                        <option value="Sunday">Sunday</option>
+                    </select> -->
                     </div>
                     <div class=" mt-2" id="standard_extraFields"></div>
                     <!-- <div class="input-options mt-2">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <input type="text" name="standard_start_time" class="form-control texteara-s mt-2 pt-2 mb-2"placeholder="From"
-                                    onfocus="(this.type='time')">
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" name="standard_end_time" class="form-control texteara-s mt-2 pt-2 mb-2"placeholder="To"
-                                    onfocus="(this.type='time')">
-                            </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" name="standard_start_time" class="form-control texteara-s mt-2 pt-2 mb-2"placeholder="From"
+                                onfocus="(this.type='time')">
                         </div>
+                        <div class="col-md-6">
+                            <input type="text" name="standard_end_time" class="form-control texteara-s mt-2 pt-2 mb-2"placeholder="To"
+                                onfocus="(this.type='time')">
+                        </div>
+                    </div>
                     </div> -->
-                    <h3 class="mt-3 pb-2">
-                        Price
+                    <h3 class="mt-2 pb-1">
+                    Price
                     </h3>
                     <div class="input-options mt-2">
-                       <input type="number" name="standard_price" class="form-control" placeholder="Add course price">
+                    <input type="number" name="standard_price" class="form-control" placeholder="Add course price">
                     </div>
-
                 </div>
-                <div class="col-md-4 border-right mb-1">
+            </div>
+            <div class="col-md-4 container-fluid border-right mb-1">
+                    <div class="container-fluid">
 
-                    <div class="text-center heading-forth">
+                        
+                        <div class="text-center heading-forth">
                         Advance
-                    </div>
-                    <div class="adddivs-1" id="advNew">
+                        </div>
+                        <div class="adddivs-1" id="advNew">
                         <div class="input-serachs mt-2">
                             <input type="search" name="advance_title[]" placeholder="Write course outline" />
                         </div>
                         <textarea class="form-control texteara-s mt-2 pt-2 mb-2"
                         name="advance_explain[]" rows="6" placeholder="Explain Here"></textarea>
-                    </div>
+                        </div>
 
-                    <div class="text-center paid-text-1 advMore btn w-100 mt-3 buttonAdd-1">
+                        <div class="text-center paid-text-1 advMore btn w-100 mt-3 buttonAdd-1">
                         <a href="#advNew"> + Add more </a>
-                    </div>
-                    <div class="w-100 border-bottom">&nbsp;</div>
+                        </div>
+                        <div class="w-100 border-bottom">&nbsp;</div>
 
-                    <div class="mt-3 row">
+                        <div class="mt-3 row">
                         <div class="col-md-1 ">
                             <span class="checkbox-edit"> <input type="checkbox" name="advance_home_work" id=""> </span>
                         </div>
                         <div class="col-md-10 ">
                             <span class="paragraph-text"> Home work</span>
                         </div>
-                    </div>
-                    <div class="mt-3 row">
+                        </div>
+                        <div class="mt-3 row">
                         <div class="col-md-1">
                             <span class="checkbox-edit"> <input type="checkbox" name="advance_quiz" id=""> </span>
                         </div>
                         <div class="col-md-10 ">
                             <span class="paragraph-text"> Quiz</span>
                         </div>
-                    </div>
-                    <div class="mt-3 row">
+                        </div>
+                        <div class="mt-3 row">
                         <div class="col-md-1">
                             <span class="checkbox-edit"> <input type="checkbox"  name="advance_final" id=""> </span>
                         </div>
                         <div class="col-md-10 ">
                             <span class="paragraph-text"> Final test</span>
                         </div>
-                    </div>
-                    <div class="mt-3 row">
+                        </div>
+                        <div class="mt-3 row">
                         <div class="col-md-1">
                             <span class="checkbox-edit"> <input type="checkbox"  name="advance_one_one" id=""> </span>
                         </div>
                         <div class="col-md-10 ">
                             <span class="paragraph-text"> One to one session with tutor</span>
                         </div>
-                    </div>
-                    <div class="mt-3 row">
+                        </div>
+                        <div class="mt-3 row">
                         <div class="col-md-1">
                             <span class="checkbox-edit"> <input type="checkbox"  name="advance_note" id=""> </span>
                         </div>
                         <div class="col-md-10 ">
                             <span class="paragraph-text"> Note</span>
                         </div>
-                    </div>
-                    <div class="input-options mt-3">
+                        </div>
+                        <div class="input-options mt-3">
                         <select name="advance_duration">
                             <option disabled selected>Course duration</option>
                             <option value="1">1 week</option>
@@ -385,12 +382,12 @@
                             <option value="5">5 week</option>
                             <option value="6">6 week</option>
                         </select>
-                    </div>
+                        </div>
 
-                    <h3 class="mt-3 pb-2">
+                        <h3 class="mt-3 pb-2">
                         Schedule
-                    </h3>
-                    <div class="input-options mt-2">
+                        </h3>
+                        <div class="input-options mt-2">
                         <select class="js-multiSelect" id="advance_day" name="advance_days[]" multiple="multiple">
                             <option value="1" >Monday</option>
                                 <option value="2">Tuesday</option>
@@ -400,9 +397,9 @@
                                 <option value="6">Saturday</option>
                                 <option value="7">Sunday</option>
                             </select>
-                    </div>
-                    <div class=" mt-2" id="advance_extraFields"></div>
-                    <!-- <div class="input-options mt-2">
+                        </div>
+                        <div class=" mt-2" id="advance_extraFields"></div>
+                        <!-- <div class="input-options mt-2">
                         <div class="row">
                             <div class="col-md-6">
                                 <input type="text" name="advance_start_time" class="form-control texteara-s mt-2 pt-2 mb-2" placeholder="From"
@@ -413,23 +410,20 @@
                                     onfocus="(this.type='time')">
                             </div>
                         </div>
-                    </div> -->
-                    <h3 class="mt-3 pb-2">
-                        Price
-                    </h3>
-                    <div class="input-options mt-2">
-                       <input type="number" name="advance_price" class="form-control" placeholder="Add course price">
+                        </div> -->
+                            <h3 class="mt-2 pb-1">
+                            Price
+                            </h3>
+                            <div class="input-options mt-2">
+                                <input type="number" name="advance_price" class="form-control" placeholder="Add course price">
+                            </div>
+                        </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="text-center mt-4 mb-4">
+                        <input type="submit" class="btn-general pt-3 pb-3" value="Submit course" />
                     </div>
                 </div>
-
-                <div class="col-md-4"></div>
-                <div class="col-md-4">
-                    <div class="text-center mt-4">
-                        <input type="submit" class="schedule-btn w-50 " value="Submit course" />
-                    </div>
-                </div>
-                <div class="col-md-4"></div>
-            </div>
         </div>
     </form>
 </div>
