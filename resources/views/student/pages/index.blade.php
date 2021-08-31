@@ -35,15 +35,15 @@
                 </div>
             </div>
             <!-- cards -->
-            <div class="container">
+            <div class="container-fluid">
                 <div class="cards-list">
                     <p class="heading-second mt-4 mb-0">
                         Statistics
                     </p>
-                    <div class="container m-0 p-0">
+                    <div class="container-fluid m-0 p-0">
                         <div class="row">
                             <div class="col-md-3">
-                                <div class="container card 1">
+                                <div class="container-fluid card 1">
                                     <div class="text-home">
                                         <p class="number-booking">
                                             16
@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="container card 1">
+                                <div class="container-fluid card 1">
                                     <div class="text-home">
                                         <p class="number-booking">
                                             09
@@ -75,7 +75,7 @@
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="container card 1">
+                                <div class="container-fluid card 1">
                                     <div class="text-home">
                                         <p class="number-booking">
                                             09
@@ -91,7 +91,7 @@
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="container card 1">
+                                <div class="container-fluid card 1">
                                     <div class="text-home">
                                         <p class="number-booking">
                                             02
@@ -116,9 +116,9 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <p class="heading-third pt-4 mb-3">
-                                    Find a tutors</p>
+                                    Favourite Tutors</p>
                             </div>
-                            <div class="col-md-12">
+                            <!-- <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-9 row">
                                         <div class="col-md-3 mt-2 w-100">
@@ -146,7 +146,7 @@
                                         <button class="btn-general w-100">Apply Filters</button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="col-md-12 scrollable h-666">
                                 <div class="card mb-3">
@@ -355,7 +355,7 @@
         </div>
         <!-- end dashborad home -->
         <div class="container-fluid m-0 p-0" style="width: 46%;" id="calcultor">
-            <div class="col-md-12 mb-3">
+            <!-- <div class="col-md-12 mb-3">
                 <h3>Find a tutor <span class="pull-right "><small><a href="#"> View All</a></small></span></h3>
                 <div class="card ">
                     <div class="card-body">
@@ -407,7 +407,7 @@
 
                 </div>
                 
-            </div>
+            </div> -->
             <div class="col-md-12 card mb-3">
                 <div class="card-body">
                     <div class="wrapper">

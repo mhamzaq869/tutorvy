@@ -243,7 +243,7 @@
             <div class="row">
                     <div class="col-md-12">
                             <p class="mr-3 heading-first">
-                                < Courses
+                                 Courses
                             </p>
                     </div>
                 </div>
