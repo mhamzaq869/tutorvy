@@ -138,8 +138,6 @@
          <!--  sideanv bottom support -->
          <div class="container-fluid">
              <div class="imageside">
-                 <br />
-                 <br />
                  <img src="{{asset('assets/images/backgrounds/man.svg')}}" alt="background-image">
                  <div class="support">
                      <div class="text-side">

@@ -1459,7 +1459,8 @@ tr th {
 
 .list-ul {
     overflow-y: auto !important;
-    height: 627px !important;
+    height: 629px !important;
+    overflow-x: hidden;
 }
 
 .setting-sid:hover+.setting-show {

@@ -130,6 +130,7 @@ a:hover {
 .nav {
     width: 100vh;
     padding: 5px;
+    margin-left: 10px;
 }
 
 .nav .nav-item {

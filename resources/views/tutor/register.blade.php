@@ -231,7 +231,7 @@
                     </p>
 
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 stu_reg">
                             <div class="board">
                                 <ul class="nav nav-tabs">
                                     <div class="liner"></div>

@@ -8,16 +8,14 @@
  <!-- top Fixed navbar End -->
  <section>
 
-    <div class="container">
+    <div class="container-fluid">
         <p id="sidenav-toggles" class="heading-first  mr-3 mb-4 ml-2">
             Bookings
         </p>
-    </div>
-    <div class="container">
         <div class="row bg-white ml-2 mr-2">
             <div class="col-md-12 mt-3">
-                <nav class="container">
-                    <div class="nav nav-stwich" id="nav-tab" role="tablist">
+                <nav class="">
+                    <div class="nav nav-stwich pb-0" id="nav-tab" role="tablist">
                         <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
                             href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
                             New Bookings
@@ -41,7 +39,6 @@
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane tab-border-none tab-border-none-1 fade show active" id="nav-home" role="tabpanel"
                         aria-labelledby="nav-home-tab">
-                        <div class="container">
                             <div class="container-fluid ">
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -107,11 +104,9 @@
                                 </div>
                             </div>
                             <!-- end -->
-                        </div>
                     </div>
                     <div class="tab-pane tab-border-none fade" id="nav-profile" role="tabpanel"
                         aria-labelledby="nav-profile-tab">
-                        <div class="container-fluid ">
                             <div class="container-fluid ">
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -166,11 +161,9 @@
                                 </div>
                             </div>
                             <!-- end -->
-                        </div>
                     </div>
                     <div class="tab-pane tab-border-none fade" id="nav-contact" role="tabpanel"
                         aria-labelledby="nav-contact-tab">
-                        <div class="container-fluid">
 
                             <div class="container-fluid ">
 
@@ -184,8 +177,6 @@
                                                     <th scope="col">Topic</th>
                                                     <th scope="col">Time</th>
                                                     <th scope="col">Student</th>
-                                                    <th scope="col">Duration</th>
-                                                    <th scope="col">Payment</th>
                                                     <th scope="col"></th>
                                                 </tr>
                                             </thead>
@@ -228,11 +219,9 @@
                                 </div>
                             </div>
                             <!-- end -->
-                        </div>
                     </div>
                     <div class="tab-pane tab-border-none fade" id="nav-about" role="tabpanel"
                         aria-labelledby="nav-about-tab">
-                        <div class="container-fluid">
 
                             <div class="container-fluid ">
 
@@ -291,7 +280,6 @@
                                 </div>
                             </div>
                             <!-- end -->
-                        </div>
                     </div>
                 </div>
             </div>

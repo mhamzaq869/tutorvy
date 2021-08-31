@@ -2,7 +2,6 @@ ul {
     list-style: none;
 }
 
-
 .bg-homeimage1 {
     background-image: url('../images/backgrounds/cover.png');
     background-position: center;
@@ -30,6 +29,7 @@ ul {
     opacity: 0.8;
 }
 
+
 /*  */
 
 .card-ico {
@@ -40,23 +40,25 @@ ul {
 }
 
 .card-ico1 {
-
     position: absolute;
     top: 10px;
     right: 10px;
 }
-.card-ico3{
+
+.card-ico3 {
     width: 38px;
     position: absolute;
     top: 10px;
     right: 10px;
 }
-.card-ico2{
+
+.card-ico2 {
     width: 32px;
     position: absolute;
     top: 10px;
     right: 10px;
 }
+
 
 /* side peridics today Bookings */
 
@@ -106,6 +108,7 @@ ul {
     top: -9px;
     left: -5px;
 }
+
 
 /* chatbox*/
 
@@ -164,11 +167,14 @@ tr[multiple]:focus td:checked {
     color: white;
 }
 
-.chatbox-icons a, .chatbox-icons a:link, .chatbox-icons a:visited {
+.chatbox-icons a,
+.chatbox-icons a:link,
+.chatbox-icons a:visited {
     color: white;
 }
 
-.chat-partner-name, .chat-group-name {
+.chat-partner-name,
+.chat-group-name {
     flex: 1;
     padding: 0 0 0 95px;
     font-size: 15px;
@@ -269,7 +275,12 @@ tr[multiple]:focus td:checked {
     align-self: flex-start;
 }
 
-.message-sender a, .message-sender a:link, .message-sender a:visited, .chat-partner-name a, .chat-partner-name a:link, .chat-partner-name a:visited {
+.message-sender a,
+.message-sender a:link,
+.message-sender a:visited,
+.chat-partner-name a,
+.chat-partner-name a:link,
+.chat-partner-name a:visited {
     color: white;
     font-family: 'Poppins';
     text-decoration: none;
@@ -333,7 +344,8 @@ tr[multiple]:focus td:checked {
     border-bottom: 1px solid #DFE3E6;
 }
 
-.chat-input:focus, .message-send:focus {
+.chat-input:focus,
+.message-send:focus {
     outline: none;
 }
 
@@ -357,7 +369,9 @@ tr[multiple]:focus td:checked {
     text-align: right;
 }
 
-.attachment-panel a, .attachment-panel a:link, .attachment-panel a:visited {
+.attachment-panel a,
+.attachment-panel a:link,
+.attachment-panel a:visited {
     text-decoration: none;
 }
 
@@ -370,7 +384,8 @@ tr[multiple]:focus td:checked {
     height: 60px;
 }
 
-.chatbox-min .chat-partner-name, .chatbox-min .chat-group-name {
+.chatbox-min .chat-partner-name,
+.chatbox-min .chat-group-name {
     padding: 0 0 0 75px;
 }
 
@@ -394,7 +409,8 @@ tr[multiple]:focus td:checked {
     border-bottom: 2px solid rgba(0, 0, 0, .3);
 }
 
-.settings-popup:after, .settings-popup:before {
+.settings-popup:after,
+.settings-popup:before {
     border: 7px solid transparent;
     border-bottom: 7px solid white;
     border-top: none;
@@ -423,7 +439,9 @@ tr[multiple]:focus td:checked {
     transform: scale(1, 1);
 }
 
-.settings-popup ul li a, .settings-popup ul li a:link, .settings-popup ul li a:visited {
+.settings-popup ul li a,
+.settings-popup ul li a:link,
+.settings-popup ul li a:visited {
     text-decoration: none;
     display: block;
     font-family: 'poppins';
@@ -433,6 +451,7 @@ tr[multiple]:focus td:checked {
 .settings-popup ul li a:hover {
     background: rgba(0, 0, 0, .05);
 }
+
 
 /*  home calander css */
 
@@ -616,7 +635,8 @@ tr[multiple]:focus td:checked {
     cursor: pointer;
 }
 
-.calendar .event-container .close:before, .calendar .event-container .close:after {
+.calendar .event-container .close:before,
+.calendar .event-container .close:after {
     content: '';
     position: absolute;
     top: 0;
@@ -668,6 +688,7 @@ tr[multiple]:focus td:checked {
     transform: translate(-50%, -50%);
 }
 
+
 /* dropdown image */
 
 .classdrop {
@@ -679,7 +700,6 @@ tr[multiple]:focus td:checked {
 .classdrop1 {
     padding-bottom: 5px;
     padding-top: 5px;
-
 }
 
 .classdrop li:hover {
@@ -698,11 +718,13 @@ tr[multiple]:focus td:checked {
     font-family: "Poppins";
 }
 
+
 /* table */
 
 .detail-table {
     color: #1173FF;
 }
+
 
 /* booking */
 
@@ -726,7 +748,8 @@ tr[multiple]:focus td:checked {
     outline: none;
 }
 
-.table-image td, th {
+.table-image td,
+th {
     vertical-align: middle;
 }
 
@@ -745,7 +768,9 @@ th {
     font-family: 'Poppins';
 }
 
+
 /*  */
+
 
 /*
 Max width before this PARTICULAR table gets nasty
@@ -754,15 +779,16 @@ and also iPads specifically.
 */
 
 .bg-homeimage {
-    background-image: url('../images/backgrounds/back-covers.png');
+    background-image: url('../images/backgrounds/home.png');
     background-position: center;
     border-radius: 8px;
     height: 198px;
-
     background-repeat: no-repeat;
 }
 
+
 /* end */
+
 
 /* card */
 
@@ -860,7 +886,8 @@ and also iPads specifically.
     }
 }
 
-@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+@media only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px) {
     .table {
         overflow: auto !important;
         white-space: nowrap !important;

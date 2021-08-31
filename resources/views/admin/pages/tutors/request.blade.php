@@ -12,7 +12,8 @@
     <div class="row">
         <div class="col-md-3">
             <div class="text-center pt-5 bg-white">
-                <img src="{{asset('/assets/images/ico/hom-profile.png')}}" alt="re" class="w-50">
+                    <img src="{{asset('admin/assets/img/ico/Square-white.jpg')}}" class="round-profile" alt="re" class="w-50">
+
                 <h3 class="mt-3 mb-0">{{ $tutor->first_name }} {{ $tutor->last_name }}</h3>
                 <p class="heading-fifth mt-2 line-height-1 mb-1">Tutor</p>
                

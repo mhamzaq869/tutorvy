@@ -43,6 +43,48 @@
             </div>
         </div>
     </div>
+
+    <!--Approve Class Modal -->
+    <div class="modal " id="exampleModalCente" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content pt-4 pb-4">
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="iconss" style="text-align: center;">
+                                    <img src="../assets/images/ico/watchs.png" width="60px">
+                                    <p
+                                        style="font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 500;margin-top: 10px;">
+                                        Approve Class</p>
+                                    <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;"
+                                        class="ml-4 mr-4">
+                                        Send approved time for class.
+                                        class
+                                    </p>
+                                </div>
+                                <div class="ml-4 mr-4">
+                                    <form>
+                                        <div style="display: flex;">
+                                            <input id="today2" class="inputtype mb-2" style="width: 170px;" type="date">
+                                            <input type="time" class="inputtype ml-5 mb-2" class="times"
+                                                style="width: 170px;" value="13:00" step="900">
+                                        </div>
+                                        <textarea class="form-control mt-3" rows="6" cols="50"
+                                            placeholder="Write reason"></textarea>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 mb-2" style="text-align: right;">
+                        <button type="button" class="schedule-btn" data-dismiss="modal"
+                            style="width: 130px;margin-right: 40px;">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- schulde class modal -->
     <div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -55,7 +97,7 @@
                                     <img src="../assets/images/ico/cross.png" alt="cross" class="mb-2" width="80px">
                                     <p
                                         style=" font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 600;margin-top: 10px;">
-                                        Cencel Booking</p>
+                                        Cancel Booking</p>
                                     <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;line-height: 1.4;"
                                         class="ml-5 mr-5">Are you sure you want to cancel booking ? it will cost
                                         10$ for cancelling</p>
@@ -73,17 +115,15 @@
         </div>
     </div>
     <section>
-        <div class="container">
-            <a class="container-fluid" href="./Booking.html">
+        <div class="container-fluid">
+            <a  href="./Booking.html">
                 <p class=" mr-3 mb-1 pt-0 booking-btns"
                     style=" font-size: 24px;font-weight: 500;font-family: Poppins;color: #00132D;">
                     <i class='fa fa-angle-left mr-1 ml-3'
                         style='font-size:28px;font-weight: 500;position: relative;top: 2px;color: black;'> </i>
-                    Bookings
-                    details
+                    Bookings details
                 </p>
             </a>
-            <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
@@ -97,8 +137,11 @@
                                     <button type="button" data-toggle="modal" data-target="#exampleModalCenter"
                                         class="cencel-btn mr-2" style="font-size: 12px;width: 150px;"> Cancel
                                         Bookings</button>
-                                    <button type="button" data-toggle="modal" data-target="#exampleModalCente"
+                                        <button type="button" data-toggle="modal" data-target="#exampleModalCente"
                                         class="schedule-btn" style="font-size: 12px;width: 150px;"> Re-schedule
+                                        class</button>
+                                        <button type="button" data-toggle="modal" data-target="#exampleModalCente"
+                                        class="schedule-btn" style="font-size: 12px;width: 150px;"> Approve
                                         class</button>
                                 </p>
                             </div>
@@ -218,7 +261,5 @@
                         </div>
                     </div>
                 </div>
-            </div>
-    </section>
     </section>
 @endsection
