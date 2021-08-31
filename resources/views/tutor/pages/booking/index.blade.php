@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <p  class="mr-3 heading-first">
-                        < Bookings
+                         Bookings
                     </p>
                 </div>
             </div>
@@ -69,10 +69,112 @@
                                                     <th scope="col">
                                                         Payment
                                                     </th>
+                                                    <th scope="col">
+                                                        Status
+                                                    </th>
                                                     <th scope="col"></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <tr>
+                                                    <td class="pt-4">
+                                                       Name
+                                                    </td>
+                                                    <td class="pt-4">
+                                                       Topic
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        Date
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        Full Name
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        &nbsp;Duration Hour(s)
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        &nbsp;Price
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        <span class="bg-color-apporve3">
+                                                            Pending
+                                                        </span>
+                                                    </td>
+
+                                                    <td style="text-align: center;">
+                                                        <a href="#">
+                                                            <button class="schedule-btn" type="button">
+                                                                View details
+                                                            </button>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pt-4">
+                                                       Name
+                                                    </td>
+                                                    <td class="pt-4">
+                                                       Topic
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        Date
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        Full Name
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        &nbsp;Duration Hour(s)
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        &nbsp;Price
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        <span class="bg-color-apporve1">
+                                                            Approved
+                                                        </span>
+                                                    </td>
+
+                                                    <td style="text-align: center;">
+                                                        <a href="#">
+                                                            <button class="schedule-btn" type="button">
+                                                                View details
+                                                            </button>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="pt-4">
+                                                       Name
+                                                    </td>
+                                                    <td class="pt-4">
+                                                       Topic
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        Date
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        Full Name
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        &nbsp;Duration Hour(s)
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        &nbsp;Price
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        <span class="bg-color-apporve">
+                                                            Rejected
+                                                        </span>
+                                                    </td>
+
+                                                    <td style="text-align: center;">
+                                                        <a href="#">
+                                                            <button class="schedule-btn" type="button">
+                                                                View details
+                                                            </button>
+                                                        </a>
+                                                    </td>
+                                                </tr>
                                                 @foreach ($today as $booking)
                                                 <tr>
                                                     <td class="pt-4">
@@ -92,6 +194,11 @@
                                                     </td>
                                                     <td class="pt-4">
                                                         &nbsp;${{$booking->price}}
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        <span class="bg-color-apporve3">
+                                                            Approved
+                                                        </span>
                                                     </td>
 
                                                     <td style="text-align: center;">

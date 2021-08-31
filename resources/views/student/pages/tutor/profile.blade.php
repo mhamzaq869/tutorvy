@@ -115,7 +115,7 @@
                 </div>
             </div>
             <div class="col-md-9">
-                <div class="container profile-header pt-4 pb-4">
+                <div class="container-fluid profile-header pt-4 pb-4">
                     <div class="row">
                         <div class="col-md-3">
                             <div class="d-flex">
@@ -183,7 +183,7 @@
                     <div class="col-md-4">
                         <div class="card">
                             <img src="{{asset('assets/images/ico/course.png')}}" alt="Avatar" style="width:100%">
-                            <div class="container mt-3">
+                            <div class="container-fluid mt-3">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <span class="che-text">

@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-md-12">
                         <p class="mr-3 heading-first">
-                            < Classroom
+                             Classroom
                         </p>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                                                         <th scope="col">Time</th>
                                                         <th scope="col">Student</th>
                                                         <th scope="col">Duration</th>
-                                                        <th scope="col">Payment</th>
+                                                        <th scope="col">Status</th>
                                                         <th scope="col"></th>
                                                     </tr>
                                                 </thead>
@@ -65,7 +65,75 @@
                                                             Hellow
                                                         </td>
                                                         <td class="pt-4">
+                                                            <span class="bg-color-apporve">
+                                                                Rejected
+                                                            </span>
+                                                           
+                                                        </td>
+
+                                                        <td style="text-align: center;">
+                                                            
+                                                            <button class="cencel-btn" type="button">
+                                                                View details
+                                                            </button>
+                                                            <button class="schedule-btn" type="button">
+                                                                Start Class
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pt-4">
+                                                            Hellow
+                                                        </td>
+                                                        <td class="pt-4">
                                                             I'm done
+                                                        </td>
+                                                        <td class="pt-4">
+                                                            Hellow
+                                                        </td>
+                                                        <td class="pt-4">
+                                                            I'm done
+                                                        </td>
+                                                        <td class="pt-4">
+                                                            Hellow
+                                                        </td>
+                                                        <td class="pt-4">
+                                                            <span class="bg-color-apporve1">
+                                                                Approved
+                                                            </span>
+                                                           
+                                                        </td>
+
+                                                        <td style="text-align: center;">
+                                                            
+                                                            <button class="cencel-btn" type="button">
+                                                                View details
+                                                            </button>
+                                                            <button class="schedule-btn" type="button">
+                                                                Start Class
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pt-4">
+                                                            Hellow
+                                                        </td>
+                                                        <td class="pt-4">
+                                                            I'm done
+                                                        </td>
+                                                        <td class="pt-4">
+                                                            Hellow
+                                                        </td>
+                                                        <td class="pt-4">
+                                                            I'm done
+                                                        </td>
+                                                        <td class="pt-4">
+                                                            Hellow
+                                                        </td>
+                                                        <td class="pt-4">
+                                                            <span class="bg-color-apporve3">
+                                                                Pending
+                                                            </span>
                                                         </td>
 
                                                         <td style="text-align: center;">

@@ -102,7 +102,7 @@
                 </div>
             </div>
             <div class="col-md-9">
-                <div class="container profile-header pt-4 pb-4">
+                <div class="container-fluidprofile-header pt-4 pb-4">
                     <div class="row">
                         <div class="col-md-3">
                             <div class="d-flex">
@@ -152,7 +152,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="container mt-3 pt-4 pb-4 profile-header">
+                <div class="container-fluidmt-3 pt-4 pb-4 profile-header">
                     <div class="row">
                         <p class="heading-second ml-3 ">About tutor</p>
                         <span class="about-text ml-3">
@@ -171,12 +171,12 @@
                 <p class="heading-second pt-3 pb-3">
                     Courses
                 </p>
-                <div class="container pt-4 pb-4 profile-header">
+                <div class="container-fluidpt-4 pb-4 profile-header">
                     <div class="row">
                         <div class="col-md-4">
                             <div class="card">
                                 <img src="../assets/images/ico/course.png" alt="Avatar" style="width:100%">
-                                <div class="container mt-3">
+                                <div class="container-fluidmt-3">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <span class="che-text">
@@ -200,7 +200,7 @@
                         <div class="col-md-4">
                             <div class="card">
                                 <img src="../assets/images/ico/NoPath.png" alt="Avatar" style="width:100%">
-                                <div class="container mt-3">
+                                <div class="container-fluidmt-3">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <span class="che-text">
@@ -228,7 +228,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="container pt-4 pb-4 mt-4 profile-header">
+                <div class="container-fluidpt-4 pb-4 mt-4 profile-header">
                     <span class="heading-second">Student reviews</span>
                     <div class="container">
                         <div class="row">

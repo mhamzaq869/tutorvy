@@ -737,11 +737,6 @@
     border-radius: 8px;
 }
 
-.bg-color-apporve {
-    background-color: #FFD9D8;
-    border-radius: 4px;
-}
-
 .view-bookings-1 {
     color: #1173FF;
     font-size: 12px;
@@ -749,6 +744,11 @@
     position: relative;
     top: -6px;
     font-weight: 500;
+}
+
+.bg-color-apporve {
+    background-color: #FFD9D8;
+    border-radius: 4px;
 }
 
 .bg-color-apporve1 {

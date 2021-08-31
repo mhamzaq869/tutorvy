@@ -18,7 +18,7 @@
 
         <div class="row">
             <div class="col-md-12  card pt-3 ">
-                <nav class="container row">
+                <nav class="container-fluid row">
                     <div class=" nav nav-stwich col-md-6" id="nav-tab" role="tablist">
                         <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
                             href="#nav-home" role="tab" aria-controls="nav-home"
