@@ -89,7 +89,7 @@
                                         $('.circlechart').circlechart(); // Initialization
                                     </script>
                                 </div> -->
-                                <div class="progress blue mb-1">
+                                <div class="progress blue mb-1 mt-4">
                                             <span class="progress-left">
                                                 <span class="progress-bar"></span>
                                             </span>

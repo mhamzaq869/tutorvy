@@ -105,7 +105,7 @@
                                         <p>Seats Left</p>
                                     </div>
                                 </div> -->
-                                        <div class="progress blue mb-1">
+                                        <div class="progress mt-4 blue mb-1">
                                             <span class="progress-left">
                                                 <span class="progress-bar"></span>
                                             </span>

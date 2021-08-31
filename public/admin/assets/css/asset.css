@@ -245,8 +245,8 @@ body {
 .switch {
     position: relative;
     display: inline-block;
-    width: 40px !important;
-    height: 20px;
+    width: 50px !important;
+    height: 30px;
 }
 
 .switch input {
