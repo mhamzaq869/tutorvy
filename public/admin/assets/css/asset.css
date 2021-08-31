@@ -1196,7 +1196,7 @@ a[data-toggle="collapse"] {
 }
 
 .active:nth-child(2) {
-    background-color: #00132D !important;
+    background-color: #00132D;
 }
 
 
@@ -1663,4 +1663,95 @@ tr th {
     width: 40px;
     padding-right: 5px;
     border-radius: 50%;
+}
+
+.btn-general {
+    background: #1173FF;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    padding: 5px 29px;
+    border: 1px solid #1173FF;
+    font-weight: 600;
+    transition: all 0.9s;
+}
+
+.btn-general:hover {
+    color: #1173FF;
+    background: #fff;
+    cursor: pointer;
+}
+
+.round {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.round label {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 25px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 25px;
+}
+
+.round label:after {
+    border: 2px solid #fff;
+    border-top: none;
+    border-right: none;
+    content: "";
+    height: 6px;
+    left: 7px;
+    opacity: 0;
+    position: absolute;
+    top: 8px;
+    transform: rotate(-45deg);
+    width: 12px;
+}
+
+.round input[type="checkbox"] {
+    visibility: hidden;
+}
+
+.round input[type="checkbox"]:checked+label {
+    background-color: #1173FF;
+    border-color: #1173FF;
+}
+
+.round input[type="checkbox"]:checked+label:after {
+    opacity: 1;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+    width: 20px;
+    padding-top: 3px;
+}
+
+.flex-1 {
+    opacity: 0;
+}
+
+.tab .active {
+    padding: 8px 122px 8px 11px !important;
+    border-radius: 5px;
+    color: #fff !important;
+    background-color: #1173FF !important;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.tab button {
+    border: transparent;
+    outline: transparent;
+    color: #000 !important;
+    background-color: transparent;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    padding: 8px 122px 8px 11px !important;
 }

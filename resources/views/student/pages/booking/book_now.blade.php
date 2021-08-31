@@ -50,12 +50,14 @@
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="input-text col-md-6">
+                        <div class="input-text col-md-4">
                             <input type="" class="form-control" name="date"  onfocus="(this.type='date')" placeholder="Class Date">
                         </div>
-                        <div class="input-text col-md-6">
-                        <input type="" class="form-control" name="time" onfocus="(this.type='time')" placeholder="Class Time">
-
+                        <div class="input-text col-md-4">
+                            <input type="" class="form-control" name="time" onfocus="(this.type='time')" placeholder="Class Time">
+                        </div>
+                        <div class="input-text col-md-4">
+                            <input type="number" min="1" max="24" class="form-control" name="Duration" placeholder="Class Duration (in hours)">
                         </div>
                     </div>
                     <div class="row mt-3">

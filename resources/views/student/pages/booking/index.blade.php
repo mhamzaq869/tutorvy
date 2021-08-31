@@ -7,7 +7,6 @@
  <div class="content-wrapper " style="overflow: hidden;">
     <section id="bookingSection" style="display: flex;">
         <div class="container-fluid m-0 p-0">
-      
             <div class="row">
                 <div class="col-md-12">
                     <!-- <p id="sidenav-toggles" class="heading-first  mr-3 mb-2 ml-2">
@@ -175,6 +174,37 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                    <tr>
+                                                            <td class="pt-3">
+                                                                sdygf
+                                                            </td>
+                                                            <td class="pt-3">
+                                                                ef
+                                                            </td>
+                                                            <td class="pt-3">
+                                                                dsvsfsd
+                                                            </td>
+                                                            <td class="pt-3">
+                                                            segdrgf
+                                                            </td>
+                                                            <td class="pt-3">
+                                                                &nbsp;00:30:00
+                                                            </td>
+                                                            <td class="pt-3">
+                                                                &nbsp;500$
+                                                            </td>
+
+                                                            <td class="pt-3 pb-3" style="text-align: center; ">
+                                                                <a href="#"  class="cencel-btn mr-2">
+                                                                        
+                                                                        Make Payment
+                                                                </a>
+                                                                <a href="#"  class="schedule-btn">
+                                                                    
+                                                                        View details
+                                                                </a>
+                                                            </td>
+                                                        </tr>
                                                     @foreach ($pending as $booking)
                                                         <tr>
                                                             <td class="pt-4">
@@ -195,12 +225,14 @@
                                                             <td class="pt-4">
                                                                 &nbsp;500$
                                                             </td>
-
-                                                            <td style="text-align: center;">
-                                                                <a href="{{route('student.booking-detail',[$booking->id])}}">
-                                                                    <button class="schedule-btn" type="button">
+                                                            <td class="pt-3 pb-3" style="text-align: center; ">
+                                                                <a href="#"  class="cencel-btn mr-2">
+                                                                        
+                                                                        Make Payment
+                                                                </a>
+                                                                <a href="{{route('student.booking-detail',[$booking->id])}}"  class="schedule-btn">
+                                                                    
                                                                         View details
-                                                                    </button>
                                                                 </a>
                                                             </td>
                                                         </tr>
