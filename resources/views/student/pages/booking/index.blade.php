@@ -66,6 +66,9 @@
                                                             <th scope="col">
                                                                 Payment
                                                             </th>
+                                                            <th scope="col">
+                                                                Status
+                                                            </th>
                                                             <th scope="col"></th>
                                                         </tr>
                                                     </thead>
@@ -90,6 +93,21 @@
                                                             <td class="pt-4">
                                                                 &nbsp;${{$booking->price}}
                                                             </td>
+                                                            <td class="pt-4">
+                                                                @if($booking->status == 1)
+                                                                    <span class="bg-color-apporve3">
+                                                                        Payment Pending
+                                                                    </span>
+                                                                @elseif($booking->status == 2)
+                                                                    <span class="bg-color-apporve1">
+                                                                        Approved
+                                                                    </span>
+                                                                @elseif($booking->status == 0)
+                                                                    <span class="bg-color-apporve">
+                                                                        Pending
+                                                                    </span>
+                                                                @endif
+                                                            </td> 
 
                                                             <td style="text-align: center;">
                                                                 <a href="{{route('student.booking-detail',[$booking->id])}}">
@@ -120,6 +138,9 @@
                                                             <th scope="col">Teacher</th>
                                                             <th scope="col">Duration</th>
                                                             <th scope="col">Payment</th>
+                                                            <th scope="col">
+                                                                Status
+                                                            </th>
                                                             <!-- <th scope="col">Review</th> -->
                                                             <!-- <th scope="col"></th> -->
                                                             <th scope="col"></th>
@@ -146,6 +167,21 @@
                                                                 <td class="pt-4">
                                                                     &nbsp;${{$booking->price}}
                                                                 </td>
+                                                                <td class="pt-4">
+                                                                    @if($booking->status == 1)
+                                                                        <span class="bg-color-apporve3">
+                                                                            Payment Pending
+                                                                        </span>
+                                                                    @elseif($booking->status == 2)
+                                                                        <span class="bg-color-apporve1">
+                                                                            Approved
+                                                                        </span>
+                                                                    @elseif($booking->status == 0)
+                                                                        <span class="bg-color-apporve">
+                                                                            Pending
+                                                                        </span>
+                                                                    @endif
+                                                                </td> 
                                                                 <td class="pt-3 pb-3" style="text-align: center; " >
                                                                     
                                                                     <a href="{{route('student.booking-detail',[$booking->id])}}"  class="schedule-btn">
@@ -175,6 +211,9 @@
                                                             <th scope="col">Teacher</th>
                                                             <th scope="col">Duration</th>
                                                             <th scope="col">Payment</th>
+                                                            <th scope="col">
+                                                                Status
+                                                            </th>
                                                             <!-- <th scope="col">Review</th> -->
                                                             <!-- <th scope="col"></th> -->
                                                             <th scope="col"></th>
@@ -203,6 +242,21 @@
                                                             <td class="pt-4">
                                                                 &nbsp;${{$booking->price}}
                                                             </td>
+                                                            <td class="pt-4">
+                                                                @if($booking->status == 1)
+                                                                    <span class="bg-color-apporve3">
+                                                                        Payment Pending
+                                                                    </span>
+                                                                @elseif($booking->status == 2)
+                                                                    <span class="bg-color-apporve1">
+                                                                        Approved
+                                                                    </span>
+                                                                @elseif($booking->status == 0)
+                                                                    <span class="bg-color-apporve">
+                                                                        Pending
+                                                                    </span>
+                                                                @endif
+                                                            </td> 
                                                             <td class="pt-3 pb-3" style="text-align: center; " >
                                                                 <a class="cencel-btn mr-2" onclick="payNow()">
                                                                     Pay Now
@@ -234,6 +288,9 @@
                                                     <th scope="col">Teacher</th>
                                                     <th scope="col">Duration</th>
                                                     <th scope="col">Payment</th>
+                                                    <th scope="col">
+                                                            Status
+                                                        </th>
                                                     <th scope="col">Review</th>
                                                     <!-- <th scope="col"></th> -->
                                                     <th scope="col"></th>
