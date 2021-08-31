@@ -76,105 +76,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td class="pt-4">
-                                                       Name
-                                                    </td>
-                                                    <td class="pt-4">
-                                                       Topic
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        Date
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        Full Name
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        &nbsp;Duration Hour(s)
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        &nbsp;Price
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        <span class="bg-color-apporve3">
-                                                            Pending
-                                                        </span>
-                                                    </td>
-
-                                                    <td style="text-align: center;">
-                                                        <a href="#">
-                                                            <button class="schedule-btn" type="button">
-                                                                View details
-                                                            </button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pt-4">
-                                                       Name
-                                                    </td>
-                                                    <td class="pt-4">
-                                                       Topic
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        Date
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        Full Name
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        &nbsp;Duration Hour(s)
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        &nbsp;Price
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        <span class="bg-color-apporve1">
-                                                            Approved
-                                                        </span>
-                                                    </td>
-
-                                                    <td style="text-align: center;">
-                                                        <a href="#">
-                                                            <button class="schedule-btn" type="button">
-                                                                View details
-                                                            </button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="pt-4">
-                                                       Name
-                                                    </td>
-                                                    <td class="pt-4">
-                                                       Topic
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        Date
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        Full Name
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        &nbsp;Duration Hour(s)
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        &nbsp;Price
-                                                    </td>
-                                                    <td class="pt-4">
-                                                        <span class="bg-color-apporve">
-                                                            Rejected
-                                                        </span>
-                                                    </td>
-
-                                                    <td style="text-align: center;">
-                                                        <a href="#">
-                                                            <button class="schedule-btn" type="button">
-                                                                View details
-                                                            </button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
+                                               
                                                 @foreach ($today as $booking)
                                                 <tr>
                                                     <td class="pt-4">
@@ -196,9 +98,19 @@
                                                         &nbsp;${{$booking->price}}
                                                     </td>
                                                     <td class="pt-4">
+                                                        @if($booking->status == 1)
                                                         <span class="bg-color-apporve3">
+                                                            Payment Pending
+                                                        </span>
+                                                        @elseif($booking->status == 2)
+                                                        <span class="bg-color-apporve1">
                                                             Approved
                                                         </span>
+                                                        @elseif($booking->status == 0)
+                                                        <span class="bg-color-apporve">
+                                                            Pending
+                                                        </span>
+                                                        @endif
                                                     </td>
 
                                                     <td style="text-align: center;">
@@ -232,6 +144,9 @@
                                                     <th scope="col">Student</th>
                                                     <th scope="col">Duration</th>
                                                     <th scope="col">Payment</th>
+                                                    <th scope="col">
+                                                        Status
+                                                    </th>
                                                     <th scope="col"></th>
                                                 </tr>
                                             </thead>
@@ -256,7 +171,21 @@
                                                     <td class="pt-4">
                                                         &nbsp;${{$booking->price}}
                                                     </td>
-
+                                                    <td class="pt-4">
+                                                        @if($booking->status == 1)
+                                                            <span class="bg-color-apporve3">
+                                                                Payment Pending
+                                                            </span>
+                                                        @elseif($booking->status == 2)
+                                                            <span class="bg-color-apporve1">
+                                                                Approved
+                                                            </span>
+                                                        @elseif($booking->status == 0)
+                                                            <span class="bg-color-apporve">
+                                                                Pending
+                                                            </span>
+                                                        @endif
+                                                    </td>        
                                                         <td style="text-align: center;">
                                                             <a href="{{route('tutor.booking.detail',[$booking->id])}}">
                                                                 <button class="schedule-btn" type="button">
@@ -289,7 +218,13 @@
                                                         <th scope="col">Topic</th>
                                                         <th scope="col">Time</th>
                                                         <th scope="col">Student</th>
-                                                        <th scope="col"></th>
+                                                        <th scope="col">Duration</th>
+                                                        <th scope="col">Payment</th>
+                                                        <th scope="col">
+                                                            Status
+                                                        </th>
+                                                        <th scope="col">
+                                                        </th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -314,7 +249,21 @@
                                                     <td class="pt-4">
                                                         &nbsp;${{$booking->price}}
                                                     </td>
-
+                                                    <td class="pt-4">
+                                                        @if($booking->status == 1)
+                                                            <span class="bg-color-apporve3">
+                                                                Payment Pending
+                                                            </span>
+                                                        @elseif($booking->status == 2)
+                                                            <span class="bg-color-apporve1">
+                                                                Approved
+                                                            </span>
+                                                        @elseif($booking->status == 0)
+                                                            <span class="bg-color-apporve">
+                                                                Pending
+                                                            </span>
+                                                        @endif
+                                                    </td> 
                                                         <td style="text-align: center;">
                                                             <a href="{{route('tutor.booking.detail',[$booking->id])}}">
                                                                 <button class="schedule-btn" type="button">
@@ -349,6 +298,9 @@
                                                         <th scope="col">Student</th>
                                                         <th scope="col">Duration</th>
                                                         <th scope="col">Payment</th>
+                                                        <th scope="col">
+                                                            Status
+                                                        </th>
                                                         <th scope="col">Review</th>
                                                         <!-- <th scope="col"></th> -->
                                                         <th scope="col"></th>
@@ -376,7 +328,21 @@
                                                     <td class="pt-4">
                                                         &nbsp;${{$booking->price}}
                                                     </td>
-
+                                                    <td class="pt-4">
+                                                        @if($booking->status == 1)
+                                                            <span class="bg-color-apporve3">
+                                                                Payment Pending
+                                                            </span>
+                                                        @elseif($booking->status == 2)
+                                                            <span class="bg-color-apporve1">
+                                                                Approved
+                                                            </span>
+                                                        @elseif($booking->status == 0)
+                                                            <span class="bg-color-apporve">
+                                                                Pending
+                                                            </span>
+                                                        @endif
+                                                    </td> 
                                                         <td style="text-align: center;">
                                                             <a href="{{route('tutor.booking.detail',[$booking->id])}}">
                                                                 <button class="schedule-btn" type="button">
