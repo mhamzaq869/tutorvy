@@ -28,7 +28,8 @@ class BookingController extends Controller
      */
     public function bookingDetail($id){
         $booking = Booking::find($id);
-        return view('tutor.pages.booking.booking_detail',compact('booking'));
+        $tutor = \Auth::user();
+        return view('tutor.pages.booking.booking_detail',compact('booking','tutor'));
     }
 
     /**

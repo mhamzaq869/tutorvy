@@ -140,7 +140,7 @@
                                         <button type="button" data-toggle="modal" data-target="#exampleModalCente"
                                         class="schedule-btn" style="font-size: 12px;width: 150px;"> Re-schedule
                                         class</button>
-                                        <button type="button" data-toggle="modal" data-target="#exampleModalCente"
+                                        <button type="button" onclick="approveBookingModal()"
                                         class="schedule-btn" style="font-size: 12px;width: 150px;"> Approve
                                         class</button>
                                 </p>
@@ -262,4 +262,7 @@
                     </div>
                 </div>
     </section>
+@endsection
+@section('scripts')
+@include('js_files.tutor.bookingJs')
 @endsection
