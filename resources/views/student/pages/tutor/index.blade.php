@@ -190,7 +190,7 @@
                     @if(!$available_tutors)
                         <div class="card">
                             <div class="card-body text-center">
-                                <img src="http://127.0.0.1:8000/assets/images/ico/no-tutor.svg" alt="" width="200">
+                                <img src="{{asset('assets/images/ico/no-tutor.svg')}}" alt="" width="200">
                                 <h1 class="">No Tutor Found For Your Search</h1>
                                 <h3 class="">Try a new search for your subject from</h3>
                                     <h3>  our community of tutors.</h3>
