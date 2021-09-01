@@ -8,7 +8,7 @@
 <!--section start  -->
 <section id="tutorProsection" style="display: flex;z-index: -1;">
         <!-- dashborad home -->
-        <div class="container-fluid mr-4 ml-3 mt-3">
+        <div class="container-fluid ">
             <div class="row">
                 <div class="col-md-12">
                     <h1 class="animate__animated animate__bounce animate__delay-0.3s">
@@ -236,9 +236,15 @@
                                     @endphp
                                     <div class="row mt-3">
                                             <div class="col-md-12">
-                                                <span class="heading-third1"> {{$edu->degree->name ?? ''}} </span>
-                                                <span class="paragraph-text1 ml-3 pull-right"> {{ $year }}
-                                                </span>
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <span class="heading-third1"> {{$edu->degree->name ?? ''}} </span>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <span class="paragraph-text1 ml-3 pull-right"> {{ $year }}
+                                                        </span>
+                                                    </div>
+                                                </div>
                                                 <p class="notification-text3 mt-2">{{$edu->institute->name ?? ''}} </p>
                                             </div>
                                         </div>
@@ -263,9 +269,15 @@
                                         @endphp
                                         <div class="row mt-3">
                                             <div class="col-md-12">
-                                                <span class="heading-third1"> {{$exp->designation}} </span>
-                                                <span class="paragraph-text1 ml-3 pull-right"> {{ $year }}
-                                                </span>
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <span class="heading-third1"> {{$exp->designation}} </span>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <span class="paragraph-text1 ml-3 pull-right"> {{ $year }}
+                                                        </span>
+                                                    </div>
+                                                </div>
                                                 <p class="notification-text3 mt-2">{{$exp->organization}}</p>
                                             </div>
                                         </div>

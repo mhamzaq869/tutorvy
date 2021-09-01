@@ -14,7 +14,7 @@ svg:not(:root) {
 @section('content')
     <!--section start  -->
     <div class="container-fluid mt-5">
-        <div class="row">
+        <div class="row ml-1 mr-1">
             <div class="col-md-6">
                 <h1>
                     Subjects
@@ -33,7 +33,7 @@ svg:not(:root) {
                 </nav>
             </div>
         </div>
-        <div class="row mt-4">
+        <div class="row mt-4 ml-1 mr-1">
             <div class="col-md-6">
                 <p class="heading-forth mt-3">
                     All subjects
@@ -46,7 +46,7 @@ svg:not(:root) {
         </div>
     </div>
     <div class="container-fluid">
-        <div class="pt-3 mt-3 container-bg">
+        <div class="pt-3 mt-3 container-bg ml-1 mr-1">
             <div class="row border-bottom mr-1 ml-1">
                 <div class="col-md-11 m-0 p-0">
                     <form>
@@ -189,14 +189,23 @@ svg:not(:root) {
                         <li class="page-item"><a class="page-link" href="{{$subjects->url(1)}}">1</a></li>
                             @endif
                         <li class="page-item"><a class="page-link page-link-1" href="#">{{$subjects->currentPage()}}</a></li>
-                        <li class="page-item"><a class="page-link " href="#">.....</a></li>
+                        
+                        @if($subjects->hasPages())
+                            <li class="page-item"><a class="page-link " href="#">.....</a></li>
   
-                        <li class="page-item"><a class="page-link" href="{{$subjects->url($subjects->lastPage())}}"> {{$subjects->lastPage()}} </a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="{{$subjects->nextPageUrl()}}">
-                                <img src="{{ asset('/admin/assets/img/ico/arrow-right-1.png')}}" alt="image" />
-                            </a>
-                        </li>
+                            <li class="page-item"><a class="page-link" href="{{$subjects->url($subjects->lastPage())}}"> {{$subjects->lastPage()}} </a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="{{$subjects->nextPageUrl()}}">
+                                    <img src="{{ asset('/admin/assets/img/ico/arrow-right-1.png')}}" alt="image" />
+                                </a>
+                            </li>
+                            @else
+                            <li class="page-item">
+                                <a class="page-link" href="{{$subjects->nextPageUrl()}}">
+                                    <img src="{{ asset('/admin/assets/img/ico/arrow-right-1.png')}}" alt="image" />
+                                </a>
+                            </li>
+                            @endif
                     </ul>
                 </nav>
             </div>

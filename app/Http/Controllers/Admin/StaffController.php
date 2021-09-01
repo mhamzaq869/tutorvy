@@ -12,8 +12,8 @@ use App\Models\Role;
 class StaffController extends Controller
 {
     public function index(){
-        $roles = Role::whereNotIn('id', [1,2,3])->get();
-        $users = User::whereNotIn('role', [1,2,3])->get();
+        $roles = Role::whereNotIn('id', [1,2,3])->paginate(15);
+        $users = User::whereNotIn('role', [1,2,3])->paginate(15);
         
         return view('admin.pages.staff.index',compact('users','roles'));
     }
