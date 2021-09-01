@@ -1682,11 +1682,12 @@ tr th {
     cursor: pointer;
 }
 
-.round {
+
+/* .round {
     position: absolute;
     top: 10px;
     left: 10px;
-}
+} */
 
 .round label {
     background-color: #fff;
@@ -1754,4 +1755,11 @@ svg:not(:root) {
     font-size: 16px !important;
     font-weight: 400 !important;
     padding: 8px 122px 8px 11px !important;
+}
+
+.round {
+    position: absolute;
+    top: 4px;
+    left: 10px;
+    margin-bottom: 7px;
 }

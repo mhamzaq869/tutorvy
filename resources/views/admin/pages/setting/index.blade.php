@@ -3,8 +3,10 @@
  
 </style>
 @section('content')
-    <!--section start  -->
-    <div class="container-fluid mt-5">
+  <!--section start  -->
+  <section id="homesection" style="display: flex;z-index: -1;">
+        <!-- dashborad home -->
+        <div class="container-fluid mt-3">
         <div class="row">
             <div class="col-md-6">
                 <h1>
@@ -338,6 +340,9 @@
             </div>
         </div>
     </div>
+</section>
+    <!--section start  -->
+   
 
 
 @endsection

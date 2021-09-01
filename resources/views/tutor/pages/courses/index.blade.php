@@ -258,7 +258,7 @@
                         <h2>Pending Courses</h2>
                     </div>
                     @foreach ($pen_course as $course)
-                        <div class="col-md-3 pending_hover">
+                        <div class="col-md-4 pending_hover">
                             <div class="card">
                                 <div class="overlay">
                                     <span class="border-round btn">Approval Pending</span>

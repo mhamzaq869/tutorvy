@@ -19,10 +19,9 @@ function changeCourseStatus(id,st){
           // console.log(response);
           if(response.status == 200) {
 
-            Swal.fire({
+            toastr.success(response.message,{
                 position: 'top-end',
                 icon: 'success',
-                title: response.message,
                 showConfirmButton: false,
                 timer: 2500
             }) 

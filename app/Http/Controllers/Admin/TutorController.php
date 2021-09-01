@@ -146,7 +146,7 @@ class TutorController extends Controller
             $message = 'Tutor Status Enabled.';
         }elseif($request->status == 3){
             $message = 'Tutor Rejected.';
-        }else{
+        }elseif($request->status == 1){
             $message = 'Tutor Status Disabled.';
         }
 

@@ -869,3 +869,15 @@ footer a:hover {
     color: #1173FF;
     background: #fff;
 }
+
+.h-92 {
+    max-height: 92px;
+    overflow-y: auto;
+}
+
+.round {
+    position: absolute;
+    top: 4px;
+    left: 10px;
+    margin-bottom: 7px;
+}

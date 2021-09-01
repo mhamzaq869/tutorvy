@@ -16,10 +16,9 @@ $('#add_subject_form').on('submit', function(e) {
         success: function(response) {
             // console.log(response);
             if (response.status == 200) {
-                Swal.fire({
+                toastr.success('Subject Added Successfully!', {
                     position: 'top-end',
                     icon: 'success',
-                    title: 'Subject Added Successfully!',
                     showConfirmButton: false,
                     timer: 2500
                 })
@@ -58,10 +57,9 @@ $("#edit_subject_form").submit(function(e) {
         success: function(response) {
             // console.log(response);
             if (response.status == 200) {
-                Swal.fire({
+                toastr.success('Subject Updated Successfully!', {
                     position: 'top-end',
                     icon: 'success',
-                    title: 'Subject Updated Successfully!',
                     showConfirmButton: false,
                     timer: 2500
                 })
@@ -88,10 +86,9 @@ function delSubject(id) {
             success: function(response) {
                 // console.log(response);
                 if (response.status == 200) {
-                    Swal.fire({
+                    toastr.success('Subject Deleted Successfully!', {
                         position: 'top-end',
                         icon: 'success',
-                        title: 'subject Deleted Successfully!',
                         showConfirmButton: false,
                         timer: 2500
                     })

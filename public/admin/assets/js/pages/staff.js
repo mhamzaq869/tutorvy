@@ -20,10 +20,9 @@ $('#add_staff_form').on('submit', function(e) {
         success: function(response) {
             // console.log(response);
             if (response.status == 200) {
-                Swal.fire({
+                toastr.success('Staff Added Successfully!', {
                     position: 'top-end',
                     icon: 'success',
-                    title: 'Staff Added Successfully!',
                     showConfirmButton: false,
                     timer: 2500
                 })
