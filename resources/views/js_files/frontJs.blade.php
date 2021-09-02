@@ -13,76 +13,45 @@ let tutors = '';
 })();
 
 
-$('#subjects-list').on("change", function(e) {
-
-    let subject = $("#subjects-list").val();
-    let lang = $("#languages-list").val();
-    let rating = $("input[name='rating_filter']:checked").val();
-    let price = $("#range").val();
-
-    search_tutors(price,subject,lang,rating);
-    
-});
-
-$('#languages-list').on("change", function(e) {
-
-    let subject = $("#subjects-list").val();
-    let lang = $("#languages-list").val();
-    let rating = $("input[name='rating_filter']:checked").val();
-    let price = $("#range").val();
-
-    search_tutors(price,subject,lang,rating);
-
-});
-
-$('input[type=radio][name=rating_filter]').change(function() {
-    let subject = $("#subjects-list").val();
-    let lang = $("#languages-list").val();
-    let rating = $("input[name='rating_filter']:checked").val();
-    let price = $("#range").val();
-
-    search_tutors(price,subject,lang,rating);
-    
-});
-
 $(".filteration").change(function() {
+    // $('#preloaderbody').css('display','block')
 
-    let price = $("#range").val();
-    let subject = $("#subjects-list").val();
-    let lang = $("#languages-list").val();
+    var range = $("#range").val()
+    var locat = $("#locat").val()
+    var lang = $("#languages-list").val()
+    var gender = $("input[name=gender]:checked").val()
+    var avail = $("#avail").val()
+    var subject = $("#subject").val()
     let rating = $("input[name='rating_filter']:checked").val();
-
-    search_tutors(price,subject,lang,rating);
-
-});
-
-function search_tutors(price,subject,lang,rating){
 
     $.ajax({
-        url: "{{ route('student.tutor.filter') }}",
-        type: "POST",
+        type: 'POST',
+        url: "{{ route('find.tutor') }}",
+        dataType: "json",
         data: {
+            _token: "{{ csrf_token() }}",
+            price: range,
             subject: subject,
+            locat: locat,
             language: lang,
-            rating: rating,
-            price : price
+            gender: gender,
+            avail: avail,
+            rating:rating
         },
-        success: function(response) {
-            console.log(response);
-            if (response.status == 200) {
-                tutors = response.tutors;
-                list_tutors();
-            }
-        },
+        success: function(data) {
+            console.log(data)
+            tutors = data.tutors;
+            $('#preloaderbody').css('display','none')
+            list_tutors(tutors);
+        }
     });
+})
 
-}
-
-function list_tutors(){
+function list_tutors(tutors){
 
     if(tutors.length > 0){
 
-        $('#tutors-list').html('');
+        $('#tutor').html('');
 
         for(var i = 0 ; i<tutors.length ; i++){
 
@@ -147,7 +116,7 @@ function list_tutors(){
             }else if(tutors[i].rank == 3){
                 rank_html = `<p class="text-right"><span class="text-green ">Top Rank</span> <span class="rank_icon"><img src="../assets/images/ico/rank.png" alt=""></span> </p>`;
             }
-           
+        
 
             let tutor_Card = `<div class="card">
                                 <div class="card-body">
@@ -224,7 +193,7 @@ function list_tutors(){
                                 </div>
                             </div>`;
             
-            $('#tutors-list').append(tutor_Card);
+            $('#tutor').append(tutor_Card);
         }
 
     }else{
@@ -236,7 +205,7 @@ function list_tutors(){
                                     <h3>  our community of tutors.</h3>
                             </div>
                         </div>`;
-        $('#tutors-list').html(no_rec_html);
+        $('#tutor').html(no_rec_html);
     }
 
 }    

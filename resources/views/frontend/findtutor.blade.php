@@ -33,7 +33,7 @@
                             <select name="subject" id="subject" class="input-subject">
                                 <option value="">Select Subject</option>
                                 @foreach($subjects as $subject)
-                                <option value="{{$subject->name}}">{{$subject->name}}</option>
+                                <option value="{{$subject->name}}" {{ ( $sub == $subject->name) ? 'selected' : '' }} >{{$subject->name}}</option>
                                 @endforeach
                             </select>
                             <input type="submit" class="input-submite w-25" value="Find a Tutor">
@@ -125,13 +125,13 @@
                             <div class="row">
                                 <b>
                                     <div class="col align-self-start">
-                                        $10-$55555
+                                        $10-$1000
                                     </div>
                                 </b>
                             </div>
                             <div class="">
                                 <div class="range-slider">
-                                    <input class="range-slider__range w-100" type="range" id="range" value="100" min="0"
+                                    <input class="range-slider__range w-100" type="range" id="range" value="1000" min="0"
                                         max="500">
                                     <span class="range-slider__value"></span>
                                 </div>
@@ -155,7 +155,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="rating_filter" id="rating_filter" value="1" >
+                                        <input class="form-check-input" type="radio" name="rating_filter" id="rating_filter" value="0" >
                                         <label class="form-check-label" for="rating_filter">
                                         <p>
                                             <i class="fa fa-star "></i>
@@ -231,11 +231,9 @@
                         <div class="panel-body">
                             <div class="pb-4">
                                 <div class="col align-self-start m-0 p-0">
-                                    <select class="form-control-md form-select" id="locat" aria-label=".form-select-md example">
+                                    <select class="form-control-md form-select" id="languages-list" aria-label=".form-select-md example">
                                         <option disabled selected>Choose a Language</option>
-                                        <option value="Udu">Udu</option>
-                                        <option value="English">English</option>
-                                        <option value="Arabic">Arabic</option>
+                                       
                                     </select>
                                 </div>
                             </div>
@@ -261,20 +259,20 @@
                                 <div class="col align-self-start m-0 p-0">
                                     <div class="row ml-1">
                                         <div class="form-check col-sm-4">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                            <label class="form-check-label" for="flexRadioDefault1">
+                                            <input class="form-check-input" type="radio" name="gender" id="gender" checked value="male">
+                                            <label class="form-check-label" for="gender">
                                                 Male
                                             </label>
                                         </div>
                                         <div class="form-check col-sm-4">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                            <label class="form-check-label" for="flexRadioDefault2">
+                                            <input class="form-check-input" type="radio" name="gender" id="gender" value="female">
+                                            <label class="form-check-label" for="gender">
                                                 Female
                                             </label>
                                         </div>
                                         <div class="form-check col-sm-4">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                            <label class="form-check-label" for="flexRadioDefault2">
+                                            <input class="form-check-input" type="radio" name="gender" id="gender"  value="others">
+                                            <label class="form-check-label" for="gender">
                                                 Others
                                             </label>
                                         </div>
@@ -309,19 +307,19 @@
                                 <div class="col align-self-start m-0 p-0">
                                     <div class="row ml-1">
                                         <div class="form-check col-sm-4">
-                                            <input class="form-check-input" type="radio" name="availability" id="availability1">
+                                            <input class="form-check-input" type="radio" name="availability" id="availability1" value="online">
                                             <label class="form-check-label" for="availability1">
                                                 Online
                                             </label>
                                         </div>
                                         <div class="form-check col-sm-4">
-                                            <input class="form-check-input" type="radio" name="availability" id="availability2" checked>
+                                            <input class="form-check-input" type="radio" name="availability" id="availability2"  value="offline">
                                             <label class="form-check-label" for="availability2">
                                                 Offline
                                             </label>
                                         </div>
                                         <div class="form-check col-sm-4">
-                                            <input class="form-check-input" type="radio" name="availability" id="availability2" checked>
+                                            <input class="form-check-input" type="radio" name="availability" id="availability2" checked value="all">
                                             <label class="form-check-label" for="availability2">
                                                 All
                                             </label>
@@ -335,7 +333,7 @@
                 </div>
             </div>
             <div class="col-md-9 mb-3" id="tutor">
-                @if(sizeof($tutors) > 0 || $tutors == '[]' )
+                @if(sizeof($tutors) == 0 || $tutors == '[]' )
                         <div class="card">
                             <div class="card-body text-center">
                                 <img src="{{asset('assets/images/ico/no-tutor.svg')}}" alt="" width="200">
@@ -379,11 +377,16 @@
                                                     <i class="fa fa-star text-yellow"></i>
                                                     <i class="fa fa-star text-yellow"></i>
                                                     <i class="fa fa-star "></i>  3.0
-                                                    @else
+                                                    @elseif($tutor->rating == 4)
                                                     <i class="fa fa-star text-yellow"></i>
                                                     <i class="fa fa-star text-yellow"></i>
                                                     <i class="fa fa-star text-yellow"></i>
                                                     <i class="fa fa-star text-yellow"></i>  4.0
+                                                    @else
+                                                    <i class="fa fa-star "></i>
+                                                    <i class="fa fa-star "></i>
+                                                    <i class="fa fa-star "></i>
+                                                    <i class="fa fa-star "></i>  0.0
                                                     @endif
                                                 
                                                     <small class="text-grey">(0 reviews)</small>
@@ -470,43 +473,12 @@
     <!-- end -->
     <script src="{{ asset('assets/js/filterajax.js') }}"></script>
 @endsection
-
+@section('scripts')
+@include('js_files.frontJs')
+@endsection
 
 @section('scripts')
     <script>
-        $(".filteration").change(function() {
-            $('#preloaderbody').css('display','block')
-
-            var range = $("#range").val()
-            var locat = $("#locat").val()
-            var lang = $("#lang").val()
-            var gender = $("input[name=optradio]:checked").val()
-            var avail = $("#avail").val()
-
-            $.ajax({
-                type: 'POST',
-                url: "{{ route('find.tutor') }}",
-                dataType: "json",
-                data: {
-                    _token: "{{ csrf_token() }}",
-                    range: range,
-                    locat: locat,
-                    lang: lang,
-                    gender: gender,
-                    avail: avail
-                },
-                success: function(data) {
-                    console.log(data)
-                    $('#preloaderbody').css('display','none')
-                    if (data.length > 0) {
-                        for (let element of data) {
-                            var html = `   `
-
-                            $("#tutor").html(html);
-                        }
-                    }
-                }
-            });
-        })
+        
     </script>
 @endsection
