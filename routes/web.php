@@ -224,6 +224,9 @@ Route::view('/tutor','frontend.tutor');
 Route::view('/student','frontend.student');
 Route::view('/subject','frontend.subject');
 Route::view('/course','frontend.course');
+
+Route::get('/course',[GeneralController::class,'course']);
+
 Route::get('/findtutor',[FrontTutorController::class,'index']);
 Route::post('/findtutor',[FrontTutorController::class,'filterTutor'])->name('find.tutor');
 
