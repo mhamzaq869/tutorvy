@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+</style>
     <link href="{{ asset('assets/css/booknow.css') }}" rel="stylesheet">
 <section class="section-main section-main-std mt-5 pb-5">
     <div class="container-fluid ">
@@ -76,6 +78,37 @@
 
         <div class="row mar-left-right">
             <div class="col-md-3 bg-white filteration">
+                 <!--TAB4-->
+                 <div class="bottom-line mt-3 panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingFour">
+                        <p class="panel-title">
+                            <a class="range-text collapsed " data-toggle="collapse" data-parent="#accordion"
+                                href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                Location
+                            </a>
+                        </p>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse show" role="tabpanel"
+                        aria-labelledby="headingTree">
+                        <div class="panel-body">
+                            <div class="pb-4">
+                                <div class="col align-self-start m-0 p-0">
+                                    <select class="form-control-md form-select" id="locat" aria-label=".form-select-md example">
+                                        <option disabled selected>Choose a location</option>
+                                        <option value="Lahore">Lahore</option>
+                                        <option value="Karachi">Karachi</option>
+                                        <option value="Islamabad">Islamabad</option>
+                                        <option value="Quetta">Quetta</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+<!--Tab Try-->
+               
+                <!--Tab1-->
                 <div class="panel panel-default mb-3 bottom-line">
                     <div class="panel-heading" role="tab" id="headingOne">
                         <p class="panel-title">
@@ -116,7 +149,7 @@
                             </a>
                         </p>
                     </div>
-                    <div id="collapseTwo" class="panel-collapse collapse show" role="tabpanel"
+                    <div id="collapseTwo" class="panel-collapse collapse " role="tabpanel"
                         aria-labelledby="headingTwo">
                         <div class="panel-body">
                             <div class="row">
@@ -184,54 +217,25 @@
                     </div>
                 </div>
                 <!--TAb3-->
-                <div class="panel panel-default mt-3 bottom-line">
-                    <div class="panel-heading" role="tab" id="headingThree">
-                        <p class="panel-title">
-                            <a class="collapsed range-text" data-toggle="collapse" data-parent="#accordion"
-                                href="#collapseThree" aria-expanded="false" aria-controls="collapseTree">
-                                Language
-                            </a>
-                        </p>
-                    </div>
-                    <div id="collapseThree" class="panel-collapse collapse show" role="tabpanel"
-                        aria-labelledby="headingTree">
-                        <div class="panel-body">
-                            <div class="pb-4">
-                                <div class="col align-self-start m-0 p-0">
-                                    <select class="form-control-md" id="lang" aria-label=".form-select-md example">
-                                        <option disabled selected>Languages</option>
-                                        <option value="urdu">urdu</option>
-                                        <option value="English">English</option>
-                                        <option value="Arabic">Arabic</option>
-                                        <option value="Hindi">Hindi</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <!--TAB4-->
                 <div class="bottom-line mt-3 panel panel-default">
                     <div class="panel-heading" role="tab" id="headingFour">
                         <p class="panel-title">
                             <a class="range-text collapsed " data-toggle="collapse" data-parent="#accordion"
-                                href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                Location
+                                href="#collapseTry" aria-expanded="false" aria-controls="collapseTry">
+                                Language
                             </a>
                         </p>
                     </div>
-                    <div id="collapseFour" class="panel-collapse collapse show" role="tabpanel"
+                    <div id="collapseTry" class="panel-collapse collapse " role="tabpanel"
                         aria-labelledby="headingTree">
                         <div class="panel-body">
                             <div class="pb-4">
                                 <div class="col align-self-start m-0 p-0">
-                                    <select class="form-control-md" id="locat" aria-label=".form-select-md example">
-                                        <option disabled selected>Choose a location</option>
-                                        <option value="Lahore">Lahore</option>
-                                        <option value="Karachi">Karachi</option>
-                                        <option value="Islamabad">Islamabad</option>
-                                        <option value="Quetta">Quetta</option>
+                                    <select class="form-control-md form-select" id="locat" aria-label=".form-select-md example">
+                                        <option disabled selected>Choose a Language</option>
+                                        <option value="Udu">Udu</option>
+                                        <option value="English">English</option>
+                                        <option value="Arabic">Arabic</option>
                                     </select>
                                 </div>
                             </div>
@@ -239,6 +243,7 @@
                         </div>
                     </div>
                 </div>
+               
                 <!--TAB5-->
                 <div class="bottom-line mt-3 panel panel-default">
                     <div class="panel-heading" role="tab" id="headingFour">
@@ -249,17 +254,38 @@
                             </a>
                         </p>
                     </div>
-                    <div id="collapseFive" class="panel-collapse collapse show" role="tabpanel"
+                    <div id="collapseFive" class="panel-collapse collapse " role="tabpanel"
                         aria-labelledby="headingTree">
                         <div class="panel-body">
                             <div class="pb-4">
                                 <div class="col align-self-start m-0 p-0">
-                                    <select class="form-control-md" id="locat" aria-label=".form-select-md example">
+                                    <div class="row ml-1">
+                                        <div class="form-check col-sm-4">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                Male
+                                            </label>
+                                        </div>
+                                        <div class="form-check col-sm-4">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                            <label class="form-check-label" for="flexRadioDefault2">
+                                                Female
+                                            </label>
+                                        </div>
+                                        <div class="form-check col-sm-4">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                            <label class="form-check-label" for="flexRadioDefault2">
+                                                Others
+                                            </label>
+                                        </div>
+                                    </div>
+                                   
+                                    <!-- <select class="form-control-md" id="locat" aria-label=".form-select-md example">
                                         <option disabled selected>Select Gender</option>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
                                         <option value="Others">Others</option>
-                                    </select>
+                                    </select> -->
                                 </div>
                             </div>
 
@@ -276,16 +302,31 @@
                             </a>
                         </p>
                     </div>
-                    <div id="collapseSix" class="panel-collapse collapse show" role="tabpanel"
+                    <div id="collapseSix" class="panel-collapse collapse " role="tabpanel"
                         aria-labelledby="headingTree">
                         <div class="panel-body">
                             <div class="pb-4">
                                 <div class="col align-self-start m-0 p-0">
-                                    <select class="form-control-md" id="locat" aria-label=".form-select-md example">
-                                        <option disabled selected>Choose Avalability</option>
-                                        <option value="Offline">Offline</option>
-                                        <option value="Online">Online</option>
-                                    </select>
+                                    <div class="row ml-1">
+                                        <div class="form-check col-sm-4">
+                                            <input class="form-check-input" type="radio" name="availability" id="availability1">
+                                            <label class="form-check-label" for="availability1">
+                                                Online
+                                            </label>
+                                        </div>
+                                        <div class="form-check col-sm-4">
+                                            <input class="form-check-input" type="radio" name="availability" id="availability2" checked>
+                                            <label class="form-check-label" for="availability2">
+                                                Offline
+                                            </label>
+                                        </div>
+                                        <div class="form-check col-sm-4">
+                                            <input class="form-check-input" type="radio" name="availability" id="availability2" checked>
+                                            <label class="form-check-label" for="availability2">
+                                                All
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 

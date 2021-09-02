@@ -13,9 +13,9 @@
                     </p>
                 </div>
                 <div class="col-md-8">
-                    <div class="bg-homeimage">
+                    <div class="bg-homeimage1">
                         <div class="row">
-                            <div class="col-md-7 text-white">
+                            <div class="col-md-7 text-white pl-4">
                                 <div class="text mt-5 ml-2">
                                     <p class="res-textup">
                                         We have upgraded the classroom.
@@ -24,15 +24,15 @@
                                         Register yourself on Tutorvy and learn or teach anything from
                                         anywhere.
                                     </p>
-                                    <p class="res-textup2">
-                                        LERAN MORE
-                                    </p>
+                                    <a href=""class="text-white res-textup">
+                                        Learn More
+                                    </a>
                                 </div>
                             </div>
                             <div class="col-md-5  m-0 p-0">
                                 <div class="home-image">
                                     <img src="{{asset('assets/images/backgrounds/home-main.png')}}" alt="home-image"
-                                        style="width: 100%;height: 200px;">
+                                        style="width: 100%;">
                                 </div>
                             </div>
                         </div>
@@ -306,9 +306,8 @@
                             <div class="card mt-0">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="wrapper">
-                                                <div class="container-calendar " style="width:100%;border-radius: 8px;">
+                                        <div class="col-md-12 mb-3">
+                                                <div class="" style="">
                                                     <h3 id="monthAndYear">
                                                         &nbsp;
                                                     </h3>
@@ -343,16 +342,16 @@
                                                         <select id="year" onchange="jump()"></select>
                                                     </div>
                                                 </div>
-                                            </div>
                                         </div>
                                     </div>
+
                                     <div class="row mt-2">
-                                        <div class="col-md-8">
+                                        <div class="col-md-7">
                                                 <p class="heading-third">
                                                     Today Bookings
                                                 </p>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-5">
                                             <a href="Booking/Booking.html" class="view-bookings">
                                                 View all Bookings
                                             </a>
@@ -405,12 +404,12 @@
                                         </div>
                                     </div>
                                     <div class="row mt-2">
-                                        <div class="col-md-8">
+                                        <div class="col-md-7">
                                                 <p class="heading-third">
                                                     Upcoming Bookings
                                                 </p>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-5">
                                             <a href="Booking/Booking.html" class="view-bookings">
                                                 View all Bookings
                                             </a>
