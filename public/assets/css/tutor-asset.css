@@ -17,7 +17,7 @@
 
 .heading-third {
     color: #00132D;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
     font-family: "Poppins";
 }
@@ -778,9 +778,9 @@ a[data-toggle="collapse"] {
 #monthAndYear {
     text-align: center;
     position: absolute;
-    left: 120px;
-    top: 40px;
-    font-size: 24px;
+    left: 26%;
+    top: 5%;
+    font-size: 20px;
     font-family: 'poppins';
 }
 
@@ -2149,15 +2149,6 @@ a[data-toggle="collapse"] {
     color: white;
     padding: 10px;
     border-radius: 50px;
-}
-
-#monthAndYear {
-    text-align: center;
-    position: absolute;
-    left: 120px;
-    top: 40px;
-    font-size: 24px;
-    font-family: 'poppins';
 }
 
 tr th {

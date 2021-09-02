@@ -17,8 +17,8 @@
                     <button class="cencel-btn  " id="cmd" style="float: right;">Download pdf</button>
                 </div>
             </div>
-            <div class="row ">
-                <div class="col-md-12 bg-white">
+            <div class="row bg-white ml-2 mr-2">
+                <div class="col-md-12">
                     <div class="card-body ">
                         <nav class=" row pl-3 pr-3">
                             <div class="col-md-6" id="nav-tab" role="tablist">
