@@ -22,21 +22,26 @@
                     </span>
                 </div>
         </div>
-
+        <form method="get" action="/findtutor">
         <div class=" row mt-3">
-            <div class="col-md-2"></div>
-                <div class="col-md-8 bg-subject">
-                    <div class="">
-                        <select name="" id="" class="input-subject">
-                            <option value="">Select Subject</option>
-                        </select>
-                        <input type="submit" class="input-submite w-25" value="Find a Tutor">
-                    </div>
-                </div>
+            
                 <div class="col-md-2"></div>
-            </div>
+                    <div class="col-md-8 bg-subject">
+                        <div class="">
+                            <select name="subject" id="subject" class="input-subject">
+                                <option value="">Select Subject</option>
+                                @foreach($subjects as $subject)
+                                <option value="{{$subject->name}}">{{$subject->name}}</option>
+                                @endforeach
+                            </select>
+                            <input type="submit" class="input-submite w-25" value="Find a Tutor">
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+           
         </div>
-
+        </form>
         <div class="row mar-left-right mt-5">
             <div class="col-md-3 bg-white-range">
                 <div class="d-flex mt-3">
@@ -289,96 +294,134 @@
                 </div>
             </div>
             <div class="col-md-9 mb-3" id="tutor">
+                @if(sizeof($tutors) > 0 || $tutors == '[]' )
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <img src="{{asset('assets/images/ico/no-tutor.svg')}}" alt="" width="200">
+                                <h1 class="">No Tutor Found For Your Search</h1>
+                                <h3 class="">Try a new search for your subject from</h3>
+                                    <h3>  our community of tutors.</h3>
+                            </div>
+                        </div>
+                @else
                 @foreach ($tutors as $i => $tutor)
-                    <div class="card  mb-2">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-9">
-                                    <div class="row">
-                                        <div class="col-md-9">
-                                            <div class="row">
-                                                <div class="col-md-2 col-6">
-                                                    <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
-                                                </div>
-                                                <div class="col-md-6 col-6">
-                                                    <h3>{{ $tutor->fullname }}</h3>
-                                                    <p class="mb-0"><img src="../assets/images/ico/red-icon.png" alt=""
-                                                            class="">
-                                                        {{ $tutor->professional->first()->designation ?? '---' }} at
-                                                        {{ $tutor->professional->first()->organization ?? '---' }} </p>
-                                                    <p><img src="../assets/images/ico/location-pro.png" alt="" class="">
-                                                        {{ $tutor->city }},
-                                                        {{ $tutor->country }}
-                                                    </p>
-                                                </div>
-                                                <div class="col-md-4 col-12">
-                                                    <p>
-                                                        <i class="fa fa-star text-yellow"></i>
-                                                        <i class="fa fa-star text-yellow"></i>
-                                                        <i class="fa fa-star text-yellow"></i>
-                                                        <i class="fa fa-star text-yellow"></i> 4.0
-                                                        <small class="text-grey">(25 reviews)</small>
-                                                    </p>
-                                                </div>
+                <div class="card">
+                    <div class="card-body">
+                        
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="row">
+                                            <div class="col-md-2 col-6">
+                                                <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
+                                            </div>
+                                            <div class="col-md-5 col-6">
+                                                <h3>{{$tutor->first_name}} {{$tutor->last_name}}</h3>
+                                                <p class="mb-0"><img src="../assets/images/ico/red-icon.png" alt="" class="">  {{$tutor->designation ?? '---'}}</p>
+                                                <p class="mb-0"><img src="../assets/images/ico/location-pro.png" alt="" class="">{{ $tutor->city != NULL ? $tutor->city.' , ' : '---' }} {{ $tutor->country != NULL ? $tutor->country: '---' }}</p>
+                                            </div>
+                                            <div class="col-md-4 col-12">
+                                                <p>
+                                                    @if($tutor->rating == 1)
+                                                    <i class="fa fa-star text-yellow"></i>
+                                                    <i class="fa fa-star "></i>
+                                                    <i class="fa fa-star "></i>
+                                                    <i class="fa fa-star "></i> 1.0
+                                                    @elseif($tutor->rating == 2)
+                                                    <i class="fa fa-star text-yellow"></i>
+                                                    <i class="fa fa-star text-yellow"></i>
+                                                    <i class="fa fa-star "></i>
+                                                    <i class="fa fa-star "></i>  2.0
+                                                    @elseif($tutor->rating == 3)
+                                                    <i class="fa fa-star text-yellow"></i>
+                                                    <i class="fa fa-star text-yellow"></i>
+                                                    <i class="fa fa-star text-yellow"></i>
+                                                    <i class="fa fa-star "></i>  3.0
+                                                    @else
+                                                    <i class="fa fa-star text-yellow"></i>
+                                                    <i class="fa fa-star text-yellow"></i>
+                                                    <i class="fa fa-star text-yellow"></i>
+                                                    <i class="fa fa-star text-yellow"></i>  4.0
+                                                    @endif
+                                                
+                                                    <small class="text-grey">(0 reviews)</small>
+                                                </p>
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
-                                            <p><span class="text-green pr-3">Top Ranked</span> <span class="rank_icon"><img
-                                                        src="../assets/images/ico/rank.png" alt=""></span> </p>
-                                        </div>
                                     </div>
-                                    <div class="row mt-2">
-                                        <div class="col-md-4">
-                                            <p class="mb-2">Subject</p>
-                                            <p>
-                                                @foreach ($tutor->teach as $subject)
-                                                    <span class="info-1 info">{{ $subject->first()->subject->name }}</span>
-                                                @endforeach
-                                            </p>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <p class="mb-2">Languages</p>
-                                            <p>
-                                                <span class="info-1 info lingo"> {{ $tutor->language }}</span>
-
-                                            </p>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <p class="mb-2">Education</p>
-                                            <p>
-                                                @foreach ($tutor->education as $edu)
-                                                    <span
-                                                        class="info-1 info edu d-inline-block"></span>
-                                                @endforeach
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-2">
-                                        <div class="col-md-12">
-                                            <p><strong> About Tutor </strong></p>
-                                            <p class="h-92">
-                                                {{ $tutor->bio }}
-                                            </p>
-                                        </div>
+                                    <div class="col-md-3">
+                                        @if($tutor->rank == 1)
+                                            <p class="text-right"><span class="text-green ">Verified</span> <span class="rank_icon"><img src="../assets/images/ico/bluebadge.png" alt=""></span> </p>
+                                        @elseif($tutor->rank == 2)
+                                            <p class="text-right"><span class="text-green ">Emerging</span> <span class="rank_icon"><img src="../assets/images/ico/yellow-rank.png" alt=""></span> </p>
+                                        @elseif($tutor->rank == 3)
+                                            <p class="text-right"><span class="text-green ">Top Rank</span> <span class="rank_icon"><img src="../assets/images/ico/rank.png" alt=""></span> </p>
+                                        @endif
                                     </div>
                                 </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-4">
+                                        @php
 
-                                <div class="col-md-3 pb-4 start-bg">
-                                    <div class="text-center mt-5">
-                                        <p class="paragraph-text1">starting from</p>
-                                        <p class="dollar-text">
-                                            ${{ $tutor->hourly_rate ?? 0 }}
+                                            $sub = explode(',',$tutor->subject_names);
+                                            
+                                        @endphp
+                                        <p class="mb-2">Subject</p>
+                                        <p>
+                                        @for ($i=0 ; $i < sizeof($sub); $i++)
+                                        <span class="info-1 info">{{$sub[$i]}}</span>
+                                        @endfor
+                                    </p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p class="mb-2">Languages</p>
+                                        <p>
+                                            <span class="info-1 info lingo">{{$tutor->lang_short ?? ''}}</span>
                                         </p>
-                                        <p class="paragraph-text1 mb-5" style="line-height: 1;">Per hour</p>
-                                        <button class="cencel-btn w-100 mt-2">Massge</button>
-                                        <a href="{{ route('student.direct.booking', [$tutor->id]) }}"
-                                            class="btn schedule-btn w-100 mt-3">Book class</a>
+                                    </div>
+                                    <div class="col-md-4">
+                                    <p class="mb-2">Education</p>
+                                        @php
+                                            $inst = explode(',',$tutor->insti_names);
+                                        @endphp
+                                        <p>
+                                        @for ($i=0 ; $i < sizeof($inst); $i++)
+                                        <span class="info-1 info edu">{{$inst[$i]}}</span>
+                                        @endfor
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-12 find_tutor">
+                                        <p><strong> About Tutor </strong></p>
+                                        <p class="scrol-about ">
+                                                {{$tutor->bio}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 bg-price text-center">
+                                <div class="row mt-30">
+                                    <div class="col-md-12">
+                                        <p>starting from</p>
+                                        <h1 class="f-60">${{$tutor->hourly_rate}}</h1>
+                                        <p>per hour</p>
+                                        <button type="button" class=" cencel-btn w-100">
+                                                &nbsp; Message &nbsp;
+                                            </button>
+                                        <button type="button" onclick="location.href = '{{route('student.book-now',[$tutor->id])}}';" class=" btn-general w-100 mt-2" >
+                                                &nbsp; Book Class &nbsp;
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
                     </div>
+                </div>
                 @endforeach
+                @endif
             </div>
         </div>
     </div>
@@ -416,90 +459,7 @@
                     $('#preloaderbody').css('display','none')
                     if (data.length > 0) {
                         for (let element of data) {
-                            var html = `   <div class="row mb-2">
-                            <div class="col-md-9">
-                                <div class="row">
-                                    <div class="col-md-9">
-                                        <div class="row">
-                                            <div class="col-md-2 col-6">
-                                                <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
-                                            </div>
-                                            <div class="col-md-6 col-6">
-                                                <h3>{{ $tutor->fullname }}</h3>
-                                                <p class="mb-0"><img src="../assets/images/ico/red-icon.png" alt=""
-                                                        class="">
-                                                    {{ $tutor->professional->first()->designation ?? '---' }} at
-                                                    {{ $tutor->professional->first()->organization ?? '---' }} </p>
-                                                <p><img src="../assets/images/ico/location-pro.png" alt="" class="">
-                                                    {{ $tutor->city }},
-                                                    {{ $tutor->country }}
-                                                </p>
-                                            </div>
-                                            <div class="col-md-4 col-12">
-                                                <p>
-                                                    <i class="fa fa-star text-yellow"></i>
-                                                    <i class="fa fa-star text-yellow"></i>
-                                                    <i class="fa fa-star text-yellow"></i>
-                                                    <i class="fa fa-star text-yellow"></i> 4.0
-                                                    <small class="text-grey">(25 reviews)</small>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <p><span class="text-green pr-3">Top Ranked</span> <span class="rank_icon"><img
-                                                    src="../assets/images/ico/rank.png" alt=""></span> </p>
-                                    </div>
-                                </div>
-                                <div class="row mt-2">
-                                    <div class="col-md-4">
-                                        <p class="mb-2">Subject</p>
-                                        <p>
-                                            @foreach ($tutor->teach as $subject)
-                                                <span class="info-1 info">{{ $subject->first()->subject->name }}</span>
-                                            @endforeach
-                                        </p>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <p class="mb-2">Languages</p>
-                                        <p>
-                                            <span class="info-1 info lingo"> {{ $tutor->language }}</span>
-
-                                        </p>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <p class="mb-2">Education</p>
-                                        <p>
-                                            @foreach ($tutor->education as $edu)
-                                                <span
-                                                    class="info-1 info edu d-inline-block"></span>
-                                            @endforeach
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="row mt-2">
-                                    <div class="col-md-12">
-                                        <p><strong> About Tutor </strong></p>
-                                        <p>
-                                            {{ $tutor->bio }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3 pb-4 start-bg">
-                                <div class="text-center mt-5">
-                                    <p class="paragraph-text1">starting from</p>
-                                    <p class="dollar-text">
-                                        ${{ $tutor->hourly_rate ?? 0 }}
-                                    </p>
-                                    <p class="paragraph-text1 mb-5" style="line-height: 1;">Per hour</p>
-                                    <button class="cencel-btn w-100 mt-5">Massge</button>
-                                    <a href="{{ route('student.direct.booking', [$tutor->id]) }}"
-                                        class="btn schedule-btn w-100 mt-3">Book class</a>
-                                </div>
-                            </div>
-                        </div>`
+                            var html = `   `
 
                             $("#tutor").html(html);
                         }
