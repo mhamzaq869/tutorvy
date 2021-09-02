@@ -260,7 +260,7 @@
                                 <div class="col align-self-start m-0 p-0">
                                     <div class="row ml-1">
                                         <div class="form-check col-sm-4">
-                                            <input class="form-check-input" type="radio" name="gender" id="male" checked value="male">
+                                            <input class="form-check-input" type="radio" name="gender" id="male"  value="male">
                                             <label class="form-check-label" for="male">
                                                 Male
                                             </label>
@@ -272,9 +272,9 @@
                                             </label>
                                         </div>
                                         <div class="form-check col-sm-4">
-                                            <input class="form-check-input" type="radio" name="gender" id="gender"  value="others">
+                                            <input class="form-check-input" type="radio" name="gender" id="gender" checked  value="any">
                                             <label class="form-check-label" for="gender">
-                                                Others
+                                                Any
                                             </label>
                                         </div>
                                     </div>
@@ -447,12 +447,12 @@
                                 </div>
                             </div>
                             <div class="col-md-3 bg-price text-center">
-                                <div class="row mt-30">
-                                    <div class="col-md-12">
+                                <div class="row mt-4">
+                                    <div class="col-md-12 ">
                                         <p>starting from</p>
                                         <h1 class="f-60">${{$tutor->hourly_rate}}</h1>
                                         <p>per hour</p>
-                                        <button type="button" class=" cencel-btn pd-btn w-100">
+                                        <button type="button" class=" cencel-btn pd-btn w-100 mt-3">
                                                 &nbsp; Message &nbsp;
                                             </button>
                                         <button type="button" onclick="bookNow(`{{$tutor->id}}`)" class=" btn-general pd-btn w-100 mt-2" >

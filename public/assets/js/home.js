@@ -28,7 +28,7 @@ function resetFilter() {
     $(".form-select").select2();
     $("#availabilityAll").checked = true;
     $("#range").val(10);
-    $("#male").checked = true;
+    $("#any").checked = true;
     $("#rating_filter0").checked = true;
 
     // $("#locat").select2("val", "");
