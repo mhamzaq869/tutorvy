@@ -47,6 +47,11 @@ $(".filteration").change(function() {
     });
 })
 
+function bookNow(id){
+    document.cookie = 't_id' + "=" + id + ";" + 60 + ";";
+    location.href = '{{route('student.book-now',[$tutor->id])}}';
+}
+
 function list_tutors(tutors){
 
     if(tutors.length > 0){

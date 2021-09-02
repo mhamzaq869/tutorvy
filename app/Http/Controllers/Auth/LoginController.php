@@ -69,6 +69,12 @@ class LoginController extends Controller
                     return redirect()->route('tutor.dashboard');
                 }
                 if($request->role == 3){
+
+                    $value = $_COOKIE['t_id'];
+                    if($value != ''){
+                        return redirect()->route('student.book-now',[$value]);
+                    }
+                    
                     return redirect()->route('student.dashboard');
                 }
                 Session::put('user',$request->valid_email);
