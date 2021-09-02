@@ -24,21 +24,26 @@
                     </span>
                 </div>
         </div>
-
+        <form method="get" action="/findtutor">
         <div class=" row mt-3">
-            <div class="col-md-2"></div>
-                <div class="col-md-8 bg-subject">
-                    <div class="">
-                        <select name="" id="" class="input-subject">
-                            <option value="">Select Subject</option>
-                        </select>
-                        <input type="submit" class="input-submite w-25" value="Find a Tutor">
-                    </div>
-                </div>
+            
                 <div class="col-md-2"></div>
-            </div>
+                    <div class="col-md-8 bg-subject">
+                        <div class="">
+                            <select name="subject" id="subject" class="input-subject">
+                                <option value="">Select Subject</option>
+                                @foreach($subjects as $subject)
+                                <option value="{{$subject->name}}" {{ ( $sub == $subject->name) ? 'selected' : '' }} >{{$subject->name}}</option>
+                                @endforeach
+                            </select>
+                            <input type="submit" class="input-submite w-25" value="Find a Tutor">
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+           
         </div>
-
+        </form>
         <div class="row mar-left-right mt-5">
             <div class="col-md-3 bg-white-range">
                 <div class="d-flex mt-3">
@@ -119,13 +124,13 @@
                             <div class="row">
                                 <b>
                                     <div class="col align-self-start">
-                                        $10-$55555
+                                        $10-$1000
                                     </div>
                                 </b>
                             </div>
                             <div class="">
                                 <div class="range-slider">
-                                    <input class="range-slider__range w-100" type="range" id="range" value="100" min="0"
+                                    <input class="range-slider__range w-100" type="range" id="range" value="1000" min="0"
                                         max="500">
                                     <span class="range-slider__value"></span>
                                 </div>
@@ -149,7 +154,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="rating_filter" id="rating_filter" value="1" >
+                                        <input class="form-check-input" type="radio" name="rating_filter" id="rating_filter" value="0" >
                                         <label class="form-check-label" for="rating_filter">
                                         <p>
                                             <i class="fa fa-star "></i>
@@ -225,11 +230,9 @@
                         <div class="panel-body">
                             <div class="pb-4">
                                 <div class="col align-self-start m-0 p-0">
-                                    <select class="form-control-md form-select" id="lang" aria-label=".form-select-md example">
+                                    <select class="form-control-md form-select" id="languages-list" aria-label=".form-select-md example">
                                         <option disabled selected>Choose a Language</option>
-                                        <option value="Udu">Udu</option>
-                                        <option value="English">English</option>
-                                        <option value="Arabic">Arabic</option>
+                                       
                                     </select>
                                 </div>
                             </div>
@@ -255,20 +258,20 @@
                                 <div class="col align-self-start m-0 p-0">
                                     <div class="row ml-1">
                                         <div class="form-check col-sm-4">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                            <label class="form-check-label" for="flexRadioDefault1">
+                                            <input class="form-check-input" type="radio" name="gender" id="gender" checked value="male">
+                                            <label class="form-check-label" for="gender">
                                                 Male
                                             </label>
                                         </div>
                                         <div class="form-check col-sm-4">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                            <label class="form-check-label" for="flexRadioDefault2">
+                                            <input class="form-check-input" type="radio" name="gender" id="gender" value="female">
+                                            <label class="form-check-label" for="gender">
                                                 Female
                                             </label>
                                         </div>
                                         <div class="form-check col-sm-4">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                            <label class="form-check-label" for="flexRadioDefault2">
+                                            <input class="form-check-input" type="radio" name="gender" id="gender"  value="others">
+                                            <label class="form-check-label" for="gender">
                                                 Others
                                             </label>
                                         </div>
@@ -303,19 +306,19 @@
                                 <div class="col align-self-start m-0 p-0">
                                     <div class="row ml-1">
                                         <div class="form-check col-sm-4">
-                                            <input class="form-check-input" type="radio" name="availability" id="availability1">
+                                            <input class="form-check-input" type="radio" name="availability" id="availability1" value="online">
                                             <label class="form-check-label" for="availability1">
                                                 Online
                                             </label>
                                         </div>
                                         <div class="form-check col-sm-4">
-                                            <input class="form-check-input" type="radio" name="availability" id="availability2" checked>
+                                            <input class="form-check-input" type="radio" name="availability" id="availability2"  value="offline">
                                             <label class="form-check-label" for="availability2">
                                                 Offline
                                             </label>
                                         </div>
                                         <div class="form-check col-sm-4">
-                                            <input class="form-check-input" type="radio" name="availability" id="availability2" checked>
+                                            <input class="form-check-input" type="radio" name="availability" id="availability2" checked value="all">
                                             <label class="form-check-label" for="availability2">
                                                 All
                                             </label>
@@ -329,134 +332,21 @@
                 </div>
             </div>
             <div class="col-md-9 mb-3" id="tutor">
-                @foreach ($tutors as $i => $tutor)
-                    <div class="card  mb-2">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-9">
-                                    <div class="row">
-                                        <div class="col-md-9">
-                                            <div class="row">
-                                                <div class="col-md-2 col-6">
-                                                    <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
-                                                </div>
-                                                <div class="col-md-5 col-6">
-                                                    <h3>{{ $tutor->fullname }}</h3>
-                                                    <p class="mb-0"><img src="../assets/images/ico/red-icon.png" alt=""
-                                                            class="">
-                                                        {{ $tutor->professional->first()->designation ?? '---' }} at
-                                                        {{ $tutor->professional->first()->organization ?? '---' }} </p>
-                                                    <p><img src="../assets/images/ico/location-pro.png" alt="" class="">
-                                                        {{ $tutor->city }},
-                                                        {{ $tutor->country }}
-                                                    </p>
-                                                </div>
-                                                <div class="col-md-5 col-12">
-                                                    <p>
-                                                        <i class="fa fa-star text-yellow"></i>
-                                                        <i class="fa fa-star text-yellow"></i>
-                                                        <i class="fa fa-star text-yellow"></i>
-                                                        <i class="fa fa-star text-yellow"></i> 4.0
-                                                        <small class="text-grey">(25 reviews)</small>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <p><span class="text-green pr-3">Top Ranked</span> <span class="rank_icon"><img
-                                                        src="../assets/images/ico/rank.png" alt=""></span> </p>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-2">
-                                        <div class="col-md-4">
-                                            <p class="mb-2">Subject</p>
-                                            <p>
-                                                @foreach ($tutor->teach as $subject)
-                                                    <span class="info-1 info">{{ $subject->first()->subject->name }}</span>
-                                                @endforeach
-                                            </p>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <p class="mb-2">Languages</p>
-                                            <p>
-                                                <span class="info-1 info lingo"> {{ $tutor->language }}</span>
-
-                                            </p>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <p class="mb-2">Education</p>
-                                            <p>
-                                                @foreach ($tutor->education as $edu)
-                                                    <span
-                                                        class="info-1 info edu d-inline-block"></span>
-                                                @endforeach
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-2">
-                                        <div class="col-md-12">
-                                            <p><strong> About Tutor </strong></p>
-                                            <p class="h-92">
-                                                {{ $tutor->bio }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3 pb-4 start-bg">
-                                    <div class="text-center mt-5">
-                                        <p class="paragraph-text1">starting from</p>
-                                        <p class="dollar-text">
-                                            ${{ $tutor->hourly_rate ?? 0 }}
-                                        </p>
-                                        <p class="paragraph-text1 mb-5" style="line-height: 1;">Per hour</p>
-                                        <button class="cencel-btn w-100 mt-2">Massge</button>
-                                        <a href="{{ route('student.direct.booking', [$tutor->id]) }}"
-                                            class="btn schedule-btn w-100 mt-3">Book class</a>
-                                    </div>
-                                </div>
+                @if(sizeof($tutors) == 0 || $tutors == '[]' )
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <img src="{{asset('assets/images/ico/no-tutor.svg')}}" alt="" width="200">
+                                <h1 class="">No Tutor Found For Your Search</h1>
+                                <h3 class="">Try a new search for your subject from</h3>
+                                    <h3>  our community of tutors.</h3>
                             </div>
                         </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-</section>
-    <!-- end -->
-    <script src="{{ asset('assets/js/filterajax.js') }}"></script>
-@endsection
-
-
-@section('scripts')
-    <script>
-        $(".filteration").change(function() {
-            $('#preloaderbody').css('display','block')
-
-            var range = $("#range").val()
-            var locat = $("#locat").val()
-            var lang = $("#lang").val()
-            var gender = $("input[name=optradio]:checked").val()
-            var avail = $("#avail").val()
-
-            $.ajax({
-                type: 'POST',
-                url: "{{ route('find.tutor') }}",
-                dataType: "json",
-                data: {
-                    _token: "{{ csrf_token() }}",
-                    range: range,
-                    locat: locat,
-                    lang: lang,
-                    gender: gender,
-                    avail: avail
-                },
-                success: function(data) {
-                    console.log(data)
-                    $('#preloaderbody').css('display','none')
-                    if (data.length > 0) {
-                        for (let element of data) {
-                            var html = `   <div class="row mb-2">
+                @else
+                @foreach ($tutors as $i => $tutor)
+                <div class="card">
+                    <div class="card-body">
+                        
+                        <div class="row">
                             <div class="col-md-9">
                                 <div class="row">
                                     <div class="col-md-9">
@@ -464,88 +354,130 @@
                                             <div class="col-md-2 col-6">
                                                 <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
                                             </div>
-                                            <div class="col-md-6 col-6">
-                                                <h3>{{ $tutor->fullname }}</h3>
-                                                <p class="mb-0"><img src="../assets/images/ico/red-icon.png" alt=""
-                                                        class="">
-                                                    {{ $tutor->professional->first()->designation ?? '---' }} at
-                                                    {{ $tutor->professional->first()->organization ?? '---' }} </p>
-                                                <p><img src="../assets/images/ico/location-pro.png" alt="" class="">
-                                                    {{ $tutor->city }},
-                                                    {{ $tutor->country }}
-                                                </p>
+                                            <div class="col-md-5 col-6">
+                                                <h3>{{$tutor->first_name}} {{$tutor->last_name}}</h3>
+                                                <p class="mb-0"><img src="../assets/images/ico/red-icon.png" alt="" class="">  {{$tutor->designation ?? '---'}}</p>
+                                                <p class="mb-0"><img src="../assets/images/ico/location-pro.png" alt="" class="">{{ $tutor->city != NULL ? $tutor->city.' , ' : '---' }} {{ $tutor->country != NULL ? $tutor->country: '---' }}</p>
                                             </div>
                                             <div class="col-md-4 col-12">
                                                 <p>
+                                                    @if($tutor->rating == 1)
+                                                    <i class="fa fa-star text-yellow"></i>
+                                                    <i class="fa fa-star "></i>
+                                                    <i class="fa fa-star "></i>
+                                                    <i class="fa fa-star "></i> 1.0
+                                                    @elseif($tutor->rating == 2)
+                                                    <i class="fa fa-star text-yellow"></i>
+                                                    <i class="fa fa-star text-yellow"></i>
+                                                    <i class="fa fa-star "></i>
+                                                    <i class="fa fa-star "></i>  2.0
+                                                    @elseif($tutor->rating == 3)
                                                     <i class="fa fa-star text-yellow"></i>
                                                     <i class="fa fa-star text-yellow"></i>
                                                     <i class="fa fa-star text-yellow"></i>
-                                                    <i class="fa fa-star text-yellow"></i> 4.0
-                                                    <small class="text-grey">(25 reviews)</small>
+                                                    <i class="fa fa-star "></i>  3.0
+                                                    @elseif($tutor->rating == 4)
+                                                    <i class="fa fa-star text-yellow"></i>
+                                                    <i class="fa fa-star text-yellow"></i>
+                                                    <i class="fa fa-star text-yellow"></i>
+                                                    <i class="fa fa-star text-yellow"></i>  4.0
+                                                    @else
+                                                    <i class="fa fa-star "></i>
+                                                    <i class="fa fa-star "></i>
+                                                    <i class="fa fa-star "></i>
+                                                    <i class="fa fa-star "></i>  0.0
+                                                    @endif
+                                                
+                                                    <small class="text-grey">(0 reviews)</small>
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
-                                        <p><span class="text-green pr-3">Top Ranked</span> <span class="rank_icon"><img
-                                                    src="../assets/images/ico/rank.png" alt=""></span> </p>
+                                        @if($tutor->rank == 1)
+                                            <p class="text-right"><span class="text-green ">Verified</span> <span class="rank_icon"><img src="../assets/images/ico/bluebadge.png" alt=""></span> </p>
+                                        @elseif($tutor->rank == 2)
+                                            <p class="text-right"><span class="text-green ">Emerging</span> <span class="rank_icon"><img src="../assets/images/ico/yellow-rank.png" alt=""></span> </p>
+                                        @elseif($tutor->rank == 3)
+                                            <p class="text-right"><span class="text-green ">Top Rank</span> <span class="rank_icon"><img src="../assets/images/ico/rank.png" alt=""></span> </p>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="row mt-2">
                                     <div class="col-md-4">
+                                        @php
+
+                                            $sub = explode(',',$tutor->subject_names);
+                                            
+                                        @endphp
                                         <p class="mb-2">Subject</p>
                                         <p>
-                                            @foreach ($tutor->teach as $subject)
-                                                <span class="info-1 info">{{ $subject->first()->subject->name }}</span>
-                                            @endforeach
-                                        </p>
+                                        @for ($i=0 ; $i < sizeof($sub); $i++)
+                                        <span class="info-1 info">{{$sub[$i]}}</span>
+                                        @endfor
+                                    </p>
                                     </div>
                                     <div class="col-md-4">
                                         <p class="mb-2">Languages</p>
                                         <p>
-                                            <span class="info-1 info lingo"> {{ $tutor->language }}</span>
-
+                                            <span class="info-1 info lingo">{{$tutor->lang_short ?? ''}}</span>
                                         </p>
                                     </div>
                                     <div class="col-md-4">
-                                        <p class="mb-2">Education</p>
+                                    <p class="mb-2">Education</p>
+                                        @php
+                                            $inst = explode(',',$tutor->insti_names);
+                                        @endphp
                                         <p>
-                                            @foreach ($tutor->education as $edu)
-                                                <span
-                                                    class="info-1 info edu d-inline-block"></span>
-                                            @endforeach
+                                        @for ($i=0 ; $i < sizeof($inst); $i++)
+                                        <span class="info-1 info edu">{{$inst[$i]}}</span>
+                                        @endfor
                                         </p>
                                     </div>
                                 </div>
                                 <div class="row mt-2">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 find_tutor">
                                         <p><strong> About Tutor </strong></p>
-                                        <p>
-                                            {{ $tutor->bio }}
+                                        <p class="scrol-about ">
+                                                {{$tutor->bio}}
                                         </p>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-md-3 pb-4 start-bg">
-                                <div class="text-center mt-5">
-                                    <p class="paragraph-text1">starting from</p>
-                                    <p class="dollar-text">
-                                        ${{ $tutor->hourly_rate ?? 0 }}
-                                    </p>
-                                    <p class="paragraph-text1 mb-5" style="line-height: 1;">Per hour</p>
-                                    <button class="cencel-btn w-100 mt-5">Massge</button>
-                                    <a href="{{ route('student.direct.booking', [$tutor->id]) }}"
-                                        class="btn schedule-btn w-100 mt-3">Book class</a>
+                            <div class="col-md-3 bg-price text-center">
+                                <div class="row mt-30">
+                                    <div class="col-md-12">
+                                        <p>starting from</p>
+                                        <h1 class="f-60">${{$tutor->hourly_rate}}</h1>
+                                        <p>per hour</p>
+                                        <button type="button" class=" cencel-btn w-100">
+                                                &nbsp; Message &nbsp;
+                                            </button>
+                                        <button type="button" onclick="location.href = '{{route('student.book-now',[$tutor->id])}}';" class=" btn-general w-100 mt-2" >
+                                                &nbsp; Book Class &nbsp;
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>`
+                        </div>
+                        
+                    </div>
+                </div>
+                @endforeach
+                @endif
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- end -->
+    <script src="{{ asset('assets/js/filterajax.js') }}"></script>
+@endsection
+@section('scripts')
+@include('js_files.frontJs')
+@endsection
 
-                            $("#tutor").html(html);
-                        }
-                    }
-                }
-            });
-        })
+@section('scripts')
+    <script>
+        
     </script>
 @endsection

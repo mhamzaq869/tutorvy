@@ -102,7 +102,7 @@
                                             <div id="ratingDiv" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
                                                 <div class="card-body pl-2 pr-0 pt-0">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="rating_filter" id="rating_filter" value="1" >
+                                                        <input class="form-check-input" type="radio" name="rating_filter" id="rating_filter" value="0" >
                                                         <label class="form-check-label" for="rating_filter">
                                                         <p>
                                                             <i class="fa fa-star "></i>
@@ -187,7 +187,7 @@
                     </div>
                 </div>
                 <div class="col-md-9 " id="tutors-list">
-                    @if(sizeof($available_tutors) > 0 || $available_tutors == '[]' )
+                    @if(sizeof($available_tutors) == 0 || $available_tutors == '[]' )
                         <div class="card">
                             <div class="card-body text-center">
                                 <img src="{{asset('assets/images/ico/no-tutor.svg')}}" alt="" width="200">
@@ -232,11 +232,16 @@
                                                             <i class="fa fa-star text-yellow"></i>
                                                             <i class="fa fa-star text-yellow"></i>
                                                             <i class="fa fa-star "></i>  3.0
-                                                            @else
+                                                            @elseif($tutor->rating == 4)
                                                             <i class="fa fa-star text-yellow"></i>
                                                             <i class="fa fa-star text-yellow"></i>
                                                             <i class="fa fa-star text-yellow"></i>
                                                             <i class="fa fa-star text-yellow"></i>  4.0
+                                                            @else
+                                                            <i class="fa fa-star "></i>
+                                                            <i class="fa fa-star "></i>
+                                                            <i class="fa fa-star "></i>
+                                                            <i class="fa fa-star "></i>  0.0
                                                             @endif
                                                         
                                                             <small class="text-grey">(0 reviews)</small>

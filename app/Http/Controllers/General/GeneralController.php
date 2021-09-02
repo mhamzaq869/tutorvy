@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Http;
 use App\Models\User;
 use App\Models\General\Institute;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Admin\Subject;
+
 class GeneralController extends Controller
 {
 
@@ -78,5 +80,12 @@ class GeneralController extends Controller
         endif;
 
         return redirect()->back();
+    }
+
+    public function course(){
+
+        $subjects = Subject::get();
+        return view('frontend.course',compact('subjects'));
+
     }
 }

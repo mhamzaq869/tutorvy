@@ -17,15 +17,7 @@ class TutorController extends Controller
 
     public function index()
     {
-        
-        // $available_tutors = ViewTutorData::select("*")
-        //                 ->where('subjects', 'like', '%' . strval(\Auth::user()->std_learn) . '%')
-        //                 // ->where('lang_short', $request->language)
-        //                 // ->where('rating', $request->rating)
-        //                 ->get()
-        //                 ->toArray();
-
-                        
+             
         $available_tutors = DB::table('users')
         ->select('view_tutors_data.*','teachs.subject_id as subject_id')
         ->leftJoin('teachs', 'users.id', '=', 'teachs.user_id')
@@ -51,13 +43,7 @@ class TutorController extends Controller
         if($rate == 0){
             $rate = null;
         }
-        // $available_tutors = ViewTutorData::select("*")
-        // ->where('subjects', 'like', '%' . strval($subject) . '%')
-        // ->where('lang_short', $request->language)
-        // ->where('rating', $request->rating)
-        // ->get()
-        // ->toArray();
-
+        
         $available_tutors = DB::table('users')
         ->select('view_tutors_data.*','teachs.subject_id as subject_id')
         ->leftJoin('teachs', 'users.id', '=', 'teachs.user_id')
