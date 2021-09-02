@@ -16,17 +16,92 @@
             <form action="{{route('student.booked.tutor')}}" method="post"  enctype="multipart/form-data" id="book_tutor_form">
                 <div class="row mt-5">
                         <div class="input-text col-md-6">
-                            <select name="subject" class="form-select form-select-lg w-100"
-                                aria-label=".form-select-lg example" >
-                                <option value="Select Subject">Select Subject</option>
-                                @foreach($subjects as $subject)
-                                <option value="{{$subject->subject_id}}">{{$subject->sub_name}}</option>
-                                @endforeach
-                            </select>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <select name="subject" class="form-select form-select-lg w-100"
+                                        aria-label=".form-select-lg example" >
+                                        <option value="Select Subject">Select Subject</option>
+                                        @foreach($subjects as $subject)
+                                        <option value="{{$subject->subject_id}}">{{$subject->sub_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-12 mt-3">
+                                    <input type="text" class="form-control " name="topic"
+                                    placeholder="Type your Topic" value="">
+                                </div>
+                            </div>
+                            
                         </div>
-                        <div class="input-text col-md-6 d-block">
-                            <input type="text" class="form-control " name="topic"
-                                placeholder="Type your Topic" value="">
+                        <div class="col-md-6 d-block">
+                            <div class="card mt-0">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <div class="row">
+                                                <div class="col-md-2 col-6">
+                                                    @if($user->picture == "" || $user->picture == null)
+                                                    <img src="{{asset('assets/images/logo/boy.jpg')}}" alt="" class="round-border">
+                                                    @else
+                                                    <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
+                                                    @endif
+                                                </div>
+                                                <div class="col-md-5 col-6">
+                                                    <h3>{{$user->first_name}} {{$user->last_name}}</h3>
+                                                   
+                                                </div>
+                                                <div class="col-md-4 col-12">
+                                                    <p>
+                                                        @if($user->rating == 1)
+                                                        <i class="fa fa-star text-yellow"></i>
+                                                        <i class="fa fa-star "></i>
+                                                        <i class="fa fa-star "></i>
+                                                        <i class="fa fa-star "></i> 1.0
+                                                        @elseif($user->rating == 2)
+                                                        <i class="fa fa-star text-yellow"></i>
+                                                        <i class="fa fa-star text-yellow"></i>
+                                                        <i class="fa fa-star "></i>
+                                                        <i class="fa fa-star "></i>  2.0
+                                                        @elseif($user->rating == 3)
+                                                        <i class="fa fa-star text-yellow"></i>
+                                                        <i class="fa fa-star text-yellow"></i>
+                                                        <i class="fa fa-star text-yellow"></i>
+                                                        <i class="fa fa-star "></i>  3.0
+                                                        @elseif($user->rating == 4)
+                                                        <i class="fa fa-star text-yellow"></i>
+                                                        <i class="fa fa-star text-yellow"></i>
+                                                        <i class="fa fa-star text-yellow"></i>
+                                                        <i class="fa fa-star text-yellow"></i>  4.0
+                                                        @else
+                                                        <i class="fa fa-star "></i>
+                                                        <i class="fa fa-star "></i>
+                                                        <i class="fa fa-star "></i>
+                                                        <i class="fa fa-star "></i>  0.0
+                                                        @endif
+                                                    
+                                                        <small class="text-grey">(0 reviews)</small>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            @if($user->rank == 1)
+                                                <p class="text-right"><span class="text-green ">Verified</span> <span class="rank_icon"><img src="{{asset('assets/images/ico/bluebadge.png')}}" alt=""></span> </p>
+                                            @elseif($user->rank == 2)
+                                                <p class="text-right"><span class="text-green ">Emerging</span> <span class="rank_icon"><img src="{{asset('assets/images/ico/yellow-rank.png')}}" alt=""></span> </p>
+                                            @elseif($user->rank == 3)
+                                                <p class="text-right"><span class="text-green ">Top Rank</span> <span class="rank_icon"><img src="{{asset('assets/images/ico/rank.png')}}" alt=""></span> </p>
+                                            @endif
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p class="mb-0 "><img src="{{asset('assets/images/ico/red-icon.png')}}" alt="" class="pr-2">  {{$user->designation ?? '---'}}</p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p class="mb-0 "><img src="{{asset('assets/images/ico/location-pro.png')}}" alt="" class="pr-2">{{ $user->city != NULL ? $user->city.' , ' : '---' }} {{ $user->country != NULL ? $user->country: '---' }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="input-text col-md-6 d-block">
                             <input type="text" class="form-control " hidden name="tutor_id" id="tutor_id"
