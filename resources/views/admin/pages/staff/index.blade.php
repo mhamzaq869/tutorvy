@@ -120,18 +120,32 @@
                     <nav aria-label="Page navigation" class="mt-4">
                         <ul class="pagination bg-white pagination-example-1">
                             <li class="page-item">
-                                <a class="page-link" href="#" tabindex="-1">
-                                    <img src="{{ asset('admin/assets/img/ico/arrow-left-1.png')}}" alt="image" />
+                                <a class="page-link" href="{{$users->previousPageUrl()}}" tabindex="-1">
+                                    <img src="{{ asset('/admin/assets/img/ico/arrow-left-1.png')}}" alt="image" />
                                 </a>
                             </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link page-link-1" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            @if($users->onFirstPage())
+                                <li class="page-item"><a class="page-link" href="{{$users->url(1)}}" style="display:none;">1</a></li>
+                            @else
+                            <li class="page-item"><a class="page-link" href="{{$users->url(1)}}">1</a></li>
+                                @endif
+                            <li class="page-item"><a class="page-link page-link-1" href="#">{{$users->currentPage()}}</a></li>
+                            @if($users->hasPages())
+                            <li class="page-item"><a class="page-link " href="#">.....</a></li>
+    
+                            <li class="page-item"><a class="page-link" href="{{$users->url($users->lastPage())}}"> {{$users->lastPage()}} </a></li>
                             <li class="page-item">
-                                <a class="page-link" href="#">
-                                    <img src="{{ asset('admin/assets/img/ico/arrow-right-1.png')}}" alt="image" />
+                                <a class="page-link" href="{{$users->nextPageUrl()}}">
+                                    <img src="{{ asset('/admin/assets/img/ico/arrow-right-1.png')}}" alt="image" />
                                 </a>
                             </li>
+                            @else
+                            <li class="page-item">
+                                <a class="page-link" href="{{$users->nextPageUrl()}}">
+                                    <img src="{{ asset('/admin/assets/img/ico/arrow-right-1.png')}}" alt="image" />
+                                </a>
+                            </li>
+                            @endif
                         </ul>
                     </nav>
                 </div>
@@ -202,18 +216,34 @@
                     <nav aria-label="Page navigation" class="mt-4">
                         <ul class="pagination bg-white pagination-example-1">
                             <li class="page-item">
-                                <a class="page-link" href="#" tabindex="-1">
-                                    <img src="{{ asset('admin/assets/img/ico/arrow-left-1.png')}}" alt="image" />
+                                <a class="page-link" href="{{$roles->previousPageUrl()}}" tabindex="-1">
+                                    <img src="{{ asset('/admin/assets/img/ico/arrow-left-1.png')}}" alt="image" />
                                 </a>
                             </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link page-link-1" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            @if($roles->onFirstPage())
+                                <li class="page-item"><a class="page-link" href="{{$roles->url(1)}}" style="display:none;">1</a></li>
+                            @else
+                            <li class="page-item"><a class="page-link" href="{{$roles->url(1)}}">1</a></li>
+                            @endif
+                            
+                            <li class="page-item"><a class="page-link page-link-1" href="#">{{$roles->currentPage()}}</a></li>
+                            @if($roles->hasPages())
+                            <li class="page-item"><a class="page-link " href="#">.....</a></li>
+    
+                            <li class="page-item"><a class="page-link" href="{{$roles->url($roles->lastPage())}}"> {{$roles->lastPage()}} </a></li>
                             <li class="page-item">
-                                <a class="page-link" href="#">
-                                    <img src="{{ asset('admin/assets/img/ico/arrow-right-1.png')}}" alt="image" />
+                                <a class="page-link" href="{{$roles->nextPageUrl()}}">
+                                    <img src="{{ asset('/admin/assets/img/ico/arrow-right-1.png')}}" alt="image" />
                                 </a>
                             </li>
+                            @else
+                            
+                            <li class="page-item">
+                                <a class="page-link" href="{{$roles->nextPageUrl()}}">
+                                    <img src="{{ asset('/admin/assets/img/ico/arrow-right-1.png')}}" alt="image" />
+                                </a>
+                            </li>
+                            @endif
                         </ul>
                     </nav>
                 </div>

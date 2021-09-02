@@ -166,6 +166,40 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="col-md-12">
+                            <nav aria-label="Page navigation" class="mt-4">
+                                <ul class="pagination bg-white pagination-example-1">
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{$new_requests->previousPageUrl()}}" tabindex="-1">
+                                            <img src="{{ asset('/admin/assets/img/ico/arrow-left-1.png')}}" alt="image" />
+                                        </a>
+                                    </li>
+                                    @if($new_requests->onFirstPage())
+                                        <li class="page-item"><a class="page-link" href="{{$new_requests->url(1)}}" style="display:none;">1</a></li>
+                                    @else
+                                    <li class="page-item"><a class="page-link" href="{{$new_requests->url(1)}}">1</a></li>
+                                        @endif
+                                    <li class="page-item"><a class="page-link page-link-1" href="#">{{$new_requests->currentPage()}}</a></li>
+                                    
+                                    @if($new_requests->hasPages())
+                                        <li class="page-item"><a class="page-link " href="#">.....</a></li>
+            
+                                        <li class="page-item"><a class="page-link" href="{{$new_requests->url($new_requests->lastPage())}}"> {{$new_requests->lastPage()}} </a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="{{$new_requests->nextPageUrl()}}">
+                                                <img src="{{ asset('/admin/assets/img/ico/arrow-right-1.png')}}" alt="image" />
+                                            </a>
+                                        </li>
+                                        @else
+                                        <li class="page-item">
+                                            <a class="page-link" href="{{$new_requests->nextPageUrl()}}">
+                                                <img src="{{ asset('/admin/assets/img/ico/arrow-right-1.png')}}" alt="image" />
+                                            </a>
+                                        </li>
+                                        @endif
+                                </ul>
+                            </nav>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -323,6 +357,40 @@
                                
                             </tbody>
                         </table>
+                    </div>
+                    <div class="col-md-12">
+                        <nav aria-label="Page navigation" class="mt-4">
+                            <ul class="pagination bg-white pagination-example-1">
+                                <li class="page-item">
+                                    <a class="page-link" href="{{$approved_tutors->previousPageUrl()}}" tabindex="-1">
+                                        <img src="{{ asset('/admin/assets/img/ico/arrow-left-1.png')}}" alt="image" />
+                                    </a>
+                                </li>
+                                @if($approved_tutors->onFirstPage())
+                                    <li class="page-item"><a class="page-link" href="{{$approved_tutors->url(1)}}" style="display:none;">1</a></li>
+                                @else
+                                <li class="page-item"><a class="page-link" href="{{$approved_tutors->url(1)}}">1</a></li>
+                                    @endif
+                                <li class="page-item"><a class="page-link page-link-1" href="#">{{$approved_tutors->currentPage()}}</a></li>
+                                
+                                @if($approved_tutors->hasPages())
+                                    <li class="page-item"><a class="page-link " href="#">.....</a></li>
+        
+                                    <li class="page-item"><a class="page-link" href="{{$approved_tutors->url($approved_tutors->lastPage())}}"> {{$approved_tutors->lastPage()}} </a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{$approved_tutors->nextPageUrl()}}">
+                                            <img src="{{ asset('/admin/assets/img/ico/arrow-right-1.png')}}" alt="image" />
+                                        </a>
+                                    </li>
+                                    @else
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{$approved_tutors->nextPageUrl()}}">
+                                            <img src="{{ asset('/admin/assets/img/ico/arrow-right-1.png')}}" alt="image" />
+                                        </a>
+                                    </li>
+                                    @endif
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>

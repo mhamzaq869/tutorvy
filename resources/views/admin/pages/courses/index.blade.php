@@ -3,7 +3,7 @@
 @section('content')
      <!--section start  -->
      <div class="container-fluid mt-5">
-        <div class="row">
+        <div class="row ml-1 mr-1">
             <div class="col-md-6">
                 <h1>
                     Courses
@@ -21,7 +21,7 @@
                 </nav>
             </div>
         </div>
-        <div class="row mt-3">
+        <div class="row mt-3 ml-1 mr-1">
             <div class="col-md-6">
                 <h3 class="mt-3">
                     Courses for approval
@@ -33,7 +33,7 @@
         </div>
     </div>
     <div class="container-fluid ">
-        <div class="pt-3 mt-3 container-bg">
+        <div class="pt-3 mt-3 container-bg ml-1 mr-1">
             <form>
                 <div class="row border-bottom pb-2 ml-1 mr-1">
                     <div class="col-md-11">
@@ -89,7 +89,7 @@
                     </div>
             </form>
         </div>
-        <div class="row mt-4">
+        <div class="row mt-4 ml-1 mr-1">
             <div class="col-md-12">
                 <!-- start table -->
                 <table class="table table-borderless">
@@ -158,7 +158,7 @@
         </div>
     </div>
     <div class="container-fluid mt-3">
-        <div class="row">
+        <div class="row ml-1 mr-1">
             <div class="col-md-6">
                 <h3 class="mt-3 ml-3">
                     All courses
@@ -172,7 +172,7 @@
     <!-- all courses -->
     <div class="container-fluid  pt-3 mt-3 container-bg">
         <form>
-            <div class="row border-bottom pb-2">
+            <div class="row border-bottom pb-2 ml-1 -mr-1">
                 <div class="col-md-11">
                     <div class="row">
                         <div class="col-md-2">
@@ -232,7 +232,7 @@
                 </div>
         </form>
     </div>
-    <div class="row mt-4 mb-5">
+    <div class="row mt-4 mb-5 ml-1 mr-1">
         <div class="col-md-12">
             <!-- start table -->
             <table class="table table-borderless">

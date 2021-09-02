@@ -20,7 +20,7 @@ class StudentController extends Controller
 
     public function index()
     {
-        $students = User::where('role',3)->get();
+        $students = User::where('role',3)->paginate(15);
         return view('admin.pages.students.index',compact('students'));
     }
 

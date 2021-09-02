@@ -14,10 +14,9 @@ $('#add_role_form').on('submit', function(e) {
         success: function(response) {
             // console.log(response);
             if (response.status == 200) {
-                Swal.fire({
+                toastr.success('Role Added Successfully!', {
                     position: 'top-end',
                     icon: 'success',
-                    title: 'Role Added Successfully!',
                     showConfirmButton: false,
                     timer: 2500
                 })
@@ -43,10 +42,9 @@ function delRole(id) {
             success: function(response) {
                 // console.log(response);
                 if (response.status == 200) {
-                    Swal.fire({
+                    toastr.success('Role Deleted Successfully!', {
                         position: 'top-end',
                         icon: 'success',
-                        title: 'Role Deleted Successfully!',
                         showConfirmButton: false,
                         timer: 2500
                     })
@@ -82,10 +80,9 @@ $("#edit_role_form").submit(function(e) {
         success: function(response) {
             // console.log(response);
             if (response.status == 200) {
-                Swal.fire({
+                toastr.success('Role Updated Successfully!', {
                     position: 'top-end',
                     icon: 'success',
-                    title: 'Role Updated Successfully!',
                     showConfirmButton: false,
                     timer: 2500
                 })

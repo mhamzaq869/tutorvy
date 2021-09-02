@@ -19,10 +19,9 @@ function verifyAssessment(id,status){
 
             $('.reject_asses_modal').modal('hide')
 
-            Swal.fire({
+            toastr.success( response.message,{
                 position: 'top-end',
                 icon: 'success',
-                title: response.message,
                 showConfirmButton: false,
                 timer: 2500
             })
@@ -39,10 +38,9 @@ function verifyTutor(id,status,assess_status = null){
     let reason = null;
 
     if(assess_status == null && status == 2){
-      Swal.fire({
+      toastr.success('No Assessment Provided.',{
           position: 'top-end',
           icon: 'warning',
-          title: 'No Assessment Provided.',
           showConfirmButton: false,
           timer: 2500
       }) 
@@ -98,7 +96,7 @@ function changeTutorStatus(id,st = null,reason = null){
       {
           status = 2; //  Enabled
       }else{
-          status = 0; // Disabled
+          status = 1; // Disabled
       }
     }else{
       status = st;
@@ -116,10 +114,9 @@ function changeTutorStatus(id,st = null,reason = null){
           // console.log(response);
           if(response.status == 200) {
 
-            Swal.fire({
+            toastr.success( response.message,{
                 position: 'top-end',
                 icon: 'success',
-                title: response.message,
                 showConfirmButton: false,
                 timer: 2500
             }) 

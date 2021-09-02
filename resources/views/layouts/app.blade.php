@@ -26,6 +26,24 @@
     <link href="{{ asset('assets/css/modal.css') }}" rel="stylesheet">
     <script src="assets/js/jquery.js"></script>
 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<style>
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #444;
+    font-size: 18px;
+    line-height: 40px;
+}
+.select2-selection__arrow
+{
+    display:none;
+}
+.select2-container--default .select2-selection--single{
+    height:43px !important;
+}
+.select2-selection__rendered{
+    float:left;
+}
+</style>
 </head>
 <body>
     <section>
@@ -37,7 +55,11 @@
         <!--End Main-->
         @include('layouts.footer')
     </section>
-
+<script>
+    $(document).ready(function(){
+        $(".input-subject").select2();
+    })
+</script>
     <!-- <div class="modal fade support_modal show" id="support-modal" tabindex="-1" role="dialog" aria-labelledby="support-modal" style="padding-right: 7px; display: block;">
         <div class="modal-dialog  modal-dialog-centered" role="document">
             <div class="modal-content modals">

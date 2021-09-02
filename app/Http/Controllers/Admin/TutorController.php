@@ -25,7 +25,7 @@ class TutorController extends Controller
     {
         $staff_members = User::whereNotIn('role', [1,2,3])->get();
 
-        $approved_tutors = User::with(['education','professional','teach'])->where('role',2)->where('status',2)->get();
+        $approved_tutors = User::with(['education','professional','teach'])->where('role',2)->where('status',2)->paginate(15);
         
         // $new_requests = array();
 
@@ -41,7 +41,7 @@ class TutorController extends Controller
             ->where('users.status',1)
             ->orwhere('users.status',2)
             ->where('assessments.status',0)
-            ->get();
+            ->paginate(15);
 
         return view('admin.pages.tutors.index',compact('new_requests','approved_tutors','staff_members'));
     }
@@ -146,7 +146,7 @@ class TutorController extends Controller
             $message = 'Tutor Status Enabled.';
         }elseif($request->status == 3){
             $message = 'Tutor Rejected.';
-        }else{
+        }elseif($request->status == 1){
             $message = 'Tutor Status Disabled.';
         }
 

@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/multiselect.css')}}" />
     <link rel="stylesheet" href="{{ asset('assets/css/home.css')}}" />
     <link rel="stylesheet" href="{{ asset('assets/css/dropify.css')}}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 
 

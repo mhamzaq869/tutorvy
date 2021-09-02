@@ -3,7 +3,7 @@
 @section('content')
     <!--section start  -->
     <div class="container-fluid mt-5">
-        <div class="row">
+        <div class="row ml-1 mr-1 ">
             <div class="col-md-6">
                 <h1>Student</h1>
             </div>
@@ -24,7 +24,7 @@
         </div>
     </div>
     <div class="container-fluid mt-4">
-        <div class="row">
+        <div class="row ml-1 mr-1">
             <div class="col-md-4">
                 <h3 class="heading-third-res">All students</h3>
             </div>
@@ -43,7 +43,7 @@
     <!-- tutor request bookings  table start-->
 
     <div class="container-fluid">
-        <div class="pt-3 mt-3 container-bg">
+        <div class="pt-3 mt-3 container-bg ml-1 mr-1">
             <div class="row border-bottom pb-2 ml-1 mr-1">
                 <div class="col-md-11">
                     <form class="row">
@@ -162,6 +162,40 @@
                             @endforeach
                         </tbody>
                     </table>
+                </div>
+                <div class="col-md-12">
+                    <nav aria-label="Page navigation" class="mt-4">
+                        <ul class="pagination bg-white pagination-example-1">
+                            <li class="page-item">
+                                <a class="page-link" href="{{$students->previousPageUrl()}}" tabindex="-1">
+                                    <img src="{{ asset('/admin/assets/img/ico/arrow-left-1.png')}}" alt="image" />
+                                </a>
+                            </li>
+                            @if($students->onFirstPage())
+                                <li class="page-item"><a class="page-link" href="{{$students->url(1)}}" style="display:none;">1</a></li>
+                            @else
+                            <li class="page-item"><a class="page-link" href="{{$students->url(1)}}">1</a></li>
+                                @endif
+                            <li class="page-item"><a class="page-link page-link-1" href="#">{{$students->currentPage()}}</a></li>
+                            
+                            @if($students->hasPages())
+                                <li class="page-item"><a class="page-link " href="#">.....</a></li>
+    
+                                <li class="page-item"><a class="page-link" href="{{$students->url($students->lastPage())}}"> {{$students->lastPage()}} </a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="{{$students->nextPageUrl()}}">
+                                        <img src="{{ asset('/admin/assets/img/ico/arrow-right-1.png')}}" alt="image" />
+                                    </a>
+                                </li>
+                                @else
+                                <li class="page-item">
+                                    <a class="page-link" href="{{$students->nextPageUrl()}}">
+                                        <img src="{{ asset('/admin/assets/img/ico/arrow-right-1.png')}}" alt="image" />
+                                    </a>
+                                </li>
+                                @endif
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
@@ -310,36 +344,5 @@
         </div>
     </div>
     <!-- end -->
-    <div class="container mt-3">
-        <div class="row">
-            <div class="col-md-9">
-                <span class="paid-text-1 float-right mt-2">
-                    Current Page# 3
-                </span>
-            </div>
-            <div class="col-md-3">
-
-                <nav aria-label="Page navigation">
-
-                    <ul class="pagination bg-white pagination-example-1">
-
-                        <li class="page-item">
-                            <a class="page-link" href="#" tabindex="-1">
-                                <img src="{{ asset('admin/assets/img/ico/arrow-left-1.png')}}" alt="image" />
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link page-link-1" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">
-                                <img src="{{ asset('admin/assets/img/ico/arrow-right-1.png')}}" alt="image" />
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
 
 @endsection

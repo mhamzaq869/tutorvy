@@ -255,7 +255,7 @@
                                             <div class="row ">
                                                 <div class="col-md-12 scrollable">
                                                     <table class="table table-borderless">
-                                                        <thea>
+                                                        <thead>
                                                             <tr>
                                                                 <th scope="col"></th>
                                                                 <th scope="col w-150">Mon</th>
@@ -269,7 +269,7 @@
                                                             </thead>
                                                             <tbody>
                                                                 <!-- classes table time and topics -->
-                                                                @foreach($course->classes as $class)
+                                                                @foreach($course->basic_classes as $class)
                                                                 <tr class="wordBreak">
                                                                     <td class="pt-4">
                                                                         <div class="w-150">
@@ -532,78 +532,158 @@
                                             <div class="row mt-0 w-100 div-1">
                                                 <div class="col-md-12">
                                                     <table class="table table-borderless">
-                                                        <thea>
+                                                        <thead>
                                                             <tr>
                                                                 <th scope="col"></th>
-                                                                <th scope="col">Mon</th>
-                                                                <th scope="col"> &nbsp;&nbsp;&nbsp;Tue </th>
-                                                                <th scope="col">Wed</th>
-                                                                <th scope="col">Thu</th>
-                                                                <th scope="col">Fri</th>
-                                                                <th scope="col">Sat</th>
-                                                                <th scope="col">Sun</th>
+                                                                <th scope="col w-150">Mon</th>
+                                                                <th scope="col w-150">Tue </th>
+                                                                <th scope="col w-150">Wed</th>
+                                                                <th scope="col w-150">Thu</th>
+                                                                <th scope="col w-150">Fri</th>
+                                                                <th scope="col w-150">Sat</th>
+                                                                <th scope="col w-150">Sun</th>
                                                             </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <!-- classes table time and topics -->
-                                                                <tr>
-                                                                    <td class="pt-4">
-                                                                        <span>2pm</span>
-                                                                        <p class="mt-5">4pm</p>
-                                                                    </td>
-                                
-                                                                    <td class="pt-4 pb-0"></td>
-                                                                    <td class="m-0 p-0">
-                                                                        <div class="bg-color-apporve pl-2 pr-3 m-0 p-0">
-                                                                            <span class="heading-fifth">
-                                                                                Live class
-                                                                            </span>
-                                                                            <p class="paragraph-text-1">
-                                                                                2pm
-                                                                            </p>
-                                                                            <p class="paragraph-text">
-                                                                                Jump start into
-                                                                                <br /> your live class with <br />
-                                                                                students.
-                                                                            </p>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td class="m-0 p-0">
-                                                                        <div class="bg-color-apporve1 pl-2 pr-3 m-0 p-0">
-                                                                            <span class="heading-fifth">
-                                                                                Live class
-                                                                            </span>
-                                                                            <p class="paragraph-text-1">
-                                                                                2pm
-                                                                            </p>
-                                                                            <p class="paragraph-text">
-                                                                                Jump start into
-                                                                                <br />your live class with <br />
-                                                                                students.
-                                                                            </p>
-                                                                        </div>
-                                                                    </td>
-                                
-                                                                    <td class="m-0 p-0">
-                                                                        <div class="bg-color-apporve3 pl-2 pr-3 m-0 p-0">
-                                                                            <span class="heading-fifth">
-                                                                                Live class
-                                                                            </span>
-                                                                            <p class="paragraph-text-1">
-                                                                                2pm
-                                                                            </p>
-                                                                            <p class="paragraph-text">
-                                                                                Jump start into
-                                                                                <br /> your live class with <br />
-                                                                                students.
-                                                                            </p>
-                                                                        </div>
-                                                                    </td>
-                                
-                                
-                                                                </tr>
-                                
-                                                            </tbody>
+                                                        </thead>
+                                                        <tbody>
+                                                            <!-- classes table time and topics -->
+                                                            @foreach($course->standard_classes as $class)
+                                                            <tr class="wordBreak">
+                                                                <td class="pt-4">
+                                                                    <div class="w-150">
+                                                                        <span>{{date("g:i a", strtotime("$class->st_time UTC"))}} </span>
+                                                                        <p class="mt-5">{{date("g:i a", strtotime("$class->et_time UTC"))}}</p>
+                                                                    </div>
+                                                                </td>
+
+                                                                @if($class->day == 1)
+                                                                <td class="m-0 p-0 pt-4">
+                                                                    <div class="bg-color-apporve pl-2 pr-3 m-0 p-0 w-150">
+                                                                        <span class="heading-fifth">
+                                                                        {{$class->title}}
+                                                                        </span>
+                                                                        <p class="paragraph-text-1 mb-1">
+                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                        {{$class->overview}}
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                                @else
+                                                                <td class="pt-4 pb-0">---</td>
+                                                                @endif
+
+                                                                @if($class->day == 2)
+                                                                <td class="m-0 p-0 pt-4">
+                                                                    <div class="bg-color-apporve1 pl-2 pr-3 m-0 p-0 w-150 w-150">
+                                                                        <span class="heading-fifth">
+                                                                        {{$class->title}}
+                                                                        </span>
+                                                                        <p class="paragraph-text-1 mb-1">
+                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                        {{$class->overview}}
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                                @else
+                                                                <td class="pt-4 pb-0">---</td>
+                                                                @endif
+                            
+                                                                @if($class->day == 3)
+                                                                <td class="m-0 p-0 pt-4">
+                                                                    <div class="bg-color-apporve3 pl-2 pr-3 m-0 p-0 w-150">
+                                                                        <span class="heading-fifth">
+                                                                        {{$class->title}}
+                                                                        </span>
+                                                                        <p class="paragraph-text-1 mb-1">
+                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                        {{$class->overview}}
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                                @else
+                                                                <td class="pt-4 pb-0">---</td>
+                                                                @endif
+
+                                                                @if($class->day == 4)
+                                                                <td class="m-0 p-0 pt-4">
+                                                                    <div class="bg-color-apporve pl-2 pr-3 m-0 p-0 w-150">
+                                                                        <span class="heading-fifth">
+                                                                        {{$class->title}}
+                                                                        </span>
+                                                                        <p class="paragraph-text-1 mb-1">
+                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                        {{$class->overview}}
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                                @else
+                                                                <td class="pt-4 pb-0">---</td>
+                                                                @endif
+
+                                                                @if($class->day == 5)
+                                                                <td class="m-0 p-0 pt-4">
+                                                                    <div class="bg-color-apporve1 pl-2 pr-3 m-0 p-0 w-150">
+                                                                        <span class="heading-fifth">
+                                                                        {{$class->title}}
+                                                                        </span>
+                                                                        <p class="paragraph-text-1 mb-1">
+                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                        {{$class->overview}}
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                                @else
+                                                                <td class="pt-4 pb-0">---</td>
+                                                                @endif
+
+                                                                @if($class->day == 6)
+                                                                <td class="m-0 p-0 pt-4">
+                                                                    <div class="bg-color-apporve3 pl-2 pr-3 m-0 p-0 w-150">
+                                                                        <span class="heading-fifth">
+                                                                        {{$class->title}}
+                                                                        </span>
+                                                                        <p class="paragraph-text-1 mb-1">
+                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                        {{$class->overview}}
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                                @else
+                                                                <td class="pt-4 pb-0">---</td>
+                                                                @endif
+
+                                                                @if($class->day == 7)
+                                                                <td class="m-0 p-0 pt-4">
+                                                                    <div class="bg-color-apporve pl-2 pr-3 m-0 p-0 w-150">
+                                                                        <span class="heading-fifth">
+                                                                        {{$class->title}}
+                                                                        </span>
+                                                                        <p class="paragraph-text-1 mb-1">
+                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                        {{$class->overview}}
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                                @else
+                                                                <td class="pt-4 pb-0">---</td>
+                                                                @endif
+                                                            </tr>
+                                                            @endforeach
+                            
+                                                        </tbody>
                                                     </table>
                                                 </div>
                                             </div>
@@ -698,15 +778,15 @@
                                                                             <div class="card-header" id="faqhead">
                                                                                 <a href="#"
                                                                                     class="bg-color btn-header-link collapsed"
-                                                                                    data-toggle="collapse" data-target="#faq11"
-                                                                                    aria-expanded="true" aria-controls="faq11">
+                                                                                    data-toggle="collapse" data-target="#faq121"
+                                                                                    aria-expanded="true" aria-controls="faq121">
                                                                                     <img class="mr-2"
                                                                                         src="{{asset('admin/assets/img/ico/round.png')}}" />
                                                                                         {{$outline->title}}
                                                                                 </a>
                                                                             </div>
-                                                                            <div id="faq11" class="collapse show border-radius"
-                                                                                aria-labelledby="faqhead3" data-parent="#faq11">
+                                                                            <div id="faq121" class="collapse show border-radius"
+                                                                                aria-labelledby="faqhead3" data-parent="#faq121">
                                                                                 <div class="card-body">
                                                                                 {{$outline->explain}}
                                                                                 </div>
@@ -729,25 +809,159 @@
                                             </div>
                                             <div class="row mt-0 w-100 div-1">
                                                 <div class="col-md-12">
-                                                    <table class="table table-borderless">
-                                                        <thea>
+                                                <table class="table table-borderless">
+                                                        <thead>
                                                             <tr>
                                                                 <th scope="col"></th>
-                                                                <th scope="col">Mon</th>
-                                                                <th scope="col"> &nbsp;&nbsp;&nbsp;Tue </th>
-                                                                <th scope="col">Wed</th>
-                                                                <th scope="col">Thu</th>
-                                                                <th scope="col">Fri</th>
-                                                                <th scope="col">Sat</th>
-                                                                <th scope="col">Sun</th>
+                                                                <th scope="col w-150">Mon</th>
+                                                                <th scope="col w-150">Tue </th>
+                                                                <th scope="col w-150">Wed</th>
+                                                                <th scope="col w-150">Thu</th>
+                                                                <th scope="col w-150">Fri</th>
+                                                                <th scope="col w-150">Sat</th>
+                                                                <th scope="col w-150">Sun</th>
                                                             </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <!-- classes table time and topics -->
-                                                            
-                                                                
-                                
-                                                            </tbody>
+                                                        </thead>
+                                                        <tbody>
+                                                            <!-- classes table time and topics -->
+                                                            @foreach($course->advance_classes as $class)
+                                                            <tr class="wordBreak">
+                                                                <td class="pt-4">
+                                                                    <div class="w-150">
+                                                                        <span>{{date("g:i a", strtotime("$class->st_time UTC"))}} </span>
+                                                                        <p class="mt-5">{{date("g:i a", strtotime("$class->et_time UTC"))}}</p>
+                                                                    </div>
+                                                                </td>
+
+                                                                @if($class->day == 1)
+                                                                <td class="m-0 p-0 pt-4">
+                                                                    <div class="bg-color-apporve pl-2 pr-3 m-0 p-0 w-150">
+                                                                        <span class="heading-fifth">
+                                                                        {{$class->title}}
+                                                                        </span>
+                                                                        <p class="paragraph-text-1 mb-1">
+                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                        {{$class->overview}}
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                                @else
+                                                                <td class="pt-4 pb-0">---</td>
+                                                                @endif
+
+                                                                @if($class->day == 2)
+                                                                <td class="m-0 p-0 pt-4">
+                                                                    <div class="bg-color-apporve1 pl-2 pr-3 m-0 p-0 w-150 w-150">
+                                                                        <span class="heading-fifth">
+                                                                        {{$class->title}}
+                                                                        </span>
+                                                                        <p class="paragraph-text-1 mb-1">
+                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                        {{$class->overview}}
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                                @else
+                                                                <td class="pt-4 pb-0">---</td>
+                                                                @endif
+                            
+                                                                @if($class->day == 3)
+                                                                <td class="m-0 p-0 pt-4">
+                                                                    <div class="bg-color-apporve3 pl-2 pr-3 m-0 p-0 w-150">
+                                                                        <span class="heading-fifth">
+                                                                        {{$class->title}}
+                                                                        </span>
+                                                                        <p class="paragraph-text-1 mb-1">
+                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                        {{$class->overview}}
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                                @else
+                                                                <td class="pt-4 pb-0">---</td>
+                                                                @endif
+
+                                                                @if($class->day == 4)
+                                                                <td class="m-0 p-0 pt-4">
+                                                                    <div class="bg-color-apporve pl-2 pr-3 m-0 p-0 w-150">
+                                                                        <span class="heading-fifth">
+                                                                        {{$class->title}}
+                                                                        </span>
+                                                                        <p class="paragraph-text-1 mb-1">
+                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                        {{$class->overview}}
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                                @else
+                                                                <td class="pt-4 pb-0">---</td>
+                                                                @endif
+
+                                                                @if($class->day == 5)
+                                                                <td class="m-0 p-0 pt-4">
+                                                                    <div class="bg-color-apporve1 pl-2 pr-3 m-0 p-0 w-150">
+                                                                        <span class="heading-fifth">
+                                                                        {{$class->title}}
+                                                                        </span>
+                                                                        <p class="paragraph-text-1 mb-1">
+                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                        {{$class->overview}}
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                                @else
+                                                                <td class="pt-4 pb-0">---</td>
+                                                                @endif
+
+                                                                @if($class->day == 6)
+                                                                <td class="m-0 p-0 pt-4">
+                                                                    <div class="bg-color-apporve3 pl-2 pr-3 m-0 p-0 w-150">
+                                                                        <span class="heading-fifth">
+                                                                        {{$class->title}}
+                                                                        </span>
+                                                                        <p class="paragraph-text-1 mb-1">
+                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                        {{$class->overview}}
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                                @else
+                                                                <td class="pt-4 pb-0">---</td>
+                                                                @endif
+
+                                                                @if($class->day == 7)
+                                                                <td class="m-0 p-0 pt-4">
+                                                                    <div class="bg-color-apporve pl-2 pr-3 m-0 p-0 w-150">
+                                                                        <span class="heading-fifth">
+                                                                        {{$class->title}}
+                                                                        </span>
+                                                                        <p class="paragraph-text-1 mb-1">
+                                                                        <small>{{date("g:i a", strtotime("$class->st_time UTC"))}}</small>
+                                                                        </p>
+                                                                        <p class="paragraph-text">
+                                                                        {{$class->overview}}
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                                @else
+                                                                <td class="pt-4 pb-0">---</td>
+                                                                @endif
+                                                            </tr>
+                                                            @endforeach
+                            
+                                                        </tbody>
                                                     </table>
                                                 </div>
                                             </div>

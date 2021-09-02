@@ -30,7 +30,10 @@
             <div class="col-md-3"></div>
             <div class="col-md-6 col-12 bg-subject bg-subject1">
                 <div class="mobile-view-input">
-                    <input type="text" class="input-subject" placeholder="Subject category">
+                    <select name="" class="input-subject" id="">
+                        <option value="">Select Subject</option>
+                    </select>
+                    <!-- <input type="text" class="input-subject" placeholder="Subject category"> -->
                     <input type="submit" class="input-submite input-submite1" value="Search">
                 </div>
 

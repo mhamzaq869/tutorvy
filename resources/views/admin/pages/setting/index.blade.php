@@ -3,8 +3,10 @@
  
 </style>
 @section('content')
-    <!--section start  -->
-    <div class="container-fluid mt-5">
+  <!--section start  -->
+  <section id="homesection" style="display: flex;z-index: -1;">
+        <!-- dashborad home -->
+        <div class="container-fluid mt-3">
         <div class="row">
             <div class="col-md-6">
                 <h1>
@@ -34,6 +36,7 @@
                                         id="defaultOpen">General</button>
                                     <button class="tablinks" onclick="openCity(event, 'tab2')">Security</button>
                                     <button class="tablinks" onclick="openCity(event, 'tab3')">Payment</button>
+                                    <button class="tablinks" onclick="openCity(event, 'tab4')">System</button>
                                 </div>
                             </div>
                             <div class="col-md-9 ">
@@ -295,6 +298,40 @@
                                             
                                         </div>
                                     </div>
+                                    <div id="tab4" class="tabcontent">
+                                        <div class="row">
+                                            <div class="col-md-12 mb-4">
+                                                <h3>System Settings</h3>
+                                            </div>
+                                            <!-- <div class="col-md-12 font-light">
+                                                Change Comission Settings
+                                            </div> -->
+                                            <div class="col-sm-6">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <small class="">Commission</small>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class="form-group">
+                                                                <input type="number" value="" class="form-control"
+                                                                    placeholder="Comission Percentage">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <input type="text" disabled="" value="%" class="form-control"
+                                                                    placeholder="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12 text-right">
+                                                                <button class="btn-general">Save changes</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -303,6 +340,9 @@
             </div>
         </div>
     </div>
+</section>
+    <!--section start  -->
+   
 
 
 @endsection
