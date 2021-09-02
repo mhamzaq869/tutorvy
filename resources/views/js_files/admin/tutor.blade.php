@@ -36,7 +36,7 @@ function verifyAssessment(id,status){
 
 function verifyTutor(id,status,assess_status = null){
     let reason = null;
-
+    let is_new = null;
     if(assess_status == null && status == 2){
       toastr.success('No Assessment Provided.',{
           position: 'top-end',
@@ -56,39 +56,15 @@ function verifyTutor(id,status,assess_status = null){
       reason = $('#t_reject_reason').val();
     }
 
-    this.changeTutorStatus(id,status,reason);
+    if(status == 2){
+      is_new = 1;
+    }
 
-    // $.ajax({
-    //     url: "/admin/tutor/verify-tutor",
-    //     type:"POST",
-    //     data:{
-    //       id:id,
-    //       verify:status,
-    //       reason
-    //     },
-    //     success:function(response){
-    //       // console.log(response);
-    //       if(response.status == 200) {
-
-    //         $('#tutorRejectModal').modal('hide')
-
-    //         Swal.fire({
-    //             position: 'top-end',
-    //             icon: 'success',
-    //             title: response.message,
-    //             showConfirmButton: false,
-    //             timer: 2500
-    //         })
-    //         setInterval(function(){
-    //             window.location.href = request_;
-    //         }, 1500);
-    //       }
-    //     },
-    // });
+    this.changeTutorStatus(id,status,reason,is_new);
 
 }
 
-function changeTutorStatus(id,st = null,reason = null){
+function changeTutorStatus(id,st = null,reason = null,is_new = null){
 
     var status ;
     if(st == null){
@@ -96,7 +72,7 @@ function changeTutorStatus(id,st = null,reason = null){
       {
           status = 2; //  Enabled
       }else{
-          status = 1; // Disabled
+          status = 0; // Disabled
       }
     }else{
       status = st;
@@ -108,7 +84,8 @@ function changeTutorStatus(id,st = null,reason = null){
         data:{
           id:id,
           status:status,
-          reason:reason
+          reason:reason,
+          is_new:is_new
         },
         success:function(response){
           // console.log(response);

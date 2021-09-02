@@ -25,22 +25,22 @@ class TutorController extends Controller
     {
         $staff_members = User::whereNotIn('role', [1,2,3])->get();
 
-        $approved_tutors = User::with(['education','professional','teach'])->where('role',2)->where('status',2)->paginate(15);
+        $approved_tutors = User::with(['education','professional','teach'])->where('role',2)->whereIn('status',[0,2])->paginate(15);
         
         // $new_requests = array();
 
         $tutor_assessments = Assessment::get();
-        $new_requests = User::with(['education','professional','teach'])->where('role',2)->where('status',1)->get();
 
-      
         $new_requests = DB::table('users')
             ->select('users.*','assessments.id as assessment_id','subjects.name as subject_name')
             ->leftJoin('assessments', 'users.id', '=', 'assessments.user_id')
             ->leftJoin('subjects', 'subjects.id', '=', 'assessments.subject_id')
+            
             ->where('users.role',2)
             ->where('users.status',1)
             ->orwhere('users.status',2)
             ->where('assessments.status',0)
+            
             ->paginate(15);
 
         return view('admin.pages.tutors.index',compact('new_requests','approved_tutors','staff_members'));
@@ -135,6 +135,17 @@ class TutorController extends Controller
         $tutor->status = $request->status;
         $tutor->reject_note = $request->reason;
 
+        if($request->is_new == 1){
+
+            $location = $tutor->country;
+            $loc = DB::table('search_locations')->where('name', $location)->first();
+            if($loc){
+            }else{
+                DB::table('search_locations')->insert([
+                    'name' => $location
+                ]);
+            }
+        }
         if($tutor->rank == 0 && $request->status == 2){
             $tutor->rank = 1;
         }
@@ -146,7 +157,7 @@ class TutorController extends Controller
             $message = 'Tutor Status Enabled.';
         }elseif($request->status == 3){
             $message = 'Tutor Rejected.';
-        }elseif($request->status == 1){
+        }elseif($request->status == 0){
             $message = 'Tutor Status Disabled.';
         }
 

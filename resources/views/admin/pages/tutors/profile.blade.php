@@ -54,7 +54,7 @@
                                     <span class="fa fa-star "></span>
                                     <span class="fa fa-star "></span>
                                     <span class="fa fa-star"></span>
-                                    <span class="paragraph-text1">4.0</span>
+                                    <span class="paragraph-text1">1.0</span>
                                 </p>
                                 @elseif($tutor->rating == 2)
                                 <p class="name-text1 paragraph-text1 mb-0">
@@ -62,7 +62,7 @@
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star "></span>
                                     <span class="fa fa-star"></span>
-                                    <span class="paragraph-text1">4.0</span>
+                                    <span class="paragraph-text1">2.0</span>
                                 </p>
                                 @elseif($tutor->rating == 3)
                                 <p class="name-text1 paragraph-text1 mb-0">
@@ -70,15 +70,23 @@
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star"></span>
-                                    <span class="paragraph-text1">4.0</span>
+                                    <span class="paragraph-text1">3.0</span>
                                 </p>
-                                @else
+                                @elseif($tutor->rating == 4)
                                 <p class="name-text1 paragraph-text1 mb-0">
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star checked"></span>
                                     <span class="paragraph-text1">4.0</span>
+                                </p>
+                                @else
+                                <p class="name-text1 paragraph-text1 mb-0">
+                                    <span class="fa fa-star "></span>
+                                    <span class="fa fa-star "></span>
+                                    <span class="fa fa-star "></span>
+                                    <span class="fa fa-star "></span>
+                                    <span class="paragraph-text1">0.0</span>
                                 </p>
                                 @endif
                             </div>

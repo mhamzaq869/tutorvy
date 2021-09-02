@@ -17,10 +17,10 @@ $(".filteration").change(function() {
     // $('#preloaderbody').css('display','block')
 
     var range = $("#range").val()
-    var locat = $("#locat").val()
+    var location = $("#location").val()
     var lang = $("#languages-list").val()
     var gender = $("input[name=gender]:checked").val()
-    var avail = $("#avail").val()
+    var avail = $("#availability").val()
     var subject = $("#subject").val()
     let rating = $("input[name='rating_filter']:checked").val();
 
@@ -32,11 +32,11 @@ $(".filteration").change(function() {
             _token: "{{ csrf_token() }}",
             price: range,
             subject: subject,
-            locat: locat,
             language: lang,
             gender: gender,
             avail: avail,
-            rating:rating
+            rating:rating,
+            location:location
         },
         success: function(data) {
             console.log(data)

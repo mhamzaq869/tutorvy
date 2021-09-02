@@ -42,8 +42,10 @@ class TutorController extends Controller
             // return $available_tutors;
             $subjects = Subject::all();
         }
+        $locations = DB::table('search_locations')->get();
+
         // return $tutors;
-        return view('frontend.findtutor',compact('tutors','subjects','sub'));
+        return view('frontend.findtutor',compact('locations','tutors','subjects','sub'));
     }
 
     public function filterTutor(Request $request)
@@ -69,6 +71,7 @@ class TutorController extends Controller
             ->where('teachs.subject_id',$subject->id)
             ->where('users.lang_short', $request->language)
             ->where('users.hourly_rate','<=', $request->price)
+            ->where('users.country', $request->location)
 
             ->get();
 
@@ -82,6 +85,8 @@ class TutorController extends Controller
             ->where('users.status',2)
             ->where('users.lang_short', $request->language)
             ->where('users.hourly_rate','<=', $request->price)
+            ->where('users.gender', $request->gender)
+            ->where('users.country', $request->location)
             ->groupBy('users.id')
             ->get();
         }

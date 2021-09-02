@@ -28,21 +28,20 @@ class TutorController extends Controller
         ->get();
         // return $available_tutors;
         $subjects = Subject::all();
-        return view('student.pages.tutor.index',compact('available_tutors','subjects'));
+        $locations = DB::table('search_locations')->get();
+
+        return view('student.pages.tutor.index',compact('available_tutors','subjects','locations'));
     }
 
     public function filterTutor(Request $request)
     {
         $subject = $request->subject;
-        $rate = $request->price;
+        
         $where = '';
         if($subject == '' || $subject == null){
             $subject = \Auth::user()->std_learn;
         }
 
-        if($rate == 0){
-            $rate = null;
-        }
         
         $available_tutors = DB::table('users')
         ->select('view_tutors_data.*','teachs.subject_id as subject_id')
@@ -53,6 +52,9 @@ class TutorController extends Controller
         ->where('teachs.subject_id',$subject)
         ->where('users.lang_short', $request->language)
         ->where('users.rating','<=', $request->rating)
+        ->where('users.hourly_rate','<=', $request->price)
+        ->where('users.country', $request->location)
+
         ->get();
 
         return response()->json([

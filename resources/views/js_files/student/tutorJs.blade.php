@@ -45,7 +45,7 @@ $('input[type=radio][name=rating_filter]').change(function() {
     
 });
 
-$(".filteration").change(function() {
+$("#range").change(function() {
 
     let price = $("#range").val();
     let subject = $("#subjects-list").val();

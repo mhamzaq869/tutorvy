@@ -93,12 +93,11 @@
                         <div class="panel-body">
                             <div class="pb-4">
                                 <div class="col align-self-start m-0 p-0">
-                                    <select class="form-control-md form-select" id="locat" aria-label=".form-select-md example">
-                                        <option disabled selected>Choose a location</option>
-                                        <option value="Lahore">Lahore</option>
-                                        <option value="Karachi">Karachi</option>
-                                        <option value="Islamabad">Islamabad</option>
-                                        <option value="Quetta">Quetta</option>
+                                    <select class="form-control-md form-select" id="location" aria-label=".form-select-md example">
+                                        
+                                        @foreach ($locations as $location)
+                                            <option value="{{$location->name}}"> {{$location->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
