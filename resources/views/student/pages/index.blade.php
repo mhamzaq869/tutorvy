@@ -27,7 +27,7 @@
                         <div class="col-md-5  m-0 p-0">
                             <div class="home-image">
                                 <img src="{{asset('assets/images/backgrounds/home.svg')}}"
-                                    style="width: 100%;height: 200px;">
+                                    style="width: 100%;">
                             </div>
                         </div>
 

@@ -43,7 +43,7 @@
             <div class="col-md-3 bg-white-range">
                 <div class="d-flex mt-3">
                     <p class="text-fliter">Filters</p>
-                    <a href="#" class="ml-auto mt-2">
+                    <a href="#" class="ml-auto mt-2"onclick="resetFilter()">
                         <img class="" src="../assets/images/blog/Group 5487.png" height="18px">
                         Reset
                     </a>
@@ -101,10 +101,9 @@
                         </div>
                     </div>
                 </div>
-<!--Tab Try-->
                
                 <!--Tab1-->
-                <div class="panel panel-default mb-3 bottom-line">
+                <div class="panel panel-default mt-3 bottom-line">
                     <div class="panel-heading" role="tab" id="headingOne">
                         <p class="panel-title">
                             <a class="collapsed range-text" data-toggle="collapse" data-parent="#accordion"
@@ -226,7 +225,7 @@
                         <div class="panel-body">
                             <div class="pb-4">
                                 <div class="col align-self-start m-0 p-0">
-                                    <select class="form-control-md form-select" id="locat" aria-label=".form-select-md example">
+                                    <select class="form-control-md form-select" id="lang" aria-label=".form-select-md example">
                                         <option disabled selected>Choose a Language</option>
                                         <option value="Udu">Udu</option>
                                         <option value="English">English</option>
@@ -341,7 +340,7 @@
                                                 <div class="col-md-2 col-6">
                                                     <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
                                                 </div>
-                                                <div class="col-md-6 col-6">
+                                                <div class="col-md-5 col-6">
                                                     <h3>{{ $tutor->fullname }}</h3>
                                                     <p class="mb-0"><img src="../assets/images/ico/red-icon.png" alt=""
                                                             class="">
@@ -352,7 +351,7 @@
                                                         {{ $tutor->country }}
                                                     </p>
                                                 </div>
-                                                <div class="col-md-4 col-12">
+                                                <div class="col-md-5 col-12">
                                                     <p>
                                                         <i class="fa fa-star text-yellow"></i>
                                                         <i class="fa fa-star text-yellow"></i>
