@@ -187,12 +187,12 @@ function list_tutors(tutors){
                                             </div>
                                         </div>
                                         <div class="col-md-3 bg-price text-center">
-                                            <div class="row mt-5">
-                                                <div class="col-md-12 mt-4">
+                                            <div class="row mt-4">
+                                                <div class="col-md-12">
                                                     <p>starting from</p>
                                                     <h1 class="f-60">$`+tutors[i].hourly_rate+`</h1>
                                                     <p>per hour</p>
-                                                    <button type="button" class="mt-4 cencel-btn w-100">
+                                                    <button type="button" class=" cencel-btn w-100 mt-3">
                                                             &nbsp; Message &nbsp;
                                                         </button>
                                                     <button type="button" onclick="location.href = '`+url+`'" class=" btn-general w-100 mt-2" >
