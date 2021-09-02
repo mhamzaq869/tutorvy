@@ -60,7 +60,9 @@
     $(document).ready(function(){
         $(".input-subject").select2();
         $(".form-select").select2();
+       
     })
+    
 </script>
     <!-- <div class="modal fade support_modal show" id="support-modal" tabindex="-1" role="dialog" aria-labelledby="support-modal" style="padding-right: 7px; display: block;">
         <div class="modal-dialog  modal-dialog-centered" role="document">

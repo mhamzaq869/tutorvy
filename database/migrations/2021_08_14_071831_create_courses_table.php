@@ -21,6 +21,7 @@ class CreateCoursesTable extends Migration
             $table->text('about')->nullable();
             $table->string('video')->nullable();
             $table->string('thumbnail')->nullable();
+            $table->date('start_date')->nullable();
             $table->string('basic_home_work')->nullable();
             $table->string('basic_quiz')->nullable();
             $table->string('basic_final')->nullable();

@@ -22,6 +22,7 @@ class Course extends Model
         'title',
         'subject_id',
         'about',
+        'start_date',
         'video',
         'thumbnail',
     ];

@@ -65,6 +65,8 @@ class CourseController extends Controller
         $courselevel->about              = $request->about;
         $courselevel->video              = $request->video;
         $courselevel->thumbnail          = $thumbnail_path ?? '';
+        $courselevel->start_date              = $request->start_date;
+
         $courselevel->basic_home_work    = $request->basic_home_work;
         $courselevel->basic_quiz         = $request->basic_quiz;
         $courselevel->basic_one_one      = $request->basic_one_one;

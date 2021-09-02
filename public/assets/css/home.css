@@ -1012,3 +1012,7 @@
         text-align: left !important;
     }
 }
+
+.pd-btn {
+    padding: 14px 11px!important
+}
