@@ -58,7 +58,7 @@
                                             <div id="locationDiv" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                                                 <div class="card-body pl-2 pr-0 pt-0">
                                                     <select class="w-100 form-control accSelect2" id="location">
-                                                        <option value="">Search Location</option>
+                                                       
                                                         @foreach ($locations as $location)
                                                         <option value="{{$location->name}}"> {{$location->name}}</option>
                                                         @endforeach
@@ -82,7 +82,7 @@
                                                     <div class="">
                                                         <p class="mb-0">$10 - $1000</p>
                                                         <div class="range-slider">
-                                                            <input class="range-slider__range" type="range" id="range" value="1000" min="0" max="1000">
+                                                            <input class="range-slider__range" type="range" id="range" value="999" min="0" max="1000">
                                                             <span class="range-slider__value"></span>
                                                         </div>
                                                     </div>

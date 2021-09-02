@@ -52,7 +52,7 @@ class TutorController extends Controller
         ->where('teachs.subject_id',$subject)
         ->where('users.lang_short', $request->language)
         ->where('users.rating','<=', $request->rating)
-        ->where('users.hourly_rate','<=', $request->price)
+        ->where('users.hourly_rate','<', $request->price)
         ->where('users.country', $request->location)
 
         ->get();
