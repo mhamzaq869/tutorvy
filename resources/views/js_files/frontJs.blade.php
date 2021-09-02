@@ -60,8 +60,8 @@ function list_tutors(tutors){
 
         for(var i = 0 ; i<tutors.length ; i++){
 
-            let inst = tutors[i].insti_names.split(",");
-            let sub = tutors[i].subject_names.split(",");
+            let inst = tutors[i].insti_names != null ? tutors[i].insti_names.split(",") : '---';
+            let sub = tutors[i].subject_names != null ? tutors[i].subject_names.split(",") : '---';
             let int_html = '';
             let sub_html = '';
             let rating_html = '';
@@ -70,12 +70,20 @@ function list_tutors(tutors){
             let url = "{{route('student.book-now', ':id')}}";
             url = url.replace(':id', t_id);
             console.log(t_id);
-            for(var ins=0 ; ins < inst.length; ins++){ 
-                int_html +=` <span class="info-1 info edu">`+inst[ins]+`</span>`;
+            if(inst == '---'){
+                int_html = '---'
+            }else{
+                for(var ins=0 ; ins < inst.length; ins++){ 
+                    int_html +=` <span class="info-1 info edu">`+inst[ins]+`</span>`;
+                }
             }
 
-            for(var s=0 ; s < sub.length; s++){ 
-                sub_html +=` <span class="info-1 info">`+sub[s]+`</span>`;
+            if(sub == '---'){
+                sub_html = '---';
+            }else{
+                for(var s=0 ; s < sub.length; s++){ 
+                    sub_html +=` <span class="info-1 info">`+sub[s]+`</span>`;
+                }
             }
 
             if(tutors[i].rating == 1){
@@ -123,7 +131,7 @@ function list_tutors(tutors){
             }
         
 
-            let tutor_Card = `<div class="card">
+            let tutor_Card = `<div class="card mt-3">
                                 <div class="card-body">
                                     
                                     <div class="row">

@@ -345,7 +345,7 @@
                         </div>
                 @else
                 @foreach ($tutors as $i => $tutor)
-                <div class="card">
+                <div class="card mt-3">
                     <div class="card-body">
                         
                         <div class="row">
