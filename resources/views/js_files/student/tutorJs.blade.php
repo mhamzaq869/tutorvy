@@ -19,8 +19,9 @@ $('#subjects-list').on("change", function(e) {
     let lang = $("#languages-list").val();
     let rating = $("input[name='rating_filter']:checked").val();
     let price = $("#range").val();
+    let location = $("#location").val();
 
-    search_tutors(price,subject,lang,rating);
+    search_tutors(price,subject,lang,rating,location);
     
 });
 
@@ -30,8 +31,9 @@ $('#languages-list').on("change", function(e) {
     let lang = $("#languages-list").val();
     let rating = $("input[name='rating_filter']:checked").val();
     let price = $("#range").val();
+    let location = $("#location").val();
 
-    search_tutors(price,subject,lang,rating);
+    search_tutors(price,subject,lang,rating,location);
 
 });
 
@@ -40,8 +42,9 @@ $('input[type=radio][name=rating_filter]').change(function() {
     let lang = $("#languages-list").val();
     let rating = $("input[name='rating_filter']:checked").val();
     let price = $("#range").val();
+    let location = $("#location").val();
 
-    search_tutors(price,subject,lang,rating);
+    search_tutors(price,subject,lang,rating,location);
     
 });
 
@@ -51,12 +54,26 @@ $("#range").change(function() {
     let subject = $("#subjects-list").val();
     let lang = $("#languages-list").val();
     let rating = $("input[name='rating_filter']:checked").val();
+    let location = $("#location").val();
 
-    search_tutors(price,subject,lang,rating);
+    search_tutors(price,subject,lang,rating,location);
 
 });
 
-function search_tutors(price,subject,lang,rating){
+$("#location").change(function() {
+
+    let price = $("#range").val();
+    let subject = $("#subjects-list").val();
+    let lang = $("#languages-list").val();
+    let rating = $("input[name='rating_filter']:checked").val();
+    let location = $("#location").val();
+
+
+    search_tutors(price,subject,lang,rating,location);
+
+});
+
+function search_tutors(price,subject,lang,rating,location){
 
     $.ajax({
         url: "{{ route('student.tutor.filter') }}",
@@ -65,7 +82,8 @@ function search_tutors(price,subject,lang,rating){
             subject: subject,
             language: lang,
             rating: rating,
-            price : price
+            price : price,
+            location:location
         },
         success: function(response) {
             console.log(response);
