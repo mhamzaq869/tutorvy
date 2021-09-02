@@ -58,7 +58,7 @@ class TutorController extends Controller
         if($rate == 0){
             $rate = null;
         }
-        if(isset($request->subject)){
+        if(isset($request->subject) && $request->gender == 'any'){
             
             $subject = Subject::where('name',$request->subject)->first();
 
@@ -76,6 +76,22 @@ class TutorController extends Controller
 
             ->get();
 
+        }elseif($request->gender == 'any'){
+        
+            $tutors = DB::table('users')
+            ->select('view_tutors_data.*')
+            ->leftJoin('teachs', 'users.id', '=', 'teachs.user_id')
+            ->leftJoin('view_tutors_data', 'view_tutors_data.id', '=', 'users.id')
+            // ->where('teachs.subject_id', $subject->id )
+            ->where('users.role',2)
+            ->where('users.status',2)
+            ->where('users.lang_short', $request->language)
+            ->where('users.hourly_rate','<=', $request->price)
+            ->where('users.rating','<=', $request->rating)
+            ->where('users.country', $request->location)
+            ->groupBy('users.id')
+            ->get();
+        
         }else{
             $tutors = DB::table('users')
             ->select('view_tutors_data.*')
@@ -88,7 +104,6 @@ class TutorController extends Controller
             ->where('users.hourly_rate','<=', $request->price)
             ->where('users.gender', $request->gender)
             ->where('users.rating','<=', $request->rating)
-
             ->where('users.country', $request->location)
             ->groupBy('users.id')
             ->get();
