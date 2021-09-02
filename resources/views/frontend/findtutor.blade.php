@@ -447,12 +447,12 @@
                                 </div>
                             </div>
                             <div class="col-md-3 bg-price text-center">
-                                <div class="row mt-30">
-                                    <div class="col-md-12">
+                                <div class="row mt-5">
+                                    <div class="col-md-12 mt-4">
                                         <p>starting from</p>
                                         <h1 class="f-60">${{$tutor->hourly_rate}}</h1>
                                         <p>per hour</p>
-                                        <button type="button" class=" cencel-btn pd-btn w-100">
+                                        <button type="button" class=" cencel-btn pd-btn w-100 mt-4">
                                                 &nbsp; Message &nbsp;
                                             </button>
                                         <button type="button" onclick="bookNow(`{{$tutor->id}}`)" class=" btn-general pd-btn w-100 mt-2" >
