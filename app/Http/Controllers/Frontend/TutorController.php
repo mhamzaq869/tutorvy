@@ -72,6 +72,7 @@ class TutorController extends Controller
             ->where('users.lang_short', $request->language)
             ->where('users.hourly_rate','<=', $request->price)
             ->where('users.country', $request->location)
+            ->where('users.rating','<=', $request->rating)
 
             ->get();
 
@@ -86,6 +87,8 @@ class TutorController extends Controller
             ->where('users.lang_short', $request->language)
             ->where('users.hourly_rate','<=', $request->price)
             ->where('users.gender', $request->gender)
+            ->where('users.rating','<=', $request->rating)
+
             ->where('users.country', $request->location)
             ->groupBy('users.id')
             ->get();
