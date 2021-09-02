@@ -6,7 +6,7 @@
     <section id="homesection" style="display: flex;">
         <!-- dashborad home -->
         <div class="container-fluid m-0 p-0">
-            <p class="heading-first ml-3 mr-3">Dashboard {{$value}}</p>
+            <p class="heading-first ml-3 mr-3">Dashboard </p>
             <div class="col-md-12 col-sm-12">
                 <div class="container-fluid bg-homeimage">
                     <div class="row">

@@ -70,7 +70,10 @@ class LoginController extends Controller
                 }
                 if($request->role == 3){
 
-                    $value = $_COOKIE['t_id'];
+                    if(isset($_COOKIE['t_id'])){
+                        $value = $_COOKIE['t_id'];
+
+                    }
                     if($value != ''){
                         return redirect()->route('student.book-now',[$value]);
                     }
