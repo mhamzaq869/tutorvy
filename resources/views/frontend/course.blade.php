@@ -225,7 +225,7 @@
         <div class=" row mt-3">
             <div class="col-md-2"></div>
             <div class="col-md-8 col-12 bg-subject bdl">
-                <p class="text-how text-center">All Courses</p>
+                <p class="text-how text-center mb-0">All Courses</p>
             </div>
             <div class="col-md-2"></div>
         </div>
@@ -299,7 +299,7 @@
         <div class=" row mt-3">
             <div class="col-md-2"></div>
             <div class="col-md-8 col-12 bg-subject bdl">
-                <p class="text-how text-center">Featured Courses</p>
+                <p class="text-how text-center mb-0">Featured Courses</p>
             </div>
             <div class="col-md-2"></div>
         </div>
