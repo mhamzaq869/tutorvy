@@ -58,7 +58,7 @@
                         <div class="mt-3">
                             <div class="mb-3">
                                 <label class="form-label heading-forth">Starting Date</label>
-                                <input type="text" name="basic_class_start_time[]" class="form-control texteara-s mt-2 pt-2 mb-2" required="" placeholder="From" onfocus="(this.type='date')">
+                                <input type="text" name="start_date" class="form-control texteara-s mt-2 pt-2 mb-2" required="" placeholder="From" onfocus="(this.type='date')">
                             </div>
                         </div>
                         <div class="mt-4">

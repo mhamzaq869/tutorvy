@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Models\General\Institute;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin\Subject;
+use App\Models\Course;
+
 
 class GeneralController extends Controller
 {
@@ -85,7 +87,9 @@ class GeneralController extends Controller
     public function course(){
 
         $subjects = Subject::get();
-        return view('frontend.course',compact('subjects'));
+        $courses = Course::get();
+        // return $courses;
+        return view('frontend.course',compact('subjects','courses'));
 
     }
 }

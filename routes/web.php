@@ -223,7 +223,7 @@ Route::get('/register_role',[GeneralController  ::class,'loginOnRole'])->name('r
 Route::view('/tutor','frontend.tutor');
 Route::view('/student','frontend.student');
 Route::view('/subject','frontend.subject');
-Route::view('/course','frontend.course');
+// Route::view('/course','frontend.course');
 
 Route::get('/course',[GeneralController::class,'course']);
 

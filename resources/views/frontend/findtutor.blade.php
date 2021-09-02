@@ -2,27 +2,30 @@
 
 @section('content')
 <style>
+    #languages-list .select2 .select2-container .-container--default .select2-container--below{
+        width:100% !important;
+    }
 </style>
     <link href="{{ asset('assets/css/booknow.css') }}" rel="stylesheet">
 <section class="section-main section-main-std mt-5 pb-5">
     <div class="container-fluid ">
         <div class="row mt-5">
             <div class="col-md-12 text-center    mt-5">
-                    <span class="text-work text-work-top" style="line-height: 1;">
-                        <span class="text-how">
-                            Find a
-                        </span>
-                        Tutor
+                <span class="text-work text-work-top" style="line-height: 1;">
+                    <span class="text-how">
+                        Find a
                     </span>
-                    <span class="there-text shows">
-                        There are many variations of passages available, but
-                        the majority have suffered alteration in some form.
-                    </span>
-                    <span class="there-text none" style="line-height: 1.6;">
-                        There are many variations of passages available, but<br />
-                        the majority have suffered alteration in some form.
-                    </span>
-                </div>
+                    Tutor
+                </span>
+                <span class="there-text shows">
+                    There are many variations of passages available, but
+                    the majority have suffered alteration in some form.
+                </span>
+                <span class="there-text none" style="line-height: 1.6;">
+                    There are many variations of passages available, but<br />
+                    the majority have suffered alteration in some form.
+                </span>
+            </div>
         </div>
         <form method="get" action="/findtutor">
         <div class=" row mt-3">
@@ -154,8 +157,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="rating_filter" id="rating_filter" value="0" >
-                                        <label class="form-check-label" for="rating_filter">
+                                        <input class="form-check-input" type="radio" name="rating_filter" id="rating_filter0" value="0" >
+                                        <label class="form-check-label" for="rating_filter0">
                                         <p>
                                             <i class="fa fa-star "></i>
                                             <i class="fa fa-star "></i>
@@ -165,8 +168,8 @@
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="rating_filter" id="rating_filter" value="1" >
-                                        <label class="form-check-label" for="rating_filter">
+                                        <input class="form-check-input" type="radio" name="rating_filter" id="rating_filter1" value="1" >
+                                        <label class="form-check-label" for="rating_filter1">
                                         <p>
                                             <i class="fa fa-star text-yellow"></i>
                                             <i class="fa fa-star "></i>
@@ -176,8 +179,8 @@
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="rating_filter" id="rating_filter" value="2" >
-                                        <label class="form-check-label" for="rating_filter">
+                                        <input class="form-check-input" type="radio" name="rating_filter" id="rating_filter2" value="2" >
+                                        <label class="form-check-label" for="rating_filter2">
                                         <p>
                                             <i class="fa fa-star text-yellow"></i>
                                             <i class="fa fa-star text-yellow"></i>
@@ -187,8 +190,8 @@
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="rating_filter" id="rating_filter" value="3" >
-                                        <label class="form-check-label" for="rating_filter">
+                                        <input class="form-check-input" type="radio" name="rating_filter" id="rating_filter3" value="3" >
+                                        <label class="form-check-label" for="rating_filter3">
                                         <p>
                                             <i class="fa fa-star text-yellow"></i>
                                             <i class="fa fa-star text-yellow"></i>
@@ -198,8 +201,8 @@
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="rating_filter" id="rating_filter" value="4" checked>
-                                        <label class="form-check-label" for="rating_filter">
+                                        <input class="form-check-input" type="radio" name="rating_filter" id="rating_filter4" value="4" checked>
+                                        <label class="form-check-label" for="rating_filter4">
                                         <p>
                                             <i class="fa fa-star text-yellow"></i>
                                             <i class="fa fa-star text-yellow"></i>
@@ -258,14 +261,14 @@
                                 <div class="col align-self-start m-0 p-0">
                                     <div class="row ml-1">
                                         <div class="form-check col-sm-4">
-                                            <input class="form-check-input" type="radio" name="gender" id="gender" checked value="male">
-                                            <label class="form-check-label" for="gender">
+                                            <input class="form-check-input" type="radio" name="gender" id="male" checked value="male">
+                                            <label class="form-check-label" for="male">
                                                 Male
                                             </label>
                                         </div>
                                         <div class="form-check col-sm-4">
-                                            <input class="form-check-input" type="radio" name="gender" id="gender" value="female">
-                                            <label class="form-check-label" for="gender">
+                                            <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                                            <label class="form-check-label" for="female">
                                                 Female
                                             </label>
                                         </div>
@@ -318,8 +321,8 @@
                                             </label>
                                         </div>
                                         <div class="form-check col-sm-4">
-                                            <input class="form-check-input" type="radio" name="availability" id="availability2" checked value="all">
-                                            <label class="form-check-label" for="availability2">
+                                            <input class="form-check-input" type="radio" name="availability" id="availabilityAll" checked value="all">
+                                            <label class="form-check-label" for="availabilityAll">
                                                 All
                                             </label>
                                         </div>
@@ -359,7 +362,7 @@
                                                 <p class="mb-0"><img src="../assets/images/ico/red-icon.png" alt="" class="">  {{$tutor->designation ?? '---'}}</p>
                                                 <p class="mb-0"><img src="../assets/images/ico/location-pro.png" alt="" class="">{{ $tutor->city != NULL ? $tutor->city.' , ' : '---' }} {{ $tutor->country != NULL ? $tutor->country: '---' }}</p>
                                             </div>
-                                            <div class="col-md-4 col-12">
+                                            <div class="col-md-5 col-12">
                                                 <p>
                                                     @if($tutor->rating == 1)
                                                     <i class="fa fa-star text-yellow"></i>
@@ -450,10 +453,10 @@
                                         <p>starting from</p>
                                         <h1 class="f-60">${{$tutor->hourly_rate}}</h1>
                                         <p>per hour</p>
-                                        <button type="button" class=" cencel-btn w-100">
+                                        <button type="button" class=" cencel-btn pd-btn w-100">
                                                 &nbsp; Message &nbsp;
                                             </button>
-                                        <button type="button" onclick="location.href = '{{route('student.book-now',[$tutor->id])}}';" class=" btn-general w-100 mt-2" >
+                                        <button type="button" onclick="location.href = '{{route('student.book-now',[$tutor->id])}}';" class=" btn-general pd-btn w-100 mt-2" >
                                                 &nbsp; Book Class &nbsp;
                                         </button>
                                     </div>

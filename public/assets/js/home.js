@@ -26,8 +26,10 @@ function resetFilter() {
     alert($("#locat").val());
     $(".form-select").val("");
     $(".form-select").select2();
-    document.getElementById("Choose_No").checked = false;
-    $("input[type=range]").reset();
-    $("input[type=radio]").reset();
+    $("#availabilityAll").checked = true;
+    $("#range").val(10);
+    $("#male").checked = true;
+    $("#rating_filter0").checked = true;
+
     // $("#locat").select2("val", "");
 }
