@@ -155,6 +155,8 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::get('/settings',[TutorSettingController::class,'index'])->name('tutor.settings');
     Route::post('/change-password',[TutorSettingController::class,'changePassword'])->name('tutor.changePassword');
 
+    Route::get('/call',[TutorSettingController::class,'call'])->name('tutor.call');
+
     
 });
 

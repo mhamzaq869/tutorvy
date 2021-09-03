@@ -23,6 +23,11 @@ Broadcast::channel('chat', function ($user) {
         return $user;
     }
 });
+Broadcast::channel('call', function ($user) {
+    if (auth()->check()) {
+        return $user;
+    }
+});
 
 Broadcast::channel('admin_dash', function ($user) {
     if (auth()->check()) {
