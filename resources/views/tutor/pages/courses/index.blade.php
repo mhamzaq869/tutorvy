@@ -25,20 +25,20 @@
         color:#1072FE;
     }
 
-    /*Progress Bar STyle */
-    .progress{
-    width: 150px;
-    height: 150px;
-    line-height: 150px;
-    background: none;
-    box-shadow: none;
-    position: relative;
-}
-.progress {
-    margin-right: auto !important;
-    width: 51px !important;
-    height: 51px !important;
-}
+      /*Progress Bar STyle */
+      .leftSeat p{
+         font-size:14px;
+     }
+     .progress{
+        width: 51px !important;
+            height: 51px !important;
+            line-height: 150px;
+            background: none;
+            box-shadow: none;
+            position: relative;
+            margin-right: 18px !important;
+            margin-left: 9px !important;
+        }
 .progress:after{
     content: "";
     width: 100%;
@@ -180,6 +180,11 @@
     .progress{ margin-bottom: 20px; }
 }
 /**Progress End */
+.course_thumb{
+    max-width: 100%;
+    height: 165px;
+    border-radius:9px;
+}
 
 .learning-button {
     background-color: #cedef5;
@@ -229,14 +234,14 @@
     top: 50%;
     left: 23%;
 }
-.leftSeat{
+/* .leftSeat{
     position:absolute;
     top: 51px;
-}
-.course_thumb{
+} */
+/* .course_thumb{
     max-width: 100%;
     height: 176px;
-}
+} */
 </style>
 @section('content')
 <link href="{{ asset('assets/css/course.css') }}" rel="stylesheet">
@@ -274,18 +279,18 @@
                                         </div>
                                     </div>
                                     <div class="row mt-3">
-                                        <div class="col-md-9">
-                                            <span class="che-text border-round">
+                                        <div class="col-md-8">
+                                            <span class="che-text border-round paid-button">
                                                 {{$course->subject->name}}
                                             </span>
                                         </div>
-                                        <div class="col-md-3">
-                                            <h2 class="price">${{$course->basic_price}}</h2>
+                                        <div class="col-md-4 ">
+                                            <h2 class="price pull-right">${{$course->basic_price}}</h2>
                                         </div>
                                     </div>
                                     <div class="row ">
                                         <div class="col-md-12">
-                                            <h5>{{$course->title}}</h5>
+                                            <h5 class="create-text mt-1">{{$course->title}}</h5>
                                             <hr>
                                         </div>
                                         <div class="col-md-8">
@@ -324,35 +329,31 @@
                         <h2>Rejected Courses</h2>
                     </div>
                     @foreach ($rej_course as $course)
-                    <div class="col-md-3 pending_hover">
+                    <div class="col-md-4">
                         <div class="card">
-                            <div class="overlay">
-                                <span class="border-round btn">Rejected Course</span>
-                            </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-12 text-center">
                                         @if ($course->thumbnail)
-                                        <img src="{{asset($course->thumbnail)}}" class="border-round course_thumb" alt="Avatar"  >
+                                        <img src="{{asset($course->thumbnail)}}" class="border-round course_thumb" alt="Avatar" >
                                         @else
-                                        <img src="{{asset('assets/images/NoPath.png')}}" class="border-round course_thumb" alt="Avatar"  >
+                                        <img src="{{asset('assets/images/NoPath.png')}}" class="border-round course_thumb" alt="Avatar" >
                                         @endif
                                     </div>
                                 </div>
                                 <div class="row mt-3">
-
-                                    <div class="col-md-9">
-                                        <span class="che-text border-round">
+                                    <div class="col-md-8">
+                                        <span class="che-text border-round paid-button">
                                             {{$course->subject->name}}
                                         </span>
                                     </div>
-                                    <div class="col-md-3">
-                                        <h2 class="price">${{$course->basic_price}}</h2>
+                                    <div class="col-md-4">
+                                        <h2 class="price pull-right">${{$course->basic_price}}</h2>
                                     </div>
                                 </div>
                                 <div class="row ">
                                     <div class="col-md-12">
-                                        <h5>{{$course->title}}</h5>
+                                        <h6 class="create-text mt-1">{{$course->title}}</h6>
                                         <hr>
                                     </div>
                                     <div class="col-md-8">
@@ -368,18 +369,21 @@
                                             </span>
                                             <div class="progress-value">
                                                 <span>5</span>
-                                            
+                                                
                                             </div>
                                         </div>
                                         <span class="leftSeat text-center">
                                                 <p>Seats Left</p>
                                             </span>
-                                        <!-- <canvas id="myChart" width="400" height="400"></canvas> -->
+                                    </div>
+                                    <div class="col-md-12 text-center learning-button mt-4">
+                                        <a href="{{ route('tutor.course.edit',[$course->id]) }}" class="no-decor">
+                                            Edit Course
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     @endforeach
                 </div>
@@ -391,7 +395,7 @@
                         <h2>My Courses</h2>
                     </div>
                     @foreach ($app_course as $course)
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
@@ -404,18 +408,18 @@
                                     </div>
                                 </div>
                                 <div class="row mt-3">
-                                    <div class="col-md-9">
-                                        <span class="che-text border-round">
+                                    <div class="col-md-8">
+                                        <span class="che-text border-round paid-button">
                                             {{$course->subject->name}}
                                         </span>
                                     </div>
-                                    <div class="col-md-3">
-                                        <h2 class="price">${{$course->basic_price}}</h2>
+                                    <div class="col-md-4">
+                                        <h2 class="price pull-right">${{$course->basic_price}}</h2>
                                     </div>
                                 </div>
                                 <div class="row ">
                                     <div class="col-md-12">
-                                        <h6>{{$course->title}}</h6>
+                                        <h6 class="create-text mt-1">{{$course->title}}</h6>
                                         <hr>
                                     </div>
                                     <div class="col-md-8">
@@ -449,7 +453,7 @@
                     </div>
                     @endforeach
 
-                    <div class="col-md-3 text-center">
+                    <div class="col-md-4 text-center">
                         <div class="card border-only" >
                             <div class="card-body ">
                                 <div class="add-new" style="margin-top:40%;margin-bottom: 40%;">
