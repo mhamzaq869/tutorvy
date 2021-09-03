@@ -189,10 +189,11 @@
                 <div class="text-class">
                     <p>
                         Advance
-                    </p>
-                    <span class="class-text">
+                        <span class="class-text">
                         Classroom
                     </span>
+                    </p>
+                    
                 </div>
                 <div class="ml-4 pb-5">
                     <p class="class-there text-xs-center-1">
