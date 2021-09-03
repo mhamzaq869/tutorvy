@@ -47,8 +47,8 @@
                                                     @endif
                                                 </div>
                                                 <div class="col-md-5 col-6">
-                                                    <h3>{{$user->first_name}} {{$user->last_name}}</h3>
-                                                   
+                                                    <h3 class="mb-0">{{$user->first_name}} </h3>
+                                                    <h3> {{$user->last_name}}</h3>
                                                 </div>
                                                 <div class="col-md-4 col-12">
                                                     <p>
@@ -94,10 +94,13 @@
                                             @endif
                                         </div>
                                         <div class="col-md-4">
-                                            <p class="mb-0 "><img src="{{asset('assets/images/ico/red-icon.png')}}" alt="" class="pr-2">  {{$user->designation ?? '---'}}</p>
+                                            <p class="mb-0 "><img src="{{asset('assets/images/ico/red-icon.png')}}" alt="" class="pr-2">  {{$user->professional->last()->designation ?? '---'}}</p>
                                         </div>
                                         <div class="col-md-4">
                                             <p class="mb-0 "><img src="{{asset('assets/images/ico/location-pro.png')}}" alt="" class="pr-2">{{ $user->city != NULL ? $user->city.' , ' : '---' }} {{ $user->country != NULL ? $user->country: '---' }}</p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p class="mb-0 "><img src="{{asset('assets/images/ico/language.png')}}" alt="" class="pr-2">{{ $user->lang_short != NULL ? $user->lang_short : '---' }}</p>
                                         </div>
                                     </div>
                                 </div>
