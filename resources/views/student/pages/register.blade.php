@@ -561,7 +561,7 @@
                                                                 </button>
                                                                 <button type="submit" id="finish"
                                                                     class="btn btn-lg   schedule-btn  nextBtn pull-right ml-4 btn-registration">&nbsp;
-                                                                    Continue &nbsp;
+                                                                    Finish &nbsp;
                                                                 </button>
                                                             </div>
                                                         </div>

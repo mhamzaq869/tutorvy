@@ -191,8 +191,12 @@
                 transform: rotate(360deg);
             }
         }
-#inlineCheckbox1{
+.form-check-input{
     height:auto !important;
+    width:auto !important;
+}
+.form-check-label{
+    margin-left:20px;
 }
     </style>
 
@@ -895,7 +899,7 @@
                                         </div>
                                         <div class="container-fluid">
 
-                                            <div class="input-text col-md-12 m-0 p-0 mt-3 mb-5">
+                                            <div class="input-text col-md-12 m-0 p-0 mt-3 mb-3">
                                                 <input type="" placeholder="Rate per hour (in USD)">
                                                 <!-- <select name="hour_rate" class="form-select form-select-lg mb-3"
                                                     aria-label=".form-select-lg example">
@@ -915,22 +919,20 @@
                                                 </select> -->
 
                                             </div>
-                                            <!-- <div class=" col-md-6 form-check  ">
+                                            <div class=" col-md-4 col-sm-6 form-check   m-0 p-0">
                                                     <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                    <label class="form-check-label" for="inlineCheckbox1">Policies</label>
-                                              
-                                                <div class="form-check ">
-                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                                    <label class="form-check-label" for="inlineCheckbox2">2</label>
-                                                </div>
-
-                                            </div> -->
+                                                    <label class="form-check-label " for="inlineCheckbox1">Policies</label>
+                                            </div>
+                                            <div class=" col-md-4 col-sm-6 form-check   m-0 p-0">
+                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option1">
+                                                    <label class="form-check-label " for="inlineCheckbox2">Email marketing</label>
+                                            </div>
                                         </div>
                                         <div class="col-8" style="float: right;">
 
                                             <button type="button" id="finish"
                                                 class="btn btn-lg   schedule-btn  nextBtn  pull-right">&nbsp;
-                                                Finsh&nbsp;
+                                                Finish&nbsp;
                                             </button>
 
                                         </div>
