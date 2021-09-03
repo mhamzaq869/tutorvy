@@ -117,7 +117,7 @@ class RegisterController extends Controller
         $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
+            'email' => ['required|unique', 'string', 'email', 'max:255'],
             'password' => ['required', 'string', 'min:8'],
             'phone' => ['required'],
         ]);
