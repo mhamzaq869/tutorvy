@@ -11,22 +11,24 @@
 
     // Channel to get active users status and leaving users status
 
-    window.Echo.join('chat')
-    .here(activeUsers => {
-        this.activeUsers = activeUsers
-    })
-    .joining(user => {
-        console.log('joining'+user.first_name)
-        $('#activeDot_'+user.id).removeClass('offlice');
+    // window.Echo.join('chat')
+    // .here(activeUsers => {
+    //     this.activeUsers = activeUsers
+    // })
+    // .joining(user => {
+    //     console.log('joining'+user.first_name)
+    //     $('#activeDot_'+user.id).removeClass('offlice');
         
-        this.activeUsers.push(user)
-    })
-    .leaving(user => {
-        console.log('leaving'+user)
-        $('#activeDot_'+user.id).addClass('offlice');
+    //     this.activeUsers.push(user)
+    // })
+    // .leaving(user => {
+    //     console.log('leaving'+user)
+    //     $('#activeDot_'+user.id).addClass('offlice');
 
-        this.activeUsers = this.activeUsers.filter(u => u.id != user.id);
-    })
+    //     this.activeUsers = this.activeUsers.filter(u => u.id != user.id);
+    // })
+
+    
 
     // Channel to send & listen message
 
