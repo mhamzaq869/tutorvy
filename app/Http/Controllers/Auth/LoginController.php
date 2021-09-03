@@ -69,7 +69,7 @@ class LoginController extends Controller
                     return redirect()->route('tutor.dashboard');
                 }
                 if($request->role == 3){
-
+                    $value = "";
                     if(isset($_COOKIE['t_id'])){
                         $value = $_COOKIE['t_id'];
 

@@ -246,12 +246,12 @@
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <span class="paid-button">
                                    {{$course->subject_name}}
                                 </span>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <h2 class="dolar-text text-right">${{$course->basic_price}}</h2>
                             </div>
                         </div>
@@ -315,12 +315,12 @@
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <span class="paid-button">
                                     Subject Name
                                 </span>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <h2 class="dolar-text text-right">$23</h2>
                             </div>
                         </div>
@@ -357,7 +357,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> 
             <div class="col-md-3 mb-2">
                 <div class="card">
                     <div class="card-body">
@@ -368,12 +368,12 @@
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <span class="paid-button">
                                     Subject Name
                                 </span>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <h2 class="dolar-text text-right">$23</h2>
                             </div>
                         </div>
@@ -410,7 +410,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> 
             <div class="col-md-3 mb-2">
                 <div class="card">
                     <div class="card-body">
@@ -421,12 +421,12 @@
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <span class="paid-button">
                                     Subject Name
                                 </span>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <h2 class="dolar-text text-right">$23</h2>
                             </div>
                         </div>
@@ -463,60 +463,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3 mb-2">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                <img src="{{asset('assets/images/NoPath.png')}}" class="border-round course_thumb" alt="Avatar" >
-                               
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-9">
-                                <span class="paid-button">
-                                    Subject Name
-                                </span>
-                            </div>
-                            <div class="col-md-3">
-                                <h2 class="dolar-text text-right">$23</h2>
-                            </div>
-                        </div>
-                        <div class="row ">
-                            <div class="col-md-12">
-                                <h6 class="create-text mt-1">Title</h6>
-                                <hr>
-                            </div>
-                            <div class="col-md-8">
-                            <p class="mt-2">Next batch is starting from 25 April,2016</p>
-                            </div>
-                            <div class="col-md-4 text-center">
-                                <div class="progress blue">
-                                    <span class="progress-left">
-                                        <span class="progress-bar"></span>
-                                    </span>
-                                    <span class="progress-right">
-                                        <span class="progress-bar"></span>
-                                    </span>
-                                    <div class="progress-value">
-                                        <span>5</span>
-                                        
-                                    </div>
-                                </div>
-                                <span class="leftSeat text-center">
-                                        <p>Seats Left</p>
-                                    </span>
-                            </div>
-                            <div class="col-md-12 text-center learning-button mt-4">
-                                <a href="#" class="no-decor">
-                                    Start Course
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </div> 
         </div>
         <div class=" row">
             <div class="col-md-2"></div>
