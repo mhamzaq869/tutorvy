@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\General\Degree;
 use App\Models\General\Institute;
 use App\Models\Admin\Subject;
+use App\Models\Admin\SubjectCategory;
 use App\Models\General\Education;
 use App\Models\General\Professional;
 use App\Providers\RouteServiceProvider;
@@ -95,9 +96,10 @@ class RegisterController extends Controller
         $user = User::where('ip',$_SERVER['REMOTE_ADDR'])->first();
         $degrees = Degree::all();
         $subjects = Subject::all();
+        $subject_cat = SubjectCategory::all();
 
 
-        return view('student.pages.register',compact('user','degrees','subjects'));
+        return view('student.pages.register',compact('user','degrees','subjects','subject_cat'));
     }
 
 
