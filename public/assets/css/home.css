@@ -394,7 +394,7 @@
     margin-top: 100px;
     font-size: 40px;
     color: #ffffff;
-    display: flex;
+    /* display: flex; */
     font-family: "Poppins";
     font-weight: 600;
     margin-left: 25px;
@@ -684,7 +684,7 @@
     .text-class {
         font-size: 28px;
         text-align: center;
-        margin-top: 25px;
+        margin-top: 112px;
         margin-left: 0;
     }
     .chweck {
@@ -787,7 +787,7 @@
         position: relative;
         top: -100px;
         /* text-align: center !important; */
-        text-align: left;
+        /* text-align: left; */
         margin-bottom: 50px;
     }
     .input-text-main {
@@ -800,6 +800,7 @@
     }
     .main-bg-height {
         height: 280px !important;
+        text-align: center !important;
     }
     /* .how-mobile-section {
         height: 120px !important;
