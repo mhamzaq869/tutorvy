@@ -36,7 +36,7 @@
     height: 1px;
     background: #27B776;
     position: absolute;
-    width: 80%;
+    width: 74%;
     margin: 0 auto;
     left: 0;
     right: 0;
@@ -85,6 +85,7 @@
 .register-content {
     margin-top: 70px;
     text-align: center;
+    margin-right: 22px;
     font-size: 14px;
     font-weight: 500;
     font-family: 'Poppins';
@@ -2434,7 +2435,7 @@ button:hover {
     .liner {
         position: absolute;
         top: 30px;
-        width: 80%;
+        width: 74%;
         left: 10px;
         /* padding: 10px; */
     }

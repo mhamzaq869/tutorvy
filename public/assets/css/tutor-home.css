@@ -890,3 +890,24 @@ and also iPads specifically.
         display: inline-block;
     }
 }
+
+.create-text {
+    font-size: 16px;
+    font-family: "Poppins";
+    font-weight: 600;
+    color: #00132D;
+}
+
+.paid-button {
+    background-color: #f3e3e2;
+    color: #00132D;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 12px;
+    font-family: "Poppins";
+    border-radius: 4px;
+    border: 1px solid #f3e3e2;
+    cursor: pointer;
+}

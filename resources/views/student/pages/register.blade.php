@@ -295,7 +295,7 @@
                                             </div>
                                             <div class="input-text col-md-12 m-0 p-0 mt-4 mb-3 d-block">
                                                     <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                                                    placeholder="Enter Email Address" value="{{$user->email ?? ''}}" id="email">
+                                                    placeholder="Email Address" value="{{$user->email ?? ''}}" id="email">
                                                     <!-- <label for="" id="email_error" class="text-red"><strong> This field is required </strong>  </label> -->
                                                     <span for="" id="email_error" class="invalid-feedback" role="alert">
                                                         <strong> This field is required </strong>  
@@ -320,14 +320,12 @@
                                                     @enderror
                                             </div>
 
-                                            <p class="heading-fifth">Date of Birth</p>
-                                            <!-- date of birth dropdown -->
+                                            <!-- <p class="heading-fifth">Date of Birth</p>
                                             <div class="row mt-4 mb-3">
                                                 <div class="col-md-4">
                                                     <select class="form-select form-select-lg" id="day" name="day">
                                                     </select>
                                                 </div>
-                                                <!--  -->
                                                 <div class="col-md-4">
                                                     <select class="form-select form-select-lg" name="month"
                                                         aria-label=".form-select-lg example">
@@ -350,11 +348,11 @@
                                                     placeholder="Year" id="year">
                                                 </div>
 
-                                            </div>
+                                            </div> -->
                                             <div class="row">
                                                 <div class="col-md-12 mt-3 mb-3">
                                                     <input id="phone" name="phone" type="tel"
-                                                        value="{{ $user->phone ?? '' }}" id="phone">
+                                                        value="{{ $user->phone ?? '' }}" id="phone" placeholder="Phone Number">
                                                         <!-- <label for="" id="phone_error" class="text-red"><strong> This field is required </strong>  </label> -->
                                                     <span for="" id="phone_error" class="invalid-feedback" role="alert">
                                                         <strong> This field is required </strong>  
@@ -401,7 +399,7 @@
 
                                                 </div>
                                                 <div class="container mt-3">
-                                                <div class=" row">
+                                                    <!-- <div class=" row">
                                                         <div class="input-text col-md-6">
                                                             <select id="selection" name="security"
                                                                 onchange="changeplh()"
@@ -425,7 +423,7 @@
                                                                 id="languages-list" name="lang_short" onchange="langshort(this)">
                                                             </select>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
 
                                                 <div class="container form-group mt-3">
