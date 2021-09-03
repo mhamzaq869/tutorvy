@@ -72,7 +72,8 @@ class LoginController extends Controller
 
                     if(isset($_COOKIE['t_id'])){
                         $value = $_COOKIE['t_id'];
-
+                        \Cookie::queue(\Cookie::forget('t_id'));
+                       
                     }
                     if($value != ''){
                         return redirect()->route('student.book-now',[$value]);

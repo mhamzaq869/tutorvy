@@ -26,7 +26,7 @@ class BookingController extends Controller
     public function bookNow($t_id){
 
         $subjects = Teach::where('user_id',$t_id)->get();
-        $user = User::where('id',$t_id)->first();
+        $user = User::with(['education','professional','teach'])->where('id',$t_id)->first();
          return view('student.pages.booking.book_now',compact('t_id','subjects','user'));
     }
     public function bookingDetail($id){
