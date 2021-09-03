@@ -42,32 +42,44 @@ $(function() {
         if (a == "") {
             // alert("empty a");
             $("#fname_error").show();
+            $("#fname").addClass("is-invalid");
+
             $("#fname_error").focus();
             isValid = false;
         } else if (b == "") {
             // alert("empty b");
+            $("#lname").addClass("is-invalid");
             $("#lname_error").show();
             $("#lname_error").focus();
             isValid = false;
+
         } else if (c == "") {
             // alert("empty c");
             $("#email_error").show();
             $("#email_error").focus();
+            $("#email").addClass("is-invalid");
+
             isValid = false;
         } else if (d == "") {
             // alert("empty d");
             $("#password_error").show();
             $("#password_error").focus();
+            $("#password").addClass("is-invalid");
+
             isValid = false;
         } else if (e == "") {
             // alert("empty e");
             $("#phone_error").show();
             $("#phone_error").focus();
+            $("#phone").addClass("is-invalid");
+
             isValid = false;
         } else if (f == "") {
             // alert("empty f");
             $("#gender_error").show();
             $("#gender_error").focus();
+            $("#gender").addClass("is-invalid");
+
             isValid = false;
         } else {
             $("#fname_error").hide();
@@ -76,6 +88,8 @@ $(function() {
             $("#phone_error").hide();
             $("#gender_error").hide();
             $("#email_error").hide();
+            $("input").removeClass("is-invalid");
+            $("select").removeClass("is-invalid");
             isValid = true;
         }
         if (isValid) {
