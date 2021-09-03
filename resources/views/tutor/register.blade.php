@@ -191,7 +191,9 @@
                 transform: rotate(360deg);
             }
         }
-
+#inlineCheckbox1{
+    height:auto !important;
+}
     </style>
 
 </head>
@@ -210,12 +212,12 @@
                             </a>
                         </div>
                         <div class="text">
-                            <p class="learn">Learn from the best tutors</p>
-                            <p class="time"> Anytime, Anywhere</p>
+                            <p class="learn">Teach anytime at best rate</p>
+                            <!-- <p class="time"> Anytime, Anywhere</p> -->
                         </div>
                         <div class="Register mt-4">
 
-                            Register yourself on Tutorvy and learn or teach anything <br /> from anywhere.
+                        Register yourself on Tutorvy and teach anything <br /> from anywhere.
                         </div>
                         <div style="margin-top: 70px;">
                             <img src="../assets/images/login-image/loginImage.png" style="width: 90%;">
@@ -224,7 +226,7 @@
 
                 </div>
                 <div class="col-md-6 card">
-                    <p class="mt-5 ml-3 heading-first">Create account</p>
+                    <p class="mt-5 ml-3 heading-first">Create a tutor account</p>
                     <p class="ml-3 heading-sixth">Already have an account?
                         <a href="{{ route('login') }}" class="text-primary" style="text-decoration:none">
                             Sign in
@@ -318,7 +320,7 @@
                                             <div class="input-text col-md-12 m-0 p-0 mt-4 mb-3 d-block">
                                                 <input type="email"
                                                     class="form-control  @error('email') is-invalid @enderror"
-                                                    name="email" placeholder="Enter Email Address"
+                                                    name="email" placeholder="Email Address"
                                                     value="{{ $user->email ?? '' }}" id="email">
                                                     <span for="" id="email_error" class="invalid-feedback" role="alert">
                                                         <strong> This field is required </strong>  
@@ -330,7 +332,7 @@
                                                     </span>
                                                 @enderror
                                             </div>
-                                            <div class="input-text col-md-12 m-0 p-0 mt-3 mb-4 d-block">
+                                            <div class="input-text col-md-12 m-0 p-0 mt-3 mb-2 d-block">
                                                 <input type="password" name="password"
                                                     class="form-control  @error('password') is-invalid @enderror"
                                                     placeholder="Password" id="password"> 
@@ -345,14 +347,12 @@
                                                 @enderror
                                             </div>
 
-                                            <p class="heading-fifth">Date of Birth</p>
-                                            <!-- date of birth dropdown -->
+                                            <!-- <p class="heading-fifth">Date of Birth</p>
                                             <div class="row mt-4 mb-3">
                                                 <div class="col-md-4">
                                                     <select class="form-select form-select-lg" id="day"
                                                         name="day"></select>
                                                 </div>
-                                                <!--  -->
                                                 <div class="col-md-4">
                                                     <select class="form-select form-select-lg" name="month"
                                                         aria-label=".form-select-lg example">
@@ -376,12 +376,12 @@
 
                                                 </div>
 
-                                            </div>
+                                            </div> -->
                                             <div class="row">
                                                 <div class="col-md-12 mt-3 mb-3">
                                                     <input id="phone" name="phone" type="tel"
-                                                        value="{{ $user->phone ?? '' }}">
-                                                        <span for="" id="phone_error" class="invalid-feedback" role="alert">
+                                                        value="{{ $user->phone ?? '' }}" placeholder="Phone Number">
+                                                        <span for="" id="phone_error"  class="invalid-feedback" role="alert">
                                                             <strong> This field is required </strong>  
                                                         </span>
                                                         <!-- <label for="" id="phone_error" class="text-red"><strong> This field is required </strong>  </label> -->
@@ -401,15 +401,20 @@
                                             </div>
 
                                             <!-- city dropdwon -->
-                                            <div class="row mt-3">
-                                                <div class="input-text col-md-6">
+                                            <div class="row ">
+                                                <div class="input-text col-md-12 mb-2 d-block">
+                                                    <input type="" name="address"
+                                                        class="form-control  "
+                                                        placeholder="Address" id="address"> 
+                                                </div>
+                                                <div class="input-text col-md-6 mt-2 ">
                                                     <div class="autocomplete mt-1" style="width:300px;">
                                                         <input id="myInput" type="" name="city" placeholder="City"
                                                             value="{{ $user->city ?? '' }}">
                                                     </div>
                                                 </div>
-                                                <div class="input-text col-md-6">
-                                                    <div class="form-item">
+                                                <div class="input-text col-md-6 mt-2 ">
+                                                    <div class="form-item" style="width:300px;">
                                                         <input id="country_selector" name="country" type="">
                                                         <input id="country_short" name="country_short" type="" hidden>
                                                         <label for="country_selector" style="display:none;">Select a
@@ -417,7 +422,7 @@
                                                     </div>
 
                                                 </div>
-                                                <div class="container mt-3">
+                                                <!-- <div class="container mt-3">
                                                     <div class=" row">
                                                         <div class="input-text col-md-6">
                                                             <select id="selection" name="security"
@@ -436,7 +441,7 @@
                                                                 value="{{ $user->cnic_security ?? '' }}">
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <div class="container mt-3">
                                                     <div class="row">
                                                         <div class="col-md-6 d-block">
@@ -444,8 +449,11 @@
                                                             <select class="form-select form-select-lg mb-3"
                                                                 id="languages-list" name="lang_short"
                                                                 onchange="langshort(this)">
-
+                                                                    <option value="" disable="" selected> Preffered Language</option>
                                                             </select>
+                                                            <span for="" id="language_error" class="invalid-feedback" role="alert">
+                                                                <strong> This field is required </strong>  
+                                                            </span>
                                                         </div>
                                                         <div class="col-md-6 d-block">
                                                             <select
@@ -454,8 +462,6 @@
                                                                 <option selected disabled>Gender</option>
                                                                 <option value="male" @if (isset($user) && $user->gender === 'male') selected @endif>Male</option>
                                                                 <option value="female" @if (isset($user) && $user->gender === 'female') selected @endif>Female
-                                                                </option>
-                                                                <option value="other" @if (isset($user) && $user->gender === 'other') selected @endif>Other
                                                                 </option>
                                                             </select>
                                                             <!-- <label for="" id="gender_error" class="text-red"><strong> This field is required </strong>  </label> -->
@@ -472,7 +478,7 @@
                                                         <div class="col-md-12">
                                                             <textarea class="form-control" name="bio"
                                                             id="exampleFormControlTextarea1" rows="5"
-                                                            placeholder="Write about yourself...">{{ $user->bio ?? '' }}</textarea>
+                                                            placeholder="Tell us about yourself that you want students to see?">{{ $user->bio ?? '' }}</textarea>
                                                         </div>
                                                         <div class="col-md-12 text-right mt-3">
                                                             <!-- <input type="submit"
@@ -528,7 +534,7 @@
 
                                                                 <input class="form-control bs-autocomplete"
                                                                     id="{{ $i }}"
-                                                                    placeholder="Type two characters of a Institute name..."
+                                                                    placeholder="University"
                                                                     value="{{ $education->institute->name ?? ''}}"
                                                                     data-hidden_field_id="city-code" data-item_id="id"
                                                                     data-item_label="name" autocomplete="off">
@@ -581,7 +587,7 @@
                                                                 <input type="hidden" name="institute[]" id="inst_id_0"
                                                                     value="">
                                                                 <input class="form-control bs-autocomplete" id="ac-demo"
-                                                                    placeholder="Type two characters of a Institute name..."
+                                                                    placeholder="University"
                                                                     data-item_label="name" autocomplete="off">
 
                                                             </div>
@@ -630,7 +636,7 @@
                                                             <input type="hidden" name="institute[]" id="inst_id" value="">
 
                                                             <input class="form-control bs-autocomplete" id="ac-demo"
-                                                                placeholder="Type two characters of a Institute name..."
+                                                                placeholder="University"
                                                                 data-source="demo_source.php" data-item_id="inst_id"
                                                                 data-item_label="name" autocomplete="off">
                                                         </div>
@@ -863,7 +869,7 @@
                                                     @enderror
                                                 </div>
                                                 <div class="input-text col-md-6">
-                                                    <select name="student_level" class="form-select form-select-lg mb-3"
+                                                    <!-- <select name="student_level" class="form-select form-select-lg mb-3"
                                                         id="levels">
                                                         <option selected value="0">Student level</option>
                                                         <option @if (isset($user) && $user->student_level == 1) selected @endif value="1" selected>
@@ -872,6 +878,17 @@
                                                             Intermediate</option>
                                                         <option @if (isset($user) && $user->student_level == 3) selected @endif value="3">Expert
                                                         </option>
+                                                    </select> -->
+                                                    <select name="degree"
+                                                        class="form-select form-select-lg mb-3">
+                                                        <option value="" disabled selected>School</option>
+                                                    
+                                                            <option value="Pre Elementary School">Pre Elementary School</option>
+                                                            <option value="Elementary School">Elementary School</option>
+                                                            <option value="Secondary School">Secondary School</option>
+                                                            <option value="High School">High School</option>
+                                                            <option value=" Post Secondary"> Post Secondary</option>
+                                                    
                                                     </select>
                                                 </div>
                                             </div>
@@ -879,7 +896,8 @@
                                         <div class="container-fluid">
 
                                             <div class="input-text col-md-12 m-0 p-0 mt-3 mb-5">
-                                                <select name="hour_rate" class="form-select form-select-lg mb-3"
+                                                <input type="" placeholder="Rate per hour (in USD)">
+                                                <!-- <select name="hour_rate" class="form-select form-select-lg mb-3"
                                                     aria-label=".form-select-lg example">
                                                     <option disabled>Per hour charges</option>
                                                     <option @if (isset($user) && $user->hourly_rate == 5) selected @endif value="5">$5</option>
@@ -894,9 +912,19 @@
                                                     <option @if (isset($user) && $user->hourly_rate == 45) selected @endif value="45">$45</option>
                                                     <option @if (isset($user) && $user->hourly_rate == 50) selected @endif value="50">$50</option>
 
-                                                </select>
+                                                </select> -->
 
                                             </div>
+                                            <!-- <div class=" col-md-6 form-check  ">
+                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                    <label class="form-check-label" for="inlineCheckbox1">Policies</label>
+                                              
+                                                <div class="form-check ">
+                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                                    <label class="form-check-label" for="inlineCheckbox2">2</label>
+                                                </div>
+
+                                            </div> -->
                                         </div>
                                         <div class="col-8" style="float: right;">
 
@@ -965,10 +993,11 @@
             // var languages_list = {...};
             (function() {
                 var user_language_code = "{{ $user->language ?? 'en-US' }}";
-                var option = '';
+                // var option = '';
+                var option = '<option value="" disabled selected> Preffered Language</option>';
                 for (var language_code in languages_list) {
-                    var selected = (language_code == user_language_code) ? ' selected' : '';
-                    option += '<option value="' + language_code + '"' + selected + '>' + languages_list[language_code] +
+                    // var selected = (language_code == user_language_code) ? ' selected' : '';
+                    option += '<option value="' + language_code + '">' + languages_list[language_code] +
                         '</option>';
                 }
                 document.getElementById('languages-list').innerHTML = option;
@@ -1004,7 +1033,7 @@
                         <input type="hidden" name="institute[` + count_field + `]" id="inst_id_` + count_field + `" value="">
 
                         <input class="form-control bs-autocomplete" id="ac-demo"
-                            placeholder="Type two characters of a Institute name..."
+                            placeholder="University"
                             data-source="demo_source.php"
                             data-hidden_field_id="city-code" data-item_id="id"
                             data-item_label="name" autocomplete="off">

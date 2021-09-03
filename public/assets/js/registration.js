@@ -39,6 +39,7 @@ $(function() {
         var d = $("input[name = password]").val();
         var e = $("input[name = phone]").val();
         var f = $("select[name = gender]").val();
+        var g = $("select[name = lang_short]").val();
         if (a == "") {
             // alert("empty a");
             $("#fname_error").show();
@@ -74,7 +75,14 @@ $(function() {
             $("#phone").addClass("is-invalid");
 
             isValid = false;
-        } else if (f == "") {
+        } else if (g == "" || g == null) {
+            // alert("empty f");
+            $("#language_error").show();
+            $("#language_error").focus();
+            $("#language-list").addClass("is-invalid");
+
+            isValid = false;
+        } else if (f == "" || f == null) {
             // alert("empty f");
             $("#gender_error").show();
             $("#gender_error").focus();
@@ -88,6 +96,7 @@ $(function() {
             $("#phone_error").hide();
             $("#gender_error").hide();
             $("#email_error").hide();
+            $("#language_error").hide();
             $("input").removeClass("is-invalid");
             $("select").removeClass("is-invalid");
             isValid = true;
