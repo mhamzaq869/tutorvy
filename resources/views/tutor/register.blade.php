@@ -76,6 +76,7 @@
 
         .is-invalid {
             color: red;
+            border-color:red;
         }
 
         ul.bs-autocomplete-menu {
@@ -287,8 +288,11 @@
                                                 <div class="input-text col-md-6 d-block">
                                                     <input type="" class="form-control csd" name="first_name"
                                                         placeholder="First Name"
-                                                        value="{{ $user->first_name ?? '' }}">
-                                                        <label for="" id="fname_error" class="text-red"><strong> This field is required </strong>  </label>
+                                                        value="{{ $user->first_name ?? '' }}" id="fname">
+                                                        <span for="" id="fname_error" class="invalid-feedback" role="alert">
+                                                            <strong> This field is required </strong>  
+                                                        </span>
+                                                        <!-- <label for="" id="fname_error" class="text-red"><strong> This field is required </strong>  </label> -->
                                                     {{-- @error('first_name')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{$message}}</strong>
@@ -300,8 +304,10 @@
                                                     <input type=""
                                                         class="form-control @error('last_name') is-invalid @enderror"
                                                         name="last_name" placeholder="Last Name"
-                                                        value="{{ $user->last_name ?? '' }}">
-                                                        <label for="" id="lname_error" class="text-red"><strong> This field is required </strong>  </label>
+                                                        value="{{ $user->last_name ?? '' }}" id="lname">
+                                                        <span for="" id="lname_error" class="invalid-feedback" role="alert">
+                                                            <strong> This field is required </strong>  
+                                                        </span>
                                                     @error('last_name')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -313,8 +319,11 @@
                                                 <input type="email"
                                                     class="form-control  @error('email') is-invalid @enderror"
                                                     name="email" placeholder="Enter Email Address"
-                                                    value="{{ $user->email ?? '' }}">
-                                                    <label for="" id="email_error" class="text-red"><strong> This field is required </strong>  </label>
+                                                    value="{{ $user->email ?? '' }}" id="email">
+                                                    <span for="" id="email_error" class="invalid-feedback" role="alert">
+                                                        <strong> This field is required </strong>  
+                                                    </span>
+                                                    <!-- <label for="" id="email_error" class="text-red"><strong> This field is required </strong>  </label> -->
                                                 @error('email')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -324,8 +333,11 @@
                                             <div class="input-text col-md-12 m-0 p-0 mt-3 mb-4 d-block">
                                                 <input type="password" name="password"
                                                     class="form-control  @error('password') is-invalid @enderror"
-                                                    placeholder="Password">
-                                                    <label for="" id="password_error" class="text-red"><strong> This field is required </strong>  </label>
+                                                    placeholder="Password" id="password"> 
+                                                    <span for="" id="password_error" class="invalid-feedback" role="alert">
+                                                        <strong> This field is required </strong>  
+                                                    </span>
+                                                    <!-- <label for="" id="password_error" class="text-red"><strong> This field is required </strong>  </label> -->
                                                 @error('password')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -369,7 +381,10 @@
                                                 <div class="col-md-12 mt-3 mb-3">
                                                     <input id="phone" name="phone" type="tel"
                                                         value="{{ $user->phone ?? '' }}">
-                                                        <label for="" id="phone_error" class="text-red"><strong> This field is required </strong>  </label>
+                                                        <span for="" id="phone_error" class="invalid-feedback" role="alert">
+                                                            <strong> This field is required </strong>  
+                                                        </span>
+                                                        <!-- <label for="" id="phone_error" class="text-red"><strong> This field is required </strong>  </label> -->
                                                     @error('phone')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -435,15 +450,18 @@
                                                         <div class="col-md-6 d-block">
                                                             <select
                                                                 class="form-select form-select-lg mb-3  @error('gender') is-invalid @enderror"
-                                                                aria-label=".form-select-lg example" name="gender">
+                                                                aria-label=".form-select-lg example" name="gender" id="gender">
                                                                 <option selected disabled>Gender</option>
                                                                 <option value="male" @if (isset($user) && $user->gender === 'male') selected @endif>Male</option>
                                                                 <option value="female" @if (isset($user) && $user->gender === 'female') selected @endif>Female
                                                                 </option>
                                                                 <option value="other" @if (isset($user) && $user->gender === 'other') selected @endif>Other
                                                                 </option>
-                                                            </select><label for="" id="gender_error" class="text-red"><strong> This field is required </strong>  </label>
-
+                                                            </select>
+                                                            <!-- <label for="" id="gender_error" class="text-red"><strong> This field is required </strong>  </label> -->
+                                                            <span for="" id="gender_error" class="invalid-feedback" role="alert">
+                                                                <strong> This field is required </strong>  
+                                                            </span>
                                                         </div>
                                                     </div>
 
@@ -834,7 +852,10 @@
                                                                 {{ $subject->name }}</option>
                                                         @endforeach
                                                     </select>
-                                                    <label for="" id="teach_error" class="text-red"><strong> This field is required </strong>  </label>
+                                                    <span for="" id="teach_error" class="invalid-feedback" role="alert">
+                                                        <strong> This field is required </strong>  
+                                                    </span>
+                                                    <!-- <label for="" id="teach_error" class="text-red"><strong> This field is required </strong>  </label> -->
                                                     @error('teach')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>

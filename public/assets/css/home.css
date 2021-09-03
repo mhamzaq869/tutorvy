@@ -128,6 +128,7 @@
     color: #00132D;
     font-family: 'poppins';
     font-weight: 700;
+    margin-bottom: 0;
 }
 
 .Learn-texts {
@@ -393,7 +394,7 @@
     margin-top: 100px;
     font-size: 40px;
     color: #ffffff;
-    display: flex;
+    /* display: flex; */
     font-family: "Poppins";
     font-weight: 600;
     margin-left: 25px;
@@ -682,7 +683,16 @@
 @media screen and (max-width: 600px) {
     .text-class {
         font-size: 28px;
-        margin-top: 25px;
+        text-align: center;
+        margin-top: 112px;
+        margin-left: 0;
+    }
+    .chweck {
+        margin-left: 0 !important;
+    }
+    .text-class p {
+        color: #ffffff;
+        margin-right: 0;
     }
     .text-xs-center-1 {
         text-align: center !important;
@@ -770,14 +780,14 @@
     .where-text {
         position: relative;
         top: -100px;
-        text-align: center;
+        /* text-align: center; */
         font-size: 47px;
     }
     .there-text-main {
         position: relative;
         top: -100px;
-        text-align: center !important;
-        text-align: left;
+        /* text-align: center !important; */
+        /* text-align: left; */
         margin-bottom: 50px;
     }
     .input-text-main {
@@ -790,6 +800,7 @@
     }
     .main-bg-height {
         height: 280px !important;
+        text-align: center !important;
     }
     /* .how-mobile-section {
         height: 120px !important;
@@ -829,9 +840,9 @@
     .Learn-texts {
         text-align: center;
     }
-    .where-texts {
+    /* .where-texts {
         text-align: center;
-    }
+    } */
     .carousel-hide {
         display: none;
     }

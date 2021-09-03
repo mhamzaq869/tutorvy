@@ -8,7 +8,6 @@
         <br />
         <br />
         <br />
-        <br />
         <span class="text-work" style="line-height: 1;">
             <span class="text-how">
                 Offering
@@ -46,12 +45,12 @@
         <div class="row mt-5">
             <div class="col-md-3 col-12 ">
                 <div class="tab-mobile tab">
-                    <button class="tablinks" id="defaultOpen" onclick="openCity(event, 'London')">
-                        ComputerScience
+                    <button class="tablinks active"  onclick="openCity(event, 'compSci')">
+                        Computer Science
                     </button>
-                    <button class="tablinks" onclick="openCity(event, 'Paris')">Engineering</button>
-                    <button class="tablinks" onclick="openCity(event, 'ForeignLanguage')">ForeignLanguage</button>
-                    <button class="tablinks" onclick="openCity(event, 'Tokyo')">History</button>
+                    <button class="tablinks" onclick="openCity(event, 'engineering')">Engineering</button>
+                    <button class="tablinks" onclick="openCity(event, 'ForeignLanguage')">Foreign Language</button>
+                    <button class="tablinks" onclick="openCity(event, 'history')">History</button>
                     <button class="tablinks" onclick="openCity(event, 'science')" id="">
                         Science
                     </button>
@@ -63,12 +62,12 @@
                 </div>
             </div>
             <div class="col-md-9">
-                <div id="London" class="tabcontent">
+                <div id="compSci" class="tabcontent" style="display: block ;">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-4 col-4 m-0 p-0">
                                 <ul class="book-luli">
-                                    <li>Arabic</li>
+                                    <li>Computer Science</li>
                                     <li>Bengali</li>
                                     <li>Bulgarian</li>
                                     <li>Cantonese</li>
@@ -112,12 +111,12 @@
                         </div>
                     </div>
                 </div>
-                <div id="Paris" class="tabcontent">
+                <div id="engineering" class="tabcontent">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-4 col-4 m-0 p-0">
                                 <ul class="book-luli">
-                                    <li>Arabic</li>
+                                    <li>Engineering</li>
                                     <li>Bengali</li>
                                     <li>Bulgarian</li>
                                     <li>Cantonese</li>
@@ -166,7 +165,7 @@
                         <div class="row">
                             <div class="col-md-4 col-4 m-0 p-0">
                                 <ul class="book-luli">
-                                    <li>Arabic</li>
+                                    <li>Foreign Language</li>
                                     <li>Bengali</li>
                                     <li>Bulgarian</li>
                                     <li>Cantonese</li>
@@ -210,12 +209,12 @@
                         </div>
                     </div>
                 </div>
-                <div id="Tokyo" class="tabcontent">
+                <div id="history" class="tabcontent">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-4 col-4 m-0 p-0">
                                 <ul class="book-luli">
-                                    <li>Arabic</li>
+                                    <li>History</li>
                                     <li>Bengali</li>
                                     <li>Bulgarian</li>
                                     <li>Cantonese</li>
@@ -265,7 +264,7 @@
                         <div class="row">
                             <div class="col-md-4 col-4 m-0 p-0">
                                 <ul class="book-luli">
-                                    <li>Arabic</li>
+                                    <li>Science</li>
                                     <li>Bengali</li>
                                     <li>Bulgarian</li>
                                     <li>Cantonese</li>
@@ -315,7 +314,7 @@
                         <div class="row">
                             <div class="col-md-4 col-4 m-0 p-0">
                                 <ul class="book-luli">
-                                    <li>Arabic</li>
+                                    <li>Humanities</li>
                                     <li>Bengali</li>
                                     <li>Bulgarian</li>
                                     <li>Cantonese</li>
@@ -365,7 +364,7 @@
                         <div class="row">
                             <div class="col-md-4 col-4 m-0 p-0">
                                 <ul class="book-luli">
-                                    <li>Arabic</li>
+                                    <li>Professional</li>
                                     <li>Bengali</li>
                                     <li>Bulgarian</li>
                                     <li>Cantonese</li>
@@ -415,7 +414,7 @@
                         <div class="row">
                             <div class="col-md-4 col-4 m-0 p-0">
                                 <ul class="book-luli">
-                                    <li>Arabic</li>
+                                    <li>Math</li>
                                     <li>Bengali</li>
                                     <li>Bulgarian</li>
                                     <li>Cantonese</li>
@@ -460,13 +459,12 @@
                     </div>
 
                 </div>
-
                 <div id="TestPrep" class="tabcontent">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-4 col-4 m-0 p-0">
                                 <ul class="book-luli">
-                                    <li>Arabic</li>
+                                    <li>TestPrep</li>
                                     <li>Bengali</li>
                                     <li>Bulgarian</li>
                                     <li>Cantonese</li>

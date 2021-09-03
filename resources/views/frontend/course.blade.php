@@ -184,7 +184,8 @@
 </style>
 <section class="section-main section-main-std mt-5 pb-5">
     <div class="container-fluid mt-5">
-        <div class="row">
+        <br><br>
+        <div class="row " data-aos="fade-up" data-aos-duration="1000">
             <div class="col-md-12 text-center    mt-5">
                 <span class="text-work text-work-top" style="line-height: 1;">
                     <p class="text-how">
@@ -206,12 +207,12 @@
             <div class="col-md-2"></div>
             <div class="col-md-8 col-12 bg-subject">
                 <div class="mobile-input row" style="justify-content:center;">
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-sm-8 col-8">
                         <select name="" id="" class="input-subject w-100">
                             <option value="#">Select Subjects</option>
                         </select>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-4 col-sm-4">
                         <input type="submit" class="input-submite w-100" value="Find a course">
 
                     </div>
