@@ -51,6 +51,17 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
+    public function validate_email(Request $request)
+    {
+        $users = User::where('email',$request->email)->first();
+        if($users){
+            return "Trust me";
+        }
+        else{
+                return "Don't trust me";
+        }
+    }
+
 
     /**
      * Get a validator for an incoming registration request.
@@ -226,13 +237,13 @@ class RegisterController extends Controller
              });
         }
 
-        if($user->professional)
-        {
-            $user->professional->each(function($data){
-                $data->delete();
-            });
-        }
-
+        // if($user->professional)
+        // {
+        //     $user->professional->each(function($data){
+        //         $data->delete();
+        //     });
+        // }
+// return $request->degree;
         for($i=0; $i<count($request->degree); $i++){
             Education::updateOrCreate([
                 "user_id" => $user->id,

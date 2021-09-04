@@ -300,6 +300,9 @@
                                                     <span for="" id="email_error" class="invalid-feedback" role="alert">
                                                         <strong> This field is required </strong>  
                                                     </span>
+                                                    <span for="" id="email_error_duplicate" class="invalid-feedback" role="alert">
+                                                        <strong> This email already exists.  <a href="{{ route('login') }}" class="text-primary" style="text-decoration:none">Log in?</a> </strong>  
+                                                    </span>
                                                     @error('email')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{$message}}</strong>
@@ -490,11 +493,11 @@
                                                                     class="form-select form-select-lg mb-3">
                                                                     <option value="" disabled selected>Which grade you are in?</option>
                                                                 
-                                                                        <option value="Pre Elementary School">Pre Elementary School</option>
-                                                                        <option value="Elementary School">Elementary School</option>
-                                                                        <option value="Secondary School">Secondary School</option>
-                                                                        <option value="High School">High School</option>
-                                                                        <option value=" Post Secondary"> Post Secondary</option>
+                                                                        <option value="1">Pre Elementary School</option>
+                                                                        <option value="2">Elementary School</option>
+                                                                        <option value="3">Secondary School</option>
+                                                                        <option value="4">High School</option>
+                                                                        <option value=" 5"> Post Secondary</option>
                                                                 
                                                                 </select>
                                                             </div>
@@ -781,6 +784,30 @@
                         $("#teach_error").hide();
                         $("#finish").attr("type","submit");
                     }
+            });
+            $("#email").change(function(){
+                let email = $(this).val();
+                // alert(email);
+                $.ajax({
+                    url: "{{ route('validate.email') }}",
+                    data: {
+                        email: email
+                    },
+                    success: function(result) {
+                        if(result == "Trust me"){
+                            $("#email_error_duplicate").show();
+                            $("#email_error_duplicate").focus();
+                            $("#email").addClass("is-invalid");
+                            $("#email_error").hide();
+
+                        }
+                        else{
+                            $("#email_error_duplicate").hide();
+                            $("#email").removeClass("is-invalid");
+                        }
+                    }
+                });  
+                  
             });
 
         </script>

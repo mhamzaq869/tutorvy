@@ -211,6 +211,7 @@ Route::get('/login/google/callback', [LoginController::class,'handleGoogleCallba
 
 Route::get('/student/register',[RegisterController::class,'showStudentRegistrationForm'])->name('student.register')->middleware('guest');
 Route::post('/register',[RegisterController::class,'register'])->middleware('guest');
+Route::get('/validate_email',[RegisterController::class,'validate_email'])->name('validate.email');
 Route::view('/logged','auth.loginpass')->name('logged')->middleware('guest');
 //Reset Password
 Route::post('/validate_otp',[ResetPasswordController::class,'checkOtp'])->name('check.otp');
