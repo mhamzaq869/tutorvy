@@ -911,3 +911,7 @@ and also iPads specifically.
     border: 1px solid #f3e3e2;
     cursor: pointer;
 }
+
+.overflow-scroll {
+    overflow: auto;
+}

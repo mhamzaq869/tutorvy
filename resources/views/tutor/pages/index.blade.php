@@ -29,7 +29,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-md-5  m-0 p-0">
+                            <div class="col-md-5  ">
                                 <div class="home-image">
                                     <img src="{{asset('assets/images/backgrounds/home-main.png')}}" alt="home-image"
                                         style="width: 100%;">
@@ -305,7 +305,7 @@
                         <div class="col-md-12">
                             <div class="card mt-0">
                                 <div class="card-body">
-                                    <div class="row">
+                                    <div class="row overflow-scroll">
                                         <div class="col-md-12 mb-3">
                                                 <div class="" style="">
                                                     <h3 id="monthAndYear">
