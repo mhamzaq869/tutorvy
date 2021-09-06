@@ -87,7 +87,6 @@ class CreateFilteredTutorsView extends Migration
     private function dropView(): string
     {
         return <<<SQL
-
             DROP VIEW IF EXISTS `view_tutors_data`;
             SQL;
     }

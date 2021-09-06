@@ -191,8 +191,12 @@
                 transform: rotate(360deg);
             }
         }
-#inlineCheckbox1{
+.form-check-input{
     height:auto !important;
+    width:auto !important;
+}
+.form-check-label{
+    margin-left:20px;
 }
     </style>
 
@@ -256,7 +260,7 @@
                                         </a>
                                         <p class="register-content">Educational</p>
                                     </li>
-                                    <li rel-index="2" class="bordr-none">
+                                    <!-- <li rel-index="2" class="bordr-none">
                                         <a href="#step-3" class=" disabled" aria-controls="step-3" role="tab"
                                             data-toggle="tab">
                                             <span>
@@ -265,8 +269,8 @@
                                             </span>
                                         </a>
                                         <p class="register-content">Professional</p>
-                                    </li>
-                                    <li rel-index="3" class="bordr-none">
+                                    </li> -->
+                                    <li rel-index="2" class="bordr-none">
                                         <a href="#step-4" class=" disabled" aria-controls="step-4" role="tab"
                                             data-toggle="tab">
                                             <span>
@@ -324,6 +328,9 @@
                                                     value="{{ $user->email ?? '' }}" id="email">
                                                     <span for="" id="email_error" class="invalid-feedback" role="alert">
                                                         <strong> This field is required </strong>  
+                                                    </span>
+                                                    <span for="" id="email_error_duplicate" class="invalid-feedback" role="alert">
+                                                        <strong> This email already exists.  <a href="{{ route('login') }}" class="text-primary" style="text-decoration:none">Log in?</a> </strong>  
                                                     </span>
                                                     <!-- <label for="" id="email_error" class="text-red"><strong> This field is required </strong>  </label> -->
                                                 @error('email')
@@ -677,7 +684,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div role="tabpanel" class="tab-pane border-right" id="step-3"
+                                    <!-- <div role="tabpanel" class="tab-pane border-right" id="step-3"
                                         style="padding-bottom: 100px;background-color: white;">
                                         <div class="col-md-12">
                                             <p class="heading-third mt-3">Professional information</p>
@@ -791,15 +798,11 @@
                                                             </div>
                                                         </div>
                                                     @endisset
-                                                    <!-- <button  class="element1">aa</button> -->
 
 
                                                     <div class="buttons mb-5">
                                                         <a href="#" class="moreExperience cust_link">+ Add more
                                                             experience</a>
-                                                        <!-- <button type="button" class="remove cencel-btn btn-registration"
-                                                            style="visibility: hidden;color: black;">remove</button> -->
-
                                                     </div>
                                                     <div class="results"></div>
                                                 </div>
@@ -821,13 +824,13 @@
 
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <script>
-                                        $(document).ready(function() {
-                                            $(".clone").click(function() {
-                                                $(".remove").css("visibility", "visible");
-                                            });
-                                        });
+                                        // $(document).ready(function() {
+                                        //     $(".clone").click(function() {
+                                        //         $(".remove").css("visibility", "visible");
+                                        //     });
+                                        // });
                                     </script>
                                     <div role="tabpanel" class="tab-pane border-right" id="step-4"
                                         style="background-color: white;">
@@ -854,7 +857,7 @@
                                                         id="teacher">
                                                         <option disabled selected>I want to teach</option>
                                                         @foreach ($subjects as $subject)
-                                                            <option value="{{ $subject->id }}" @if ($subject->id == ($user->student_level ?? 0)) selected @endif>
+                                                            <option value="{{ $subject->id }}">
                                                                 {{ $subject->name }}</option>
                                                         @endforeach
                                                     </select>
@@ -869,25 +872,16 @@
                                                     @enderror
                                                 </div>
                                                 <div class="input-text col-md-6">
-                                                    <!-- <select name="student_level" class="form-select form-select-lg mb-3"
-                                                        id="levels">
-                                                        <option selected value="0">Student level</option>
-                                                        <option @if (isset($user) && $user->student_level == 1) selected @endif value="1" selected>
-                                                            Basic</option>
-                                                        <option @if (isset($user) && $user->student_level == 2) selected @endif value="2">
-                                                            Intermediate</option>
-                                                        <option @if (isset($user) && $user->student_level == 3) selected @endif value="3">Expert
-                                                        </option>
-                                                    </select> -->
-                                                    <select name="degree"
-                                                        class="form-select form-select-lg mb-3">
+                                                    
+                                                    <select name="student_level"  name="student_level"
+                                                        class="form-select form-select-lg mb-3" id="levels">
                                                         <option value="" disabled selected>School</option>
                                                     
-                                                            <option value="Pre Elementary School">Pre Elementary School</option>
-                                                            <option value="Elementary School">Elementary School</option>
-                                                            <option value="Secondary School">Secondary School</option>
-                                                            <option value="High School">High School</option>
-                                                            <option value=" Post Secondary"> Post Secondary</option>
+                                                            <option value="1">Pre Elementary School</option>
+                                                            <option value="2">Elementary School</option>
+                                                            <option value="3">Secondary School</option>
+                                                            <option value="4">High School</option>
+                                                            <option value="5"> Post Secondary</option>
                                                     
                                                     </select>
                                                 </div>
@@ -895,7 +889,7 @@
                                         </div>
                                         <div class="container-fluid">
 
-                                            <div class="input-text col-md-12 m-0 p-0 mt-3 mb-5">
+                                            <div class="input-text col-md-12 m-0 p-0 mt-3 mb-3">
                                                 <input type="" placeholder="Rate per hour (in USD)">
                                                 <!-- <select name="hour_rate" class="form-select form-select-lg mb-3"
                                                     aria-label=".form-select-lg example">
@@ -915,22 +909,20 @@
                                                 </select> -->
 
                                             </div>
-                                            <!-- <div class=" col-md-6 form-check  ">
+                                            <div class=" col-md-4 col-sm-6 form-check   m-0 p-0">
                                                     <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                    <label class="form-check-label" for="inlineCheckbox1">Policies</label>
-                                              
-                                                <div class="form-check ">
-                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                                    <label class="form-check-label" for="inlineCheckbox2">2</label>
-                                                </div>
-
-                                            </div> -->
+                                                    <label class="form-check-label " for="inlineCheckbox1">Policies</label>
+                                            </div>
+                                            <div class=" col-md-4 col-sm-6 form-check   m-0 p-0">
+                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option1">
+                                                    <label class="form-check-label " for="inlineCheckbox2">Email marketing</label>
+                                            </div>
                                         </div>
                                         <div class="col-8" style="float: right;">
 
                                             <button type="button" id="finish"
                                                 class="btn btn-lg   schedule-btn  nextBtn  pull-right">&nbsp;
-                                                Finsh&nbsp;
+                                                Finish&nbsp;
                                             </button>
 
                                         </div>
@@ -1177,21 +1169,21 @@
 
             }
 
-            function checkLevel(opt) {
-                var level = opt.options[opt.selectedIndex].getAttribute('level');
+            // function checkLevel(opt) {
+            //     var level = opt.options[opt.selectedIndex].getAttribute('level');
 
-                if (level == 1) {
-                    $("#levels").html("<option value='1'>Basic</option>");
-                }
-                if (level == 2) {
-                    $("#levels").html("<option value='1'>Basic</option><option value='2'>Intermediate</option>");
-                }
-                if (level == 3) {
-                    $("#levels").html(
-                        "<option value='1'>Basic</option><option value='2'>Intermediate</option><option value='3'>Expert</option>"
-                    );
-                }
-            }
+            //     if (level == 1) {
+            //         $("#levels").html("<option value='1'>Basic</option>");
+            //     }
+            //     if (level == 2) {
+            //         $("#levels").html("<option value='1'>Basic</option><option value='2'>Intermediate</option>");
+            //     }
+            //     if (level == 3) {
+            //         $("#levels").html(
+            //             "<option value='1'>Basic</option><option value='2'>Intermediate</option><option value='3'>Expert</option>"
+            //         );
+            //     }
+            // }
 
             function langshort(opt) {
                 var val = opt.options[opt.selectedIndex].innerHTML;
@@ -1271,7 +1263,31 @@
                         $("#finish").attr("type","submit");
                     }
             });
+            $("#email").change(function(){
+                let email = $(this).val();
+                // alert(email);
+                $.ajax({
+                    url: "{{ route('validate.email') }}",
+                    data: {
+                        email: email
+                    },
+                    success: function(result) {
+                        if(result == "Trust me"){
+                            $("#email_error_duplicate").show();
+                            $("#email_error_duplicate").focus();
+                            $("#email").addClass("is-invalid");
+                            $("#email_error").hide();
 
+                        }
+                        else{
+                            $("#email_error_duplicate").hide();
+                            $("#email").removeClass("is-invalid");
+                        }
+                    }
+                });  
+                  
+            });
+           
         </script>
     </section>
 </body>

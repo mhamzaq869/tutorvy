@@ -16,7 +16,7 @@ svg:not(:root) {
     <!--section start  -->
     <section id="homesection" style="display: flex;z-index: -1;">
         <!-- dashborad home -->
-        <div class="container-fluid mr-4 ml-3 mt-3">
+        <div class="container-fluid mt-3">
             <div class="row">
                 <div class="col-md-6">
                     <h1 class="animate__animated animate__bounce animate__delay-0.3s">
@@ -144,9 +144,9 @@ svg:not(:root) {
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 m-0 p-0">
+                <div class="col-md-3">
                     <!-- notification -->
-                    <div class="row ">
+                    <div class="row ">    
                         <div class="col-md-6">
                             <h2 class="mt-3 "> Notifications </h2>
                         </div>
