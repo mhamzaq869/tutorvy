@@ -357,7 +357,7 @@
     <div class="row mt-5">
         <div class="col-md-3 col-12 ">
             <div class="tab-mobile tab">
-                <button class="tablinks" id="defaultOpen" onclick="openCity(event, 'London')">
+                <button class="tablinks active" id="defaultOpen" onclick="openCity(event, 'London')">
                     ComputerScience
                 </button>
                 <button class="tablinks" onclick="openCity(event, 'Paris')">Engineering</button>
@@ -374,7 +374,7 @@
             </div>
         </div>
         <div class="col-md-9">
-            <div id="London" class="tabcontent">
+            <div id="London" class="tabcontent show" style="display: block;">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-4 col-4 m-0 p-0">

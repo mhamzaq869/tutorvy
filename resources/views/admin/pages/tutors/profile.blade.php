@@ -11,8 +11,12 @@
         <div class="container-fluid ">
             <div class="row">
                 <div class="col-md-12">
+                  
                     <h1 class="animate__animated animate__bounce animate__delay-0.3s">
-                        < Tutor Profile
+                        <a href="{{ route ('admin.tutor') }}">
+                        <
+                        </a>
+                         Tutor Profile
                     </h1>
                 </div>
             </div>
@@ -123,11 +127,11 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-8">
                                             <small class="text-grey">Paid Payments</small>
                                             <h2>$265</h2>
                                         </div>
-                                        <div class="col-md-6 text-right">
+                                        <div class="col-md-4 text-right">
                                             <a href="payment.html" class="mt-2">
                                                 <p class="view-bookings">View</p>
                                             </a>
@@ -142,11 +146,11 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-8">
                                             <small class="text-grey">Pending Payments</small>
                                             <h2>$265</h2>
                                         </div>
-                                        <div class="col-md-6 text-right">
+                                        <div class="col-md-4 text-right">
                                             <a href="payment.html" class="mt-2">
                                                 <p class="view-bookings">View</p>
                                             </a>
@@ -168,7 +172,7 @@
                                         </div>
                                         <div class="col-md-4 text-right">
                                             <a href="payment.html" class="mt-2">
-                                                <p class="mt-2">View</p>
+                                                <p class="mt-2 view-bookings">View</p>
                                             </a>
                                         </div>
                                     </div>
@@ -183,16 +187,16 @@
                                             <img src="{{asset('admin/assets/img/ico/book-icon.svg')}}" alt="hash-icon" height="40px"
                                                 class="mt-1" />
                                         </div>
-                                        <div class="col-md-7">
+                                        <div class="col-md-6">
                                             <p class="paragraph-text01 mb-0 mt-1">Subject</p>
                                             <p class="heading-forth ml-1">
                                                 {{$tutor->subjects}}
                                             </p>
                                             </p>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-4 text-right">
                                             <a href="{{ route('admin.tutorSubjects',[$tutor->id]) }}">
-                                                <p class="view-bookings view-bookings-1 f-16">View</p>
+                                                <p class="view-bookings">View</p>
                                             </a>
                                         </div>
                                     </div>

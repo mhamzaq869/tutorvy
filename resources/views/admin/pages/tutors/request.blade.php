@@ -215,9 +215,21 @@
                         </tr>
                         <tr>
                             <th scope="row">
-                                <p class="heading-fifth">Student level</p>
+                                <p class="heading-fifth">Student Grade</p>
                             </th>
-                            <td class="paragraph-text">{{$tutor->std_level}}</td>
+                            <td class="paragraph-text">
+                                    @if($tutor->std_grade == 1)
+                                        Pre Elementary School
+                                    @elseif($tutor->std_grade == 2)
+                                        Elementary School
+                                    @elseif($tutor->std_grade == 3)
+                                        Secondary School
+                                    @elseif($tutor->std_grade == 4)
+                                        High School
+                                    @elseif($tutor->std_grade == 5)
+                                        Post Secondary
+                                    @endif
+                            </td>
                         </tr>
                         <tr>
                             <th scope="row">
@@ -230,6 +242,37 @@
                                 <p class="heading-fifth">Rate per hour</p>
                             </th>
                             <td class="paragraph-text">{{$tutor->hourly_rate}}$</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <p class="heading-fifth">Policies</p>
+                            </th>
+                            <td class="paragraph-text">
+                                @if( $tutor->policies == "on")
+                                    On
+                                
+                                @else($tutor->policies == "off" || $tutor->policies == null)
+                                    Off
+                                
+                                @endif
+                                
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <p class="heading-fifth">Email Marketing</p>
+                            </th>
+                            <td class="paragraph-text">
+                                @if( $tutor->email_market == "on")
+                                    On
+                               
+                                @else($tutor->email_market == "off" || $tutor->email_market == null)
+                                    Off
+                           
+                                @endif
+                                
+                            </td>
                         </tr>
                     </tbody>
                 </table>

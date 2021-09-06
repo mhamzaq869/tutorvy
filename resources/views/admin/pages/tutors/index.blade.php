@@ -115,7 +115,7 @@
                                         <th scope="col">Email</th>
                                         <th scope="col">Subjects</th>
                                         <th scope="col">Location</th>
-                                        <th scope="col">Level</th>
+                                        <th scope="col">Grade</th>
                                         <th scope="col">Availability </th>
                                         <th scope="col">Rate</th>
                                         <th scope="col"></th>
@@ -139,14 +139,18 @@
                                             <td class="pt-4">{{$request->subject_name}}</td>
                                             <td class="pt-4">{{$request->city != NULL ? $request->city.', ' : '---'}}{{$request->country != NULL ? $request->country : '---'}}</td>
                                            
-                                            @if($request->student_level == 1)
-                                            <td class="pt-4">Basic</td>
-                                            @elseif($request->student_level == 2)
-                                            <td class="pt-4">Intermediate</td>
-                                            @elseif($request->student_level == 3)
-                                            <td class="pt-4">Expert</td>
+                                            @if($request->std_grade == 1)
+                                                 <td class="pt-4"> Pre Elementary School</td>
+                                            @elseif($request->std_grade == 2)
+                                                 <td class="pt-4">Elementary School</td>
+                                            @elseif($request->std_grade == 3)
+                                                 <td class="pt-4">Secondary School</td>
+                                            @elseif($request->std_grade == 4)
+                                                 <td class="pt-4">High School</td>
+                                            @elseif($request->std_grade == 5)
+                                                 <td class="pt-4">Post Secondary</td>
                                             @else
-                                            <td class="pt-4">---</td>
+                                                 <td class="pt-4">---</td>
                                             @endif
                                             
                                             <td class="pt-4">---</td>
@@ -299,7 +303,7 @@
                                     <th scope="col">Email</th>
                                     <th scope="col">Subjects</th>
                                     <th scope="col">Location</th>
-                                    <th scope="col">Level</th>
+                                    <th scope="col">Grade</th>
                                     <th scope="col">Availability </th>
                                     <th scope="col">Rate</th>
                                     <th scope="col"></th>
@@ -329,7 +333,19 @@
                                         </td>
                                         <td class="pt-4">{{$tutor->subjects}}</td>
                                         <td class="pt-4">{{$tutor->address}}</td>
-                                        <td class="pt-4">{{$tutor->std_level}}</td>
+                                        @if($tutor->std_grade == 1)
+                                                <td class="pt-4"> Pre Elementary School</td>
+                                        @elseif($tutor->std_grade == 2)
+                                                <td class="pt-4">Elementary School</td>
+                                        @elseif($tutor->std_grade == 3)
+                                                <td class="pt-4">Secondary School</td>
+                                        @elseif($tutor->std_grade == 4)
+                                                <td class="pt-4">High School</td>
+                                        @elseif($tutor->std_grade == 5)
+                                                <td class="pt-4">Post Secondary</td>
+                                        @else
+                                                <td class="pt-4">---</td>
+                                        @endif
                                         <td class="pt-4">{{$tutor->availability != NULL ? $tutor->availability : '---'}}</td>
                                         <td class="pt-4">{{$tutor->hourly_rate}}</td>
                                         <td class="pt-4 text-right">

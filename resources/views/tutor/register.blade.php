@@ -873,7 +873,7 @@
                                                 </div>
                                                 <div class="input-text col-md-6">
                                                     
-                                                    <select name="student_level"  name="student_level"
+                                                    <select name="student_grade"
                                                         class="form-select form-select-lg mb-3" id="levels">
                                                         <option value="" disabled selected>School</option>
                                                     
@@ -890,7 +890,7 @@
                                         <div class="container-fluid">
 
                                             <div class="input-text col-md-12 m-0 p-0 mt-3 mb-3">
-                                                <input type="" placeholder="Rate per hour (in USD)">
+                                                <input type="" name="hour_rate" placeholder="Rate per hour (in USD)">
                                                 <!-- <select name="hour_rate" class="form-select form-select-lg mb-3"
                                                     aria-label=".form-select-lg example">
                                                     <option disabled>Per hour charges</option>
@@ -910,12 +910,12 @@
 
                                             </div>
                                             <div class=" col-md-4 col-sm-6 form-check   m-0 p-0">
-                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                    <label class="form-check-label " for="inlineCheckbox1">Policies</label>
+                                                    <input class="form-check-input" type="checkbox" name="policies" id="policies" value="on">
+                                                    <label class="form-check-label " for="policies">Policies</label>
                                             </div>
                                             <div class=" col-md-4 col-sm-6 form-check   m-0 p-0">
-                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option1">
-                                                    <label class="form-check-label " for="inlineCheckbox2">Email marketing</label>
+                                                    <input class="form-check-input" type="checkbox" name="email_market" id="email_market" value="on">
+                                                    <label class="form-check-label " for="email_market">Email marketing</label>
                                             </div>
                                         </div>
                                         <div class="col-8" style="float: right;">
@@ -961,6 +961,22 @@
 
             $("#finish").on('click', function() {
                 $(this).attr('name', 'finish');
+            });
+            $("#policies").change(function(){
+                    if($(this).prop("checked") == true){
+                       $(this).val("on");
+                    }
+                    else if($(this).prop("checked") == false){
+                        $(this).val("off");
+                    }
+            });
+            $("#email_market").change(function(){
+                    if($(this).prop("checked") == true){
+                       $(this).val("on");
+                    }
+                    else if($(this).prop("checked") == false){
+                        $(this).val("off");
+                    }
             });
             $(document).ready(function() {
                 $("#year,#grad-year").yearpicker({

@@ -489,7 +489,7 @@
                                                                         <option value="{{$degree->id}}">{{$degree->name}}</option>
                                                                 @endforeach
                                                                 </select> -->
-                                                                <select name="degree"
+                                                                <select name="std_grade"
                                                                     class="form-select form-select-lg mb-3">
                                                                     <option value="" disabled selected>Which grade you are in?</option>
                                                                 
@@ -514,7 +514,7 @@
                                                                 </select> -->
                                                                 <div class="row">
                                                                     <div class="col-md-6">
-                                                                        <select name="major"
+                                                                        <select name="std_subj"
                                                                             class="form-select form-select-lg mb-3">
                                                                             <option value="" disabled selected>Main Category</option>
                                                                             @foreach($subject_cat as $subject)
@@ -524,7 +524,7 @@
                                                                         </select>
                                                                     </div>
                                                                     <div class="col-md-6">
-                                                                        <select name="major"
+                                                                        <select name="std_learn"
                                                                             class="form-select form-select-lg mb-3">
                                                                             <option value="" disabled selected>Sub Category</option>
                                                                             @foreach($subjects as $subject)
