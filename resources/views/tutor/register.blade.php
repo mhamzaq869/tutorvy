@@ -1263,7 +1263,7 @@
                         $("#finish").attr("type","submit");
                     }
             });
-            $("#email").change(function(){
+            $("#email").focusout(function(){
                 let email = $(this).val();
                 // alert(email);
                 $.ajax({
@@ -1277,11 +1277,13 @@
                             $("#email_error_duplicate").focus();
                             $("#email").addClass("is-invalid");
                             $("#email_error").hide();
-
+                            isValid = false;
                         }
                         else{
                             $("#email_error_duplicate").hide();
                             $("#email").removeClass("is-invalid");
+                            isValid = true;
+
                         }
                     }
                 });  
