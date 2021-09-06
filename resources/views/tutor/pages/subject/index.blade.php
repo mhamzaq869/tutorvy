@@ -114,8 +114,13 @@
                         </div>
                     @endif
                         <p class="heading-third mt-3">Add subjects</p>
-                        <input class="ml-3 mr-3 form-control w-25 mb-4 " type="search" placeholder="Type a name" id="search">
-                        <select name="" class="select2" id=""></select>
+         <!--<input class="ml-3 mr-3 form-control w-25 mb-4 " type="search" placeholder="Type a name" id="search">-->
+                        <select name="" class="form-select form-control w-25 " id="">
+                                <option value="">Select Particular Subject</option>
+                                @foreach ($subjects as $i => $subject)
+                                    <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                                @endforeach
+                        </select>
                         <div class="row">
                             @foreach ($subjects as $i => $subject)
                                 @if ((Auth::user()->teach[$i]->subject_id ?? null) != $subject->id)

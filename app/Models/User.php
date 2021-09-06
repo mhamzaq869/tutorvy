@@ -49,11 +49,14 @@ class User extends Authenticatable implements MustVerifyEmail
         'std_degree',
         'std_subj',
         'std_learn',
+        'std_grade',
         'provider',
         'role',
         'status',
         'rating',
-        'rank'
+        'rank',
+        'policies',
+        'email_market'
     ];
 
 

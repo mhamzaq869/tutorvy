@@ -2,41 +2,41 @@
 @section('content')
 
 <div class="container-fluid mt-5">
-    <div class="card">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-6">
-                    <h1>
-                        Staff members
-                    </h1>
-                </div>
-                <div class="col-md-6 m-0 p-0">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-items"><a href="#">Tutorvy</a></li>
-                            <li class="breadcrumb-items m-0 p-0 ml-3" aria-current="page">&gt;</li>
-                            <li class="breadcrumb-items m-0 p-0 ml-3 breadcrumb-item-active" aria-current="page"><a
-                                    href="">Staff member</a>
-                            </li>
+    <div class="row ml-1 mr-1">
+        <div class="col-md-6">
+            <h1>
+                Staff members
+            </h1>
+        </div>
+        <div class="col-md-6 m-0 p-0">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-items"><a href="#">Tutorvy</a></li>
+                    <li class="breadcrumb-items m-0 p-0 ml-3" aria-current="page">&gt;</li>
+                    <li class="breadcrumb-items m-0 p-0 ml-3 breadcrumb-item-active" aria-current="page"><a
+                            href="">Staff member</a>
+                    </li>
 
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-md-6">
-                    <p class="heading-forth mt-3">
-                        Manage members
-                    </p>
-                </div>
-                <div class="col-md-6">
-                    <span data-toggle="modal" data-target="#add_role"
-                        class="schedule-btn float-right w-25 text-center ml-3">Add new Role</span>
-                    <span data-toggle="modal" data-target="#exampleModalCenter-s"
-                        class="schedule-btn float-right w-25 text-center">Add new member</span>
-                </div>
-            </div>
-            <div class="row mt-0">
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="row ml-1 mr-1">
+        <div class="col-md-6">
+            <h2>
+                Manage Members
+            </h2>
+        </div>
+        <div class="col-md-6">
+            <span data-toggle="modal" data-target="#exampleModalCenter-s"
+                class="schedule-btn float-right w-25 text-center">Add new member</span>
+        </div>
+    </div>
+    <div class="card ml-1 mr-1">
+        <div class="card-body">
+            
+            
+            <div class="row mt-0 ">
                 <div class="col-md-12">
                     <!-- start table -->
                     <table class="table table-borderless">
@@ -151,14 +151,23 @@
                 </div>
 
             </div>
-            <div class="row mt-4">
-                <div class="col-md-12">
+        </div>
+    </div>
+    <div class="row mt-3 ml-1 mr-1">
+                <div class="col-md-6 pt-2">
                     <h2>
                         Staff Roles
                     </h2>
                 </div>
+                <div class="col-md-6">
+                    <span data-toggle="modal" data-target="#add_role"
+                        class="schedule-btn float-right w-25 text-center ml-3">Add new Role</span>
+                </div>
             </div>
-            <div class="row mt-0">
+    <div class="card ml-1 mr-1">
+        <div class="card-body">
+            
+            <div class="row mt-0 ">
                 <div class="col-md-12">
                     <!-- start table -->
                     <table class="table table-borderless" id="RolesList">

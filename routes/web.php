@@ -236,6 +236,7 @@ Route::get('/course',[GeneralController::class,'course']);
 
 Route::get('/findtutor/{subject?}',[FrontTutorController::class,'index']);
 Route::post('/findtutor',[FrontTutorController::class,'filterTutor'])->name('find.tutor');
+Route::get('/tutor-profile/{id}',[FrontTutorController::class,'profileTutor'])->name('profile.tutor');
 
 /*
 |--------------------------------------------------------------------------

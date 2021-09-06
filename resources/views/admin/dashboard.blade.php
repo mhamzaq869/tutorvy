@@ -17,7 +17,7 @@ svg:not(:root) {
     <section id="homesection" style="display: flex;z-index: -1;">
         <!-- dashborad home -->
         <div class="container-fluid mt-3">
-            <div class="row">
+            <div class="row ml-1 mr-1">
                 <div class="col-md-6">
                     <h1 class="animate__animated animate__bounce animate__delay-0.3s">
                         Dashboard
@@ -36,7 +36,7 @@ svg:not(:root) {
                 </div>
             </div>
             <!-- cards -->
-            <div class="row">
+            <div class="row ml-1 mr-1">
                 <div class="col-md-9">
                     <div class="cards-list">
                         <h2 class="mt-4 mb-0 animate__bounceIn">
@@ -243,7 +243,7 @@ svg:not(:root) {
                 </div>
                
             </div>
-            <div class="row">
+            <div class="row ml-1 mr-1">
                 <div class="col-md-12">
                     <div class="row ">
                         <div class="col-md-6">

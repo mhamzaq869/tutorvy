@@ -3,7 +3,7 @@
     <div class="footer-middle pb-2">
         <div class="container">
             <div class="col-md-12 mt-3">
-                <img class="mb-3 logo-footer-mobile" height="34px" src="assets/images/logo-footer.png">
+                <img class="mb-3 logo-footer-mobile" height="34px" src="{{asset('assets/images/logo-footer.png')}}">
             </div>
         </div>
         <div class="container">
@@ -151,9 +151,9 @@
                         <a>
                             <div class="icons-footer mx-auto none">
 
-                                <img src="assets/images/ico/titwer.svg" alt="icon">
-                                <img class="ml-2 mr-2" src="assets/images/ico/face.svg" alt="icon">
-                                <img src="assets/images/ico/insta.svg" alt="insta-icon">
+                                <img src="{{asset('assets/images/ico/titwer.svg')}}" alt="icon">
+                                <img class="ml-2 mr-2" src="{{asset('assets/images/ico/face.svg')}}" alt="icon">
+                                <img src="{{asset('assets/images/ico/insta.svg')}}" alt="insta-icon">
                             </div>
                         </a>
                     </div>
@@ -187,9 +187,9 @@
                     </ul>
                 </div>
                 <div class="icons-footer mx-auto shows">
-                    <img src="assets/images/ico/titwer.svg" alt="icon">
-                    <img class="ml-2 mr-2" src="assets/images/ico/face.svg" alt="icon">
-                    <img src="assets/images/ico/insta.svg" alt="insta-icon">
+                    <img src="{{asset('assets/images/ico/titwer.svg')}}" alt="icon">
+                    <img class="ml-2 mr-2" src="{{asset('assets/images/ico/face.svg')}}" alt="icon">
+                    <img src="{{asset('assets/images/ico/insta.svg')}}" alt="insta-icon">
                 </div>
             </div>
         </div>

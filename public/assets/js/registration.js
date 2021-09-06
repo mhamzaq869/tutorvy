@@ -95,7 +95,7 @@ $(function() {
             $("#password_error").hide();
             $("#phone_error").hide();
             $("#gender_error").hide();
-            $("#email_error").hide();
+            // $("#email_error").hide();
             $("#language_error").hide();
             $("input").removeClass("is-invalid");
             $("select").removeClass("is-invalid");

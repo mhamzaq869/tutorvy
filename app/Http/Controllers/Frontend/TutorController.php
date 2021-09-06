@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Admin\Subject;
+use App\Models\Course;
+
 
 use DB;
 
@@ -116,4 +118,15 @@ class TutorController extends Controller
         ]);
         
     }
+    // public function profileTutor(Request $request){
+    //     return view('frontend.tutorProfile');
+    // }
+    public function profileTutor($id){
+        $tutor = User::with(['education','professional','teach'])->where('id',$id)->where('role',2)->where('status',2)->first();
+        $approved_courses = Course::where('user_id',$id)->where('status',1)->get();
+        $requested_courses = Course::where('user_id',$id)->where('status',0)->get();
+        
+        return view('frontend.tutorProfile',compact('tutor','approved_courses','requested_courses'));
+    }
+
 }

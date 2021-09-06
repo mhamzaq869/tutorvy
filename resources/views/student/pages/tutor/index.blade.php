@@ -184,6 +184,80 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-md-12">
+                                    <div id="accordion">
+                                        <div class=" ">
+                                            <a href="#" class="" data-toggle="collapse" data-target="#genderDiv" aria-expanded="true" aria-controls="genderDiv">
+                                                <div class="tutorFilterHead" id="headingOne">
+                                                Gender <span class="pull-right"><i class="fa fa-chevron-down"></i></span>
+                                                </div>
+                                            </a>
+                                            <div id="genderDiv" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
+                                                <div class="card-body pl-2 pr-0 pt-0">
+                                                    <div class="row ml-1">
+                                                        <div class="form-check col-sm-4">
+                                                            <input class="form-check-input" type="radio" name="gender" id="male"  value="male">
+                                                            <label class="form-check-label" for="male">
+                                                                Male
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check col-sm-4">
+                                                            <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                                                            <label class="form-check-label" for="female">
+                                                                Female
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check col-sm-4">
+                                                            <input class="form-check-input" type="radio" name="gender" id="gender" checked  value="any">
+                                                            <label class="form-check-label" for="gender">
+                                                                Any
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr class="m-0">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div id="accordion">
+                                        <div class=" ">
+                                            <a href="#" class="" data-toggle="collapse" data-target="#availableDiv" aria-expanded="true" aria-controls="availableDiv">
+                                                <div class="tutorFilterHead" id="headingOne">
+                                                Availability <span class="pull-right"><i class="fa fa-chevron-down"></i></span>
+                                                </div>
+                                            </a>
+                                            <div id="availableDiv" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
+                                                <div class="card-body pl-2 pr-0 pt-0">
+                                                    <div class="row ml-1">
+                                                        <div class="form-check col-sm-4">
+                                                            <input class="form-check-input" type="radio" name="availability" id="availability1" value="online">
+                                                            <label class="form-check-label" for="availability1">
+                                                                Online
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check col-sm-4">
+                                                            <input class="form-check-input" type="radio" name="availability" id="availability2"  value="offline">
+                                                            <label class="form-check-label" for="availability2">
+                                                                Offline
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check col-sm-4">
+                                                            <input class="form-check-input" type="radio" name="availability" id="availabilityAll" checked value="all">
+                                                            <label class="form-check-label" for="availabilityAll">
+                                                                All
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr class="m-0">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
