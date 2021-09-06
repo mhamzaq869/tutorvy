@@ -55,8 +55,9 @@ class SettingController extends Controller
     }
 
     public function call(){
+        $users = User::where('role',3)->get();
 
-        return view('tutor.pages.classroom.call');
+        return view('tutor.pages.classroom.call',compact('users'));
 
     }
 }

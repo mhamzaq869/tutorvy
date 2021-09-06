@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Events\NewMessage;
+use App\Events\CallSignal;
 use App\Models\General\Message;
 
 class GenChatController extends Controller
@@ -36,6 +37,16 @@ class GenChatController extends Controller
         $messages = auth()->user()->messages_between($user);
         
         return response()->json($messages);
+    }
+
+    public function sendSignal(Request $request){
+        $message = $request->msg;
+        broadcast(new CallSignal($message))->toOthers();
+        // auth()->user()->markMessagesSeen($user);
+        return response()->json([
+            'status' => 200
+        ]);
+
     }
 
 }
