@@ -188,6 +188,14 @@
     margin-top: 0px !important;
 }
 
+.section-profile {
+    margin-top: 100px;
+}
+
+.section-profile .card {
+    margin-bottom: 20px;
+}
+
 .hp-1 {
     font-family: 'poppins';
     font-size: 14px;
@@ -880,4 +888,21 @@ footer a:hover {
     top: 4px;
     left: 10px;
     margin-bottom: 7px;
+}
+
+.heading-forth {
+    color: #00132D;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: "Poppins";
+}
+
+.overScroll {
+    height: 625px;
+    overflow: auto;
+}
+
+.line-profile {
+    top: 0;
+    margin-bottom: 10px;
 }
