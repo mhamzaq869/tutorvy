@@ -53,4 +53,8 @@ class SettingController extends Controller
         }
 
     }
+
+    public function call(){
+        return view('student.pages.classroom.call');
+    }
 }

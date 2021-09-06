@@ -196,6 +196,9 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     Route::get('/settings',[StudentSettingController::class,'index'])->name('student.settings');
     Route::get('/profile',[StudentProfileController::class,'index'])->name('student.profile');
 
+    Route::get('/call',[StudentSettingController::class,'call'])->name('student.call');
+
+
 });
 /*
 |--------------------------------------------------------------------------
