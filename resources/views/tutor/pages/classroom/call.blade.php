@@ -114,6 +114,11 @@
   width: 100%;
   height: 100%;
 }
+.callNew{
+  height:150px;
+  width:100%;
+  border:1px solid grey;
+}
    </style>    
 
 </head>
@@ -140,11 +145,21 @@
             </div>
         </div>
     </div>
+    <div class="row  " id="newCallerDiv">
+        <div class="col-md-3 mt-3">
+              <video class="callNew" autoplay muted></video>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-3">
         </div>
         <div class="col-md-9">
         </div>
+        <div class="col-md-12 mt-3">
+              <button onclick="newComer()"> Add More</button>
+        </div>
+        
+        
     </div>
   </div>
 <!-- <div class="container">
