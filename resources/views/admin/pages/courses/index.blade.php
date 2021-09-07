@@ -268,8 +268,11 @@
                                 <div class="container ">
                                     <div class="row float-right">
                                         <div class="col-md-1">
-                                            <img data-toggle="modal" data-target="#exampleModalCenter"
+                                            <a type="button" onclick="deleteCourse({{$course->id}})">
+                                                <img 
                                                 src="{{ asset('admin/assets/img/ico/delete-icon.svg') }}" alt="a" class="mr-3 cursor-1">
+                                            </a>
+                                            
                                         </div>
                                         <div class="col-md-1">
                                             <a href="{{route('admin.course-edit')}}">
@@ -279,7 +282,8 @@
                                         </div>
                                         <div class="col-md-2">
                                             <label class="switch">
-                                                <input type="checkbox" id="c_status" onchange="changeCourseStatus(`{{$course->id}}`)" {{ ($course->status == 1) ? 'checked' : ''}}>
+                                                <input type="checkbox" class="c_status" val_id="{{$course->id}}" val_st="{{$course->status}} "  {{ ($course->status == 2) ? 'checked' : ''}}>
+                                                <!-- <input type="checkbox" id="c_status" onclick="changeCourseStatus({{$course->id}},{{$course->status}})" {{ ($course->status == 1) ? 'checked' : ''}}> -->
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -305,24 +309,23 @@
     </div>
 
     <!-- delete modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="deleteCourseModal" tabindex="-1" role="dialog"
+        aria-labelledby="deleteCourseModalTitle" aria-hidden="true">
         <div class="modal-dialog  modal-dialog-centered" role="document">
             <div class="modal-content modals">
                 <div class="modal-body modal-bodys">
                     <div class="container text-center pb-3 pt-3">
-                        <img src="../assets/img/ico/cross-icon.png" alt="verfiy" />
+                        <img src="{{asset('admin/assets/img/ico/cross-icon.png')}}" alt="verfiy" />
                         <h3 class="mt-3">
-                            Remove courses
+                            Remove Course
                         </h3>
                         <p class="paragraph-text mb-5">
                             Are you sure you want to remove course?
                         </p>
 
                         <button type="button" class="cencel-btn w-25" data-dismiss="modal">Cancel</button>
-                        <a href="">
-                            <button class="schedule-btn w-25">No</button>
-                        </a>
+                        
+                            <button class="schedule-btn w-25" id="Yes" >Yes</button>
                     </div>
                 </div>
             </div>
@@ -444,4 +447,9 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+
+@include('js_files.admin.course')
 @endsection

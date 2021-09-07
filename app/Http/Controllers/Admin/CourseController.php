@@ -23,8 +23,8 @@ class CourseController extends Controller
 
     public function index()
     {
-        $approved_courses = Course::where('status',1)->get();
-        $requested_courses = Course::where('status',0)->get();
+        $approved_courses = Course::whereIn('status',[0,2])->get();
+        $requested_courses = Course::where('status',1)->get();
 
        
 
@@ -195,17 +195,29 @@ class CourseController extends Controller
         $course->save();
 
         $message = '';
-        if($request->status == 1){
+        if($request->status == 2){
             $message = 'Course Status Enabled.';
-        }elseif($request->status == 2){
+        }elseif($request->status == 3){
             $message = 'Course Rejected.';
-        }else{
+        }elseif($request->status == 0){
             $message = 'Course Status Disabled.';
         }
 
         return response()->json([
             'status'=>'200',
             'message' => $message
+        ]);
+
+    }
+
+    public function deleteCourse(Request $request){
+        $course = Course::where('id',$request->id)->first();
+        $course->status = $request->status;
+        $course->save();
+        // return $course;
+        return response()->json([
+            'status'=>'200',
+            'message' => 'Course Deleted successfully'
         ]);
 
     }

@@ -77,12 +77,16 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
 
     Route::get('/student',[StudentController::class,'index'])->name('admin.student');
     Route::get('/student/profile/{id}',[StudentController::class,'profile'])->name('admin.studentProfile');
+    Route::post('student/change-student-status',[StudentController::class,'studentStatus'])->name('admin.studentStatus');
+    Route::post('student/delete-student',[StudentController::class,'deleteStudent'])->name('admin.deleteStudent');
+
 
     Route::get('/course',[CourseController::class,'index'])->name('admin.course');
     Route::get('/course-request/{id}',[CourseController::class,'courseRequest'])->name('admin.course-request');
     Route::get('/course-profile/{id}',[CourseController::class,'courseProfile'])->name('admin.course-profile');
     Route::get('/course-edit',[CourseController::class,'editCourseProfile'])->name('admin.course-edit');
     Route::post('course/change-course-status',[CourseController::class,'courseStatus'])->name('admin.courseStatus');
+    Route::post('course/delete-course',[CourseController::class,'deleteCourse'])->name('admin.deleteCourse');
 
 
     Route::get('/subject',[SubjectController::class,'index'])->name('admin.subject');
