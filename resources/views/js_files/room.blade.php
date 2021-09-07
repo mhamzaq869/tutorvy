@@ -5,10 +5,24 @@ const usersarr = {};
 
 const socketToRoom = {};
 let roomID = '12345';
+let myId = `{{Auth::user()->id}}`;
+
+var myHostname = window.location.hostname;
+
+var myUsername = null;
+var targetUsername = null;      // To store username of other peer
+var targetUserid = null;      // To store userid of other peer
+var myPeerConnection = null;    // RTCPeerConnection
+var transceiver = null;         // RTCRtpTransceiver
+var webcamStream = null;        // MediaStream from webcam
 
 Echo.join(`room.12345`).here( activeUsers => {
     console.log(activeUsers)
+    
     this.activeUsers = activeUsers
+    this.activeUsers = this.activeUsers.filter(u => u.id != myId);
+    console.log(this.activeUsers)
+
 
 }).joining(user => {
   console.log('joining'+user.name)
@@ -25,7 +39,45 @@ Echo.join(`room.12345`).here( activeUsers => {
   }
   
   this.activeUsers.push(user)
+  this.activeUsers = this.activeUsers.filter(u => u.id != myId);
+
   console.log(this.activeUsers)
+
+  console.log("Starting to prepare an invitation");
+  if (myPeerConnection) {
+    alert("You can't start a call because you already have one open!");
+  } else {
+
+    // Call createPeerConnection() to create the RTCPeerConnection.
+    // When this returns, myPeerConnection is our RTCPeerConnection
+    // and webcamStream is a stream coming from the camera. They are
+    // not linked together in any way yet.
+
+    console.log("Setting up connection to join room ");
+    createPeerConnection();
+
+    // Get access to the webcam stream and attach it to the
+    // "preview" box (id "local_video").
+
+    try {
+      webcamStream = await navigator.mediaDevices.getUserMedia(mediaConstraints);
+      document.getElementById("local_video").srcObject = webcamStream;
+    } catch(err) {
+      handleGetUserMediaError(err);
+      return;
+    }
+
+    // Add the tracks from the stream to the RTCPeerConnection
+
+    try {
+      webcamStream.getTracks().forEach(
+        transceiver = track => myPeerConnection.addTransceiver(track, {streams: [webcamStream]})
+      );
+    } catch(err) {
+      handleGetUserMediaError(err);
+    }
+  }
+
 
 }).leaving(user => {
   console.log('leaving'+user)
