@@ -616,5 +616,11 @@ function handleICEConnectionStateChangeEvent(event) {
       break;
   }
 }
+function newComer(){
+  let html = `<div class="col-md-3 mt-3">
+                  <video class="callNew" autoplay muted></video>
+          </div>`;
+    $("#newCallerDiv").append(html);
 
+}
 </script>    

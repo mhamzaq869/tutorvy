@@ -35,11 +35,17 @@ $( '#book_tutor_form' ).on( 'submit', function(e) {
      });
 });
 
-function payNow(){
+function payNow(id){
+var id  = id;
 
+// alert(id);
     $.ajax({
-        url: "{{route('student.booking.payment',[$booking->id ?? ''])}}",
-        type:"GET",
+        // url: "{{route('student.booking.payment',[$booking->id ?? ''])}}",
+        url: "{{route('student.booking.payment')}}",
+        type:"POST",
+        data:{
+            id:id
+        },
        
         success:function(response){
             // console.log(response);

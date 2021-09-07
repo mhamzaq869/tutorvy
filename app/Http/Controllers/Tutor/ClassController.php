@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Tutor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\General\Classroom;
 
 class ClassController extends Controller
 {
@@ -12,6 +13,7 @@ class ClassController extends Controller
      */
 
     public function index(){
+        
         return view('tutor.pages.classroom.index');
     }
 }
