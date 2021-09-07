@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use App\Models\Classroom;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -78,16 +79,40 @@ class BookingController extends Controller
         ]);
     }
 
-    function bookingPayment($id){
-
-        $booking = Booking::find($id);
+   
+    public function bookingPayment(Request $request ){
+        $classroom_id = sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+                        mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ),
+                        mt_rand( 0, 0xffff ),
+                        mt_rand( 0, 0x0C2f ) | 0x4000,
+                        mt_rand( 0, 0x3fff ) | 0x8000,
+                        mt_rand( 0, 0x2Aff ), mt_rand( 0, 0xffD3 ), mt_rand( 0, 0xff4B )
+                    );
+        // return $red;
+        $booking = Booking::where('id',$request->id)->first();
+        Classroom::create([
+    
+            'student_id' => Auth::user()->id,
+            'tutor_id' => $booking->booked_tutor,
+            'subject_id' =>$booking->subject_id,
+            'class_date' => $booking->class_date,
+            'class_time' => $booking->class_time,
+            'classroom_id' => $classroom_id
+        
+        ]);
         $booking->status = 2;
         $booking->save();
-
+    
         return response()->json([
             'status'=>'200',
             'message' => 'Booking accepted.'
         ]);
+    }
 
+
+    public function gener() {
+        return ;
+    
     }
 }
+
