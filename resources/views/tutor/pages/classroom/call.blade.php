@@ -124,7 +124,9 @@
         <div class="col-md-3">
             <ul class="userlistbox">
 
-            
+              @foreach($users as $user)
+              <li onclick="invite(`{{$user->id}}`,`{{$user->first_name}}`)">{{$user->first_name}}</li>
+              @endforeach
 
             </ul>
         </div>
