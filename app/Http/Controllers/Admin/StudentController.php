@@ -30,4 +30,34 @@ class StudentController extends Controller
         return view('admin.pages.students.profile',compact('student'));
 
     }
+    public function studentStatus(Request $request){
+
+        $student = User::where('id',$request->id)->first();
+        $student->status = $request->status;
+        $student->reject_note = $request->reason;
+        $student->save();
+
+        $message = '';
+        if($request->status == 1){
+            $message = 'Student Status Enabled.';
+        }elseif($request->status == 0){
+            $message = 'Student Status Disabled.';
+        }
+
+        return response()->json([
+            'status'=>'200',
+            'message' => $message
+        ]);
+
+    }
+
+    public function deleteStudent(Request $request){
+      
+        $student = User::where('id',$request->id)->delete();
+        return response()->json([
+            'status'=>'200',
+            'message' => 'Student Deleted successfully'
+        ]);
+
+    }
 }

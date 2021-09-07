@@ -141,13 +141,16 @@
                                         <span class="pending-text-1">{{$student->status_text}}</span>
                                     </td>
                                     <td class="pt-4">
-                                        <img src="{{ asset('admin/assets/img/ico/delete-icon.png')}}" alt="delete-icon" data-toggle="modal"
-                                            data-target="#exampleModalCenter">
+                                        <a type="button" onclick="deleteStudent({{$student->id}})">
+                                            <img src="{{ asset('admin/assets/img/ico/delete-icon.png')}}" alt="delete-icon" >
+                                        </a>
+                                       
                                         <a href="edit-student.html">
                                             <img src=" {{ asset('admin/assets/img/ico/edit-icon.png')}}" alt="delete-icon" class="ml-1">
                                         </a>
                                         <label class="switch ml-2" style="position: relative;left: -10px;width: 60px;">
-                                            <input type="checkbox">
+                                            <input type="checkbox" class="s_status" val_id="{{$student->id}}" val_st="{{$student->status}}" {{ ($student->status == 1) ? 'checked' : ''}}>
+                                            <!-- <input type="checkbox" class="s_status" val_id="{{$student->id}}" val_st="{{$student->status}} "  {{ ($student->status == 1) ? 'checked' : ''}} -->
                                             <span class="slider round"></span>
                                         </label>
                                     </td>
@@ -344,5 +347,32 @@
         </div>
     </div>
     <!-- end -->
+     <!-- delete modal -->
+     <div class="modal fade" id="deleteStudentModal" tabindex="-1" role="dialog"
+        aria-labelledby="deleteStudentModalTitle" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered" role="document">
+            <div class="modal-content modals">
+                <div class="modal-body modal-bodys">
+                    <div class="container text-center pb-3 pt-3">
+                        <img src="{{asset('admin/assets/img/ico/cross-icon.png')}}" alt="verfiy" />
+                        <h3 class="mt-3">
+                            Remove this Student
+                        </h3>
+                        <p class="paragraph-text mb-5">
+                            Are you sure you want to remove student?
+                        </p>
 
+                        <button type="button" class="cencel-btn w-25" data-dismiss="modal">Cancel</button>
+                        
+                            <button class="schedule-btn w-25" id="Yes" >Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end modal -->
+
+@endsection
+@section('js')
+@include('js_files.admin.studentJs')
 @endsection
