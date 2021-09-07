@@ -18,6 +18,12 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
         return $user;
 });
 
+Broadcast::channel('room.{roomId}', function ($user, $roomId) {
+    if ($user->canJoinRoom($roomId)) {
+        return ['id' => $user->id, 'name' => $user->first_name];
+    }
+});
+
 Broadcast::channel('chat', function ($user) {
     if (auth()->check()) {
         return $user;

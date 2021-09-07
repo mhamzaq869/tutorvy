@@ -173,5 +173,5 @@
 <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
 @endsection
 @section('scripts')
-@include('js_files.call')
+@include('js_files.room')
 @endsection

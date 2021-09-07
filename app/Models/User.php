@@ -129,6 +129,12 @@ class User extends Authenticatable implements MustVerifyEmail
     public function bookedTutor(){
         return $this->hasMany(Booking::class,'booked_tutor','id');
     }
+
+    public function scopeCanJoinRoom($room_id)
+    {
+        return true;
+    }
+
      /**
      * Accessor ot Mutator
      */
