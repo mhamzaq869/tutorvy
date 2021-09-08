@@ -119,13 +119,25 @@
   width:100%;
   border:1px solid grey;
 }
+
+/* Chat Box */
+.h-360{
+  height:360px;
+  overflow-y:auto;
+}
+.chatInput{
+height:25px;
+}
+#canvas {
+  background-image:url("../assets/images/ico/graph.png")
+}
    </style>    
 
 </head>
 
 <body>
   <div class="container-fluid">
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-md-3">
             <ul class="userlistbox">
 
@@ -160,6 +172,193 @@
         </div>
         
         
+    </div> -->
+    <div class="row">
+        <div class="col-md-9"> 
+          
+          <div class="row">
+              <div class="col-md-12 mt-3">
+                    <nav class="">
+                        <div class="nav nav-stwich pb-0" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-whiteBoard-tab" data-toggle="tab" href="#nav-whiteBoard" role="tab" aria-controls="nav-whiteBoard" aria-selected="true">
+                                White Board
+                            </a>
+                            <a class="nav-item nav-link" id="nav-calculator-tab" data-toggle="tab" href="#nav-calculator" role="tab" aria-controls="nav-calculator" aria-selected="false">
+                                Calculator
+                            </a>
+                            <a class="nav-item nav-link" id="nav-textEditor-tab" data-toggle="tab" href="#nav-textEditor" role="tab" aria-controls="nav-textEditor" aria-selected="false">
+                                Text Editor
+                            </a>
+                            <a class="nav-item nav-link" id="nav-codeEditor-tab" data-toggle="tab" href="#nav-codeEditor" role="tab" aria-controls="nav-codeEditor" aria-selected="false">
+                                Code Editor
+                            </a>
+                            <a class="nav-item nav-link" id="nav-googleDocs-tab" data-toggle="tab" href="#nav-googleDocs" role="tab" aria-controls="nav-googleDocs" aria-selected="false">
+                                Google Docs
+                            </a>
+                            <a class="nav-item nav-link" id="nav-fileShare-tab" data-toggle="tab" href="#nav-fileShare" role="tab" aria-controls="nav-fileShare" aria-selected="false">
+                                File Sharing
+                            </a>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                      <div class="tab-pane tab-border-none tab-border-none-1 fade show active" id="nav-whiteBoard" role="tabpanel" aria-labelledby="nav-whiteBoard-tab">
+                          <div class="container-fluid ">
+                              <div class="row mt-5">
+                                  <div class="col-md-12">
+                                  </div>
+                                  <div class="col-md-1 mt-2 p-0">
+                                    <ul class=" text-center pl-0">
+                                      <li class="p-2">
+                                        <a href="#">
+                                              <img src="{{asset('assets/images/ico/pointer.png')}}" alt="">
+                                        </a>
+                                      </li>
+                                      <li class="p-2">
+                                        <a href="#">
+                                              <img src="{{asset('assets/images/ico/drag.png')}}" alt="">
+                                        </a>
+                                      </li>
+                                      <li class="p-2">
+                                        <a href="#" id="pen">
+                                              <img src="{{asset('assets/images/ico/pencil.png')}}" alt="">
+                                        </a>
+                                      </li>
+                                      <li class="p-2">
+                                        <a href="#" id="eraser">
+                                              <img src="{{asset('assets/images/ico/eraser.png')}}" alt="">
+                                        </a>
+                                      </li>
+                                      <li class="p-2">
+                                        <a href="#" id="rect">
+                                              <img src="{{asset('assets/images/ico/rectangle.png')}}" alt="">
+                                        </a>
+                                      </li>
+                                      <li class="p-2">
+                                        <a href="#">
+                                              <img src="{{asset('assets/images/ico/ellipse.png')}}" alt="">
+                                        </a>
+                                      </li>
+                                      <li class="p-2">
+                                        <a href="#" id="line">
+                                              <img src="{{asset('assets/images/ico/line.png')}}" alt="">
+                                        </a>
+                                      </li>
+                                      <li class="p-2">
+                                        <a href="#">
+                                              <img src="{{asset('assets/images/ico/text.png')}}" alt="">
+                                        </a>
+                                      </li>
+                                      <li class="p-2">
+                                        <a href="#">
+                                              <img src="{{asset('assets/images/ico/diagonal.png')}}" alt="">
+                                        </a>
+                                      </li>
+                                      <li class="p-2">
+                                        <a href="#">
+                                              <img src="{{asset('assets/images/ico/fx.png')}}" alt="">
+                                        </a>
+                                      </li>
+                                      <li class="p-2">
+                                        <a href="#" id="clear">
+                                              C
+                                        </a>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                  <div class="col-md-11 mt-3 p-0">
+                                      <canvas id="canvas" width="740" height="500"></canvas>
+
+                                  </div>
+                              </div>
+                          </div>
+                          <!-- end -->
+                      </div>
+                      <div class="tab-pane tab-border-none fade" id="nav-calculator" role="tabpanel" aria-labelledby="nav-calculator-tab">
+                          <div class="container-fluid ">
+                              <div class="row">
+                                  <div class="col-md-12 col-sm-12 col-xs-12">
+                                      
+                                      </div>
+                                  </div>
+                              </div>
+                              <!-- end -->
+                      </div>
+                      <div class="tab-pane tab-border-none fade" id="nav-textEditor" role="tabpanel" aria-labelledby="nav-textEditor-tab">
+
+                              <div class="container-fluid ">
+
+                                  <div class="row">
+                                      <div class="col-md-12 col-sm-12 col-xs-12">
+                                          
+                                      </div>
+                                  </div>
+                              </div>
+                              <!-- end -->
+                      </div>
+                      <div class="tab-pane tab-border-none fade" id="nav-codeEditor" role="tabpanel" aria-labelledby="nav-codeEditor-tab">
+
+                              <div class="container-fluid ">
+
+                                  <div class="row">
+                                      <div class="col-md-12 col-sm-12 col-xs-12">
+                                          
+                                      </div>
+                                  </div>
+                              </div>
+                              <!-- end -->
+                      </div>
+                      <div class="tab-pane tab-border-none fade" id="nav-googleDocs" role="tabpanel" aria-labelledby="nav-googleDocs-tab">
+
+                          <div class="container-fluid ">
+
+                              <div class="row">
+                                  <div class="col-md-12 col-sm-12 col-xs-12">
+                                      
+                                  </div>
+                              </div>
+                          </div>
+                          <!-- end -->
+                      </div>
+                      <div class="tab-pane tab-border-none fade" id="nav-fileShare" role="tabpanel" aria-labelledby="nav-fileShare-tab">
+                          <div class="container-fluid ">
+
+                              <div class="row">
+                                  <div class="col-md-12 col-sm-12 col-xs-12">
+                                      
+                                  </div>
+                              </div>
+                          </div>
+                      <!-- end -->
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row mt-3 mb-3">
+              <div class="col-md-12">
+                    <video class="callNew" autoplay muted></video>
+              </div>
+              <div class="col-md-12">
+                  <div class="card">
+                      <div class="card-header">
+                        Chat <i class="fa fa-person"></i>
+                      </div>
+                      <div class="card-body h-360">
+
+                      </div>
+                      <div class="card-footer">
+                        <div class="row">
+                          <div class="col-md-12">
+                              <input type="text" class="chatInput">
+
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
     </div>
   </div>
 <!-- <div class="container">
@@ -186,7 +385,10 @@
 
 
 <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+
 @endsection
 @section('scripts')
 @include('js_files.room')
+@include('js_files.whiteBoard')
+
 @endsection

@@ -241,6 +241,7 @@
                     <img src="http://www.tutorvy.com/assets/images/comming/coming-soon.png" alt="">
                 </div>
             </div>
+            
         </div>
     </div>
 
