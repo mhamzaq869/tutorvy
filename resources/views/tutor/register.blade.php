@@ -1059,11 +1059,11 @@
                 <div class="col-md-12 mt-3">
                     <a href="#" class="removeFields" onclick="removeFields(` + count_field + `)"> Remove Fields</a>
                 </div>
-            </div>
+                </div>
 
-            </div>`;
-            $('.customer_records_dynamic').append(html);
-            $('.dropify').dropify();
+                </div>`;
+                $('.customer_records_dynamic').append(html);
+                $('.dropify').dropify();
                 // $(".form-select").select2();
                 (function() {
                     "use strict";
