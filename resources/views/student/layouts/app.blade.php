@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/dropify.css')}}" />
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     <!-- Styles -->
     @include('student.layouts.css')
@@ -57,6 +58,7 @@
      <script src="{{ asset('assets/js/countrySelect.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
      @include('js_files.chat')
      @yield('scripts')

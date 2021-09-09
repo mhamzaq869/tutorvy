@@ -9,6 +9,10 @@ var mediaConstraints = {
   }
 };
 var myId = `{{Auth::user()->id}}`;
+var tutorId = `2`;
+var tutorName = 'David Calle';
+var studentId = `3`;
+
 var myHostname = window.location.hostname;
 var myUsername = null;
 var targetUsername = null;      // To store username of other peer
@@ -25,13 +29,10 @@ Echo.join(`room.12345`).here( activeUsers => {
   console.log(activeUsers)
   this.activeUsers = activeUsers.filter(u => u.id != myId);
   
-  if(`{{Auth::user()->id}}` != 2){
+  if(`{{Auth::user()->role}}` != 2){
     console.log('here')
-    invite(`2`,`David Calle`);
-  }else{
-    initializaDeveices();
+    invite(tutorId,tutorName);
   }
-
 }).joining(user => {
     
   console.log('joining'+user.name)
@@ -98,36 +99,16 @@ Echo.join(`room.12345`).here( activeUsers => {
 
 })
 
-async function initializaDeveices()
-{
-  try {
-      webcamStream = await navigator.mediaDevices.getUserMedia(mediaConstraints);
-      document.getElementById("local_video").srcObject = webcamStream;
-    } catch(err) {
-      handleGetUserMediaError(err);
-      return;
-    }
-
-}
-
 async function invite(id,name) {
   
   console.log("Starting to prepare an invitation");
   if (myPeerConnection) {
     alert("You can't start a call because you already have one open!");
   } else {
-    var clickedUsername = name;
-
-    // Don't allow users to call themselves, because weird.
-
-    if (clickedUsername === myUsername) {
-      alert("I'm afraid I can't let you talk to yourself. That would be weird.");
-      return;
-    }
 
     // Record the username being called for future reference
 
-    targetUsername = clickedUsername;
+    targetUsername = name;
     targetUserid = id;
     console.log("Inviting user " + targetUsername);
 
@@ -293,10 +274,10 @@ async function handleVideoOfferMsg(msg) {
   })
   .then(function() {
       var msg = {
-      name: 'David Calle',
+      name: tutorName,
       target: targetUsername,
       type: "video-answer",
-      recipient_id:3,
+      recipient_id:studentId,
       sdp: myPeerConnection.localDescription
     };
 
@@ -382,16 +363,16 @@ function handleICECandidateEvent(event) {
   if (event.candidate) {
     console.log("*** Outgoing ICE candidate: " + event.candidate.candidate);
 
-    let recipient_id ;
-    if(targetUsername == 'David Calle'){
-      recipient_id = 2;
-    }else{
-      recipient_id = 3;
+    let recipient_id = tutorId;
+    // if(targetUsername == 'David Calle'){
+    //   recipient_id = 2;
+    // }else{
+    //   recipient_id = 3;
 
-    }
+    // }
     sendToServer({
       type: "new-ice-candidate",
-      target: targetUsername,
+      target: tutorName,
       recipient_id:recipient_id,
       candidate: event.candidate
     });
