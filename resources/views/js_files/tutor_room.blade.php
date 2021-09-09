@@ -9,6 +9,9 @@ var mediaConstraints = {
   }
 };
 var myId = `{{Auth::user()->id}}`;
+var studentId = `3`;
+var studentName = `Azad`;
+
 var myHostname = window.location.hostname;
 var myUsername = null;
 var targetUsername = null;      // To store username of other peer
@@ -22,15 +25,11 @@ const socketToRoom = {};
 let roomID = '12345';
 
 Echo.join(`room.12345`).here( activeUsers => {
-  console.log(activeUsers)
-  this.activeUsers = activeUsers.filter(u => u.id != myId);
-  
-  if(`{{Auth::user()->id}}` != 2){
-    console.log('here')
-    invite(`2`,`David Calle`);
-  }else{
+    console.log(activeUsers)
+    this.activeUsers = activeUsers.filter(u => u.id != myId);
+
     initializaDeveices();
-  }
+ 
 
 }).joining(user => {
     
@@ -296,7 +295,7 @@ async function handleVideoOfferMsg(msg) {
       name: 'David Calle',
       target: targetUsername,
       type: "video-answer",
-      recipient_id:3,
+      recipient_id:studentId,
       sdp: myPeerConnection.localDescription
     };
 
@@ -382,16 +381,16 @@ function handleICECandidateEvent(event) {
   if (event.candidate) {
     console.log("*** Outgoing ICE candidate: " + event.candidate.candidate);
 
-    let recipient_id ;
-    if(targetUsername == 'David Calle'){
-      recipient_id = 2;
-    }else{
-      recipient_id = 3;
+    let recipient_id = studentId;
+    // if(targetUsername == 'David Calle'){
+    //   recipient_id = 2;
+    // }else{
+    //   recipient_id = 3;
 
-    }
+    // }
     sendToServer({
       type: "new-ice-candidate",
-      target: targetUsername,
+      target: studentName,
       recipient_id:recipient_id,
       candidate: event.candidate
     });

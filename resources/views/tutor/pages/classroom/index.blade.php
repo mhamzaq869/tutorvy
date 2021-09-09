@@ -76,9 +76,9 @@
                                                             <button class="cencel-btn" type="button">
                                                                 View details
                                                             </button>
-                                                            <button class="schedule-btn" type="button">
+                                                            <a class="schedule-btn"  href="{{route('tutor.call')}}">
                                                                 Start Class
-                                                            </button>
+                                                            </a>
                                                         </td>
                                                     </tr>
                                                     <tr>

@@ -122,7 +122,7 @@
                                                 </td>
 
                                                 <td style="text-align: center;">
-                                                    <button class="schedule-btn" type="button">
+                                                    <button class="schedule-btn" type="button" onclick="joinClass()">
                                                         Join Class
                                                     </button>
                                                 </td>
@@ -190,4 +190,7 @@
         </div>
     </section>
 </div>
+@endsection
+@section('scripts')
+@include('js_files.room')
 @endsection

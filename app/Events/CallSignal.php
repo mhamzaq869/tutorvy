@@ -36,8 +36,6 @@ class CallSignal implements ShouldBroadcast
     public function broadcastOn()
     {
         $msg = json_decode($this->message, true);
-
-        
-        return new PresenceChannel('App.User.' . $msg['recipient_id']);
+        return new PresenceChannel('room.12345');
     }
 }

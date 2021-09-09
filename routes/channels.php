@@ -20,7 +20,7 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 
 Broadcast::channel('room.{roomId}', function ($user, $roomId) {
     if ($user->canJoinRoom($roomId)) {
-        return ['id' => $user->id, 'name' => $user->first_name];
+        return $user;
     }
 });
 

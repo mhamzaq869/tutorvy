@@ -204,6 +204,6 @@ height:25px;
 </script>
 @endsection
 @section('scripts')
-@include('js_files.room')
+@include('js_files.tutor_room')
 
 @endsection
