@@ -168,7 +168,35 @@ class RegisterController extends Controller
             // 'bio' => $request->bio,
             ]);
         else:
-          $user = $this->registerStudent($request);
+            // return $request;
+            // return "Null"; 
+        //   $user = $this->registerStudent($request);
+        $user = User::updateOrCreate(["email" => $request->email],[
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            // 'ip' => $request->ip,
+            // 'dob' => $request->dob,
+            // 'phone' => $request->phone,
+            // 'city' => $request->city,
+            // 'country' => $request->country,
+            // 'country_short' => $request->country_short,
+            'role' => $request->role,
+            // 'type' => ($request->type == 1) ? 'cnic' : 'security',
+            // 'cnic_security' => $request->cnic ?? $request->security,
+            // 'language' => $request->language,
+            // 'lang_short' => $request->lang_short,
+            // 'student_level' => $request->student_level,
+            // 'std_grade' => $request->student_grade,
+            // 'hourly_rate' => $request->hour_rate,
+            // 'policies' => $request->policies,
+            // 'email_market' => $request->email_market,
+            // 'gender' => $request->gender,
+            // 'bio' => $request->bio,
+            ]);
+
+           
         endif;
 
         /**
@@ -187,7 +215,7 @@ class RegisterController extends Controller
 
 
         if($request->has('finish')){
-
+// return $request;
             Auth::login($user);
 
             User::find(Auth::user()->id)->update(['ip' => null,'status' => 1]);
@@ -280,27 +308,28 @@ class RegisterController extends Controller
 
     private function registerStudent($request)
         {
+           
             return User::updateOrCreate([
                     'first_name' => $request->first_name,
                     'last_name' => $request->last_name,
                     'email' => $request->email,
                     'password' => Hash::make($request->password),
-                    'ip' => $request->ip,
-                    'dob' => $request->dob,
-                    'phone' => $request->phone,
-                    'city' => $request->city,
-                    'country' => $request->country,
-                    'country_short' => $request->country_short,
+                    // 'ip' => $request->ip,
+                    // 'dob' => $request->dob,
+                    // 'phone' => $request->phone,
+                    // 'city' => $request->city,
+                    // 'country' => $request->country,
+                    // 'country_short' => $request->country_short,
                     'role' => $request->role,
-                    'type' => ($request->type == 1) ? 'cnic' : 'security',
-                    'cnic_security' => $request->cnic ?? $request->security,
-                    'language' => $request->language,
-                    'lang_short' => $request->lang_short,
-                    'std_degree' => $request->degree,
-                    'std_grade' => $request->std_grade,
-                    'std_subj' => $request->std_subj,
-                    'std_learn' => $request->std_learn,
-                    'bio' => $request->bio,
+                    // 'type' => ($request->type == 1) ? 'cnic' : 'security',
+                    // 'cnic_security' => $request->cnic ?? $request->security,
+                    // 'language' => $request->language,
+                    // 'lang_short' => $request->lang_short,
+                    // 'std_degree' => $request->degree,
+                    // 'std_grade' => $request->std_grade,
+                    // 'std_subj' => $request->std_subj,
+                    // 'std_learn' => $request->std_learn,
+                    // 'bio' => $request->bio,
                 ],['id','email'],['ip']);
 
         }
