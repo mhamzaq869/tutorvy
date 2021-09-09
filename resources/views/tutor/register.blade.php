@@ -358,8 +358,43 @@
 
                                                     <button id="finish" type="submit"
                                                         class="btn btn-lg btn-registration schedule-btn  nextBtn pull-right  ">
-                                                        &nbsp; Save &nbsp;
+                                                        &nbsp; Join &nbsp;
                                                     </button>
+                                                </div>
+
+                                                <div class="col-md-12 text-right">
+
+                                                    <div class="social-Icon ">
+                                                            <div class="Google">
+                                                                <a href="#">
+                                                                    <img class="mr-3" src="{{asset('assets/images/ico/google.png')}}" alt="google">
+                                                                    Continue with Google
+                                                                </a>
+                                                            </div>
+                                                            <div class="facebook">
+                                                                <img class="mr-3" src="{{asset('assets/images/ico/facebook(1).png')}}" alt="facebook">
+                                                                Continue with Facebook
+                                                            </div>
+                                                            <div class="Apple">
+                                                                <img class="mr-3" src="{{asset('assets/images/ico/apple.png')}}" alt="apple">
+                                                                Continue with Apple
+                                                            </div>
+                                                            <div class="Policy-text" style="display: flex;">
+                                                                <p class="by-text">
+                                                                    Protected by reCAPTCHA and subject to the Google</p>
+                                                                <p class="Privacy-text">
+                                                                    Privacy
+                                                                </p>
+                                                            </div>
+                                                            <div class="" style="display: flex;">
+                                                                <p class="policy-text1">
+                                                                    Policy and
+                                                                </p>
+                                                                <p class="Privacy-text">
+                                                                    Terms of Service.
+                                                                </p>
+                                                            </div>
+                                                        </div>
                                                 </div>
                                             </div>
                                             

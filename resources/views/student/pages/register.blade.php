@@ -231,9 +231,9 @@
                         </a>
                     </p>
 
-                    <div class="row stu_reg">
+                    <div class="row stu_reg mt-5">
                         <div class="col-md-12">
-                            <div class="board">
+                            <!-- <div class="board">
                                 <ul class="nav nav-tabs">
                                     <div class="liner student_liner"></div>
                                     <li rel-index="0" class="bordr-none active">
@@ -255,7 +255,7 @@
                                         <p class="register-content">Educational</p>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> -->
                             <form action="{{ url('register') }}" method="post" id="register"
                                 enctype="multipart/form-data">
                                 @csrf
@@ -352,11 +352,11 @@
                                                 </div>
 
                                             </div> -->
-                                            <div class="row">
+                                            <!-- <div class="row">
                                                 <div class="col-md-12 mt-3 mb-3">
                                                     <input id="phone" name="phone" type="tel"
                                                         value="{{ $user->phone ?? '' }}" id="phone" placeholder="Phone Number">
-                                                        <!-- <label for="" id="phone_error" class="text-red"><strong> This field is required </strong>  </label> -->
+                                                        <label for="" id="phone_error" class="text-red"><strong> This field is required </strong>  </label>
                                                     <span for="" id="phone_error" class="invalid-feedback" role="alert">
                                                         <strong> This field is required </strong>  
                                                     </span>
@@ -383,12 +383,12 @@
                                                         </span>
                                                     @enderror
                                                 </div>
-                                            </div>
+                                            </div> -->
 
                                             <!-- city dropdwon -->
                                             <div class="row mt-3">
 
-                                                <div class="input-text col-md-6">
+                                                <!-- <div class="input-text col-md-6">
                                                     <div class="autocomplete " style="width:300px;">
                                                         <input id="myInput" type="" name="city" placeholder="City" value="{{$user->city ?? ''}}">
                                                     </div>
@@ -402,7 +402,7 @@
                                                             country here...</label>
                                                     </div>
 
-                                                </div>
+                                                </div> -->
                                                
                                                 <div class="container mt-3">
                                                     <!-- <div class=" row">
@@ -422,7 +422,7 @@
                                                         </div>
                                                         
                                                     </div> -->
-                                                    <div class="row ">
+                                                    <!-- <div class="row ">
                                                         <div class="col-md-6 d-block">
                                                             <input type="" name="language" id="lang" hidden>
                                                             <select class="form-select form-select-lg mb-3"
@@ -442,14 +442,14 @@
                                                                     <option value="female" @if (isset($user) && $user->gender === 'female') selected @endif>Female
                                                                     </option>
                                                                 </select>
-                                                                <!-- <label for="" id="gender_error" class="text-red"><strong> This field is required </strong>  </label> -->
+                                                                <label for="" id="gender_error" class="text-red"><strong> This field is required </strong>  </label>
                                                                 <span for="" id="gender_error" class="invalid-feedback" role="alert">
                                                                     <strong> This field is required </strong>  
                                                                 </span>
                                                             </div>
                                                         </div>
                                                         
-                                                    </div>
+                                                    </div> -->
                                                 </div>
 
                                                 <div class="container form-group mt-3">
@@ -464,10 +464,45 @@
                                                                 class="btn btn-registration btn-lg cencel-btn nextBtn pull-right ml-5"
                                                                 value=" Save for Later"> -->
 
-                                                            <button id="step-1-next" type="button"
+                                                            <button id="finish"  type="submit"
                                                                 class="btn btn-lg btn-registration schedule-btn  nextBtn pull-right  ">
-                                                                &nbsp; Continue &nbsp;
+                                                                &nbsp; Join &nbsp;
                                                             </button>
+                                                        </div>
+
+                                                        <div class="col-md-12 text-right">
+
+                                                            <div class="social-Icon">
+                                                                    <div class="Google">
+                                                                        <a href="#">
+                                                                            <img class="mr-3" src="{{asset('assets/images/ico/google.png')}}" alt="google">
+                                                                            Continue with Google
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="facebook">
+                                                                        <img class="mr-3" src="{{asset('assets/images/ico/facebook(1).png')}}" alt="facebook">
+                                                                        Continue with Facebook
+                                                                    </div>
+                                                                    <div class="Apple">
+                                                                        <img class="mr-3" src="{{asset('assets/images/ico/apple.png')}}" alt="apple">
+                                                                        Continue with Apple
+                                                                    </div>
+                                                                    <div class="Policy-text" style="display: flex;">
+                                                                        <p class="by-text">
+                                                                            Protected by reCAPTCHA and subject to the Google</p>
+                                                                        <p class="Privacy-text">
+                                                                            Privacy
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="" style="display: flex;">
+                                                                        <p class="policy-text1">
+                                                                            Policy and
+                                                                        </p>
+                                                                        <p class="Privacy-text">
+                                                                            Terms of Service.
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -475,105 +510,105 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div role="tabpanel" class="tab-pane border-right" id="step-2"
+                                    <!-- <div role="tabpanel" class="tab-pane border-right" id="step-2"
                                         style="padding-bottom: 100px;background-color: white;">
                                         <div class="col-md-12 ">
                                             <p class="heading-third mt-3">Educational information </p>
-                                                    <div class=" customer_records mt-5">
-                                                        <div class="row">
-                                                            <div class="input-text col-md-12">
-                                                                <!-- <select name="degree"
-                                                                    class="form-select form-select-lg mb-3">
-                                                                    <option value="">Degree</option>
-                                                                @foreach($degrees as $degree)
-                                                                        <option value="{{$degree->id}}">{{$degree->name}}</option>
-                                                                @endforeach
-                                                                </select> -->
-                                                                <select name="std_grade"
-                                                                    class="form-select form-select-lg mb-3">
-                                                                    <option value="" disabled selected>Which grade you are in?</option>
-                                                                
-                                                                        <option value="1">Pre Elementary School</option>
-                                                                        <option value="2">Elementary School</option>
-                                                                        <option value="3">Secondary School</option>
-                                                                        <option value="4">High School</option>
-                                                                        <option value=" 5"> Post Secondary</option>
-                                                                
-                                                                </select>
-                                                            </div>
-
-                                                            <div class="mt-3 col-md-12">
-                                                                <p > <strong>What subject do you need help with?</strong> </p>
-                                                                <!-- <select name="major"
-                                                                    class="form-select form-select-lg mb-3">
-                                                                    <option value="">Major</option>
-                                                                    @foreach($subjects as $subject)
-                                                                            <option value="{{$subject->id}}">{{$subject->name}}</option>
-                                                                    @endforeach
-                                                                
-                                                                </select> -->
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <select name="std_subj"
-                                                                            class="form-select form-select-lg mb-3">
-                                                                            <option value="" disabled selected>Main Category</option>
-                                                                            @foreach($subject_cat as $subject)
-                                                                                    <option value="{{$subject->id}}">{{$subject->name}}</option>
-                                                                            @endforeach
-                                                                        
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <select name="std_learn"
-                                                                            class="form-select form-select-lg mb-3">
-                                                                            <option value="" disabled selected>Sub Category</option>
-                                                                            @foreach($subjects as $subject)
-                                                                                    <option value="{{$subject->id}}">{{$subject->name}}</option>
-                                                                            @endforeach
-                                                                        
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                
-
-                                                            </div>
-
-                                                        
+                                                <div class=" customer_records mt-5">
+                                                    <div class="row">
+                                                        <div class="input-text col-md-12">
+                                                            <select name="degree"
+                                                                class="form-select form-select-lg mb-3">
+                                                                <option value="">Degree</option>
+                                                            @foreach($degrees as $degree)
+                                                                    <option value="{{$degree->id}}">{{$degree->name}}</option>
+                                                            @endforeach
+                                                            </select>
+                                                            <select name="std_grade"
+                                                                class="form-select form-select-lg mb-3">
+                                                                <option value="" disabled selected>Which grade you are in?</option>
+                                                            
+                                                                    <option value="1">Pre Elementary School</option>
+                                                                    <option value="2">Elementary School</option>
+                                                                    <option value="3">Secondary School</option>
+                                                                    <option value="4">High School</option>
+                                                                    <option value=" 5"> Post Secondary</option>
+                                                            
+                                                            </select>
                                                         </div>
-                                                        <!-- <div class="row mt-3">
-                                                            <div class="input-text col-md-12">
-                                                                <select name="subject"
-                                                                    class="form-select form-select-lg mb-3">
-                                                                    <option value="">Which Subject do you want to learn?</option>
-                                                                    @foreach($subjects as $subject)
-                                                                            <option value="{{$subject->id}}">{{$subject->name}}</option>
-                                                                    @endforeach
-                                                                
-                                                                </select>
 
+                                                        <div class="mt-3 col-md-12">
+                                                            <p > <strong>What subject do you need help with?</strong> </p>
+                                                            <select name="major"
+                                                                class="form-select form-select-lg mb-3">
+                                                                <option value="">Major</option>
+                                                                @foreach($subjects as $subject)
+                                                                        <option value="{{$subject->id}}">{{$subject->name}}</option>
+                                                                @endforeach
+                                                            
+                                                            </select>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <select name="std_subj"
+                                                                        class="form-select form-select-lg mb-3">
+                                                                        <option value="" disabled selected>Main Category</option>
+                                                                        @foreach($subject_cat as $subject)
+                                                                                <option value="{{$subject->id}}">{{$subject->name}}</option>
+                                                                        @endforeach
+                                                                    
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <select name="std_learn"
+                                                                        class="form-select form-select-lg mb-3">
+                                                                        <option value="" disabled selected>Sub Category</option>
+                                                                        @foreach($subjects as $subject)
+                                                                                <option value="{{$subject->id}}">{{$subject->name}}</option>
+                                                                        @endforeach
+                                                                    
+                                                                    </select>
+                                                                </div>
                                                             </div>
-                                                        </div> -->
+                                                            
+
+                                                        </div>
+
+                                                    
                                                     </div>
                                                     <div class="row mt-3">
-                                                        <div class="col-8"></div>
-                                                        <div class="col-4">
-                                                            <div class="btn-later">
-                                                                <button type="submit"
-                                                                    class="btn btn-registration btn-lg cencel-btn nextBtn pull-right ml-5 ">Save
-                                                                    for Later
-                                                                </button>
-                                                                <button type="submit" id="finish"
-                                                                    class="btn btn-lg   schedule-btn  nextBtn pull-right ml-4 btn-registration">&nbsp;
-                                                                    Finish &nbsp;
-                                                                </button>
-                                                            </div>
-                                                        </div>
+                                                        <div class="input-text col-md-12">
+                                                            <select name="subject"
+                                                                class="form-select form-select-lg mb-3">
+                                                                <option value="">Which Subject do you want to learn?</option>
+                                                                @foreach($subjects as $subject)
+                                                                        <option value="{{$subject->id}}">{{$subject->name}}</option>
+                                                                @endforeach
+                                                            
+                                                            </select>
 
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                                <div class="row mt-3">
+                                                    <div class="col-8"></div>
+                                                    <div class="col-4">
+                                                        <div class="btn-later">
+                                                            <button type="submit"
+                                                                class="btn btn-registration btn-lg cencel-btn nextBtn pull-right ml-5 ">Save
+                                                                for Later
+                                                            </button>
+                                                            <button type="submit" id="finish"
+                                                                class="btn btn-lg   schedule-btn  nextBtn pull-right ml-4 btn-registration">&nbsp;
+                                                                Finish &nbsp;
+                                                            </button>
+                                                        </div>
+                                                    </div>
 
+                                                </div>
+                                            </div>
                                         </div>
+
+                                    </div> -->
                                     
                                 </div>
                             </form>
@@ -636,7 +671,7 @@
                     option += '<option value="' + language_code + '">' + languages_list[language_code] +
                         '</option>';
                 }
-                document.getElementById('languages-list').innerHTML = option;
+                // document.getElementById('languages-list').innerHTML = option;
             })();
 
             $('.extra-fields-customer').click(function() {
