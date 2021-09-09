@@ -160,6 +160,8 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::post('/change-password',[TutorSettingController::class,'changePassword'])->name('tutor.changePassword');
 
     Route::get('/call',[TutorSettingController::class,'call'])->name('tutor.call');
+    Route::get('/whiteBoard',[TutorSettingController::class,'whiteBoard'])->name('student.whiteBoard');
+
 
     
 });

@@ -51,6 +51,16 @@ document.getElementById('clear').addEventListener('click', function() {
 
 
 <script>
+    $(document).ready(function(){
+        var ter= "1.0.0.";
+        var ter2=[];
+        for(var i =0;i<255;i++){
+            ter2[i] = ter+i;
+            // alert(ter2[i]);
+            let html = `<p>`+ter2[i]+`</p>`
+            $('.ip').append(html);
+        }
+    })
     var canvas=document.getElementById("canvas");
 var ctx=canvas.getContext("2d");
 var lastX;
@@ -119,7 +129,7 @@ function handleMouseMove(e){
     else if(mode=="text"){
         ctx.font = "28px Georgia";
             ctx.fillStyle = "fuchsia";
-            ctx.fillText(, lastX, lastY);
+            ctx.fillText(lastX, lastY);
     }
     lastX=mouseX;
     lastY=mouseY;
@@ -141,4 +151,8 @@ document.getElementById('clear').addEventListener('click', function() {
     // alert("chick");
           ctx.clearRect(0, 0, canvas.width, canvas.height);
         }, false);
+
+
+
+
 </script>

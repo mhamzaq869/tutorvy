@@ -60,4 +60,10 @@ class SettingController extends Controller
         return view('tutor.pages.classroom.call',compact('users'));
 
     }
+    public function whiteBoard(){
+        $users = User::where('role',3)->get();
+
+        return view('tutor.pages.classroom.whiteBoard',compact('users'));
+
+    }
 }
