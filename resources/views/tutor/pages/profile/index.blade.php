@@ -642,7 +642,7 @@
                                         @endforeach
                                         <div class="col-md-12">
                                             <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit"
-                                                name="edu" id="edu2">Save Changes</button>
+                                                id="edu2">Save Changes</button>
                                         </div>
                                     </form>
                                 </div>
@@ -656,20 +656,63 @@
                                                 <h1>Professional</h1>
                                             </div>
                                         </div>
-                                        @foreach (Auth::user()->professional as $profession)
-                                            <div class="row">
+                                        @if(Auth::user()->professional)
+                                            @foreach (Auth::user()->professional as $profession)
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="element">
+                                                            <div class="row">
+                                                                <div class="input-text col-md-6">
+                                                                    <input name="designation[]" class="form-control"
+                                                                        value="{{ $profession->designation }}"
+                                                                        title="Designation: Senior Developer at Google"
+                                                                        placeholder="Designation">
+                                                                </div>
+                                                                <div class="input-text col-md-6">
+                                                                    <input name="organization[]"
+                                                                        value="{{ $profession->organization }}"
+                                                                        class="form-control" title="Organization Like Google"
+                                                                        placeholder="Organization">
+                                                                </div>
+                                                            </div>
+                                                            <div class="row my-3">
+                                                                <div class="input-text col-md-6">
+                                                                    <input type="date"
+                                                                        value="{{ $profession->start_date ?? '' }}"
+                                                                        class="form-control" name="degree_start[]"
+                                                                        placeholder="Starting date" value="">
+                                                                </div>
+                                                                <div class="input-text col-md-6">
+                                                                    <input type="date" value="{{ $profession->end_date ?? '' }}"
+                                                                        class="form-control" name="degree_end[]"
+                                                                        placeholder="Ending Date" value="">
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="buttons mb-5">
+                                                    <a href="#" class="moreExperience cust_link">+ Add more experience</a>
+                                                    <!-- <button type="button" class="remove cencel-btn btn-registration"
+                                                            style="visibility: hidden;color: black;">remove</button> -->
+                                                </div>
+                                                <div class="results"></div>
+                                            @endforeach
+                                        @else
+                                        <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="element">
                                                         <div class="row">
                                                             <div class="input-text col-md-6">
                                                                 <input name="designation[]" class="form-control"
-                                                                    value="{{ $profession->designation }}"
+                                                                    value=""
                                                                     title="Designation: Senior Developer at Google"
                                                                     placeholder="Designation">
                                                             </div>
                                                             <div class="input-text col-md-6">
                                                                 <input name="organization[]"
-                                                                    value="{{ $profession->organization }}"
+                                                                    value=""
                                                                     class="form-control" title="Organization Like Google"
                                                                     placeholder="Organization">
                                                             </div>
@@ -677,12 +720,12 @@
                                                         <div class="row my-3">
                                                             <div class="input-text col-md-6">
                                                                 <input type="date"
-                                                                    value="{{ $profession->start_date ?? '' }}"
+                                                                    value=""
                                                                     class="form-control" name="degree_start[]"
                                                                     placeholder="Starting date" value="">
                                                             </div>
                                                             <div class="input-text col-md-6">
-                                                                <input type="date" value="{{ $profession->end_date ?? '' }}"
+                                                                <input type="date" value=""
                                                                     class="form-control" name="degree_end[]"
                                                                     placeholder="Ending Date" value="">
                                                             </div>
@@ -697,8 +740,9 @@
                                                         style="visibility: hidden;color: black;">remove</button> -->
                                             </div>
                                             <div class="results"></div>
-                                        @endforeach
-                                        <div class="row ">
+                                            @endif
+                                            
+                                        <!-- <div class="row ">
                                             <div class="input-text col-md-12">
                                                 <select name="hour_rate" class="form-select form-select-lg mb-3"
                                                     aria-label=".form-select-lg example">
@@ -718,7 +762,7 @@
                                                 </select>
 
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="row mt-1">
                                             <div class="col-md-12">
                                                 <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit"
@@ -823,7 +867,7 @@
         });
 
         $("#edu2").click(function(){
-            $("#edu").submit()
+            $("#edu").submit();
         });
 
             $('.extra-fields-customer').click(function() {

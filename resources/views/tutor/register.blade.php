@@ -229,7 +229,7 @@
                     </div>
 
                 </div>
-                <div class="col-md-6 card">
+                <div class="col-md-6 card mb-5">
                     <p class="mt-5 ml-3 heading-first">Create a tutor account</p>
                     <p class="ml-3 heading-sixth">Already have an account?
                         <a href="{{ route('login') }}" class="text-primary" style="text-decoration:none">
@@ -239,7 +239,7 @@
 
                     <div class="row">
                         <div class="col-md-12 stu_reg">
-                            <div class="board">
+                            <!-- <div class="board">
                                 <ul class="nav nav-tabs">
                                     <div class="liner"></div>
                                     <li rel-index="0" class="bordr-none active">
@@ -260,7 +260,7 @@
                                         </a>
                                         <p class="register-content">Educational</p>
                                     </li>
-                                    <!-- <li rel-index="2" class="bordr-none">
+                                    <li rel-index="2" class="bordr-none">
                                         <a href="#step-3" class=" disabled" aria-controls="step-3" role="tab"
                                             data-toggle="tab">
                                             <span>
@@ -269,7 +269,7 @@
                                             </span>
                                         </a>
                                         <p class="register-content">Professional</p>
-                                    </li> -->
+                                    </li>
                                     <li rel-index="2" class="bordr-none">
                                         <a href="#step-4" class=" disabled" aria-controls="step-4" role="tab"
                                             data-toggle="tab">
@@ -281,7 +281,7 @@
                                         <p class="register-content">Complete</p>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> -->
                             <form action="{{ url('register') }}" method="post" id="register"
                                 enctype="multipart/form-data">
                                 @csrf
@@ -289,7 +289,7 @@
                                 <div class="tab-content mt-5">
                                     <div role="tabpanel" class="border-right tab-pane active" id="step-1">
                                         <div class="col-md-12">
-                                            <p class="heading-third mt-3">Personal information</p>
+                                            <!-- <p class="heading-third mt-3">Personal information</p> -->
                                             <div class="row mt-5">
                                                 <div class="input-text col-md-6 d-block">
                                                     <input type="" class="form-control csd" name="first_name"
@@ -320,8 +320,8 @@
                                                         </span>
                                                     @enderror
                                                 </div>
-                                            </div>
-                                            <div class="input-text col-md-12 m-0 p-0 mt-4 mb-3 d-block">
+
+                                                <div class="input-text col-md-12 m-0  mt-4 mb-3 d-block">
                                                 <input type="email"
                                                     class="form-control  @error('email') is-invalid @enderror"
                                                     name="email" placeholder="Email Address"
@@ -332,27 +332,38 @@
                                                     <span for="" id="email_error_duplicate" class="invalid-feedback" role="alert">
                                                         <strong> This email already exists.  <a href="{{ route('login') }}" class="text-primary" style="text-decoration:none">Log in?</a> </strong>  
                                                     </span>
-                                                    <!-- <label for="" id="email_error" class="text-red"><strong> This field is required </strong>  </label> -->
-                                                @error('email')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
+                                                        <!-- <label for="" id="email_error" class="text-red"><strong> This field is required </strong>  </label> -->
+                                                    @error('email')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="input-text col-md-12 m-0  mt-3 mb-2 d-block">
+                                                    <input type="password" name="password"
+                                                        class="form-control  @error('password') is-invalid @enderror"
+                                                        placeholder="Password" id="password"> 
+                                                        <span for="" id="password_error" class="invalid-feedback" role="alert">
+                                                            <strong> This field is required </strong>  
+                                                        </span>
+                                                        <!-- <label for="" id="password_error" class="text-red"><strong> This field is required </strong>  </label> -->
+                                                    @error('password')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-12 text-right mt-3">
+
+                                                    <button id="finish" type="submit"
+                                                        class="btn btn-lg btn-registration schedule-btn  nextBtn pull-right  ">
+                                                        &nbsp; Save &nbsp;
+                                                    </button>
+                                                </div>
                                             </div>
-                                            <div class="input-text col-md-12 m-0 p-0 mt-3 mb-2 d-block">
-                                                <input type="password" name="password"
-                                                    class="form-control  @error('password') is-invalid @enderror"
-                                                    placeholder="Password" id="password"> 
-                                                    <span for="" id="password_error" class="invalid-feedback" role="alert">
-                                                        <strong> This field is required </strong>  
-                                                    </span>
-                                                    <!-- <label for="" id="password_error" class="text-red"><strong> This field is required </strong>  </label> -->
-                                                @error('password')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
+                                            
+                                           
 
                                             <!-- <p class="heading-fifth">Date of Birth</p>
                                             <div class="row mt-4 mb-3">
@@ -384,14 +395,14 @@
                                                 </div>
 
                                             </div> -->
-                                            <div class="row">
+                                            <!-- <div class="row">
                                                 <div class="col-md-12 mt-3 mb-3">
                                                     <input id="phone" name="phone" type="tel"
                                                         value="{{ $user->phone ?? '' }}" placeholder="Phone Number">
                                                         <span for="" id="phone_error"  class="invalid-feedback" role="alert">
                                                             <strong> This field is required </strong>  
                                                         </span>
-                                                        <!-- <label for="" id="phone_error" class="text-red"><strong> This field is required </strong>  </label> -->
+                                                        <label for="" id="phone_error" class="text-red"><strong> This field is required </strong>  </label>
                                                     @error('phone')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -405,10 +416,10 @@
                                                         });
                                                     </script>
                                                 </div>
-                                            </div>
+                                            </div> -->
 
                                             <!-- city dropdwon -->
-                                            <div class="row ">
+                                            <!-- <div class="row ">
                                                 <div class="input-text col-md-12 mb-2 d-block">
                                                     <input type="" name="address"
                                                         class="form-control  "
@@ -428,7 +439,7 @@
                                                             country here...</label>
                                                     </div>
 
-                                                </div>
+                                                </div> -->
                                                 <!-- <div class="container mt-3">
                                                     <div class=" row">
                                                         <div class="input-text col-md-6">
@@ -449,7 +460,7 @@
                                                         </div>
                                                     </div>
                                                 </div> -->
-                                                <div class="container mt-3">
+                                                <!-- <div class="container mt-3">
                                                     <div class="row">
                                                         <div class="col-md-6 d-block">
                                                             <input type="" name="language" id="lang" hidden>
@@ -471,39 +482,39 @@
                                                                 <option value="female" @if (isset($user) && $user->gender === 'female') selected @endif>Female
                                                                 </option>
                                                             </select>
-                                                            <!-- <label for="" id="gender_error" class="text-red"><strong> This field is required </strong>  </label> -->
+                                                            <label for="" id="gender_error" class="text-red"><strong> This field is required </strong>  </label>
                                                             <span for="" id="gender_error" class="invalid-feedback" role="alert">
                                                                 <strong> This field is required </strong>  
                                                             </span>
                                                         </div>
                                                     </div>
 
-                                                </div>
+                                                </div> -->
 
                                                 <div class="container form-group mt-3">
                                                     <div class="row">
-                                                        <div class="col-md-12">
+                                                        <!-- <div class="col-md-12">
                                                             <textarea class="form-control" name="bio"
                                                             id="exampleFormControlTextarea1" rows="5"
                                                             placeholder="Tell us about yourself that you want students to see?">{{ $user->bio ?? '' }}</textarea>
-                                                        </div>
-                                                        <div class="col-md-12 text-right mt-3">
-                                                            <!-- <input type="submit"
+                                                        </div> -->
+                                                        <!-- <div class="col-md-12 text-right mt-3">
+                                                            <input type="submit"
                                                                 class="btn btn-registration btn-lg cencel-btn nextBtn pull-right ml-5"
-                                                                value=" Save for Later"> -->
+                                                                value=" Save for Later">
 
-                                                            <button id="step-1-next" type="button"
+                                                            <button id="finish" type="submit"
                                                                 class="btn btn-lg btn-registration schedule-btn  nextBtn pull-right  ">
-                                                                &nbsp; Continue &nbsp;
+                                                                &nbsp; Save &nbsp;
                                                             </button>
-                                                        </div>
+                                                        </div> -->
                                                     </div>
                                                 </div>
                                               
                                             </div>
                                         </div>
                                     </div>
-                                    <div role="tabpanel" class="tab-pane border-right" id="step-2"
+                                    <!-- <div role="tabpanel" class="tab-pane border-right" id="step-2"
                                         style="padding-bottom: 100px;background-color: white;">
                                         <div class="col-md-12 ">
                                             <p class="heading-third mt-3">Educational information </p>
@@ -683,7 +694,7 @@
 
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <!-- <div role="tabpanel" class="tab-pane border-right" id="step-3"
                                         style="padding-bottom: 100px;background-color: white;">
                                         <div class="col-md-12">
@@ -832,7 +843,7 @@
                                         //     });
                                         // });
                                     </script>
-                                    <div role="tabpanel" class="tab-pane border-right" id="step-4"
+                                    <!-- <div role="tabpanel" class="tab-pane border-right" id="step-4"
                                         style="background-color: white;">
                                         <div class="container-fluid">
                                             <div class="row">
@@ -864,7 +875,6 @@
                                                     <span for="" id="teach_error" class="invalid-feedback" role="alert">
                                                         <strong> This field is required </strong>  
                                                     </span>
-                                                    <!-- <label for="" id="teach_error" class="text-red"><strong> This field is required </strong>  </label> -->
                                                     @error('teach')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -891,7 +901,7 @@
 
                                             <div class="input-text col-md-12 m-0 p-0 mt-3 mb-3">
                                                 <input type="" name="hour_rate" placeholder="Rate per hour (in USD)">
-                                                <!-- <select name="hour_rate" class="form-select form-select-lg mb-3"
+                                                <select name="hour_rate" class="form-select form-select-lg mb-3"
                                                     aria-label=".form-select-lg example">
                                                     <option disabled>Per hour charges</option>
                                                     <option @if (isset($user) && $user->hourly_rate == 5) selected @endif value="5">$5</option>
@@ -906,7 +916,7 @@
                                                     <option @if (isset($user) && $user->hourly_rate == 45) selected @endif value="45">$45</option>
                                                     <option @if (isset($user) && $user->hourly_rate == 50) selected @endif value="50">$50</option>
 
-                                                </select> -->
+                                                </select>
 
                                             </div>
                                             <div class=" col-md-4 col-sm-6 form-check   m-0 p-0">
@@ -926,7 +936,7 @@
                                             </button>
 
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                 </div>
                             </form>
@@ -1008,7 +1018,7 @@
                     option += '<option value="' + language_code + '">' + languages_list[language_code] +
                         '</option>';
                 }
-                document.getElementById('languages-list').innerHTML = option;
+                // document.getElementById('languages-list').innerHTML = option;
             })();
 
             $('.extra-fields-customer').click(function() {
@@ -1142,15 +1152,15 @@
                     last_name: {
                         required: true
                     },
-                    phone: {
-                        required: true
-                    },
-                    gender: {
-                        required: true
-                    },
-                    phone: {
-                        required: true
-                    },
+                    // phone: {
+                    //     required: true
+                    // },
+                    // gender: {
+                    //     required: true
+                    // },
+                    // phone: {
+                    //     required: true
+                    // },
                     
                 },
                 messages: {

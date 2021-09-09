@@ -87,12 +87,13 @@ class ProfileController extends Controller
 
     public function professionUpdate(Request $request)
     {
+        // return $request;
 
-        if(Auth::user()->professional){
-            Auth::user()->professional->each(function($record) {
-                $record->delete(); // <-- direct deletion
-             });
-        }
+        // if(Auth::user()->professional){
+        //     Auth::user()->professional->each(function($record) {
+        //         $record->delete(); // <-- direct deletion
+        //      });
+        // }
 
         if($request->filled('designation')){
             for($i=0; $i<count($request->designation); $i++){
@@ -102,8 +103,14 @@ class ProfileController extends Controller
                     'start_date' => $request->degree_start[$i],
                     'end_date' => $request->degree_end[$i],
                 ]);
+
+            
             }
         }
+
+        
+        return redirect()->back()->with('message','Your Profession has been successfully updated');
+
     }
 
 

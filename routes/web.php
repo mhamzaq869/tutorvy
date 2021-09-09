@@ -154,7 +154,7 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::get('/profile',[ProfileController::class,'index'])->name('tutor.profile');
     Route::post('/updateprofile/{id}',[ProfileController::class,'profileUpdate'])->name('tutor.profile.update');
     Route::post('/updateedu/{id}',[ProfileController::class,'profileUpdate'])->name('tutor.profile.edu');
-    Route::post('/updateprofession/{id}',[ProfileController::class,'profileUpdate'])->name('tutor.profile.profession');
+    Route::post('/updateprofession/{id}',[ProfileController::class,'professionUpdate'])->name('tutor.profile.profession');
 
     Route::get('/settings',[TutorSettingController::class,'index'])->name('tutor.settings');
     Route::post('/change-password',[TutorSettingController::class,'changePassword'])->name('tutor.changePassword');
