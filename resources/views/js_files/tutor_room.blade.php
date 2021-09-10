@@ -203,14 +203,12 @@ async function handleVideoAnswerMsg(msg) {
 
   // Configure the remote description, which is the SDP payload
   // in our "video-answer" message.
-
   var desc = new RTCSessionDescription(msg.sdp);
   await myPeerConnection.setRemoteDescription(desc).catch(reportError);
 }
 
 async function handleNewICECandidateMsg(msg) {
   var candidate = new RTCIceCandidate(msg.candidate);
-
   console.log("*** Adding received ICE candidate: " + JSON.stringify(candidate));
   try {
     await myPeerConnection.addIceCandidate(candidate)

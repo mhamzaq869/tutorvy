@@ -63,7 +63,7 @@ class SettingController extends Controller
     public function whiteBoard(){
         $users = User::where('role',3)->get();
 
-        return view('tutor.pages.classroom.whiteBoard',compact('users'));
+        return view('tutor.pages.classroom.classroom',compact('users'));
 
     }
 }
