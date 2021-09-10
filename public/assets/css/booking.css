@@ -544,3 +544,14 @@ a[data-toggle="collapse"] {
     transform: none !important;
     box-shadow: 1px 1px 15px rgb(207 204 204);
 }
+
+
+/*Board Navbar*/
+
+.board-nav .active {
+    border-right: 1px solid #dee2e6 !important;
+}
+
+.nav-whiteBoard-nav {
+    width: 100% !important;
+}

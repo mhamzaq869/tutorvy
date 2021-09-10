@@ -127,12 +127,13 @@ class RegisterController extends Controller
         // Get a validator for an incoming registration request
         // from Tutor/Student Registor Form .
         // dd($request->all());
+        // return $request;
         $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255','unique:users'],
-            'password' => ['required', 'string', 'min:8'],
-            'phone' => ['required'],
+            'password' => ['required', 'string', 'min:8']
+            
         ]);
         $request->ip = $_SERVER['REMOTE_ADDR'];
         $request->dob = $request->year.'-'.$request->month.'-'.$request->day;
@@ -147,27 +148,55 @@ class RegisterController extends Controller
             'last_name' => $request->last_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'ip' => $request->ip,
-            'dob' => $request->dob,
-            'phone' => $request->phone,
-            'city' => $request->city,
-            'country' => $request->country,
-            'country_short' => $request->country_short,
+            // 'ip' => $request->ip,
+            // 'dob' => $request->dob,
+            // 'phone' => $request->phone,
+            // 'city' => $request->city,
+            // 'country' => $request->country,
+            // 'country_short' => $request->country_short,
             'role' => $request->role,
-            'type' => ($request->type == 1) ? 'cnic' : 'security',
-            'cnic_security' => $request->cnic ?? $request->security,
-            'language' => $request->language,
-            'lang_short' => $request->lang_short,
-            'student_level' => $request->student_level,
-            'std_grade' => $request->student_grade,
-            'hourly_rate' => $request->hour_rate,
-            'policies' => $request->policies,
-            'email_market' => $request->email_market,
-            'gender' => $request->gender,
-            'bio' => $request->bio,
+            // 'type' => ($request->type == 1) ? 'cnic' : 'security',
+            // 'cnic_security' => $request->cnic ?? $request->security,
+            // 'language' => $request->language,
+            // 'lang_short' => $request->lang_short,
+            // 'student_level' => $request->student_level,
+            // 'std_grade' => $request->student_grade,
+            // 'hourly_rate' => $request->hour_rate,
+            // 'policies' => $request->policies,
+            // 'email_market' => $request->email_market,
+            // 'gender' => $request->gender,
+            // 'bio' => $request->bio,
             ]);
         else:
-          $user = $this->registerStudent($request);
+            // return $request;
+            // return "Null"; 
+        //   $user = $this->registerStudent($request);
+        $user = User::updateOrCreate(["email" => $request->email],[
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            // 'ip' => $request->ip,
+            // 'dob' => $request->dob,
+            // 'phone' => $request->phone,
+            // 'city' => $request->city,
+            // 'country' => $request->country,
+            // 'country_short' => $request->country_short,
+            'role' => $request->role,
+            // 'type' => ($request->type == 1) ? 'cnic' : 'security',
+            // 'cnic_security' => $request->cnic ?? $request->security,
+            // 'language' => $request->language,
+            // 'lang_short' => $request->lang_short,
+            // 'student_level' => $request->student_level,
+            // 'std_grade' => $request->student_grade,
+            // 'hourly_rate' => $request->hour_rate,
+            // 'policies' => $request->policies,
+            // 'email_market' => $request->email_market,
+            // 'gender' => $request->gender,
+            // 'bio' => $request->bio,
+            ]);
+
+           
         endif;
 
         /**
@@ -175,9 +204,9 @@ class RegisterController extends Controller
          * if tutor is registering himself then it will create userdetail
          */
 
-        if($request->role == 2):
-            $this->updateOrCreatedetail($user,$request);
-        endif;
+        // if($request->role == 2):
+        //     $this->updateOrCreatedetail($user,$request);
+        // endif;
 
         /**
          * if Tutor complete his 4 steps in registeration form then name attribute
@@ -186,13 +215,15 @@ class RegisterController extends Controller
 
 
         if($request->has('finish')){
-
+// return $request;
             Auth::login($user);
 
             User::find(Auth::user()->id)->update(['ip' => null,'status' => 1]);
         
             if(Auth::user()->role == 2):
-                return view('tutor.skip',compact('request'));
+                return redirect()->route('tutor.dashboard');
+
+                // return view('tutor.skip',compact('request'));
             else:
                 return redirect()->route('student.dashboard');
             endif;
@@ -247,16 +278,16 @@ class RegisterController extends Controller
         //     });
         // }
 // return $request->degree;
-        for($i=0; $i<count($request->degree); $i++){
-            Education::updateOrCreate([
-                "user_id" => $user->id,
-                "degree_id" => $request->degree[$i],
-                "subject_id" => $request->major[$i],
-                "institute_id" => $request->institute[$i],
-                "year" => $request->graduate_year[$i],
-                "docs" => $docs[$i] ?? '',
-            ]);
-        }
+        // for($i=0; $i<count($request->degree); $i++){
+        //     Education::updateOrCreate([
+        //         "user_id" => $user->id,
+        //         "degree_id" => $request->degree[$i],
+        //         "subject_id" => $request->major[$i],
+        //         "institute_id" => $request->institute[$i],
+        //         "year" => $request->graduate_year[$i],
+        //         "docs" => $docs[$i] ?? '',
+        //     ]);
+        // }
 
 
         if($request->filled('designation')){
@@ -277,27 +308,28 @@ class RegisterController extends Controller
 
     private function registerStudent($request)
         {
+           
             return User::updateOrCreate([
                     'first_name' => $request->first_name,
                     'last_name' => $request->last_name,
                     'email' => $request->email,
                     'password' => Hash::make($request->password),
-                    'ip' => $request->ip,
-                    'dob' => $request->dob,
-                    'phone' => $request->phone,
-                    'city' => $request->city,
-                    'country' => $request->country,
-                    'country_short' => $request->country_short,
+                    // 'ip' => $request->ip,
+                    // 'dob' => $request->dob,
+                    // 'phone' => $request->phone,
+                    // 'city' => $request->city,
+                    // 'country' => $request->country,
+                    // 'country_short' => $request->country_short,
                     'role' => $request->role,
-                    'type' => ($request->type == 1) ? 'cnic' : 'security',
-                    'cnic_security' => $request->cnic ?? $request->security,
-                    'language' => $request->language,
-                    'lang_short' => $request->lang_short,
-                    'std_degree' => $request->degree,
-                    'std_grade' => $request->std_grade,
-                    'std_subj' => $request->std_subj,
-                    'std_learn' => $request->std_learn,
-                    'bio' => $request->bio,
+                    // 'type' => ($request->type == 1) ? 'cnic' : 'security',
+                    // 'cnic_security' => $request->cnic ?? $request->security,
+                    // 'language' => $request->language,
+                    // 'lang_short' => $request->lang_short,
+                    // 'std_degree' => $request->degree,
+                    // 'std_grade' => $request->std_grade,
+                    // 'std_subj' => $request->std_subj,
+                    // 'std_learn' => $request->std_learn,
+                    // 'bio' => $request->bio,
                 ],['id','email'],['ip']);
 
         }
