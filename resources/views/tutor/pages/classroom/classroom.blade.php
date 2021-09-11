@@ -7,7 +7,8 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
 <link rel="shortcut icon" href="https://raw.githubusercontent.com/muaz-khan/RTCMultiConnection/master/demos/logo.png">
-  <link rel="stylesheet" type="text/css" href="https://raw.githubusercontent.com/muaz-khan/RTCMultiConnection/master/demos/css/emojionearea.min.css">
+  <!-- <link rel="stylesheet" type="text/css" href="https://raw.githubusercontent.com/muaz-khan/RTCMultiConnecti0on/master/demos/css/emojionearea.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.2.7/emojionearea.css">
 
   <script src="https://raw.githubusercontent.com/muaz-khan/RTCMultiConnection/master/demos/js/jquery.min.js"></script>
   <link href="https://raw.githubusercontent.com/muaz-khan/RTCMultiConnection/master/demos/css/bootstrap.min.css" rel="stylesheet">
@@ -18,7 +19,9 @@
 
   <script src="https://rtcmulticonnection.herokuapp.com/node_modules/canvas-designer/dev/webrtc-handler.js"></script>
   <script src="https://rtcmulticonnection.herokuapp.com/node_modules/canvas-designer/canvas-designer-widget.js"></script>
-  <script src="https://raw.githubusercontent.com/muaz-khan/RTCMultiConnection/master/demos/js/emojionearea.min.js"></script>
+  <!-- <script src="https://raw.githubusercontent.com/muaz-khan/RTCMultiConnection/master/demos/js/emojionearea.min.js"></script> -->
+
+  
   <!-- <script src="/node_modules/multistreamsmixer/MultiStreamsMixer.js"></script> -->
   <style>
 .extra-controls {
@@ -649,7 +652,8 @@ td input{
                                 <span style="vertical-align: middle;"></span>
                                 <img src="https://www.webrtc-experiment.com/images/key-press.gif" style="height: 12px; vertical-align: middle;">
                             </div>
-                            <textarea id="txt-chat-message"></textarea>
+                            <textarea id="txt-chat-message" style="display:none;" ></textarea>
+                            <div id="check"></div>
                             <button class="btn btn-primary" id="btn-chat-message" disabled>Send</button>
                             <img id="btn-attach-file" src="https://www.webrtc-experiment.com/images/attach-file.png" title="Attach a File">
                             <img id="btn-share-screen" src="https://www.webrtc-experiment.com/images/share-screen.png" title="Share Your Screen">
@@ -662,8 +666,23 @@ td input{
         </div>
     </div>
 </section>
-
+@endsection
+@section('scripts')
+<!-- @include('js_files.room') -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.2.7/emojionearea.min.js"></script>
 <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+            function cheng(){
+                var ter = $(this).html();
+                alert(ter);
+                $('.language-html').text(ter);
+            }
+    </script>
+    <script>
 (function() {
     var params = {},
         r = /([^&=]+)=?([^&]*)/g;
@@ -945,8 +964,8 @@ function appendChatMessage(event, checkmark_id) {
 
 var keyPressTimer;
 var numberOfKeys = 0;
-$('#txt-chat-message').emojioneArea({
-    container: "#txt-chat-message",
+$(document).ready(function(){
+    $('#txt-chat-message').emojioneArea({
     pickerPosition: "top",
     filtersPosition: "bottom",
     tones: false,
@@ -992,6 +1011,8 @@ $('#txt-chat-message').emojioneArea({
         }
     }
 });
+})
+
 
 window.onkeyup = function(e) {
     var code = e.keyCode || e.which;
@@ -1313,20 +1334,4 @@ $('#btn-share-screen').click(function() {
     }
 });
 </script>
-@endsection
-@section('scripts')
-@include('js_files.room')
-@include('js_files.whiteBoard')
-<script>
-        ClassicEditor
-            .create( document.querySelector( '#editor' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-            function cheng(){
-                var ter = $(this).html();
-                alert(ter);
-                $('.language-html').text(ter);
-            }
-    </script>
 @endsection
