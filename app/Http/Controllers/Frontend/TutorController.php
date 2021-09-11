@@ -129,4 +129,8 @@ class TutorController extends Controller
         return view('frontend.tutorProfile',compact('tutor','approved_courses','requested_courses'));
     }
 
+    public function widgetTech(){
+        return view('tutor.pages.classroom.widget');
+    }
+
 }

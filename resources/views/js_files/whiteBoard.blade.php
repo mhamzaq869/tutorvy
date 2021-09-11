@@ -51,16 +51,49 @@ document.getElementById('clear').addEventListener('click', function() {
 
 
 <script>
+
     $(document).ready(function(){
-        var ter= "1.0.0.";
-        var ter2=[];
-        for(var i =0;i<255;i++){
-            ter2[i] = ter+i;
-            // alert(ter2[i]);
-            let html = `<p>`+ter2[i]+`</p>`
-            $('.ip').append(html);
-        }
+     
     })
+    var rectHandler = {
+        ismousedown: false,
+        prevX: 0,
+        prevY: 0,
+        mousedown: function(e) {
+            var x = e.pageX - canvas.offsetLeft,
+                y = e.pageY - canvas.offsetTop;
+
+            var t = this;
+
+            t.prevX = x;
+            t.prevY = y;
+
+            t.ismousedown = true;
+        },
+        mouseup: function(e) {
+            var x = e.pageX - canvas.offsetLeft,
+                y = e.pageY - canvas.offsetTop;
+
+            var t = this;
+            if (t.ismousedown) {
+                points[points.length] = ['rect', [t.prevX, t.prevY, x - t.prevX, y - t.prevY], drawHelper.getOptions()];
+
+                t.ismousedown = false;
+            }
+
+        },
+        mousemove: function(e) {
+            var x = e.pageX - canvas.offsetLeft,
+                y = e.pageY - canvas.offsetTop;
+
+            var t = this;
+            if (t.ismousedown) {
+                tempContext.clearRect(0, 0, innerWidth, innerHeight);
+
+                drawHelper.rect(tempContext, [t.prevX, t.prevY, x - t.prevX, y - t.prevY]);
+            }
+        }
+      };
     var canvas=document.getElementById("canvas");
 var ctx=canvas.getContext("2d");
 var lastX;
@@ -119,17 +152,9 @@ function handleMouseMove(e){
       ctx.fill();
     }
     else if(mode=="rect"){
-        
-
-            // ctx.beginPath();
-            ctx.moveTo(lastX,lastY);
-            ctx.lineTo(mouseX,mouseY);
-                ctx.stroke();
-    }
-    else if(mode=="text"){
-        ctx.font = "28px Georgia";
-            ctx.fillStyle = "fuchsia";
-            ctx.fillText(lastX, lastY);
+      alert("rect");
+      // rectHandler.mousedown(e);
+      // rectHandler.mouseup(e);
     }
     lastX=mouseX;
     lastY=mouseY;
@@ -137,6 +162,7 @@ function handleMouseMove(e){
 }
 
 $("#canvas").mousedown(function(e){handleMouseDown(e);});
+
 $("#canvas").mousemove(function(e){handleMouseMove(e);});
 $("#canvas").mouseup(function(e){handleMouseUp(e);});
 $("#canvas").mouseout(function(e){handleMouseOut(e);});
@@ -240,3 +266,4 @@ function checkNum(str) {
 
   
 </script>
+

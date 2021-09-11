@@ -231,6 +231,8 @@ Route::post('/resendOtp',[ResetPasswordController::class,'resendOtp'])->name('re
 
 
 Route::view('/','welcome');
+Route::get('/widget',[FrontTutorController::class,'widgetTech'])->name('whiteBoard.canvas');
+Route::get('/widget',[FrontTutorController::class,'widgetTech'])->name('whiteBoard.canvas');
 Route::view('/role','role');
 Route::get('/register_role',[GeneralController  ::class,'loginOnRole'])->name('register.role');
 Route::view('/tutor','frontend.tutor');

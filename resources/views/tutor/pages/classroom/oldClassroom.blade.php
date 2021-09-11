@@ -1,20 +1,44 @@
 @extends('tutor.layouts.app')
+<link href="{{ asset('assets/css/registration.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/css/booknow.css') }}" rel="stylesheet">
+  <!-- <link href="files/css/bootstrap.min.css" rel="stylesheet"> -->
+<!-- <link rel="stylesheet" type="text/css" href="files/css/emojionearea.min.css"> -->
 
-<link rel="shortcut icon" href="https://raw.githubusercontent.com/muaz-khan/RTCMultiConnection/master/demos/logo.png">
-  <link rel="stylesheet" type="text/css" href="https://raw.githubusercontent.com/muaz-khan/RTCMultiConnection/master/demos/css/emojionearea.min.css">
 
-  <script src="https://raw.githubusercontent.com/muaz-khan/RTCMultiConnection/master/demos/js/jquery.min.js"></script>
-  <link href="https://raw.githubusercontent.com/muaz-khan/RTCMultiConnection/master/demos/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://rtcmulticonnection.herokuapp.com/node_modules/webrtc-adapter/out/adapter.js"></script>
-  <script src="https://rtcmulticonnection.herokuapp.com/dist/RTCMultiConnection.min.js"></script>
-  <script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script>
-  <script src="https://rtcmulticonnection.herokuapp.com/node_modules/fbr/FileBufferReader.js"></script>
+@section('content')
 
-  <script src="https://rtcmulticonnection.herokuapp.com/node_modules/canvas-designer/dev/webrtc-handler.js"></script>
-  <script src="https://rtcmulticonnection.herokuapp.com/node_modules/canvas-designer/canvas-designer-widget.js"></script>
-  <script src="https://raw.githubusercontent.com/muaz-khan/RTCMultiConnection/master/demos/js/emojionearea.min.js"></script>
   <!-- <script src="/node_modules/multistreamsmixer/MultiStreamsMixer.js"></script> -->
-  <style>
+
+<style type="text/css">
+html, body, section, ul, li, nav, a, h1, h2 {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    text-shadow: none;
+    box-shadow: none;
+    border-radius: 0;
+    text-decoration: none;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 17px;
+    line-height: 1.5em;
+}
+
+input[disabled], button[disabled] {
+  background: transparent!important;
+  color: #dcd7d7!important;
+  border: 1px solid #dcd7d7!important;
+  cursor: not-allowed!important;
+  text-shadow: none!important;
+  box-shadow: none!important;
+  text-decoration: none!important;
+  outline: none!important;
+}
+</style>
+
+<style>
 .extra-controls {
     position: absolute;
     right: 21%;
@@ -113,55 +137,52 @@ hr {
     z-index: 9999999999999;
     display: none;
 }
-.h-635{
-    height:635px !important;
-}
 </style>
-@section('content')
- <!-- top Fixed navbar End -->
- <section>
-    <div class="content-wrapper " style="overflow: hidden;">
-        <div class="container-fluid">
+<div class="container-fluid">
 
-            <article>
-                <div class="row">
-                    <div class="col-md-3 h-635">
-                        <div style="">
-                            <video id="main-video" controls playsinline autoplay></video>
-                            <div id="other-videos"></div>
-                            <hr>
-                            <div style="padding: 5px 10px;">
-                                <div id="onUserStatusChanged"></div>
-                            </div>
+<article>
 
-                            <div style="margin-top: 20px;bottom: 0;background: white; padding-bottom: 20px; width: 100%">
-                                <div id="conversation-panel"></div>
-                                <div id="key-press" style="text-align: right; display: none; font-size: 11px;">
-                                    <span style="vertical-align: middle;"></span>
-                                    <img src="https://www.webrtc-experiment.com/images/key-press.gif" style="height: 12px; vertical-align: middle;">
-                                </div>
-                                <textarea id="txt-chat-message"></textarea>
-                                <button class="btn btn-primary" id="btn-chat-message" disabled>Send</button>
-                                <img id="btn-attach-file" src="https://www.webrtc-experiment.com/images/attach-file.png" title="Attach a File">
-                                <img id="btn-share-screen" src="https://www.webrtc-experiment.com/images/share-screen.png" title="Share Your Screen">
-                            </div>
+<div id="widget-container" style="position: fixed;bottom: 0;right: 0;left: 20%;height: 100%;border: 1px solid black; border-top:0; border-bottom: 0;"></div>
+<video id="screen-viewer" controls playsinline autoplay></video>
 
-                            <canvas id="temp-stream-canvas" style="display: none;"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-md-9">
-                            <div id="widget-container" style="height:100%;border: 1px solid black; border-top:0; border-bottom: 0;"></div>
-                             <video id="screen-viewer" controls playsinline autoplay></video>
-                    </div>
-                    
-                </div>
-               
-
-               
-            </article>
-        </div>
+<div style="width: 20%; height: 100%; position: absolute;left:0;">
+    <video id="main-video" controls playsinline autoplay></video>
+    <div id="other-videos"></div>
+    <hr>
+    <div style="padding: 5px 10px;">
+        <div id="onUserStatusChanged"></div>
     </div>
-</section>
+
+    <div style="margin-top: 20px;position: absolute;bottom: 0;background: white; padding-bottom: 20px; width: 94%">
+        <div id="conversation-panel"></div>
+        <div id="key-press" style="text-align: right; display: none; font-size: 11px;">
+            <span style="vertical-align: middle;"></span>
+            <img src="https://www.webrtc-experiment.com/images/key-press.gif" style="height: 12px; vertical-align: middle;">
+        </div>
+        <textarea id="txt-chat-message"></textarea>
+        <button class="btn btn-primary" id="btn-chat-message" disabled>Send</button>
+        <img id="btn-attach-file" src="https://www.webrtc-experiment.com/images/attach-file.png" title="Attach a File">
+        <img id="btn-share-screen" src="https://www.webrtc-experiment.com/images/share-screen.png" title="Share Your Screen">
+    </div>
+
+    <canvas id="temp-stream-canvas" style="display: none;"></canvas>
+</div>
+</article>
+
+</div>
+@endsection
+@section('scripts')
+
+<script src="files/js/jquery.min.js"></script>
+
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+  <script src="https://rtcmulticonnection.herokuapp.com/dist/RTCMultiConnection.min.js"></script>
+  <script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script>
+  <script src="node_modules/fbr/FileBufferReader.js"></script>
+
+  <script src="node_modules/canvas-designer/dev/webrtc-handler.js"></script>
+  <script src="node_modules/canvas-designer/canvas-designer-widget.js"></script>
+  <script src="files/js/emojionearea.min.js"></script>
 
 <script>
 (function() {
@@ -179,8 +200,8 @@ hr {
 
 var connection = new RTCMultiConnection();
 
-connection.socketURL = '/';
-// connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+//connection.socketURL = '/';
+connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
 
 connection.extra.userFullName = params.userFullName;
 
@@ -201,8 +222,8 @@ connection.maxParticipantsAllowed = 1000;
 var designer = new CanvasDesigner();
 
 // you can place widget.html anywhere
-designer.widgetHtmlURL = "{{ route('whiteBoard.canvas')}}";
-designer.widgetJsURL = "{{asset('assets/js/widget.min.js')}}"
+designer.widgetHtmlURL = 'widget.html';
+designer.widgetJsURL = 'node_modules/canvas-designer/widget.min.js'
 
 designer.addSyncListener(function(data) {
     connection.send(data);
@@ -404,51 +425,51 @@ function appendChatMessage(event, checkmark_id) {
 
 var keyPressTimer;
 var numberOfKeys = 0;
-// $('#txt-chat-message').emojioneArea({
-//     pickerPosition: "top",
-//     filtersPosition: "bottom",
-//     tones: false,
-//     autocomplete: true,
-//     inline: true,
-//     hidePickerOnBlur: true,
-//     events: {
-//         focus: function() {
-//             $('.emojionearea-category').unbind('click').bind('click', function() {
-//                 $('.emojionearea-button-close').click();
-//             });
-//         },
-//         keyup: function(e) {
-//             var chatMessage = $('.emojionearea-editor').html();
-//             if (!chatMessage || !chatMessage.replace(/ /g, '').length) {
-//                 connection.send({
-//                     typing: false
-//                 });
-//             }
+$('#txt-chat-message').emojioneArea({
+    pickerPosition: "top",
+    filtersPosition: "bottom",
+    tones: false,
+    autocomplete: true,
+    inline: true,
+    hidePickerOnBlur: true,
+    events: {
+        focus: function() {
+            $('.emojionearea-category').unbind('click').bind('click', function() {
+                $('.emojionearea-button-close').click();
+            });
+        },
+        keyup: function(e) {
+            var chatMessage = $('.emojionearea-editor').html();
+            if (!chatMessage || !chatMessage.replace(/ /g, '').length) {
+                connection.send({
+                    typing: false
+                });
+            }
 
 
-//             clearTimeout(keyPressTimer);
-//             numberOfKeys++;
+            clearTimeout(keyPressTimer);
+            numberOfKeys++;
 
-//             if (numberOfKeys % 3 === 0) {
-//                 connection.send({
-//                     typing: true
-//                 });
-//             }
+            if (numberOfKeys % 3 === 0) {
+                connection.send({
+                    typing: true
+                });
+            }
 
-//             keyPressTimer = setTimeout(function() {
-//                 connection.send({
-//                     typing: false
-//                 });
-//             }, 1200);
-//         },
-//         blur: function() {
-//             // $('#btn-chat-message').click();
-//             connection.send({
-//                 typing: false
-//             });
-//         }
-//     }
-// });
+            keyPressTimer = setTimeout(function() {
+                connection.send({
+                    typing: false
+                });
+            }, 1200);
+        },
+        blur: function() {
+            // $('#btn-chat-message').click();
+            connection.send({
+                typing: false
+            });
+        }
+    }
+});
 
 window.onkeyup = function(e) {
     var code = e.keyCode || e.which;
@@ -770,4 +791,5 @@ $('#btn-share-screen').click(function() {
     }
 });
 </script>
+
 @endsection
