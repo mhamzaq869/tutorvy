@@ -134,11 +134,11 @@
         /* toolbox */
         
         .tool-box {
-            border-right: 1px solid #E5E5E5;
+            /* border-right: 1px solid #E5E5E5; */
             position: absolute;
             top: 0;
             width: 40px;
-            background-color: #FBFBFB;
+            background-color: #fff;
             overflow: hidden;
             height: 100%;
             overflow: hidden;
@@ -167,7 +167,7 @@
         }
         
         .tool-box canvas {
-            border-bottom: 1px solid #E5E5E5;
+            /* border-bottom: 1px solid #E5E5E5; */
             border-radius: 2px;
             margin-top: -4px;
             display: none;
@@ -506,7 +506,7 @@
         #pencil-colors-list td {
             width: 15px;
             height: 15px;
-            border: 1px solid black;
+            /* border: 1px solid black; */
             padding: 0;
         }
         
@@ -522,6 +522,16 @@
             vertical-align: middle;
             cursor: pointer;
         }
+      
+#main-canvas{
+    background-image: url('../assets/images/ico/graph.png');
+    
+}
+.tool-box{
+    padding-right:25px;
+    padding-top:15px;
+}
+
     </style>
 </head>
 
@@ -534,7 +544,8 @@
     <!-- toolbox -->
 
     <section id="tool-box" class="tool-box">
-        <canvas id="pencil-icon" width="40" height="40" title="Panchil"></canvas>
+        <canvas id="pencil-icon" width="40" height="40" title="Panchil">
+        </canvas>
         <canvas id="marker-icon" width="40" height="40" title="Marker"></canvas>
 
         <canvas id="eraser-icon" width="40" height="40" title="Erase drawings"></canvas>
