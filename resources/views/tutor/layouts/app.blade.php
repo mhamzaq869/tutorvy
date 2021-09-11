@@ -73,6 +73,7 @@
     $(document).ready(function(){
         $(".dropify").dropify();
         $('.js-multiSelect').select2();
+        $('.form-select').select2();
     })
     $("#country_selector").countrySelect({
                 defaultCountry: "{{ $user->country_short ?? '' }}",

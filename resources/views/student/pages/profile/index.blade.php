@@ -699,7 +699,7 @@
 
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <div class="row mt-3">
                                             <div class="col-md-12">
                                                 <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit" name="personal">Save Changes</button>
                                             </div>
