@@ -1,10 +1,11 @@
-@extends('tutor.layouts.app')
+@extends('student.layouts.app')
+
 
 <link rel="shortcut icon" href="https://raw.githubusercontent.com/muaz-khan/RTCMultiConnection/master/demos/logo.png">
+  
+  <link href="https://raw.githubusercontent.com/muaz-khan/RTCMultiConnection/master/demos/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="https://raw.githubusercontent.com/muaz-khan/RTCMultiConnection/master/demos/css/emojionearea.min.css">
 
-  <script src="https://raw.githubusercontent.com/muaz-khan/RTCMultiConnection/master/demos/js/jquery.min.js"></script>
-  <link href="https://raw.githubusercontent.com/muaz-khan/RTCMultiConnection/master/demos/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://rtcmulticonnection.herokuapp.com/node_modules/webrtc-adapter/out/adapter.js"></script>
   <script src="https://rtcmulticonnection.herokuapp.com/dist/RTCMultiConnection.min.js"></script>
   <script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script>
@@ -12,7 +13,6 @@
 
   <script src="https://rtcmulticonnection.herokuapp.com/node_modules/canvas-designer/dev/webrtc-handler.js"></script>
   <script src="https://rtcmulticonnection.herokuapp.com/node_modules/canvas-designer/canvas-designer-widget.js"></script>
-  <script src="https://raw.githubusercontent.com/muaz-khan/RTCMultiConnection/master/demos/js/emojionearea.min.js"></script>
   <!-- <script src="/node_modules/multistreamsmixer/MultiStreamsMixer.js"></script> -->
   <style>
 .extra-controls {
@@ -162,8 +162,59 @@ hr {
         </div>
     </div>
 </section>
+<script src="https://raw.githubusercontent.com/muaz-khan/RTCMultiConnection/master/demos/js/emojionearea.min.js"></script>
+@endsection
+@section('scripts')
+
 
 <script>
+   $(document).ready(function() {
+        $('#txt-chat-message').emojioneArea({
+            pickerPosition: "top",
+            filtersPosition: "bottom",
+            tones: false,
+            autocomplete: true,
+            inline: true,
+            hidePickerOnBlur: true,
+            events: {
+                focus: function() {
+                    $('.emojionearea-category').unbind('click').bind('click', function() {
+                        $('.emojionearea-button-close').click();
+                    });
+                },
+                keyup: function(e) {
+                    var chatMessage = $('.emojionearea-editor').html();
+                    if (!chatMessage || !chatMessage.replace(/ /g, '').length) {
+                        connection.send({
+                            typing: false
+                        });
+                    }
+
+
+                    clearTimeout(keyPressTimer);
+                    numberOfKeys++;
+
+                    if (numberOfKeys % 3 === 0) {
+                        connection.send({
+                            typing: true
+                        });
+                    }
+
+                    keyPressTimer = setTimeout(function() {
+                        connection.send({
+                            typing: false
+                        });
+                    }, 1200);
+                },
+                blur: function() {
+                    // $('#btn-chat-message').click();
+                    connection.send({
+                        typing: false
+                    });
+                }
+            }
+        });
+    })
 // (function() {
 //     var params = {},
 //         r = /([^&=]+)=?([^&]*)/g;
@@ -179,6 +230,9 @@ hr {
 
 var roomid = 'class_12345';
 var fullName = 'Student';
+var keyPressTimer;
+var numberOfKeys = 0;
+
 var connection = new RTCMultiConnection();
 
 // connection.socketURL = '/';
@@ -404,53 +458,8 @@ function appendChatMessage(event, checkmark_id) {
     conversationPanel.scrollTop = conversationPanel.scrollHeight - conversationPanel.scrollTop;
 }
 
-var keyPressTimer;
-var numberOfKeys = 0;
-// $('#txt-chat-message').emojioneArea({
-//     pickerPosition: "top",
-//     filtersPosition: "bottom",
-//     tones: false,
-//     autocomplete: true,
-//     inline: true,
-//     hidePickerOnBlur: true,
-//     events: {
-//         focus: function() {
-//             $('.emojionearea-category').unbind('click').bind('click', function() {
-//                 $('.emojionearea-button-close').click();
-//             });
-//         },
-//         keyup: function(e) {
-//             var chatMessage = $('.emojionearea-editor').html();
-//             if (!chatMessage || !chatMessage.replace(/ /g, '').length) {
-//                 connection.send({
-//                     typing: false
-//                 });
-//             }
 
 
-//             clearTimeout(keyPressTimer);
-//             numberOfKeys++;
-
-//             if (numberOfKeys % 3 === 0) {
-//                 connection.send({
-//                     typing: true
-//                 });
-//             }
-
-//             keyPressTimer = setTimeout(function() {
-//                 connection.send({
-//                     typing: false
-//                 });
-//             }, 1200);
-//         },
-//         blur: function() {
-//             // $('#btn-chat-message').click();
-//             connection.send({
-//                 typing: false
-//             });
-//         }
-//     }
-// });
 
 window.onkeyup = function(e) {
     var code = e.keyCode || e.which;
@@ -462,6 +471,8 @@ window.onkeyup = function(e) {
 document.getElementById('btn-chat-message').onclick = function() {
     var chatMessage = $('.emojionearea-editor').html();
     $('.emojionearea-editor').html('');
+    alert(connection.userid );
+    alert(chatMessage);
 
     if (!chatMessage || !chatMessage.replace(/ /g, '').length) return;
 
@@ -745,31 +756,35 @@ function replaceScreenTrack(stream) {
     $('#screen-viewer').show();
 }
 
-$('#btn-share-screen').click(function() {
-    if(!window.tempStream) {
-        alert('Screen sharing is not enabled.');
-        return;
-    }
 
-    $('#btn-share-screen').hide();
 
-    if(navigator.mediaDevices.getDisplayMedia) {
-        navigator.mediaDevices.getDisplayMedia(screen_constraints).then(stream => {
-            replaceScreenTrack(stream);
-        }, error => {
-            alert('Please make sure to use Edge 17 or higher.');
-        });
-    }
-    else if(navigator.getDisplayMedia) {
-        navigator.getDisplayMedia(screen_constraints).then(stream => {
-            replaceScreenTrack(stream);
-        }, error => {
-            alert('Please make sure to use Edge 17 or higher.');
-        });
-    }
-    else {
-        alert('getDisplayMedia API is not available in this browser.');
-    }
-});
+
+// $('#btn-share-screen').click(function() {
+//     if(!window.tempStream) {
+//         alert('Screen sharing is not enabled.');
+//         return;
+//     }
+
+//     $('#btn-share-screen').hide();
+
+//     if(navigator.mediaDevices.getDisplayMedia) {
+//         navigator.mediaDevices.getDisplayMedia(screen_constraints).then(stream => {
+//             replaceScreenTrack(stream);
+//         }, error => {
+//             alert('Please make sure to use Edge 17 or higher.');
+//         });
+//     }
+//     else if(navigator.getDisplayMedia) {
+//         navigator.getDisplayMedia(screen_constraints).then(stream => {
+//             replaceScreenTrack(stream);
+//         }, error => {
+//             alert('Please make sure to use Edge 17 or higher.');
+//         });
+//     }
+//     else {
+//         alert('getDisplayMedia API is not available in this browser.');
+//     }
+// });
 </script>
 @endsection
+

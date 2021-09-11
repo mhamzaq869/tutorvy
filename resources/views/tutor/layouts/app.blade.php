@@ -64,7 +64,7 @@
 
 <!-- <script src="{{ asset('assets/js/jquery_ui_multiselector.js')}}"></script> -->
 
-    @include('js_files.chat')
+    <!-- @include('js_files.chat') -->
     @yield('scripts')
     @yield('js')
 
