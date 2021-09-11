@@ -122,8 +122,8 @@ hr {
     z-index: 9999999999999;
     display: none;
 }
-.h-635{
-    height:635px !important;
+.h-500{
+    height:500px !important;
 }
 <style>
    .container-police {
@@ -385,7 +385,7 @@ td input{
                                                             </div> 
                                                         </div> -->
                                                         <div class="row">
-                                                            <div class="col-md-12 h-635 mt-5 mb-5">
+                                                            <div class="col-md-12 h-500 mt-5 mb-5">
                                                                 <div id="widget-container" style=""></div>
                                                                 <video id="screen-viewer" controls playsinline autoplay></video>
                                                             </div>
@@ -773,18 +773,18 @@ designer.setSelected('pencil');
 designer.setTools({
     pencil: true,
     text: true,
-    image: true,
-    pdf: true,
+    image: false,
+    pdf: false,
     eraser: true,
     line: true,
-    arrow: true,
+    arrow: false,
     dragSingle: true,
     dragMultiple: true,
     arc: true,
     rectangle: true,
     quadratic: false,
-    bezier: true,
-    marker: true,
+    bezier: false,
+    marker: false,
     zoom: false,
     lineWidth: false,
     colorsPicker: false,

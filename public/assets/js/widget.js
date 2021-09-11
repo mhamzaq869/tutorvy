@@ -2849,7 +2849,7 @@
 
     var tools = {
         line: true,
-        arrow: true,
+        arrow: false,
         pencil: true,
         marker: true,
         dragSingle: true,
