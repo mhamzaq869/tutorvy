@@ -597,14 +597,16 @@
 
                                                 </div>
                                                 <div class="input-text col-md-4">
-                                                    <select name="student_level" class="form-select form-select-lg mb-3"
-                                                        id="levels">
-                                                        <option selected value="0">Student level</option>
-                                                        <option @if (isset(Auth::user()->userdetail) && Auth::user()->userdetail->student_level == 1) selected @endif value="1" selected>Basic
-                                                        </option>
-                                                        <option @if (isset(Auth::user()->userdetail) && Auth::user()->userdetail->student_level == 2) selected @endif value="2">Intermediate
-                                                        </option>
-                                                        <option @if (isset(Auth::user()->userdetail) && Auth::user()->userdetail->student_level == 3) selected @endif value="3">Expert</option>
+                                                    <select name="student_grade"
+                                                        class="form-select form-select-lg mb-3" id="levels">
+                                                        <option value="" disabled selected>School</option>
+                                                    
+                                                            <option value="1">Pre Elementary School</option>
+                                                            <option value="2">Elementary School</option>
+                                                            <option value="3">Secondary School</option>
+                                                            <option value="4">High School</option>
+                                                            <option value="5"> Post Secondary</option>
+                                                    
                                                     </select>
                                                 </div>
                                             </div>
@@ -656,6 +658,46 @@
                                                 <h1>Professional</h1>
                                             </div>
                                         </div>
+                                        <div class="row mt-3">
+                                                    <div class="col-md-12">
+                                                        <div class="element">
+                                                            <div class="row">
+                                                                <div class="input-text col-md-6">
+                                                                    <input name="designation[]" class="form-control"
+                                                                        value=""
+                                                                        title="Designation: Senior Developer at Google"
+                                                                        placeholder="Designation">
+                                                                </div>
+                                                                <div class="input-text col-md-6">
+                                                                    <input name="organization[]"
+                                                                        value=""
+                                                                        class="form-control" title="Organization Like Google"
+                                                                        placeholder="Organization">
+                                                                </div>
+                                                            </div>
+                                                            <div class="row my-3">
+                                                                <div class="input-text col-md-6">
+                                                                    <input type="date"
+                                                                        value=""
+                                                                        class="form-control" name="degree_start[]"
+                                                                        placeholder="Starting date" value="">
+                                                                </div>
+                                                                <div class="input-text col-md-6">
+                                                                    <input type="date" value=""
+                                                                        class="form-control" name="degree_end[]"
+                                                                        placeholder="Ending Date" value="">
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="buttons mb-5">
+                                                    <a href="#" class="moreExperience cust_link">+ Add more experience</a>
+                                                    <!-- <button type="button" class="remove cencel-btn btn-registration"
+                                                            style="visibility: hidden;color: black;">remove</button> -->
+                                                </div>
+                                                <div class="results"></div>
                                         @if(Auth::user()->professional)
                                             @foreach (Auth::user()->professional as $profession)
                                                 <div class="row">

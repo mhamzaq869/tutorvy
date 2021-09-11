@@ -2577,3 +2577,20 @@ select#paymentMethod option[value="others"] {
     border-radius: 12px;
     padding: 7px;
 }
+
+.select2-container .select2-selection--single {
+    height: 100% !important;
+    border: 1px solid #D6DBE2;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 46px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 47px;
+}
+
+.select2 {
+    width: 100% !important;
+}
