@@ -73,6 +73,7 @@
         $(".dropify").dropify();
         $('.js-multiSelect').select2();
         $('.accSelect2').select2();
+        $('.form-select').select2();
         $("#year").yearpicker({
                 year: {{$user->year ?? '1990'}},
                 startYear: 1950,
