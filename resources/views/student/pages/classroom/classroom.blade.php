@@ -668,7 +668,7 @@ td input{
 </section>
 @endsection
 @section('scripts')
-<!-- @include('js_files.room') -->
+@include('js_files.whiteBoard')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.2.7/emojionearea.min.js"></script>
 <script>
         ClassicEditor

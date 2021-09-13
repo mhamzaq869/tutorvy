@@ -60,7 +60,6 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-     <!-- @include('js_files.chat') -->
      @yield('scripts')
      <script>
         $.ajaxSetup({
