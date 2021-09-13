@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Classroom;
 
 class StudentClassController extends Controller
 {
@@ -12,6 +13,8 @@ class StudentClassController extends Controller
      */
 
     public function index(){
-        return view('student.pages.classroom.index');
+        $classes = Classroom::with('booking')->get();
+
+        return view('student.pages.classroom.index',compact('classes'));
     }
 }

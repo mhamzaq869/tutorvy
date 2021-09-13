@@ -697,8 +697,8 @@ td input{
 })();
 
 var connection = new RTCMultiConnection();
-var roomid = 'class_12345';
-var fullName = 'Tutor';
+var roomid = '{{$class->classroom_id}}';
+var fullName = '{{$class->booking->user->first_name}} {{$class->booking->user->last_name}}';
 
 // connection.socketURL = '/';
 connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';

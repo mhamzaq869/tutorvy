@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Booking;
 
 class Classroom extends Model
 {
@@ -16,13 +17,15 @@ class Classroom extends Model
      */
     protected $table = 'classroom';
     protected $fillable = [
-        'tutor_id',
-        'student_id',
-        'subject_id',
+        'booking_id',
         'classroom_id',
-        'class_date',
-        'class_time',
+      
     ];
+
+    public function booking()
+    {
+        return $this->hasOne(Booking::class,'id','booking_id')->with('user')->with('tutor')->with('subject');
+    }
 
 }
 

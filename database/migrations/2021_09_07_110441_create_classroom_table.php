@@ -15,12 +15,8 @@ class CreateClassroomTable extends Migration
     {
         Schema::create('classroom', function (Blueprint $table) {
             $table->id();
-            $table->integer('tutor_id')->nullable();
-            $table->integer('student_id')->nullable();
+            $table->integer('booking_id')->nullable();
             $table->string('classroom_id')->nullable();
-            $table->integer('subject_id')->nullable();
-            $table->string('class_date')->nullable();
-            $table->string('class_time')->nullable();
             $table->timestamps();
         });
     }
