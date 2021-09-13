@@ -99,29 +99,29 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td class="pt-4">
+                                                <td class="pt-3">
                                                     Hellow
                                                 </td>
-                                                <td class="pt-4">
+                                                <td class="pt-3">
                                                     I'm done
                                                 </td>
-                                                <td class="pt-4">
+                                                <td class="pt-3">
                                                     Hellow
                                                 </td>
-                                                <td class="pt-4">
+                                                <td class="pt-3">
                                                     I'm done
                                                 </td>
-                                                <td class="pt-4">
+                                                <td class="pt-3">
                                                     Hellow
                                                 </td>
-                                                <td class="pt-4">
+                                                <td class="pt-3">
                                                     <span class="bg-color-apporve">
                                                         Rejected
                                                     </span>
                                                     
                                                 </td>
 
-                                                <td style="text-align: center;">
+                                                <td style="text-align: center; padding-top:14px">
                                                     <button class="schedule-btn" type="button" onclick="joinClass()">
                                                         Join Class
                                                     </button>
@@ -151,29 +151,29 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td class="pt-4">
+                                                <td class="pt-3">
                                                     Hellow
                                                 </td>
-                                                <td class="pt-4">
+                                                <td class="pt-3">
                                                     I'm done
                                                 </td>
-                                                <td class="pt-4">
+                                                <td class="pt-3">
                                                     Hellow
                                                 </td>
-                                                <td class="pt-4">
+                                                <td class="pt-3">
                                                     I'm done
                                                 </td>
-                                                <td class="pt-4">
+                                                <td class="pt-3">
                                                     Hellow
                                                 </td>
-                                                <td class="pt-4">
+                                                <td class="pt-3">
                                                     <span class="bg-color-apporve">
                                                         Rejected
                                                     </span>
                                                     
                                                 </td>
 
-                                                <td style="text-align: center;">
+                                                <td style="text-align: center; padding-top: 14px;">
                                                     <button class="schedule-btn" type="button">
                                                         Class Details
                                                     </button>

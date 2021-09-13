@@ -790,7 +790,7 @@ designer.setTools({
     colorsPicker: false,
     extraOptions: false,
     code: false,
-    undo: true
+    undo: false,
 });
 
 // here goes RTCMultiConnection

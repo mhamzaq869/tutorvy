@@ -249,6 +249,9 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item  mr-5">
+                    <button class=" btn-download-app">
+                        <i class="fa fa-android pr-2"></i> Download App Now
+                    </button>
                 <a href="{{route('student.tutor')}}">
                     <button class="booknow-btn">
                         Book Now

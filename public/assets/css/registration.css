@@ -311,22 +311,29 @@ body {
 .Google {
     margin-top: 30px;
     width: 100%;
-    background-color: #ffffff;
-    color: black;
+    background-color: #C94131;
+    color: #fff;
     padding: 9px;
     font-size: 14px;
-    border: 1px solid #E3E6EA;
+    border: 1px solid #C94131;
     text-align: center;
     font-family: 'Poppins';
     cursor: pointer;
     border-radius: 4px;
 }
 
+.Google a {
+    color: #fff;
+    text-decoration: none;
+}
 
-/* .Google:hover{
-    background-color: black;
-    color: white;
-} */
+.Google:hover {
+    background-color: #fff;
+}
+
+.Google:hover a {
+    color: #C94131;
+}
 
 .facebook {
     margin-top: 10px;

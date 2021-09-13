@@ -1627,3 +1627,19 @@ function removeFields(id) {
 function removeFields2(id) {
     $('#record2_' + id + '').empty();
 }
+$("#password").focusout(function() {
+    var decimal = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,150}$/;
+    var ter = $(this).val();
+
+    if (ter.match(decimal)) {
+        $("#password_error").css("display", "none");
+        $("#passTech").css("display", "block");
+    } else {
+        // alert('Wrong...!')
+        $("#password_error").css("display", "block");
+        $("#passTech").css("display", "none");
+        $("#password_error").text("Field should have t least one lowercase letter, one uppercase letter, one numeric digit, and one special character")
+
+        // return false;
+    }
+})

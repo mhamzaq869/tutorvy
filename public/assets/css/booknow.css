@@ -128,3 +128,19 @@
 .h-666 {
     height: 666px;
 }
+
+.fav {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    color: #fbfbfb;
+}
+
+.fav:hover {
+    color: #FAAF3A;
+}
+
+.fav i {
+    font-size: 24px;
+    text-shadow: 0 0 3px #1173FF;
+}
