@@ -716,7 +716,7 @@ connection.autoCloseEntireSession = true;
 // https://www.rtcmulticonnection.org/docs/maxParticipantsAllowed/
 connection.maxParticipantsAllowed = 1000;
 // set value 2 for one-to-one connection
-// connection.maxParticipantsAllowed = 2;
+connection.maxParticipantsAllowed = 2;
 
 
     connection.extra.userFullName = fullName;
@@ -1184,6 +1184,7 @@ designer.appendTo(document.getElementById('widget-container'), function() {
                 }
                 if (error === connection.errors.ROOM_FULL) {
                     alert('Room is full.');
+                    window.location.href = "{{route('student.classroom')}}";
                     return;
                 }
                 if (error === connection.errors.INVALID_PASSWORD) {
