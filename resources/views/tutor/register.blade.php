@@ -344,15 +344,25 @@
                                                     <input type="password" name="password"
                                                         class="form-control  @error('password') is-invalid @enderror"
                                                         placeholder="Password" id="password"> 
+                                                        <small id="passTech">
+                                                            Field should have at least:
+                                                            <ul>
+                                                                <li>One uppercase letter</li>
+                                                                <li>One lowercase letter</li>
+                                                                <li>One numeric value</li>
+                                                                <li>One special character</li>
+                                                                <li>8 characters</li>
+                                                            </ul>
+                                                        </small>
                                                         <span for="" id="password_error" class="invalid-feedback" role="alert">
                                                             <strong> This field is required </strong>  
                                                         </span>
                                                         <!-- <label for="" id="password_error" class="text-red"><strong> This field is required </strong>  </label> -->
-                                                    @error('password')
+                                                    <!-- @error('password')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
-                                                    @enderror
+                                                    @enderror -->
                                                 </div>
                                                 <div class="col-md-12 text-right mt-3">
 

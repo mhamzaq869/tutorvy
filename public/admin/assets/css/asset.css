@@ -1190,13 +1190,14 @@ a[data-toggle="collapse"] {
 
 /* border right */
 
-.active,
+
+/* .active,
 .btns:hover {
     background-color: #244775!important;
-}
+} */
 
 .active:nth-child(2) {
-    background-color: #00132D;
+    /* background-color: #00132D; */
 }
 
 

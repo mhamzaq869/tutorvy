@@ -22,9 +22,10 @@
 }
 
 .profile-tutor {
-    font-size: 14px;
+    font-size: 15px;
     font-family: "Poppins";
     font-weight: 500;
+    margin-bottom: 0;
 }
 
 .paragraph-text {
@@ -62,7 +63,7 @@
 .che-text {
     background-color: #f3e1e0;
     padding: 7px;
-    font-size: 14px;
+    font-size: 12px;
     border-radius: 4px;
     font-family: "Poppins";
 }
@@ -122,4 +123,9 @@
     font-size: 16px;
     font-family: "Poppins";
     font-weight: 400;
+}
+
+.img-profile img {
+    height: auto !important;
+    margin-top: 0 !important;
 }

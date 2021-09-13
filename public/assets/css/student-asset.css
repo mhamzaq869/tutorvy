@@ -782,7 +782,7 @@ a[data-toggle="collapse"] {
     text-align: center;
     position: absolute;
     left: 87px;
-    top: 37px;
+    top: 16px;
     font-size: 24px;
     font-family: 'poppins';
 }
@@ -1055,7 +1055,7 @@ tr th {
 }
 
 #accordion .select2-container .select2-selection--single {
-    height: 40px;
+    height: 40px !important;
 }
 
 #accordion .select2-container--default .select2-selection--single .select2-selection__rendered {
@@ -1076,7 +1076,8 @@ select {
 }
 
 .select2-container .select2-selection--single {
-    height: 100% !important;
+    /* height: 100% !important; */
+    height: 47px !important;
     border: 1px solid #D6DBE2;
 }
 
@@ -1085,9 +1086,52 @@ select {
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow {
-    height: 47px;
+    height: 47px !important;
 }
 
 .select2 {
     width: 100% !important;
+}
+
+.irs--flat .irs-bar {
+    background-color: #1173FF;
+}
+
+.irs--flat .irs-handle>i:first-child,
+.irs--flat .irs-from,
+.irs--flat .irs-to,
+.irs--flat .irs-single {
+    background-color: #1173FF;
+}
+
+.irs--flat .irs-to:before,
+.irs--flat .irs-from:before {
+    border-top-color: #1173FF;
+}
+
+.irs--flat .irs-handle.state_hover>i:first-child,
+.irs--flat .irs-handle:hover>i:first-child {
+    background-color: #000;
+}
+
+.btn-download-app {
+    background-color: #1A1A1A;
+    color: white;
+    transition: all 0.3s ease;
+    padding: 7px 20px;
+    border-radius: 50px;
+    border: 1px solid #1A1A1A;
+    font-size: 14px;
+    font-family: 'Poppins';
+    height: 42px;
+    cursor: pointer;
+}
+
+.btn-download-app:hover {
+    background-color: #30005E;
+    border-color: #30005E;
+}
+
+.btn-download-app i {
+    font-size: 18px;
 }
