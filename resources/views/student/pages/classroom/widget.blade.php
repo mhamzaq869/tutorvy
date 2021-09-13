@@ -134,11 +134,11 @@
         /* toolbox */
         
         .tool-box {
-            border-right: 1px solid #E5E5E5;
+            /* border-right: 1px solid #E5E5E5; */
             position: absolute;
             top: 0;
             width: 40px;
-            background-color: #FBFBFB;
+            background-color: #fff;
             overflow: hidden;
             height: 100%;
             overflow: hidden;
@@ -167,7 +167,7 @@
         }
         
         .tool-box canvas {
-            border-bottom: 1px solid #E5E5E5;
+            /* border-bottom: 1px solid #E5E5E5; */
             border-radius: 2px;
             margin-top: -4px;
             display: none;
@@ -506,7 +506,7 @@
         #pencil-colors-list td {
             width: 15px;
             height: 15px;
-            border: 1px solid black;
+            /* border: 1px solid black; */
             padding: 0;
         }
         
@@ -522,6 +522,19 @@
             vertical-align: middle;
             cursor: pointer;
         }
+      
+#main-canvas{
+    background-image: url('../assets/images/ico/graph.png');
+    
+}
+.tool-box{
+    padding-right:25px;
+    padding-top:15px;
+}
+.mb-1{
+    margin-bottom:1rem;
+}
+
     </style>
 </head>
 
@@ -534,34 +547,41 @@
     <!-- toolbox -->
 
     <section id="tool-box" class="tool-box">
-        <canvas id="pencil-icon" width="40" height="40" title="Panchil"></canvas>
-        <canvas id="marker-icon" width="40" height="40" title="Marker"></canvas>
+        <canvas class="mb-1" id="pencil-icon" width="40" height="40" title="Panchil">
+        </canvas>
+        <canvas class="mb-1" id="eraser-icon" width="40" height="40" title="Erase drawings"></canvas>
+        <canvas class="mb-1" id="text-icon" width="40" height="40" title="Write text"></canvas>
+        <canvas class="mb-1" id="drag-last-path" width="40" height="40" title="Drag/move last path"></canvas>
+        <canvas class="mb-1" id="drag-all-paths" width="40" height="40" title="Drag/move all paths"></canvas>
 
-        <canvas id="eraser-icon" width="40" height="40" title="Erase drawings"></canvas>
-        <canvas id="text-icon" width="40" height="40" title="Write text"></canvas>
-        <canvas id="image-icon" width="40" height="40" title="Add image"></canvas>
+        <canvas class="mb-1" id="line" width="40" height="40" title="Draw Lines"></canvas>
+        <canvas class="mb-1" id="arc" width="40" height="40" title="Arc"></canvas>
+        <canvas class="mb-1" id="rectangle" width="40" height="40" title="Rectangle"></canvas>
+        <canvas class="mb-1" id="undo" width="40" height="40" title="Undo: Remove recent shapes"></canvas>
 
-        <canvas id="pdf-icon" width="40" height="40" title="Add pdf"></canvas>
+        <canvas class="mb-1" id="line-width" width="40" height="40" title="Set line-width"></canvas>
 
-        <canvas id="drag-last-path" width="40" height="40" title="Drag/move last path"></canvas>
-        <canvas id="drag-all-paths" width="40" height="40" title="Drag/move all paths"></canvas>
 
-        <canvas id="line" width="40" height="40" title="Draw Lines"></canvas>
-        <canvas id="arrow" width="40" height="40" title="Draw Arrows"></canvas>
+        <canvas class="mb-1" id="marker-icon" width="40" height="40" title="Marker"></canvas>
 
-        <canvas id="zoom-up" width="40" height="40" title="Zoon-In"></canvas>
-        <canvas id="zoom-down" width="40" height="40" title="Zoom-Out"></canvas>
+        
+        <canvas class="mb-1" id="image-icon" width="40" height="40" title="Add image"></canvas>
 
-        <canvas id="arc" width="40" height="40" title="Arc"></canvas>
-        <canvas id="rectangle" width="40" height="40" title="Rectangle"></canvas>
-        <canvas id="quadratic-curve" width="40" height="40" title="Quadratic curve"></canvas>
-        <canvas id="bezier-curve" width="40" height="40" title="Bezier curve"></canvas>
+        <canvas class="mb-1" id="pdf-icon" width="40" height="40" title="Add pdf"></canvas>
 
-        <canvas id="undo" width="40" height="40" title="Undo: Remove recent shapes"></canvas>
+      
+        <canvas class="mb-1" id="arrow" width="40" height="40" title="Draw Arrows"></canvas>
 
-        <canvas id="line-width" width="40" height="40" title="Set line-width"></canvas>
-        <canvas id="colors" width="40" height="40" title="Set foreground and background colors"></canvas>
-        <canvas id="additional" width="40" height="40" title="Extra options"></canvas>
+        <canvas class="mb-1" id="zoom-up" width="40" height="40" title="Zoon-In"></canvas>
+        <canvas class="mb-1" id="zoom-down" width="40" height="40" title="Zoom-Out"></canvas>
+
+       
+        <canvas class="mb-1" id="quadratic-curve" width="40" height="40" title="Quadratic curve"></canvas>
+        <canvas class="mb-1" id="bezier-curve" width="40" height="40" title="Bezier curve"></canvas>
+
+      
+        <canvas class="mb-1" id="colors" width="40" height="40" title="Set foreground and background colors"></canvas>
+        <canvas class="mb-1" id="additional" width="40" height="40" title="Extra options"></canvas>
     </section>
 
     <!-- pdf -->

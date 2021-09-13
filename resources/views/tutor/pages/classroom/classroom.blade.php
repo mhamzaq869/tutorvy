@@ -309,13 +309,14 @@ td input{
                                 <div class="tab-content" id="nav-tabContent">
                                 <div class="tab-pane tab-border-none tab-border-none-1 fade show active" id="nav-whiteBoard" role="tabpanel" aria-labelledby="nav-whiteBoard-tab">
                                     <div class="container-fluid ">
-                                        <div class="row mt-2">
+                                        <div class="row ">
                                             <div class="col-md-12">
                                                 <nav>
                                                     <div class="nav nav-tabs board-nav" id="nav-tab" role="tablist">
-                                                    <a class="nav-item nav-link board-nav active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Board 1 <i class="pl-2 fa fa-times text-dark"></i></a>
-                                                    <a class="nav-item nav-link board-nav" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Board 2 <i class="pl-2 fa fa-times text-dark"></i></a>
-                                                    <a class="mt-2 ml-2" href="#">Add new Board +</a>
+                                                        <!-- <a class="nav-item nav-link board-nav active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Board 1 <i class="pl-2 fa fa-times text-dark"></i></a> -->
+                                                        <!-- <a class="nav-item nav-link board-nav active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Board </a> -->
+                                                        <!-- <a class="nav-item nav-link board-nav" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Board 2 <i class="pl-2 fa fa-times text-dark"></i></a>
+                                                        <a class="mt-2 ml-2" href="#">Add new Board +</a> -->
                                                     </div>
                                                 </nav>
                                                 <div class="tab-content" id="nav-tabContent">
@@ -387,7 +388,7 @@ td input{
                                                         <div class="row">
                                                             <div class="col-md-12 h-500 mt-5 mb-5">
                                                                 <div id="widget-container" style=""></div>
-                                                                <video id="screen-viewer" controls playsinline autoplay></video>
+                                                                <video id="screen-viewer"  playsinline ></video>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -639,7 +640,7 @@ td input{
                     </div>
                     </div> -->
                     <div class="mt-5">
-                        <video id="main-video" controls playsinline autoplay></video>
+                        <video id="main-video"  playsinline autoplay></video>
                         <div id="other-videos"></div>
                         <hr>
                         <div style="padding: 5px 10px;">
