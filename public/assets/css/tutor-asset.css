@@ -2616,4 +2616,5 @@ select#paymentMethod option[value="others"] {
 
 .btn-download-app i {
     font-size: 18px;
+    color: #fff !important;
 }

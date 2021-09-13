@@ -222,7 +222,7 @@
                             </li>
                             <li role="presentation">
                                 <a role="menuitem" tabindex="-1" href="./Login/reset.html">
-                                    Signout
+                                    Logout
                                 </a>
                             </li>
 
@@ -443,7 +443,7 @@
                                 @csrf
                             </form>
                             <a tabindex="-1" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('form').submit();">
-                                Signout
+                                Logout
                             </a>
                         </li>
                     </ul>

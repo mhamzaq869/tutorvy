@@ -249,7 +249,7 @@
                             </li>
                             <li role="presentation">
                                 <a role="menuitem" tabindex="-1" href="{{route('admin.logout')}}">
-                                    Signout
+                                    Logout
                                 </a>
                             </li>
                         </ul>
@@ -426,7 +426,7 @@
                         </li>
                         <li>
                             <a tabindex="-1" class="disabled" href="{{route('admin.logout')}}">
-                                Signout
+                                Logout
                             </a>
                         </li>
                     </ul>

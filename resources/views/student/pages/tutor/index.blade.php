@@ -11,7 +11,7 @@
             <p class="heading-first ml-3 mr-3">Find a Tutor</p>
             <div class="row bg-white ml-2 mr-2 ">
                 <div class="col-md-3">
-                    <div class="card">
+                    <div class="">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
