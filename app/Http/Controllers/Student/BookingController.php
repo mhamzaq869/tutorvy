@@ -91,14 +91,8 @@ class BookingController extends Controller
         // return $red;
         $booking = Booking::where('id',$request->id)->first();
         Classroom::create([
-    
-            'student_id' => Auth::user()->id,
-            'tutor_id' => $booking->booked_tutor,
-            'subject_id' =>$booking->subject_id,
-            'class_date' => $booking->class_date,
-            'class_time' => $booking->class_time,
+            'booking_id' => $request->id,
             'classroom_id' => $classroom_id
-        
         ]);
         $booking->status = 2;
         $booking->save();

@@ -38,7 +38,7 @@
                                                 <thead>
                                                     <tr
                                                         style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
-                                                        <th scope="col">Subjects</th>
+                                                        <th scope="col">Subject</th>
                                                         <th scope="col">Topic</th>
                                                         <th scope="col">Time</th>
                                                         <th scope="col">Student</th>
@@ -48,87 +48,22 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                   @foreach($classes as $class)
                                                     <tr>
                                                         <td class="pt-4">
-                                                            Hellow
+                                                            {{ $class->booking->subject->name }}
                                                         </td>
                                                         <td class="pt-4">
-                                                            I'm done
+                                                            {{ $class->booking->topic }}
                                                         </td>
                                                         <td class="pt-4">
-                                                            Hellow
+                                                           {{$class->booking->class_time}} {{date("g:i a", strtotime("$class->booking->class_time UTC"))}}
                                                         </td>
                                                         <td class="pt-4">
-                                                            I'm done
+                                                            {{ $class->booking->user->first_name }} {{ $class->booking->user->last_name }}
                                                         </td>
                                                         <td class="pt-4">
-                                                            Hellow
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            <span class="bg-color-apporve">
-                                                                Rejected
-                                                            </span>
-                                                           
-                                                        </td>
-
-                                                        <td style="text-align: center;">
-                                                            
-                                                            <button class="cencel-btn" type="button">
-                                                                View details
-                                                            </button>
-                                                            <a class="schedule-btn"  href="{{route('tutor.call')}}">
-                                                                Start Class
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="pt-4">
-                                                            Hellow
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            I'm done
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            Hellow
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            I'm done
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            Hellow
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            <span class="bg-color-apporve1">
-                                                                Approved
-                                                            </span>
-                                                           
-                                                        </td>
-
-                                                        <td style="text-align: center;">
-                                                            
-                                                            <button class="cencel-btn" type="button">
-                                                                View details
-                                                            </button>
-                                                            <button class="schedule-btn" type="button">
-                                                                Start Class
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="pt-4">
-                                                            Hellow
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            I'm done
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            Hellow
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            I'm done
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            Hellow
+                                                            {{ $class->booking->duration }} Hour(s)
                                                         </td>
                                                         <td class="pt-4">
                                                             <span class="bg-color-apporve3">
@@ -141,11 +76,12 @@
                                                             <button class="cencel-btn" type="button">
                                                                 View details
                                                             </button>
-                                                            <button class="schedule-btn" type="button">
-                                                                Start Class
-                                                            </button>
+                                                            <a href="{{route('tutor.start_class',[$class->classroom_id])}}"  class="schedule-btn">
+                                                                Start Call
+                                                            </a>
                                                         </td>
                                                     </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>

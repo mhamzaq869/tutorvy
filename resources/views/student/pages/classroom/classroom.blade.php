@@ -697,8 +697,8 @@ td input{
 })();
 
 var connection = new RTCMultiConnection();
-var roomid = 'class_12345';
-var fullName = 'Tutor';
+var roomid = '{{$class->classroom_id}}';
+var fullName = '{{$class->booking->user->first_name}} {{$class->booking->user->last_name}}';
 
 // connection.socketURL = '/';
 connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
@@ -737,10 +737,10 @@ connection.maxParticipantsAllowed = 1000;
 
     connection.checkPresence(roomid, function(isRoomExist) {
       
-        if (isRoomExist === true) {
-            alert('This room-id is already taken and room is active. Please join instead.', 'Room ID In Use');
-            return;
-        }
+        // if (isRoomExist === true) {
+        //     alert('This room-id is already taken and room is active. Please join instead.', 'Room ID In Use');
+        //     return;
+        // }
 
         // if ($('#chk-hidden-room').prop('checked') === true) {
             // either make it unique!
@@ -1153,59 +1153,59 @@ if(!!params.password) {
 
 designer.appendTo(document.getElementById('widget-container'), function() {
     // if (params.open === true || params.open === 'true') {
-            var tempStreamCanvas = document.getElementById('temp-stream-canvas');
-            var tempStream = tempStreamCanvas.captureStream();
-            tempStream.isScreen = true;
-            tempStream.streamid = tempStream.id;
-            tempStream.type = 'local';
-            connection.attachStreams.push(tempStream);
-            window.tempStream = tempStream;
+            // var tempStreamCanvas = document.getElementById('temp-stream-canvas');
+            // var tempStream = tempStreamCanvas.captureStream();
+            // tempStream.isScreen = true;
+            // tempStream.streamid = tempStream.id;
+            // tempStream.type = 'local';
+            // connection.attachStreams.push(tempStream);
+            // window.tempStream = tempStream;
 
-            connection.extra.roomOwner = true;
-            connection.open(roomid, function(isRoomOpened, roomid, error) {
-                if (error) {
-                    if (error === connection.errors.ROOM_NOT_AVAILABLE) {
-                        alert('Someone already created this room. Please either join or create a separate room.');
+            // connection.extra.roomOwner = true;
+            // connection.open(roomid, function(isRoomOpened, roomid, error) {
+            //     if (error) {
+            //         if (error === connection.errors.ROOM_NOT_AVAILABLE) {
+            //             alert('Someone already created this room. Please either join or create a separate room.');
+            //             return;
+            //         }
+            //         alert(error);
+            //     }
+
+            //     connection.socket.on('disconnect', function() {
+            //         location.reload();
+            //     });
+            // });
+    // } else {
+        connection.join(roomid, function(isRoomJoined, roomid, error) {
+            if (error) {
+                if (error === connection.errors.ROOM_NOT_AVAILABLE) {
+                    alert('This room does not exist. Please either create it or wait for moderator to enter in the room.');
+                    return;
+                }
+                if (error === connection.errors.ROOM_FULL) {
+                    alert('Room is full.');
+                    return;
+                }
+                if (error === connection.errors.INVALID_PASSWORD) {
+                    connection.password = prompt('Please enter room password.') || '';
+                    if(!connection.password.length) {
+                        alert('Invalid password.');
                         return;
                     }
-                    alert(error);
+                    connection.join(roomid, function(isRoomJoined, roomid, error) {
+                        if(error) {
+                            alert(error);
+                        }
+                    });
+                    return;
                 }
+                alert(error);
+            }
 
-                connection.socket.on('disconnect', function() {
-                    location.reload();
-                });
+            connection.socket.on('disconnect', function() {
+                location.reload();
             });
-    // } else {
-    //     connection.join(roomid, function(isRoomJoined, roomid, error) {
-    //         if (error) {
-    //             if (error === connection.errors.ROOM_NOT_AVAILABLE) {
-    //                 alert('This room does not exist. Please either create it or wait for moderator to enter in the room.');
-    //                 return;
-    //             }
-    //             if (error === connection.errors.ROOM_FULL) {
-    //                 alert('Room is full.');
-    //                 return;
-    //             }
-    //             if (error === connection.errors.INVALID_PASSWORD) {
-    //                 connection.password = prompt('Please enter room password.') || '';
-    //                 if(!connection.password.length) {
-    //                     alert('Invalid password.');
-    //                     return;
-    //                 }
-    //                 connection.join(roomid, function(isRoomJoined, roomid, error) {
-    //                     if(error) {
-    //                         alert(error);
-    //                     }
-    //                 });
-    //                 return;
-    //             }
-    //             alert(error);
-    //         }
-
-    //         connection.socket.on('disconnect', function() {
-    //             location.reload();
-    //         });
-    //     });
+        });
     // }
 });
 

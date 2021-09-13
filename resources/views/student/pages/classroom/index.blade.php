@@ -98,35 +98,40 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+
+                                        @foreach($classes as $class)
                                             <tr>
                                                 <td class="pt-3">
-                                                    Hellow
+                                                    {{ $class->booking->subject->name }}
                                                 </td>
                                                 <td class="pt-3">
-                                                    I'm done
+                                                    {{ $class->booking->topic }}
                                                 </td>
                                                 <td class="pt-3">
-                                                    Hellow
+                                                    {{$class->booking->class_time}} {{date("g:i a", strtotime("$class->booking->class_time UTC"))}}
                                                 </td>
                                                 <td class="pt-3">
-                                                    I'm done
+                                                    {{ $class->booking->user->first_name }} {{ $class->booking->user->last_name }}
                                                 </td>
                                                 <td class="pt-3">
-                                                    Hellow
+                                                    {{ $class->booking->duration }} Hour(s)
                                                 </td>
                                                 <td class="pt-3">
-                                                    <span class="bg-color-apporve">
-                                                        Rejected
+                                                    <span class="bg-color-apporve3">
+                                                        Pending
                                                     </span>
-                                                    
                                                 </td>
 
-                                                <td style="text-align: center; padding-top:14px">
-                                                    <button class="schedule-btn" type="button" onclick="joinClass()">
-                                                        Join Class
-                                                    </button>
+                                                
+                                                <td style="text-align: center;padding-top:14px;">
+                                                    
+                                                    <a href="{{route('student.join_class',[$class->classroom_id])}}"  class="schedule-btn">
+                                                    Join Class
+                                                    </a>
                                                 </td>
                                             </tr>
+                                        @endforeach
+                                           
                                         </tbody>
                                     </table>
                                 </div>

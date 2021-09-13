@@ -698,8 +698,8 @@ td input{
 })();
 
 var connection = new RTCMultiConnection();
-var roomid = 'class_12345';
-var fullName = 'Tutor';
+var roomid = '{{$class->classroom_id}}';
+var fullName = '{{$class->booking->tutor->first_name}} {{$class->booking->tutor->last_name}}';
 
 // connection.socketURL = '/';
 connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
@@ -715,9 +715,9 @@ connection.socketMessageEvent = 'canvas-dashboard-demo';
 connection.autoCloseEntireSession = true;
 
 // https://www.rtcmulticonnection.org/docs/maxParticipantsAllowed/
-connection.maxParticipantsAllowed = 1000;
+//connection.maxParticipantsAllowed = 1000;
 // set value 2 for one-to-one connection
-// connection.maxParticipantsAllowed = 2;
+ connection.maxParticipantsAllowed = 2;
 
 
     connection.extra.userFullName = fullName;

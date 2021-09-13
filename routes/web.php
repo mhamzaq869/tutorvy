@@ -160,6 +160,8 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::post('/change-password',[TutorSettingController::class,'changePassword'])->name('tutor.changePassword');
 
     Route::get('/call',[TutorSettingController::class,'call'])->name('tutor.call');
+    Route::get('/class/{class_room_id}',[TutorSettingController::class,'start_class'])->name('tutor.start_class');
+
     Route::get('/whiteBoard',[TutorSettingController::class,'whiteBoard'])->name('tutor.whiteBoard');
 
 
@@ -204,6 +206,8 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     Route::get('/profile',[StudentProfileController::class,'index'])->name('student.profile');
 
     Route::get('/call',[StudentSettingController::class,'call'])->name('student.call');
+    Route::get('/class/{class_room_id}',[StudentSettingController::class,'join_class'])->name('student.join_class');
+
     Route::get('/whiteBoard',[StudentSettingController::class,'whiteBoard'])->name('student.whiteBoard');
 
 

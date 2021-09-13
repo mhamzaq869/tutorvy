@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Classroom;
 
 class SettingController extends Controller
 {
@@ -65,5 +66,10 @@ class SettingController extends Controller
 
         return view('student.pages.classroom.classroom',compact('users'));
 
+    }
+
+    public function join_class($class_room_id){
+        $class = Classroom::with('booking')->where('classroom_id',$class_room_id)->first();
+        return view('student.pages.classroom.classroom',compact('class'));
     }
 }
