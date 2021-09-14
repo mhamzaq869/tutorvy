@@ -178,7 +178,10 @@ function langshort(opt){
    var val = opt.options[opt.selectedIndex].innerHTML;
    $("#lang").val(val)
 }
-
+function hideCard(){
+    // alert();
+    $(".infoCard").hide('slow');
+};
 </script>
 
 </body>

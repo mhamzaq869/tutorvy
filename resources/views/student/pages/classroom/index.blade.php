@@ -65,6 +65,22 @@
                 </div>
             </div> -->
             <div class="row bg-white ml-2 mr-2">
+                <div class="col-md-6 mb-1 ">
+                    <div class=" card  bg-toast infoCard">
+                        <a href="#" class="cross"  onclick="hideCard()"> 
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </a>
+
+                        <div class="card-body row">
+                            <div class="col-md-2 text-center">
+                                <i class="fa fa-info" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-md-10">
+                                Classes Details and all about your schedule. <a href="#">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-12 mt-3">
                     <nav>
                         <div class="nav nav-stwich" id="nav-tab" role="tablist">
