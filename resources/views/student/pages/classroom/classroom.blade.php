@@ -682,19 +682,7 @@ td input{
                 $('.language-html').text(ter);
             }
     </script>
-    <script>
-(function() {
-    var params = {},
-        r = /([^&=]+)=?([^&]*)/g;
-
-    function d(s) {
-        return decodeURIComponent(s.replace(/\+/g, ' '));
-    }
-    var match, search = window.location.search;
-    while (match = r.exec(search.substring(1)))
-        params[d(match[1])] = d(match[2]);
-    window.params = params;
-})();
+<script>
 
 var connection = new RTCMultiConnection();
 var roomid = '{{$class->classroom_id}}';
@@ -703,59 +691,25 @@ var fullName = '{{$class->booking->user->first_name}} {{$class->booking->user->l
 // connection.socketURL = '/';
 connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
 
-connection.extra.userFullName = params.userFullName;
-
-/// make this room public
-connection.publicRoomIdentifier = params.publicRoomIdentifier;
-
 connection.socketMessageEvent = 'canvas-dashboard-demo';
 
 // keep room opened even if owner leaves
 connection.autoCloseEntireSession = true;
 
 // https://www.rtcmulticonnection.org/docs/maxParticipantsAllowed/
-connection.maxParticipantsAllowed = 1000;
+// connection.maxParticipantsAllowed = 1000;
 // set value 2 for one-to-one connection
 connection.maxParticipantsAllowed = 2;
+connection.extra.userFullName = fullName;
 
-
-    connection.extra.userFullName = fullName;
-
-    // if($('#chk-room-password').prop('checked') === true){
-    //   var roomPassword = $('#txt-room-password').val().toString();
-    //   if (!roomPassword || !roomPassword.replace(/ /g, '').length) {
-    //       alertBox('Please enter room password.', 'Password Box Is Empty');
-    //       return;
-    //   }
-
-    //   connection.password = roomPassword;
-    // }    
-
-    // var initialHTML = $('#btn-create-room').html();
-
-    // $('#btn-create-room').html('Please wait...').prop('disabled', true);
-
-    connection.checkPresence(roomid, function(isRoomExist) {
+connection.checkPresence(roomid, function(isRoomExist) {
       
-        // if (isRoomExist === true) {
-        //     alert('This room-id is already taken and room is active. Please join instead.', 'Room ID In Use');
-        //     return;
-        // }
-
-        // if ($('#chk-hidden-room').prop('checked') === true) {
-            // either make it unique!
-            // connection.publicRoomIdentifier = connection.token() + connection.token();
-
-            // or set an empty value (recommended)
-            connection.publicRoomIdentifier = '';
-        // }
-
-        connection.sessionid = roomid;
-        connection.isInitiator = true;
+    connection.publicRoomIdentifier = '';
+    connection.sessionid = roomid;
+    connection.isInitiator = true;
         // openCanvasDesigner();
         // $('#btn-create-room').html(initialHTML).prop('disabled', false);
-    });
-
+});
 
 // here goes canvas designer
 var designer = new CanvasDesigner();
@@ -1147,9 +1101,6 @@ function updateLabel(progress, label) {
     label.innerHTML = position + '%';
 }
 
-if(!!params.password) {
-    connection.password = params.password;
-}
 
 designer.appendTo(document.getElementById('widget-container'), function() {
     // if (params.open === true || params.open === 'true') {
