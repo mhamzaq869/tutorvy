@@ -36,8 +36,9 @@ class BookingController extends Controller
     {
             
         $paypal_configuration = \Config::get('paypal');
-        $this->_api_context = new ApiContext(new OAuthTokenCredential($paypal_configuration['client_id'], $paypal_configuration['secret']));
-        $this->_api_context->setConfig($paypal_configuration['settings']);
+        $this->_api_context = new ApiContext(new OAuthTokenCredential($paypal_configuration['sandbox']['client_id'], $paypal_configuration['sandbox']['client_secret']));
+        $this->_api_context->setConfig($paypal_configuration);
+        
     }
     
     public function index()

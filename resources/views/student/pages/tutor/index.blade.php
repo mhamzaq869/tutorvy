@@ -349,7 +349,7 @@
                                                 <div class="row">
                                                     
                                                     <div class="col-md-2 col-6">
-                                                        <a href="{{route('student.tutor.show')}}">
+                                                        <a href="{{route('student.tutor.show',[$tutor->id])}}">
                                                             <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
                                                         
                                                         </a>
