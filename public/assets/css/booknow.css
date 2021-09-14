@@ -59,6 +59,17 @@
     display: inline-block;
 }
 
+.info4 {
+    background: #1172FC;
+    font-size: 14px;
+    padding: 5px 15px;
+    margin-left: 5px;
+    border-radius: 4px;
+    margin-top: 5px;
+    display: inline-block;
+    color: #fff;
+}
+
 .f-14 {
     font-size: 14px;
 }

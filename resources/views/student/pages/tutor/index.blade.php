@@ -312,8 +312,16 @@
                             <div class="card">
                                 <div class="card-body">
                                     <p><strong>  Searched Filters:  </strong></p>
-                                    <p>subject, location, rate, range, gender, age, availability</p>  
-                                </div>
+                                    <p>
+                                        <span class="info-1 info4">subject</span> 
+                                        <span class="info-1 info4">location</span>
+                                        <span class="info-1 info4">rate</span>
+                                        <span class="info-1 info4">range</span>
+                                        <span class="info-1 info4">gender</span>
+                                        <span class="info-1 info4">age</span>
+                                        <span class="info-1 info4">availability</span>
+                                    </p> 
+                                    </div>
                             </div>
                         </div>
                         <div class="col-md-3">

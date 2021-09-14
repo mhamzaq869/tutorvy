@@ -128,7 +128,7 @@ width:22px;
                     <div class="container-fluid profile-header pt-4 pb-4">
                             
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="d-flex">
                                         <div class="">
                                             <img src="{{asset('assets/images/ico/blue-icos.png')}}" alt="blue">
@@ -140,7 +140,7 @@ width:22px;
                                     </div>
 
                                 </div>
-                                <div class="col-md-3 m-0 p-0">
+                                <div class="col-md-4 m-0 p-0">
                                     <div class="d-flex">
                                         <div class="">
                                             <img src="{{asset('assets/images/ico/blue-clock.png')}}" alt="blue-clock">
@@ -152,7 +152,7 @@ width:22px;
                                     </div>
 
                                 </div>
-                                <div class="col-md-3 m-0 p-0">
+                                <div class="col-md-4 m-0 p-0">
                                     <div class="d-flex  ">
                                         <div class="">
                                             <img src="{{asset('assets/images/ico/red-clock.png')}}" alt="red">
@@ -163,7 +163,7 @@ width:22px;
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-md-3 m-0 p-0">
+                                <!--<div class="col-md-3 m-0 p-0">
                                     <div class="d-flex">
                                         <div class="">
                                             <img src="{{asset('assets/images/ico/blue-icos.png')}}" alt="blue+">
@@ -173,7 +173,7 @@ width:22px;
                                             <span class="heading-sixths">Response time</span>
                                         </span>
                                     </div>
-                                </div>
+                                </div>-->  
                             </div>
                         </div>
                     </div>

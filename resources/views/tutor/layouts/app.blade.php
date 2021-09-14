@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/dropify.css')}}" />
     <link rel="stylesheet" href="{{ asset('assets/css/countrySelect.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/booking.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.2.7/emojionearea.css">
 
     <!--Select 2-->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -61,6 +62,7 @@
      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.2.7/emojionearea.min.js"></script>
 
 <!-- <script src="{{ asset('assets/js/jquery_ui_multiselector.js')}}"></script> -->
 
@@ -74,6 +76,10 @@
         $(".dropify").dropify();
         $('.js-multiSelect').select2();
         $('.form-select').select2();
+        $("#msg").emojioneArea({
+                pickerPosition: "top",
+                saveEmojisAs:"shortname"
+            });
     })
     $("#country_selector").countrySelect({
                 defaultCountry: "{{ $user->country_short ?? '' }}",
