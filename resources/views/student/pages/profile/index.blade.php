@@ -405,6 +405,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="tab-content" id="v-pills-tabContent chang_photo">
+
                                 <div class="tab-pane fade show active chee" id="v-pills-General" role="tabpanel"
                                     aria-labelledby="v-pills-General-tab">
                                     @if (Session::has('message'))
@@ -415,11 +416,9 @@
                                             {{ Session::get('message') }}
                                         </div>
                                     @endif
-                                    <form action="{{ route('tutor.profile.update', [Auth::user()->id]) }}" method="Post"
-                                        enctype="multipart/form-data" id="personal">
-                                        @csrf
+                                    <form action="{{ route('student.profile.update') }}" method="Post" enctype="multipart/form-data" id="personal">
                                         <div class="row">
-
+                                            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                                             <div class="col-md-12">
                                                 <h1>Change Photo</h1>
                                             </div>
@@ -545,17 +544,17 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
-                                                <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit"
-                                                    name="personal">Save Changes</button>
+                                                <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit">Save Changes</button>
                                             </div>
 
                                         </div>
                                     </form>
                                 </div>
+
                                 <div class="tab-pane fade chee" id="v-pills-Education" role="tabpanel"
                                     aria-labelledby="v-pills-Education-tab">
-                                    <form action="{{ route('tutor.profile.edu', [Auth::user()->id]) }}" method="post" id="edu">
-                                        @csrf
+                                    <form action="{{route('student.education.update')}}" method="Post" enctype="multipart/form-data" id="studentEducationForm" >
+                                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <h1>Education</h1>
@@ -626,55 +625,54 @@
                                             </div>
                                         </div> -->
                                         <div class="row">
-                                            <div class="input-text col-md-6">
-                                                <select name="degree"
-                                                    class="form-select form-select-lg mb-3 w-100">
-                                                    <option value="">Degree</option>
-                                                @foreach($degrees as $degree)
-                                                        <option value="{{$degree->id}}">{{$degree->name}}</option>
-                                                @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="input-text col-md-6">
-                                                <select name="std_grade"
-                                                    class="form-select form-select-lg mb-3 w-100" >
-                                                    <option value="" disabled selected>Which grade you are in?</option>
-                                                
-                                                        <option value="1">Pre Elementary School</option>
-                                                        <option value="2">Elementary School</option>
-                                                        <option value="3">Secondary School</option>
-                                                        <option value="4">High School</option>
-                                                        <option value=" 5"> Post Secondary</option>
-                                                
-                                                </select>
-                                            </div>
+                                                <!-- <div class="input-text col-md-6">
+                                                    <select name="degree"
+                                                        class="form-select form-select-lg mb-3 w-100">
+                                                        <option value="">Degree</option>
+                                                    @foreach($degrees as $degree)
+                                                            <option value="{{$degree->id}}">{{$degree->name}}</option>
+                                                    @endforeach
+                                                    </select>
+                                                </div> -->
+                                                <div class="input-text col-md-6">
+                                                    <select name="student_level"
+                                                        class="form-select form-select-lg mb-3 w-100" >
+                                                        <option value="" disabled selected>Which grade you are in?</option>
+                                                            <option value="1" {{Auth::user()->student_level == 1 ? 'selected' : ''}}>Pre Elementary School</option>
+                                                            <option value="2" {{Auth::user()->student_level == 2 ? 'selected' : ''}}>Elementary School</option>
+                                                            <option value="3" {{Auth::user()->student_level == 3 ? 'selected' : ''}}>Secondary School</option>
+                                                            <option value="4" {{Auth::user()->student_level == 4 ? 'selected' : ''}}>High School</option>
+                                                            <option value="5" {{Auth::user()->student_level == 5 ? 'selected' : ''}}> Post Secondary</option>
+                                                    
+                                                    </select>
+                                                </div>
 
-                                            <div class="mt-3 col-md-12">
-                                                <p > <strong>What subject do you need help with?</strong> </p>
-                                                
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <select name="std_subj"
-                                                            class="form-select form-select-lg mb-3 w-100">
-                                                            <option value="" disabled selected>Main Subject</option>
-                                                            @foreach($subject_cat as $subject)
-                                                                    <option value="{{$subject->id}}">{{$subject->name}}</option>
-                                                            @endforeach
-                                                        
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <select name="std_learn"
-                                                            class="form-select form-select-lg mb-3 w-100">
-                                                            <option value="" disabled selected>Sub-Subject</option>
-                                                            @foreach($subjects as $subject)
-                                                                    <option value="{{$subject->id}}">{{$subject->name}}</option>
-                                                            @endforeach
-                                                        
-                                                        </select>
+                                                <div class="mt-3 col-md-12">
+                                                    <p > <strong>What subject do you need help with?</strong> </p>
+                                                    
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <select name="std_subj"
+                                                                class="form-select form-select-lg mb-3 w-100">
+                                                                <option value="" disabled selected>Main Subject</option>
+                                                                @foreach($subject_cat as $subject)
+                                                                        <option value="{{$subject->id}}" {{Auth::user()->std_subj == $subject->id ? 'selected' : ''}}>{{$subject->name}}</option>
+                                                                @endforeach
+                                                            
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <select name="std_learn"
+                                                                class="form-select form-select-lg mb-3 w-100">
+                                                                <option value="" disabled selected>Sub-Subject</option>
+                                                                @foreach($subjects as $subject)
+                                                                        <option value="{{$subject->id}}" {{Auth::user()->std_learn == $subject->id ? 'selected' : ''}}>{{$subject->name}}</option>
+                                                                @endforeach
+                                                            
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                         </div>
                                         <!-- <div class="row mt-3">
                                             <div class="input-text col-md-12">
@@ -696,6 +694,7 @@
                                         </div>
                                     </form>
                                 </div>
+                                
                                 <div class="tab-pane fade chee" id="v-pills-Verification" role="tabpanel"
                                     aria-labelledby="v-pills-Verification-tab">
                                     <form action="" method="post" id="">
@@ -793,6 +792,7 @@
     <script src="{{ asset('assets/js/yearpicker.js') }}"></script>
     <script src="{{ asset('assets/js/googleapi.js') }}"></script>
     <script src="{{ asset('assets/js/countrySelect.js') }}"></script>
+    @include('js_files.student.profileJs')
     <script>
         for (var i = 1; i <= 31; i++) {
             $("#day").append("<option value='" + i + "'" + (i == {{ Auth::user()->day ?? 1 }} ? 'selected' : '') + ">" +
@@ -867,131 +867,126 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
-        $("#imageUpload").change(function() {
-            readURL(this);
-        });
 
         $("#edu2").click(function(){
             $("#edu").submit();
         });
 
-            $('.extra-fields-customer').click(function() {
-                count_field = document.querySelectorAll(".customer_records").length;
+        $('.extra-fields-customer').click(function() {
+            count_field = document.querySelectorAll(".customer_records").length;
 
-                var html = `<div class=" customer_records mt-5" id="record_` + count_field + `">
-                <div class="row">
-                    <div class="input-text col-md-6">
-                        <select name="degree[` + count_field + `]" onchange="checkLevel(this)" onchange="checkLevel(this)" class="form-select form-select-lg mb-3">
-                            <option  selected="">Degree</option>
-                            @foreach ($degrees as $degree)
-                                <option value="{{ $degree->id }}">{{ $degree->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="input-text col-md-6">
-                        <select name="major[` + count_field + `]" class="form-select form-select-lg mb-3">
-                            <option value="0" selected="">Major</option>
-                            @foreach ($subjects as $subject)
-                                <option value="{{ $subject->id }}">{{ $subject->name }}</option>
-                            @endforeach
-                        </select>
-
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="input-text col-md-6">
-
-                        <input type="hidden" name="institute[` + count_field + `]" id="inst_id_` + count_field + `" value="">
-
-                        <input class="form-control bs-autocomplete" id="ac-demo"
-                            placeholder="University"
-                            data-source="demo_source.php"
-                            data-hidden_field_id="city-code" data-item_id="id"
-                            data-item_label="name" autocomplete="off">
-
-                    </div>
-                    <div class="input-text col-md-6">
-                        <input type="date" name="graduate_year[` + count_field + `]" class=" yearpicker form-control" id="grad-yea">
-                    </div>
-
-                </div>
-                <div class="row mt-3">
-                <div class="col-md-12">
-                    <input type="file" class="dropify" name="upload[` + count_field + `]" id="">
-                </div>
-                <div class="col-md-12 mt-3">
-                    <a href="#" class="removeFields" onclick="removeFields(` + count_field + `)"> Remove Fields</a>
-                </div>
+            var html = `<div class=" customer_records mt-5" id="record_` + count_field + `">
+            <div class="row">
+                <div class="input-text col-md-6">
+                    <select name="degree[` + count_field + `]" onchange="checkLevel(this)" onchange="checkLevel(this)" class="form-select form-select-lg mb-3">
+                        <option  selected="">Degree</option>
+                        @foreach ($degrees as $degree)
+                            <option value="{{ $degree->id }}">{{ $degree->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
-                </div>`;
-                $('.customer_records_dynamic').append(html);
-                $('.dropify').dropify();
-                // $(".form-select").select2();
-                (function() {
-                    "use strict";
-                    var cities = @json($institutes);
+                <div class="input-text col-md-6">
+                    <select name="major[` + count_field + `]" class="form-select form-select-lg mb-3">
+                        <option value="0" selected="">Major</option>
+                        @foreach ($subjects as $subject)
+                            <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                        @endforeach
+                    </select>
 
-                    $('.bs-autocomplete').each(function() {
-                        var _this = $(this),
-                            _data = _this.data(),
-                            _hidden_field = $('#' + _data.hidden_field_id);
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="input-text col-md-6">
 
-                        _this.after(
-                                '<div class="bs-autocomplete-feedback form-control-feedback"><div class="loader">Loading...</div></div>'
-                            )
-                            .parent('.form-group').addClass('has-feedback');
+                    <input type="hidden" name="institute[` + count_field + `]" id="inst_id_` + count_field + `" value="">
 
-                        var feedback_icon = _this.next('.bs-autocomplete-feedback');
-                        feedback_icon.hide();
+                    <input class="form-control bs-autocomplete" id="ac-demo"
+                        placeholder="University"
+                        data-source="demo_source.php"
+                        data-hidden_field_id="city-code" data-item_id="id"
+                        data-item_label="name" autocomplete="off">
 
-                        _this.autocomplete({
-                                minLength: 2,
-                                autoFocus: true,
+                </div>
+                <div class="input-text col-md-6">
+                    <input type="date" name="graduate_year[` + count_field + `]" class=" yearpicker form-control" id="grad-yea">
+                </div>
 
-                                source: function(request, response) {
-                                    var _regexp = new RegExp(request.term, 'i');
-                                    var data = cities.filter(function(item) {
-                                        return item.name.match(_regexp);
-                                    });
-                                    response(data);
-                                },
+            </div>
+            <div class="row mt-3">
+            <div class="col-md-12">
+                <input type="file" class="dropify" name="upload[` + count_field + `]" id="">
+            </div>
+            <div class="col-md-12 mt-3">
+                <a href="#" class="removeFields" onclick="removeFields(` + count_field + `)"> Remove Fields</a>
+            </div>
+            </div>
 
-                                search: function() {
-                                    feedback_icon.show();
-                                    _hidden_field.val('');
-                                },
+            </div>`;
+            $('.customer_records_dynamic').append(html);
+            $('.dropify').dropify();
+            // $(".form-select").select2();
+            (function() {
+                "use strict";
+                var cities = @json($institutes);
 
-                                response: function() {
-                                    feedback_icon.hide();
-                                },
+                $('.bs-autocomplete').each(function() {
+                    var _this = $(this),
+                        _data = _this.data(),
+                        _hidden_field = $('#' + _data.hidden_field_id);
 
-                                focus: function(event, ui) {
-                                    _this.val(ui.item[_data.item_label]);
-                                    event.preventDefault();
-                                },
+                    _this.after(
+                            '<div class="bs-autocomplete-feedback form-control-feedback"><div class="loader">Loading...</div></div>'
+                        )
+                        .parent('.form-group').addClass('has-feedback');
 
-                                select: function(event, ui) {
-                                    _this.val(ui.item[_data.item_label]);
-                                    _hidden_field.val(ui.item[_data.item_id]);
-                                    event.preventDefault();
-                                    $("#inst_id_" + count_field + "").val(ui.item.id)
-                                    console.log(event)
-                                }
-                            })
-                            .data('ui-autocomplete')._renderItem = function(ul, item) {
-                                return $('<li></li>')
-                                    .data("item.autocomplete", item)
-                                    .append('<a>' + item[_data.item_label] + '</a>')
-                                    .appendTo(ul);
-                            };
-                        // end autocomplete
-                    });
-                })();
-            });
+                    var feedback_icon = _this.next('.bs-autocomplete-feedback');
+                    feedback_icon.hide();
+
+                    _this.autocomplete({
+                            minLength: 2,
+                            autoFocus: true,
+
+                            source: function(request, response) {
+                                var _regexp = new RegExp(request.term, 'i');
+                                var data = cities.filter(function(item) {
+                                    return item.name.match(_regexp);
+                                });
+                                response(data);
+                            },
+
+                            search: function() {
+                                feedback_icon.show();
+                                _hidden_field.val('');
+                            },
+
+                            response: function() {
+                                feedback_icon.hide();
+                            },
+
+                            focus: function(event, ui) {
+                                _this.val(ui.item[_data.item_label]);
+                                event.preventDefault();
+                            },
+
+                            select: function(event, ui) {
+                                _this.val(ui.item[_data.item_label]);
+                                _hidden_field.val(ui.item[_data.item_id]);
+                                event.preventDefault();
+                                $("#inst_id_" + count_field + "").val(ui.item.id)
+                                console.log(event)
+                            }
+                        })
+                        .data('ui-autocomplete')._renderItem = function(ul, item) {
+                            return $('<li></li>')
+                                .data("item.autocomplete", item)
+                                .append('<a>' + item[_data.item_label] + '</a>')
+                                .appendTo(ul);
+                        };
+                    // end autocomplete
+                });
+            })();
+        });
     </script>
 @endsection
-<script>
-    $('.form-select').select2();
-</script>
+
