@@ -168,7 +168,7 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
 
     Route::get('/whiteBoard',[TutorSettingController::class,'whiteBoard'])->name('tutor.whiteBoard');
 
-
+    Route::post('/change-password',[TutorSettingController::class,'change_password'])->name('tutor.change.password');
     
 });
 
@@ -220,6 +220,7 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
 
     Route::post('/updateprofile',[StudentProfileController::class,'profileUpdate'])->name('student.profile.update');
     Route::post('/update_education',[StudentProfileController::class,'profileEducationRecord'])->name('student.education.update');
+    Route::post('/update_verification',[StudentProfileController::class,'profileVerficationRecord'])->name('student.verification.update');
 
 
 });
