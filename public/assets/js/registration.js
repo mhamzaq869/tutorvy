@@ -1557,8 +1557,8 @@ $(document).on('click', '.remove-field', function(e) {
     e.preventDefault();
 
 });
-let count_field = 0;
-let count_field_2 = 0;
+// let count_field = 0;
+// let count_field_2 = 0;
 
 //
 
@@ -1578,8 +1578,8 @@ let count_field_2 = 0;
 
 
 $('.moreExperience').click(function() {
-    // alert("Tech");
-    count_field_2 = document.querySelectorAll(".element").length;
+    // alert(count_field_2);
+    let count_field_2 = document.querySelectorAll(".element").length;
     console.log(count_field_2)
     var html = `<div id="record2_` + count_field_2 + `">
     <div class="row">
