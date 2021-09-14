@@ -19,8 +19,8 @@
         .rightChatIcon:hover {
             text-decoration: none;
         }
-        .f-28 {
-            font-size: 28px;
+        .f-19 {
+            font-size: 19px;
         }
         .sendRight {
             right: 28px;
@@ -111,6 +111,25 @@
         .offlice{
             background: gray !important;
         }
+        .emojionearea.emojionearea-inline > .emojionearea-button {
+    left: 3px !important;
+}
+.emojionearea.emojionearea-inline > .emojionearea-editor {
+    height: 32px;
+    min-height: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    position: absolute;
+    top: 0;
+    left: 93px;
+    right: 24px;
+    padding: 6px 0;
+}
+.emojionearea .emojionearea-picker.emojionearea-picker-position-top {
+  
+    left: 5px;
+    /* top: -10px; */
+}
     </style>
 
     <div class="content" style="width: 100%;background-color: #FBFBFB !important;">
@@ -129,6 +148,7 @@
                         <div class="line-box"></div>
                         @foreach($students as $student)
                             <a href="#" class="chatLeft" id="chatClient_1" onclick="selectUser(`{{$student->id}}`)">
+                            <!-- <a href="#" class="chatLeft" id="chatClient_1" > -->
                                 <div class="container-fluid m-0 p-0 img-chats">
                                     <img src="{{asset('admin/assets/img/logo/harram.jpg')}}" class="leftImg ml-1">
                                     <span class="activeDot" id="activeDot_{{$student->id}}"></span>
@@ -210,22 +230,22 @@
                         </div>
                             <div class="row">
                                 <div class="col-md-2 col-4">
-                                    <a href="#">
-                                        <i class="fa fa-smile rightChatIcon"></i>
+                                    <!-- <a href="#">
+                                        <i class="fa fa-smile rightChatIcon"></i> -->
                                         <!-- <img src="../assets/img/whiteicon/smiley-ico.png" class="w-100"> -->
-                                    </a>
+                                    <!-- </a>
                                     <a href="#">
                                         <i class="fa fa-paperclip rightChatIcon"></i>
 
-                                    </a>
+                                    </a> -->
                                 </div>
-                                <div class="col-md-10 col-8">
+                                <div class="col-md-12 col-8">
                                     
                                     <form id="chat_form" action="{{ route('store.text') }}">
                                         
                                         <input type="search" id="msg" class="w-100" alt="message" onKeyUp="sendTypingEvent()">
                                         <a href="" class="sendRight" type="submit">
-                                            <i class="fa fa-paper-plane f-28"></i>
+                                            <i class="fa fa-paper-plane f-19"></i>
                                         </a>
                                     </form>
                                     <!-- <img src="../assets/img/ico/Icon material-send.png" style="position: relative;left: -35px;height: 25px;margin-top: 10px;"> -->
@@ -250,6 +270,7 @@
     <script>
         $(document).ready(function() {
             $(".chatSet").hide();
+           
         })
         $("#chatClient_1").click(function() {
             $(".chatSet").show();
