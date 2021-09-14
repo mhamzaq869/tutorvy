@@ -965,7 +965,7 @@ function appendChatMessage(event, checkmark_id) {
 var keyPressTimer;
 var numberOfKeys = 0;
 $(document).ready(function(){
-    $('#txt-chat-message').emojioneArea({
+$('#txt-chat-message').emojioneArea({
     pickerPosition: "top",
     filtersPosition: "bottom",
     tones: false,
