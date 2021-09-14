@@ -306,8 +306,28 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-9 " id="tutors-list">
-                    @if(sizeof($available_tutors) == 0 || $available_tutors == '[]' )
+                <div class="col-md-9 " >
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="card">
+                                <div class="card-body">
+                                    <p><strong>  Searched Filters:  </strong></p>
+                                    <p>subject, location, rate, range, gender, age, availability</p>  
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <p class="number-booking mt-0 ">  56  </p>
+                                    <p class="mb-0">Total Tutors</p>  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" id="tutors-list">
+                        @if(sizeof($available_tutors) == 0 || $available_tutors == '[]' )
                         <div class="card">
                             <div class="card-body text-center">
                                 <img src="{{asset('assets/images/ico/no-tutor.svg')}}" alt="" width="200">
@@ -447,6 +467,8 @@
                         </div>
                         @endforeach
                     @endif
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
