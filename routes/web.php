@@ -203,6 +203,9 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     Route::get('/viewtutor/{id}',[StudentTutorController::class,'show'])->name('student.tutor.show');
     Route::post('/tutorfilter',[StudentTutorController::class,'filterTutor'])->name('student.tutor.filter');
     Route::get('/settings',[StudentSettingController::class,'index'])->name('student.settings');
+
+    Route::post('/change-password',[StudentSettingController::class,'change_password']);
+
     Route::get('/profile',[StudentProfileController::class,'index'])->name('student.profile');
 
     Route::get('/call',[StudentSettingController::class,'call'])->name('student.call');

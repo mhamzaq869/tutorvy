@@ -29,9 +29,9 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                <a class="nav-link active" id="v-pills-General-tab" data-toggle="pill" href="#v-pills-General"
+                                <a class="nav-link  {{session()->has('key') ? '' : 'active show'}}" id="v-pills-General-tab" data-toggle="pill" href="#v-pills-General"
                                     role="tab" aria-controls="v-pills-General" aria-selected="true">General</a>
-                                <a class="nav-link" id="v-pills-Security-tab" data-toggle="pill" href="#v-pills-Security"
+                                <a class="nav-link {{session()->has('key') ? 'active show' : ''}}" id="v-pills-Security-tab" data-toggle="pill" href="#v-pills-Security"
                                     role="tab" aria-controls="v-pills-Security" aria-selected="false">Secutiy</a>
                                 <a class="nav-link" id="v-pills-Payment-tab" data-toggle="pill"
                                     href="#v-pills-Payment" role="tab" aria-controls="v-pills-Payment"
@@ -44,7 +44,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="tab-content" id="v-pills-tabContent chang_photo">
-                                <div class="tab-pane fade show active chee" id="v-pills-General" role="tabpanel"
+                                <div class="tab-pane fade {{session()->has('key') ? '' : 'active show'}} chee" id="v-pills-General" role="tabpanel"
                                     aria-labelledby="v-pills-General-tab">
                                     
                                     <form action="" method="Post"
@@ -114,46 +114,70 @@
                                         </div>
                                     </form>
                                 </div>
-                                <div class="tab-pane fade chee" id="v-pills-Security" role="tabpanel"
+
+                                <div class="tab-pane fade chee {{session()->has('key') ? 'active show' : ''}}" id="v-pills-Security" role="tabpanel"
                                     aria-labelledby="v-pills-Security-tab">
                                     <div class="row">
                                     <div class="col-md-12 mb-4">
                                         <h3>Security</h3>
                                     </div>
+
+                                    <div class="col-6">
+                                        @if(session()->has('error'))
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            {{session('error')}}
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        @elseif(session()->has('success'))
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            {{session('success')}}
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        @endif
+                                    </div>
                                     <div class="col-md-12 font-light">
                                             Change password
                                     </div>
                                         <div class="col-sm-6">
-                                            <form action="" method="POST">
+                                            <form action="{{url('/student/change-password')}}" method="POST">
                                                 @csrf
                                                 <small>Password</small>
                                                 <div class="form-group pass_show">
-                                                    <input type="password" name="current_password" class="form-control @error('current_password') is-invalid @enderror"
+                                                    <input type="text" name="current_password" class="form-control @error('current_password') is-invalid @enderror"
                                                         placeholder=" ***********" >
-                                                        @error('error')
-                                                            <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $message }}</strong>
-                                                            </span>
+                                                        @error('current_password')
+                                                            <span class="small text-danger">{{ $message }}</span>
                                                         @enderror
                                                 </div>
                                                 <small>New Password</small>
                                                 <div class="form-group pass_show">
-                                                    <input type="password" name="new_password" class="form-control"
+                                                    <input type="text" name="new_password" class="form-control"
                                                         placeholder="***********">
+                                                        @error('new_password')
+                                                        <span class="small text-danger">{{ $message }}</span>
+                                                        @enderror
                                                 </div>
                                                 <small >Re-enter new
                                                     password</small>
                                                 <div class="form-group pass_show">
-                                                    <input type="password" name="new_confirm_password" class="form-control"
+                                                    <input type="text" name="new_confirm_password" class="form-control"
                                                         placeholder="***********">
+                                                        @error('new_confirm_password')
+                                                        <span class="small text-danger">{{ $message }}</span>
+                                                        @enderror
                                                 </div>
                                                 <div class="float-right">
-                                                    <button class="schedule-btn">Save changes</button>
+                                                    <button type="submit" class="schedule-btn">Save changes</button>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="tab-pane fade chee" id="v-pills-Payment" role="tabpanel"
                                     aria-labelledby="v-pills-Payment-tab">
                                     <div class="row">
@@ -222,6 +246,7 @@
                                             </div>
                                         </div>
                                 </div>
+
                                 <div class="row mb-3">
                                         <div class="col-md-12">
                                             <hr>
@@ -312,4 +337,8 @@
     </div>
 </section>
 
+<script>
+    var app = <?php Session('success')?>
+    console.log(app , "asd");
+</script>
 @endsection
