@@ -99,6 +99,8 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
     Route::get('/website',[WebsiteController::class,'index'])->name('admin.website');
     Route::get('/report',[ReportController::class,'index'])->name('admin.report');
     Route::get('/integration',[IntegrationController::class,'index'])->name('admin.integration');
+    Route::post('/save-payal',[IntegrationController::class,'savePaypalDetails']);
+    Route::post('/integration-status',[IntegrationController::class,'changeIntegrationStatus']);
 
     Route::get('/staff',[StaffController::class,'index'])->name('admin.staff');
     Route::post('/staff/insert',[StaffController::class,'insertStaff'])->name('admin.insertStaff');
