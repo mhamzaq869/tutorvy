@@ -874,7 +874,7 @@
                                         </div>
 
 
-                                        <div class=" row ">
+                                        <!-- <div class=" row ">
                                             <div class="col-md-6">
                                                 <input id="" type="text" class="form-control" placeholder="Add Driving License Number">
                                             </div>
@@ -901,15 +901,15 @@
                                             <div class="col-md-6 mt-2">
                                             </div>
                                             
-                                            <div class="col-md-6 mt-2">
-                                                <input type="file" class="dropify">
+                                            <div class="col-md-6 mt-2 passport">
+                                                <input type="file" class="dropify ">
                                             </div>
-                                            <div class="col-md-12 mt-2">
+                                            <div class="col-md-12 mt-2 passport">
                                                 <p>
                                                     <strong>Kindly upload Passport photo with white Background</strong>
                                                 </p>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="row mt-3">
                                             <div class="col-md-12">
                                                 <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit" name="personal">Save Changes</button>
