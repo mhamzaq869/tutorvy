@@ -23,6 +23,10 @@
 .enableSwitch i{
     color: #00132D;
 }
+.googleIc{
+    padding-top:7px;
+    padding-bottom:7px;
+}
 </style>
 @section('content')
 <!--section start  -->
@@ -73,6 +77,21 @@
                                 </label>
                             </span>
                             <img src="{{asset('admin/assets/img/ico/PayPal.png')}}" class="payIcon" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <span class="enableSwitch">
+                                <a href="#" id="payment_setting"><i class="fa fa-cogs" aria-hidden="true"></i></a>
+                                <label class="switch mt-0">
+                                        <input type="checkbox" id="" onchange="">
+                                        <span class="slider round"></span>
+                                   
+                                </label>
+                            </span>
+                            <img src="{{asset('admin/assets/img/ico/google-places.png')}}"  class="payIcon googleIc" alt="">
                         </div>
                     </div>
                 </div>

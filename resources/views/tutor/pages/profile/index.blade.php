@@ -106,6 +106,12 @@
     color: #fff;
     background-color: #007bff !important;
 }
+.passport{
+    display:none;
+}
+.license{
+    display:none;
+}
 </style>
 
 <link rel="stylesheet" href="{{ asset('assets/css/yearpicker.css') }}" />
@@ -827,30 +833,46 @@
                                         </div>
                                         <div class=" row mt-3">
                                             <div class="col-md-6">
-                                                <select id="selection " name="security" onchange="changeplh()"
+                                                <select id="selection" name="security" 
                                                     class="form-select form-select-lg mb-3 w-100"
                                                     aria-label=".form-select-lg example">
-                                                    <option value="1" @if (Auth::user()->type == 1) selected @endif>ID card number</option>
-                                                    <option value="2" @if (Auth::user()->type == 2) selected @endif>Social security number</option>
+                                                    <option value="1" selected>National Identity Card</option>
+                                                    <option value="2">Driving License</option>
+                                                    <option value="3">Passport</option>
                                                 </select>
                                             </div>
-                                            <div class="col-md-6">
-                                                <input id="textbox" type="number" @if (Auth::user()->type == 1) name="cnic" @else name="security" @endif class="form-control" placeholder="ID card number"
-                                                    value="{{ Auth::user()->cnic_security ?? '' }}">
+                                            <div class="col-md-6 id">
+                                                <input id="textbox" type="number" placeholder="Add Id Card number">
                                             </div>
-                                            
-                                            <div class="col-md-6 mt-2">
+                                            <div class="col-md-6 license">
+                                                <input id="textbox" type="number" placeholder="Add Driving License number">
+                                            </div>
+                                            <div class="col-md-6 passport">
+                                                <input id="textbox" type="number" placeholder="Add Passport number">
+                                            </div>
+                                            <div class="col-md-6 mt-2 passport" >
                                                 <input type="file" class="dropify">
                                             </div>
-                                            <div class="col-md-6 mt-2">
+                                                
+                                            <div class="col-md-6 mt-2 id">
+                                                <input type="file" class="dropify">
+                                            </div>
+                                            <div class="col-md-6 mt-2 id">
+                                                <input type="file" class="dropify">
+                                            </div>
+                                            <div class="col-md-6 mt-2 license">
+                                                <input type="file" class="dropify">
+                                            </div>
+                                            <div class="col-md-6 mt-2 license">
                                                 <input type="file" class="dropify">
                                             </div>
                                             <div class="col-md-12 mt-2">
                                                 <p>
-                                                    <strong>Kindly upload Id Card photos with white Background</strong>
+                                                    <strong>Kindly upload Card photos with white Background</strong>
                                                 </p>
                                             </div>
                                         </div>
+
 
                                         <div class=" row ">
                                             <div class="col-md-6">
@@ -1109,5 +1131,25 @@
                     });
                 })();
             });
+            $("#selection").on('change', function(){
+                var ter=$(this).val();
+                if(ter == 3){
+                    $(".passport").css("display","block");
+                    $(".id").css("display","none");
+                    $(".license").css("display","none");
+                }
+                else if(ter == 1){
+                    $(".passport").css("display","none");
+                    $(".id").css("display","block");
+                    $(".license").css("display","none");
+
+                    }
+                    else if(ter == 2){
+                    $(".passport").css("display","none");
+                    $(".id").css("display","none");
+                    $(".license").css("display","block");
+
+                    }
+                });
     </script>
 @endsection
