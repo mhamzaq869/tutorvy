@@ -14,6 +14,7 @@
         "laravel/socialite": "^5.2",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
+        "paypal/rest-api-sdk-php": "^1.14",
         "pusher/pusher-php-server": "~3.0",
         "spatie/laravel-query-builder": "^3.5",
         "srmklive/paypal": "^3.0"

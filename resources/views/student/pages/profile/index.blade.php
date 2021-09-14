@@ -703,97 +703,108 @@
                                 
                                 <div class="tab-pane fade chee" id="v-pills-Verification" role="tabpanel"
                                     aria-labelledby="v-pills-Verification-tab">
-                                    <form action="" method="post" id="">
-                                        @csrf
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <h1>Verification</h1>
-                                            </div>
-                                        </div>
-                                        <div class=" row mt-3">
-                                            <div class="col-md-6">
-                                                <select id="selection" name="security" 
-                                                    class="form-select form-select-lg mb-3 w-100"
-                                                    aria-label=".form-select-lg example">
-                                                    <option value="1" selected>National Identity Card</option>
-                                                    <option value="2">Driving License</option>
-                                                    <option value="3">Passport</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6 id">
-                                                <input id="textbox" type="number" placeholder="Add Id Card number">
-                                            </div>
-                                            <div class="col-md-6 license">
-                                                <input id="textbox" type="number" placeholder="Add Driving License number">
-                                            </div>
-                                            <div class="col-md-6 passport">
-                                                <input id="textbox" type="number" placeholder="Add Passport number">
-                                            </div>
-                                            <div class="col-md-6 mt-2 passport" >
-                                                <input type="file" class="dropify">
-                                            </div>
-                                                
-                                            <div class="col-md-6 mt-2 id">
-                                                <input type="file" class="dropify">
-                                            </div>
-                                            <div class="col-md-6 mt-2 id">
-                                                <input type="file" class="dropify">
-                                            </div>
-                                            <div class="col-md-6 mt-2 license">
-                                                <input type="file" class="dropify">
-                                            </div>
-                                            <div class="col-md-6 mt-2 license">
-                                                <input type="file" class="dropify">
-                                            </div>
-                                            <div class="col-md-12 mt-2">
-                                                <p>
-                                                    <strong>Kindly upload Card photos with white Background</strong>
-                                                </p>
-                                            </div>
-                                        </div>
 
-                                        <!-- <div class=" row ">
-                                            <div class="col-md-6">
-                                                <input id="" type="text" class="form-control" placeholder="Add Driving License Number">
+                                    @if($user_files != [])
+                                    <div class=" card  bg-toast infoCard">
+                                        <div class="card-body row">
+                                            <div class="col-md-2 text-center">
+                                                <i class="fa fa-info" aria-hidden="true"></i>
                                             </div>
-                                            <div class="col-md-6">
-                                            </div>
-                                           
-                                            <div class="col-md-6 mt-2">
-                                                <input type="file" class="dropify">
-                                            </div>
-                                            <div class="col-md-6 mt-2">
-                                                <input type="file" class="dropify">
-                                            </div>
-                                            <div class="col-md-12 mt-2">
-                                                <p>
-                                                    <strong>Kindly upload License photos with white Background</strong>
-                                                </p>
+                                            <div class="col-md-10">
+                                                Your Documents are under process. Please wait for Administrator approval
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div class=" row ">
-                                            <div class="col-md-6">
-                                                <input id="" type="text" class="form-control" placeholder="Add Passport Number">
+                                    @else
+                                        <form action="{{ route('student.verification.update') }}" method="Post" enctype="multipart/form-data" id="studentVerificationForm">
+                                            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <h1>Verification</h1>
+                                                </div>
                                             </div>
-                                            <div class="col-md-6 mt-2">
+                                            <div class=" row mt-3">
+                                                <div class="col-md-6">
+                                                    <select id="selection" name="security" 
+                                                        class="form-select form-select-lg mb-3 w-100"
+                                                        aria-label=".form-select-lg example">
+                                                        <option value="1" selected>National Identity Card</option>
+                                                        <option value="2">Driving License</option>
+                                                        <option value="3">Passport</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input id="textbox" name="document_no" type="number" placeholder="Add Id Card number">
+                                                </div>
+
+                                                <div class="col-md-6 mt-2 passport" >
+                                                    <input type="file" name="passport_pic" class="dropify">
+                                                </div>
+                                                    
+                                                <div class="col-md-6 mt-2 id">
+                                                    <input type="file" name="id_card_pic" class="dropify">
+                                                </div>
+                                                <div class="col-md-6 mt-2 id">
+                                                    <input type="file" name="id_card_pic2" class="dropify">
+                                                </div>
+                                                <div class="col-md-6 mt-2 license">
+                                                    <input type="file" name="license_pic" class="dropify">
+                                                </div>
+                                                <div class="col-md-6 mt-2 license">
+                                                    <input type="file" name="license_pic2" class="dropify">
+                                                </div>
+                                                <div class="col-md-12 mt-2">
+                                                    <p>
+                                                        <strong>Kindly upload Card photos with white Background</strong>
+                                                    </p>
+                                                </div>
                                             </div>
+
+                                            <!-- <div class=" row ">
+                                                <div class="col-md-6">
+                                                    <input id="" type="text" class="form-control" placeholder="Add Driving License Number">
+                                                </div>
+                                                <div class="col-md-6">
+                                                </div>
                                             
-                                            <div class="col-md-6 mt-2">
-                                                <input type="file" class="dropify">
+                                                <div class="col-md-6 mt-2">
+                                                    <input type="file" class="dropify">
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                    <input type="file" class="dropify">
+                                                </div>
+                                                <div class="col-md-12 mt-2">
+                                                    <p>
+                                                        <strong>Kindly upload License photos with white Background</strong>
+                                                    </p>
+                                                </div>
                                             </div>
-                                            <div class="col-md-12 mt-2">
-                                                <p>
-                                                    <strong>Kindly upload Passport photo with white Background</strong>
-                                                </p>
+
+                                            <div class=" row ">
+                                                <div class="col-md-6">
+                                                    <input id="" type="text" class="form-control" placeholder="Add Passport Number">
+                                                </div>
+                                                <div class="col-md-6 mt-2">
+                                                </div>
+                                                
+                                                <div class="col-md-6 mt-2">
+                                                    <input type="file" class="dropify">
+                                                </div>
+                                                <div class="col-md-12 mt-2">
+                                                    <p>
+                                                        <strong>Kindly upload Passport photo with white Background</strong>
+                                                    </p>
+                                                </div>
+                                            </div> -->
+                                            <div class="row mt-3">
+                                                <div class="col-md-12">
+                                                    <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit" name="personal">Save Changes</button>
+                                                </div>
                                             </div>
-                                        </div> -->
-                                        <div class="row mt-3">
-                                            <div class="col-md-12">
-                                                <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit" name="personal">Save Changes</button>
-                                            </div>
-                                        </div>
-                                    </form>
+                                        </form>
+                                    @endif
+
                                 </div>
                                 
                             </div>
@@ -1000,26 +1011,7 @@
                     });
                 })();
             });
-            $("#selection").on('change', function(){
-            var ter=$(this).val();
-            if(ter == 3){
-                $(".passport").css("display","block");
-                $(".id").css("display","none");
-                $(".license").css("display","none");
-            }
-            else if(ter == 1){
-                $(".passport").css("display","none");
-                $(".id").css("display","block");
-                $(".license").css("display","none");
 
-                }
-                else if(ter == 2){
-                $(".passport").css("display","none");
-                $(".id").css("display","none");
-                $(".license").css("display","block");
-
-                }
-            });
            
     </script>
 @endsection
