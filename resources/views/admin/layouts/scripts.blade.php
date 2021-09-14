@@ -14,7 +14,7 @@
     <script src="{{ asset('/admin/assets/js/mobile.js')}}"></script>
      <script src="{{ asset('assets/js/multiselect.js')}}"></script>
     <script src="{{ asset('/admin/assets/js/global.js')}}"></script>
-    <script src="{{ asset('assets/js/course.js')}}"></script>
+    <!-- <script src="{{ asset('assets/js/course.js')}}"></script> -->
     <!-- <script src="{{ asset('/admin/assets/js/pages/subjects.js')}}"></script> -->
 
     <script src="{{ asset('assets/js/dropify.js')}}"></script>
@@ -31,22 +31,22 @@
         });
     </script>
     <script>
-    var socketId = Echo.socketId();
-    console.log(socketId)
-    Echo.join(`admin_dash`)
-    .here( users => {
-        console.log(users)
-        console.log('User is here')
-    })
-    .joining( user => {
-        console.log('User is Joining')
-    })
-    .leaving( user => {
-        console.log('User is leave')
-    })
-    .listen('NewNotification', (e) => {
-            // console.log(e.message);
-    });
+    // var socketId = Echo.socketId();
+    // console.log(socketId)
+    // Echo.join(`admin_dash`)
+    // .here( users => {
+    //     console.log(users)
+    //     console.log('User is here')
+    // })
+    // .joining( user => {
+    //     console.log('User is Joining')
+    // })
+    // .leaving( user => {
+    //     console.log('User is leave')
+    // })
+    // .listen('NewNotification', (e) => {
+    //         // console.log(e.message);
+    // });
     // Echo.join(`admin_dash`).listen('NewNotification', (e) => {
     //     console.log(e.message);
         
