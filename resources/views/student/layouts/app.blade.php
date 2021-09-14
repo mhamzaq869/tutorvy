@@ -57,6 +57,7 @@
      <script src="{{ asset('assets/js/registration.js') }}"></script>
      <script src="{{ asset('assets/js/dropify.js')}}"></script>
      <script src="{{ asset('assets/js/multiselect.js')}}"></script>
+     <script src="{{ asset('assets/js/jquery.validate.js')}}"></script>
      <script src="{{ asset('assets/js/countrySelect.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -178,7 +179,10 @@ function langshort(opt){
    var val = opt.options[opt.selectedIndex].innerHTML;
    $("#lang").val(val)
 }
-
+function hideCard(){
+    // alert();
+    $(".infoCard").hide('slow');
+};
 </script>
 
 </body>

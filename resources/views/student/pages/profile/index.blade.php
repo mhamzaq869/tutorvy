@@ -106,6 +106,15 @@
     color: #fff;
     background-color: #007bff !important;
 }
+#v-pills-Verification  .dropify-wrapper {
+    height: 86px !important;
+}
+.passport{
+    display:none;
+}
+.license{
+    display:none;
+}
 </style>
 
 <link rel="stylesheet" href="{{ asset('assets/css/yearpicker.css') }}" />
@@ -391,6 +400,8 @@
                                     role="tab" aria-controls="v-pills-General" aria-selected="true">General</a>
                                 <a class="nav-link" id="v-pills-Education-tab" data-toggle="pill" href="#v-pills-Education"
                                     role="tab" aria-controls="v-pills-Education" aria-selected="false">Education</a>
+                                    <a class="nav-link" id="v-pills-Verification-tab" data-toggle="pill" href="#v-pills-Verification"
+                                    role="tab" aria-controls="v-pills-Verification" aria-selected="false">Verification</a>
                               
                             </div>
                         </div>
@@ -509,22 +520,7 @@
                                                     here...</label>
 
                                             </div>
-                                            <div class="container mt-3">
-                                                <div class=" row">
-                                                    <div class="col-md-6">
-                                                        <select id="selection " name="security" onchange="changeplh()"
-                                                            class="form-select form-select-lg mb-3 w-100"
-                                                            aria-label=".form-select-lg example">
-                                                            <option value="1" @if (Auth::user()->type == 1) selected @endif>ID card number</option>
-                                                            <option value="2" @if (Auth::user()->type == 2) selected @endif>Social security number</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <input id="textbox" type="number" @if (Auth::user()->type == 1) name="cnic" @else name="security" @endif class="form-control" placeholder="ID card number"
-                                                            value="{{ Auth::user()->cnic_security ?? '' }}">
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            
                                             <div class="container mt-3">
                                                 <div class="row">
                                                     <div class="col-md-6">
@@ -666,7 +662,7 @@
                                                     <div class="col-md-6">
                                                         <select name="std_subj"
                                                             class="form-select form-select-lg mb-3 w-100">
-                                                            <option value="" disabled selected>Main Category</option>
+                                                            <option value="" disabled selected>Main Subject</option>
                                                             @foreach($subject_cat as $subject)
                                                                     <option value="{{$subject->id}}">{{$subject->name}}</option>
                                                             @endforeach
@@ -676,7 +672,7 @@
                                                     <div class="col-md-6">
                                                         <select name="std_learn"
                                                             class="form-select form-select-lg mb-3 w-100">
-                                                            <option value="" disabled selected>Sub Category</option>
+                                                            <option value="" disabled selected>Sub-Subject</option>
                                                             @foreach($subjects as $subject)
                                                                     <option value="{{$subject->id}}">{{$subject->name}}</option>
                                                             @endforeach
@@ -686,7 +682,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row mt-3">
+                                        <!-- <div class="row mt-3">
                                             <div class="input-text col-md-12">
                                                 <select name="subject"
                                                     class="form-select form-select-lg mb-3 w-100">
@@ -698,7 +694,101 @@
                                                 </select>
 
                                             </div>
+                                        </div> -->
+                                        <div class="row mt-3">
+                                            <div class="col-md-12">
+                                                <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit" name="personal">Save Changes</button>
+                                            </div>
                                         </div>
+                                    </form>
+                                </div>
+                                <div class="tab-pane fade chee" id="v-pills-Verification" role="tabpanel"
+                                    aria-labelledby="v-pills-Verification-tab">
+                                    <form action="" method="post" id="">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h1>Verification</h1>
+                                            </div>
+                                        </div>
+                                        <div class=" row mt-3">
+                                            <div class="col-md-6">
+                                                <select id="selection" name="security" 
+                                                    class="form-select form-select-lg mb-3 w-100"
+                                                    aria-label=".form-select-lg example">
+                                                    <option value="1" selected>National Identity Card</option>
+                                                    <option value="2">Driving License</option>
+                                                    <option value="3">Passport</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 id">
+                                                <input id="textbox" type="number" placeholder="Add Id Card number">
+                                            </div>
+                                            <div class="col-md-6 license">
+                                                <input id="textbox" type="number" placeholder="Add Driving License number">
+                                            </div>
+                                            <div class="col-md-6 passport">
+                                                <input id="textbox" type="number" placeholder="Add Passport number">
+                                            </div>
+                                            <div class="col-md-6 mt-2 passport" >
+                                                <input type="file" class="dropify">
+                                            </div>
+                                                
+                                            <div class="col-md-6 mt-2 id">
+                                                <input type="file" class="dropify">
+                                            </div>
+                                            <div class="col-md-6 mt-2 id">
+                                                <input type="file" class="dropify">
+                                            </div>
+                                            <div class="col-md-6 mt-2 license">
+                                                <input type="file" class="dropify">
+                                            </div>
+                                            <div class="col-md-6 mt-2 license">
+                                                <input type="file" class="dropify">
+                                            </div>
+                                            <div class="col-md-12 mt-2">
+                                                <p>
+                                                    <strong>Kindly upload Card photos with white Background</strong>
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <!-- <div class=" row ">
+                                            <div class="col-md-6">
+                                                <input id="" type="text" class="form-control" placeholder="Add Driving License Number">
+                                            </div>
+                                            <div class="col-md-6">
+                                            </div>
+                                           
+                                            <div class="col-md-6 mt-2">
+                                                <input type="file" class="dropify">
+                                            </div>
+                                            <div class="col-md-6 mt-2">
+                                                <input type="file" class="dropify">
+                                            </div>
+                                            <div class="col-md-12 mt-2">
+                                                <p>
+                                                    <strong>Kindly upload License photos with white Background</strong>
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class=" row ">
+                                            <div class="col-md-6">
+                                                <input id="" type="text" class="form-control" placeholder="Add Passport Number">
+                                            </div>
+                                            <div class="col-md-6 mt-2">
+                                            </div>
+                                            
+                                            <div class="col-md-6 mt-2">
+                                                <input type="file" class="dropify">
+                                            </div>
+                                            <div class="col-md-12 mt-2">
+                                                <p>
+                                                    <strong>Kindly upload Passport photo with white Background</strong>
+                                                </p>
+                                            </div>
+                                        </div> -->
                                         <div class="row mt-3">
                                             <div class="col-md-12">
                                                 <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit" name="personal">Save Changes</button>
@@ -725,6 +815,7 @@
     <script src="{{ asset('assets/js/googleapi.js') }}"></script>
     <script src="{{ asset('assets/js/countrySelect.js') }}"></script>
     <script>
+        
         for (var i = 1; i <= 31; i++) {
             $("#day").append("<option value='" + i + "'" + (i == {{ Auth::user()->day ?? 1 }} ? 'selected' : '') + ">" +
                 i + "</option>");
@@ -737,6 +828,7 @@
                 startYear: 1950,
                 endYear: 2050,
             });
+           
         });
 
         $("#country_selector").countrySelect({
@@ -921,8 +1013,27 @@
                     });
                 })();
             });
+            $("#selection").on('change', function(){
+            var ter=$(this).val();
+            if(ter == 3){
+                $(".passport").css("display","block");
+                $(".id").css("display","none");
+                $(".license").css("display","none");
+            }
+            else if(ter == 1){
+                $(".passport").css("display","none");
+                $(".id").css("display","block");
+                $(".license").css("display","none");
+
+                }
+                else if(ter == 2){
+                $(".passport").css("display","none");
+                $(".id").css("display","none");
+                $(".license").css("display","block");
+
+                }
+            });
+           
     </script>
 @endsection
-<script>
-    $('.form-select').select2();
-</script>
+

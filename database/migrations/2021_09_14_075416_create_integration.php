@@ -18,6 +18,7 @@ class CreateIntegration extends Migration
             $table->string('name',200)->nullable();
             $table->text('key')->nullable();
             $table->integer('key_type')->comment('1 for live , 2 for sandbox')->nullable();
+            $table->integer('status')->comment('0 for disactive, 1 for active')->nullable();
             $table->timestamps();
         });
     }

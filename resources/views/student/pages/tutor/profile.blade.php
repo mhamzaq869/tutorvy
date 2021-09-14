@@ -1,6 +1,11 @@
 @extends('student.layouts.app')
 
 @section('content')
+<style>
+    .responseTime img{
+width:22px;
+    }
+</style>
 <link rel="stylesheet" href="{{asset('assets/css/profile.css')}}">
     <div class="container">
         <p class="heading-first ml-3 mr-3">
@@ -174,11 +179,15 @@
                     </div>
                     <div class="card">
                         <div class="card-body">
-                            <div class=" profile-header">
-                                <div class="heading-second">
+                            <div class=" profile-header row">
+                                <div class="heading-second col-md-6 col-6 col-sm-6">
                                     <p class="heading-second">About tutor</p>
                                 </div>
-                                <div class="about-text">
+                                <div class="col-md-6 col-6 col-sm-6 text-right responseTime">
+                                   
+                                    <p class="heading-fourth"> <span><img src="{{asset('assets/images/ico/watchs.png')}}" class="mr-2" alt=""></span> Response Time: <strong>1 hour</strong></p>
+                                </div>
+                                <div class="about-text col-md-12">
                                     {{$tutor->bio}}
                                 </div>
 

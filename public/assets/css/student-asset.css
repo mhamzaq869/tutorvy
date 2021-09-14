@@ -1135,3 +1135,23 @@ select {
 .btn-download-app i {
     font-size: 18px;
 }
+
+.bg-toast {
+    background: #B1E0E7;
+    transition: all 0.3s ease;
+}
+
+.infoCard {
+    transition: all 0.3s ease;
+}
+
+.bg-toast .fa-info {
+    font-size: 44px;
+}
+
+.bg-toast .cross {
+    position: absolute;
+    font-size: 21px;
+    right: 7px;
+    color: #00132D;
+}
