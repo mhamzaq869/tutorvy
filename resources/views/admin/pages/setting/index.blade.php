@@ -1,6 +1,11 @@
 @extends('admin.layouts.app')
 <style>
- 
+ .dropify-wrapper .dropify-message span.file-icon{
+     font-size:12px !important;
+ }
+ .dropify-wrapper {
+    height: 86px !important;
+}
 </style>
 @section('content')
   <!--section start  -->
@@ -30,12 +35,13 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="tab p-0">
-                                <button class="tablinks" onclick="openCity(event, 'tab1')"
+                                <button class="tablinks nav-link" onclick="openCity(event, 'tab1')"
                                     id="defaultOpen">General</button>
-                                <button class="tablinks" onclick="openCity(event, 'tab2')">Security</button>
-                                <button class="tablinks" onclick="openCity(event, 'tab3')">Payment</button>
-                                <button class="tablinks" onclick="openCity(event, 'tab4')">System</button>
+                                <button class="tablinks nav-link" onclick="openCity(event, 'tab2')">Security</button>
+                                <button class="tablinks nav-link" onclick="openCity(event, 'tab3')">Payment</button>
+                                <button class="tablinks nav-link" onclick="openCity(event, 'tab4')">System</button>
                             </div>
+                           
                         </div>
                     </div>
                 </div>
@@ -325,8 +331,27 @@
                                                                 placeholder="">
                                                         </div>
                                                     </div>
+                                                    
+                                                    <div class="col-md-12">
+                                                        <small class="">Change Logo</small>
+                                                    </div>
+                                                    <div class="col-md-12  mb-2 mt-1">
+                                                        <input type="file" class="dropify">
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <small class="">Change Favicon</small>
+                                                    </div>
+                                                    <div class="col-md-12 mb-2 mt-1">
+                                                        <input type="file" class="dropify">
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <small class="">Change Title </small>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <input type="text" placeholder="Website Title" class="form-control">
+                                                    </div>
                                                 </div>
-                                                <div class="row">
+                                                <div class="row mt-2">
                                                     <div class="col-md-12 text-right">
                                                             <button class="btn-general">Save changes</button>
                                                     </div>

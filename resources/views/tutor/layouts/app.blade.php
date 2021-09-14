@@ -84,7 +84,10 @@
                 var short = $(this).countrySelect("getSelectedCountryData");
                 $("#country_short").val(short.iso2);
             });
-
+            function hideCard(){
+                    // alert();
+                    $(".infoCard").hide('slow');
+                };
 </script>
 </body>
 </html>

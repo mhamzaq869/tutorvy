@@ -10,6 +10,22 @@
         <div class="container-fluid m-0 p-0">
             <p class="heading-first ml-3 mr-3">Find a Tutor</p>
             <div class="row bg-white ml-2 mr-2 ">
+                <div class="col-md-12 mb-1 ">
+                    <div class=" card  bg-toast infoCard">
+                        <a href="#" class="cross"  onclick="hideCard()"> 
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </a>
+
+                        <div class="card-body row">
+                            <div class="col-md-2 text-center">
+                                <i class="fa fa-info" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-md-10">
+                                Filter according to your need. Specify the age,ranges,ratings,subjects and every possible details to get the exact person you need <a href="#">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-3">
                     <div class="">
                         <div class="card-body">
@@ -290,8 +306,28 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-9 " id="tutors-list">
-                    @if(sizeof($available_tutors) == 0 || $available_tutors == '[]' )
+                <div class="col-md-9 " >
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="card">
+                                <div class="card-body">
+                                    <p><strong>  Searched Filters:  </strong></p>
+                                    <p>subject, location, rate, range, gender, age, availability</p>  
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <p class="number-booking mt-0 ">  56  </p>
+                                    <p class="mb-0">Total Tutors</p>  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" id="tutors-list">
+                        @if(sizeof($available_tutors) == 0 || $available_tutors == '[]' )
                         <div class="card">
                             <div class="card-body text-center">
                                 <img src="{{asset('assets/images/ico/no-tutor.svg')}}" alt="" width="200">
@@ -431,6 +467,8 @@
                         </div>
                         @endforeach
                     @endif
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
