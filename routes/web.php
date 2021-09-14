@@ -99,6 +99,8 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
     Route::get('/website',[WebsiteController::class,'index'])->name('admin.website');
     Route::get('/report',[ReportController::class,'index'])->name('admin.report');
     Route::get('/integration',[IntegrationController::class,'index'])->name('admin.integration');
+    Route::post('/save-payal',[IntegrationController::class,'savePaypalDetails']);
+    Route::post('/integration-status',[IntegrationController::class,'changeIntegrationStatus']);
 
     Route::get('/staff',[StaffController::class,'index'])->name('admin.staff');
     Route::post('/staff/insert',[StaffController::class,'insertStaff'])->name('admin.insertStaff');
@@ -203,6 +205,9 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     Route::get('/viewtutor/{id}',[StudentTutorController::class,'show'])->name('student.tutor.show');
     Route::post('/tutorfilter',[StudentTutorController::class,'filterTutor'])->name('student.tutor.filter');
     Route::get('/settings',[StudentSettingController::class,'index'])->name('student.settings');
+
+    Route::post('/change-password',[StudentSettingController::class,'change_password']);
+
     Route::get('/profile',[StudentProfileController::class,'index'])->name('student.profile');
 
     Route::get('/call',[StudentSettingController::class,'call'])->name('student.call');

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Classroom;
+use Illuminate\Support\Facades\DB;
 
 class SettingController extends Controller
 {
@@ -72,4 +73,26 @@ class SettingController extends Controller
         $class = Classroom::with('booking')->where('classroom_id',$class_room_id)->first();
         return view('student.pages.classroom.classroom',compact('class'));
     }
+
+    public function change_password(Request $request) {
+
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required',
+            'new_confirm_password' => 'required',
+        ]);
+
+        if(Hash::check($request->current_password, \Auth::user()->password)) {
+
+            User::find(\Auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+            return redirect()->back()->with(['success' => 'Password Change ...' , 'key' => 'password_changed']);
+        }else{
+
+            return redirect()->back()->with(['error' => 'You have entered wrong password', 'key' => 'password_changed']);
+
+        }
+    }
+
+    
+
 }
