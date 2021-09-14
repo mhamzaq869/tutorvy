@@ -439,7 +439,7 @@
                             </a>
                         </li>
                         <li>
-                            <form id="form"  action="{{route('logout')}}" onclick="preventDefault()" method="post">
+                            <form id="form" style="display:none;"  action="{{route('logout')}}" onclick="preventDefault()" method="post">
                                 @csrf
                             </form>
                             <a tabindex="-1" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('form').submit();">
