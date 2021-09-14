@@ -31,30 +31,34 @@ class ProfileController extends Controller
 
     public function profileUpdate(Request $request)
     {
-        return $request->all();
-        // $request->dob = $request->year.'-'.$request->month.'-'.$request->day;
         
-        // if($request->hasFile('filepond')){
-        //     $path = 'storage/profile/'.$request->filepond->getClientOriginalName();
-        //     $request->filepond->storeAs('profile',$request->filepond->getClientOriginalName(),'public');
-        // }
+        $date_of_birth = $request->year.'-'.$request->month.'-'.$request->day;
+        
+        if($request->hasFile('filepond')){
+            $path = 'storage/profile/'.$request->filepond->getClientOriginalName();
+            $request->filepond->storeAs('profile',$request->filepond->getClientOriginalName(),'public');
+        }
 
-        // $user = User::updateOrCreate(["email" => Auth::user()->email],[
-        //     'first_name' => $request->first_name ?? Auth::user()->first_name,
-        //     'last_name' => $request->last_name ?? Auth::user()->last_name,
-        //     'dob' => $request->dob ?? Auth::user()->dob,
-        //     'picture' => $path ?? Auth::user()->picture,
-        //     'phone' => $request->phone ?? Auth::user()->phone,
-        //     'city' => $request->city ?? Auth::user()->city,
-        //     'country' => $request->country ?? Auth::user()->country,
-        //     'country_short' => $request->country_short ?? Auth::user()->country_short,
-        //     'type' => (($request->type == 1) ? 'cnic' : 'security') ?? Auth::user()->type,
-        //     'cnic_security' => ($request->cnic ?? $request->security) ?? Auth::user()->cnic_security,
-        //     'language' => $request->language ?? Auth::user()->language,
-        //     'lang_short' => $request->lang_short ?? Auth::user()->lang_short,
-        //     'gender' => $request->gender ?? Auth::user()->gender,
-        //     'bio' => $request->bio ?? Auth::user()->bio,
-        // ]);
+        $user = User::updateOrCreate(["email" => Auth::user()->email],[
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'dob' => $date_of_birth,
+            'picture' => ($request->hasFile('filepond') ? $path : \Auth::user()->picture),
+            'phone' => $request->phone,
+            'city' => $request->city,
+            'country' => $request->country,
+            'country_short' => $request->country_short,
+            'language' => $request->language,
+            'lang_short' => $request->lang_short,
+            'gender' => $request->gender,
+            'bio' => $request->bio,
+        ]);
+        
+        return response()->json([
+            "status_code" => 200,
+            "success" => true,
+            "message" => "Profile Updated Successfully",
+        ]); 
 
         // return redirect()->back()->with('message','Your Profile has been successfully updated');
     }

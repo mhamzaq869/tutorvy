@@ -45,34 +45,28 @@
             var action = $(this).attr('action');
             var method = $(this).attr('method');
 
-            $.ajax({
-                url: action,
-                type:method,
-                data:new FormData( this ),
-                cache: false,
-                contentType: false,
-                processData: false,
-                success:function(response){
-                    if(response.status_code == 200 && response.success == true) {
-                        toastr.success(response.message,{
-                            position: 'top-end',
-                            icon: 'success',
-                            showConfirmButton: false,
-                            timer: 2500
-                        });
-                    }else{
-                        toastr.error(response.message,{
-                            position: 'top-end',
-                            icon: 'error',
-                            showConfirmButton: false,
-                            timer: 2500
-                        });
-                    }
-                },
-                error:function(e) {
-                    console.log(e)
+            var file =  $('#imageUpload')[0].files[0].size;
+            var form = new FormData(this);
+
+
+            if( $('#imageUpload')[0].files.length != 0 ) {
+                if(Math.round(file.size / (1024 * 1024)) > 2 ) {
+                    toastr.error('Please select image size less than 2 MB',{
+                        position: 'top-end',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
+
+                }else{
+                    
+                    uploadProfile(action , method , form)
                 }
-            });
+               
+            }else{
+                
+                uploadProfile(action , method , form)
+            }
 
         });
 
@@ -156,5 +150,36 @@
         });
 
     });
+
+    function uploadProfile(action , method , form) {
+        $.ajax({
+            url: action,
+            type:method,
+            data:form,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success:function(response){
+                if(response.status_code == 200 && response.success == true) {
+                    toastr.success(response.message,{
+                        position: 'top-end',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
+                }else{
+                    toastr.error(response.message,{
+                        position: 'top-end',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
+                }
+            },
+            error:function(e) {
+                console.log(e)
+            }
+        });
+    }
 
 </script>
