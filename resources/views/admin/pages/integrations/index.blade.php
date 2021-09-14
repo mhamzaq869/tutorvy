@@ -10,6 +10,19 @@
     overflow-y: hidden;
     height: auto;
 }
+.enableSwitch{
+    position:absolute;
+    top:7px;
+    right:7px;
+}
+.payIcon{
+    width:64%;
+    padding-top:20px;
+    padding-bottom:20px;
+}
+.enableSwitch i{
+    color: #00132D;
+}
 </style>
 @section('content')
 <!--section start  -->
@@ -35,54 +48,23 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <!-- <div class="col-md-12">
                     <button class="btn-general pull-right" data-toggle="modal" data-target="#payPalModal"> With Paypal</button>
                     <button class="btn-general pull-right mr-3 " data-toggle="modal" data-target="#payPalModal"> With Paypal</button>
-                </div>
-                <div class="col-md-12">
-                    <table class="table table-borderless">
-                        <thead>
-                            <tr class="border-bottom table-margin-top ">
-                                <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Subjects</th>
-                                <th scope="col">Location</th>
-                                <th scope="col">Level</th>
-                                <th scope="col">Availability </th>
-                                <th scope="col">Rate</th>
-
-                                <th scope="col"></th>
-
-                            </tr>
-                        </thead>
-                        <tbody id="datas">
-                            <tr>
-                                <td class="">
-                                        <img src="{{asset ('admin/assets/img/logo/boy.jpg')}}"  class="tutor-img" alt=""> M Harram Laraib
-                                </td>
-                                <td class="pt-24">
-                                    <span href="#" data-toggle="tooltip"
-                                        title="harramlaraib127@gmail.com">har***</span>
-                                </td>
-                                <td class="pt-24">English</td>
-                                <td class="pt-24">Lahore, Punjab Pakistan</td>
-                                <td class="pt-24">Advance</td>
-                                <td class="pt-24" id="avalibility">8am-8pm</td>
-                                <td class="pt-24">$50</td>
-
-                                <td class="pt-3 text-right">
-                                    <a href="tutor-manage/request.html" class="cencel-btn btn">
-                                        View
-                                    </a>
-                                </td>
-                                <td class="pt-3 text-right">
-                                    <button class="schedule-btn" data-toggle="modal"
-                                        data-target="#payPalModalCenter">Assign</button>
-                                </td>
-                            </tr>
-                            
-                        </tbody>
-                    </table>
+                </div> -->
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <span class="enableSwitch">
+                                <a href="#" id="payment_setting"><i class="fa fa-cogs" aria-hidden="true"></i></a>
+                                <label class="switch mt-0">
+                                    <input type="checkbox" id="payment_status" onchange="changeTutorStatus(`5`)" checked="">
+                                    <span class="slider round"></span>
+                                </label>
+                            </span>
+                            <img src="{{asset('admin/assets/img/ico/PayPal.png')}}" class="payIcon" alt="">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -123,6 +105,14 @@
                                                     <label for="exampleInputPassword1">Secret Key</label>
                                                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Secret Key">
                                                 </div>
+                                                <div class=" row form-group">
+                                                    <div class="col-md-1">
+                                                        <span class="checkbox-edit"> <input type="checkbox" name="standard_one_one" id=""> </span>
+                                                    </div>
+                                                    <div class="col-md-10 ">
+                                                        <span class="paragraph-text"> Enable Sandbox</span>
+                                                    </div>
+                                                </div>
                                                     <button type="submit" class="btn btn-primary pull-right">Pay Now</button>
                                             </form>
                                         </div>
@@ -142,6 +132,14 @@
                                                     <label for="exampleInputPassword1">Secret Key</label>
                                                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Secret Key">
                                                 </div>
+                                                <div class=" row form-group">
+                                                    <div class="col-md-1">
+                                                        <span class="checkbox-edit"> <input type="checkbox" name="standard_one_one" id=""> </span>
+                                                    </div>
+                                                    <div class="col-md-10 ">
+                                                        <span class="paragraph-text"> Enable Live</span>
+                                                    </div>
+                                                </div>
                                                     <button type="submit" class="btn btn-primary pull-right">Pay Now</button>
                                             </form>
                                         </div>
@@ -158,4 +156,11 @@
                 </div>
             </div>
 </section>
+
+
+@endsection
+
+@section('js')
+
+@include('js_files.admin.integrationJs')
 @endsection
