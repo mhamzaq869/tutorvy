@@ -22,7 +22,9 @@
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-
+<!--Plugin CSS file with desired skin-->
+<link rel="stylesheet" href="{{ asset('assets/css/ion.rangeSlider.css')}}"/>
+    
     <!-- Styles -->
     @include('student.layouts.css')
 </head>
@@ -59,7 +61,9 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
+        <!--Plugin JavaScript file-->
+        <script src="{{ asset('assets/js/ion.rangeSlider.js')}}"></script>
+            
      @yield('scripts')
      <script>
         $.ajaxSetup({
@@ -67,17 +71,35 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
+      
     $(document).ready(function(){
         $(".dropify").dropify();
         $('.js-multiSelect').select2();
         $('.accSelect2').select2();
         $('.form-select').select2();
-        $("#year").yearpicker({
-                year: {{$user->year ?? '1990'}},
-                startYear: 1950,
-                endYear: 2050,
-            });
+        // $("#year").yearpicker({
+        //         year: {{$user->year ?? '1990'}},
+        //         startYear: 1950,
+        //         endYear: 2050,
+        //     });
+            $(".js-range-slider").ionRangeSlider({
+            type: "double",
+            min: 0,
+            max: 1000,
+            from: 200,
+            to: 500,
+            grid: true,
+            prefix: "$"
+        });
+        $(".age-range-slider").ionRangeSlider({
+            type: "double",
+            min: 18,
+            max: 70,
+            from: 18,
+            to: 70,
+            grid: true,
+        });
+        
     })
     $("#country_selector").countrySelect({
                 defaultCountry: "{{ $user->country_short ?? '' }}",

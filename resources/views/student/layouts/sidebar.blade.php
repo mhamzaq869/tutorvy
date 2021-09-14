@@ -36,7 +36,7 @@
              </li>
              <li class="btn mt-3">
                 <a href="./Subjects/subject.html">
-                    <img class="subject-sid mr-2" src="{{asset('assets/img/ico/find-ico.png')}}" alt="Tutor">
+                    <img class="subject-sid mr-2" src="{{asset('assets/images/ico/find-ico.png')}}" alt="Tutor">
                     <span class="subject-show mt-3">
                         Find a Tutor
                     </span>
@@ -60,7 +60,7 @@
              </li>
              <li class="btn mt-3">
                 <a href="./payment/payment.html">
-                    <img class="payment-sid mr-2" src="{{asset('assets/img/ico/payment-ico.png')}}" alt="payment-ico">
+                    <img class="payment-sid mr-2" src="{{asset('assets/images/ico/payment-ico.png')}}" alt="payment-ico">
                     <span class="payment-show mt-3">
                         Wallet
                     </span>
@@ -71,6 +71,14 @@
                      <img class="setting-sid mr-2" src="{{asset('assets/images/ico/setting-ico.png')}}" alt="setting-ico">
                      <span class="setting-show mt-3">
                          Settings
+                     </span>
+                 </a>
+             </li>
+             <li class="btn mt-3">
+                 <a href="./setting/setting.html">
+                     <img class="setting-sid mr-2" src="{{asset('assets/images/ico/setting-ico.png')}}" alt="setting-ico">
+                     <span class="setting-show mt-3">
+                         Knowledge Base
                      </span>
                  </a>
              </li>
@@ -125,6 +133,12 @@
                  <a href="{{route('student.settings')}}">
                      <img src="{{asset('assets/images/ico/setting-ico.png')}}" alt="setting-ico" class=" mr-2">
                      Settings
+                 </a>
+             </li>
+             <li class="btn @if(\Request::path() === 'student/settings') active @endif w-100">
+                 <a href="{{route('student.settings')}}">
+                     <img src="{{asset('assets/images/ico/book-ico.png')}}" alt="setting-ico" class=" mr-2">
+                     Knowledge Base
                  </a>
              </li>
          </ul>

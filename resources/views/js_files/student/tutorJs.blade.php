@@ -113,6 +113,8 @@ function list_tutors(){
             let t_id = tutors[i].id;
             let url = "{{route('student.book-now', ':id')}}";
             url = url.replace(':id', t_id);
+            let url2 = "{{route('student.tutor.show', ':id')}}";
+            url2 = url2.replace(':id', t_id);
             console.log(t_id);
             for(var ins=0 ; ins < inst.length; ins++){ 
                 int_html +=` <span class="info-1 info edu">`+inst[ins]+`</span>`;
@@ -176,7 +178,9 @@ function list_tutors(){
                                                 <div class="col-md-9">
                                                     <div class="row">
                                                         <div class="col-md-2 col-6">
-                                                            <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
+                                                            <a href="`+url2+`">
+                                                                <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
+                                                            </a>
                                                         </div>
                                                         <div class="col-md-5 col-6">
                                                             <h3>`+tutors[i].first_name+ ' ' +tutors[i].last_name+`</h3>
@@ -192,6 +196,7 @@ function list_tutors(){
                                                 </div>
                                                 <div class="col-md-3">
                                                     `+rank_html+`
+                                                    <small> <strong> 3 hours</strong> tutoring in (this subject) </small>
                                                 </div>
                                             </div>
                                             <div class="row mt-2">
@@ -224,7 +229,11 @@ function list_tutors(){
                                         </div>
                                         <div class="col-md-3 bg-price text-center">
                                             <div class="row mt-30">
+                                                <a href="#" class="fav" title="Favourite">
+                                                    <i class="fa fa-star"></i>
+                                                </a>
                                                 <div class="col-md-12">
+                                                   
                                                     <p>starting from</p>
                                                     <h1 class="f-60">$`+tutors[i].hourly_rate+`</h1>
                                                     <p>per hour</p>
@@ -258,5 +267,7 @@ function list_tutors(){
     }
 
 }    
-
+$(".fav").click(function(){
+    $(this).find(".fa-star").toggleClass("text-yellow");
+});
 </script>

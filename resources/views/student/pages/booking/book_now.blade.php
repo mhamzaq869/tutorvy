@@ -15,7 +15,7 @@
             <p class="heading-third mt-3">Personal information</p>
             <form action="{{route('student.booked.tutor')}}" method="post"  enctype="multipart/form-data" id="book_tutor_form">
                 <div class="row mt-5">
-                        <div class="input-text col-md-6">
+                        <div class=" col-md-6">
                             <div class="row">
                                 <div class="col-md-12">
                                     <select name="subject" class="form-select form-select-lg w-100"

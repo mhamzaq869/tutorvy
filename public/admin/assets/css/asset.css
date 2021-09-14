@@ -1190,13 +1190,14 @@ a[data-toggle="collapse"] {
 
 /* border right */
 
-.active,
+
+/* .active,
 .btns:hover {
     background-color: #244775!important;
-}
+} */
 
 .active:nth-child(2) {
-    background-color: #00132D;
+    /* background-color: #00132D; */
 }
 
 
@@ -1739,8 +1740,9 @@ svg:not(:root) {
 }
 
 .tab .active {
-    padding: 8px 122px 8px 11px !important;
+    /* padding: 8px 122px 8px 11px !important; */
     border-radius: 5px;
+    width: 100%;
     color: #fff !important;
     background-color: #1173FF !important;
     font-weight: 400;

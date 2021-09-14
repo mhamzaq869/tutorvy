@@ -11,7 +11,7 @@
             <p class="heading-first ml-3 mr-3">Find a Tutor</p>
             <div class="row bg-white ml-2 mr-2 ">
                 <div class="col-md-3">
-                    <div class="card">
+                    <div class="">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
@@ -78,14 +78,16 @@
                                                 </div>
                                             </a>
                                             <div id="rateDiv" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
-                                                <div class="card-body pl-2 pr-0 pt-0">
-                                                    <div class="">
-                                                        <p class="mb-0">$10 - $1000</p>
-                                                        <div class="range-slider">
+                                                <div class="card-body  pt-0">
+                                                        <!-- <p class="mb-0">$10 - $1000</p> -->
+                                                        <!-- <div class="range-slider">
                                                             <input class="range-slider__range" type="range" id="range" value="999" min="0" max="1000">
                                                             <span class="range-slider__value"></span>
+                                                        </div> -->
+                                                        <div class="range-slider">
+                                                             <input type="text" class="js-range-slider" id="range"  name="my_range" value="" />
+                                                             <span class="range-slider__value"></span>
                                                         </div>
-                                                    </div>
                                                 </div>
                                             </div>
                                             <hr class="m-0">
@@ -196,13 +198,13 @@
                                             <div id="genderDiv" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
                                                 <div class="card-body pl-2 pr-0 pt-0">
                                                     <div class="row ml-1">
-                                                        <div class="form-check col-sm-4">
+                                                        <div class="form-check col-sm-6">
                                                             <input class="form-check-input" type="radio" name="gender" id="male"  value="male">
                                                             <label class="form-check-label" for="male">
                                                                 Male
                                                             </label>
                                                         </div>
-                                                        <div class="form-check col-sm-4">
+                                                        <div class="form-check col-sm-6">
                                                             <input class="form-check-input" type="radio" name="gender" id="female" value="female">
                                                             <label class="form-check-label" for="female">
                                                                 Female
@@ -258,6 +260,32 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-md-12">
+                                    <div id="accordion">
+                                        <div class=" ">
+                                            <a href="#" class="" data-toggle="collapse" data-target="#ageDiv" aria-expanded="true" aria-controls="ageDiv">
+                                                <div class="tutorFilterHead" id="headingOne">
+                                                    Age <span class="pull-right"><i class="fa fa-chevron-down"></i></span>
+                                                </div>
+                                            </a>
+                                            <div id="ageDiv" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
+                                                <div class="card-body  pt-0">
+                                                        <!-- <p class="mb-0">$10 - $1000</p> -->
+                                                        <!-- <div class="range-slider">
+                                                            <input class="range-slider__range" type="range" id="range" value="999" min="0" max="1000">
+                                                            <span class="range-slider__value"></span>
+                                                        </div> -->
+                                                        <div class="range-slider">
+                                                             <input type="text" class="age-range-slider" name="my_range" value="" />
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <hr class="m-0">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -283,8 +311,13 @@
                                         <div class="row">
                                             <div class="col-md-9">
                                                 <div class="row">
+                                                    
                                                     <div class="col-md-2 col-6">
-                                                        <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
+                                                        <a href="{{route('student.tutor.show')}}">
+                                                            <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
+                                                        
+                                                        </a>
+                                                       
                                                     </div>
                                                     <div class="col-md-5 col-6">
                                                         <h3>{{$tutor->first_name}} {{$tutor->last_name}}</h3>
@@ -379,6 +412,7 @@
                                     <div class="col-md-3 bg-price text-center">
                                         <div class="row mt-30">
                                             <div class="col-md-12">
+                                                
                                                 <p>starting from</p>
                                                 <h1 class="f-60">${{$tutor->hourly_rate}}</h1>
                                                 <p>per hour</p>

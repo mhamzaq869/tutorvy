@@ -222,7 +222,7 @@
                             </li>
                             <li role="presentation">
                                 <a role="menuitem" tabindex="-1" href="./Login/reset.html">
-                                    Signout
+                                    Logout
                                 </a>
                             </li>
 
@@ -248,6 +248,11 @@
     </div>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item  mr-5">
+                    <button class=" btn-download-app">
+                        <i class="fa fa-android pr-2"></i> Download App Now
+                    </button>
+            </li>
             <li class="header">
                 <div class="container">
                     <div class="row">
@@ -434,7 +439,7 @@
                                 @csrf
                             </form>
                             <a tabindex="-1" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('form').submit();">
-                                Signout
+                                Logout
                             </a>
                         </li>
                     </ul>

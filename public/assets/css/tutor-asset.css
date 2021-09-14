@@ -2579,8 +2579,9 @@ select#paymentMethod option[value="others"] {
 }
 
 .select2-container .select2-selection--single {
-    height: 100% !important;
+    /* height: 100% !important; */
     border: 1px solid #D6DBE2;
+    height: 47px !important;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__rendered {
@@ -2588,9 +2589,32 @@ select#paymentMethod option[value="others"] {
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow {
-    height: 47px;
+    height: 47px !important;
 }
 
 .select2 {
     width: 100% !important;
+}
+
+.btn-download-app {
+    background-color: #1A1A1A;
+    color: white;
+    transition: all 0.3s ease;
+    padding: 7px 20px;
+    border-radius: 50px;
+    border: 1px solid #1A1A1A;
+    font-size: 14px;
+    font-family: 'Poppins';
+    height: 42px;
+    cursor: pointer;
+}
+
+.btn-download-app:hover {
+    background-color: #30005E;
+    border-color: #30005E;
+}
+
+.btn-download-app i {
+    font-size: 18px;
+    color: #fff !important;
 }
