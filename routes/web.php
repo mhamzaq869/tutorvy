@@ -154,7 +154,9 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
 
     //Profile Routes
     Route::get('/profile',[ProfileController::class,'index'])->name('tutor.profile');
+    
     Route::post('/updateprofile/{id}',[ProfileController::class,'profileUpdate'])->name('tutor.profile.update');
+
     Route::post('/updateedu/{id}',[ProfileController::class,'profileUpdate'])->name('tutor.profile.edu');
     Route::post('/updateprofession/{id}',[ProfileController::class,'professionUpdate'])->name('tutor.profile.profession');
 
@@ -214,6 +216,10 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     Route::get('/class/{class_room_id}',[StudentSettingController::class,'join_class'])->name('student.join_class');
 
     Route::get('/whiteBoard',[StudentSettingController::class,'whiteBoard'])->name('student.whiteBoard');
+
+
+    Route::post('/updateprofile',[StudentProfileController::class,'profileUpdate'])->name('student.profile.update');
+    Route::post('/update_education',[StudentProfileController::class,'profileEducationRecord'])->name('student.education.update');
 
 
 });

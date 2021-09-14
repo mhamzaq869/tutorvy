@@ -128,7 +128,7 @@
                     $("#payPalModal").modal('hide');
                     location.reload();
                 }else{
-                    toastr.success(response.message,{
+                    toastr.error(response.message,{
                         position: 'top-end',
                         icon: 'error',
                         showConfirmButton: false,
