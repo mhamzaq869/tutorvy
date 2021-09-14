@@ -1137,8 +1137,9 @@ select {
 }
 
 .bg-toast {
-    background: #B1E0E7;
+    background: #D2E5FF;
     transition: all 0.3s ease;
+    color: #00132D;
 }
 
 .infoCard {
