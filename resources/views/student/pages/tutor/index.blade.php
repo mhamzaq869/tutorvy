@@ -455,6 +455,9 @@
                                     </div>
                                     <div class="col-md-3 bg-price text-center">
                                         <div class="row mt-30">
+                                            <a href="#" class="fav" title="Favourite">
+                                                    <i class="fa fa-star"></i>
+                                                </a>
                                             <div class="col-md-12">
                                                 
                                                 <p>starting from</p>

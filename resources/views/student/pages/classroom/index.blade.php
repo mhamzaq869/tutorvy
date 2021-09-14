@@ -116,12 +116,13 @@
                                         <tbody>
 
                                         @foreach($classes as $class)
+                                        @if($class->booking != null)
                                             <tr>
                                                 <td class="pt-3">
-                                                    {{ $class->booking->subject->name }}
+                                                {{ $class->booking != null ? $class->booking->subject->name : '---' }}
                                                 </td>
                                                 <td class="pt-3">
-                                                    {{ $class->booking->topic }}
+                                                    {{ $class->booking != null ? $class->booking->topic : '---' }}
                                                 </td>
                                                 <td class="pt-3">
                                                     {{$class->booking->class_time}} {{date("g:i a", strtotime("$class->booking->class_time UTC"))}}
@@ -146,6 +147,7 @@
                                                     </a>
                                                 </td>
                                             </tr>
+                                            @endif
                                         @endforeach
                                            
                                         </tbody>

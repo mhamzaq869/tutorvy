@@ -13,6 +13,7 @@
                     </p>
                 </div>
                 <div class="col-md-8">
+                    
                     <div class="bg-homeimage1">
                         <div class="row">
                             <div class="col-md-7 text-white pl-4">
