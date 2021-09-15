@@ -573,6 +573,7 @@
                                         </div>
                                     </form>
                                 </div>
+
                                 <div class="tab-pane fade chee" id="v-pills-Education" role="tabpanel"
                                     aria-labelledby="v-pills-Education-tab">
                                     <form action="{{ route('tutor.profile.edu', [Auth::user()->id]) }}" method="post" id="edu">
@@ -657,6 +658,7 @@
                                         </div>
                                     </form>
                                 </div>
+
                                 <div class="tab-pane fade chee" id="v-pills-Professional" role="tabpanel"
                                     aria-labelledby="v-pills-Professional-tab">
                                     <form action="{{ route('tutor.profile.profession', [Auth::user()->id]) }}" method="post"
@@ -822,6 +824,7 @@
                                         </div>
                                     </form>
                                 </div>
+
                                 <div class="tab-pane fade chee" id="v-pills-Verification" role="tabpanel"
                                     aria-labelledby="v-pills-Verification-tab">
                                     <form action="" method="post" id="">
@@ -934,6 +937,7 @@
     <script src="{{ asset('assets/js/yearpicker.js') }}"></script>
     <script src="{{ asset('assets/js/googleapi.js') }}"></script>
     <script src="{{ asset('assets/js/countrySelect.js') }}"></script>
+    @include('js_files.tutor.profileJs')
     <script>
         for (var i = 1; i <= 31; i++) {
             $("#day").append("<option value='" + i + "'" + (i == {{ Auth::user()->day ?? 1 }} ? 'selected' : '') + ">" +
@@ -1008,9 +1012,6 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
-        $("#imageUpload").change(function() {
-            readURL(this);
-        });
 
         $("#edu2").click(function(){
             $("#edu").submit();
