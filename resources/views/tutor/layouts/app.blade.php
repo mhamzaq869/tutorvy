@@ -23,7 +23,9 @@
     <link rel="stylesheet" href="{{ asset('assets/css/dropify.css')}}" />
     <link rel="stylesheet" href="{{ asset('assets/css/countrySelect.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/booking.css')}}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.2.7/emojionearea.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.2.7/emojionearea.css"> -->
+    <link rel="stylesheet" href="{{ asset('assets/css/emojionearea.css')}}">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     <!--Select 2-->

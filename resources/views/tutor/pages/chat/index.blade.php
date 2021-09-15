@@ -29,6 +29,15 @@
             color: #00132D;
             font-size: 20px;
         }
+        .sendLeft{
+            left: 48px;
+            position: absolute;
+            z-index:3;
+            color: #00132D;
+        }
+        .sendLeft i{
+            font-size:19px;
+        }
         .chatArea {
             height: 365px;
             padding-left: 0px;
@@ -242,7 +251,9 @@
                                 <div class="col-md-12 col-8">
                                     
                                     <form id="chat_form" action="{{ route('store.text') }}">
-                                        
+                                        <a href="" class="sendLeft" type="button">
+                                                <i class="fa fa-paperclip rightChatIcon"></i>
+                                        </a>
                                         <input type="search" id="msg" class="w-100" alt="message" onKeyUp="sendTypingEvent()">
                                         <a href="" class="sendRight" type="submit">
                                             <i class="fa fa-paper-plane f-19"></i>
