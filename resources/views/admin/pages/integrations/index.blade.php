@@ -51,7 +51,7 @@
                     </nav>
                 </div>
             </div>
-            <div class="row">
+            <div class="row ml-1 mr-1">
                 <!-- <div class="col-md-12">
                     <button class="btn-general pull-right" data-toggle="modal" data-target="#payPalModal"> With Paypal</button>
                     <button class="btn-general pull-right mr-3 " data-toggle="modal" data-target="#payPalModal"> With Paypal</button>

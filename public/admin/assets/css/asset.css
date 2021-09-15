@@ -1793,3 +1793,34 @@ svg:not(:root) {
     border-bottom: 4px solid #1173FF;
     color: #00132D;
 }
+
+
+/*Status Tags*/
+
+.statusTag {
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    width: 100%;
+    text-align: center;
+}
+
+.veri_status {
+    background: #C9EDDD;
+}
+
+.doc_not_sub_status {
+    background: #F5E9C6;
+}
+
+.doc_sub_status {
+    background: #B9D6FF;
+}
+
+.disbaled_status {
+    background: #FBEBEA;
+}
+
+.veri_rej_status {
+    background: #E9C6C6;
+}

@@ -256,7 +256,7 @@
                                                                     </td>
 
                                                                     <td class="pt-4 ">
-                                                                        <span class="pending-text-1">Pending</span>
+                                                                        <div class="statusTag veri_status">Verified</div>
 
                                                                     </td>
                                                                     <td class="pt-4 ">
@@ -284,7 +284,7 @@
                                                                     </td>
 
                                                                     <td class="pt-4 ">
-                                                                        <span class="pending-text-1">Pending</span>
+                                                                        <div class="statusTag doc_not_sub_status">Doc Not Submited</div>
 
                                                                     </td>
                                                                     <td class="pt-4 ">
@@ -312,7 +312,7 @@
                                                                     </td>
 
                                                                     <td class="pt-4 ">
-                                                                        <span class="pending-text-1">Pending</span>
+                                                                        <div class="statusTag doc_sub_status">Doc Submited</div>
 
                                                                     </td>
                                                                     <td class="pt-4 ">
@@ -340,7 +340,7 @@
                                                                     </td>
 
                                                                     <td class="pt-4 ">
-                                                                        <span class="pending-text-1">Pending</span>
+                                                                        <div class="statusTag disbaled_status">Disabled</div>
 
                                                                     </td>
                                                                     <td class="pt-4 ">
@@ -368,7 +368,7 @@
                                                                     </td>
 
                                                                     <td class="pt-4 ">
-                                                                        <span class="pending-text-1">Pending</span>
+                                                                        <div class="statusTag veri_rej_status">Rejected</div>
 
                                                                     </td>
                                                                     <td class="pt-4 ">
@@ -423,7 +423,7 @@
                                                                     </td>
 
                                                                     <td class="pt-4 ">
-                                                                        <span class="pending-text-1">Pending</span>
+                                                                        <div class="statusTag veri_status">Verified</div>
 
                                                                     </td>
                                                                     <td class="pt-4 ">
@@ -451,7 +451,7 @@
                                                                     </td>
 
                                                                     <td class="pt-4 ">
-                                                                        <span class="pending-text-1">Pending</span>
+                                                                        <div class="statusTag doc_not_sub_status">Doc Not Submited</div>
 
                                                                     </td>
                                                                     <td class="pt-4 ">
@@ -479,7 +479,7 @@
                                                                     </td>
 
                                                                     <td class="pt-4 ">
-                                                                        <span class="pending-text-1">Pending</span>
+                                                                        <div class="statusTag doc_sub_status">Doc Submited</div>
 
                                                                     </td>
                                                                     <td class="pt-4 ">
@@ -491,7 +491,34 @@
                                                                     </td>
 
                                                                 </tr>
+                                                                <tr>
+                                                                    <td class="pt-4">
+                                                                        <span>01</span>
+                                                                    </td>
+                                                                    <td class="pt-4">Harram Laraib</td>
+                                                                    <td class="pt-4">Chemistry</td>
+                                                                    <td class="pt-4">30 mintues</td>
+                                                                    <td class="pt-4">03 Sep, 2021</td>
+                                                                    <td class="pt-4">
+                                                                        $5
+                                                                    </td>
+                                                                    <td class="pt-4">
+                                                                        mn2444s21554ss
+                                                                    </td>
 
+                                                                    <td class="pt-4 ">
+                                                                        <div class="statusTag disbaled_status">Disabled</div>
+
+                                                                    </td>
+                                                                    <td class="pt-4 ">
+                                                                        Alexendra Felix
+                                                                    </td>
+                                                                    <td class="pt-3">
+                                                                        <button class="schedule-btn w-100" data-toggle="modal"
+                                                                            data-target="#exampleModalCenter">View</button>
+                                                                    </td>
+
+                                                                </tr>
 
                                                             </tbody>
                                                         </table>
@@ -536,7 +563,7 @@
                                                                     </td>
 
                                                                     <td class="pt-4 ">
-                                                                        <span class="pending-text-1">Pending</span>
+                                                                        <div class="statusTag veri_status">Verified</div>
 
                                                                     </td>
                                                                     <td class="pt-4 ">
@@ -564,35 +591,7 @@
                                                                     </td>
 
                                                                     <td class="pt-4 ">
-                                                                        <span class="pending-text-1">Pending</span>
-
-                                                                    </td>
-                                                                    <td class="pt-4 ">
-                                                                        Alexendra Felix
-                                                                    </td>
-                                                                    <td class="pt-3">
-                                                                        <button class="schedule-btn w-100" data-toggle="modal"
-                                                                            data-target="#exampleModalCenter">View</button>
-                                                                    </td>
-
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="pt-4">
-                                                                        <span>01</span>
-                                                                    </td>
-                                                                    <td class="pt-4">Harram Laraib</td>
-                                                                    <td class="pt-4">Chemistry</td>
-                                                                    <td class="pt-4">30 mintues</td>
-                                                                    <td class="pt-4">03 Sep, 2021</td>
-                                                                    <td class="pt-4">
-                                                                        $5
-                                                                    </td>
-                                                                    <td class="pt-4">
-                                                                        mn2444s21554ss
-                                                                    </td>
-
-                                                                    <td class="pt-4 ">
-                                                                        <span class="pending-text-1">Pending</span>
+                                                                        <div class="statusTag doc_not_sub_status">Doc Not Submited</div>
 
                                                                     </td>
                                                                     <td class="pt-4 ">
