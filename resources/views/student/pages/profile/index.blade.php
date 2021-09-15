@@ -408,6 +408,27 @@
                     </div>
                 </div>
                 <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-12 mb-1 ">
+                            <div class=" card  bg-toast infoCard">
+                               
+
+                                <div class="card-body row">
+                                    <div class="col-md-1 text-center">
+                                        <i class="fa fa-info" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="col-md-11 pl-0">
+                                        <small>
+                                            Keep updating your profile to get verified and attract more students by other unvarified tutors. <a href="#">Learn More</a>
+                                        </small>
+                                        <a href="#" class="cross"  onclick="hideCard()"> 
+                                            <i class="fa fa-times" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card">
                         <div class="card-body">
                             <div class="tab-content" id="v-pills-tabContent chang_photo">

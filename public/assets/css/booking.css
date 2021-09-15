@@ -213,7 +213,8 @@ th {
     font-size: 14px;
 }
 
-.fa:nth-child(2) {
+
+/* .fa:nth-child(2) {
     color: orange;
 }
 
@@ -227,7 +228,7 @@ th {
 
 .fa:nth-child(4) {
     color: orange;
-}
+} */
 
 td {
     border: none !important;

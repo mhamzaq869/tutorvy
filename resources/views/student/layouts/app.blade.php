@@ -19,11 +19,15 @@
     <link href="{{ asset('assets/css/calender.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/countrySelect.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/dropify.css')}}" />
+    <link href="{{ asset('assets/css/chat.css') }}" rel="stylesheet">
+
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <!--Plugin CSS file with desired skin-->
 <link rel="stylesheet" href="{{ asset('assets/css/ion.rangeSlider.css')}}"/>
+<link rel="stylesheet" href="{{ asset('assets/css/emojionearea.css')}}">
+
     
     <!-- Styles -->
     @include('student.layouts.css')
@@ -62,6 +66,9 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.2.7/emojionearea.min.js"></script>
+
+
     
         <!--Plugin JavaScript file-->
         <script src="{{ asset('assets/js/ion.rangeSlider.js')}}"></script>
@@ -101,6 +108,10 @@
             to: 70,
             grid: true,
         });
+        $("#msg").emojioneArea({
+                pickerPosition: "top",
+                saveEmojisAs:"shortname"
+            });
         
     })
     $("#country_selector").countrySelect({

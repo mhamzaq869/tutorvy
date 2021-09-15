@@ -44,138 +44,139 @@ svg:not(:root) {
                     class="schedule-btn float-right w-25 text-center">Add new Subject</span>
             </div>
         </div>
-    </div>
-    <div class="container-fluid">
-        <div class="pt-3 mt-3 container-bg ml-1 mr-1">
-            <div class="row border-bottom mr-1 ml-1">
-                <div class="col-md-11 m-0 p-0">
-                    <form>
-                        <div class="d-flex table">
-                            <div class="input-option ml-1">
-                                <select id="std-level">
-                                    <option>
-                                        Subject category</option>
-                                    <option>Chemistry</option>
-                                    <option>Physics</option>
-                                </select>
-                            </div>
-                            <div class="input-option ml-1">
-                                <select id="availability-id">
-                                    <option>Subject sub-category</option>
-                                    <option>Periodic table</option>
-                                    <option>Gravity</option>
-                                </select>
-                            </div>
-                            <div class="input-option ml-1">
-                                <select id="rate-number">
-                                    <option>Classes</option>
-                                    <option value="1">Lowest rate</option>
-                                    <option value="1">Highest rate</option>
-                                </select>
-                            </div>
-                            <div class="input-option ml-1">
-                                <select>
-                                    <option>Courses</option>
-                                    <option value="1">Lowest rate</option>
-                                    <option value="1">Highest rate</option>
-                                </select>
-                            </div>
-                            <!-- <div class=" ml-3">
-                            <input type="submit" value="Go" class="schedule-btn" />
-                        </div> -->
+        <div class="row ml-1 mr-1">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row border-bottom ">
+                            <div class="col-md-11 m-0 p-0">
+                                <form>
+                                    <div class="d-flex table">
+                                        <div class="input-option ml-1">
+                                            <select id="std-level">
+                                                <option>
+                                                    Subject category</option>
+                                                <option>Chemistry</option>
+                                                <option>Physics</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-option ml-1">
+                                            <select id="availability-id">
+                                                <option>Subject sub-category</option>
+                                                <option>Periodic table</option>
+                                                <option>Gravity</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-option ml-1">
+                                            <select id="rate-number">
+                                                <option>Classes</option>
+                                                <option value="1">Lowest rate</option>
+                                                <option value="1">Highest rate</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-option ml-1">
+                                            <select>
+                                                <option>Courses</option>
+                                                <option value="1">Lowest rate</option>
+                                                <option value="1">Highest rate</option>
+                                            </select>
+                                        </div>
+                                        <!-- <div class=" ml-3">
+                                        <input type="submit" value="Go" class="schedule-btn" />
+                                    </div> -->
 
-                            <div class="reset-text mt-2 ">
-                                <a href="">
-                                    <input type="reset" value="Reset" class="reset-button" />
-                                </a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-1">
-                    <div class="sort-text">
-                        <select id="sort-by-home">
-                            <option value="3" disabled selected>Sort by</option>
-                            <option value="111">Old to new</option>
-                            <option value="1111111">New to old</option>
-
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-0">
-                <div class="col-md-12">
-                    <!-- start table -->
-                    <table class="table table-borderless">
-                        <thead>
-                            <!-- table header -->
-                            <tr>
-                                <th scope="col">Subject category</th>
-                                <th scope="col">Subject sub-category</th>
-                                <th scope="col">Tutors</th>
-                                <th scope="col">Stduents</th>
-                                <th scope="col">Courses</th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- staff table data -->
-                            @foreach($subjects as $subject)
-                            <tr>
-                                <td class="pt-4">
-                                    <span id="sub-cat_{{ $subject->category_id }}">{{$subject->cat_name}}</span>
-                                </td>
-                                <td class="pt-4 alex-name-2">
-                                    <span class="sub-name_{{ $subject->id }}">{{ $subject->name }}</span>
-                                </td>
-                                <td class="pt-4">
-                                    0
-                                </td>
-                                <td class="pt-4">
-                                    0
-                                </td>
-                                <td class="pt-4">
-                                    0
-                                </td>
-                                <td class="pt-4">
-                                    <div class="container">
-                                        <div class="row float-right">
-                                            <div class="col-md-1">
-                                                <img onclick="delSubject({{ $subject->id }})"
-                                                    src="{{ asset('/admin/assets/img/ico/delete-icon.svg')}}" alt="a"
-                                                    class="mr-3 cursor-1">
-                                            </div>
-                                            <div class="col-md-1">
-                                                <img type="button" onclick="editSubject({{ $subject->id }})"
-                                                    src="{{ asset('/admin/assets/img/ico/edit-icon.svg')}}" alt="a"
-                                                    class="mr-2 cursor-1">
-                                            </div>
-                                            <div class="col-md-2">
-                                                <label class="switch">
-                                                    <input type="checkbox">
-                                                    <span class="slider round"></span>
-                                                </label>
-                                            </div>
+                                        <div class="reset-text mt-2 ">
+                                            <a href="">
+                                                <input type="reset" value="Reset" class="reset-button" />
+                                            </a>
                                         </div>
                                     </div>
-                                </td>
-                            </tr>
-                            @endforeach
-                           
-                            <!-- end data -->
-                        </tbody>
-                    </table>
-                    <!-- end table -->
-                </div>
-            </div>
-            <!-- <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        {{ $subjects->links() }}
+                                </form>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="sort-text">
+                                    <select id="sort-by-home">
+                                        <option value="3" disabled selected>Sort by</option>
+                                        <option value="111">Old to new</option>
+                                        <option value="1111111">New to old</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-0">
+                            <div class="col-md-12">
+                                <!-- start table -->
+                                <table class="table table-borderless">
+                                    <thead>
+                                        <!-- table header -->
+                                        <tr>
+                                            <th scope="col">Subject category</th>
+                                            <th scope="col">Subject sub-category</th>
+                                            <th scope="col">Tutors</th>
+                                            <th scope="col">Stduents</th>
+                                            <th scope="col">Courses</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- staff table data -->
+                                        @foreach($subjects as $subject)
+                                        <tr>
+                                            <td class="pt-4">
+                                                <span id="sub-cat_{{ $subject->category_id }}">{{$subject->cat_name}}</span>
+                                            </td>
+                                            <td class="pt-4 alex-name-2">
+                                                <span class="sub-name_{{ $subject->id }}">{{ $subject->name }}</span>
+                                            </td>
+                                            <td class="pt-4">
+                                                0
+                                            </td>
+                                            <td class="pt-4">
+                                                0
+                                            </td>
+                                            <td class="pt-4">
+                                                0
+                                            </td>
+                                            <td class="pt-4">
+                                                <div class="container">
+                                                    <div class="row float-right">
+                                                        <div class="col-md-1">
+                                                            <img onclick="delSubject({{ $subject->id }})"
+                                                                src="{{ asset('/admin/assets/img/ico/delete-icon.svg')}}" alt="a"
+                                                                class="mr-3 cursor-1">
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <img type="button" onclick="editSubject({{ $subject->id }})"
+                                                                src="{{ asset('/admin/assets/img/ico/edit-icon.svg')}}" alt="a"
+                                                                class="mr-2 cursor-1">
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <label class="switch">
+                                                                <input type="checkbox">
+                                                                <span class="slider round"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    
+                                        <!-- end data -->
+                                    </tbody>
+                                </table>
+                                <!-- end table -->
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
-            </div> -->
-            <div class="container-fluid">
+            </div>
+
+        </div>
+        <div class="row ml-1 mr-1">
+            <div class="col-md-12">
                 <nav aria-label="Page navigation" class="mt-4">
                     <ul class="pagination bg-white pagination-example-1">
                         <li class="page-item">
@@ -192,7 +193,7 @@ svg:not(:root) {
                         
                         @if($subjects->hasPages())
                             <li class="page-item"><a class="page-link " href="#">.....</a></li>
-  
+
                             <li class="page-item"><a class="page-link" href="{{$subjects->url($subjects->lastPage())}}"> {{$subjects->lastPage()}} </a></li>
                             <li class="page-item">
                                 <a class="page-link" href="{{$subjects->nextPageUrl()}}">
@@ -210,7 +211,6 @@ svg:not(:root) {
                 </nav>
             </div>
         </div>
-    </div>
     </div>
 
     <!-- end section -->

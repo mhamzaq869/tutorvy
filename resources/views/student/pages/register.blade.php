@@ -191,6 +191,15 @@
                 transform: rotate(360deg);
             }
         }
+        .stat{
+            border: 1px solid transparent;
+            transition: 0.3s all ease;
+
+        }
+        .stat:hover{
+            border: 1px solid #007bff;
+            color:#007bff;
+        }
 
     </style>
 
@@ -232,6 +241,12 @@
                     </p>
 
                     <div class="row stu_reg mt-5">
+                        <div class="col-md-12">
+                            <div class="nav nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                <a class="nav-link active w-50 stat" id="v-pills-General-tab"  role="tab" href="{{route('student.register')}}"  aria-selected="true">As a Student</a>
+                                <a class="nav-link w-50 stat " id="v-pills-Security-tab" href="{{route('register')}}" role="tab" aria-selected="false">As a Teacher</a>
+                            </div>
+                        </div>
                         <div class="col-md-12">
                             <!-- <div class="board">
                                 <ul class="nav nav-tabs">
@@ -313,6 +328,16 @@
                                                     <input type="password" name="password" class="form-control  @error('password') is-invalid @enderror"
                                                     placeholder="Password" id="password">
                                                     <!-- <label for="" id="password_error" class="text-red"><strong> This field is required </strong>  </label> -->
+                                                    <small id="passTech">
+                                                            Field should have at least:
+                                                            <ul>
+                                                                <li>One uppercase letter</li>
+                                                                <li>One lowercase letter</li>
+                                                                <li>One numeric value</li>
+                                                                <li>One special character</li>
+                                                                <li>8 characters</li>
+                                                            </ul>
+                                                        </small>
                                                     <span for="" id="password_error" class="invalid-feedback" role="alert">
                                                         <strong> This field is required </strong>  
                                                     </span>

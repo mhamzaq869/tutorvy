@@ -229,7 +229,7 @@ function list_tutors(){
                                         </div>
                                         <div class="col-md-3 bg-price text-center">
                                             <div class="row mt-30">
-                                                <a href="#" class="fav" title="Favourite">
+                                                <a type="button" onClick="star()" class="fav" title="Favourite">
                                                     <i class="fa fa-star"></i>
                                                 </a>
                                                 <div class="col-md-12">
@@ -267,7 +267,9 @@ function list_tutors(){
     }
 
 }    
-$(".fav").click(function(){
-    $(this).find(".fa-star").toggleClass("text-yellow");
-});
+
+function star(){
+    alert("D");
+    $(".fa-star").addClass("text-yellow");
+}
 </script>

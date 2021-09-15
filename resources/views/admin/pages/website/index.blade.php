@@ -1,19 +1,27 @@
 @extends('admin.layouts.app')
 
 @section('content')
-
+<section id="homesection" style="display: flex;z-index: -1;">
   <!--section start  -->
-  <div class="container-fluid pb-4">
+  <div class="container-fluid mt-4">
     <div class="row ml-1 mr-1">
         <div class="col-md-6">
             <h1>
                 Website
             </h1>
         </div>
+        <div class="col-md-6 ">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-items"><a href="#">Tutorvy</a></li>
+                    <li class="breadcrumb-items m-0 p-0 ml-3" aria-current="page">&gt;</li>
+                    <li class="breadcrumb-items m-0 p-0 ml-3 breadcrumb-item-active" aria-current="page"><a
+                            href="">Website</a>
+                    </li>
+                </ol>
+            </nav>
+        </div>
     </div>
-</div>
-<!-- start section -->
-<div class="container-fluid mt-5">
     <div class="row ml-1 mr-1">
         <div class="col-md-4">
             <a href="../cms/cms.html">
@@ -94,5 +102,6 @@
     </div>
 </div>
 <!-- end section -->
+</section>
 
 @endsection

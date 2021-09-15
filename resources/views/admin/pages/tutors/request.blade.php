@@ -33,6 +33,47 @@
                 @endif
                 
             </div>
+            <div class="card">
+                <div class="card-body">
+                    <h3>Submitted Documents</h3>
+                    <div class="row">
+                        <div class="col-md-12 mt-3">
+                            <table>
+                                <tr>
+                                    <th>Document Type</th>
+                                    <td> National Identity Card </td>
+                                </tr>
+                                <tr>
+                                    <th>Document number</th>
+                                    <td>123-123-14563-123</td>
+                                </tr>
+                               
+                            </table>
+                        </div>
+                        <div class="col-md-12 mt-3">
+                            <p><strong>Document Attachments</strong> </p>
+                        </div>
+                        <div class="col-md-12 mt-2">
+                            <a href="#" >
+                                <img src="{{asset ('admin/assets/img/ico/course.png')}}"  class="w-100" alt="">
+                            </a>
+                        </div>
+                        <div class="col-md-12 mt-2">
+                            <a href="#" >
+                                <img src="{{asset ('admin/assets/img/ico/course.png')}}"  class="w-100" alt="">
+                            </a>
+                        </div>
+                        <div class="col-md-12 mt-3 text-right">
+                            <button class="schedule-btn" > 
+                                Verify
+                            </button>
+                            <button class="cencel-btn" > 
+                                Reject
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- Modal verify -->
         <div class="modal fade" id="tutorAcceptModal" tabindex="-1" role="dialog"

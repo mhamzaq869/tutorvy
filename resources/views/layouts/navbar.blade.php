@@ -98,7 +98,10 @@
                                                 </a>
                                             </li>
                                             <li class=" button-blue pl-md-0 ml-0 ml-md-4">
-                                                <a data-toggle="modal" href="#registerLogin" class="nav-link sign-text">
+                                                <!-- <a data-toggle="modal" href="#registerLogin" class="nav-link sign-text">
+                                                    &nbsp;&nbsp; Sign Up &nbsp;&nbsp;
+                                                </a> -->
+                                                <a  href="{{route('student.register')}}" class="nav-link sign-text">
                                                     &nbsp;&nbsp; Sign Up &nbsp;&nbsp;
                                                 </a>
                                             </li>
