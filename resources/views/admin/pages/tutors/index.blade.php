@@ -123,7 +123,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach($new_requests as $request)
-                                        @if($request->status == 0)
+                                        @if($request->status == 2 && $request->assessment_status != '' && $request->assessment_status != 1)
                                         <tr>
                                             <td class="pt-4">
                                                 <!-- -->
@@ -155,7 +155,7 @@
                                             <td class="pt-4">{{$request->hourly_rate}}</td>
                                             <td class="pt-4"> 
                                                 @if($request->assessment_status == 0 && $request->status == 2)
-                                                    <span class="statusTag doc_sub_status">  Assessment Sumitted 1 </span>
+                                                    <span class="statusTag doc_sub_status">  Assessment Sumitted </span>
                                                 @else
                                                     @if( $request->status == 0)
                                                         <span class="statusTag doc_not_sub_status">  Document not Submitted </span>
@@ -174,7 +174,7 @@
                                                     data-target="#exampleModalCenter">Assign</button>
                                             </td>
                                         </tr>
-                                        @elseif($request->assessment_id != null && $request->assessment_status != null)
+                                        @elseif($request->status == 0)
                                         <tr>
                                             <td class="pt-4">
                                                 <!-- -->
@@ -206,7 +206,7 @@
                                             <td class="pt-4">{{$request->hourly_rate}}</td>
                                             <td class="pt-4"> 
                                                 @if($request->assessment_status == 0 && $request->status == 2)
-                                                    <span class="statusTag doc_sub_status">  Assessment Sumitted 1 </span>
+                                                    <span class="statusTag doc_sub_status">  Assessment Sumitted </span>
                                                 @else
                                                     @if( $request->status == 0)
                                                         <span class="statusTag doc_not_sub_status">  Document not Submitted </span>

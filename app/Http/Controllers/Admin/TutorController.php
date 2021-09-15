@@ -36,11 +36,12 @@ class TutorController extends Controller
         $new_requests = DB::table('users')
             ->select('users.*','assessments.id as assessment_id','assessments.status as assessment_status','subjects.name as subject_name')
             ->leftJoin('assessments', 'users.id', '=', 'assessments.user_id')
-            ->leftJoin('subjects', 'subjects.id', '=', 'assessments.subject_id')           
+            ->leftJoin('subjects', 'subjects.id', '=', 'assessments.subject_id')    
+            // ->where('assessments.status','!=',1)
             ->where('users.role',2)
             ->whereIn('users.status', [0, 1, 2])
             ->paginate(15);
-        // return $new_requests;
+        //  return $new_requests;
 
 
         return view('admin.pages.tutors.index',compact('new_requests','approved_tutors','staff_members'));
