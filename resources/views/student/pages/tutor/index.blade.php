@@ -12,16 +12,19 @@
             <div class="row bg-white ml-2 mr-2 ">
                 <div class="col-md-12 mb-1 ">
                     <div class=" card  bg-toast infoCard">
-                        <a href="#" class="cross"  onclick="hideCard()"> 
-                            <i class="fa fa-times" aria-hidden="true"></i>
-                        </a>
+                        
 
                         <div class="card-body row">
-                            <div class="col-md-2 text-center">
+                            <div class="col-md-1 text-center">
                                 <i class="fa fa-info" aria-hidden="true"></i>
                             </div>
-                            <div class="col-md-10">
-                                Filter according to your need. Specify the age,ranges,ratings,subjects and every possible details to get the exact person you need <a href="#">Learn More</a>
+                            <div class="col-md-11 pl-0">
+                                <small>
+                                    Filter according to your need. Specify the age,ranges,ratings,subjects and every possible details to get the exact person you need <a href="#">Learn More</a>
+                                </small>
+                                <a href="#" class="cross"  onclick="hideCard()"> 
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -103,6 +106,17 @@
                                                         <div class="range-slider">
                                                              <input type="text" class="js-range-slider" id="range"  name="my_range" value="" />
                                                              <span class="range-slider__value"></span>
+                                                        </div>
+                                                        <div class="row mt-2">
+                                                            <div class="col-md-5 ">
+                                                                <input type="number" class="  formy-range" placeholder="Min">
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <p>-</p>
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <input type="number" max="1000" class="  formy-range"  placeholder="Max">
+                                                            </div>
                                                         </div>
                                                 </div>
                                             </div>
@@ -295,6 +309,17 @@
                                                         <div class="range-slider">
                                                              <input type="text" class="age-range-slider" name="my_range" value="" />
                                                         </div>
+                                                        <div class="row mt-2">
+                                                            <div class="col-md-5 ">
+                                                                <input type="number" class="  formy-range" min="18" placeholder="Min">
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <p>-</p>
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <input type="number" max="70" class="  formy-range"  placeholder="Max">
+                                                            </div>
+                                                        </div>
                                                 </div>
                                             </div>
                                             <hr class="m-0">
@@ -410,6 +435,8 @@
                                                 @elseif($tutor->rank == 3)
                                                     <p class="text-right"><span class="text-green ">Top Rank</span> <span class="rank_icon"><img src="../assets/images/ico/rank.png" alt=""></span> </p>
                                                 @endif
+                                                <small> <strong> 3 hours</strong> tutoring in (this subject) </small>
+
                                             </div>
                                         </div>
                                         <div class="row mt-2">

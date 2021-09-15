@@ -20,16 +20,18 @@
         <div class="row bg-white ml-2 mr-2">
             <div class="col-md-12 mb-1 ">
                 <div class=" card  bg-toast infoCard">
-                    <a href="#" class="cross"  onclick="hideCard()"> 
-                        <i class="fa fa-times" aria-hidden="true"></i>
-                    </a>
-
                     <div class="card-body row">
-                        <div class="col-md-2 text-center">
+                        <div class="col-md-1 text-center">
                             <i class="fa fa-info" aria-hidden="true"></i>
                         </div>
-                        <div class="col-md-10">
-                            Booking Details and all about your schedule for meetings <a href="#">Learn More</a>
+                        <div class="col-md-11 pl-0">
+                            <small>
+                                    Booking Details and all about your schedule for meetings <a href="#">Learn More</a>
+                            </small>
+                            <a href="#" class="cross pull-right"  onclick="hideCard()"> 
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </a>
+                            
                         </div>
                     </div>
                 </div>

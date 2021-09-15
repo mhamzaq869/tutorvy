@@ -198,6 +198,15 @@
 .form-check-label{
     margin-left:20px;
 }
+.stat{
+            border: 1px solid transparent;
+            transition: 0.3s all ease;
+
+        }
+        .stat:hover{
+            border: 1px solid #007bff;
+            color:#007bff;
+        }
     </style>
 
 </head>
@@ -237,7 +246,13 @@
                         </a>
                     </p>
 
-                    <div class="row">
+                    <div class="row mt-5">
+                        <div class="col-md-12">
+                            <div class="nav nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                <a class="nav-link  w-50 stat" id="v-pills-General-tab" href="{{route('student.register')}}" role="tab"  aria-selected="false">As a Student</a>
+                                <a class="nav-link w-50 stat active" id="v-pills-Security-tab" href="{{route('register')}}" role="tab" aria-selected="true">As a Teacher</a>
+                            </div>
+                        </div>
                         <div class="col-md-12 stu_reg">
                             <!-- <div class="board">
                                 <ul class="nav nav-tabs">
@@ -289,7 +304,7 @@
                                 <div class="tab-content mt-5">
                                     <div role="tabpanel" class="border-right tab-pane active" id="step-1">
                                         <div class="col-md-12">
-                                            <!-- <p class="heading-third mt-3">Personal information</p> -->
+                                            <p class="heading-third mt-3">Personal information</p>
                                             <div class="row mt-5">
                                                 <div class="input-text col-md-6 d-block">
                                                     <input type="" class="form-control csd" name="first_name"

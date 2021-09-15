@@ -66,18 +66,20 @@
                     </div>
                 </div>
                 <div class="row">
-                <div class="col-md-12 mb-1 ">
+                    <div class="col-md-12 mb-1 ">
                             <div class=" card  bg-toast infoCard">
-                                <a href="#" class="cross"  onclick="hideCard()"> 
-                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                </a>
-
                                 <div class="card-body row">
-                                    <div class="col-md-2 text-center">
+                                    <div class="col-md-1 text-center">
                                         <i class="fa fa-info" aria-hidden="true"></i>
                                     </div>
-                                    <div class="col-md-10">
-                                        Subject Details to get to know which subjects you can offer and which subjects you have already offered and their status. <a href="#">Learn More</a>
+                                    <div class="col-md-11">
+                                        <small>
+                                            Subject Details to get to know which subjects you can offer and which subjects you have already offered and their status. <a href="#">Learn More</a>
+
+                                        </small>
+                                        <a href="#" class="cross"  onclick="hideCard()"> 
+                                            <i class="fa fa-times" aria-hidden="true"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

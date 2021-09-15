@@ -1070,7 +1070,7 @@ tr th {
     height: 17px;
 }
 
-#accordion input,
+#accordion input[type="radio"],
 select {
     width: auto !important;
 }
@@ -1115,12 +1115,12 @@ select {
 }
 
 .btn-download-app {
-    background-color: #1A1A1A;
-    color: white;
+    background-color: transparent;
+    color: #21B573;
     transition: all 0.3s ease;
     padding: 7px 20px;
-    border-radius: 50px;
-    border: 1px solid #1A1A1A;
+    border-radius: 4px;
+    border: 1px solid #21B573;
     font-size: 14px;
     font-family: 'Poppins';
     height: 42px;
@@ -1128,8 +1128,9 @@ select {
 }
 
 .btn-download-app:hover {
-    background-color: #30005E;
-    border-color: #30005E;
+    background-color: #D2EBE0;
+    border-color: #D2EBE0;
+    /* color: #D2EBE0; */
 }
 
 .btn-download-app i {
@@ -1137,7 +1138,7 @@ select {
 }
 
 .bg-toast {
-    background: #D2E5FF;
+    background: #E1EDFF;
     transition: all 0.3s ease;
     color: #00132D;
 }
@@ -1147,13 +1148,16 @@ select {
 }
 
 .bg-toast .fa-info {
-    font-size: 44px;
+    font-size: 20px;
 }
 
 .bg-toast .cross {
-    position: absolute;
-    font-size: 21px;
-    right: 7px;
-    top: 7px;
     color: #00132D;
+    float: right;
+}
+
+.formy-range {
+    height: 28px;
+    padding: 5px;
+    font-size: 12px;
 }
