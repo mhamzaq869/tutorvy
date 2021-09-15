@@ -155,12 +155,12 @@
                                             <td class="pt-4">{{$request->hourly_rate}}</td>
                                             <td class="pt-4"> 
                                                 @if($request->assessment_status == 0 && $request->status == 2)
-                                                    <span class="pending-text-1 small ">  Assessment Sumitted </span>
+                                                    <span class="statusTag doc_sub_status">  Assessment Sumitted </span>
                                                 @else
                                                     @if( $request->status == 0)
-                                                        <span class="pending-text-1 small ">  Document not Submitted </span>
+                                                        <span class="statusTag doc_not_sub_status">  Document not Submitted </span>
                                                     @elseif( $request->status == 1)
-                                                        <span class="pending-text-1 small ">  Document Sumitted </span>
+                                                        <span class="statusTag doc_sub_status">  Document Sumitted </span>
                                                     @endif
                                                 @endif
                                             </td>
@@ -357,11 +357,11 @@
                                         <td class="pt-4">{{$tutor->hourly_rate}}</td>
                                         <td class="pt-4"> 
                                             @if( $tutor->status == 0)
-                                                <span class="pending-text-1 small ">  Document not Submitted </span>
+                                                <span class="statusTag doc_not_sub_status">  Document not Submitted </span>
                                             @elseif( $tutor->status == 1)
-                                                <span class="pending-text-1 small ">  Document Sumitted </span>
+                                                <span class="statusTag doc_sub_status">  Document Sumitted </span>
                                             @elseif( $tutor->status == 2)
-                                                <span class="pending-text-1 small ">  Approved </span>
+                                                <span class="statusTag veri_status">  Verified </span>
                                             @endif
                                         </td>
                                         <td class="pt-4 text-right">
