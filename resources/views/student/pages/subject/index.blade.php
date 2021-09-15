@@ -1,4 +1,4 @@
-@extends('tutor.layouts.app')
+@extends('student.layouts.app')
 
 @section('content')
  <!-- top Fixed navbar End -->

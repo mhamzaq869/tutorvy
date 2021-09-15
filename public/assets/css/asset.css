@@ -928,3 +928,31 @@ footer a:hover {
 .btn-download-app i {
     font-size: 18px;
 }
+
+.formy-range {
+    height: 28px;
+    padding: 5px;
+    font-size: 12px;
+    width: 100%;
+}
+
+.irs--flat .irs-bar {
+    background-color: #1173FF !important;
+}
+
+.irs--flat .irs-handle>i:first-child,
+.irs--flat .irs-from,
+.irs--flat .irs-to,
+.irs--flat .irs-single {
+    background-color: #1173FF !important;
+}
+
+.irs--flat .irs-to:before,
+.irs--flat .irs-from:before {
+    border-top-color: #1173FF !important;
+}
+
+.irs--flat .irs-handle.state_hover>i:first-child,
+.irs--flat .irs-handle:hover>i:first-child {
+    background-color: #000 !important;
+}

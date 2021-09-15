@@ -16,22 +16,27 @@
             </div>
 
             <div class="col-md-8">
-                <div class="col-md-12 mb-3 ">
-                    <div class=" card  bg-toast infoCard">
-                        <a href="#" class="cross"  onclick="hideCard()"> 
-                            <i class="fa fa-times" aria-hidden="true"></i>
-                        </a>
+                <div class="row">
+                    <div class="col-md-12 mb-3 ">
+                        <div class=" card mt-0 bg-toast infoCard">
+                            <div class="card-body row">
+                                <div class="col-md-1 text-center">
+                                    <i class="fa fa-info" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-md-11 pl-0">
+                                    <small>
+                                        Dashboard have all the stats of your need including class details, upcoming classes, earning stats <a href="#">Learn More</a>
+                                    </small>
+                                    <a href="#" class="cross"  onclick="hideCard()"> 
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </a>
 
-                        <div class="card-body row">
-                            <div class="col-md-2 text-center">
-                                <i class="fa fa-info" aria-hidden="true"></i>
-                            </div>
-                            <div class="col-md-10">
-                                Dashboard have all the stats of your need including class details, upcoming classes, earning stats <a href="#">Learn More</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+               
                 <div class="bg-homeimage1">
                     <div class="row">
                         <div class="col-md-7 text-white pl-4">

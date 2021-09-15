@@ -249,8 +249,11 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item  mr-5">
-                    <button class=" btn-download-app">
+                    <!-- <button class=" btn-download-app">
                         <i class="fa fa-android pr-2"></i> Download App Now
+                    </button> -->
+                    <button class=" btn-download-app">
+                         Download App Now
                     </button>
             </li>
             <li class="header">

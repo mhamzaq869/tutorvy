@@ -123,7 +123,7 @@
                         aria-labelledby="headingOne">
                         <div class="panel-body">
 
-                            <div class="row">
+                            <!-- <div class="row">
                                 <b>
                                     <div class="col align-self-start">
                                         $10-$1000
@@ -135,6 +135,20 @@
                                     <input class="range-slider__range w-100" type="range" id="range" value="1000" min="0"
                                         max="500">
                                     <span class="range-slider__value"></span>
+                                </div>
+                            </div> -->
+                            <div class="range-slider">
+                                    <input type="text" class="js-range-slider" name="my_range" value="" />
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-5 ">
+                                    <input type="number" class="  formy-range" min="18" placeholder="Minimum">
+                                </div>
+                                <div class="col-md-2">
+                                    <p>to</p>
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="number" max="70" class="  formy-range"  placeholder="Maximum">
                                 </div>
                             </div>
                         </div>
@@ -332,8 +346,66 @@
                         </div>
                     </div>
                 </div>
+
+                <!--TAB4-->
+                <div class="bottom-line mt-3 panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingFour">
+                        <p class="panel-title">
+                            <a class="range-text collapsed " data-toggle="collapse" data-parent="#accordion"
+                                href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                                Age
+                            </a>
+                        </p>
+                    </div>
+                    <div id="collapseSeven" class="panel-collapse collapse " role="tabpanel"
+                        aria-labelledby="headingTree">
+                        <div class="panel-body">
+                            <div class="range-slider">
+                                    <input type="text" class="age-range-slider" name="my_range" value="" />
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-5 ">
+                                    <input type="number" class="  formy-range" min="18" placeholder="Minimum">
+                                </div>
+                                <div class="col-md-2">
+                                    <p>to</p>
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="number" max="70" class="  formy-range"  placeholder="Maximum">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-9 mb-3" id="tutor">
+            <div class="row">
+                        <div class="col-md-9">
+                            <div class="card">
+                                <div class="card-body">
+                                    <p><strong>  Searched Filters:  </strong></p>
+                                    <p>
+                                        <span class="info-1 info4">subject</span> 
+                                        <span class="info-1 info4">location</span>
+                                        <span class="info-1 info4">rate</span>
+                                        <span class="info-1 info4">range</span>
+                                        <span class="info-1 info4">gender</span>
+                                        <span class="info-1 info4">age</span>
+                                        <span class="info-1 info4">availability</span>
+                                    </p> 
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h1 class="number-booking  ">  56  </h1>
+                                    <p class="">Total Tutors</p>  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @if(sizeof($tutors) == 0 || $tutors == '[]' )
                         <div class="card">
                             <div class="card-body text-center">
@@ -350,6 +422,7 @@
                         
                         <div class="row">
                             <div class="col-md-9">
+
                                 <div class="row">
                                     <div class="col-md-9">
                                         <div class="row">
@@ -405,6 +478,8 @@
                                         @elseif($tutor->rank == 3)
                                             <p class="text-right"><span class="text-green ">Top Rank</span> <span class="rank_icon"><img src="../assets/images/ico/rank.png" alt=""></span> </p>
                                         @endif
+                                        <p> <strong> 3 hours</strong> tutoring in (this subject) </p>
+
                                     </div>
                                 </div>
                                 <div class="row mt-2">
@@ -450,6 +525,9 @@
                             </div>
                             <div class="col-md-3 bg-price text-center">
                                 <div class="row mt-4">
+                                    <a href="#" class="fav" title="Favourite">
+                                        <i class="fa fa-star"></i>
+                                    </a>
                                     <div class="col-md-12 ">
                                         <p>starting from</p>
                                         <h1 class="f-60">${{$tutor->hourly_rate}}</h1>

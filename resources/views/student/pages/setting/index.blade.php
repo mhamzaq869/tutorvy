@@ -27,16 +27,20 @@
             <div class="row">
                 <div class="col-md-12 mb-1 ">
                     <div class=" card  bg-toast infoCard">
-                        <a href="#" class="cross"  onclick="hideCard()"> 
-                            <i class="fa fa-times" aria-hidden="true"></i>
-                        </a>
+                        
 
                         <div class="card-body row">
-                            <div class="col-md-2 text-center">
+                            <div class="col-md-1 text-center">
                                 <i class="fa fa-info" aria-hidden="true"></i>
                             </div>
-                            <div class="col-md-10">
-                                Change your registered information anytime to keep your profile updated here. <a href="#">Learn More</a>
+                            <div class="col-md-11 pl-0">
+                                <small>
+                                    Change your registered information anytime to keep your profile updated here. <a href="#">Learn More</a>
+
+                                </small>
+                                <a href="#" class="cross"  onclick="hideCard()"> 
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </a>
                             </div>
                         </div>
                     </div>

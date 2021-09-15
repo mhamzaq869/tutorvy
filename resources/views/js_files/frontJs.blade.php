@@ -12,7 +12,25 @@ let tutors = '';
     document.getElementById('languages-list').innerHTML = option;
 })();
 
-
+$(document).ready(function(){
+    $(".js-range-slider").ionRangeSlider({
+            type: "double",
+            min: 0,
+            max: 1000,
+            from: 200,
+            to: 500,
+            grid: true,
+            prefix: "$"
+        });
+        $(".age-range-slider").ionRangeSlider({
+            type: "double",
+            min: 18,
+            max: 70,
+            from: 18,
+            to: 70,
+            grid: true,
+        });
+})
 $(".filteration").change(function() {
     // $('#preloaderbody').css('display','block')
 
