@@ -10,6 +10,7 @@ use App\Models\Admin\Subject;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\General\Education;
 use App\Models\General\Professional;
 use App\Models\Userdetail;
@@ -24,13 +25,12 @@ class ProfileController extends Controller
         $subjects = Subject::all();
         $degrees = Degree::all();
         $institutes = Institute::all();
-
-        return view('tutor.pages.profile.index',compact('subjects','degrees','institutes'));
+        $user_files = DB::table("user_files")->where('user_id',Auth::user()->id)->where('type',Auth::user()->type)->get()->toArray();
+        return view('tutor.pages.profile.index',compact('subjects','degrees','institutes','user_files'));
     }
 
 
-    public function profileUpdate(Request $request)
-    {
+    public function profileUpdate(Request $request) {
         
         $date_of_birth = $request->year.'-'.$request->month.'-'.$request->day;
         
@@ -38,8 +38,8 @@ class ProfileController extends Controller
             $path = 'storage/profile/'.$request->filepond->getClientOriginalName();
             $request->filepond->storeAs('profile',$request->filepond->getClientOriginalName(),'public');
         }
-
-        $user = User::updateOrCreate(["email" => Auth::user()->email],[
+        
+        User::where('id',$request->user_id)->update([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'dob' => $date_of_birth,
@@ -53,18 +53,130 @@ class ProfileController extends Controller
             'gender' => $request->gender,
             'bio' => $request->bio,
         ]);
-        
+
+       
         return response()->json([
             "status_code" => 200,
             "success" => true,
             "message" => "Profile Updated Successfully",
         ]); 
 
-        // return redirect()->back()->with('message','Your Profile has been successfully updated');
     }
 
-    public function educationUpdate(Request $request)
-    {
+    public function updateProfileEdu($user_id ,Request $request) {
+                
+        $docs = [];
+
+        if($request->hasFile('upload')){
+            foreach($request->upload as $i => $upload){
+                $path = 'storage/docs/'.$upload->getClientOriginalName();
+                $upload->storeAs('docs',$upload->getClientOriginalName(),'public');
+                array_push($docs,$path);
+            }
+        }
+
+        for($i=0; $i < count($request->degree); $i++){
+            Education::updateOrCreate([
+                "user_id" => $user_id,
+                "degree_id" => $request->degree[$i],
+                "subject_id" => $request->major[$i],
+                "institute_id" => $request->institute[$i],
+                "year" => $request->graduate_year[$i],
+                "docs" => $docs[$i] ?? '',
+            ]);
+        }
+
+        return response()->json([
+            "status_code" => 200,
+            "success" => true,
+            "message" => "Record Saved Successfully",
+        ]); 
+    }
+
+    public function updateProfileProfession($user_id , Request $request) {
+
+        for($i=0; $i < count($request->designation); $i++){
+            Professional::updateOrCreate([
+                "user_id" => $user_id,
+                "designation" => $request->designation[$i],
+                "organization" => $request->organization[$i],
+                "start_date" => $request->degree_start[$i],
+                "end_date" => $request->degree_end[$i],
+            ]);
+        }
+        
+        return response()->json([
+            "status_code" => 200,
+            "success" => true,
+            "message" => "Record Saved Successfully",
+        ]);
+
+    }
+
+    public function updateProfileVerfication($user_id , Request $request) {
+        User::where('id', $user_id)->update([
+            "type" => $request->security,
+            "cnic_security" => $request->document_no,
+            "status" => 1,
+        ]);
+
+        $data = [];
+
+        if($request->security == 1) {
+
+            if($request->hasFile('id_card_pic')){
+                $filename = 'storage/verfication/'.$request->id_card_pic->getClientOriginalName();
+                array_push($data , $filename);
+                $request->id_card_pic->storeAs('verifcation',$request->id_card_pic->getClientOriginalName(),'public');
+            }
+            
+            if($request->hasFile('id_card_pic2')){
+                $filename = 'storage/verfication/'.$request->id_card_pic2->getClientOriginalName();
+                array_push($data , $filename);
+                $request->id_card_pic2->storeAs('verifcation',$request->id_card_pic2->getClientOriginalName(),'public');
+            }
+            
+
+        }else if($request->security == 2) {
+            if($request->hasFile('license_pic')){
+                $filename = 'storage/verfication/'.$request->license_pic->getClientOriginalName();
+                array_push($data , $filename);
+                $request->license_pic->storeAs('verifcation',$request->license_pic->getClientOriginalName(),'public');
+            }
+    
+            if($request->hasFile('license_pic2')){
+                $filename = 'storage/verfication/'.$request->license_pic2->getClientOriginalName();
+                array_push($data , $filename);
+                $request->license_pic2->storeAs('verifcation',$request->license_pic2->getClientOriginalName(),'public');
+            }
+        }else{
+
+            if($request->hasFile('passport_pic')){
+                $filename = 'storage/verfication/'.$request->passport_pic->getClientOriginalName();
+                array_push($data , $filename);
+                $request->passport_pic->storeAs('verifcation',$request->passport_pic->getClientOriginalName(),'public');
+            }
+
+        }
+
+        foreach($data as $file) {
+            DB::table("user_files")->insert([
+                "user_id" => $user_id,
+                "type" => $request->security,
+                "files" => $file,
+            ]); 
+        }
+
+
+        return response()->json([
+            "status_code" => 200,
+            "success" => true,
+            "message" => "Documents Saved. Please wait for Administrator approval",
+        ]); 
+    }
+
+    public function educationUpdate(Request $request) {
+
         dd($request->all());
         Userdetail::updateOrCreate(['user_id' => Auth::user()->id],[
             'student_level' => $request->student_level,

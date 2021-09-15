@@ -18,20 +18,15 @@
                 <p class="heading-fifth mt-2 line-height-1 mb-1">Tutor</p>
                
                 @if($tutor->status == 2)
-                <h6><span class="badge badge-success mb-3 all-tutor-badge">Approved</span></h6>
+                <h6><span class="badge badge-success mb-3 all-tutor-badge">Verified</span></h6>
                 @else
                 <hr />
                 <div class="pb-5 mt-4">
-                    <button class="cencel-btn" data-toggle="modal" data-target="#tutorRejectModal"
-                        style="width: 110px;">Reject</button>
+                    <button class="cencel-btn" data-toggle="modal" data-target="#tutorRejectModal" style="width: 110px;">Reject</button>
                     @if($tutor_assessment != null)
-                    <button class="schedule-btn" 
-                        style="width: 110px;" onclick="verifyTutor(`{{$tutor->id}}`,2,`{{$tutor_assessment->status}}`)">Accept
-                    </button>
+                        <button class="schedule-btn" style="width: 110px;" onclick="verifyTutor(`{{$tutor->id}}`,2,`{{$tutor_assessment->status}}`)">Accept </button>
                     @else
-                    <button class="schedule-btn" 
-                        style="width: 110px;" onclick="verifyTutor(`{{$tutor->id}}`,2)">Accept
-                    </button>
+                        <button class="schedule-btn" style="width: 110px;" onclick="verifyTutor(`{{$tutor->id}}`,2)">Accept </button>
                     @endif
                 </div>
 
@@ -121,7 +116,7 @@
                             <p class="paragraph-text">
                                 Write allegation that why are you rejecting tutor
                             </p>
-                            <textarea class="form-control" rows="5" placeholder="Write reason" id="t_reject_reason"></textarea>
+                            <textarea class="form-control" rows="5" placeholder="Write reason" id="t_reject_reason" class="reject_reason"> </textarea>
                             <div class="mt-4 d-flex" style="position: absolute;right: 30px;">
                                 <button class="cencel-btn w-150 mr-4" data-dismiss="modal">Cancel</button>
                                 @if($tutor_assessment != null)
@@ -135,6 +130,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col-md-9 bg-white border-right">
             <div class="mt-4 ml-3">
                 <table class="table">

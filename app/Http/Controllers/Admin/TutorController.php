@@ -25,23 +25,23 @@ class TutorController extends Controller
     {
         $staff_members = User::whereNotIn('role', [1,2,3])->get();
 
-        $approved_tutors = User::with(['education','professional','teach'])->where('role',2)->whereIn('status',[0,2])->paginate(15);
+        $approved_tutors = User::with(['education','professional','teach'])->where('role',2)->whereIn('status',[2])->paginate(15);
         
+
+        // dd($approved_tutors);
         // $new_requests = array();
 
         $tutor_assessments = Assessment::get();
 
         $new_requests = DB::table('users')
-            ->select('users.*','assessments.id as assessment_id','subjects.name as subject_name')
+            ->select('users.*','assessments.id as assessment_id','assessments.status as assessment_status','subjects.name as subject_name')
             ->leftJoin('assessments', 'users.id', '=', 'assessments.user_id')
-            ->leftJoin('subjects', 'subjects.id', '=', 'assessments.subject_id')
-            
+            ->leftJoin('subjects', 'subjects.id', '=', 'assessments.subject_id')           
             ->where('users.role',2)
-            ->where('users.status',1)
-            ->orwhere('users.status',2)
-            ->where('assessments.status',0)
-            
+            ->whereIn('users.status', [0, 1, 2])
             ->paginate(15);
+        // return $new_requests;
+
 
         return view('admin.pages.tutors.index',compact('new_requests','approved_tutors','staff_members'));
     }
@@ -131,9 +131,9 @@ class TutorController extends Controller
 
     public function tutorStatus(Request $request){
 
-        $tutor = User::where('id',$request->id)->first();
+        $tutor = User::where('id', $request->id)->first();
         $tutor->status = $request->status;
-        $tutor->reject_note = $request->reason;
+        $tutor->reject_note = $request->status == 2 ? NULL : $request->reason;
 
         if($request->is_new == 1){
 
@@ -153,7 +153,6 @@ class TutorController extends Controller
 
         $message = '';
         if($request->status == 2){
-
             $message = 'Tutor Status Enabled.';
         }elseif($request->status == 3){
             $message = 'Tutor Rejected.';
@@ -163,7 +162,7 @@ class TutorController extends Controller
 
         return response()->json([
             'status'=>'200',
-            'message' => $message
+            'message' =>  $message ,
         ]);
 
     }

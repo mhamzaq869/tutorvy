@@ -111,26 +111,24 @@
                                     <tr class="border-bottom table-margin-top ">
 
                                         <th scope="col">Name</th>
-                                        <th scope="col">Id</th>
                                         <th scope="col">Email</th>
                                         <th scope="col">Subjects</th>
                                         <th scope="col">Location</th>
                                         <th scope="col">Grade</th>
                                         <th scope="col">Availability </th>
                                         <th scope="col">Rate</th>
+                                        <th scope="col">Status</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($new_requests as $request)
+                                        @if($request->assessment_id != null && $request->assessment_status == 0)
                                         <tr>
                                             <td class="pt-4">
                                                 <!-- -->
                                                 {{ $request->first_name }} {{ $request->last_name }}
                                                 <!-- <span data-toggle="tooltip" title="Harram Laraib Ali">Har***</span> -->
-                                            </td>
-                                            <td class="pt-4">
-                                                123123141
                                             </td>
                                             <td class="pt-4">
                                                 <span data-toggle="tooltip"
@@ -155,6 +153,17 @@
                                             
                                             <td class="pt-4">---</td>
                                             <td class="pt-4">{{$request->hourly_rate}}</td>
+                                            <td class="pt-4"> 
+                                                @if($request->assessment_status == 0 && $request->status == 2)
+                                                    <span class="pending-text-1 small ">  Assessment Sumitted </span>
+                                                @else
+                                                    @if( $request->status == 0)
+                                                        <span class="pending-text-1 small ">  Document not Submitted </span>
+                                                    @elseif( $request->status == 1)
+                                                        <span class="pending-text-1 small ">  Document Sumitted </span>
+                                                    @endif
+                                                @endif
+                                            </td>
                                             <td class="pt-3 text-right">
                                                 <a href="{{ route('admin.tutorRequest',[$request->id,$request->assessment_id !=null ? $request->assessment_id : '']) }}" class="cencel-btn btn">
                                                     View
@@ -165,6 +174,7 @@
                                                     data-target="#exampleModalCenter">Assign</button>
                                             </td>
                                         </tr>
+                                        @endif
                                     @endforeach
                                     
                                 </tbody>
@@ -194,13 +204,13 @@
                                                 <img src="{{ asset('/admin/assets/img/ico/arrow-right-1.png')}}" alt="image" />
                                             </a>
                                         </li>
-                                        @else
+                                    @else
                                         <li class="page-item">
                                             <a class="page-link" href="{{$new_requests->nextPageUrl()}}">
                                                 <img src="{{ asset('/admin/assets/img/ico/arrow-right-1.png')}}" alt="image" />
                                             </a>
                                         </li>
-                                        @endif
+                                    @endif
                                 </ul>
                             </nav>
                         </div>
@@ -299,13 +309,13 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Id</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Subjects</th>
                                     <th scope="col">Location</th>
                                     <th scope="col">Grade</th>
                                     <th scope="col">Availability </th>
                                     <th scope="col">Rate</th>
+                                    <th scope="col">Status</th>
                                     <th scope="col"></th>
                                     <th scope="col"></th>
                                     <th scope="col"></th>
@@ -323,9 +333,6 @@
                                             <!-- -->
                                             {{ $tutor->first_name }} {{ $tutor->last_name }}
                                             <!-- <span data-toggle="tooltip" title="Harram Laraib Ali">Har***</span> -->
-                                        </td>
-                                        <td class="pt-4">
-                                            123123141
                                         </td>
                                         <td class="pt-4">
                                             <span data-toggle="tooltip"
@@ -348,6 +355,15 @@
                                         @endif
                                         <td class="pt-4">{{$tutor->availability != NULL ? $tutor->availability : '---'}}</td>
                                         <td class="pt-4">{{$tutor->hourly_rate}}</td>
+                                        <td class="pt-4"> 
+                                            @if( $tutor->status == 0)
+                                                <span class="pending-text-1 small ">  Document not Submitted </span>
+                                            @elseif( $tutor->status == 1)
+                                                <span class="pending-text-1 small ">  Document Sumitted </span>
+                                            @elseif( $tutor->status == 2)
+                                                <span class="pending-text-1 small ">  Approved </span>
+                                            @endif
+                                        </td>
                                         <td class="pt-4 text-right">
                                             <a href="setting.html">
                                                 <img src="{{ asset('admin/assets/img/ico/edit-icon.svg')}}" alt="image"
