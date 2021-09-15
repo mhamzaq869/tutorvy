@@ -30,6 +30,34 @@
             position: absolute;
     right: 43px;
         }
+        
+.Google {
+    margin-top: 30px;
+    width: 100%;
+    background-color: #C94131;
+    color: #fff;
+    padding: 9px;
+    font-size: 14px;
+    border: 1px solid #C94131;
+    text-align: center;
+    font-family: 'Poppins';
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.Google a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.Google:hover {
+    background-color: #fff;
+}
+
+.Google:hover a {
+    color: #C94131;
+}
+
     </style>
 </head>
 
@@ -97,7 +125,7 @@
                             </p>
                             <div class="row">
                                 <p class="user-text ml-3">
-                                    New user?<a data-toggle="modal" href="#registerLogin" class="Create-text text-decoration-none">
+                                    New user?<a href="{{route('student.register')}}" class="Create-text text-decoration-none">
                                         create an account
                                     </a>
                                 </p>
