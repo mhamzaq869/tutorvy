@@ -393,13 +393,17 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
                                 <a class="nav-link active" id="v-pills-General-tab" data-toggle="pill" href="#v-pills-General"
                                     role="tab" aria-controls="v-pills-General" aria-selected="true">General</a>
+
                                 <a class="nav-link" id="v-pills-Education-tab" data-toggle="pill" href="#v-pills-Education"
                                     role="tab" aria-controls="v-pills-Education" aria-selected="false">Education</a>
+
                                 <a class="nav-link" id="v-pills-Professional-tab" data-toggle="pill"
                                     href="#v-pills-Professional" role="tab" aria-controls="v-pills-Professional"
                                     aria-selected="false">Professional</a>
+
                                 <a class="nav-link" id="v-pills-Verification-tab" data-toggle="pill" href="#v-pills-Verification"
                                     role="tab" aria-controls="v-pills-Verification" aria-selected="false">Verification</a>
                               
@@ -411,7 +415,8 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="tab-content" id="v-pills-tabContent chang_photo">
-                                <div class="tab-pane fade show active chee" id="v-pills-General" role="tabpanel"
+
+                                <div class="tab-pane fade active show chee" id="v-pills-General" role="tabpanel"
                                     aria-labelledby="v-pills-General-tab">
                                     @if (Session::has('message'))
                                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -423,7 +428,7 @@
                                     @endif
                                     <form action="{{ route('tutor.profile.update', [Auth::user()->id]) }}" method="Post"
                                         enctype="multipart/form-data" id="personal">
-                                        @csrf
+                                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                                         <div class="row">
 
                                             <div class="col-md-12">
@@ -576,22 +581,87 @@
 
                                 <div class="tab-pane fade chee" id="v-pills-Education" role="tabpanel"
                                     aria-labelledby="v-pills-Education-tab">
-                                    <form action="{{ route('tutor.profile.edu', [Auth::user()->id]) }}" method="post" id="edu">
-                                        @csrf
+                                    <form action="{{ route('tutor.profile.edu', [Auth::user()->id]) }}" method="POST" enctype="multipart/form-data" id="tutorEduDocsForm">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <h1>Education</h1>
                                             </div>
                                         </div>
-                                        @foreach (Auth::user()->education as $i => $education)
+
+                                        <div class="row mt-3">
+                                            <div class="input-text col-md-4">
+                                                <select name="degree[]" onchange="checkLevel(this)"
+                                                    class="form-select form-select-lg mb-3">
+                                                    <option value="Degree"> Degree</option>
+                                                    @foreach ($degrees as $degree)
+                                                        <option value="{{ $degree->id }}" > {{ $degree->name }} </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="input-text col-md-4">
+                                                <select name="major[]" class="form-select form-select-lg mb-3">
+                                                    <option value="">Majors</option>
+                                                    @foreach ($subjects as $subject)
+                                                        <option value="{{ $subject->id }}">{{ $subject->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+
+                                            </div>
+                                            <div class="input-text col-md-4">
+                                                <select name="student_grade"
+                                                    class="form-select form-select-lg mb-3" id="levels">
+                                                    <option value="" disabled selected>School</option>
+                                                    <option value="1">Pre Elementary School</option>
+                                                    <option value="2">Elementary School</option>
+                                                    <option value="3">Secondary School</option>
+                                                    <option value="4">High School</option>
+                                                    <option value="5"> Post Secondary</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-3">
+                                            <div class="input-text col-md-6">
+                                                <select name="institute[]" id="institutes_list" class="form-select form-select-lg mb-3"
+                                                    aria-label=".form-select-lg example">
+                                                    <option value="Institute">Institute</option>
+                                                    @foreach ($institutes as $institute)
+                                                        <option value="{{ $institute->id }}" >{{ $institute->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="input-text col-md-6">
+                                                <input type="date" name="graduate_year[]" class=" yearpicker form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-3">
+                                            <div class="col-md-12">
+                                                <input type="file" class="dropify" name="upload[]" >
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-3">
+                                            <div class="col-md-12">
+                                                <a class="extra-fields-customer cust_link" href="javascript::void(0)">+ Add more degrees </a>
+                                                <div class="customer_records_dynamic mt-5"></div>
+                                            </div>
+                                        </div>
+
+                                    @if( count(Auth::user()->education) > 0)
+
+                                        @foreach(Auth::user()->education as $edu)
+
                                             <div class="row mt-3">
                                                 <div class="input-text col-md-4">
                                                     <select name="degree[]" onchange="checkLevel(this)"
                                                         class="form-select form-select-lg mb-3">
                                                         <option value="Degree"> Degree</option>
                                                         @foreach ($degrees as $degree)
-                                                            <option value="{{ $degree->id }}" @if (Auth::user()->education[$i]->subject_id == $degree->id) selected @endif>{{ $degree->name }}
-                                                            </option>
+                                                            <option value="{{ $degree->id }}" {{$edu->degree_id == $degree->id ? 'selected' : '' }}> {{ $degree->name }} </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -600,7 +670,7 @@
                                                     <select name="major[]" class="form-select form-select-lg mb-3">
                                                         <option value="">Majors</option>
                                                         @foreach ($subjects as $subject)
-                                                            <option value="{{ $subject->id }}" @if ($subject->id == $education->subject_id) selected @endif>{{ $subject->name }}
+                                                            <option value="{{ $subject->id }}" {{$edu->subject_id == $subject->id ? 'selected' : '' }}>{{ $subject->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -610,49 +680,43 @@
                                                     <select name="student_grade"
                                                         class="form-select form-select-lg mb-3" id="levels">
                                                         <option value="" disabled selected>School</option>
-                                                    
-                                                            <option value="1">Pre Elementary School</option>
-                                                            <option value="2">Elementary School</option>
-                                                            <option value="3">Secondary School</option>
-                                                            <option value="4">High School</option>
-                                                            <option value="5"> Post Secondary</option>
-                                                    
+                                                        <option value="1">Pre Elementary School</option>
+                                                        <option value="2">Elementary School</option>
+                                                        <option value="3">Secondary School</option>
+                                                        <option value="4">High School</option>
+                                                        <option value="5"> Post Secondary</option>
                                                     </select>
                                                 </div>
                                             </div>
+
                                             <div class="row mt-3">
                                                 <div class="input-text col-md-6">
-                                                    <select name="institute[]" class="form-select form-select-lg mb-3"
+                                                    <select name="institute[]" id="institutes_list" class="form-select form-select-lg mb-3"
                                                         aria-label=".form-select-lg example">
                                                         <option value="Institute">Institute</option>
                                                         @foreach ($institutes as $institute)
-                                                            <option value="{{ $institute->id }}" @if ($education->institute_id   == $institute->id) selected @endif>{{ $institute->name }}
+                                                            <option value="{{ $institute->id }}" {{$edu->institute_id == $institute->id ? 'selected' : '' }} >{{ $institute->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                                 <div class="input-text col-md-6">
-                                                    <input type="date" name="graduate_year[]" class=" yearpicker form-control"
-                                                        value="{{ $education->year }}">
-                                                </div>
-                                            </div>
-                                            <div class="row mt-3">
-                                                <div class="col-md-12">
-                                                    <input type="file" class="dropify" name="upload[]" id=""
-                                                        data-default-file="{{ asset($education->docs) }}">
-                                                </div>
-                                            </div>
-                                            <div class="row mt-3">
-                                                <div class="col-md-12">
-                                                    <a class="extra-fields-customer cust_link" href="#">+
-                                                        Add more degrees
-                                                    </a>
-                                                    <div class="customer_records_dynamic mt-5"></div>
+                                                    <input type="date" name="graduate_year[]" class=" yearpicker form-control" value="{{$edu->year}}">
                                                 </div>
                                             </div>
 
+                                            <div class="row mt-3">
+                                                <div class="col-md-12">
+                                                    <input type="file" class="dropify" name="upload[]" data-default-file="{{ asset($edu->docs) }}">
+                                                </div>
+                                            </div>
+
+                                            <hr>
                                         @endforeach
-                                        <div class="col-md-12">
+
+                                    @endif
+
+                                        <div class="col-md-12 mt-3">
                                             <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit"
                                                 id="edu2">Save Changes</button>
                                         </div>
@@ -661,55 +725,53 @@
 
                                 <div class="tab-pane fade chee" id="v-pills-Professional" role="tabpanel"
                                     aria-labelledby="v-pills-Professional-tab">
-                                    <form action="{{ route('tutor.profile.profession', [Auth::user()->id]) }}" method="post"
-                                        id="profession">
-                                        @csrf
+                                    <form action="{{ route('tutor.profile.profession', [Auth::user()->id]) }}" method="POST" enctype="multipart/form-data" id="tutorProfessionForm">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <h1>Professional</h1>
                                             </div>
                                         </div>
-                                        <div class="row mt-3">
-                                                    <div class="col-md-12">
-                                                        <div class="element">
-                                                            <div class="row">
-                                                                <div class="input-text col-md-6">
-                                                                    <input name="designation[]" class="form-control"
-                                                                        value=""
-                                                                        title="Designation: Senior Developer at Google"
-                                                                        placeholder="Designation">
-                                                                </div>
-                                                                <div class="input-text col-md-6">
-                                                                    <input name="organization[]"
-                                                                        value=""
-                                                                        class="form-control" title="Organization Like Google"
-                                                                        placeholder="Organization">
-                                                                </div>
-                                                            </div>
-                                                            <div class="row my-3">
-                                                                <div class="input-text col-md-6">
-                                                                    <input type="date"
-                                                                        value=""
-                                                                        class="form-control" name="degree_start[]"
-                                                                        placeholder="Starting date" value="">
-                                                                </div>
-                                                                <div class="input-text col-md-6">
-                                                                    <input type="date" value=""
-                                                                        class="form-control" name="degree_end[]"
-                                                                        placeholder="Ending Date" value="">
-                                                                </div>
-                                                            </div>
 
+                                        <div class="row mt-3">
+                                            <div class="col-md-12">
+                                                <div class="element">
+                                                    <div class="row">
+                                                        <div class="input-text col-md-6">
+                                                            <input name="designation[]" class="form-control"
+                                                                value=""
+                                                                title="Designation: Senior Developer at Google"
+                                                                placeholder="Designation">
+                                                        </div>
+                                                        <div class="input-text col-md-6">
+                                                            <input name="organization[]"
+                                                                value=""
+                                                                class="form-control" title="Organization Like Google"
+                                                                placeholder="Organization">
                                                         </div>
                                                     </div>
+                                                    <div class="row my-3">
+                                                        <div class="input-text col-md-6">
+                                                            <input type="date"
+                                                                value=""
+                                                                class="form-control" name="degree_start[]"
+                                                                placeholder="Starting date" value="">
+                                                        </div>
+                                                        <div class="input-text col-md-6">
+                                                            <input type="date" value=""
+                                                                class="form-control" name="degree_end[]"
+                                                                placeholder="Ending Date" value="">
+                                                        </div>
+                                                    </div>
+
                                                 </div>
-                                                <div class="buttons mb-5">
-                                                    <a href="#" class="moreExperience cust_link">+ Add more experience</a>
-                                                    <!-- <button type="button" class="remove cencel-btn btn-registration"
-                                                            style="visibility: hidden;color: black;">remove</button> -->
-                                                </div>
-                                                <div class="results"></div>
-                                        @if(Auth::user()->professional)
+                                            </div>
+                                        </div>
+                                        <div class="buttons mb-5">
+                                            <a href="#" class="moreExperience cust_link">+ Add more experience</a>
+                                        </div>
+                                        <div class="results"></div>
+
+                                        @if(count(Auth::user()->professional) > 0)
                                             @foreach (Auth::user()->professional as $profession)
                                                 <div class="row">
                                                     <div class="col-md-12">
@@ -745,77 +807,10 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="buttons mb-5">
-                                                    <a href="#" class="moreExperience cust_link">+ Add more experience</a>
-                                                    <!-- <button type="button" class="remove cencel-btn btn-registration"
-                                                            style="visibility: hidden;color: black;">remove</button> -->
-                                                </div>
-                                                <div class="results"></div>
+                                                <hr>
                                             @endforeach
-                                        @else
-                                        <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="element">
-                                                        <div class="row">
-                                                            <div class="input-text col-md-6">
-                                                                <input name="designation[]" class="form-control"
-                                                                    value=""
-                                                                    title="Designation: Senior Developer at Google"
-                                                                    placeholder="Designation">
-                                                            </div>
-                                                            <div class="input-text col-md-6">
-                                                                <input name="organization[]"
-                                                                    value=""
-                                                                    class="form-control" title="Organization Like Google"
-                                                                    placeholder="Organization">
-                                                            </div>
-                                                        </div>
-                                                        <div class="row my-3">
-                                                            <div class="input-text col-md-6">
-                                                                <input type="date"
-                                                                    value=""
-                                                                    class="form-control" name="degree_start[]"
-                                                                    placeholder="Starting date" value="">
-                                                            </div>
-                                                            <div class="input-text col-md-6">
-                                                                <input type="date" value=""
-                                                                    class="form-control" name="degree_end[]"
-                                                                    placeholder="Ending Date" value="">
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="buttons mb-5">
-                                                <a href="#" class="moreExperience cust_link">+ Add more experience</a>
-                                                <!-- <button type="button" class="remove cencel-btn btn-registration"
-                                                        style="visibility: hidden;color: black;">remove</button> -->
-                                            </div>
-                                            <div class="results"></div>
-                                            @endif
+                                        @endif
                                             
-                                        <!-- <div class="row ">
-                                            <div class="input-text col-md-12">
-                                                <select name="hour_rate" class="form-select form-select-lg mb-3"
-                                                    aria-label=".form-select-lg example">
-                                                    <option disabled>Per hour charges</option>
-                                                    <option @if (isset(Auth::user()->userdetail) && Auth::user()->userdetail->hourly_rate == 5) selected @endif value="5">$5</option>
-                                                    <option @if (isset(Auth::user()->userdetail) && Auth::user()->userdetail->hourly_rate == 10) selected @else selected @endif value="10">$10
-                                                    </option>
-                                                    <option @if (isset(Auth::user()->userdetail) && Auth::user()->userdetail->hourly_rate == 15) selected @endif value="15">$15</option>
-                                                    <option @if (isset(Auth::user()->userdetail) && Auth::user()->userdetail->hourly_rate == 20) selected @endif value="20">$20</option>
-                                                    <option @if (isset(Auth::user()->userdetail) && Auth::user()->userdetail->hourly_rate == 25) selected @endif value="25">$25</option>
-                                                    <option @if (isset(Auth::user()->userdetail) && Auth::user()->userdetail->hourly_rate == 30) selected @endif value="30">$30</option>
-                                                    <option @if (isset(Auth::user()->userdetail) && Auth::user()->userdetail->hourly_rate == 35) selected @endif value="35">$35</option>
-                                                    <option @if (isset(Auth::user()->userdetail) && Auth::user()->userdetail->hourly_rate == 40) selected @endif value="40">$40</option>
-                                                    <option @if (isset(Auth::user()->userdetail) && Auth::user()->userdetail->hourly_rate == 45) selected @endif value="45">$45</option>
-                                                    <option @if (isset(Auth::user()->userdetail) && Auth::user()->userdetail->hourly_rate == 50) selected @endif value="50">$50</option>
-
-                                                </select>
-
-                                            </div>
-                                        </div> -->
                                         <div class="row mt-1">
                                             <div class="col-md-12">
                                                 <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit"
@@ -827,98 +822,78 @@
 
                                 <div class="tab-pane fade chee" id="v-pills-Verification" role="tabpanel"
                                     aria-labelledby="v-pills-Verification-tab">
-                                    <form action="" method="post" id="">
-                                        @csrf
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <h1>Verification</h1>
+                                    
+                                    @if($user_files != [])
+                                        <div class="card bg-toast infoCard">
+                                            <div class="card-body row">
+                                                <div class="col-md-2 text-center">
+                                                    <i class="fa fa-info" aria-hidden="true"></i>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    Your Documents are under process. Please wait for Administrator approval
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class=" row mt-3">
-                                            <div class="col-md-6">
-                                                <select id="selection" name="security" 
-                                                    class="form-select form-select-lg mb-3 w-100"
-                                                    aria-label=".form-select-lg example">
-                                                    <option value="1" selected>National Identity Card</option>
-                                                    <option value="2">Driving License</option>
-                                                    <option value="3">Passport</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6 id">
-                                                <input id="textbox" type="number" placeholder="Add Id Card number">
-                                            </div>
-                                            <div class="col-md-6 license">
-                                                <input id="textbox" type="number" placeholder="Add Driving License number">
-                                            </div>
-                                            <div class="col-md-6 passport">
-                                                <input id="textbox" type="number" placeholder="Add Passport number">
-                                            </div>
-                                            <div class="col-md-6 mt-2 passport" >
-                                                <input type="file" class="dropify">
-                                            </div>
-                                                
-                                            <div class="col-md-6 mt-2 id">
-                                                <input type="file" class="dropify">
-                                            </div>
-                                            <div class="col-md-6 mt-2 id">
-                                                <input type="file" class="dropify">
-                                            </div>
-                                            <div class="col-md-6 mt-2 license">
-                                                <input type="file" class="dropify">
-                                            </div>
-                                            <div class="col-md-6 mt-2 license">
-                                                <input type="file" class="dropify">
-                                            </div>
-                                            <div class="col-md-12 mt-2">
-                                                <p>
-                                                    <strong>Kindly upload Card photos with white Background</strong>
-                                                </p>
+                                    @else
+                                        <div class="card bg-toast infoCard" id="verfication_msg" style="display:none">
+                                            <div class="card-body row">
+                                                <div class="col-md-2 text-center">
+                                                    <i class="fa fa-info" aria-hidden="true"></i>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    Your Documents are under process. Please wait for Administrator approval
+                                                </div>
                                             </div>
                                         </div>
+                                        <form action="{{ route('tutor.profile.verfication', [Auth::user()->id]) }}" method="POST" enctype="multipart/form-data" id="tutorVerficationForm">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <h1>Verification</h1>
+                                                </div>
+                                            </div>
+                                            <div class=" row mt-3">
+                                                <div class="col-md-6">
+                                                    <select id="selection" name="security" 
+                                                        class="form-select form-select-lg mb-3 w-100"
+                                                        aria-label=".form-select-lg example">
+                                                        <option value="1" selected>National Identity Card</option>
+                                                        <option value="2">Driving License</option>
+                                                        <option value="3">Passport</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input id="textbox" type="number" name="document_no" placeholder="Document No">
+                                                </div>
+                                                <div class="col-md-6 mt-2 passport" >
+                                                    <input type="file" name="passport_pic" class="dropify">
+                                                </div>
+                                                    
+                                                <div class="col-md-6 mt-2 id">
+                                                    <input type="file" name="id_card_pic" class="dropify">
+                                                </div>
+                                                <div class="col-md-6 mt-2 id">
+                                                    <input type="file" name="id_card_pic2" class="dropify">
+                                                </div>
+                                                <div class="col-md-6 mt-2 license">
+                                                    <input type="file" name="license_pic" class="dropify">
+                                                </div>
+                                                <div class="col-md-6 mt-2 license">
+                                                    <input type="file" name="license_pic2" class="dropify">
+                                                </div>
+                                                <div class="col-md-12 mt-2">
+                                                    <p>
+                                                        <strong>Kindly upload Card photos with white Background</strong>
+                                                    </p>
+                                                </div>
+                                            </div>
 
-
-                                        <!-- <div class=" row ">
-                                            <div class="col-md-6">
-                                                <input id="" type="text" class="form-control" placeholder="Add Driving License Number">
+                                            <div class="row mt-3">
+                                                <div class="col-md-12">
+                                                    <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit" name="personal">Save Changes</button>
+                                                </div>
                                             </div>
-                                            <div class="col-md-6">
-                                            </div>
-                                           
-                                            <div class="col-md-6 mt-2">
-                                                <input type="file" class="dropify">
-                                            </div>
-                                            <div class="col-md-6 mt-2">
-                                                <input type="file" class="dropify">
-                                            </div>
-                                            <div class="col-md-12 mt-2">
-                                                <p>
-                                                    <strong>Kindly upload License photos with white Background</strong>
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        <div class=" row ">
-                                            <div class="col-md-6">
-                                                <input id="" type="text" class="form-control" placeholder="Add Passport Number">
-                                            </div>
-                                            <div class="col-md-6 mt-2">
-                                            </div>
-                                            
-                                            <div class="col-md-6 mt-2 passport">
-                                                <input type="file" class="dropify ">
-                                            </div>
-                                            <div class="col-md-12 mt-2 passport">
-                                                <p>
-                                                    <strong>Kindly upload Passport photo with white Background</strong>
-                                                </p>
-                                            </div>
-                                        </div> -->
-                                        <div class="row mt-3">
-                                            <div class="col-md-12">
-                                                <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit" name="personal">Save Changes</button>
-                                            </div>
-                                        </div>
-                                    </form>
+                                        </form>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -932,7 +907,7 @@
 @endsection
 @section('scripts')
     <script src="{{ asset('assets/js/intlTelInput.js') }}"></script>
-    <script src="{{ asset('assets/js/registration.js') }}"></script>
+    <!-- <script src="{{ asset('assets/js/registration.js') }}"></script> -->
     <script src="{{ asset('assets/js/languages.js') }}"></script>
     <script src="{{ asset('assets/js/yearpicker.js') }}"></script>
     <script src="{{ asset('assets/js/googleapi.js') }}"></script>
@@ -1018,12 +993,15 @@
         });
 
             $('.extra-fields-customer').click(function() {
+                var edu_count = parseInt($("#edu_count").val()) + 1;
+                $("#edu_count").val(edu_count);
+
                 count_field = document.querySelectorAll(".customer_records").length;
 
-                var html = `<div class=" customer_records mt-5" id="record_` + count_field + `">
+                var html = `<div class=" customer_records mt-5 mb-2" id="record_` + count_field + `">
                 <div class="row">
                     <div class="input-text col-md-6">
-                        <select name="degree[` + count_field + `]" onchange="checkLevel(this)" onchange="checkLevel(this)" class="form-select form-select-lg mb-3">
+                        <select name="degree[]" onchange="checkLevel(this)" onchange="checkLevel(this)" class="form-select form-select-lg mb-3">
                             <option  selected="">Degree</option>
                             @foreach ($degrees as $degree)
                                 <option value="{{ $degree->id }}">{{ $degree->name }}</option>
@@ -1032,7 +1010,7 @@
                     </div>
 
                     <div class="input-text col-md-6">
-                        <select name="major[` + count_field + `]" class="form-select form-select-lg mb-3">
+                        <select name="major[]" class="form-select form-select-lg mb-3">
                             <option value="0" selected="">Major</option>
                             @foreach ($subjects as $subject)
                                 <option value="{{ $subject->id }}">{{ $subject->name }}</option>
@@ -1043,27 +1021,27 @@
                 </div>
                 <div class="row mt-3">
                     <div class="input-text col-md-6">
-
-                        <input type="hidden" name="institute[` + count_field + `]" id="inst_id_` + count_field + `" value="">
-
-                        <input class="form-control bs-autocomplete" id="ac-demo"
-                            placeholder="University"
-                            data-source="demo_source.php"
-                            data-hidden_field_id="city-code" data-item_id="id"
-                            data-item_label="name" autocomplete="off">
+                    <select name="institute[]" id="institutes_list" class="form-select form-select-lg mb-3"
+                        aria-label=".form-select-lg example">
+                        <option value="Institute">Institute</option>
+                        @foreach ($institutes as $institute)
+                            <option value="{{ $institute->id }}">{{ $institute->name }}
+                            </option>
+                        @endforeach
+                    </select>
 
                     </div>
                     <div class="input-text col-md-6">
-                        <input type="date" name="graduate_year[` + count_field + `]" class=" yearpicker form-control" id="grad-yea">
+                        <input type="date" name="graduate_year[]" class=" yearpicker form-control" id="grad-yea">
                     </div>
 
                 </div>
                 <div class="row mt-3">
                 <div class="col-md-12">
-                    <input type="file" class="dropify" name="upload[` + count_field + `]" id="">
+                    <input type="file" class="dropify" name="upload[]" id="">
                 </div>
                 <div class="col-md-12 mt-3">
-                    <a href="#" class="removeFields" onclick="removeFields(` + count_field + `)"> Remove Fields</a>
+                    <a href="javascript::void(0)" class="removeFields text-danger" onclick="removeFields(` + count_field + `)"> Remove Fields</a>
                 </div>
                 </div>
 

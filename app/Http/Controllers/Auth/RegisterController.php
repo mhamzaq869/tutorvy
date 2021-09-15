@@ -215,10 +215,10 @@ class RegisterController extends Controller
 
 
         if($request->has('finish')){
-// return $request;
+        // return $request;
             Auth::login($user);
 
-            User::find(Auth::user()->id)->update(['ip' => null,'status' => 1]);
+            User::find(Auth::user()->id)->update(['ip' => null,'status' => 0]);
         
             if(Auth::user()->role == 2):
                 return redirect()->route('tutor.dashboard');

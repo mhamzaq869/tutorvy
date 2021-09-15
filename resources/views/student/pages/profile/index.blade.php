@@ -735,7 +735,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <input id="textbox" name="document_no" type="number" placeholder="Add Id Card number">
+                                                    <input id="textbox" name="document_no" type="number" placeholder="Your Document No">
                                                 </div>
 
                                                 <div class="col-md-6 mt-2 passport" >
