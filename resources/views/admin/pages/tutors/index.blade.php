@@ -225,7 +225,59 @@
                                                     data-target="#exampleModalCenter">Assign</button>
                                             </td>
                                         </tr>
+                                        @elseif($request->status == 1)
+                                        <tr>
+                                            <td class="pt-4">
+                                                <!-- -->
+                                                {{ $request->first_name }} {{ $request->last_name }}
+                                                <!-- <span data-toggle="tooltip" title="Harram Laraib Ali">Har***</span> -->
+                                            </td>
+                                            <td class="pt-4">
+                                                <span data-toggle="tooltip"
+                                                    title="{{$request->email}}">{{Str::limit($request->email, 3, $end='***')}}</span>
+                                            </td>
+                                            <td class="pt-4">{{$request->subject_name}}</td>
+                                            <td class="pt-4">{{$request->city != NULL ? $request->city.', ' : '---'}}{{$request->country != NULL ? $request->country : '---'}}</td>
+                                           
+                                            @if($request->std_grade == 1)
+                                                 <td class="pt-4"> Pre Elementary School</td>
+                                            @elseif($request->std_grade == 2)
+                                                 <td class="pt-4">Elementary School</td>
+                                            @elseif($request->std_grade == 3)
+                                                 <td class="pt-4">Secondary School</td>
+                                            @elseif($request->std_grade == 4)
+                                                 <td class="pt-4">High School</td>
+                                            @elseif($request->std_grade == 5)
+                                                 <td class="pt-4">Post Secondary</td>
+                                            @else
+                                                 <td class="pt-4">---</td>
+                                            @endif
+                                            
+                                            <td class="pt-4">---</td>
+                                            <td class="pt-4">{{$request->hourly_rate}}</td>
+                                            <td class="pt-4"> 
+                                                @if($request->assessment_status == 0 && $request->status == 2)
+                                                    <span class="statusTag doc_sub_status">  Assessment Sumitted </span>
+                                                @else
+                                                    @if( $request->status == 0)
+                                                        <span class="statusTag doc_not_sub_status">  Document not Submitted </span>
+                                                    @elseif( $request->status == 1)
+                                                        <span class="statusTag doc_sub_status">  Document Sumitted </span>
+                                                    @endif
+                                                @endif
+                                            </td>
+                                            <td class="pt-3 text-right">
+                                                <a href="{{ route('admin.tutorRequest',[$request->id,$request->assessment_id !=null ? $request->assessment_id : '']) }}" class="cencel-btn btn">
+                                                    View
+                                                </a>
+                                            </td>
+                                            <td class="pt-3 text-right">
+                                                <button class="schedule-btn"  data-toggle="modal"
+                                                    data-target="#exampleModalCenter">Assign</button>
+                                            </td>
+                                        </tr>
                                         @endif
+                                        
                                     @endforeach
                                     
                                 </tbody>
