@@ -14,6 +14,7 @@ use URL;
 use Session;
 use Redirect;
 use Input;
+
 use PayPal\Rest\ApiContext;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Api\Amount;
@@ -107,8 +108,7 @@ class BookingController extends Controller
     }
 
    
-    public function bookingPayment(Request $request ){
-
+    public function bookingPayment(Request $request,$id){
 
         $booking = Booking::where('id',$request->id)->first();
 
@@ -117,7 +117,7 @@ class BookingController extends Controller
 
     	$item_1 = new Item();
 
-        $item_1->setName('Product 1')
+        $item_1->setName('Online Class')
             ->setCurrency('USD')
             ->setQuantity(1)
             ->setPrice($booking->price);
@@ -127,7 +127,7 @@ class BookingController extends Controller
 
         $amount = new Amount();
         $amount->setCurrency('USD')
-            ->setTotal($request->get('amount'));
+            ->setTotal($booking->price);
 
         $transaction = new Transaction();
         $transaction->setAmount($amount)
@@ -148,10 +148,10 @@ class BookingController extends Controller
         } catch (\PayPal\Exception\PPConnectionException $ex) {
             if (\Config::get('app.debug')) {
                 \Session::put('error','Connection timeout');
-                return Redirect::route('paywithpaypal');                
+                return Redirect::route('student.bookings');                
             } else {
                 \Session::put('error','Some error occur, sorry for inconvenient');
-                return Redirect::route('paywithpaypal');                
+                return Redirect::route('student.bookings');                
             }
         }
 
@@ -163,49 +163,27 @@ class BookingController extends Controller
         }
         
         Session::put('paypal_payment_id', $payment->getId());
-
+        Session::put('booking_id', $booking->id);
+        
         if(isset($redirect_url)) {            
             return Redirect::away($redirect_url);
         }
 
         \Session::put('error','Unknown error occurred');
-    	return Redirect::route('paywithpaypal');
+    	return Redirect::route('student.bookings');
 
-        $classroom_id = sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
-                        mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ),
-                        mt_rand( 0, 0xffff ),
-                        mt_rand( 0, 0x0C2f ) | 0x4000,
-                        mt_rand( 0, 0x3fff ) | 0x8000,
-                        mt_rand( 0, 0x2Aff ), mt_rand( 0, 0xffD3 ), mt_rand( 0, 0xff4B )
-                    );
-        // return $red;
-        $booking = Booking::where('id',$request->id)->first();
-        Classroom::create([
-            'booking_id' => $request->id,
-            'classroom_id' => $classroom_id
-        ]);
-        $booking->status = 2;
-        $booking->save();
-    
-        return response()->json([
-            'status'=>'200',
-            'message' => 'Booking accepted.'
-        ]);
-    }
-
-    public function postPaymentWithpaypal(Request $request)
-    {
-        
     }
 
     public function getPaymentStatus(Request $request)
     {        
         $payment_id = Session::get('paypal_payment_id');
+        $booking_id = Session::get('booking_id');
+
 
         Session::forget('paypal_payment_id');
         if (empty($request->input('PayerID')) || empty($request->input('token'))) {
             \Session::put('error','Payment failed');
-            return Redirect::route('paywithpaypal');
+            return Redirect::route('student.bookings');
         }
         $payment = Payment::get($payment_id, $this->_api_context);        
         $execution = new PaymentExecution();
@@ -213,12 +191,29 @@ class BookingController extends Controller
         $result = $payment->execute($execution, $this->_api_context);
         
         if ($result->getState() == 'approved') {         
-            \Session::put('success','Payment success !!');
-            return Redirect::route('paywithpaypal');
+            \Session::put('success','Payment success');
+
+            $classroom_id = sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+                mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ),
+                mt_rand( 0, 0xffff ),
+                mt_rand( 0, 0x0C2f ) | 0x4000,
+                mt_rand( 0, 0x3fff ) | 0x8000,
+                mt_rand( 0, 0x2Aff ), mt_rand( 0, 0xffD3 ), mt_rand( 0, 0xff4B )
+            );
+            // return $red;
+            $booking = Booking::where('id',$booking_id)->first();
+            Classroom::create([
+                'booking_id' => $booking_id,
+                'classroom_id' => $classroom_id
+            ]);
+            $booking->status = 2;
+            $booking->save();
+
+            return Redirect::route('student.bookings');
         }
 
         \Session::put('error','Payment failed !!');
-		return Redirect::route('paywithpaypal');
+		return Redirect::route('student.bookings');
     }
  
 }

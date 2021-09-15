@@ -196,9 +196,9 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     Route::get('/book-now/{id}',[StudentBookingController::class,'bookNow'])->name('student.book-now');
     Route::get('/booking-detail/{id}',[StudentBookingController::class,'bookingDetail'])->name('student.booking-detail');
     Route::get('/booking/{id}/tutor',[StudentBookingController::class,'directBooking'])->name('student.direct.booking');
-    Route::post('/booking/payment',[StudentBookingController::class,'bookingPayment'])->name('student.booking.payment');
+    Route::get('/booking/payment/{id}',[StudentBookingController::class,'bookingPayment'])->name('student.booking.payment');
 
-    Route::post('/booking/paymentstatus',[StudentBookingController::class,'getPaymentStatus'])->name('student.paymentstatus');
+    Route::get('/booking/paymentstatus',[StudentBookingController::class,'getPaymentStatus'])->name('student.paymentstatus');
 
 
     Route::post('/booked',[StudentBookingController::class,'booked'])->name('student.booked.tutor');

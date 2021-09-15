@@ -275,7 +275,7 @@
                                                                 @endif
                                                             </td> 
                                                             <td class="pt-3 pb-3" style="text-align: center; " >
-                                                                <a class="cencel-btn mr-2" onclick="payNow({{$booking->id}})">
+                                                                <a class="cencel-btn mr-2" href="{{route('student.booking.payment',[$booking->id])}}">
                                                                     Pay Now
                                                                 </a>
                                                                 <a href="{{route('student.booking-detail',[$booking->id])}}"  class="schedule-btn">
