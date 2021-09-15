@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="row bg-white ml-2 mr-2">
-                    <div class="col-md-6 mb-1 ">
+                    <div class="col-md-12 mb-1 ">
                         <div class=" card  bg-toast infoCard">
                             <a href="#" class="cross"  onclick="hideCard()"> 
                                 <i class="fa fa-times" aria-hidden="true"></i>

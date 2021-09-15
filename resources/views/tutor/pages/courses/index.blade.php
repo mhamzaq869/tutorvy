@@ -250,12 +250,31 @@
         <!--section start  -->
         <div class="container-fluid ">
             <div class="row">
-                    <div class="col-md-12">
-                            <p class="mr-3 heading-first">
-                                 Courses
-                            </p>
-                    </div>
+                <div class="col-md-12">
+                        <p class="mr-3 heading-first">
+                                Courses
+                        </p>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-1 ">
+                        <div class=" card  bg-toast infoCard">
+                            <a href="#" class="cross"  onclick="hideCard()"> 
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </a>
+
+                            <div class="card-body row">
+                                <div class="col-md-2 text-center">
+                                    <i class="fa fa-info" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-md-10">
+                                    Check the status of your applied courses also update the details of the courses here <a href="#">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
             <div class=" profile-header">
                 @if ($pen_course->count() != 0)
                 <div class="row">

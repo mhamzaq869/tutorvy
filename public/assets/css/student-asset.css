@@ -1154,5 +1154,6 @@ select {
     position: absolute;
     font-size: 21px;
     right: 7px;
+    top: 7px;
     color: #00132D;
 }

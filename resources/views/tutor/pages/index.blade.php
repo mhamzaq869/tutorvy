@@ -13,6 +13,24 @@
                     </p>
                 </div>
                 <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-12 mb-1 ">
+                            <div class=" card  bg-toast infoCard">
+                                <a href="#" class="cross"  onclick="hideCard()"> 
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </a>
+
+                                <div class="card-body row">
+                                    <div class="col-md-2 text-center">
+                                        <i class="fa fa-info" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="col-md-10">
+                                            Dashboard have all the stats of your need including class details, upcoming classes, earning stats <a href="#">Learn More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     
                     <div class="bg-homeimage1">
                         <div class="row">

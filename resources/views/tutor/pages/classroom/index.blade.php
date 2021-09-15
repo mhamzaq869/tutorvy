@@ -14,6 +14,22 @@
             </div>
             
             <div class="row bg-white ml-2 mr-2">
+                <div class="col-md-12 mb-1 ">
+                    <div class=" card  bg-toast infoCard">
+                        <a href="#" class="cross"  onclick="hideCard()"> 
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </a>
+
+                        <div class="card-body row">
+                            <div class="col-md-2 text-center">
+                                <i class="fa fa-info" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-md-10">
+                                Every Details about your classes will be published here <br>along with schedules for meetings <a href="#">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-12 mt-3">
                     <nav class="">
                         <div class="nav nav-stwich pb-0" id="nav-tab" role="tablist">

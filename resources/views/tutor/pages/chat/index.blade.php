@@ -145,6 +145,22 @@
         <div class="container-fluid">
             <p class="heading-first ml-4 ">Inbox</p>
             <div class="row">
+                <div class="col-md-12 mb-1 ">
+                    <div class=" card  bg-toast infoCard">
+                        <a href="#" class="cross"  onclick="hideCard()"> 
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </a>
+
+                        <div class="card-body row">
+                            <div class="col-md-2 text-center">
+                                <i class="fa fa-info" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-md-10">
+                                Connect with your students to know more about their requirements <a href="#">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-3" style="background-color: #F2F3F4;">
                     <div class="box-main pt-3 pb-3">
                         <div class="input-box">
@@ -161,22 +177,22 @@
                                 <div class="container-fluid m-0 p-0 img-chats">
                                     <img src="{{asset('admin/assets/img/logo/harram.jpg')}}" class="leftImg ml-1">
                                     <span class="activeDot" id="activeDot_{{$student->id}}"></span>
-                                    <div class="img-chat">
+                                    <div class="img-chat w-100">
 
                                         <div class="row">
-                                            <div class="col-10">
+                                            <div class="col-9">
                                                 <p class="name-client">{{ $student->first_name }} {{ $student->last_name }}</p>
                                             </div>
-                                            <div class="col-md-2">
+                                            <div class="col-md-3">
                                                 <p class="time-chat">11:25</p>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-10">
+                                            <div class="col-md-9">
                                                 <p class="massage-client" id="recent_msg_{{$student->id}}">It is a long distae... </p>
 
                                             </div>
-                                            <div class="col-md-2">
+                                            <div class="col-md-3">
                                                 <span class="dot pl-2 " id="unseen_msg_cnt_{{$student->id}}">2 </span>
                                             </div>
                                         </div>
@@ -238,16 +254,16 @@
                             </div>
                         </div>
                             <div class="row">
-                                <div class="col-md-2 col-4">
-                                    <!-- <a href="#">
+                                 <!-- <div class="col-md-2 col-4">
+                                   <a href="#">
                                         <i class="fa fa-smile rightChatIcon"></i> -->
                                         <!-- <img src="../assets/img/whiteicon/smiley-ico.png" class="w-100"> -->
                                     <!-- </a>
                                     <a href="#">
                                         <i class="fa fa-paperclip rightChatIcon"></i>
 
-                                    </a> -->
-                                </div>
+                                    </a> 
+                                </div>-->
                                 <div class="col-md-12 col-8">
                                     
                                     <form id="chat_form" action="{{ route('store.text') }}">

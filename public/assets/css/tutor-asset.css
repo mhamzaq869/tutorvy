@@ -2618,3 +2618,25 @@ select#paymentMethod option[value="others"] {
     font-size: 18px;
     color: #fff !important;
 }
+
+.bg-toast {
+    background: #D2E5FF;
+    transition: all 0.3s ease;
+    color: #00132D;
+}
+
+.infoCard {
+    transition: all 0.3s ease;
+}
+
+.bg-toast .fa-info {
+    font-size: 44px;
+}
+
+.bg-toast .cross {
+    position: absolute;
+    font-size: 21px;
+    right: 7px;
+    top: 7px;
+    color: #00132D;
+}
