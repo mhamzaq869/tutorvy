@@ -40,7 +40,7 @@ class TutorController extends Controller
             // ->where('assessments.status','!=',1)
             ->where('users.role',2)
             ->whereIn('users.status', [0, 1, 2])
-            ->paginate(15);
+            ->paginate(5);
         //  return $new_requests;
 
 
@@ -87,8 +87,10 @@ class TutorController extends Controller
 
         $tutor = User::where('id',$id)->where('role',2)->first();
         $tutor_assessment =  Assessment::where('id',$assess_id)->first();
-        // return $tutor;
-        return view('admin.pages.tutors.request',compact('tutor','tutor_assessment'));
+
+        $documents = DB::table("user_files")->where('user_id',$id)->get();
+        
+        return view('admin.pages.tutors.request',compact('tutor','tutor_assessment','documents'));
     }
 
     public function tutorAssessment($assessment_id){

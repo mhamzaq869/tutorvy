@@ -57,6 +57,36 @@ class IntegrationController extends Controller
         ]);   
     }
 
+    public function verfiyIntegration(Request $request) {
+
+        if($request->name == 'google') {
+
+            $integration = Integration::where('name',$request->name)->first();
+            $data = array([
+                "name" => $request->name,
+                "key" => $request->api_key,
+                "status" => 1,
+                "key_type" => 1,
+            ]);
+    
+            if( empty($integration) ) {
+                DB::table("integration")->insert($data);
+            }else{
+                $integration->name = $request->name;
+                $integration->key = $request->api_key;
+                $integration->save();
+            }
+
+        }
+
+        return response()->json([
+            "status_code" => 200,
+            "success" => true,
+            "message" => "Verfiication Done Successfully",
+        ]);   
+
+    }
+
     public function changeIntegrationStatus(Request $request) {
 
         Integration::where('name',$request->name)->update([

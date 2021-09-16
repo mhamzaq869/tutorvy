@@ -100,6 +100,7 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
     Route::get('/report',[ReportController::class,'index'])->name('admin.report');
     Route::get('/integration',[IntegrationController::class,'index'])->name('admin.integration');
     Route::post('/save-payal',[IntegrationController::class,'savePaypalDetails']);
+    Route::post('/verify-integration',[IntegrationController::class,'verfiyIntegration']);
     Route::post('/integration-status',[IntegrationController::class,'changeIntegrationStatus']);
 
     Route::get('/staff',[StaffController::class,'index'])->name('admin.staff');
@@ -116,6 +117,9 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
     Route::get('/knowledge',[KnowledgeController::class,'index'])->name('admin.knowledge');
     Route::get('/support',[SupportController::class,'index'])->name('admin.support');
     Route::get('/setting',[SettingController::class,'index'])->name('admin.setting');
+
+    Route::post('/change-password',[SettingController::class,'changePassword'])->name('admin.change.password');
+    Route::post('/save-system-etting',[SettingController::class,'saveSystemSetting'])->name('admin.save.system-setting');
     // Route to get all subjects form api call
 
     Route::get('/api_subjects',[SubjectController::class,'getSubjectsFromApi']);

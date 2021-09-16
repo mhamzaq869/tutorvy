@@ -16,12 +16,10 @@
 
                 <h3 class="mt-3 mb-0">{{ $tutor->first_name }} {{ $tutor->last_name }}</h3>
                 <p class="heading-fifth mt-2 line-height-1 mb-1">Tutor</p>
-               
                 @if($tutor->status == 2)
                 <h6><span class="badge badge-success mb-3 all-tutor-badge">Verified</span></h6>
                 @else
-                <hr />
-                <div class="pb-5 mt-4">
+                <div class="pb-5 mt-4" id="verification_btns">
                     <button class="cencel-btn" data-toggle="modal" data-target="#tutorRejectModal" style="width: 110px;">Reject</button>
                     @if($tutor_assessment != null)
                         <button class="schedule-btn" style="width: 110px;" onclick="verifyTutor(`{{$tutor->id}}`,2,`{{$tutor_assessment->status}}`)">Accept </button>
@@ -31,47 +29,56 @@
                 </div>
 
                 @endif
+                <h6>
+                    <span class="badge badge-success mb-3 all-tutor-badge" id="verified_badge" style="display:none">Verified</span>
+                    <hr>
+                </h6>
                 
             </div>
             <div class="card">
                 <div class="card-body">
-                    <h3>Submitted Documents</h3>
-                    <div class="row">
-                        <div class="col-md-12 mt-3">
-                            <table>
-                                <tr>
-                                    <th>Document Type</th>
-                                    <td> National Identity Card </td>
-                                </tr>
-                                <tr>
-                                    <th>Document number</th>
-                                    <td>123-123-14563-123</td>
-                                </tr>
-                               
-                            </table>
-                        </div>
-                        <div class="col-md-12 mt-3">
-                            <p><strong>Document Attachments</strong> </p>
-                        </div>
-                        <div class="col-md-12 mt-2">
-                            <a href="#" >
-                                <img src="{{asset ('admin/assets/img/ico/course.png')}}"  class="w-100" alt="">
-                            </a>
-                        </div>
-                        <div class="col-md-12 mt-2">
-                            <a href="#" >
-                                <img src="{{asset ('admin/assets/img/ico/course.png')}}"  class="w-100" alt="">
-                            </a>
-                        </div>
-                        <div class="col-md-12 mt-3 text-right">
-                            <button class="schedule-btn" > 
-                                Verify
-                            </button>
-                            <button class="cencel-btn" > 
-                                Reject
-                            </button>
-                        </div>
-                    </div>
+                    <h3>Documents</h3>
+                    @if($tutor->status == 0)
+                        <span class="statusTag doc_not_sub_status">  Document not Submitted </span>
+                    @else
+                        @if( count($documents) > 0)
+                        <hr>
+                            <h6>Document Type</h5>
+                            <p class="text-muted small">
+                                @if($tutor->type != null)
+                                    @if($tutor->type == 1) 
+                                        <span>National Identity Card</span>
+                                    @elseif($tutor->type == 2)
+                                        <span> Driving License </span>
+                                    @elseif($tutor->type == 3)
+                                        <span> Passport </span>
+                                    @else
+                                        <span> - </span>
+                                    @endif.
+                                @else
+                                    <span> - </span>
+                                @endif
+                            </p>
+
+                            <h6> Document Type </h6>
+                            <p class="text-muted small">
+                                {{ $tutor->cnic_security != null ? $tutor->cnic_security : '-' }}
+                            </p>
+
+                            <div class="row">
+                                <div class="col-md-12 mt-3">
+                                    <h6>Document Attachments</h6>
+                                </div>
+                                @foreach($documents as $document)
+                                <div class="col-md-12 mt-2">
+                                    <img src="{{asset($document->files)}}"  class="w-100" alt="">
+                                </div>
+                                @endforeach
+                            </div>
+                        @else
+                            <span class="statusTag doc_not_sub_status">  Document not Submitted </span>
+                        @endif
+                    @endif
                 </div>
             </div>
         </div>

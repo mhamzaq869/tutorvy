@@ -483,7 +483,6 @@ $("#thumbnail").change(
     }
 }
 )
-
 </script>
 @endsection
 

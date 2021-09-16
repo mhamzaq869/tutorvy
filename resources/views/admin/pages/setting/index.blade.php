@@ -49,6 +49,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="settings-data">
+                                
                                 <div id="tab1" class="tabcontent">
                                         <div class="row">
                                             <div class="col-md-12 mb-4">
@@ -118,6 +119,7 @@
                                         </div>
 
                                 </div>
+
                                 <div id="tab2" class="tabcontent">
                                         <div class="row">
                                             <div class="col-md-12 mb-4">
@@ -126,37 +128,34 @@
                                             <div class="col-md-12 font-light">
                                                     Change password
                                             </div>
+                                            
                                             <div class="col-sm-6">
-                                                <form action="{{route('tutor.changePassword')}}" method="POST">
-                                                    @csrf
+                                                <form action="{{route('admin.change.password')}}" id="changePasswordForm" method="POST">
+                                                    <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                                                     <small>Password</small>
                                                     <div class="form-group pass_show">
-                                                        <input type="password" name="current_password" class="form-control @error('current_password') is-invalid @enderror"
-                                                            placeholder=" ***********" >
-                                                            @error('error')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
+                                                        <input type="password" name="current_password" class="form-control" placeholder=" ***********" >
+                                                        <span class="text-danger small current_password"></span>
                                                     </div>
                                                     <small>New Password</small>
                                                     <div class="form-group pass_show">
-                                                        <input type="password" name="new_password" class="form-control"
-                                                            placeholder="***********">
+                                                        <input type="password" name="new_password" class="form-control" placeholder="***********">
+                                                        <span class="text-danger small new_password"></span>
                                                     </div>
                                                     <small >Re-enter new
                                                         password</small>
                                                     <div class="form-group pass_show">
-                                                        <input type="password" name="new_confirm_password" class="form-control"
-                                                            placeholder="***********">
+                                                        <input type="password" name="new_confirm_password" class="form-control" placeholder="***********">
+                                                        <span class="text-danger small new_confirm_password"></span>
                                                     </div>
                                                     <div class="text-right">
-                                                        <button class="btn-general">Save changes</button>
+                                                        <button type="submit" class="btn-general">Save changes</button>
                                                     </div>
                                                 </form>
                                             </div>
                                         </div>
                                 </div>
+
                                 <div id="tab3" class="tabcontent">
                                     <div class="row">
                                         <div class="col-md-12 mb-4">
@@ -306,23 +305,25 @@
                                         
                                     </div>
                                 </div>
+
                                 <div id="tab4" class="tabcontent">
                                     <div class="row">
                                         <div class="col-md-12 mb-4">
                                             <h3>System Settings</h3>
                                         </div>
-                                        <!-- <div class="col-md-12 font-light">
-                                            Change Comission Settings
-                                        </div> -->
                                         <div class="col-sm-6">
+                                            <form action="{{route('admin.save.system-setting')}}" id="systemSettingForm" method="POST">
+                                                
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <small class="">Commission</small>
                                                     </div>
                                                     <div class="col-md-9">
                                                         <div class="form-group">
-                                                            <input type="number" value="" class="form-control"
-                                                                placeholder="Comission Percentage">
+                                                            @if($setting) 
+                                                            <input type="number" name="commission" class="form-control"
+                                                                placeholder="Comission Percentage" value="{{$setting->commission != null ? $setting->commission : ''}}">
+                                                            @endif
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
@@ -336,29 +337,33 @@
                                                         <small class="">Change Logo</small>
                                                     </div>
                                                     <div class="col-md-12  mb-2 mt-1">
-                                                        <input type="file" class="dropify">
+                                                        <input type="file" name="logo" class="dropify" data-default-file="{{ asset($setting->logo) }}">
                                                     </div>
                                                     <div class="col-md-12">
                                                         <small class="">Change Favicon</small>
                                                     </div>
                                                     <div class="col-md-12 mb-2 mt-1">
-                                                        <input type="file" class="dropify">
+                                                        <input type="file" name="favicon" class="dropify" data-default-file="{{ asset($setting->favicon) }}">
                                                     </div>
                                                     <div class="col-md-12">
                                                         <small class="">Change Title </small>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <input type="text" placeholder="Website Title" class="form-control">
+                                                        @if($setting) 
+                                                            <input type="text" name="title" placeholder="Website Title" class="form-control" value="{{$setting->title != null ? $setting->title : ''}}">
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div class="row mt-2">
                                                     <div class="col-md-12 text-right">
-                                                            <button class="btn-general">Save changes</button>
+                                                            <button type="submit" class="btn-general">Save changes</button>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </form>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -374,5 +379,5 @@
 @endsection
 <!-- Extra js to perfome function using ajax. -->
 @section('js')
-  
+  @include('js_files.admin.settingJs')
 @endsection

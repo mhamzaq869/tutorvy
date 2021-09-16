@@ -42,7 +42,7 @@
                 <div class="col-md-6 m-0 p-0">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-items"><a href="#">Tutorvy</a></li>
+                            <li class="breadcrumb-items"><a href="#">Tutorvy 1313123</a></li>
                             <li class="breadcrumb-items m-0 p-0 ml-3" aria-current="page">&gt;</li>
                             <li class="breadcrumb-items m-0 p-0 ml-3 breadcrumb-item-active" aria-current="page"><a
                                     href="">Integration</a>
@@ -84,11 +84,10 @@
                     <div class="card">
                         <div class="card-body">
                             <span class="enableSwitch">
-                                <a href="#" id="payment_setting"><i class="fa fa-cogs" aria-hidden="true"></i></a>
+                                <a href="#" id="google_maps"><i class="fa fa-cogs" aria-hidden="true"></i></a>
                                 <label class="switch mt-0">
                                         <input type="checkbox" id="" onchange="">
                                         <span class="slider round"></span>
-                                   
                                 </label>
                             </span>
                             <img src="{{asset('admin/assets/img/ico/google-places.png')}}"  class="payIcon googleIc" alt="">
@@ -200,6 +199,45 @@
                                 @endif
 
                                     <button type="submit" class="btn btn-primary pull-right"> Connect </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+        </div> -->
+        </div>
+    </div>
+</div>
+
+<!-- google integration Modal -->
+<div class="modal fade" id="googleModal" tabindex="-1" role="dialog" aria-labelledby="payPalModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body" style="height:auto !important">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <img src="{{asset('admin/assets/img/ico/google-places.png')}}" class=" modelImg p-3" alt="">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                <form class="p-3" id="googleVerficationForm" status="0" method="POST" action="{{url('admin/save-payal')}}">
+                                    <input type="hidden" name="google" class="google" value="google">
+                                    <div class="form-group">
+                                        <label for="google_api_key">API Key</label>
+                                        <input type="text" class="form-control" id="google_api_key" placeholder="API Key">
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <button type="button" class="btn btn-primary btn-sm" id="verify"> Verify </button>
+                                        <button type="button" class="btn btn-primary btn-sm"> Save </button>
+                                    </div>
                                 </form>
                             </div>
                         </div>

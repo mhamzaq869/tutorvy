@@ -125,13 +125,13 @@ class ProfileController extends Controller
         if($request->security == 1) {
 
             if($request->hasFile('id_card_pic')){
-                $filename = 'storage/verfication/'.$request->id_card_pic->getClientOriginalName();
+                $filename = 'storage/verifcation/'.$request->id_card_pic->getClientOriginalName();
                 array_push($data , $filename);
                 $request->id_card_pic->storeAs('verifcation',$request->id_card_pic->getClientOriginalName(),'public');
             }
             
             if($request->hasFile('id_card_pic2')){
-                $filename = 'storage/verfication/'.$request->id_card_pic2->getClientOriginalName();
+                $filename = 'storage/verifcation/'.$request->id_card_pic2->getClientOriginalName();
                 array_push($data , $filename);
                 $request->id_card_pic2->storeAs('verifcation',$request->id_card_pic2->getClientOriginalName(),'public');
             }
@@ -139,20 +139,20 @@ class ProfileController extends Controller
 
         }else if($request->security == 2) {
             if($request->hasFile('license_pic')){
-                $filename = 'storage/verfication/'.$request->license_pic->getClientOriginalName();
+                $filename = 'storage/verifcation/'.$request->license_pic->getClientOriginalName();
                 array_push($data , $filename);
                 $request->license_pic->storeAs('verifcation',$request->license_pic->getClientOriginalName(),'public');
             }
     
             if($request->hasFile('license_pic2')){
-                $filename = 'storage/verfication/'.$request->license_pic2->getClientOriginalName();
+                $filename = 'storage/verifcation/'.$request->license_pic2->getClientOriginalName();
                 array_push($data , $filename);
                 $request->license_pic2->storeAs('verifcation',$request->license_pic2->getClientOriginalName(),'public');
             }
         }else{
 
             if($request->hasFile('passport_pic')){
-                $filename = 'storage/verfication/'.$request->passport_pic->getClientOriginalName();
+                $filename = 'storage/verifcation/'.$request->passport_pic->getClientOriginalName();
                 array_push($data , $filename);
                 $request->passport_pic->storeAs('verifcation',$request->passport_pic->getClientOriginalName(),'public');
             }
