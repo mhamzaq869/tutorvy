@@ -116,8 +116,9 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
 
     Route::get('/knowledge',[KnowledgeController::class,'index'])->name('admin.knowledge');
     Route::get('/support',[SupportController::class,'index'])->name('admin.support');
-    Route::get('/category',[SupportController::class,'category'])->name('admin.category');
-    Route::get('/ticket',[SupportController::class,'ticket'])->name('admin.ticket');
+    
+    Route::get('/ticket/{id}',[SupportController::class,'ticket'])->name('admin.ticket');
+
     Route::get('/ticket-reply',[SupportController::class,'ticketReply'])->name('admin.ticketReply');
     Route::get('/setting',[SettingController::class,'index'])->name('admin.setting');
 
@@ -126,6 +127,10 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
     // Route to get all subjects form api call
 
     Route::get('/api_subjects',[SubjectController::class,'getSubjectsFromApi']);
+
+    Route::get('/category',[SupportController::class,'category'])->name('admin.category');
+    Route::post('/save-category',[SupportController::class,'saveCategory'])->name('admin.save.category');
+    Route::post('/delete-category',[SupportController::class,'deleteCategory'])->name('admin.delete.category');
 });
 
 /*
@@ -234,6 +239,8 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     Route::post('/update_education',[StudentProfileController::class,'profileEducationRecord'])->name('student.education.update');
     Route::post('/update_verification',[StudentProfileController::class,'profileVerficationRecord'])->name('student.verification.update');
 
+    Route::get('/get-categories',[StudentSettingController::class,'getAllCategories'])->name('student.categories');
+    Route::post('/save-ticket',[StudentSettingController::class,'saveTicket'])->name('student.save.ticket');
 
 });
 /*

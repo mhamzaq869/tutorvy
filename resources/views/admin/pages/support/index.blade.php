@@ -112,282 +112,58 @@
                                         <thead>
                                             <tr
                                                 style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
-                                                <th scope="col">
-                                                    Ticket no.
-                                                </th>
-                                                <th scope="col">
-                                                    User
-                                                </th>
-                                                <th scope="col">
-                                                    Subject
-                                                </th>
-                                                <th scope="col">
-                                                    Category
-                                                </th>
-                                                <th scope="col">
-                                                    Date
-                                                </th>
-                                                <th scope="col">
-                                                    Answered by
-                                                </th>
+                                                <th scope="col"> Ticket no. </th>
+                                                <th scope="col">User </th>
+                                                <th scope="col">Subject </th>
+                                                <th scope="col">Category </th>
+                                                <th scope="col">Date </th>
+                                                <th scope="col">Answered by </th>
                                                 <th scope="col">Status</th>
                                                 <th scope="col"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach($tickets as $ticket)
+                                                <tr>
+                                                    <td class="pt-4">
+                                                        {{$ticket->ticket_no}}
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        @if($ticket->tkt_created_by != null && $ticket->tkt_created_by != "" && $ticket->tkt_created_by != [])
+                                                            <span> {{$ticket->tkt_created_by->first_name}} {{$ticket->tkt_created_by->last_name}} </span>
+                                                        @else
+                                                            <span> - </span>
+                                                        @endif
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        {{$ticket->subject}}
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        Payment
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        {{date_format($ticket->created_at,"Y-m-d")}}
+                                                    </td>
+                                                    <td class="pt-4">
+                                                    @if($ticket->category != null && $ticket->category != "" && $ticket->category != [])
+                                                        <span> {{$ticket->category->title}} </span>
+                                                    @else
+                                                        <span> - </span>
+                                                    @endif
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        @if($ticket->status == 0)
+                                                            <span class="statusTag doc_not_sub_status"> Pending </span>
+                                                        @endif
+                                                    </td>
 
-                                            <tr>
-                                                <td class="pt-4">
-                                                    asdasd1245
-                                                </td>
-                                                <td class="pt-4">
-                                                    Harram Laraib
-                                                </td>
-                                                <td class="pt-4">
-                                                    Chemistry
-                                                </td>
-                                                <td class="pt-4">
-                                                    Payment
-                                                </td>
-                                                <td class="pt-4">
-                                                    12 Sep, 2021
-                                                </td>
-                                                <td class="pt-4">
-                                                    Dansih
-                                                </td>
-                                                <td class="pt-4">
-                                                    <span class="pending-text-1">
-                                                        Pending
-                                                    </span>
-                                                </td>
-
-                                                <td style="text-align: center;">
-                                                    <a href="{{route('admin.ticket')}}" class="btn schedule-btn w-100">
-                                                        View
-                                                    </a>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="pt-4">
-                                                    asdasd1245
-                                                </td>
-                                                <td class="pt-4">
-                                                    Harram Laraib
-                                                </td>
-                                                <td class="pt-4">
-                                                    Chemistry
-                                                </td>
-                                                <td class="pt-4">
-                                                    Payment
-                                                </td>
-                                                <td class="pt-4">
-                                                    12 Sep, 2021
-                                                </td>
-                                                <td class="pt-4">
-                                                    Dansih
-                                                </td>
-                                                <td class="pt-4">
-                                                    <span class="paid-text-1">
-                                                        Answered
-                                                    </span>
-                                                </td>
-
-                                                <td style="text-align: center;">
-                                                    <a href="{{route('admin.ticket')}}" class="btn schedule-btn w-100">
-                                                        View
-                                                    </a>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="pt-4">
-                                                    asdasd1245
-                                                </td>
-                                                <td class="pt-4">
-                                                    Harram Laraib
-                                                </td>
-                                                <td class="pt-4">
-                                                    Chemistry
-                                                </td>
-                                                <td class="pt-4">
-                                                    Payment
-                                                </td>
-                                                <td class="pt-4">
-                                                    12 Sep, 2021
-                                                </td>
-                                                <td class="pt-4">
-                                                    Dansih
-                                                </td>
-                                                <td class="pt-4">
-                                                    <span class="pending-text-1">
-                                                        Pending
-                                                    </span>
-                                                </td>
-
-                                                <td style="text-align: center;">
-                                                    <a href="{{route('admin.ticket')}}" class="btn schedule-btn w-100">
-                                                        View
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pt-4">
-                                                    asdasd1245
-                                                </td>
-                                                <td class="pt-4">
-                                                    Harram Laraib
-                                                </td>
-                                                <td class="pt-4">
-                                                    Chemistry
-                                                </td>
-                                                <td class="pt-4">
-                                                    Payment
-                                                </td>
-                                                <td class="pt-4">
-                                                    12 Sep, 2021
-                                                </td>
-                                                <td class="pt-4">
-                                                    Dansih
-                                                </td>
-                                                <td class="pt-4">
-                                                    <span class="pending-text-1">
-                                                        Pending
-                                                    </span>
-                                                </td>
-
-                                                <td style="text-align: center;">
-                                                    <a href="{{route('admin.ticket')}}" class="btn schedule-btn w-100">
-                                                        View
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pt-4">
-                                                    asdasd1245
-                                                </td>
-                                                <td class="pt-4">
-                                                    Harram Laraib
-                                                </td>
-                                                <td class="pt-4">
-                                                    Chemistry
-                                                </td>
-                                                <td class="pt-4">
-                                                    Payment
-                                                </td>
-                                                <td class="pt-4">
-                                                    12 Sep, 2021
-                                                </td>
-                                                <td class="pt-4">
-                                                    Dansih
-                                                </td>
-                                                <td class="pt-4">
-                                                    <span class="pending-text-1">
-                                                        Pending
-                                                    </span>
-                                                </td>
-
-                                                <td style="text-align: center;">
-                                                    <a href="{{route('admin.ticket')}}" class="btn schedule-btn w-100">
-                                                        View
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pt-4">
-                                                    asdasd1245
-                                                </td>
-                                                <td class="pt-4">
-                                                    Harram Laraib
-                                                </td>
-                                                <td class="pt-4">
-                                                    Chemistry
-                                                </td>
-                                                <td class="pt-4">
-                                                    Payment
-                                                </td>
-                                                <td class="pt-4">
-                                                    12 Sep, 2021
-                                                </td>
-                                                <td class="pt-4">
-                                                    Dansih
-                                                </td>
-                                                <td class="pt-4">
-                                                    <span class="pending-text-1">
-                                                        Pending
-                                                    </span>
-                                                </td>
-
-                                                <td style="text-align: center;">
-                                                    <a href="{{route('admin.ticket')}}" class="btn schedule-btn w-100">
-                                                        View
-                                                    </a>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="pt-4">
-                                                    asdasd1245
-                                                </td>
-                                                <td class="pt-4">
-                                                    Harram Laraib
-                                                </td>
-                                                <td class="pt-4">
-                                                    Chemistry
-                                                </td>
-                                                <td class="pt-4">
-                                                    Payment
-                                                </td>
-                                                <td class="pt-4">
-                                                    12 Sep, 2021
-                                                </td>
-                                                <td class="pt-4">
-                                                    Dansih
-                                                </td>
-                                                <td class="pt-4">
-                                                    <span class="pending-text-1">
-                                                        Pending
-                                                    </span>
-                                                </td>
-
-                                                <td style="text-align: center;">
-                                                    <a href="{{route('admin.ticket')}}" class="btn schedule-btn w-100">
-                                                        View
-                                                    </a>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="pt-4">
-                                                    asdasd1245
-                                                </td>
-                                                <td class="pt-4">
-                                                    Harram Laraib
-                                                </td>
-                                                <td class="pt-4">
-                                                    Chemistry
-                                                </td>
-                                                <td class="pt-4">
-                                                    Payment
-                                                </td>
-                                                <td class="pt-4">
-                                                    12 Sep, 2021
-                                                </td>
-                                                <td class="pt-4">
-                                                    Dansih
-                                                </td>
-                                                <td class="pt-4">
-                                                    <span class="paid-text-1">
-                                                        Paid
-                                                    </span>
-                                                </td>
-
-                                                <td style="text-align: center;">
-                                                    <a href="{{route('admin.ticket')}}" class="btn schedule-btn w-100">
-                                                        View
-                                                    </a>
-                                                </td>
-                                            </tr>
+                                                    <td style="text-align: center;">
+                                                        <a href="{{url('admin/ticket')}}/{{$ticket->ticket_no}}" class="btn schedule-btn w-100">
+                                                            View
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Admin\tktCat;
 
 class HomeController extends Controller
 {
@@ -12,7 +13,8 @@ class HomeController extends Controller
      */
 
     public function index(){
-        return view('student.pages.index');
+        $categories = tktCat::all();
+        return view('student.pages.index',compact('categories'));
     }
 
 }

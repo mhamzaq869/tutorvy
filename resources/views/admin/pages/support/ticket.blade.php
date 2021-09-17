@@ -14,16 +14,16 @@
                 <div class="col-md-6">
                     <h1 class="heading-first">
                         <a href="#"> < </a>
-                        Ticket Title
+                        {{$ticket->subject}}
                     </h1>
                 </div>
                 <div class="col-md-6 m-0 p-0">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-items"><a href="#">Tutorvy</a></li>
+                            <li class="breadcrumb-items"><a href="{{route('admin.support')}}">Support</a></li>
                             <li class="breadcrumb-items m-0 p-0 ml-3" aria-current="page">&gt;</li>
                             <li class="breadcrumb-items m-0 p-0 ml-3 breadcrumb-item-active" aria-current="page"><a
-                                    href="">Support</a>
+                                    href="">Ticket</a>
                             </li>
 
                         </ol>
@@ -39,25 +39,8 @@
                                     <div class="col-md-12 pl-0">
                                         <span class="heading-fifth-1">Ticket Message</span>
                                         <p class="paragraph-text-1 mt-3">
-                                            Accessibility ideas for distance learningduring COVID-19. It was popularised in the 1960s
-                                            with
-                                            the release f Letraset sheets containing Lorem Ipsum passages, and more recently with
-                                            desktop
-                                            publishing software ike Aldus PageMaker including versions of Lorem Ipsum.
+                                            {{$ticket->message}}
                                         </p>
-
-                                        <div class="container mt-4">
-                                            <div class="row">
-                                                <div class="col-md-4 pl-0">
-                                                    <img src="{{asset('admin/assets/img/ico/course.png')}}" class="img-fluid" alt="">
-                                                    <a href="" class="paragraph-text mt-2">Screenshot01</a>
-                                                </div>
-                                                <div class="col-md-4  pl-0">
-                                                    <img src="{{asset('admin/assets/img/ico/course.png')}}" class="img-fluid" alt="">
-                                                    <a href="" class="paragraph-text mt-2">Screenshot01</a>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="container-fluid mt-5 m-0 p-0">
                                         <span class="heading-fifth-1 mb-3">Reply</span>
@@ -100,7 +83,13 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="">
-                                                        <span class="pending-text-1 float-right">Pending</span>
+                                                        <span class="pending-text-1 float-right">
+                                                            @if($ticket->status == 0)
+                                                                Pending 
+                                                            @else
+                                                                - 
+                                                            @endif
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -112,19 +101,19 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="">
-                                                        <span class="paragraph-text-1 float-right">03 Sep, 2021</span>
+                                                        <span class="paragraph-text-1 float-right"> {{date_format($ticket->created_at,"Y-m-d")}} </span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row pt-3 mb-3 ml-1 mr-1 border-bottom pb-1">
                                                 <div class="col-md-6">
                                                     <div class="">
-                                                        <span class="heading-fifth">Ticket no.</span>
+                                                        <span class="heading-fifth">Ticket No </span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="">
-                                                        <span class="paragraph-text-1 float-right">0123435</span>
+                                                        <span class="paragraph-text-1 float-right">{{$ticket->ticket_no}} </span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -136,20 +125,55 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="">
-                                                        <span class="paragraph-text-1 float-right">payment</span>
+                                                        <span class="paragraph-text-1 float-right">
+                                                            @if($ticket->category != null && $ticket->category != "" && $ticket->category != [])
+                                                                <span> {{$ticket->category->title}} </span>
+                                                            @else
+                                                                <span> - </span>
+                                                            @endif
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row pt-3 mb-3 ml-1 mr-1 border-bottom pb-2">
                                                 <div class="col-md-3">
                                                     <div class="">
-                                                        <img src="../assets/img/ico/profile-boy.png" alt="asd">
+                                                        @if($ticket->tkt_created_by != null && $ticket->tkt_created_by != "" && $ticket->tkt_created_by != [])
+                                                            @if($ticket->tkt_created_by->picture != null)
+                                                                <img src="{{asset($ticket->tkt_created_by->picture)}}" style="width: 50px; height: 50px; border-radius: 100%;" alt="asd">
+                                                            @else
+                                                                <img src="../assets/img/ico/profile-boy.png" alt="asd">
+                                                            @endif
+                                                        @else
+                                                            <img src="../assets/img/ico/profile-boy.png" alt="asd">
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div class="col-md-9">
                                                     <div class="">
-                                                        <span class="heading-fifth">Harram Laraib</span>
-                                                        <p class="paragraph-text">Student</p>
+                                                        <span class="heading-fifth"> 
+                                                            @if($ticket->tkt_created_by != null && $ticket->tkt_created_by != "" && $ticket->tkt_created_by != [])
+                                                                <span> {{$ticket->tkt_created_by->first_name}} {{$ticket->tkt_created_by->last_name}} </span>
+                                                            @else
+                                                                <span> - </span>
+                                                            @endif
+                                                        </span>
+                                                        <p class="paragraph-text">
+                                                            @if($ticket->tkt_created_by != null && $ticket->tkt_created_by != "" && $ticket->tkt_created_by != [])
+                                                                @if($ticket->tkt_created_by->role == 2)
+                                                                    <span> Tutor </span>
+                                                                @elseif($ticket->tkt_created_by->role == 3)
+                                                                    <span> Student </span>
+                                                                @elseif($ticket->tkt_created_by->role == 4)
+                                                                    <span> Staff </span>
+                                                                @else
+                                                                    <span> - </span>
+                                                                @endif
+
+                                                            @else
+                                                                <span> - </span>
+                                                            @endif
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -294,5 +318,4 @@
 @endsection
 @section('js')
   
-@include('js_files.admin.supportJs')
 @endsection

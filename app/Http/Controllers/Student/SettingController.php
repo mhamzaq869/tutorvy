@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Classroom;
+use App\Models\Admin\tktCat;
+use App\Models\Admin\supportTkts;
 use Illuminate\Support\Facades\DB;
 
 class SettingController extends Controller
@@ -94,5 +96,37 @@ class SettingController extends Controller
     }
 
     
+    public function getAllCategories() {
+        $data = tktCat::all();
+        
+        return response()->json([
+            "status_code" => 200, 
+            "categories" => $data,
+        ]);
+
+    }
+
+    public function saveTicket(Request $request) {
+
+        $length = 3;
+        $string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $no = '1234567890';
+
+        $ticket_no =  substr(str_shuffle($string),1,$length) . '-' . substr(str_shuffle($string),2,$length) . '-' . substr(str_shuffle($no),1,$length);
+
+        supportTkts::create([
+            "subject" => $request->subject,
+            "cat_id" => $request->category,
+            "message" => $request->message,
+            "user_id" => Auth::user()->id,
+            "ticket_no" => $ticket_no,
+        ]);
+
+        return response()->json([
+            "status_code" => 200, 
+            "message" => "Ticket Created .. Our Staff will contact us soon.",
+            "success" => true,
+        ]);
+    }
 
 }
