@@ -58,9 +58,15 @@ body {
     font-weight: 500;
     margin-bottom: 1rem;
     outline: none;
-    padding: 1rem 50px;
+    /* padding: 1rem 50px; */
     transition: all 0.3s;
     vertical-align: middle;
+}
+
+[type="file"]+label img {
+    width: 20px;
+    margin-right: 5px;
+    height: auto !important;
 }
 
 
@@ -223,6 +229,7 @@ body {
     color: #00132D;
     cursor: pointer;
     background-color: red;
+    border: 1px solid #fff !important;
 }
 
 .sort-text select:focus {
@@ -489,6 +496,10 @@ h3 {
 
 .bg-dark1 {
     background-color: #00132D;
+}
+
+.bg-sky {
+    background: #EEF5FF;
 }
 
 .sort-1 {

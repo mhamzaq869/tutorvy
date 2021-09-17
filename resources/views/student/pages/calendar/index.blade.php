@@ -1,12 +1,17 @@
 @extends('student.layouts.app')
 
 @section('content')
+<style>
+    .header h1 {
+        margin-left: 70px;
+    }
+</style>
 <div class="content-wrapper " style="overflow: hidden;">
     <section id="homesection" style="display: flex;">
         <!-- dashborad home -->
         <div class="container-fluid m-0 p-0">
             <p class="heading-first ml-3 mr-3">Calendar</p>
-            <div class="row">
+            <div class="row ml-2 mr-2">
                  <div class="col-md-12 mb-1 ">
                     <div class=" card  bg-toast infoCard">
                         
@@ -28,24 +33,33 @@
                     </div>
                 </div>
             </div>
-               
-            <div class="card">
+               <div class="row ml-2 mr-2">
+                   <div class="col-md-12">
+                       <div class="card">
+                           <div class="card-body">
+                                <span class="moreBooking text-right mt-3 ">
+                                    <a href="#" class="btn-general  btn-large">
+                                            View today bookigs
+                                    </a>
+                                </span>
+                                <div class="" id="calendar" class="day mt-0">
+                                </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+            <!-- <div class="card ml-2 mr-2">
                 <div class="card-body">
                     <div class="row ">
                       
                         <div class="col-md-12 mb-5 ml-3 mt-0">
-                            <span class="moreBooking text-right mt-3 ">
-                                <a href="#" class="btn-general  btn-large">
-                                        View today bookigs
-                                </a>
-                            </span>
-                            <div class="" id="calendar" class="day mt-0">
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
+            
     </section>
 </div>
  <!-- clander js -->

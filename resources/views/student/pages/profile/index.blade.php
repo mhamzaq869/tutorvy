@@ -651,7 +651,7 @@
                                                 <div class="customer_records_dynamic mt-5"></div>
                                             </div>
                                         </div> -->
-                                        <div class="row">
+                                        <div class="row mt-3">
                                                 <!-- <div class="input-text col-md-6">
                                                     <select name="degree"
                                                         class="form-select form-select-lg mb-3 w-100">

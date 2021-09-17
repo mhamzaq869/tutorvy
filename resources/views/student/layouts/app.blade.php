@@ -41,6 +41,40 @@
             @include('student.layouts.navbar')
             <!-- Main-->
             @yield('content')
+            <div class="modal" id="supportModal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content pb-3">
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12 pt-4">
+                                        <div class="iconss" style="text-align: center;">
+                                            <img src="{{asset('assets/images/ico/support.png')}}" alt="support" class="mb-2" width="80px">
+                                            <p
+                                                style=" font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 600;margin-top: 10px;">
+                                                Support</p>
+                                            <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;line-height: 1.4;"
+                                                class="ml-5 mr-5">We are here to listen you, please write if you have any problem</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <select name="" class="form-select" id="">
+                                            <option > Select Category</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                                        <textarea name="" id="" cols="30" rows="10" class="form-control" placeholder="Enter your query here"></textarea>
+                                    </div>
+                                    <div class="col-md-12 mt-2 text-right">
+                                        <button type="button" class="schedule-btn" data-dismiss="modal"
+                                        style="width: 130px;">Send</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         <div>
 
     </div>

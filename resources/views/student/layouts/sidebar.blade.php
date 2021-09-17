@@ -50,14 +50,14 @@
                      </span>
                  </a>
              </li>
-             <li class="btn mt-3">
+             <!-- <li class="btn mt-3">
                  <a href="./History/history.html">
                      <img class="history-sid mr-2" src="{{asset('assets/images/ico/history-ico.png')}}" alt="history-ico">
                      <span class="history-show mt-3">
                          History
                      </span>
                  </a>
-             </li>
+             </li> -->
              <li class="btn mt-3">
                 <a href="./payment/payment.html">
                     <img class="payment-sid mr-2" src="{{asset('assets/images/ico/payment-ico.png')}}" alt="payment-ico">
@@ -117,12 +117,12 @@
                      Calendar
                  </a>
              </li>
-             <li class="btn @if(\Request::path() === 'tutor/history') active @endif w-100">
+             <!-- <li class="btn @if(\Request::path() === 'tutor/history') active @endif w-100">
                  <a href="{{route('tutor.history')}}">
                      <img src="{{asset('assets/images/ico/history-ico.png')}}" alt="history-ico" class=" mr-2">
                      History
                  </a>
-             </li>
+             </li> -->
              <li class="btn  w-100">
                 <a href="./payment/payment.html">
                     <img src="{{asset('assets/images/ico/payment-ico.png')}}" class=" mr-2">
@@ -145,24 +145,30 @@
 
          <!--  sideanv bottom support -->
          <div class="">
-             <div class="imageside">
-                 <img src="{{asset('assets/images/backgrounds/man.svg') }}" alt="background-image">
-                 <div class="support">
-                     <div class="text-side">
-                         <p class="ml-2 mr-2 mt-2 pt-3 pt-2 support-text">
-                             Support
-                         </p>
-                         <p class="ml-2 mr-2 support-text1">
-                             Contact 24/7 if you need only support
-                         </p>
-                         <p class="ml-2 mr-2 support-text2">
-                             LEARN MORE &nbsp;
-                             <img src="{{asset('assets/images/ico/arrow-left.png')}}" alt="left-arrow-ico">
-                         </p>
-                     </div>
-                 </div>
-             </div>
+             <a data-toggle="modal" href="#supportModal" style="text-decoration:none;">
+                <div class="imageside text-center">
+
+                    <img src="{{asset('assets/images/backgrounds/man.svg') }}" alt="background-image">
+                    <div class="support">
+                        <div class="text-side text-left">
+                            <p class="ml-2 mr-2 mt-2 pt-3 pt-2 support-text">
+                                Support
+                            </p>
+                            <p class="ml-2 mr-2 support-text1">
+                                Contact 24/7 if you need only support
+                            </p>
+                            <p class="ml-2 mr-2 support-text2">
+                                LEARN MORE &nbsp;
+                                <img src="{{asset('assets/images/ico/arrow-left.png')}}" alt="left-arrow-ico">
+                            </p>
+                        </div>
+                    </div>
+                </div>
+             </a>
+             
          </div>
+
+            
      </div>
 
 
