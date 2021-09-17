@@ -325,7 +325,7 @@
                                                     @enderror
                                             </div>
                                             <div class="input-text col-md-12 m-0 p-0 mt-3  d-block">
-                                                    <input type="password" name="password" class="form-control  @error('password') is-invalid @enderror"
+                                                    <input type="password" name="password" class="form-control "
                                                     placeholder="Password" id="password">
                                                     <!-- <label for="" id="password_error" class="text-red"><strong> This field is required </strong>  </label> -->
                                                     <small id="passTech">
@@ -760,6 +760,7 @@
                     },
                     password: {
                         required: true,
+                        
                     },
                     first_name: {
                         required: true

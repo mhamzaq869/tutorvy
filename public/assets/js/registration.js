@@ -1634,11 +1634,17 @@ $("#password").focusout(function() {
     if (ter.match(decimal)) {
         $("#password_error").css("display", "none");
         $("#passTech").css("display", "block");
+        $("#password").removeClass("is-invalid");
+        $("#password").addClass("valid");
+
     } else {
         // alert('Wrong...!')
         $("#password_error").css("display", "block");
         $("#passTech").css("display", "none");
-        $("#password_error").text("Field should have t least one lowercase letter, one uppercase letter, one numeric digit, and one special character")
+        $("#password").removeClass("valid");
+        $("#password").addClass("is-invalid");
+
+        $("#password_error").text("Field should have at least one lowercase letter, one uppercase letter, one numeric digit, and one special character")
 
         // return false;
     }
