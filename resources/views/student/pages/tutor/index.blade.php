@@ -115,7 +115,7 @@
                                                                 <p>-</p>
                                                             </div>
                                                             <div class="col-md-5">
-                                                                <input type="number" max="1000" class="  formy-range"  placeholder="Max">
+                                                                <input type="number" max="1000" class="  formy-range" placeholder="Max">
                                                             </div>
                                                         </div>
                                                 </div>

@@ -160,9 +160,15 @@
                                                             </p>
                                                         </div>
                                                         <div class="col-md-3">
+                                                            @if(Auth::user()->status == 0)
+                                                            <a onclick="showMessage()">
+                                                                <p class="view-bookings mb-0">Add</p>
+                                                            </a>
+                                                            @else
                                                             <a href="{{ route('tutor.test', [$subject->id]) }}">
                                                                 <p class="view-bookings mb-0">Add</p>
                                                             </a>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
@@ -186,4 +192,8 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('scripts')
+    @include('js_files.tutor.subjectJs')
 @endsection

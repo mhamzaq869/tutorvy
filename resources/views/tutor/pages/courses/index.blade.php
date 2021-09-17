@@ -480,9 +480,15 @@
                         <div class="card border-only" >
                             <div class="card-body ">
                                 <div class="add-new" style="margin-top:40%;margin-bottom: 40%;">
-                                    <a href="{{route('tutor.addcourse')}}">
-                                        <img src="{{asset('assets/images/ico/add-new.png')}}" alt="add-new">
-                                    </a>
+                                    @if(Auth::user()->status == 0)
+                                        <a onclick="showMessage()">
+                                            <img src="{{asset('assets/images/ico/add-new.png')}}" alt="add-new">
+                                        </a>
+                                    @else
+                                        <a href="{{route('tutor.addcourse')}}">
+                                            <img src="{{asset('assets/images/ico/add-new.png')}}" alt="add-new">
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -493,8 +499,17 @@
         <!-- end section -->
     </div>
 </section>
-
-    
-
-
+@endsection
+@section('js')
+    <script>
+        function showMessage() {
+            var message = 'Your Profile is under verfication process...';
+            toastr.error( message,{
+                    position: 'top-end',
+                    icon: 'error',
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+        }
+    </script>
 @endsection

@@ -1,11 +1,23 @@
 <script>
-    $("#payment_setting").click(function(){
-        $("#payPalModal").modal("toggle");
-        $(".paypalForm")[0].reset();
-    })
+
+
     $(document).ready(function() {
 
+        // open paypal modal
+        $("#payment_setting").click(function(){
+            $("#payPalModal").modal("toggle");
+            $(".paypalForm")[0].reset();
+        })
 
+        // open google modal
+        $("#google_maps").click(function() {
+
+            $("#googleModal").modal('show');
+            $("#google_api_key").val("");
+        });
+
+
+        // paypal sandbox
         $("#paypalSandboxForm").submit(function(event) {
             event.preventDefault();
 
@@ -38,6 +50,7 @@
 
         });
 
+        // paypal live
         $("#paypalLiveForm").submit(function(event) {
             event.preventDefault();
 
@@ -72,6 +85,7 @@
 
         });
 
+        // enable integration status
         $("#payment_status").click(function() {
             var status = 0;
             if($("#payment_status").is(":checked")  ) {
@@ -109,6 +123,58 @@
             });
         });
 
+
+
+        // google api key verification
+        $("#verify").click(function() {
+
+            var google_api_key = $("#google_api_key").val();
+
+            if(google_api_key != "") {
+
+                var script = "https://maps.googleapis.com/maps/api/js?key=" + google_api_key;
+                console.log(script , "script");
+
+                $.getScript(script).done(function(script, textStatus) {
+
+                    if (typeof google === 'object' && typeof google.maps === 'object') {
+                        console.log(google , "msg")
+                        if(textStatus == 'success') {
+                            initMap('google',google_api_key);
+                        }
+                        // initMap('google',google_api_key);
+                        // setTimeout(function() {
+                        //     if ($('#google_verification').val() == '1') {
+                        //         initMap();
+                        //     }
+                        // }, 8000);
+
+                    }
+                }).fail(function(jqxhr, settings, exception) {
+
+                    toastr.error('Field to Verify!',{
+                        position: 'top-end',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
+                    // return false;
+                });
+
+
+            }else{
+                toastr.error('Please provide API KEY for verification',{
+                    position: 'top-end',
+                    icon: 'error',
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            }
+
+
+        });
+
+
     });
 
     function savePaypal(action, method , form_data) {
@@ -138,6 +204,30 @@
             },
             error:function(e) {
                 console.log(e);
+            }
+        });
+    }
+
+    function initMap(name, api_key) {
+       
+        $.ajax({
+            type: "POST",
+            url: "{{url('admin/verify-integration')}}",
+            data: {name:name, api_key:api_key},
+            dataType: 'json',
+            cache: false,
+            success: function(data) {
+                toastr.success(data.message,{
+                    position: 'top-end',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+
+                $("#googleModal").modal('hide');
+            },
+            failure: function(errMsg) {
+                console.log(errMsg);
             }
         });
     }

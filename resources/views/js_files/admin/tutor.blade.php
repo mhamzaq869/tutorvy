@@ -89,8 +89,13 @@ function verifyTutor(id, status, assess_status = null){
                 timer: 2500
             }); 
 
-            if(status = 3) {
+            if(status == 3) {
               $("#tutorRejectModal").modal('hide');
+            }
+
+            if(status == 2) {
+              $("#verification_btns").hide();
+              $("#verified_badge").show();
             }
 
           }else{
