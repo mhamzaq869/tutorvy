@@ -558,7 +558,7 @@ a[data-toggle="collapse"] {
 }
 
 .support {
-    width: 75%;
+    width: 100%;
     position: relative;
     top: -55px;
     background-color: #F2F8FF;
@@ -1876,7 +1876,7 @@ a[data-toggle="collapse"] {
 /* side support section css */
 
 .support {
-    width: 75%;
+    width: 100%;
     position: relative;
     top: -55px;
     background-color: #F2F8FF;
