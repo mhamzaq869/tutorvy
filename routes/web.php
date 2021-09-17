@@ -116,6 +116,9 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
 
     Route::get('/knowledge',[KnowledgeController::class,'index'])->name('admin.knowledge');
     Route::get('/support',[SupportController::class,'index'])->name('admin.support');
+    Route::get('/category',[SupportController::class,'category'])->name('admin.category');
+    Route::get('/ticket',[SupportController::class,'ticket'])->name('admin.ticket');
+    Route::get('/ticket-reply',[SupportController::class,'ticketReply'])->name('admin.ticketReply');
     Route::get('/setting',[SettingController::class,'index'])->name('admin.setting');
 
     Route::post('/change-password',[SettingController::class,'changePassword'])->name('admin.change.password');
