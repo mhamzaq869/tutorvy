@@ -27,6 +27,7 @@ class Booking extends Model
         'attachments',
         'class_date',
         'class_time',
+        'status',
         'duration',
         'cancel_note',
         'reschedule_note',
