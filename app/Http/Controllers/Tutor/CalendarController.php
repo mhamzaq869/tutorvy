@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Tutor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\Classroom;
 use App\Models\Booking;
 
@@ -14,23 +16,39 @@ class CalendarController extends Controller
      */
 
     public function index(){
-        return view('tutor.pages.calendar.index');
+
+        $bookings = [];
+
+        // $classess = Classroom::with('booking')->get()->toArray();
+        $classess = DB::table("classroom")
+        ->leftjoin("bookings","classroom.booking_id","=","bookings.id")->where('user_id',Auth::user()->id)->get();
+        
+        foreach($classess as $class) {
+            array_push($bookings , 
+                array( 
+                    "titles" => $class->class_time, 
+                    "start" => $class->class_date,
+                    "backgroundColor" => $class->class_time .','.$class->class_date.','.$class->duration.','.$class->price,
+                ));
+        }
+        return view('tutor.pages.calendar.index', compact('bookings'));
     }
     public function calendarStudent(){
 
         $bookings = [];
 
-        $classess = Classroom::with('booking')->get()->toArray();
-
+        // $classess = Classroom::with('booking')->get()->toArray();
+        $classess = DB::table("classroom")
+        ->leftjoin("bookings","classroom.booking_id","=","bookings.id")->where('user_id',Auth::user()->id)->get();
+        
         foreach($classess as $class) {
             array_push($bookings , 
                 array( 
-                    "titles" => $class['booking']['class_time'] , 
-                    "start" => $class['booking']['class_date'],
-                    "backgroundColor" => $class['booking']['class_time'] .','.$class['booking']['class_date'] .','.$class['booking']['duration'].','.$class['booking']['price'],
+                    "titles" => $class->class_time, 
+                    "start" => $class->class_date,
+                    "backgroundColor" => $class->class_time .','.$class->class_date.','.$class->duration.','.$class->price,
                 ));
         }
-
         return view('student.pages.calendar.index', compact('bookings'));
     }
 }

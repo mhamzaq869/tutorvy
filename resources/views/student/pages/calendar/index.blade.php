@@ -46,9 +46,9 @@
                        <div class="card">
                            <div class="card-body">
                                 <span class="moreBooking text-right mt-3 ">
-                                    <a href="#" class="btn-general  btn-large">
+                                    <!-- <a href="#" class="btn-general  btn-large">
                                             View today bookigs
-                                    </a>
+                                    </a> -->
                                 </span>
                                 <div class="" id="calendar" class="day mt-0">
                                 </div>
@@ -71,8 +71,8 @@
     </section>
 </div>
 
-<!--Approve Class Modal -->
-<div class="modal fade" id="approveModel" tabindex="-1" role="dialog" aria-hidden="true">
+    <!--Approve Class Modal -->
+    <div class="modal fade" id="approveModel" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content pt-4 pb-4">
                 <div class="modal-body">
@@ -126,17 +126,16 @@
 
  <!-- clander js -->
  
+
 <script>
     var bookings = {!! json_encode($bookings) !!}
-    
+    var today = new Date;
 
     for(var i= 0; i < bookings.length; i++) {
         bookings[i].title = 'Class Start at ' + moment(bookings[i].titles , 'hh:mm').format('LT');
     }
 
-    console.log(bookings , "bookings");
     var data = bookings;
-
     var calendar = '';
       
     document.addEventListener('DOMContentLoaded', function() {
@@ -144,7 +143,7 @@
     calendar = new FullCalendar.Calendar(calendarEl, {
         themeSystem: 'bootstrap',
         initialView: 'dayGridMonth',
-        initialDate: '2021-09-16',
+        initialDate: moment(today).startOf('month').format('YYYY-MM-DD'),
         selectable: true,
         editable: true,
         dayMaxEvents: true,

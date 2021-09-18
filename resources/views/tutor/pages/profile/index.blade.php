@@ -761,13 +761,13 @@
                                                             <input name="designation[]" class="form-control"
                                                                 value=""
                                                                 title="Designation: Senior Developer at Google"
-                                                                placeholder="Designation">
+                                                                placeholder="Designation" required>
                                                         </div>
                                                         <div class="input-text col-md-6">
                                                             <input name="organization[]"
                                                                 value=""
                                                                 class="form-control" title="Organization Like Google"
-                                                                placeholder="Organization">
+                                                                placeholder="Organization" required>
                                                         </div>
                                                     </div>
                                                     <div class="row my-3">
@@ -775,12 +775,12 @@
                                                             <input type="date"
                                                                 value=""
                                                                 class="form-control" name="degree_start[]"
-                                                                placeholder="Starting date" value="">
+                                                                placeholder="Starting date" value="" required>
                                                         </div>
                                                         <div class="input-text col-md-6">
                                                             <input type="date" value=""
                                                                 class="form-control" name="degree_end[]"
-                                                                placeholder="Ending Date" value="">
+                                                                placeholder="Ending Date" value="" required>
                                                         </div>
                                                     </div>
 
@@ -876,14 +876,14 @@
                                                 <div class="col-md-6">
                                                     <select id="selection" name="security" 
                                                         class="form-select form-select-lg mb-3 w-100"
-                                                        aria-label=".form-select-lg example">
+                                                        aria-label=".form-select-lg example" required>
                                                         <option value="1" selected>National Identity Card</option>
                                                         <option value="2">Driving License</option>
                                                         <option value="3">Passport</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <input id="textbox" type="number" name="document_no" placeholder="Document No">
+                                                    <input id="textbox" type="number" name="document_no" placeholder="Document No" required>
                                                 </div>
                                                 <div class="col-md-6 mt-2 passport" >
                                                     <input type="file" name="passport_pic" class="dropify">
