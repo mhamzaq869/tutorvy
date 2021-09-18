@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\General\Teach;
+use App\Models\Admin\tktCat;
+use App\Models\Admin\supportTkts;
 use URL;
 use Session;
 use Redirect;
@@ -217,12 +219,9 @@ class BookingController extends Controller
     }
     public function history()
     {
-        $today = Booking::with(['tutor'])->where('user_id',Auth::user()->id)->today()->status(0)->get();
-        $upcoming = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(2)->get();
-        $pending = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(1)->get();
-        $delivered = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(5)->get();
+        $tickets = supportTkts::where('user_id',Auth::user()->id)->with(['category','tkt_created_by'])->get();
         
-        return view('student.pages.history.index',compact('today','upcoming','pending','delivered'));
+        return view('student.pages.history.index',compact('tickets'));
     }
  
 }

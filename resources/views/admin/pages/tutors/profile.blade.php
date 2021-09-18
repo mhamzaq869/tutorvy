@@ -45,8 +45,11 @@
                                 
                             </small>
                             <div class="col-md-12 mt-3">
-                                <img src="{{asset('admin/assets/img/ico/Square-white.jpg')}}"
-                                class="profile-responsive round-profile" />
+                                @if($tutor->picture != null)
+                                    <img src="{{asset($tutor->picture)}}" class="round-profile" alt="re" class="w-50">
+                                @else
+                                    <img src="{{asset('admin/assets/img/ico/Square-white.jpg')}}" class="round-profile" alt="re" class="w-50">
+                                @endif
                             </div>
                             <div class="col-md-12 ">
                                 <p class="heading-forth name-text mt-2">{{ $tutor->first_name }} {{ $tutor->last_name }}</p>
@@ -58,6 +61,7 @@
                                     <span class="fa fa-star "></span>
                                     <span class="fa fa-star "></span>
                                     <span class="fa fa-star"></span>
+                                    <span class="fa fa-star "></span>
                                     <span class="paragraph-text1">1.0</span>
                                 </p>
                                 @elseif($tutor->rating == 2)
@@ -66,6 +70,7 @@
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star "></span>
                                     <span class="fa fa-star"></span>
+                                    <span class="fa fa-star "></span>
                                     <span class="paragraph-text1">2.0</span>
                                 </p>
                                 @elseif($tutor->rating == 3)
@@ -74,6 +79,7 @@
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star"></span>
+                                    <span class="fa fa-star "></span>
                                     <span class="paragraph-text1">3.0</span>
                                 </p>
                                 @elseif($tutor->rating == 4)
@@ -82,10 +88,21 @@
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star checked"></span>
                                     <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star "></span>
+                                    <span class="paragraph-text1">4.0</span>
+                                </p>
+                                @elseif($tutor->rating == 5)
+                                <p class="name-text1 paragraph-text1 mb-0">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
                                     <span class="paragraph-text1">4.0</span>
                                 </p>
                                 @else
                                 <p class="name-text1 paragraph-text1 mb-0">
+                                    <span class="fa fa-star "></span>
                                     <span class="fa fa-star "></span>
                                     <span class="fa fa-star "></span>
                                     <span class="fa fa-star "></span>

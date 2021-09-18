@@ -305,6 +305,14 @@
                                     <div role="tabpanel" class="border-right tab-pane active" id="step-1">
                                         <div class="col-md-12">
                                             <p class="heading-third mt-3">Personal information</p>
+                                            @if (Session::has('error'))
+                                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-top:-12px">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                    {{ Session::get('error') }}
+                                                </div>
+                                            @endif
                                             <div class="row mt-5">
                                                 <div class="input-text col-md-6 d-block">
                                                     <input type="" class="form-control csd" name="first_name"
@@ -391,7 +399,7 @@
 
                                                     <div class="social-Icon ">
                                                             <div class="Google">
-                                                                <a href="{{route('social.google',[3])}}">
+                                                                <a href="{{route('social.google',[2])}}">
                                                                     <img class="mr-3" src="{{asset('assets/images/ico/google.png')}}" alt="google">
                                                                     Continue with Google
                                                                 </a>
