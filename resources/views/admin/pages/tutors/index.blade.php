@@ -137,15 +137,15 @@
                                             <td class="pt-4">{{$request->subject_name}}</td>
                                             <td class="pt-4">{{$request->city != NULL ? $request->city.', ' : '---'}}{{$request->country != NULL ? $request->country : '---'}}</td>
                                            
-                                            @if($request->std_grade == 1)
+                                            @if($request->experty_level == 1)
                                                  <td class="pt-4"> Pre Elementary School</td>
-                                            @elseif($request->std_grade == 2)
+                                            @elseif($request->experty_level == 2)
                                                  <td class="pt-4">Elementary School</td>
-                                            @elseif($request->std_grade == 3)
+                                            @elseif($request->experty_level == 3)
                                                  <td class="pt-4">Secondary School</td>
-                                            @elseif($request->std_grade == 4)
+                                            @elseif($request->experty_level == 4)
                                                  <td class="pt-4">High School</td>
-                                            @elseif($request->std_grade == 5)
+                                            @elseif($request->experty_level == 5)
                                                  <td class="pt-4">Post Secondary</td>
                                             @else
                                                  <td class="pt-4">---</td>
@@ -188,15 +188,15 @@
                                             <td class="pt-4">{{$request->subject_name}}</td>
                                             <td class="pt-4">{{$request->city != NULL ? $request->city.', ' : '---'}}{{$request->country != NULL ? $request->country : '---'}}</td>
                                            
-                                            @if($request->std_grade == 1)
+                                            @if($request->experty_level == 1)
                                                  <td class="pt-4"> Pre Elementary School</td>
-                                            @elseif($request->std_grade == 2)
+                                            @elseif($request->experty_level == 2)
                                                  <td class="pt-4">Elementary School</td>
-                                            @elseif($request->std_grade == 3)
+                                            @elseif($request->experty_level == 3)
                                                  <td class="pt-4">Secondary School</td>
-                                            @elseif($request->std_grade == 4)
+                                            @elseif($request->experty_level == 4)
                                                  <td class="pt-4">High School</td>
-                                            @elseif($request->std_grade == 5)
+                                            @elseif($request->experty_level == 5)
                                                  <td class="pt-4">Post Secondary</td>
                                             @else
                                                  <td class="pt-4">---</td>
@@ -239,15 +239,15 @@
                                             <td class="pt-4">{{$request->subject_name}}</td>
                                             <td class="pt-4">{{$request->city != NULL ? $request->city.', ' : '---'}}{{$request->country != NULL ? $request->country : '---'}}</td>
                                            
-                                            @if($request->std_grade == 1)
+                                            @if($request->experty_level == 1)
                                                  <td class="pt-4"> Pre Elementary School</td>
-                                            @elseif($request->std_grade == 2)
+                                            @elseif($request->experty_level == 2)
                                                  <td class="pt-4">Elementary School</td>
-                                            @elseif($request->std_grade == 3)
+                                            @elseif($request->experty_level == 3)
                                                  <td class="pt-4">Secondary School</td>
-                                            @elseif($request->std_grade == 4)
+                                            @elseif($request->experty_level == 4)
                                                  <td class="pt-4">High School</td>
-                                            @elseif($request->std_grade == 5)
+                                            @elseif($request->experty_level == 5)
                                                  <td class="pt-4">Post Secondary</td>
                                             @else
                                                  <td class="pt-4">---</td>
@@ -443,15 +443,15 @@
                                         </td>
                                         <td class="pt-4">{{$tutor->subjects}}</td>
                                         <td class="pt-4">{{$tutor->address}}</td>
-                                        @if($tutor->std_grade == 1)
+                                        @if($tutor->experty_level == 1)
                                                 <td class="pt-4"> Pre Elementary School</td>
-                                        @elseif($tutor->std_grade == 2)
+                                        @elseif($tutor->experty_level == 2)
                                                 <td class="pt-4">Elementary School</td>
-                                        @elseif($tutor->std_grade == 3)
+                                        @elseif($tutor->experty_level == 3)
                                                 <td class="pt-4">Secondary School</td>
-                                        @elseif($tutor->std_grade == 4)
+                                        @elseif($tutor->experty_level == 4)
                                                 <td class="pt-4">High School</td>
-                                        @elseif($tutor->std_grade == 5)
+                                        @elseif($tutor->experty_level == 5)
                                                 <td class="pt-4">Post Secondary</td>
                                         @else
                                                 <td class="pt-4">---</td>

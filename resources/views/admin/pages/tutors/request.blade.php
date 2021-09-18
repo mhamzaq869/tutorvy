@@ -259,18 +259,18 @@
                         </tr>
                         <tr>
                             <th scope="row">
-                                <p class="heading-fifth">Student Grade</p>
+                                <p class="heading-fifth">Experty Level</p>
                             </th>
                             <td class="paragraph-text">
-                                    @if($tutor->std_grade == 1)
+                                    @if($tutor->experty_level == 1)
                                         Pre Elementary School
-                                    @elseif($tutor->std_grade == 2)
+                                    @elseif($tutor->experty_level == 2)
                                         Elementary School
-                                    @elseif($tutor->std_grade == 3)
+                                    @elseif($tutor->experty_level == 3)
                                         Secondary School
-                                    @elseif($tutor->std_grade == 4)
+                                    @elseif($tutor->experty_level == 4)
                                         High School
-                                    @elseif($tutor->std_grade == 5)
+                                    @elseif($tutor->experty_level == 5)
                                         Post Secondary
                                     @endif
                             </td>

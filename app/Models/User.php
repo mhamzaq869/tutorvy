@@ -44,12 +44,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'language',
         'lang_short',
         'bio',
-        'student_level',
         'hourly_rate',
         'std_degree',
         'std_subj',
         'std_learn',
-        'std_grade',
+        'experty_level',
         'provider',
         'role',
         'status',
@@ -60,7 +59,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
-    protected $appends = ['address','status_text','day','month','year','subjects','std_level','requests','r_name'];
+    protected $appends = ['address','status_text','day','month','year','subjects','user_experty_level','requests','r_name'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -251,17 +250,23 @@ class User extends Authenticatable implements MustVerifyEmail
         }
     }
 
-    public function getStdLevelAttribute(){
+    public function getUserExpertyLevelAttribute(){
 
-        $level = $this->student_level;
+        $level = $this->experty_level;
         if($level != null){
 
             if($level == 1){
-                return 'Basic';
+                return 'Pre Elementary School';
             }elseif($level == 2){
-                return 'Intermediate';
+                return 'Elementary School';
+            }else if($level == 3) {
+                return 'Secondary School';
+            }else if($level == 4) {
+                return 'High School';
+            }else if($level == 4) {
+                return 'Post Secondary';
             }else{
-                return 'Expert';
+                return '-';
             }
         }else{
             return '---';
