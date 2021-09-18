@@ -391,7 +391,7 @@
 
                                                     <div class="social-Icon ">
                                                             <div class="Google">
-                                                                <a href="{{route('social.google')}}">
+                                                                <a href="{{route('social.google',[3])}}">
                                                                     <img class="mr-3" src="{{asset('assets/images/ico/google.png')}}" alt="google">
                                                                     Continue with Google
                                                                 </a>
@@ -1049,9 +1049,6 @@
                     }
             });
             $(document).ready(function() {
-                document.cookie = 'c_id=; Max-Age=0; path=/; domain=' + location.hostname;
-                document.cookie = 'c_id' + "=2;" + 60 + ";";
-
                 $("#year,#grad-year").yearpicker({
                     year: {{ $user->year ?? '1990' }},
                     startYear: 1950,
