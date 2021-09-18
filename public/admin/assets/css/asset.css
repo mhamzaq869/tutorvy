@@ -1814,6 +1814,7 @@ svg:not(:root) {
     border-radius: 4px;
     width: 100%;
     text-align: center;
+    display: block;
 }
 
 .veri_status {

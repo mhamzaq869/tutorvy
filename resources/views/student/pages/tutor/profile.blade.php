@@ -36,11 +36,61 @@ width:22px;
                             Send massage
                         </button>
                         <div class="star-icos">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked ml-1"></span>
-                            <span class="fa fa-star checked ml-1"></span>
-                            <span class="fa fa-star checked ml-1"></span>
-                            <span class="perfile-text ml-1">4.0</span>
+                            @if($tutor->rating == 1)
+                                <p class="name-text1 paragraph-text1 mb-0">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star "></span>
+                                    <span class="fa fa-star "></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star "></span>
+                                    <span class="paragraph-text1">1.0</span>
+                                </p>
+                                @elseif($tutor->rating == 2)
+                                <p class="name-text1 paragraph-text1 mb-0">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star "></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star "></span>
+                                    <span class="paragraph-text1">2.0</span>
+                                </p>
+                                @elseif($tutor->rating == 3)
+                                <p class="name-text1 paragraph-text1 mb-0">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                    <span class="fa fa-star "></span>
+                                    <span class="paragraph-text1">3.0</span>
+                                </p>
+                                @elseif($tutor->rating == 4)
+                                <p class="name-text1 paragraph-text1 mb-0">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star "></span>
+                                    <span class="paragraph-text1">4.0</span>
+                                </p>
+                                @elseif($tutor->rating == 5)
+                                <p class="name-text1 paragraph-text1 mb-0">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="paragraph-text1">4.0</span>
+                                </p>
+                                @else
+                                <p class="name-text1 paragraph-text1 mb-0">
+                                    <span class="fa fa-star "></span>
+                                    <span class="fa fa-star "></span>
+                                    <span class="fa fa-star "></span>
+                                    <span class="fa fa-star "></span>
+                                    <span class="fa fa-star "></span>
+                                    <span class="paragraph-text1">0.0</span>
+                                </p>
+                                @endif
                         </div>
                     </div>
                 </div>
