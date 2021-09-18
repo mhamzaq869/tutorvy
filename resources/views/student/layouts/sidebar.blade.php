@@ -117,12 +117,12 @@
                      Calendar
                  </a>
              </li>
-             <!-- <li class="btn @if(\Request::path() === 'tutor/history') active @endif w-100">
-                 <a href="{{route('tutor.history')}}">
+             <li class="btn @if(\Request::path() === 'tutor/history') active @endif w-100">
+                 <a href="{{route('student.history')}}">
                      <img src="{{asset('assets/images/ico/history-ico.png')}}" alt="history-ico" class=" mr-2">
-                     History
+                     Support Tickets
                  </a>
-             </li> -->
+             </li>
              <li class="btn  w-100">
                 <a href="./payment/payment.html">
                     <img src="{{asset('assets/images/ico/payment-ico.png')}}" class=" mr-2">

@@ -151,7 +151,7 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::get('/chat',[ChatController::class,'index'])->name('tutor.chat');
     Route::get('/classroom',[ClassController::class,'index'])->name('tutor.classroom');
     Route::get('/calendar',[CalendarController::class,'index'])->name('tutor.calendar');
-    Route::get('/history',[HistoryController::class,'index'])->name('tutor.history');
+    Route::get('/support-ticket',[HistoryController::class,'index'])->name('tutor.history');
     Route::get('/payment',[PaymentController::class,'index'])->name('tutor.payment');
     Route::get('/subjects',[TutorSubjectController::class,'index'])->name('tutor.subject');
     Route::get('/removesubjects/{id}',[TutorSubjectController::class,'destroy'])->name('tutor.remove.subject');
@@ -246,6 +246,9 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
 
     Route::get('/get-categories',[StudentSettingController::class,'getAllCategories'])->name('student.categories');
     Route::post('/save-ticket',[StudentSettingController::class,'saveTicket'])->name('student.save.ticket');
+    
+    
+    Route::get('/support-tickets',[StudentBookingController::class,'history'])->name('student.history');
 
 });
 /*

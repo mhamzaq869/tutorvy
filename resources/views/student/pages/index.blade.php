@@ -336,45 +336,6 @@
                         <div class="col-md-12">
                             <div class="card mt-0">
                                 <div class="card-body">
-                                    <div class="row overflow-scroll">
-                                        <div class="col-md-12 mb-3">
-                                                <div class="" style="">
-                                                    <h3 id="monthAndYear">
-                                                        &nbsp;
-                                                    </h3>
-                                                    <div class="button-container-calendar mt-3">
-                                                        <span id="previous" onclick="previous()">
-                                                            <img src="{{asset('assets/images/ico/side-arrow.png') }}" alt="arrow">
-                                                        </span>
-                                                        <span id="next" onclick="next()">
-                                                            <img src="{{asset('assets/images/ico/side-arrow1.png') }}" alt="arrow">
-                                                        </span>
-                                                    </div>
-                                                    <table class="table-calendar" id="calendar" data-lang="en">
-                                                        <thead id="thead-month"></thead>
-                                                        <tbody id="calendar-body"></tbody>
-                                                    </table>
-                                                    <div class="footer-container-calendar" style="display: none;">
-                                                        <label for="month">Jump To: </label>
-                                                        <select id="month" onchange="jump()">
-                                                            <option value=0>Jan</option>
-                                                            <option value=1>Feb</option>
-                                                            <option value=2>Mar</option>
-                                                            <option value=3>Apr</option>
-                                                            <option value=4>May</option>
-                                                            <option value=5>Jun</option>
-                                                            <option value=6>Jul</option>
-                                                            <option value=7>Aug</option>
-                                                            <option value=8>Sep</option>
-                                                            <option value=9>Oct</option>
-                                                            <option value=10>Nov</option>
-                                                            <option value=11>Dec</option>
-                                                        </select>
-                                                        <select id="year" onchange="jump()"></select>
-                                                    </div>
-                                                </div>
-                                        </div>
-                                    </div>
 
                                     <div class="row mt-2">
                                         <div class="col-md-8">
