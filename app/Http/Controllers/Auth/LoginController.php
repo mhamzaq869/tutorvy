@@ -102,35 +102,43 @@ class LoginController extends Controller
         return redirect()->back()->with('error','Wrong Password');
     }
 
-    public function redirectGoogle()
+    public function redirectGoogle($id)
     {
+        Session::put('c_id',$id);
         return Socialite::driver('google')->redirect();
     }
 
     public function handleGoogleCallback()
     {
+        $c_id = Session::get('c_id');
+        
         $user = Socialite::driver('google')->user();
         $user->user['provider'] = 'google';
-        $value = '';
-        if(isset($_COOKIE['c_id'])){
-            $value = $_COOKIE['c_id'];
-            \Cookie::queue(\Cookie::forget('c_id'));
-        }
-        $data = $this->_registerOrLogin($user->user);
-        if($data == false){
-            return redirect()->back()->with('error','Unable to login with this email.');
+        
+        $data = $this->_registerOrLogin($user->user,$c_id);
+        
+        if($data == false || $data == ''){
+            
+            if($c_id == 2) {
+                return redirect()->route('tutor.register')->with('error','Unable to login with this email.');
+            }else if($c_id == 3) {
+                return redirect()->route('student.register')->with('error','Unable to login with this email.');
+            }else{
+                return redirect()->to('/');
+            }
+            // return redirect()->back()->with('error','Unable to login with this email.');
         }
         Auth::login($data);
 
-        if($value == 2){
+        if($data->role == 2){
             return redirect()->route('tutor.dashboard');
         }
 
-        if($value == 3){
+        if($data->role == 3){
             return redirect()->route('student.dashboard');
         }
 
-        if(!$value){
+        if(!$data->role){
             return redirect('role');
         }
     }
@@ -139,19 +147,12 @@ class LoginController extends Controller
     *  Register User if not exist in db and if exist will login
     *  and redirect to dashboard
     */
-    private function _registerOrLogin($data)
+    private function _registerOrLogin($data,$r)
     {
-        $value = '';
-        if(isset($_COOKIE['c_id'])){
-            $value = $_COOKIE['c_id'];
-            \Cookie::queue(\Cookie::forget('c_id'));
-           
-        }
+        
         try{
             $user = User::where('email', $data['email'])->where('provider',$data['provider'])->first();
-            if($user->role != $value){
-                return false;
-            }
+            
             if(!$user){
                $user = User::create([
                     'first_name' => $data['given_name'],
@@ -159,8 +160,12 @@ class LoginController extends Controller
                     'email' => $data['email'],
                     'picture' => $data['picture'],
                     'provider' => 'google',
-                    'role'=> $value
+                    'role'=> $r
                 ]);
+            }else{
+                if($user->role != $r){
+                    return false;
+                }
             }
 
             return $user;

@@ -260,7 +260,7 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
 
 Auth::routes(['verify' => true]);
 //Google
-Route::get('/google/redirect', [LoginController::class,'redirectGoogle'])->name('social.google');
+Route::get('/google/redirect/{c_id?}', [LoginController::class,'redirectGoogle'])->name('social.google');
 Route::get('/login/google/callback', [LoginController::class,'handleGoogleCallback']);
 
 Route::get('/student/register',[RegisterController::class,'showStudentRegistrationForm'])->name('student.register')->middleware('guest');
