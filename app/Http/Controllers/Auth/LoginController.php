@@ -102,7 +102,6 @@ class LoginController extends Controller
         return redirect()->back()->with('error','Wrong Password');
     }
 
-
     public function redirectGoogle()
     {
         return Socialite::driver('google')->redirect();
@@ -112,19 +111,26 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('google')->user();
         $user->user['provider'] = 'google';
-
+        $value = '';
+        if(isset($_COOKIE['c_id'])){
+            $value = $_COOKIE['c_id'];
+            \Cookie::queue(\Cookie::forget('c_id'));
+        }
         $data = $this->_registerOrLogin($user->user);
+        if($data == false){
+            return redirect()->back()->with('error','Unable to login with this email.');
+        }
         Auth::login($data);
 
-        if($data->role == 2){
+        if($value == 2){
             return redirect()->route('tutor.dashboard');
         }
 
-        if($data->role == 3){
+        if($value == 3){
             return redirect()->route('student.dashboard');
         }
 
-        if(!$data->role){
+        if(!$value){
             return redirect('role');
         }
     }
@@ -135,16 +141,26 @@ class LoginController extends Controller
     */
     private function _registerOrLogin($data)
     {
+        $value = '';
+        if(isset($_COOKIE['c_id'])){
+            $value = $_COOKIE['c_id'];
+            \Cookie::queue(\Cookie::forget('c_id'));
+           
+        }
         try{
             $user = User::where('email', $data['email'])->where('provider',$data['provider'])->first();
+            if($user->role != $value){
+                return false;
+            }
             if(!$user){
                $user = User::create([
-                        'first_name' => $data['given_name'],
-                        'last_name' => $data['family_name'],
-                        'email' => $data['email'],
-                        'picture' => $data['picture'],
-                        'provider' => 'google',
-                    ]);
+                    'first_name' => $data['given_name'],
+                    'last_name' => $data['family_name'],
+                    'email' => $data['email'],
+                    'picture' => $data['picture'],
+                    'provider' => 'google',
+                    'role'=> $value
+                ]);
             }
 
             return $user;
