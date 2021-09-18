@@ -215,6 +215,15 @@ class BookingController extends Controller
         \Session::put('error','Payment failed !!');
 		return Redirect::route('student.bookings');
     }
+    public function history()
+    {
+        $today = Booking::with(['tutor'])->where('user_id',Auth::user()->id)->today()->status(0)->get();
+        $upcoming = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(2)->get();
+        $pending = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(1)->get();
+        $delivered = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(5)->get();
+        
+        return view('student.pages.history.index',compact('today','upcoming','pending','delivered'));
+    }
  
 }
 
