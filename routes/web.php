@@ -72,7 +72,9 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
 
     Route::post('tutor/verify-assessment',[TutorController::class,'verifyAssessment'])->name('admin.verifyAssessment');
     Route::post('tutor/verify-tutor',[TutorController::class,'verifyTutor'])->name('admin.verifyTutor');
-    Route::post('tutor/change-tutor-status',[TutorController::class,'tutorStatus'])->name('admin.tutorStatus');
+
+    Route::post('tutor/tutor-verfication',[TutorController::class,'tutorVerification'])->name('admin.tutor.verification');
+    Route::post('tutor/change-tutor-status',[TutorController::class,'tutorStatus'])->name('admin.tutor.status');
 
 
     Route::get('/student',[StudentController::class,'index'])->name('admin.student');
