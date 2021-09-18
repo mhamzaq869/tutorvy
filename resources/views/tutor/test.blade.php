@@ -50,6 +50,127 @@
                 <div class="logo text-center mt-5 mb-5">
                     <img src="{{asset('assets/images/logo/logo.png')}}" alt="logo">
                 </div>
+                <div class="card_test mb-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <h3>Select the levels for this subject</h3>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="pt-3 col-md-6">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="preElementary">
+                                        <label class="custom-control-label" for="preElementary">Pre-Elementary School</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div id="preCheck" >
+                                            <input type="text" class="form-control mt-2" placeholder="Rate per hour in USD ($)">
+                                       
+                                    </div>
+                                </div>
+                                <div class="pt-3 col-md-6">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="elementary">
+                                        <label class="custom-control-label" for="elementary">Elementary School</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div id="eleCheck">
+                                        <input type="text" class="form-control mt-2" placeholder="Rate per hour in USD ($)">
+                                    </div>
+                                </div>
+                                <div class="pt-3 col-md-6">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="secondary">
+                                        <label class="custom-control-label" for="secondary">Secondary School</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div id="secCheck">
+                                        <input type="text" class="form-control mt-2" placeholder="Rate per hour in USD ($)">
+                                    </div>
+                                </div>
+                                <div class="pt-3 col-md-6">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="highSchool">
+                                        <label class="custom-control-label" for="highSchool">High School</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div id="highCheck">
+                                        <input type="text" class="form-control mt-2" placeholder="Rate per hour in USD ($)">
+                                    </div>
+                                </div>
+                                <div class="pt-3 col-md-6">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="postSec">
+                                        <label class="custom-control-label" for="postSec">Post Secondary School</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div id="postCheck">
+                                        <input type="text" class="form-control mt-2" placeholder="Rate per hour in USD ($)">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="row mt-3">     
+                                <div class="col-md-3">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="pre-elementary">
+                                        <label class="custom-control-label" for="pre-elementary">Pre Elementary</label>
+                                    </div>
+                                    <div id="check mt-2">
+                                        <input type="text" class="form-control mt-2" placeholder="Price in USD ($)">
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-3">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="elementary">
+                                                <label class="custom-control-label" for="elementary">Elementary</label>
+                                            </div>
+                                            <div id="check mt-2">
+                                                <input type="text" class="form-control mt-2" placeholder="Price in USD ($)">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                             <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="secondary">
+                                                <label class="custom-control-label" for="secondary">Secondary</label>
+                                            </div>
+                                            <div id="check mt-2">
+                                                <input type="text" class="form-control mt-2" placeholder="Price in USD ($)">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="high-school">
+                                                <label class="custom-control-label" for="high-school">High School</label>
+                                            </div>
+                                            <div id="check mt-2">
+                                                <input type="text" class="form-control mt-2" placeholder="Price in USD ($)">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="post-sec">
+                                                <label class="custom-control-label" for="post-sec">Post Secondary</label>
+                                            </div>
+                                            <div id="check mt-2">
+                                                <input type="text" class="form-control mt-2" placeholder="Price in USD ($)">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
                 <div class="card card_test mb-5"
                     style="">
                     <div class="container mt-4 ">
@@ -152,6 +273,13 @@
     </div>
 
     <script>
+        $(document).ready(function(){
+            $("#preCheck").hide('slow');
+            $("#eleCheck").hide('slow');
+            $("#secCheck").hide('slow');
+            $("#highCheck").hide('slow');
+            $("#postCheck").hide('slow');
+        })
        var test =  document.getElementById("test")
        var form =  document.getElementById("form")
 
@@ -159,6 +287,62 @@
             e.preventDefault();
             form.submit()
        })
+       $("#preElementary").change(function(){
+            if($('#preElementary').is(':checked'))
+                {
+                $("#preCheck").show('slow');
+               
+                }
+                else{
+                $("#preCheck").hide('slow');
+               
+            }
+       })
+       $("#elementary").change(function(){
+            if($('#elementary').is(':checked'))
+                {
+                $("#eleCheck").show('slow');
+               
+                }
+                else{
+                $("#eleCheck").hide('slow');
+               
+            }
+       })
+       $("#secondary").change(function(){
+            if($('#secondary').is(':checked'))
+                {
+                $("#secCheck").show('slow');
+               
+                }
+                else{
+                $("#secCheck").hide('slow');
+               
+            }
+       })
+       $("#highSchool").change(function(){
+            if($('#highSchool').is(':checked'))
+                {
+                $("#highCheck").show('slow');
+               
+                }
+                else{
+                $("#highCheck").hide('slow');
+               
+            }
+       })
+       $("#postSec").change(function(){
+            if($('#postSec').is(':checked'))
+                {
+                $("#postCheck").show('slow');
+               
+                }
+                else{
+                $("#postCheck").hide('slow');
+               
+            }
+       })
+     
     </script>
     <!-- <script src="../javascript/homePage.js"></script> -->
 </body>
