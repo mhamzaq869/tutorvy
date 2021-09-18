@@ -399,23 +399,34 @@
                                                             <i class="fa fa-star text-yellow"></i>
                                                             <i class="fa fa-star "></i>
                                                             <i class="fa fa-star "></i>
+                                                            <i class="fa fa-star "></i>
                                                             <i class="fa fa-star "></i> 1.0
                                                             @elseif($tutor->rating == 2)
                                                             <i class="fa fa-star text-yellow"></i>
                                                             <i class="fa fa-star text-yellow"></i>
+                                                            <i class="fa fa-star "></i>
                                                             <i class="fa fa-star "></i>
                                                             <i class="fa fa-star "></i>  2.0
                                                             @elseif($tutor->rating == 3)
                                                             <i class="fa fa-star text-yellow"></i>
                                                             <i class="fa fa-star text-yellow"></i>
                                                             <i class="fa fa-star text-yellow"></i>
+                                                            <i class="fa fa-star "></i>
                                                             <i class="fa fa-star "></i>  3.0
                                                             @elseif($tutor->rating == 4)
                                                             <i class="fa fa-star text-yellow"></i>
                                                             <i class="fa fa-star text-yellow"></i>
                                                             <i class="fa fa-star text-yellow"></i>
-                                                            <i class="fa fa-star text-yellow"></i>  4.0
+                                                            <i class="fa fa-star text-yellow"></i>
+                                                            <i class="fa fa-star "></i>4.0
+                                                            @elseif($tutor->rating == 5)
+                                                            <i class="fa fa-star text-yellow"></i>
+                                                            <i class="fa fa-star text-yellow"></i>
+                                                            <i class="fa fa-star text-yellow"></i>
+                                                            <i class="fa fa-star text-yellow"></i>
+                                                            <i class="fa fa-star text-yellow"></i>  5.0
                                                             @else
+                                                            <i class="fa fa-star "></i>
                                                             <i class="fa fa-star "></i>
                                                             <i class="fa fa-star "></i>
                                                             <i class="fa fa-star "></i>

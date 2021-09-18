@@ -128,12 +128,14 @@ function list_tutors(){
                 rating_html +=  `<i class="fa fa-star text-yellow"></i>
                                 <i class="fa fa-star "></i>
                                 <i class="fa fa-star "></i>
+                                <i class="fa fa-star "></i>
                                 <i class="fa fa-star "></i> 1.0
                                 <small class="text-grey">(0 reviews)</small>`;
             }
             else if(tutors[i].rating == 2){
                 rating_html +=  `<i class="fa fa-star text-yellow"></i>
                                 <i class="fa fa-star text-yellow"></i>
+                                <i class="fa fa-star "></i>
                                 <i class="fa fa-star "></i>
                                 <i class="fa fa-star "></i>  2.0
                                 <small class="text-grey">(0 reviews)</small>`;
@@ -142,6 +144,7 @@ function list_tutors(){
                 rating_html +=  `<i class="fa fa-star text-yellow"></i>
                                 <i class="fa fa-star text-yellow"></i>
                                 <i class="fa fa-star text-yellow"></i>
+                                <i class="fa fa-star "></i> 
                                 <i class="fa fa-star "></i>  3.0
                                 <small class="text-grey">(0 reviews)</small>`;
             }
@@ -149,11 +152,21 @@ function list_tutors(){
                 rating_html +=  `<i class="fa fa-star text-yellow"></i>
                                 <i class="fa fa-star text-yellow"></i>
                                 <i class="fa fa-star text-yellow"></i>
-                                <i class="fa fa-star text-yellow"></i>  4.0
+                                <i class="fa fa-star text-yellow"></i> 
+                                <i class="fa fa-star "></i>  4.0
+                                <small class="text-grey">(0 reviews)</small>`;
+
+            }else if(tutors[i].rating == 5){
+                rating_html +=  `<i class="fa fa-star text-yellow"></i>
+                                <i class="fa fa-star text-yellow"></i>
+                                <i class="fa fa-star text-yellow"></i>
+                                <i class="fa fa-star text-yellow"></i>
+                                <i class="fa fa-star text-yellow"></i>  5.0
                                 <small class="text-grey">(0 reviews)</small>`;
 
             }else{
                 rating_html +=  `<i class="fa fa-star "></i>
+                                <i class="fa fa-star "></i>
                                 <i class="fa fa-star "></i>
                                 <i class="fa fa-star "></i>
                                 <i class="fa fa-star "></i>  0.0
