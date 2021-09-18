@@ -391,7 +391,7 @@
 
                                                     <div class="social-Icon ">
                                                             <div class="Google">
-                                                                <a href="{{route('social.google',[3])}}">
+                                                                <a href="{{route('social.google',[2])}}">
                                                                     <img class="mr-3" src="{{asset('assets/images/ico/google.png')}}" alt="google">
                                                                     Continue with Google
                                                                 </a>
