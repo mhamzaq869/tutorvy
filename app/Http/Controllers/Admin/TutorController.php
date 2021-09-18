@@ -47,7 +47,13 @@ class TutorController extends Controller
         return view('admin.pages.tutors.index',compact('new_requests','approved_tutors','staff_members'));
     }
     public function profile($id){
+        
         $tutor = User::with(['education','professional','teach'])->where('id',$id)->where('role',2)->where('status',2)->first();
+        
+        if(!$tutor){
+            return redirect()->route('admin.tutor');
+        }
+
         $approved_courses = Course::where('user_id',$id)->where('status',1)->get();
         $requested_courses = Course::where('user_id',$id)->where('status',0)->get();
         
