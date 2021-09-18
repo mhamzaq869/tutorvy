@@ -4,6 +4,12 @@
     .w-30{
         width:30%;
     }
+    .h-auto{
+        height:auto;
+    }
+    .fr{
+        width:25px;
+    }
 </style>
 <!--section start  -->
 <section id="tutorProsection" style="display: flex;z-index: -1;">
@@ -52,7 +58,7 @@
                                 @endif
                             </div>
                             <div class="col-md-12 ">
-                                <p class="heading-forth name-text mt-2">{{ $tutor->first_name }} {{ $tutor->last_name }}</p>
+                                <p class="heading-forth name-text mt-2">{{ $tutor->first_name }} {{ $tutor->last_name }} <span><img src="{{asset('admin/assets/img/ico/check.png')}}" data-toggle="tooltip" data-placement="bottom" title="This user is verified by the tutorvy authorities due to his sustained and appreciatable performance in the field" alt=""></span></p>
                                 <p class="name-text1 paragraph-text1 mb-0 ">Tutor</p>
                                 
                                 @if($tutor->rating == 1)
@@ -319,7 +325,7 @@
                 <div class="col-md-9">
                     <div class="card ">
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-4">
@@ -332,7 +338,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-4">
@@ -345,7 +351,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-4">
@@ -359,7 +365,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <!-- <div class="col-md-3">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-4">
@@ -371,18 +377,26 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         
                     </div>
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <h3>
                                         About tutor
                                     </h3>
                                 </div>
+                                <div class="col-md-6 col-6 col-sm-6 text-right responseTime">
+                                    <p class="heading-fourth"> 
+                                        <span>
+                                            <img src="{{asset('admin/assets/img/ico/watchs.png')}}" class="mr-2 fr" alt="">
+                                        </span> 
+                                        Response Time: <strong>1 hour</strong>
+                                    </p>
+                               </div>
                                 <div class="col-md-12">
                                     <p>
                                         {{$tutor->bio}}
@@ -391,6 +405,72 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row headings mt-3">
+                        <div class="col-md-12 col-12">
+                            <h3>
+                                Subjects
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="col-md-12">
+                                <table class="pt-2 tableed table  table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="">Srno.</th>
+                                            <th scope="col">Subject</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="pt-4">01</td>
+                                            <td class="pt-4">Assembly Language</td>
+                                            <td >
+                                                <a href="#" data-toggle="modal" data-target="#planModal" class="schedule-btn btn">
+                                                    View Plans
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                        <h3>Subjects</h3>
+                                        <ul class="pl-0 ml-0">
+                                            <li>Assembly Language</li>
+                                            <li>Assembly Language</li>
+                                            <li>Assembly Language</li>
+                                            <li>Assembly Language</li>
+                                        </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <h3>Student Levels</h3>
+                                    <ul class="pl-0 ml-0">
+                                        <li>Secondary School</li>
+                                        <li>Elementory School</li>
+                                        <li>Post Secondary School</li>
+                                        <li>High School</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <h3>Rate per hour</h3>
+                                    <ul class="pl-0 ml-0">
+                                        <li>$ 3500</li>
+                                        <li>$ 1500</li>
+                                        <li>$ 9500</li>
+                                        <li>$ 6500</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
                     <div class="row headings mt-3">
                         <div class="col-md-6 col-6">
                             <h3>
@@ -997,6 +1077,68 @@
     </div>
 </div>
 
+
+<div class="modal fade" id="planModal" tabindex="-1" role="dialog"
+    aria-labelledby="planModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <!-- <div class="modal-header text-center">
+            </div> -->
+            <div class="modal-body h-auto">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <img  src="{{asset('admin/assets/img/ico/dollars.png')}}" />
+                    </div>
+                    <div class="col-md-12 text-center mt-3">
+                        <h3>Assembly Language</h3>
+                    </div>
+                </div>
+                <div class="row mt-3 ">
+                    <div class="col-md-6">
+                        <p>Pre-Elementory School</p>
+                    </div>
+                    <div class="text-right col-md-6 ">
+                        <p>$1500/hour</p>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <p>Elementory School</p>
+                    </div>
+                    <div class="text-right col-md-6 ">
+                        <p>$2500/hour</p>
+                    </div>
+                </div>
+               
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <p>High School</p>
+                    </div>
+                    <div class="text-right col-md-6 ">
+                        <p>$4500/hour</p>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <p>Post Secondary School</p>
+                    </div>
+                    <div class="text-right col-md-6 ">
+                        <p>$6500/hour</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer ">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="schedule-btn btn" data-dismiss="modal">
+                            Okay
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 <!-- Extra js to perfome function using ajax. -->
