@@ -134,34 +134,11 @@ class TutorController extends Controller
 
     public function tutorStatus(Request $request){
 
-        $tutor = User::where('id', $request->id)->first();
-        $tutor->status = $request->status;
-        $tutor->reject_note = $request->status == 2 ? NULL : $request->reason;
+        User::where('id',$request->id)->update([
+            "status" => $request->status,
+        ]);
 
-        if($request->is_new == 1){
-
-            $location = $tutor->country;
-            $loc = DB::table('search_locations')->where('name', $location)->first();
-            if($loc){
-            }else{
-                DB::table('search_locations')->insert([
-                    'name' => $location
-                ]);
-            }
-        }
-        if($tutor->rank == 0 && $request->status == 2){
-            $tutor->rank = 1;
-        }
-        $tutor->save();
-
-        $message = '';
-        if($request->status == 2){
-            $message = 'Tutor Status Enabled.';
-        }elseif($request->status == 3){
-            $message = 'Tutor Rejected.';
-        }elseif($request->status == 0){
-            $message = 'Tutor Status Disabled.';
-        }
+        $message = $request->status == 2 ? 'Tutor Enabled' : 'Tutor Disabled';
 
         return response()->json([
             'status'=>'200',
@@ -170,8 +147,46 @@ class TutorController extends Controller
 
     }
 
-    public function tutor_Request($id)
-    {
+    public function tutorVerification(Request $request) {
+        
+        $tutor = User::where('id', $request->id)->first();
+        $tutor->status = $request->status;
+        $tutor->reject_note = $request->status == 2 ? NULL : $request->reason;
+
+        $location = $tutor->country;
+
+        if($request->status == 2) {
+            $loc = DB::table('search_locations')->where('name', $location)->first();
+            if($loc){
+            }else{
+                DB::table('search_locations')->insert([
+                    'name' => $location
+                ]);
+            }
+        }
+
+        if($tutor->rank == 0 && $request->status == 2){
+            $tutor->rank = 1;
+        }
+        $tutor->save();
+
+        $message = '';
+        if($request->status == 2){
+            $message = 'Tutor Verified Successfully.';
+        }elseif($request->status == 3){
+            $message = 'Tutor Verfication Rejected.';
+        }elseif($request->status == 0){
+            $message = 'Tutor Status Disabled.';
+        }
+
+        return response()->json([
+            'status'=>'200',
+            'message' =>  $message ,
+            'success' => true,
+        ]);
+    }
+
+    public function tutor_Request($id) {
         
         // return view('admin.pages.tutors.tutor_req');
         $course = Course::with('outline')->where('status',0)->where('id',$id)->first();
@@ -179,8 +194,7 @@ class TutorController extends Controller
         return view('admin.pages.courses.course_req',compact('course'));
 
     }
-    public function tutorProfile()
-    {
+    public function tutorProfile(){
         // return view('admin.pages.tutors.tutor_profile');
         return view('admin.pages.courses.course_profile');
 
