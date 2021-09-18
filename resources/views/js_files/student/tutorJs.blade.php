@@ -285,4 +285,21 @@ function star(){
     alert("D");
     $(".fa-star").addClass("text-yellow");
 }
+
+
+
+function favourite_tutor(id,status) {
+
+    $.ajax({
+        url: "{{ route('student.fav.tutor') }}",
+        type: "POST",
+        data: {id:id,status:status},
+        success: function(response) {
+            console.log(response);
+        },
+        error:function(e){
+            console.log(e)
+        }
+    });
+}
 </script>

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\FavTutors;
 use App\Models\Classroom;
 use App\Models\Admin\tktCat;
 use App\Models\Admin\supportTkts;
@@ -127,6 +128,18 @@ class SettingController extends Controller
             "message" => "Ticket Created .. Our Staff will contact us soon.",
             "success" => true,
         ]);
+    }
+
+
+    function favouriteTutor(Request $request) {
+
+        if($request->status == "fav") {
+            FavTutors::create([
+                "user_id" => Auth::user()->id,
+                "tutor_id" => $request->id,
+            ]);
+        }
+
     }
 
 }
