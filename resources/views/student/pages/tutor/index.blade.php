@@ -440,7 +440,7 @@
                                             </div>
                                             <div class="col-md-3">
                                                 @if($tutor->rank == 1)
-                                                    <p class="text-right"><span class="text-green ">Verified</span> <span class="rank_icon"><img src="../assets/images/ico/bluebadge.png" alt=""></span> </p>
+                                                    <p class="text-right"><span class="text-green ">New</span> <span class="rank_icon"><img src="../assets/images/ico/bluebadge.png" alt=""></span> </p>
                                                 @elseif($tutor->rank == 2)
                                                     <p class="text-right"><span class="text-green ">Emerging</span> <span class="rank_icon"><img src="../assets/images/ico/yellow-rank.png" alt=""></span> </p>
                                                 @elseif($tutor->rank == 3)
