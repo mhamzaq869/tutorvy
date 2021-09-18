@@ -348,21 +348,15 @@
        
        function checkExpertyLevel() {
 
-        var level_check = $( "input:checked" ).length;
-        if(level_check == 0) {
-            alert('Please Select atleast One Level');
-            // toastr.error('Please Select atleast One Level',{
-            //     position: 'top-end',
-            //     icon: 'error',
-            //     timer: 2500
-            // });
-        }else{
-            $("#exampleModalCenter").modal('show');
-        }
+            var level_check = $( "input:checked" ).length;
+            if(level_check == 0) {
+                alert('Please Select atleast One Level');
+            }else{
+                $("#exampleModalCenter").modal('show');
+            }
 
        }
     </script>
-    <!-- <script src="../javascript/homePage.js"></script> -->
 </body>
 
 </html>
