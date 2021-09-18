@@ -59,6 +59,7 @@ class ProfileController extends Controller
             "status_code" => 200,
             "success" => true,
             "message" => "Profile Updated Successfully",
+            "path" => $path,
         ]); 
 
     }

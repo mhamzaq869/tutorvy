@@ -251,8 +251,8 @@
         <div class="container-fluid ">
             <div class="row">
                 <div class="col-md-12">
-                        <p class="mr-3 heading-first">
-                                Courses
+                        <p class="mr-3 heading-first"> 
+                                Courses 
                         </p>
                 </div>
             </div>
@@ -480,12 +480,12 @@
                         <div class="card border-only" >
                             <div class="card-body ">
                                 <div class="add-new" style="margin-top:40%;margin-bottom: 40%;">
-                                    @if(Auth::user()->status == 0)
-                                        <a onclick="showMessage()">
+                                    @if(Auth::user()->status == 2)
+                                        <a href="{{route('tutor.addcourse')}}">
                                             <img src="{{asset('assets/images/ico/add-new.png')}}" alt="add-new">
                                         </a>
                                     @else
-                                        <a href="{{route('tutor.addcourse')}}">
+                                        <a onclick="showMessage()">
                                             <img src="{{asset('assets/images/ico/add-new.png')}}" alt="add-new">
                                         </a>
                                     @endif

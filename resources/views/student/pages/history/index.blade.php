@@ -118,6 +118,40 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($tickets as $ticket)
+                                                <tr>
+                                                    <td> {{$ticket->ticket_no != null ? $ticket->ticket_no : '-'}} </td>
+                                                    <td> 
+                                                        @if($ticket->tkt_created_by != null && $ticket->tkt_created_by != "")
+                                                            <span> 
+                                                                {{$ticket->tkt_created_by->first_name != null ? $ticket->tkt_created_by->first_name : '-' }}
+                                                                {{$ticket->tkt_created_by->last_name != null ? $ticket->tkt_created_by->last_name : '-' }}
+                                                            </span>
+                                                        @else
+                                                            <span> - </span>
+                                                        @endif    
+                                                    </td>
+                                                    <td> {{$ticket->subject != null ? $ticket->subject : '-'}} </td>
+                                                    <td> 
+                                                        @if($ticket->created_at != null && $ticket->created_at != "")
+                                                            <span> 
+                                                                {{$ticket->category->title != null ? $ticket->category->title : '-' }}
+                                                            </span>
+                                                        @else
+                                                            <span> - </span>
+                                                        @endif    
+                                                    </td>
+                                                    <td> {{$ticket->created_at}} </td>
+                                                    <td> - </td>
+                                                    <td>
+                                                        @if($ticket->status == 0)
+                                                            <span> Pending </span>
+                                                        @else
+                                                            <span> - </span>
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                     </tbody>
                                 </table>
                             </div>

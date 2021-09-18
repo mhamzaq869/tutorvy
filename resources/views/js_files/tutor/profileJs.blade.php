@@ -197,6 +197,8 @@
                         showConfirmButton: false,
                         timer: 2500
                     });
+                    var origin   = window.location.origin
+                    $('.profile-img').attr('src',origin + '/'+ response.path);
                 }else{
                     toastr.error(response.message,{
                         position: 'top-end',
