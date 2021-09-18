@@ -182,6 +182,9 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::get('/whiteBoard',[TutorSettingController::class,'whiteBoard'])->name('tutor.whiteBoard');
 
     Route::post('/change-password',[TutorSettingController::class,'change_password'])->name('tutor.change.password');
+
+    Route::get('/get-categories',[TutorSettingController::class,'getAllCategories'])->name('tutor.categories');
+    Route::post('/save-ticket',[TutorSettingController::class,'saveTicket'])->name('tutor.save.ticket');
     
 });
 

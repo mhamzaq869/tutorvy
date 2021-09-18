@@ -110,7 +110,7 @@
         <script src="{{ asset('assets/js/ion.rangeSlider.js')}}"></script>
             
      @yield('scripts')
-     @include('js_files.supportJs')
+     @include('js_files.student.supportJs')
      <script>
         $.ajaxSetup({
             headers: {

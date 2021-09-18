@@ -37,7 +37,7 @@ class CreateUsersTable extends Migration
             $table->text('reject_note')->nullable();
             $table->string('student_level')->nullable();
             $table->string('hourly_rate')->nullable();
-            $table->integer('std_degree')->nullable();
+            $table->integer('experty_level')->nullable();
             $table->integer('std_subj')->nullable();
             $table->integer('std_learn')->nullable();
             $table->string('provider')->default('direct');
