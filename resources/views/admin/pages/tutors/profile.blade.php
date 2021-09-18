@@ -25,17 +25,17 @@
                     <div class="card">
                         <div class="row card-body text-center">
                             <small class="mb-3">
-                                @if($tutor->rank == 1)
+                                @if($tutor->rank == 0)
                                 <a class="ab_right" href="#" data-toggle="modal"
-                                    data-target="#rankModal">Upgrade badge <img src="/assets/images/ico/bluebadge.png" class="wd-30" alt="" widht="30">
+                                    data-target="#rankModal">New <img src="/assets/images/ico/bluebadge.png" class="wd-30" alt="" widht="30">
+                                </a>
+                                @elseif($tutor->rank == 1)
+                                <a class="ab_right" href="#" data-toggle="modal"
+                                    data-target="#rankModal">Emerging <img src="/assets/images/ico/yellow-rank.png" class="wd-30" alt="" widht="30">
                                 </a>
                                 @elseif($tutor->rank == 2)
                                 <a class="ab_right" href="#" data-toggle="modal"
-                                    data-target="#rankModal">Upgrade badge <img src="/assets/images/ico/yellow-rank.png" class="wd-30" alt="" widht="30">
-                                </a>
-                                @elseif($tutor->rank == 3)
-                                <a class="ab_right" href="#" data-toggle="modal"
-                                    data-target="#rankModal">Upgrade badge <img src="/assets/images/ico/rank.png" class="wd-30" alt="" widht="30">
+                                    data-target="#rankModal">Top Rank <img src="/assets/images/ico/rank.png" class="wd-30" alt="" widht="30">
                                 </a>
                                 @else
                                 <a class="ab_right" href="#" data-toggle="modal"
