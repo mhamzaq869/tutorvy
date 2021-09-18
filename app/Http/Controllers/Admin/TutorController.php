@@ -40,7 +40,7 @@ class TutorController extends Controller
             // ->where('assessments.status','!=',1)
             ->where('users.role',2)
             ->whereIn('users.status', [0, 1, 2])
-            ->paginate(5);
+            ->paginate(15);
         //  return $new_requests;
 
 
