@@ -610,9 +610,9 @@
                                         </div>
 
                                         <div class="row mt-3">
-                                            <div class="input-text col-md-4">
+                                            <div class="input-text col-md-6">
                                                 <select name="degree[]" onchange="checkLevel(this)"
-                                                    class="form-select form-select-lg mb-3">
+                                                    class="form-select form-select-lg mb-3" required>
                                                     <option value="Degree"> Degree</option>
                                                     @foreach ($degrees as $degree)
                                                         <option value="{{ $degree->id }}" > {{ $degree->name }} </option>
@@ -620,8 +620,8 @@
                                                 </select>
                                             </div>
 
-                                            <div class="input-text col-md-4">
-                                                <select name="major[]" class="form-select form-select-lg mb-3">
+                                            <div class="input-text col-md-6">
+                                                <select name="major[]" class="form-select form-select-lg mb-3" required>
                                                     <option value="">Majors</option>
                                                     @foreach ($subjects as $subject)
                                                         <option value="{{ $subject->id }}">{{ $subject->name }}
@@ -630,9 +630,9 @@
                                                 </select>
 
                                             </div>
-                                            <div class="input-text col-md-4">
+                                            <!-- <div class="input-text col-md-4">
                                                 <select name="student_grade"
-                                                    class="form-select form-select-lg mb-3" id="levels">
+                                                    class="form-select form-select-lg mb-3" id="levels" required>
                                                     <option value="" disabled selected>School</option>
                                                     <option value="1">Pre Elementary School</option>
                                                     <option value="2">Elementary School</option>
@@ -640,13 +640,13 @@
                                                     <option value="4">High School</option>
                                                     <option value="5"> Post Secondary</option>
                                                 </select>
-                                            </div>
+                                            </div> -->
                                         </div>
 
                                         <div class="row mt-3">
                                             <div class="input-text col-md-6">
                                                 <select name="institute[]" id="institutes_list" class="form-select form-select-lg mb-3"
-                                                    aria-label=".form-select-lg example">
+                                                    aria-label=".form-select-lg example" required>
                                                     <option value="Institute">Institute</option>
                                                     @foreach ($institutes as $institute)
                                                         <option value="{{ $institute->id }}" >{{ $institute->name }}

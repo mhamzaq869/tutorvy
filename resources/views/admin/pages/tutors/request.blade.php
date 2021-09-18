@@ -257,7 +257,7 @@
                                 
                             </td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <th scope="row">
                                 <p class="heading-fifth">Experty Level</p>
                             </th>
@@ -274,7 +274,7 @@
                                         Post Secondary
                                     @endif
                             </td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <th scope="row">
                                 <p class="heading-fifth">Availability</p>
