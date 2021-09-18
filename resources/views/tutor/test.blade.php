@@ -26,6 +26,7 @@
     <!-- fontawsome -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 
     <!-- css -->
@@ -58,63 +59,66 @@
                                     <h3>Select the levels for this subject</h3>
                                 </div>
                             </div>
+                            <form action="{{route('tutor.assessment')}}" method="post" id="form">
+                            @csrf
                             <div class="row mt-3">
                                 <div class="pt-3 col-md-6">
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="preElementary">
+                                        <input type="checkbox" class="custom-control-input" name="preElementary" id="preElementary">
                                         <label class="custom-control-label" for="preElementary">Pre-Elementary School</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div id="preCheck" >
-                                            <input type="text" class="form-control mt-2" placeholder="Rate per hour in USD ($)">
+                                            <input type="text" class="form-control mt-2" name="preElementary_rate" placeholder="Rate per hour in USD ($)">
                                        
                                     </div>
                                 </div>
                                 <div class="pt-3 col-md-6">
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="elementary">
+                                        <input type="checkbox" class="custom-control-input" name="elementary" id="elementary">
                                         <label class="custom-control-label" for="elementary">Elementary School</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div id="eleCheck">
-                                        <input type="text" class="form-control mt-2" placeholder="Rate per hour in USD ($)">
+                                        <input type="text" class="form-control mt-2" name="elementary_rate" placeholder="Rate per hour in USD ($)">
                                     </div>
                                 </div>
                                 <div class="pt-3 col-md-6">
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="secondary">
+                                        <input type="checkbox" class="custom-control-input" name="secondary" id="secondary">
                                         <label class="custom-control-label" for="secondary">Secondary School</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div id="secCheck">
-                                        <input type="text" class="form-control mt-2" placeholder="Rate per hour in USD ($)">
+                                        <input type="text" class="form-control mt-2" name="secondary_rate" placeholder="Rate per hour in USD ($)">
                                     </div>
                                 </div>
                                 <div class="pt-3 col-md-6">
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="highSchool">
+                                        <input type="checkbox" class="custom-control-input" name="highSchool"  id="highSchool">
                                         <label class="custom-control-label" for="highSchool">High School</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div id="highCheck">
-                                        <input type="text" class="form-control mt-2" placeholder="Rate per hour in USD ($)">
+                                        <input type="text" class="form-control mt-2" name="highSchool_rate" placeholder="Rate per hour in USD ($)">
                                     </div>
                                 </div>
                                 <div class="pt-3 col-md-6">
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="postSec">
+                                        <input type="checkbox" class="custom-control-input" name="postSec"  id="postSec">
                                         <label class="custom-control-label" for="postSec">Post Secondary School</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div id="postCheck">
-                                        <input type="text" class="form-control mt-2" placeholder="Rate per hour in USD ($)">
+                                        <input type="text" class="form-control mt-2" name="postSec_rate" placeholder="Rate per hour in USD ($)">
                                     </div>
                                 </div>
+
                             </div>
                             <!-- <div class="row mt-3">     
                                 <div class="col-md-3">
@@ -185,8 +189,7 @@
                             Learn how to write effective questions and answers.
                         </p>
                     </div>
-                    <form action="{{route('tutor.assessment')}}" method="post" id="form">
-                        @csrf
+                    
                         <input type="hidden" name="subject" value="{{$id}}">
                         <div class="container">
                             <div class="input-test ml-5 mr-5 mb-0">
@@ -198,40 +201,39 @@
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1"></label>
                                     <textarea class="form-control" name="answer_1" placeholder="Answers"
-                                        rows="10"></textarea>
+                                        rows="10" required></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="container">
                             <div class="input-test ml-5 mr-5 mb-0">
                                 <br />
-                                <input type="" name="question_2" class="form-control" placeholder="Question2">
+                                <input type="" name="question_2" class="form-control" placeholder="Question2" required>
 
                             </div>
                             <div class="input-answer ml-5 mr-5 mb-0">
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1"></label>
                                     <textarea class="form-control" name="answer_2" placeholder="Answers"
-                                        rows="10"></textarea>
+                                        rows="10" required></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="container">
                             <div class="input-test ml-5 mr-5 mb-0">
                                 <br />
-                                <input type="" name="question_3" class="form-control" placeholder="Question3">
+                                <input type="" name="question_3" class="form-control" placeholder="Question3" required>
 
                             </div>
                             <div class="input-answer ml-5 mr-5 mb-0">
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1"></label>
                                     <textarea class="form-control" name="answer_3" placeholder="Answers"
-                                        rows="10"></textarea>
+                                        rows="10" required></textarea>
                                 </div>
                             </div>
-                            <button type="button" data-toggle="modal" data-target="#exampleModalCenter"
-                                class="schedule-btn mb-4 mt-4"
-                                style="width: 100px;float: right;margin-right: 50px;">
+                            <button type="button" class="schedule-btn mb-4 mt-4"
+                                style="width: 100px;float: right;margin-right: 50px;" onclick="checkExpertyLevel()">
                                 Submit
                             </button>
 
@@ -271,7 +273,7 @@
             </div>
         </div>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
         $(document).ready(function(){
             $("#preCheck").hide('slow');
@@ -285,6 +287,7 @@
 
        test.addEventListener('click', function(e){
             e.preventDefault();
+
             form.submit()
        })
        $("#preElementary").change(function(){
@@ -342,9 +345,18 @@
                
             }
        })
-     
+       
+       function checkExpertyLevel() {
+
+            var level_check = $( "input:checked" ).length;
+            if(level_check == 0) {
+                alert('Please Select atleast One Level');
+            }else{
+                $("#exampleModalCenter").modal('show');
+            }
+
+       }
     </script>
-    <!-- <script src="../javascript/homePage.js"></script> -->
 </body>
 
 </html>
