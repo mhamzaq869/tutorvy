@@ -123,7 +123,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach($new_requests as $request)
-                                        @if($request->status == 2 && $request->assessment_status != '' && $request->assessment_status != 1)
+                                        @if($request->status == 2 && $request->assessment_id != '' && $request->assessment_id != null && $request->assessment_status == 0)
                                         <tr>
                                             <td class="pt-4">
                                                 <!-- -->
