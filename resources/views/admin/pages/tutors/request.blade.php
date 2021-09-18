@@ -12,8 +12,11 @@
     <div class="row">
         <div class="col-md-3">
             <div class="text-center pt-5 bg-white">
+                @if($tutor->picture != null)
+                    <img src="{{asset($tutor->picture)}}" class="round-profile" alt="re" class="w-50">
+                @else
                     <img src="{{asset('admin/assets/img/ico/Square-white.jpg')}}" class="round-profile" alt="re" class="w-50">
-
+                @endif
                 <h3 class="mt-3 mb-0">{{ $tutor->first_name }} {{ $tutor->last_name }}</h3>
                 <p class="heading-fifth mt-2 line-height-1 mb-1">Tutor</p>
                 @if($tutor->status == 2)

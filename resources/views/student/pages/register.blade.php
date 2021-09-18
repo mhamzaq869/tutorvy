@@ -279,6 +279,14 @@
                                     <div role="tabpanel" class="border-right tab-pane active" id="step-1">
                                         <div class="col-md-12">
                                             <p class="heading-third mt-3">Personal information</p>
+                                            @if (Session::has('error'))
+                                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-top:-12px">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                    {{ Session::get('error') }}
+                                                </div>
+                                            @endif
                                             <div class="row mt-5">
                                                 <div class="input-text col-md-6 d-block">
                                                     <input type="" class="form-control csd  @error('first_name') is-invalid @enderror" name="first_name" id="fname"
