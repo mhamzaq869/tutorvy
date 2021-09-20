@@ -78,34 +78,26 @@
                                                     <thead>
                                                         <tr
                                                             style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
-                                                            <th scope="col">
-                                                                Teacher
-                                                            </th>
-                                                            <th scope="col">
-                                                                Subjects
-                                                            </th>
+                                                            <th scope="col"> Teacher </th>
+                                                            <th scope="col"> Subjects </th>
                                                             <th scope="col">
                                                                 Topic
                                                             </th>
-                                                            <th scope="col">
-                                                                Time
+                                                            <th scope="col">Time
                                                             </th>
                                                             
-                                                            <th scope="col">
-                                                                Duration
+                                                            <th scope="col">Duration
                                                             </th>
-                                                            <th scope="col">
-                                                                Payment
+                                                            <th scope="col">Payment
                                                             </th>
-                                                            <th scope="col">
-                                                                Status
+                                                            <th scope="col">Status
                                                             </th>
                                                             <th scope="col"></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @if($today)
-                                                            @foreach ($today as $booking)
+                                                        @if($all)
+                                                            @foreach ($all as $booking)
                                                             <tr>
                                                                 <td class="pt-4">
                                                                     {{$booking->tutor->first_name}} {{$booking->tutor->last_name}}
@@ -185,7 +177,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @foreach ($upcoming as $booking)
+                                                        @foreach ($confirmed as $booking)
                                                             <tr>
                                                                 <td class="pt-4">
                                                                 {{$booking->tutor->first_name}} {{$booking->tutor->last_name}}

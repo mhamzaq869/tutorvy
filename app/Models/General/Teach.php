@@ -6,6 +6,7 @@ use App\Models\Admin\Subject;
 use App\Models\Admin\SubjectCategory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\subjectPlans;
 use App\Models\User;
 
 class Teach extends Model
@@ -51,5 +52,9 @@ class Teach extends Model
     {
        $user = User::where('id',$this->verified_by)->first();
        return $user->name ?? '';
+    }
+
+    public function subject_plans() {
+        return $this->hasMany(subjectPlans::class,'subject_id','subject_id');
     }
 }

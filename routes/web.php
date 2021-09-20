@@ -219,7 +219,10 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
 
     //Bookings
     Route::get('/bookings',[StudentBookingController::class,'index'])->name('student.bookings');
+    
     Route::get('/book-now/{id}',[StudentBookingController::class,'bookNow'])->name('student.book-now');
+    Route::post('/tutor-plan',[StudentBookingController::class,'tutorPlans'])->name('student.tutor.plans');
+
     Route::get('/booking-detail/{id}',[StudentBookingController::class,'bookingDetail'])->name('student.booking-detail');
     Route::get('/booking/{id}/tutor',[StudentBookingController::class,'directBooking'])->name('student.direct.booking');
     Route::get('/booking/payment/{id}',[StudentBookingController::class,'bookingPayment'])->name('student.booking.payment');

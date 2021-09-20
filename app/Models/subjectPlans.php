@@ -13,13 +13,9 @@ class subjectPlans extends Model
         'user_id',
         'subject_id',
         'experty_level',
+        'experty_title',
         'rate'
     ];
-
-
-
-
-    
 
     use HasFactory;
 }
