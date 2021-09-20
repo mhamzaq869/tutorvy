@@ -466,7 +466,7 @@
                                         <p>Service Fee: </p> 
                                     </div>
                                     <div class="col-md-6 col-6 col-sm-6 text-right"> 
-                                        <p><strong> ${{$booking->price}}  </strong></p> 
+                                        <p><strong> $00.00  </strong></p> 
                                     </div>
                                     <div class="col-md-6 col-6 col-sm-6">
                                         <p>Total Fee: </p> 
