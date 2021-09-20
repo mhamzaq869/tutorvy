@@ -4,8 +4,12 @@
 }
 
 .fa-star {
-    color: orange !important;
+    /* color: orange !important; */
     font-size: 22px;
+}
+
+.checked {
+    color: orange !important;
 }
 
 .star-icos {
@@ -65,6 +69,7 @@
     padding: 7px;
     font-size: 12px;
     border-radius: 4px;
+    display: block;
     font-family: "Poppins";
 }
 
