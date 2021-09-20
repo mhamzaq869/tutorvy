@@ -77,7 +77,7 @@
                                             <div id="locationDiv" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                                                 <div class="card-body pl-2 pr-0 pt-0">
                                                     <select class="w-100 form-control accSelect2" id="location">
-                                                       
+                                                        <option value="">Select Location</option>
                                                         @foreach ($locations as $location)
                                                         <option value="{{$location->name}}"> {{$location->name}}</option>
                                                         @endforeach
@@ -208,7 +208,7 @@
                                             <div id="langDiv" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
                                                 <div class="card-body pl-2 pr-0 pt-0">
                                                     <select class="w-100 form-control accSelect2" id="languages-list">
-                                                        <option value="">Search Language</option>
+                                                        <!-- <option value="">Search Language</option> -->
                                                     </select>
                                                 </div>
                                             </div>

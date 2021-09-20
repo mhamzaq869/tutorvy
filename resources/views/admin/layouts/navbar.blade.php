@@ -409,7 +409,11 @@
             <li class="nav-item profile-name1" id="imageDropdowns">
                 <div class="dropdown d-flex">
                     <a class="nav-link profile-name d-flex pl-4 mr-3 mt-1 pb-1" href="#" data-toggle="dropdown">
-                        {{Auth::user()->name}}
+                        @if( Auth::user()->first_name == null &&  Auth::user()->last_name == null)
+                            {{Auth::user()->name}}
+                        @else
+                            {{Auth::user()->first_name}} {{Auth::user()->last_name}}
+                        @endif
                     </a>
                     <img class="profile-img" src="{{ asset('/admin/assets/img/ico/porfile-main.svg')}}" data-toggle="dropdown"
                         alt="profile">

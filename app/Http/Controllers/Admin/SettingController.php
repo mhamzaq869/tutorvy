@@ -97,4 +97,21 @@ class SettingController extends Controller
 
     }
 
+
+    public function saveProfile(Request $request) {
+        
+        $data = array(
+            "first_name" => $request->first_name, 
+            "last_name" => $request->last_name,
+            "email" => $request->email,
+            "phone" => $request->phone,
+            "city" => $request->address,
+            "country" => $request->country,
+        );
+
+
+        User::where("id",$request->user_id)->update($data);
+        return redirect()->back()->with(['success' => 'Profile Updated Successfully']);
+    }
+
 }
