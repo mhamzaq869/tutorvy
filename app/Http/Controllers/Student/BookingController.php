@@ -115,7 +115,14 @@ class BookingController extends Controller
     public function bookingPayment(Request $request,$id){
 
         $booking = Booking::where('id',$request->id)->first();
-
+        if(!$booking){
+            \Session::put('error','Unable to process booking not available.');
+            return Redirect::route('student.bookings'); 
+        }
+        if($booking->price == null || $booking->price == 0.00){
+            \Session::put('error','Unable to process booking with invalid amount.');
+            return Redirect::route('student.bookings'); 
+        }
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
 
