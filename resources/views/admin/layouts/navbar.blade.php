@@ -409,7 +409,7 @@
             <li class="nav-item profile-name1" id="imageDropdowns">
                 <div class="dropdown d-flex">
                     <a class="nav-link profile-name d-flex pl-4 mr-3 mt-1 pb-1" href="#" data-toggle="dropdown">
-                        Harram
+                        {{Auth::user()->name}}
                     </a>
                     <img class="profile-img" src="{{ asset('/admin/assets/img/ico/porfile-main.svg')}}" data-toggle="dropdown"
                         alt="profile">
