@@ -178,9 +178,9 @@ class TutorController extends Controller
             }
         }
 
-        if($tutor->rank == 0 && $request->status == 2){
-            $tutor->rank = 1;
-        }
+        // if($tutor->rank == 0 && $request->status == 2){
+        //     $tutor->rank = 1;
+        // }
         $tutor->save();
 
         $message = '';
