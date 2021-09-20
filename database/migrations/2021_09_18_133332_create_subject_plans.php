@@ -18,6 +18,7 @@ class CreateSubjectPlans extends Migration
             $table->integer('user_id')->nullable();
             $table->integer('subject_id')->nullable();
             $table->integer('experty_level')->nullable();
+            $table->string('experty_title')->nullable();
             $table->double('rate')->nullable();
             $table->timestamps();
         });

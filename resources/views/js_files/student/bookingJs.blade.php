@@ -2,7 +2,6 @@
 /* Booking Insert */
 
 $( '#book_tutor_form' ).on( 'submit', function(e) {
-
     event.preventDefault();
 
     $('#tutor_id').val("{{$t_id ?? '' }}");
@@ -36,5 +35,42 @@ $( '#book_tutor_form' ).on( 'submit', function(e) {
 });
 
 // 
+$(document).ready(function() {
+
+
+    $("#tutor_subjects").on('change', function() {
+        var subject_id = $(this).val();
+        var user_id =  $('#tutor_subjects option:selected').attr('data');
+
+        if(subject_id != 'Select Subject') {
+            $.ajax({
+                url: "{{route('student.tutor.plans')}}",
+                type:"POST",
+                data:{
+                    user_id:user_id,
+                    subject_id:subject_id,
+                },
+                success:function(data){
+
+                    var options = ``;
+
+                    for(var i = 0; i< data.tutor_plans.length; i++) {
+                        options += `<option value="`+data.tutor_plans[i].rate+`"> 
+                                <div class="d-flex justify-content-between">
+                                    <span> `+data.tutor_plans[i].experty_title+` </span> -- 
+                                    <span> ($`+data.tutor_plans[i].rate+`) </span>
+                                </div>
+                            </option>`;
+                    }
+
+                    $("#subject_plans").html(options);
+                    console.log(data);
+                },
+            });
+        }
+    });
+})
+
+// show tutor plans
 
 </script>
