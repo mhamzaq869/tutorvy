@@ -1,6 +1,6 @@
 <script type="text/javascript">
-
-function verifyAssessment(id,status){
+  
+  function verifyAssessment(id,status){
     let reason = null;
     if(status == 2){
         reason = $('#assess_reject_reason').val();
@@ -32,7 +32,7 @@ function verifyAssessment(id,status){
         },
     });
 
-}
+  }
 
 
   function verifyTutor(id, status ,assess_status = null) {
@@ -137,5 +137,67 @@ function verifyAssessment(id,status){
           }
         },
     });
+  }
+
+
+  function showTutorPlans(subject_title , user_id , subject_id) {
+    $.ajax({
+        url: "{{route('admin.tutor.plans')}}",
+        type:"POST",
+        data:{
+          user_id:user_id,
+          subject_id:subject_id,
+        },
+        success:function(response){
+
+          var data = ``;
+          var expert_level = '';
+
+          if(response.status_code == 200) {
+
+            for(var i =0; i < response.tutor_plans.length; i++) {
+
+              if(response.tutor_plans[i].experty_level == 1) {
+                expert_level = 'Pre-Elementary School';
+              }else if(response.tutor_plans[i].experty_level == 2) {
+                expert_level = 'Elementary School';
+              }else if(response.tutor_plans[i].experty_level == 3) {
+                expert_level = 'Secondary School';
+              }else if(response.tutor_plans[i].experty_level == 4) {
+                expert_level = 'High School';
+              }else if(response.tutor_plans[i].experty_level == 5) {
+                expert_level = 'Post Secondary School';
+              }else{
+                expert_level = '-';
+              }
+
+              data +=`
+                <div class="row mt-3 ">
+                    <div class="col-md-6">
+                        <p> `+expert_level+` </p>
+                    </div>
+                    <div class="text-right col-md-6 ">
+                        <p> $`+response.tutor_plans[i].rate+` </p>
+                    </div>
+                </div>`
+
+            }
+            $("#subject_title").text(subject_title);
+            $("#show_plans").html(data);
+            $("#planModal").modal('show');
+
+          }else{
+
+            toastr.error( response.message,{
+                position: 'top-end',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 2500
+            });
+
+          }
+        },
+    });
+   
   }
 </script>

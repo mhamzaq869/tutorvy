@@ -16,5 +16,10 @@ class subjectPlans extends Model
         'rate'
     ];
 
+
+
+
+    
+
     use HasFactory;
 }

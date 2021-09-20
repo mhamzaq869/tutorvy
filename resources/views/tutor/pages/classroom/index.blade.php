@@ -69,6 +69,8 @@
                                                 </thead>
                                                 <tbody>
                                                    @foreach($classes as $class)
+
+                                                   @if($class != null && $class != "")
                                                     <tr>
                                                         <td class="pt-4">
                                                             {{ $class->booking->subject->name }}
@@ -80,7 +82,11 @@
                                                            {{$class->booking->class_time}} {{date("g:i a", strtotime("$class->booking->class_time UTC"))}}
                                                         </td>
                                                         <td class="pt-4">
-                                                            {{ $class->booking->user->first_name }} {{ $class->booking->user->last_name }}
+                                                            @if($class->booking->user != null && $class->booking->user != "")
+                                                                {{ $class->booking->user->first_name }} {{ $class->booking->user->last_name }}
+                                                            @else
+                                                            <span> - </span>
+                                                            @endif
                                                         </td>
                                                         <td class="pt-4">
                                                             {{ $class->booking->duration }} Hour(s)
@@ -101,6 +107,7 @@
                                                             </a>
                                                         </td>
                                                     </tr>
+                                                    @endif
                                                     @endforeach
                                                 </tbody>
                                             </table>

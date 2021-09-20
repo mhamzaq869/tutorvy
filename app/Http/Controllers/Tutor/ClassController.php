@@ -15,7 +15,6 @@ class ClassController extends Controller
     public function index(){
         
         $classes = Classroom::with('booking')->get();
-     
         return view('tutor.pages.classroom.index',compact('classes'));
     }
 }

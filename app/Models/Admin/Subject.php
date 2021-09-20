@@ -63,5 +63,4 @@ class Subject extends Model
         return $category->name;
     }
 
-
 }
