@@ -151,30 +151,14 @@
         success:function(response){
 
           var data = ``;
-          var expert_level = '';
-
           if(response.status_code == 200) {
 
             for(var i =0; i < response.tutor_plans.length; i++) {
 
-              if(response.tutor_plans[i].experty_level == 1) {
-                expert_level = 'Pre-Elementary School';
-              }else if(response.tutor_plans[i].experty_level == 2) {
-                expert_level = 'Elementary School';
-              }else if(response.tutor_plans[i].experty_level == 3) {
-                expert_level = 'Secondary School';
-              }else if(response.tutor_plans[i].experty_level == 4) {
-                expert_level = 'High School';
-              }else if(response.tutor_plans[i].experty_level == 5) {
-                expert_level = 'Post Secondary School';
-              }else{
-                expert_level = '-';
-              }
-
               data +=`
                 <div class="row mt-3 ">
                     <div class="col-md-6">
-                        <p> `+expert_level+` </p>
+                        <p> `+ (response.tutor_plans[i].experty_title != null ? response.tutor_plans[i].experty_title : '-') +` </p>
                     </div>
                     <div class="text-right col-md-6 ">
                         <p> $`+response.tutor_plans[i].rate+` </p>
