@@ -320,9 +320,11 @@
                                                     </div>
                                                     <div class="col-md-9">
                                                         <div class="form-group">
-                                                            @if($setting) 
+                                                            @if($setting != null)
                                                             <input type="number" name="commission" class="form-control"
                                                                 placeholder="Comission Percentage" value="{{$setting->commission != null ? $setting->commission : ''}}">
+                                                            @else
+                                                            <input type="number" name="commission" class="form-control" placeholder="Comission Percentage">
                                                             @endif
                                                         </div>
                                                     </div>
@@ -337,20 +339,30 @@
                                                         <small class="">Change Logo</small>
                                                     </div>
                                                     <div class="col-md-12  mb-2 mt-1">
-                                                        <input type="file" name="logo" class="dropify" data-default-file="{{ asset($setting->logo) }}">
+                                                        @if($setting != null)
+                                                            <input type="file" name="logo" class="dropify" data-default-file="{{ asset($setting->logo) }}"> 
+                                                        @else
+                                                            <input type="file" name="logo" class="dropify">
+                                                        @endif
                                                     </div>
                                                     <div class="col-md-12">
                                                         <small class="">Change Favicon</small>
                                                     </div>
                                                     <div class="col-md-12 mb-2 mt-1">
+                                                        @if($setting != null)
                                                         <input type="file" name="favicon" class="dropify" data-default-file="{{ asset($setting->favicon) }}">
+                                                        @else
+                                                        <input type="file" name="favicon" class="dropify" >
+                                                        @endif
                                                     </div>
                                                     <div class="col-md-12">
                                                         <small class="">Change Title </small>
                                                     </div>
                                                     <div class="col-md-12">
-                                                        @if($setting) 
+                                                        @if($setting != null)
                                                             <input type="text" name="title" placeholder="Website Title" class="form-control" value="{{$setting->title != null ? $setting->title : ''}}">
+                                                        @else
+                                                            <input type="text" name="title" placeholder="Website Title" class="form-control">
                                                         @endif
                                                     </div>
                                                 </div>
