@@ -130,4 +130,10 @@ class SettingController extends Controller
         ]);
     }
 
+
+    public function ticket($id) {        
+        $ticket = supportTkts::where('ticket_no',$id)->with(['category','tkt_created_by'])->first();
+        return view('tutor.pages.history.ticket_details',compact('ticket'));
+    }
+
 }

@@ -187,6 +187,8 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
 
     Route::get('/get-categories',[TutorSettingController::class,'getAllCategories'])->name('tutor.categories');
     Route::post('/save-ticket',[TutorSettingController::class,'saveTicket'])->name('tutor.save.ticket');
+
+    Route::get('/ticket/{id}',[TutorSettingController::class,'ticket'])->name('tutor.ticket');
     
 });
 
@@ -251,6 +253,8 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     Route::get('/support-tickets',[StudentBookingController::class,'history'])->name('student.history');
 
     Route::post('/fav-tutor',[StudentSettingController::class,'favouriteTutor'])->name('student.fav.tutor');
+
+    Route::get('/ticket/{id}',[StudentSettingController::class,'tickets'])->name('student.ticket');
 
 });
 /*

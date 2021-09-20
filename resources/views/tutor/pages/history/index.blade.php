@@ -150,6 +150,9 @@
                                                         <span> - </span>
                                                     @endif
                                                 </td>
+                                                <td> 
+                                                    <a href="{{url('tutor/ticket')}}/{{$ticket->ticket_no}}" class="schedule-btn">View</a>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
