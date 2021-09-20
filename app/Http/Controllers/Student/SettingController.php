@@ -134,11 +134,27 @@ class SettingController extends Controller
     function favouriteTutor(Request $request) {
 
         if($request->status == "fav") {
+            
             FavTutors::create([
                 "user_id" => Auth::user()->id,
                 "tutor_id" => $request->id,
             ]);
+
+            $message = 'Tutor Added in Favourite List';
+
+        }else{
+
+            FavTutors::where("tutor_id",$request->id)->where("user_id",Auth::user()->id)->delete();
+
+            $message = 'Tutor Removed form Favourite List';
+
         }
+
+        return response()->json([
+            "status_code" => 200, 
+            "message" => $message,
+            "success" => true,
+        ]);
 
     }
 

@@ -420,12 +420,12 @@
                     </a>
                     @auth
                         @if(Auth::user()->picture)
-                        <img class="profile-img" src="{{asset(Auth::user()->picture) }}" data-toggle="dropdown" alt="profile">
+                        <img class="profile-img profile-img2" src="{{asset(Auth::user()->picture) }}" data-toggle="dropdown" alt="profile">
                         @else
-                        <img class="profile-img" src="{{asset('assets/images/ico/porfile-main.png') }}" data-toggle="dropdown" alt="profile">
+                        <img class="profile-img profile-img2" src="{{asset('assets/images/ico/porfile-main.png') }}" data-toggle="dropdown" alt="profile">
                         @endif
                     @else
-                    <img class="profile-img" src="{{asset('assets/images/ico/porfile-main.png') }}" data-toggle="dropdown" alt="profile">
+                    <img class="profile-img profile-img2" src="{{asset('assets/images/ico/porfile-main.png') }}" data-toggle="dropdown" alt="profile">
                     @endauth
                     <ul class="dropdown-menu classdrop classdrop1 ">
                         <li>

@@ -31,19 +31,13 @@ class ProfileController extends Controller
 
 
     public function profileUpdate(Request $request) {
-        
+
         $date_of_birth = $request->year.'-'.$request->month.'-'.$request->day;
-        
-        if($request->hasFile('filepond')){
-            $path = 'storage/profile/'.$request->filepond->getClientOriginalName();
-            $request->filepond->storeAs('profile',$request->filepond->getClientOriginalName(),'public');
-        }
-        
-        User::where('id',$request->user_id)->update([
+
+        $data =array(
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'dob' => $date_of_birth,
-            'picture' => ($request->hasFile('filepond') ? $path : \Auth::user()->picture),
             'phone' => $request->phone,
             'city' => $request->city,
             'country' => $request->country,
@@ -52,14 +46,28 @@ class ProfileController extends Controller
             'lang_short' => $request->lang_short,
             'gender' => $request->gender,
             'bio' => $request->bio,
-        ]);
+        );
+        
+        if($request->hasFile('filepond')){
+            $data['picture'] = 'storage/profile/'.$request->filepond->getClientOriginalName();
+            $request->filepond->storeAs('profile',$request->filepond->getClientOriginalName(),'public');
+        }
+        
+        User::where('id',$request->user_id)->update($data);
 
+        $location = DB::table('search_locations')->where('name', $request->country)->first();
+
+        if(empty($location)) {
+            DB::table('search_locations')->insert([
+                'name' => $request->country,
+            ]);
+        }
        
         return response()->json([
             "status_code" => 200,
             "success" => true,
             "message" => "Profile Updated Successfully",
-            "path" => $path,
+            "path" => (array_key_exists("picture",$data) ? $data['picture'] : Auth::user()->picture ),
         ]); 
 
     }

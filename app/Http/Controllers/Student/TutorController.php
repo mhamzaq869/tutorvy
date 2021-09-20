@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Student;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\General\Teach;
 use App\Models\Admin\Subject;
@@ -26,7 +27,13 @@ class TutorController extends Controller
         ->where('users.role',2)
         ->where('users.status',2)
         ->get();
-        // return $available_tutors;
+
+
+        foreach($available_tutors as $tutor) {
+            $tutor->is_favourite = DB::table("fav_tutors")->where("user_id",Auth::user()->id)->where("tutor_id",$tutor->id)->first();
+            $tutor->tutor_subject_rate = DB::table("subject_plans")->where("user_id",$tutor->id)->min('rate');
+        }
+
         $subjects = Subject::all();
         $locations = DB::table('search_locations')->get();
 
@@ -56,6 +63,11 @@ class TutorController extends Controller
         ->where('users.country', $request->location)
 
         ->get();
+
+        foreach($available_tutors as $tutor) {
+            $tutor->is_favourite = DB::table("fav_tutors")->where("user_id",Auth::user()->id)->where("tutor_id",$tutor->id)->first();
+            $tutor->tutor_subject_rate = DB::table("subject_plans")->where("user_id",$tutor->id)->min('rate');
+        }
 
         return response()->json([
             'tutors' => $available_tutors,

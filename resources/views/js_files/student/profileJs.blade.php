@@ -45,7 +45,7 @@
             var action = $(this).attr('action');
             var method = $(this).attr('method');
 
-            var file =  $('#imageUpload')[0].files[0].size;
+            var file =  $('#imageUpload')[0].files[0];
             var form = new FormData(this);
 
 
@@ -86,6 +86,7 @@
                 contentType: false,
                 processData: false,
                 success:function(response){
+                    console.log(response.path);
                     if(response.status_code == 200 && response.success == true) {
                         toastr.success(response.message,{
                             position: 'top-end',
@@ -93,6 +94,9 @@
                             showConfirmButton: false,
                             timer: 2500
                         });
+                        console.log(response.path);
+                        var origin   = window.location.origin
+                        $('.profile-img2').attr('src',origin + '/'+ response.path);
                     }else{
                         toastr.error(response.message,{
                             position: 'top-end',

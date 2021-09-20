@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Course;
+use App\Models\subjectPlans;
 use App\Models\Assessment;
 use App\Models\General\Teach;
+use App\Models\Admin\Subject;
 use DB;
 
 class TutorController extends Controller
@@ -47,16 +49,20 @@ class TutorController extends Controller
         return view('admin.pages.tutors.index',compact('new_requests','approved_tutors','staff_members'));
     }
     public function profile($id){
-        
+
         $tutor = User::with(['education','professional','teach'])->where('id',$id)->where('role',2)->where('status',2)->first();
-        
+
+        foreach($tutor->teach as $subject) {
+            $subject->plans = subjectPlans::where("subject_id", $subject->subject_id)->where("user_id",$id)->select('experty_level','rate')->get();
+        }
+
         if(!$tutor){
             return redirect()->route('admin.tutor');
         }
 
         $approved_courses = Course::where('user_id',$id)->where('status',1)->get();
         $requested_courses = Course::where('user_id',$id)->where('status',0)->get();
-        
+
         return view('admin.pages.tutors.profile',compact('tutor','approved_courses','requested_courses'));
     }
 
@@ -78,8 +84,6 @@ class TutorController extends Controller
         $tutors = User::with(['education','professional','teach'])->where('role',2)->whereIn('status',[0,2,3])->get();
         return view('admin.pages.tutors.all-tutors',compact('tutors'));
     }
-
-
 
     public function subjects($id){
 
@@ -156,18 +160,21 @@ class TutorController extends Controller
     public function tutorVerification(Request $request) {
         
         $tutor = User::where('id', $request->id)->first();
+
         $tutor->status = $request->status;
         $tutor->reject_note = $request->status == 2 ? NULL : $request->reason;
 
         $location = $tutor->country;
 
         if($request->status == 2) {
-            $loc = DB::table('search_locations')->where('name', $location)->first();
-            if($loc){
-            }else{
-                DB::table('search_locations')->insert([
-                    'name' => $location
-                ]);
+            if($location != null){
+                $loc = DB::table('search_locations')->where('name', $location)->first();
+
+                if(empty($loc)) {
+                    DB::table('search_locations')->insert([
+                        'name' => $location
+                    ]);
+                }
             }
         }
 
@@ -204,5 +211,17 @@ class TutorController extends Controller
         // return view('admin.pages.tutors.tutor_profile');
         return view('admin.pages.courses.course_profile');
 
+    }
+
+
+    // show tutor plans
+    public function showTutorPlans(Request $request) {
+        $plans = subjectPlans::where("user_id", $request->user_id)->where("subject_id",$request->subject_id)->get();
+
+        return response()->json([
+            "tutor_plans" => $plans,
+            "status_code" => 200,
+            "success" => true,
+        ]);
     }
 }

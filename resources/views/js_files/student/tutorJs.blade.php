@@ -198,6 +198,16 @@ function list_tutors(){
                 img = `<img src="../assets/images/ico/Square-white.jpg" alt="" class="round-border">`;
             }
 
+            var fav_btn = `
+                <a type="button" onclick="favourite_tutor(`+tutors[i].id+`,'fav')" class="fav" title="Favourite">
+                    <i class="fa fa-star" id="favorite_start_`+tutors[i].id+`"></i>
+                </a>`;
+
+            var un_fav_btn = `
+                <a type="button" onclick="favourite_tutor(`+tutors[i].id+`,'un_fav')" class="fav" title="Favourite">
+                    <i class="fa fa-star text-yellow" id="favorite_start_`+tutors[i].id+`"></i>
+                </a>`;                
+
             let tutor_Card = `<div class="card">
                                 <div class="card-body">
                                     
@@ -258,13 +268,11 @@ function list_tutors(){
                                         </div>
                                         <div class="col-md-3 bg-price text-center">
                                             <div class="row mt-30">
-                                                <a type="button" onClick="star()" class="fav" title="Favourite">
-                                                    <i class="fa fa-star"></i>
-                                                </a>
+                                                `+ (tutors[i].is_favourite != null && tutors[i].is_favourite != "" ? un_fav_btn : fav_btn) +`
+
                                                 <div class="col-md-12">
-                                                   
                                                     <p>starting from</p>
-                                                    <h1 class="f-60">$`+tutors[i].hourly_rate+`</h1>
+                                                    <h1 class="f-60">$`+ ( tutors[i].tutor_subject_rate != null ? tutors[i].tutor_subject_rate : '-') +`</h1>
                                                     <p>per hour</p>
                                                     <button type="button" class=" cencel-btn w-100">
                                                             &nbsp; Message &nbsp;
@@ -304,14 +312,37 @@ function star(){
 
 
 
-function favourite_tutor(id,status) {
+function favourite_tutor(id,type) {
+
+    var status = '';
+    if($("#favorite_start_"+id).hasClass("fa fa-star text-yellow")) {
+        $("#favorite_start_"+id).removeClass("text-yellow");
+        status = 'un_fav';
+    }else{
+        $("#favorite_start_"+id).addClass("text-yellow");
+        status = 'fav';
+    }
 
     $.ajax({
         url: "{{ route('student.fav.tutor') }}",
         type: "POST",
         data: {id:id,status:status},
         success: function(response) {
-            console.log(response);
+            if(response.status_code == 200 && response.success == true) {
+                toastr.success(response.message,{
+                    position: 'top-end',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            }else{
+                toastr.error(response.message,{
+                    position: 'top-end',
+                    icon: 'error',
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            }
         },
         error:function(e){
             console.log(e)

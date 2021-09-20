@@ -496,9 +496,15 @@
                                     </div>
                                     <div class="col-md-3 bg-price text-center">
                                         <div class="row mt-30">
-                                            <a href="javascript:void(0)" class="fav" title="Favourite" onclick="favourite_tutor({{$tutor->id}},'fav')">
-                                                <i class="fa fa-star"></i>
-                                            </a>
+                                            @if($tutor->is_favourite != null && $tutor->is_favourite != "")
+                                                <a type="button" onclick="favourite_tutor({{$tutor->id}},'un_fav')" class="fav" title="Favourite">
+                                                    <i class="fa fa-star text-yellow" id="favorite_start_{{$tutor->id}}"></i>
+                                                </a>
+                                            @else
+                                                <a type="button" onclick="favourite_tutor({{$tutor->id}}`,'fav')" class="fav" title="Favourite">
+                                                    <i class="fa fa-star" id="favorite_start_{{$tutor->id}}"></i>
+                                                </a>
+                                            @endif
                                             <div class="col-md-12">
                                                 
                                                 <p>starting from</p>

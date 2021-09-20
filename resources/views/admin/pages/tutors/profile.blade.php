@@ -423,16 +423,18 @@
                                             <th scope="col"></th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="subject_table">
+                                        @foreach($tutor->teach as $tutor_plan)
                                         <tr>
-                                            <td class="pt-4">01</td>
-                                            <td class="pt-4">Assembly Language</td>
+                                            <td class="pt-4">{{$loop->iteration}}</td>
+                                            <td class="pt-4">{{$tutor_plan->sub_name}}</td>
                                             <td >
-                                                <a href="#" data-toggle="modal" data-target="#planModal" class="schedule-btn btn">
+                                                <a href="javascript:void(0)" onclick="showTutorPlans('{{$tutor_plan->sub_name}}',{{$tutor_plan->user_id}},{{$tutor_plan->subject_id}})" class="schedule-btn btn">
                                                     View Plans
                                                 </a>
                                             </td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -1090,42 +1092,10 @@
                         <img  src="{{asset('admin/assets/img/ico/dollars.png')}}" />
                     </div>
                     <div class="col-md-12 text-center mt-3">
-                        <h3>Assembly Language</h3>
+                        <h3 id="subject_title"> </h3>
                     </div>
                 </div>
-                <div class="row mt-3 ">
-                    <div class="col-md-6">
-                        <p>Pre-Elementory School</p>
-                    </div>
-                    <div class="text-right col-md-6 ">
-                        <p>$1500/hour</p>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-6">
-                        <p>Elementory School</p>
-                    </div>
-                    <div class="text-right col-md-6 ">
-                        <p>$2500/hour</p>
-                    </div>
-                </div>
-               
-                <div class="row mt-3">
-                    <div class="col-md-6">
-                        <p>High School</p>
-                    </div>
-                    <div class="text-right col-md-6 ">
-                        <p>$4500/hour</p>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-6">
-                        <p>Post Secondary School</p>
-                    </div>
-                    <div class="text-right col-md-6 ">
-                        <p>$6500/hour</p>
-                    </div>
-                </div>
+                <div id="show_plans"></div>
             </div>
             <div class="modal-footer ">
                 <div class="row">
@@ -1143,5 +1113,5 @@
 
 <!-- Extra js to perfome function using ajax. -->
 @section('js') 
-@include('js_files.admin.tutor')
+    @include('js_files.admin.tutor')
 @endsection
