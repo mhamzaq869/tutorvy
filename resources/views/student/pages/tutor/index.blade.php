@@ -383,8 +383,11 @@
                                                     
                                                     <div class="col-md-2 col-6">
                                                         <a href="{{route('student.tutor.show',[$tutor->id])}}">
-                                                            <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
-                                                        
+                                                            @if($tutor->picture != null)
+                                                                <img src="{{asset($tutor->picture)}}" alt="" class="round-border">
+                                                            @else
+                                                                <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
+                                                            @endif                                                        
                                                         </a>
                                                        
                                                     </div>
@@ -493,9 +496,9 @@
                                     </div>
                                     <div class="col-md-3 bg-price text-center">
                                         <div class="row mt-30">
-                                            <a href="#" class="fav" title="Favourite">
-                                                    <i class="fa fa-star"></i>
-                                                </a>
+                                            <a href="javascript:void(0)" class="fav" title="Favourite" onclick="favourite_tutor({{$tutor->id}},'fav')">
+                                                <i class="fa fa-star"></i>
+                                            </a>
                                             <div class="col-md-12">
                                                 
                                                 <p>starting from</p>

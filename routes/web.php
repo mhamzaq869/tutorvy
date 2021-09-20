@@ -250,6 +250,8 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     
     Route::get('/support-tickets',[StudentBookingController::class,'history'])->name('student.history');
 
+    Route::post('/fav-tutor',[StudentSettingController::class,'favouriteTutor'])->name('student.fav.tutor');
+
 });
 /*
 |--------------------------------------------------------------------------

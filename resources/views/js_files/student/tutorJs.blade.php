@@ -103,11 +103,25 @@ function list_tutors(){
         $('#tutors-list').html('');
 
         for(var i = 0 ; i<tutors.length ; i++){
-
-            let inst = tutors[i].insti_names.split(",");
-            let sub = tutors[i].subject_names.split(",");
+            let inst ;
+            let sub;
             let int_html = '';
             let sub_html = '';
+
+            if(tutors[i].insti_names !=null ){
+                inst=  tutors[i].insti_names.split(",");
+                for(var ins=0 ; ins < inst.length; ins++){ 
+                    int_html +=` <span class="info-1 info edu">`+inst[ins]+`</span>`;
+                }
+            }
+            if(tutors[i].subject_names !=null ){
+                sub = tutors[i].subject_names.split(",");
+                for(var s=0 ; s < sub.length; s++){ 
+                    sub_html +=` <span class="info-1 info">`+sub[s]+`</span>`;
+                }
+            }
+             
+            
             let rating_html = '';
             let rank_html = '';
             let t_id = tutors[i].id;
@@ -116,13 +130,9 @@ function list_tutors(){
             let url2 = "{{route('student.tutor.show', ':id')}}";
             url2 = url2.replace(':id', t_id);
             console.log(t_id);
-            for(var ins=0 ; ins < inst.length; ins++){ 
-                int_html +=` <span class="info-1 info edu">`+inst[ins]+`</span>`;
-            }
+            
 
-            for(var s=0 ; s < sub.length; s++){ 
-                sub_html +=` <span class="info-1 info">`+sub[s]+`</span>`;
-            }
+            
 
             if(tutors[i].rating == 1){
                 rating_html +=  `<i class="fa fa-star text-yellow"></i>
@@ -174,13 +184,19 @@ function list_tutors(){
             }
 
             if(tutors[i].rank == 1){
-                rank_html = `<p class="text-right"><span class="text-green ">Verified</span> <span class="rank_icon"><img src="../assets/images/ico/bluebadge.png" alt=""></span> </p>`;
+                rank_html = `<p class="text-right"><span class="text-green ">New</span> <span class="rank_icon"><img src="../assets/images/ico/bluebadge.png" alt=""></span> </p>`;
             }else if(tutors[i].rank == 2){
                 rank_html = `<p class="text-right"><span class="text-green ">Emerging</span> <span class="rank_icon"><img src="../assets/images/ico/yellow-rank.png" alt=""></span> </p>`;
             }else if(tutors[i].rank == 3){
                 rank_html = `<p class="text-right"><span class="text-green ">Top Rank</span> <span class="rank_icon"><img src="../assets/images/ico/rank.png" alt=""></span> </p>`;
             }
-           
+            let img = ``;
+            if(tutors[i].picture != null){
+                console.log(tutors[i].picture)
+                img = `<img src="{{asset('`+tutors[i].picture+`')}}" alt="" class="round-border">`;
+            }else{
+                img = `<img src="../assets/images/ico/Square-white.jpg" alt="" class="round-border">`;
+            }
 
             let tutor_Card = `<div class="card">
                                 <div class="card-body">
@@ -192,7 +208,7 @@ function list_tutors(){
                                                     <div class="row">
                                                         <div class="col-md-2 col-6">
                                                             <a href="`+url2+`">
-                                                                <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
+                                                                `+img+`
                                                             </a>
                                                         </div>
                                                         <div class="col-md-5 col-6">
@@ -284,5 +300,22 @@ function list_tutors(){
 function star(){
     alert("D");
     $(".fa-star").addClass("text-yellow");
+}
+
+
+
+function favourite_tutor(id,status) {
+
+    $.ajax({
+        url: "{{ route('student.fav.tutor') }}",
+        type: "POST",
+        data: {id:id,status:status},
+        success: function(response) {
+            console.log(response);
+        },
+        error:function(e){
+            console.log(e)
+        }
+    });
 }
 </script>
