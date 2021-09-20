@@ -15,6 +15,14 @@
                     <p class="heading-first ml-3 mr-3">Booking</p>
                 </div>
             </div>
+            @if (Session::has('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-top:-12px">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    {{ Session::get('error') }}
+                </div>
+            @endif
             <div class="row bg-white ml-2 mr-2">
                     <div class="col-md-12 mb-1 ">
                         <div class=" card  bg-toast infoCard">
@@ -71,6 +79,9 @@
                                                         <tr
                                                             style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
                                                             <th scope="col">
+                                                                Teacher
+                                                            </th>
+                                                            <th scope="col">
                                                                 Subjects
                                                             </th>
                                                             <th scope="col">
@@ -79,9 +90,7 @@
                                                             <th scope="col">
                                                                 Time
                                                             </th>
-                                                            <th scope="col">
-                                                                Teacher
-                                                            </th>
+                                                            
                                                             <th scope="col">
                                                                 Duration
                                                             </th>
@@ -99,6 +108,9 @@
                                                             @foreach ($today as $booking)
                                                             <tr>
                                                                 <td class="pt-4">
+                                                                    {{$booking->tutor->first_name}} {{$booking->tutor->last_name}}
+                                                                </td>
+                                                                <td class="pt-4">
                                                                     {{$booking->subject->name}}
                                                                 </td>
                                                                 <td class="pt-4">
@@ -107,9 +119,7 @@
                                                                 <td class="pt-4">
                                                                     {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
                                                                 </td>
-                                                                <td class="pt-4">
-                                                                    {{$booking->tutor->first_name}} {{$booking->tutor->last_name}}
-                                                                </td>
+                                                                
                                                                 <td class="pt-4">
                                                                     &nbsp;{{$booking->duration}} Hour(s)
                                                                 </td>
@@ -160,10 +170,10 @@
                                                     <thead>
                                                         <tr
                                                             style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
+                                                            <th scope="col">Teacher</th>
                                                             <th scope="col">Subjects</th>
                                                             <th scope="col">Topic</th>
                                                             <th scope="col">Time</th>
-                                                            <th scope="col">Teacher</th>
                                                             <th scope="col">Duration</th>
                                                             <th scope="col">Payment</th>
                                                             <th scope="col">
@@ -178,6 +188,9 @@
                                                         @foreach ($upcoming as $booking)
                                                             <tr>
                                                                 <td class="pt-4">
+                                                                {{$booking->tutor->first_name}} {{$booking->tutor->last_name}}
+                                                                </td>
+                                                                <td class="pt-4">
                                                                     {{$booking->subject->name}}
                                                                 </td>
                                                                 <td class="pt-4">
@@ -186,9 +199,7 @@
                                                                 <td class="pt-4">
                                                                     {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
                                                                 </td>
-                                                                <td class="pt-4">
-                                                                {{$booking->tutor->first_name}} {{$booking->tutor->last_name}}
-                                                                </td>
+                                                               
                                                                 <td class="pt-4">
                                                                     &nbsp;{{$booking->duration}} Hour(s)
                                                                 </td>
@@ -233,10 +244,10 @@
                                                     <thead>
                                                         <tr
                                                             style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
+                                                            <th scope="col">Teacher</th>
                                                             <th scope="col">Subjects</th>
                                                             <th scope="col">Topic</th>
                                                             <th scope="col">Time</th>
-                                                            <th scope="col">Teacher</th>
                                                             <th scope="col">Duration</th>
                                                             <th scope="col">Payment</th>
                                                             <th scope="col">
@@ -248,53 +259,59 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-
-                                                    @foreach ($pending as $booking)
-                                                        <tr>
-                                                            <td class="pt-4">
-                                                                {{$booking->subject->name}}
-                                                            </td>
-                                                            <td class="pt-4">
-                                                                {{$booking->topic}}
-                                                            </td>
-                                                            <td class="pt-4">
-                                                                {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
-                                                            </td>
-                                                            <td class="pt-4">
-                                                            {{$booking->tutor->first_name}} {{$booking->tutor->last_name}}
-                                                            </td>
-                                                            <td class="pt-4">
-                                                                &nbsp;{{$booking->duration}} Hour(s)
-                                                            </td>
-                                                            <td class="pt-4">
-                                                                &nbsp;${{$booking->price}}
-                                                            </td>
-                                                            <td class="pt-4">
-                                                                @if($booking->status == 1)
-                                                                    <span class="bg-color-apporve3">
-                                                                        Payment Pending
-                                                                    </span>
-                                                                @elseif($booking->status == 2)
-                                                                    <span class="bg-color-apporve1">
-                                                                        Approved
-                                                                    </span>
-                                                                @elseif($booking->status == 0)
-                                                                    <span class="bg-color-apporve">
-                                                                        Pending
-                                                                    </span>
-                                                                @endif
-                                                            </td> 
-                                                            <td class="pt-3 pb-3" style="text-align: center; " >
-                                                                <a class="cencel-btn mr-2" data-toggle="modal" data-target="#payModel" >
-                                                                    Pay Now
-                                                                </a>
-                                                                <a href="{{route('student.booking-detail',[$booking->id])}}"  class="schedule-btn">
-                                                                    
-                                                                        View details
-                                                                </a>
-                                                            </td>
-                                                        </tr>
+                                                    @if($pending != null || $pending != "" || $pending !=[])
+                                                        @foreach ($pending as $booking)
+                                                            <tr>
+                                                                <td class="pt-4">
+                                                                {{$booking->tutor->first_name}} {{$booking->tutor->last_name}}
+                                                                </td>
+                                                                <td class="pt-4">
+                                                                    {{$booking->subject->name}}
+                                                                </td>
+                                                                <td class="pt-4">
+                                                                    {{$booking->topic}}
+                                                                </td>
+                                                                <td class="pt-4">
+                                                                    {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
+                                                                </td>
+                                                                
+                                                                <td class="pt-4">
+                                                                    &nbsp;{{$booking->duration}} Hour(s)
+                                                                </td>
+                                                                <td class="pt-4">
+                                                                    &nbsp;${{$booking->price}}
+                                                                </td>
+                                                                <td class="pt-4">
+                                                                    @if($booking->status == 1)
+                                                                        <span class="bg-color-apporve3">
+                                                                            Payment Pending
+                                                                        </span>
+                                                                    @elseif($booking->status == 2)
+                                                                        <span class="bg-color-apporve1">
+                                                                            Approved
+                                                                        </span>
+                                                                    @elseif($booking->status == 0)
+                                                                        <span class="bg-color-apporve">
+                                                                            Pending
+                                                                        </span>
+                                                                    @endif
+                                                                </td> 
+                                                                <td class="pt-3 pb-3" style="text-align: center; " >
+                                                                    <a class="cencel-btn mr-2" data-toggle="modal" data-target="#payModel" >
+                                                                        Pay Now
+                                                                    </a>
+                                                                    <a href="{{route('student.booking-detail',[$booking->id])}}"  class="schedule-btn">
+                                                                        
+                                                                            View details
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
                                                         @endforeach
+                                                    @else 
+                                                        <tr>
+                                                            <td>No Booking Found</td>
+                                                        </tr>
+                                                    @endif
 
                                                     </tbody>
                                                 </table>
@@ -303,30 +320,33 @@
                             </div>
                             <div class="tab-pane tab-border-none fade" id="nav-about" role="tabpanel"
                                 aria-labelledby="nav-about-tab">
-                                <div class="row">
-                                    <div class="col-md-12 col-sm-12 col-xs-12">
-                                        <table class="table table-bordered">
-                                            <thead>
-                                                <tr
-                                                    style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
-                                                    <th scope="col">Subjects</th>
-                                                    <th scope="col">Topic</th>
-                                                    <th scope="col">Time</th>
-                                                    <th scope="col">Teacher</th>
-                                                    <th scope="col">Duration</th>
-                                                    <th scope="col">Payment</th>
-                                                    <th scope="col">
-                                                            Status
-                                                        </th>
-                                                    <th scope="col">Review</th>
-                                                    <!-- <th scope="col"></th> -->
-                                                    <th scope="col"></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                
-                                            </tbody>
-                                        </table>
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr
+                                                        style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
+                                                        <th scope="col">Teacher</th>
+                                                        <th scope="col">Subjects</th>
+                                                        <th scope="col">Topic</th>
+                                                        <th scope="col">Time</th>
+                                                        <th scope="col">Duration</th>
+                                                        <th scope="col">Payment</th>
+                                                        <th scope="col">
+                                                                Status
+                                                            </th>
+                                                        <th scope="col">Review</th>
+                                                        <!-- <th scope="col"></th> -->
+                                                        <th scope="col"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>No Booking Found</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                             </div>
                             <div class="tab-pane tab-border-none fade" id="nav-cancel" role="tabpanel"
@@ -337,10 +357,10 @@
                                             <thead>
                                                 <tr
                                                     style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
+                                                    <th scope="col">Teacher</th>
                                                     <th scope="col">Subjects</th>
                                                     <th scope="col">Topic</th>
                                                     <th scope="col">Time</th>
-                                                    <th scope="col">Teacher</th>
                                                     <th scope="col">Duration</th>
                                                     <th scope="col">Payment</th>
                                                     <th scope="col">
@@ -352,7 +372,9 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                
+                                                <tr>
+                                                    <td>No Booking Found</td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>

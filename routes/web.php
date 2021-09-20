@@ -224,6 +224,7 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     Route::post('/booked',[StudentBookingController::class,'booked'])->name('student.booked.tutor');
 
     Route::get('/classroom',[StudentClassController::class,'index'])->name('student.classroom');
+    Route::get('/wallet',[StudentClassController::class,'payment'])->name('student.wallet');
     Route::get('/calendar',[CalendarController::class,'calendarStudent'])->name('student.calendar');
     // Route::get('/history',[HistoryController::class,'index'])->name('tutor.history');
     // Route::get('/payment',[PaymentController::class,'index'])->name('tutor.payment');

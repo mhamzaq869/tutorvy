@@ -17,4 +17,8 @@ class StudentClassController extends Controller
 
         return view('student.pages.classroom.index',compact('classes'));
     }
+    public function payment(){
+
+        return view('student.pages.payment.index');
+    }
 }

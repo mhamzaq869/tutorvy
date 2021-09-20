@@ -10,7 +10,7 @@
         <!-- dashborad home -->
         <div class="row">
             <div class="col-md-12">
-            <p class="heading-first "> 
+                <p class="heading-first "> 
                         Dashboard 
                     </p>
             </div>

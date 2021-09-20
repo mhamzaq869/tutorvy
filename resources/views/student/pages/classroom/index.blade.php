@@ -107,10 +107,10 @@
                                         <thead>
                                             <tr
                                                 style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
+                                                <th scope="col">Teacher</th>
                                                 <th scope="col">Subjects</th>
                                                 <th scope="col">Topic</th>
                                                 <th scope="col">Time</th>
-                                                <th scope="col">Student</th>
                                                 <th scope="col">Duration</th>
                                                 <th scope="col">Status</th>
                                                 <th scope="col"></th>
@@ -122,6 +122,9 @@
                                         @if($class->booking != null)
                                             <tr>
                                                 <td class="pt-3">
+                                                    {{ $class->booking->user->first_name }} {{ $class->booking->user->last_name }}
+                                                </td>
+                                                <td class="pt-3">
                                                 {{ $class->booking != null ? $class->booking->subject->name : '---' }}
                                                 </td>
                                                 <td class="pt-3">
@@ -130,9 +133,7 @@
                                                 <td class="pt-3">
                                                     {{$class->booking->class_time}} {{date("g:i a", strtotime("$class->booking->class_time UTC"))}}
                                                 </td>
-                                                <td class="pt-3">
-                                                    {{ $class->booking->user->first_name }} {{ $class->booking->user->last_name }}
-                                                </td>
+                                                
                                                 <td class="pt-3">
                                                     {{ $class->booking->duration }} Hour(s)
                                                 </td>
@@ -166,10 +167,10 @@
                                         <thead>
                                             <tr
                                                 style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
+                                                <th scope="col">Teacher</th>
                                                 <th scope="col">Subjects</th>
                                                 <th scope="col">Topic</th>
                                                 <th scope="col">Time</th>
-                                                <th scope="col">Student</th>
                                                 <th scope="col">Duration</th>
                                                 <th scope="col">Status</th>
                                                 <th scope="col"></th>

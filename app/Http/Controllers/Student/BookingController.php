@@ -52,7 +52,7 @@ class BookingController extends Controller
         $pending = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(1)->get();
         $delivered = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(5)->get();
         $booking = Booking::where('user_id',Auth::user()->id)->first();
-        
+        // return $pending;
         return view('student.pages.booking.index',compact('today','upcoming','pending','delivered','booking'));
     }
 

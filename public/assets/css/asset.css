@@ -956,3 +956,32 @@ footer a:hover {
 .irs--flat .irs-handle:hover>i:first-child {
     background-color: #000 !important;
 }
+
+.statusTag {
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    width: 100%;
+    text-align: center;
+    display: block;
+}
+
+.approve_status {
+    background: #C9EDDD;
+}
+
+.doc_not_sub_status {
+    background: #F5E9C6;
+}
+
+.pending_status {
+    background: #B9D6FF;
+}
+
+.disbaled_status {
+    background: #FBEBEA;
+}
+
+.reject_status {
+    background: #E9C6C6;
+}

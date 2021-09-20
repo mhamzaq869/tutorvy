@@ -1121,3 +1121,31 @@
     /* .modal {
         z-index: 999999999999999999999999;
     } */
+    
+    .statusTag {
+        font-size: 12px;
+        padding: 5px 10px;
+        border-radius: 4px;
+        text-align: center;
+        /* display: block; */
+    }
+    
+    .approve_status {
+        background: #C9EDDD;
+    }
+    
+    .doc_not_sub_status {
+        background: #F5E9C6;
+    }
+    
+    .pending_status {
+        background: #B9D6FF;
+    }
+    
+    .disbaled_status {
+        background: #FBEBEA;
+    }
+    
+    .reject_status {
+        background: #E9C6C6;
+    }

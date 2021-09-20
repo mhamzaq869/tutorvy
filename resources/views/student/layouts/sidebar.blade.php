@@ -124,7 +124,7 @@
                  </a>
              </li>
              <li class="btn  w-100">
-                <a href="./payment/payment.html">
+                <a href="{{route('student.wallet')}}">
                     <img src="{{asset('assets/images/ico/payment-ico.png')}}" class=" mr-2">
                     Wallet
                 </a>
