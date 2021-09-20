@@ -92,9 +92,19 @@
                                                             {{ $class->booking->duration }} Hour(s)
                                                         </td>
                                                         <td class="pt-4">
+                                                        @if($class->booking->status == 1)
                                                             <span class="bg-color-apporve3">
+                                                                Payment Pending
+                                                            </span>
+                                                        @elseif($class->booking->status == 2)
+                                                            <span class="bg-color-apporve1">
+                                                                Approved
+                                                            </span>
+                                                        @elseif($class->booking->status == 0)
+                                                            <span class="bg-color-apporve">
                                                                 Pending
                                                             </span>
+                                                        @endif
                                                         </td>
 
                                                         <td style="text-align: center;">

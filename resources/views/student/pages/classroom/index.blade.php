@@ -139,7 +139,20 @@
                                                 </td>
                                                 <td class="pt-3">
                                                     <span class="bg-color-apporve3">
-                                                        Pending
+                                                      
+                                                        @if($class->booking->status == 1)
+                                                            <span class="bg-color-apporve3">
+                                                                Payment Pending
+                                                            </span>
+                                                        @elseif($class->booking->status == 2)
+                                                            <span class="bg-color-apporve1">
+                                                                Approved
+                                                            </span>
+                                                        @elseif($class->booking->status == 0)
+                                                            <span class="bg-color-apporve">
+                                                                Pending
+                                                            </span>
+                                                        @endif
                                                     </span>
                                                 </td>
 
