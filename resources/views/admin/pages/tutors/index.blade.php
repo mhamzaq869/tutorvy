@@ -126,9 +126,7 @@
                                         @if($request->status == 2 && $request->assessment_id != '' && $request->assessment_id != null && $request->assessment_status == 0)
                                         <tr>
                                             <td class="pt-4">
-                                                <!-- -->
                                                 {{ $request->first_name }} {{ $request->last_name }}
-                                                <!-- <span data-toggle="tooltip" title="Harram Laraib Ali">Har***</span> -->
                                             </td>
                                             <td class="pt-4">
                                                 <span data-toggle="tooltip"
@@ -136,21 +134,7 @@
                                             </td>
                                             <td class="pt-4">{{$request->subject_name}}</td>
                                             <td class="pt-4">{{$request->city != NULL ? $request->city.', ' : '---'}}{{$request->country != NULL ? $request->country : '---'}}</td>
-                                           
-                                            <!-- @if($request->experty_level == 1)
-                                                 <td class="pt-4"> Pre Elementary School</td>
-                                            @elseif($request->experty_level == 2)
-                                                 <td class="pt-4">Elementary School</td>
-                                            @elseif($request->experty_level == 3)
-                                                 <td class="pt-4">Secondary School</td>
-                                            @elseif($request->experty_level == 4)
-                                                 <td class="pt-4">High School</td>
-                                            @elseif($request->experty_level == 5)
-                                                 <td class="pt-4">Post Secondary</td>
-                                            @else
-                                                 <td class="pt-4">---</td>
-                                            @endif -->
-                                            
+                                                                                       
                                             <td class="pt-4">---</td>
                                             <td class="pt-4">{{$request->hourly_rate}}</td>
                                             <td class="pt-4"> 
@@ -177,9 +161,7 @@
                                         @elseif($request->status == 0)
                                         <tr>
                                             <td class="pt-4">
-                                                <!-- -->
                                                 {{ $request->first_name }} {{ $request->last_name }}
-                                                <!-- <span data-toggle="tooltip" title="Harram Laraib Ali">Har***</span> -->
                                             </td>
                                             <td class="pt-4">
                                                 <span data-toggle="tooltip"
@@ -215,9 +197,7 @@
                                         @elseif($request->status == 1)
                                         <tr>
                                             <td class="pt-4">
-                                                <!-- -->
                                                 {{ $request->first_name }} {{ $request->last_name }}
-                                                <!-- <span data-toggle="tooltip" title="Harram Laraib Ali">Har***</span> -->
                                             </td>
                                             <td class="pt-4">
                                                 <span data-toggle="tooltip"
@@ -405,9 +385,7 @@
                                             
                                     <tr>
                                         <td class="pt-4">
-                                            <!-- -->
                                             {{ $tutor->first_name }} {{ $tutor->last_name }}
-                                            <!-- <span data-toggle="tooltip" title="Harram Laraib Ali">Har***</span> -->
                                         </td>
                                         <td class="pt-4">
                                             <span data-toggle="tooltip"

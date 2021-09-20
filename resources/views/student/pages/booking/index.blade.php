@@ -361,6 +361,7 @@
                     </div>
             </div>
         </div>
+
         <!--Pay Now Class Modal -->
     <div class="modal " id="payModel" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -382,6 +383,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
+                                @if($booking)
                                 <div class="row">
                                     <div class="col-md-12">
                                         <h3>Class Details</h3>
@@ -390,19 +392,42 @@
                                         <p>Schedule Date: </p> 
                                     </div>
                                     <div class="col-md-6 col-6 col-sm-6 text-right"> 
-                                        <p><strong> {{$booking->class_date}} </strong></p> 
+                                        @if($booking)
+                                            <p><strong> {{$booking->class_date != null ? $booking->class_date : '-'}} </strong></p> 
+                                        @else
+                                            <span> - </span>
+                                        @endif
+                                        
                                     </div>
                                     <div class="col-md-6 col-6 col-sm-6">
                                         <p>Schedule Time: </p> 
                                     </div>
                                     <div class="col-md-6 col-6 col-sm-6 text-right"> 
-                                        <p><strong> {{date("g:i a", strtotime("$booking->class_time UTC"))}} </strong></p> 
+                                        <p>
+                                            <strong> 
+                                                @if($booking)
+                                                    @if($booking->class_time  != null)
+                                                        <span>{{date("g:i a", strtotime("$booking->class_time UTC"))}}  </span>
+                                                    @else
+                                                        <span> - </span>
+                                                    @endif
+                                                @else
+                                                    <span> - </span>
+                                                @endif
+
+                                            </strong>
+                                        </p> 
                                     </div>
                                     <div class="col-md-6 col-6 col-sm-6">
                                         <p>Schedule Duration: </p> 
                                     </div>
                                     <div class="col-md-6 col-6 col-sm-6 text-right"> 
-                                        <p><strong> {{$booking->duration}} Hour(s)</strong></p> 
+                                        @if($booking) 
+                                        <p><strong> {{$booking->duration != null ? $booking->duration : '-'}} Hour(s)</strong></p> 
+                                        @else
+                                            <span> - </span>
+                                        @endif
+                                        
                                     </div>
                                 </div>
                                 <div class="row">
@@ -493,6 +518,7 @@
                                         >Pay Now</a>
                                     </div>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>
