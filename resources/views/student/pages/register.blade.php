@@ -484,15 +484,9 @@
                                                         
                                                     </div> -->
                                                 </div>
-
-                                                <div class="container form-group mt-3">
-                                                    <div class="row">
-                                                        <!-- <div class="col-md-12">
-                                                            <textarea class="form-control" name="bio"
-                                                            id="exampleFormControlTextarea1" rows="5"
-                                                            placeholder="Write about yourself...">{{$user->bio ?? ''}}</textarea>
-                                                        </div> -->
-                                                        <div class="col-md-12 text-right ">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 text-right ">
                                                             <!-- <input type="submit"
                                                                 class="btn btn-registration btn-lg cencel-btn nextBtn pull-right ml-5"
                                                                 value=" Save for Later"> -->
@@ -546,11 +540,6 @@
                                                                     </div>
                                                                 </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            
-                                            </div>
-                                        </div>
                                     </div>
                                     <!-- <div role="tabpanel" class="tab-pane border-right" id="step-2"
                                         style="padding-bottom: 100px;background-color: white;">
