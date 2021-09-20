@@ -42,7 +42,7 @@
                     <div class="card-body">
                         <img src="../assets/images/ico/dollars.png" style="width: 45px;" >
                         <div class="">
-                            <p class="heading-fifth mt-3" style="line-height: 0;">Total Earning</p>
+                            <p class="heading-fifth mt-3" style="line-height: 0;">Total Spend</p>
                             <p class="heading-first mb-0"> 2550$</p>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                         <table  id="tblCustomers" style="width: 100%;">
                             <thead>
                                 <tr>
-                                    <th scope="col">Student</th>
+                                    <th scope="col">Teacher</th>
                                     <th scope="col">Subject</th>
                                     <th scope="col">Topic</th>
                                     <th scope="col">Time</th>
@@ -102,22 +102,32 @@
                            <tbody>
 
                            </tbody>
+                           @foreach($payment as $paid)
                             <tr>
-                                <td class="pt-4">Harram </td>
-                                <td class="pt-4">Chemistry</td>
-                                <td class="pt-4">Atomic </td>
-                                <td class="pt-4">5 PM - 07 Feb 2021</td>
-                                <td class="pt-4">00:30:00</td>
+                                <td class="pt-4">{{$paid->tutor->first_name}} {{$paid->tutor->last_name}} </td>
+                                <td class="pt-4">{{$paid->subject->name}}</td>
+                                @if($paid->topic == null)
+                                <td class="pt-4"> --- </td>
+                                @else
+                                <td class="pt-4">{{$paid->topic}}</td>
+                                @endif
+                                <td class="pt-4">{{$paid->class_time}} - {{$paid->class_date}}</td>
+                                <td class="pt-4">{{$paid->duration}} hour</td>
                                 <td class="pt-4 ">
-                                    <span class="statusTag pending_status">Pending</span>
+                                    @if($paid->status == "1")
+                                    <span class="statusTag pending_status">Payment Pending</span>
+                                    @else
+                                    <span class="statusTag approve_status">Paid</span>
+                                    @endif
                                 </td>
                                 <td class="pt-4">
-                                    15$
+                                    ${{$paid->price}}
                                 </td>
                                 <td class="pt-4 pr-3"><a href="../payment/paymentdetail.html"> <button
                                             class="schedule-btn w-100 ">
                                             View details</button></a></td>
                             </tr>
+                            @endforeach
                         </table>
                     </div>
                 </div>
