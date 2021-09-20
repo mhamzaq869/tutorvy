@@ -16,7 +16,7 @@ use URL;
 use Session;
 use Redirect;
 use Input;
-
+use App\Models\subjectPlans;
 use PayPal\Rest\ApiContext;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Api\Amount;
@@ -46,21 +46,22 @@ class BookingController extends Controller
     
     public function index()
     {
+        $all = Booking::with(['tutor'])->where('user_id',Auth::user()->id)->get();
         
-        $today = Booking::with(['tutor'])->where('user_id',Auth::user()->id)->today()->status(0)->get();
-        $upcoming = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(2)->get();
-        $pending = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(1)->get();
+        $confirmed = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(2)->get();
+        $pending = Booking::with('tutor')->where('user_id',Auth::user()->id)->whereIn('status',[0,1])->get();
+
         $delivered = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(5)->get();
         $booking = Booking::where('user_id',Auth::user()->id)->first();
         // return $pending;
-        return view('student.pages.booking.index',compact('today','upcoming','pending','delivered','booking'));
+        return view('student.pages.booking.index',compact('confirmed','pending','delivered','booking','all'));
     }
 
     public function bookNow($t_id){
 
-        $subjects = Teach::where('user_id',$t_id)->get();
+        $subjects = Teach::where('user_id',$t_id)->with('subject_plans')->get();
         $user = User::with(['education','professional','teach'])->where('id',$t_id)->first();
-         return view('student.pages.booking.book_now',compact('t_id','subjects','user'));
+        return view('student.pages.booking.book_now',compact('t_id','subjects','user'));
     }
     public function bookingDetail($id){
 
@@ -87,10 +88,9 @@ class BookingController extends Controller
         }
 
         $tutor = User::where('id',$request->tutor_id)->first();
-        $price = $tutor->hourly_rate * $request->duration;
+        $price = $request->subject_plan * $request->duration;
 
         Booking::create([
-
             'user_id' => Auth::user()->id,
             'booked_tutor' => $request->tutor_id,
             'subject_id' =>$request->subject,
@@ -232,6 +232,16 @@ class BookingController extends Controller
         
         return view('student.pages.history.index',compact('tickets'));
     }
- 
+    
+
+    public function tutorPlans(Request $request) {
+        $plans = subjectPlans::where("user_id", $request->user_id)->where("subject_id",$request->subject_id)->get();
+
+        return response()->json([
+            "tutor_plans" => $plans,
+            "status_code" => 200,
+            "success" => true,
+        ]);
+    }
 }
 

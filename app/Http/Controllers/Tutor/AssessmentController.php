@@ -41,19 +41,19 @@ class AssessmentController extends Controller
         // );
 
         if($request->preElementary == "on") {
-            array_push($plans , array("experty_level" => 1 , "rate" => $request->preElementary_rate));
+            array_push($plans , array("experty_level" => 1 , "rate" => $request->preElementary_rate, "name" => "Pre-Elementary School"));
         }
         if($request->elementary == "on") {
-            array_push($plans , array("experty_level" => 2 , "rate" => $request->elementary_rate));
+            array_push($plans , array("experty_level" => 2 , "rate" => $request->elementary_rate, "name" => "Elementary School" ));
         }
         if($request->secondary == "on") {
-            array_push($plans , array("experty_level" => 3 , "rate" => $request->secondary_rate));
+            array_push($plans , array("experty_level" => 3 , "rate" => $request->secondary_rate, "name" => "Secondary School" ));
         }
         if($request->highSchool == "on") {
-            array_push($plans , array("experty_level" => 4 , "rate" => $request->highSchool_rate));
+            array_push($plans , array("experty_level" => 4 , "rate" => $request->highSchool_rate, "name" => "High School" ));
         }
         if($request->postSec == "on") {
-            array_push($plans , array("experty_level" => 5 , "rate" => $request->postSec_rate));
+            array_push($plans , array("experty_level" => 5 , "rate" => $request->postSec_rate, "name" => "Post Secondary School" ));
         }
 
         for($i = 0; $i < count($plans); $i++) {
@@ -62,6 +62,7 @@ class AssessmentController extends Controller
                 "subject_id" => $request->subject,
                 "user_id" => Auth::user()->id,
                 "experty_level" => $plans[$i]['experty_level'],
+                "experty_title" => $plans[$i]['name'],
                 "rate" => $plans[$i]['rate'],
             ]);
 

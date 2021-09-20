@@ -18,17 +18,23 @@
                         <div class=" col-md-6">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <select name="subject" class="form-select form-select-lg w-100"
-                                        aria-label=".form-select-lg example" >
+                                    <select name="subject" id="tutor_subjects" class="form-select form-select-lg w-100"
+                                        aria-label=".form-select-lg example">
                                         <option value="Select Subject">Select Subject</option>
                                         @foreach($subjects as $subject)
-                                        <option value="{{$subject->subject_id}}">{{$subject->sub_name}}</option>
+                                        <option value="{{$subject->subject_id}}" data="{{$subject->user_id}}">{{$subject->sub_name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="col-md-12 mt-3">
                                     <input type="text" class="form-control " name="topic"
                                     placeholder="Type your Topic" value="">
+                                </div>
+                                <div class="col-md-12 mt-3">
+                                    <select name="subject_plan" id="subject_plans" class="form-select form-select-lg w-100"
+                                        aria-label=".form-select-lg example" >
+                                        <option value="Select Subject">Select Plans</option>
+                                    </select>
                                 </div>
                             </div>
                             
@@ -41,9 +47,9 @@
                                             <div class="row">
                                                 <div class="col-md-2 col-6">
                                                     @if($user->picture == "" || $user->picture == null)
-                                                    <img src="{{asset('assets/images/logo/boy.jpg')}}" alt="" class="round-border">
+                                                        <img src="{{asset('assets/images/logo/boy.jpg')}}" alt="" class="round-border">
                                                     @else
-                                                    <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
+                                                        <img src="{{asset($user->picture)}}"  alt="" class="round-border">
                                                     @endif
                                                 </div>
                                                 <div class="col-md-5 col-6">
