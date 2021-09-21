@@ -98,6 +98,7 @@
 
     <script>
         var bookings = {!! json_encode($bookings) !!}
+        
         var today = new Date;
 
         for(var i= 0; i < bookings.length; i++) {
