@@ -19,6 +19,8 @@ class AssessmentController extends Controller
     public function store(Request $request)
     {
 
+        return $request->all();
+
         Assessment::create([
             'user_id' =>  Auth::user()->id,
             'subject_id' => $request->subject,
@@ -32,13 +34,6 @@ class AssessmentController extends Controller
 
         $plans = [];
 
-        // $experty_level = array( 
-        //     "preElementary_rate" => 1,
-        //     "elementary" => 2,
-        //     "secondary" => 3,
-        //     "highSchool" => 4,
-        //     "postSec" => 5,
-        // );
 
         if($request->preElementary == "on") {
             array_push($plans , array("experty_level" => 1 , "rate" => $request->preElementary_rate, "name" => "Pre-Elementary School"));
@@ -68,6 +63,9 @@ class AssessmentController extends Controller
 
         }
 
-        return redirect()->route('tutor.dashboard');
+        return response()->json([
+            "status_code" => 200,
+            "success" => true,
+        ]);
     }
 }
