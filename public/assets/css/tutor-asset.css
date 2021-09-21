@@ -705,12 +705,6 @@ a[data-toggle="collapse"] {
 
 /* profile */
 
-.profile-img {
-    width: 45px;
-    height: 45px;
-    border-radius: 100%;
-}
-
 .profile-name {
     border-left: 1px solid rgb(224, 220, 220);
     font-family: 'Poppins', sans-serif;
@@ -1249,10 +1243,6 @@ body {
 
 .sort-text select:focus {
     outline: none;
-}
-
-.profile-img {
-    border-radius: 30px;
 }
 
 .container-bg {
@@ -2041,6 +2031,8 @@ a[data-toggle="collapse"] {
     width: 45px;
     height: 45px;
     cursor: pointer;
+    border: 2px solid #1173FF;
+    border-radius: 50%;
 }
 
 .profile-name {
@@ -2699,4 +2691,9 @@ select#paymentMethod option[value="others"] {
 
 .w-45 {
     width: 45%;
+}
+
+.stats a {
+    text-decoration: none;
+    color: inherit;
 }
