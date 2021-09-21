@@ -39,9 +39,13 @@
                                     <div class="row">
                                         <div class="col-md-9">
                                             <div class="row image1 mt-3 ml-1">
-                                            
-                                                <p> <img src= "{{ asset('assets/images/logo/boy.png') }}" alt="boy"
-                                                        style="width: 35px;border-radius: 30px;">
+                                                
+                                                <p> 
+                                                @if ($booking->user->picture)
+                                                <img src="{{asset($booking->user->picture)}}" alt="profile-image"  class="w-50 profile-image" >
+                                                @else
+                                                <img src="{{asset ('assets/images/ico/Square-white.jpg')}}"  alt="profile-image" class="w-50 profile-image" >
+                                                @endif
                                                 <p style="color: #00132D; font-family: Poppins;font-size: 14px;font-weight: 500;"
                                                     class="ml-2 mt-2"> {{$booking->user->full_name}} </p>
                                                 <p
