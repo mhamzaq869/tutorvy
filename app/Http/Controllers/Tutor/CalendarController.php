@@ -19,10 +19,8 @@ class CalendarController extends Controller
 
         $bookings = [];
 
-        // $classess = Classroom::with('booking')->get()->toArray();
-        $classess = DB::table("classroom")
-        ->leftjoin("bookings","classroom.booking_id","=","bookings.id")->where('user_id',Auth::user()->id)->get();
-        
+        $classess = Booking::where('booked_tutor',Auth::user()->id)->get();
+
         foreach($classess as $class) {
             array_push($bookings , 
                 array( 
@@ -31,6 +29,8 @@ class CalendarController extends Controller
                     "backgroundColor" => $class->class_time .','.$class->class_date.','.$class->duration.','.$class->price,
                 ));
         }
+
+        // dd($bookings);
         return view('tutor.pages.calendar.index', compact('bookings'));
     }
     public function calendarStudent(){

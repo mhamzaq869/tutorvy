@@ -15,12 +15,14 @@ const firebaseApp = initializeApp({
 
 var key = 'BLVqHTURHbHlM3aUGrU5qhW6GwwWsES9n_4An4W9aRTeW67sJPOg6SGRmZ7EvXVIXQMVqRLwHazcpIRb9Qg5x-Y';
 
-const messaging = getMessaging(firebaseApp);
-
-getToken(messaging, { vapidKey: 'BLVqHTURHbHlM3aUGrU5qhW6GwwWsES9n_4An4W9aRTeW67sJPOg6SGRmZ7EvXVIXQMVqRLwHazcpIRb9Qg5x-Y' }).then((currentToken) => {
+// Get registration token. Initially this makes a network call, once retrieved
+// subsequent calls to getToken will return from cache.
+const messaging = getMessaging();
+getToken(messaging, { vapidKey: key }).then((currentToken) => {
   if (currentToken) {
     // Send the token to your server and update the UI if necessary
     // ...
+    console.log(currentToken , "currentToken");
   } else {
     // Show permission request UI
     console.log('No registration token available. Request permission to generate one.');
