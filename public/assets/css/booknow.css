@@ -137,7 +137,7 @@
 }
 
 .h-666 {
-    height: 666px;
+    max-height: 666px;
 }
 
 .fav {

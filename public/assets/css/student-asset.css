@@ -1149,3 +1149,37 @@
     .reject_status {
         background: #E9C6C6;
     }
+    
+    .db_img {
+        width: 85px;
+        height: 85px;
+        border-radius: 100% !important;
+        border: 2px solid #1273FE;
+    }
+    
+    .text-mute {
+        color: grey;
+        font-size: 12px;
+        font-weight: 500;
+    }
+    
+    .progress {
+        height: 12px;
+        font-size: 10px;
+    }
+    
+    .bg-tutorvy {
+        background: #1273FE;
+    }
+    
+    .bg-ad {
+        background-repeat: no-repeat;
+        background-image: url("../images/ico/ad_desc.jpg");
+        width: 100% !important;
+        min-height: 244px !important;
+        background-size: contain;
+    }
+    
+    .w-45 {
+        width: 45%;
+    }

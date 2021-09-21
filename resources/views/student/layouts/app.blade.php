@@ -27,7 +27,6 @@
 <!--Plugin CSS file with desired skin-->
 <link rel="stylesheet" href="{{ asset('assets/css/ion.rangeSlider.css')}}"/>
 <link rel="stylesheet" href="{{ asset('assets/css/emojionearea.css')}}">
-
     
     <!-- Styles -->
     @include('student.layouts.css')
@@ -105,7 +104,9 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.2.7/emojionearea.min.js"></script>
-    
+
+
+    </script>
         <!--Plugin JavaScript file-->
         <script src="{{ asset('assets/js/ion.rangeSlider.js')}}"></script>
             

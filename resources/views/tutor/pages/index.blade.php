@@ -68,7 +68,7 @@
                                     <div class="container-fluid card 1">
                                         <div class="text-home">
                                             <p class="number-booking">
-                                                16
+                                                {{$delivered_count}}
                                             </p>
                                             <p class="class-booking mt-4">
                                                 Delivered classes
@@ -84,7 +84,7 @@
                                     <div class="container-fluid card 1">
                                         <div class="text-home">
                                             <p class="number-booking">
-                                                09
+                                                {{$upcoming_count}}
                                             </p>
                                             <p class="class-booking mt-4">
                                                 Upcomming class
@@ -100,7 +100,7 @@
                                     <div class="container-fluid card 1">
                                         <div class="text-home">
                                             <p class="number-booking">
-                                                {{round(Auth::user()->booking->count(),2)}}
+                                                {{$pending_count}}
                                             </p>
                                             <p class="class-booking mt-4">
                                                 Pending Bookings
@@ -116,7 +116,7 @@
                                     <div class="container-fluid card 1">
                                         <div class="text-home">
                                             <p class="number-booking">
-                                               {{round(Auth::user()->teach->count(),2)}}
+                                               {{$subject_count}}
                                             </p>
                                             <p class="class-booking mt-4">
                                                 Total Subjects
@@ -169,145 +169,31 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-
-                                                    <tr>
-                                                        <td class="pt-4">
-                                                            Chemistry
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            Atomic
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            5pm -07
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            Harram
-                                                        </td>
-                                                        <td class="detail-table pt-4 pl-5">
-                                                            View details
-                                                        </td>
-                                                        <td>
-                                                            <button type="button" class="schedule-btn"
-                                                                style="float: right;width: 100px;">
-                                                                Accept
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="pt-4">
-                                                            Chemistry
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            Atomic
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            5pm -07
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            Harram
-                                                        </td>
-                                                        <td class="detail-table pt-4 pl-5">
-                                                            View details
-                                                        </td>
-                                                        <td>
-                                                            <button type="button" class="schedule-btn"
-                                                                style="float: right;width: 100px;">
-                                                                Accept
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="pt-4">
-                                                            Chemistry
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            Atomic
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            5pm -07
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            Harram
-                                                        </td>
-                                                        <td class="detail-table pt-4 pl-5">
-                                                            View details
-                                                        </td>
-                                                        <td>
-                                                            <button type="button" class="schedule-btn"
-                                                                style="float: right;width: 100px;">
-                                                                Accept
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="pt-4">
-                                                            Chemistry
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            Atomic
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            5pm -07
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            Harram
-                                                        </td>
-                                                        <td class="detail-table pt-4 pl-5">
-                                                            View details
-                                                        </td>
-                                                        <td>
-                                                            <button type="button" class="schedule-btn"
-                                                                style="float: right;width: 100px;">
-                                                                Accept
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="pt-4">
-                                                            Chemistry
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            Atomic
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            5pm -07
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            Harram
-                                                        </td>
-                                                        <td class="detail-table pt-4 pl-5">
-                                                            View details
-                                                        </td>
-                                                        <td>
-                                                            <button type="button" class="schedule-btn"
-                                                                style="float: right;width: 100px;">
-                                                                Accept
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="pt-4">
-                                                            Chemistry
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            Atomic
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            5pm -07
-                                                        </td>
-                                                        <td class="pt-4">
-                                                            Harram
-                                                        </td>
-                                                        <td class="detail-table pt-4 pl-5">
-                                                            View details
-                                                        </td>
-                                                        <td>
-                                                            <button type="button" class="schedule-btn"
-                                                                style="float: right;width: 100px;">
-                                                                Accept
-                                                            </button>
-                                                        </td>
-                                                    </tr>
+                                                    @foreach($new_bookings as $booking)
+                                                        <tr>
+                                                            <td class="pt-4">
+                                                                {{$booking->subject->name}}
+                                                            </td>
+                                                            <td class="pt-4">
+                                                                {{$booking->topic}}
+                                                            </td>
+                                                            <td class="pt-4">
+                                                                {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
+                                                            </td>
+                                                            <td class="pt-4">
+                                                                {{$booking->user->fullname}}
+                                                            </td>
+                                                            <td class="detail-table pt-4 pl-5">
+                                                                View details
+                                                            </td>
+                                                            <td>
+                                                                <button type="button" class="schedule-btn"
+                                                                    style="float: right;width: 100px;">
+                                                                    Accept
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
@@ -335,52 +221,31 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="row mt-2 bg-bookings">
-                                        <div class="col-md-3 text-center">
-                                            <img src="{{asset('assets/images/ico/botal-ico.png') }}" alt="botal-ico"
-                                                style="margin-top: 32px;">
-                                        </div>
-                                        <div class="col-md-9">
-                                            <p class="mt-3 mb-2 periodic-cls">
-                                                <a class="chemistry-tex1">
-                                                    Chemistry class:
-                                                </a>
-                                                Periodic table
-                                            </p>
-                                            <p class="chemistry-tex2">
-                                                It is a long established fact that a reader will be distracted by.
-                                            </p>
-                                            <div style="display: inline-flex;">
-                                                <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class="watch-icon">
-                                                <p class="time-chemistry">
-                                                    5 PM - 07 Feburary 2021
+                                    @foreach($today_bookings as $booking)
+                                        <div class="row mt-2 bg-bookings">
+                                            <div class="col-md-3 text-center">
+                                                <img src="{{asset('assets/images/ico/botal-ico.png') }}" alt="botal-ico"
+                                                    style="margin-top: 32px;">
+                                            </div>
+                                            <div class="col-md-9">
+                                                <p class="mt-3 mb-2 periodic-cls">
+                                                    <a class="chemistry-tex1">
+                                                    {{$booking->subject->name}} class:
+                                                    </a>
+                                                    {{$booking->topic}}
                                                 </p>
+                                                <p class="chemistry-tex2">
+                                                {{ \Illuminate\Support\Str::limit($booking->brief, $limit = 50, $end = '...') }}
+                                                </p>
+                                                <div style="display: inline-flex;">
+                                                    <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class="watch-icon">
+                                                    <p class="time-chemistry">
+                                                    {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row  mt-2 bg-bookings">
-                                        <div class="col-md-3 text-center">
-                                            <img src="{{asset('assets/images/ico/botal-ico.png') }}" alt="botal-ico"
-                                                style="margin-top: 32px;">
-                                        </div>
-                                        <div class="col-md-9">
-                                            <p class="mt-3 mb-2 periodic-cls">
-                                                <a class="chemistry-tex1">
-                                                    Chemistry class:
-                                                </a>
-                                                Periodic table
-                                            </p>
-                                            <p class="chemistry-tex2">
-                                                It is a long established fact that a reader will be distracted by.
-                                            </p>
-                                            <div style="display: inline-flex;">
-                                                <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class="watch-icon">
-                                                <p class="time-chemistry">
-                                                    5 PM - 07 Feburary 2021
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                     <div class="row mt-2">
                                         <div class="col-md-7">
                                                 <p class="heading-third">
@@ -393,52 +258,33 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="row mt-2 bg-bookings">
-                                        <div class="col-md-3 text-center">
-                                            <img src="{{asset('assets/images/ico/botal-ico.png') }}" alt="botal-ico"
-                                                style="margin-top: 32px;">
-                                        </div>
-                                        <div class="col-md-9">
-                                            <p class="mt-3 mb-2 periodic-cls">
-                                                <a class="chemistry-tex1">
-                                                    Chemistry class:
-                                                </a>
-                                                Periodic table
-                                            </p>
-                                            <p class="chemistry-tex2">
-                                                It is a long established fact that a reader will be distracted by.
-                                            </p>
-                                            <div style="display: inline-flex;">
-                                                <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class="watch-icon">
-                                                <p class="time-chemistry">
-                                                    5 PM - 07 Feburary 2021
+                                    @foreach($upcoming_bookings as $booking)
+
+                                        <div class="row mt-2 bg-bookings">
+                                            <div class="col-md-3 text-center">
+                                                <img src="{{asset('assets/images/ico/botal-ico.png') }}" alt="botal-ico"
+                                                    style="margin-top: 32px;">
+                                            </div>
+                                            <div class="col-md-9">
+                                                <p class="mt-3 mb-2 periodic-cls">
+                                                    <a class="chemistry-tex1">
+                                                    {{$booking->subject->name}} class:
+                                                    </a>
+                                                    {{$booking->topic}}
                                                 </p>
+                                                <p class="chemistry-tex2">
+                                                {{ \Illuminate\Support\Str::limit($booking->brief, $limit = 50, $end = '...') }}
+                                                </p>
+                                                <div style="display: inline-flex;">
+                                                    <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class="watch-icon">
+                                                    <p class="time-chemistry">
+                                                    {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row mt-2 bg-bookings">
-                                        <div class="col-md-3 text-center">
-                                            <img src="{{asset('assets/images/ico/botal-ico.png') }}" alt="botal-ico"
-                                                style="margin-top: 32px;">
-                                        </div>
-                                        <div class="col-md-9">
-                                            <p class="mt-3 mb-2 periodic-cls">
-                                                <a class="chemistry-tex1">
-                                                    Chemistry class:
-                                                </a>
-                                                Periodic table
-                                            </p>
-                                            <p class="chemistry-tex2">
-                                                It is a long established fact that a reader will be distracted by.
-                                            </p>
-                                            <div style="display: inline-flex;">
-                                                <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class="watch-icon">
-                                                <p class="time-chemistry">
-                                                    5 PM - 07 Feburary 2021
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
+                                  
                                 </div>
                             </div>
                         </div>

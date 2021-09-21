@@ -123,6 +123,8 @@ class LoginController extends Controller
                 return redirect()->route('tutor.register')->with('error','Unable to login with this email.');
             }else if($c_id == 3) {
                 return redirect()->route('student.register')->with('error','Unable to login with this email.');
+            }else if($c_id == 0) {
+                return redirect()->route('login')->with('error','Google account is not attached with any account.');
             }else{
                 return redirect()->to('/');
             }
@@ -152,7 +154,9 @@ class LoginController extends Controller
         
         try{
             $user = User::where('email', $data['email'])->where('provider',$data['provider'])->first();
-            
+            if(!$user && $r == 0){
+                return false;
+            }
             if(!$user){
                $user = User::create([
                     'first_name' => $data['given_name'],
