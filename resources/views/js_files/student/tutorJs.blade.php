@@ -9,10 +9,11 @@ $('#subjects-list').on("change", function(e) {
     let subject = $("#subjects-list").val();
     let lang = $("#languages-list").val();
     let rating = $("input[name='rating_filter']:checked").val();
+    let gender = $("input[name='gender']:checked").val();
     let price = $("#range").val();
     let location = $("#location").val();
 
-    search_tutors(price,subject,lang,rating,location);
+    search_tutors(price,subject,lang,rating,location ,gender);
     
 });
 
@@ -23,8 +24,9 @@ $('#languages-list').on("change", function(e) {
     let rating = $("input[name='rating_filter']:checked").val();
     let price = $("#range").val();
     let location = $("#location").val();
+    let gender = $("input[name='gender']:checked").val();
 
-    search_tutors(price,subject,lang,rating,location);
+    search_tutors(price,subject,lang,rating,location ,gender);
 
 });
 
@@ -34,8 +36,9 @@ $('input[type=radio][name=rating_filter]').change(function() {
     let rating = $("input[name='rating_filter']:checked").val();
     let price = $("#range").val();
     let location = $("#location").val();
+    let gender = $("input[name='gender']:checked").val();
 
-    search_tutors(price,subject,lang,rating,location);
+    search_tutors(price,subject,lang,rating,location ,gender);
     
 });
 
@@ -46,8 +49,9 @@ $("#range").change(function() {
     let lang = $("#languages-list").val();
     let rating = $("input[name='rating_filter']:checked").val();
     let location = $("#location").val();
+    let gender = $("input[name='gender']:checked").val();
 
-    search_tutors(price,subject,lang,rating,location);
+    search_tutors(price,subject,lang,rating,location ,gender);
 
 });
 
@@ -58,9 +62,10 @@ $("#location").change(function() {
     let lang = $("#languages-list").val();
     let rating = $("input[name='rating_filter']:checked").val();
     let location = $("#location").val();
+    let gender = $("input[name='gender']:checked").val();
 
 
-    search_tutors(price,subject,lang,rating,location);
+    search_tutors(price,subject,lang,rating,location ,gender);
 
 });
 
@@ -69,14 +74,12 @@ $('input[type=radio][name=gender]').change(function() {
     let lang = $("#languages-list").val();
     let price = $("#range").val();
     let location = $("#location").val();
-
-    var value = $(this).val();
-
-    // search_tutors(price,subject,lang,rating,location);
+    var gender = $(this).val();
+    search_tutors(price,subject,lang,rating,location ,gender);
     
 });
 
-function search_tutors(price,subject,lang,rating,location){
+function search_tutors(price,subject,lang,rating,location, gender){
 
     $.ajax({
         url: "{{ route('student.tutor.filter') }}",
@@ -86,7 +89,8 @@ function search_tutors(price,subject,lang,rating,location){
             language: lang,
             rating: rating,
             price : price,
-            location:location
+            location:location,
+            gender: gender,
         },
         success: function(response) {
             console.log(response);
