@@ -501,7 +501,7 @@
                                                     <i class="fa fa-star text-yellow" id="favorite_start_{{$tutor->id}}"></i>
                                                 </a>
                                             @else
-                                                <a type="button" onclick="favourite_tutor({{$tutor->id}}`,'fav')" class="fav" title="Favourite">
+                                                <a type="button" onclick="favourite_tutor({{$tutor->id}},'fav')" class="fav" title="Favourite">
                                                     <i class="fa fa-star" id="favorite_start_{{$tutor->id}}"></i>
                                                 </a>
                                             @endif

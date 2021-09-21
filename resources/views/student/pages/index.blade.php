@@ -2,7 +2,6 @@
 
 @section('content')
 <style>
-    
 </style>
   <!-- top Fixed navbar End -->
   <div class="content-wrapper " style="overflow: hidden;">
@@ -16,9 +15,9 @@
             </div>
 
             <div class="col-md-8">
-                <div class="row">
+                <div class="row infoCard">
                     <div class="col-md-12 mb-3 ">
-                        <div class=" card mt-0 bg-toast infoCard">
+                        <div class=" card mt-0 bg-toast ">
                             <div class="card-body row">
                                 <div class="col-md-1 text-center">
                                     <i class="fa fa-info" aria-hidden="true"></i>
@@ -172,293 +171,353 @@
                                 </div>
                             </div> -->
 
-                            <div class="col-md-12 scrollable h-666">
-                                <div class="card mb-3">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-9">
-                                                <div class="row">
-                                                    <div class="col-md-9">
-                                                        <div class="row">
-                                                            <div class="col-md-2 col-3">
-                                                                <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
+                            
+                                @if($favorite_tutors != "[]")
+                                    <div class="col-md-12 scrollable h-666" id="Fav_tutor">
+                                        @foreach($favorite_tutors as $tutor)
+                                            <div class="card  mt-0">
+                                                <div class="card-body">
+                                                    
+                                                    <div class="row">
+                                                        <div class="col-md-9">
+                                                            <div class="row">
+                                                                <div class="col-md-9">
+                                                                    <div class="row">
+                                                                        
+                                                                        <div class="col-md-2 col-6">
+                                                                            <a href="{{route('student.tutor.show',[$tutor->id])}}">
+                                                                                @if($tutor->picture != null)
+                                                                                    <img src="{{asset($tutor->picture)}}" alt="" class="round-border">
+                                                                                @else
+                                                                                    <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
+                                                                                @endif                                                        
+                                                                            </a>
+                                                                        
+                                                                        </div>
+                                                                        <div class="col-md-5 col-6">
+                                                                            <h3>{{$tutor->first_name}} {{$tutor->last_name}}</h3>
+                                                                            <p class="mb-0"><img src="../assets/images/ico/red-icon.png" alt="" class="">  {{$tutor->designation ?? '---'}}</p>
+                                                                            <p class="mb-0"><img src="../assets/images/ico/location-pro.png" alt="" class="">{{ $tutor->city != NULL ? $tutor->city.' , ' : '---' }} {{ $tutor->country != NULL ? $tutor->country: '---' }}</p>
+                                                                        </div>
+                                                                        <div class="col-md-4 col-12">
+                                                                            <p>
+                                                                                @if($tutor->rating == 1)
+                                                                                <i class="fa fa-star text-yellow"></i>
+                                                                                <i class="fa fa-star "></i>
+                                                                                <i class="fa fa-star "></i>
+                                                                                <i class="fa fa-star "></i>
+                                                                                <i class="fa fa-star "></i> 1.0
+                                                                                @elseif($tutor->rating == 2)
+                                                                                <i class="fa fa-star text-yellow"></i>
+                                                                                <i class="fa fa-star text-yellow"></i>
+                                                                                <i class="fa fa-star "></i>
+                                                                                <i class="fa fa-star "></i>
+                                                                                <i class="fa fa-star "></i>  2.0
+                                                                                @elseif($tutor->rating == 3)
+                                                                                <i class="fa fa-star text-yellow"></i>
+                                                                                <i class="fa fa-star text-yellow"></i>
+                                                                                <i class="fa fa-star text-yellow"></i>
+                                                                                <i class="fa fa-star "></i>
+                                                                                <i class="fa fa-star "></i>  3.0
+                                                                                @elseif($tutor->rating == 4)
+                                                                                <i class="fa fa-star text-yellow"></i>
+                                                                                <i class="fa fa-star text-yellow"></i>
+                                                                                <i class="fa fa-star text-yellow"></i>
+                                                                                <i class="fa fa-star text-yellow"></i>
+                                                                                <i class="fa fa-star "></i>4.0
+                                                                                @elseif($tutor->rating == 5)
+                                                                                <i class="fa fa-star text-yellow"></i>
+                                                                                <i class="fa fa-star text-yellow"></i>
+                                                                                <i class="fa fa-star text-yellow"></i>
+                                                                                <i class="fa fa-star text-yellow"></i>
+                                                                                <i class="fa fa-star text-yellow"></i>  5.0
+                                                                                @else
+                                                                                <i class="fa fa-star "></i>
+                                                                                <i class="fa fa-star "></i>
+                                                                                <i class="fa fa-star "></i>
+                                                                                <i class="fa fa-star "></i>
+                                                                                <i class="fa fa-star "></i>  0.0
+                                                                                @endif
+                                                                            
+                                                                                <small class="text-grey">(0 reviews)</small>
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    @if($tutor->rank == 1)
+                                                                        <p class="text-right"><span class="text-green ">New</span> <span class="rank_icon"><img src="../assets/images/ico/bluebadge.png" alt=""></span> </p>
+                                                                    @elseif($tutor->rank == 2)
+                                                                        <p class="text-right"><span class="text-green ">Emerging</span> <span class="rank_icon"><img src="../assets/images/ico/yellow-rank.png" alt=""></span> </p>
+                                                                    @elseif($tutor->rank == 3)
+                                                                        <p class="text-right"><span class="text-green ">Top Rank</span> <span class="rank_icon"><img src="../assets/images/ico/rank.png" alt=""></span> </p>
+                                                                    @endif
+                                                                    <small> <strong> 3 hours</strong> tutoring in (this subject) </small>
+
+                                                                </div>
                                                             </div>
-                                                            <div class="col-md-6 col-9">
-                                                                <h3>Danish Jaffery</h3>
-                                                                <small class="mb-0"><img src="../assets/images/ico/red-icon.png" alt="" class=""> Associate Professor at UKAS</small>
-                                                                <p><small><img src="../assets/images/ico/location-pro.png" alt="" class=""> Lahore,Pakistan</small></p>
-                                                            </div>
-                                                            <div class="col-md-4 col-6">
-                                                                <p>
-                                                                    <i class="fa fa-star text-yellow"></i>
-                                                                    <i class="fa fa-star text-yellow"></i>
-                                                                    <i class="fa fa-star text-yellow"></i>
-                                                                    <i class="fa fa-star text-yellow"></i>  4.0
-                                                                    <small class="text-grey">(25 reviews)</small>
+                                                            <div class="row mt-2">
+                                                                <div class="col-md-4">
+                                                                    @php
+
+                                                                        $sub = explode(',',$tutor->subject_names);
+                                                                        
+                                                                    @endphp
+                                                                    <p class="mb-2">Subject</p>
+                                                                    <p>
+                                                                    @for ($i=0 ; $i < sizeof($sub); $i++)
+                                                                    <span class="info-1 info">{{$sub[$i]}}</span>
+                                                                    @endfor
                                                                 </p>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <p class="mb-2">Languages</p>
+                                                                    <p>
+                                                                        <span class="info-1 info lingo">{{$tutor->lang_short ?? ''}}</span>
+                                                                    </p>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                <p class="mb-2">Education</p>
+                                                                    @php
+                                                                        $inst = explode(',',$tutor->insti_names);
+                                                                    @endphp
+                                                                    <p>
+                                                                    @for ($i=0 ; $i < sizeof($inst); $i++)
+                                                                    <span class="info-1 info edu">{{$inst[$i]}}</span>
+                                                                    @endfor
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row mt-2">
+                                                                <div class="col-md-12 find_tutor">
+                                                                    <p><strong> About Tutor </strong></p>
+                                                                    <p class="scrol-about ">
+                                                                            {{$tutor->bio}}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3 bg-price text-center">
+                                                            <div class="row mt-30">
+                                                                
+                                                                    <a type="button" onclick="favourite_tutor({{$tutor->id}},'un_fav')" class="fav" title="Favourite">
+                                                                        <i class="fa fa-star text-yellow" id="favorite_start_{{$tutor->id}}"></i>
+                                                                    </a>
+                                                                <div class="col-md-12">
+                                                                    
+                                                                    <p>starting from</p>
+                                                                    <h1 class="f-60">${{$tutor->hourly_rate}}</h1>
+                                                                    <p>per hour</p>
+                                                                    <button type="button" class=" cencel-btn w-100">
+                                                                            &nbsp; Message &nbsp;
+                                                                        </button>
+                                                                    <button type="button" onclick="location.href = '{{route('student.book-now',[$tutor->id])}}';" class=" btn-general w-100 mt-2 p-2" >
+                                                                            &nbsp; Book Class &nbsp;
+                                                                    </button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3 col-6">
-                                                        <p><span class="text-green pr-3">Top Ranked</span> <span class="rank_icon"><img src="../assets/images/ico/rank.png" alt=""></span> </p>
-                                                    </div>
-                                                </div>
-                                                <div class="row mt-2">
-                                                    <div class="col-md-4">
-                                                        <p class="mb-2">Subject</p>
-                                                        <p> <span class="info-1 info">Computer Science</span><span class="info">Maths</span></p>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <p class="mb-2">Languages</p>
-                                                        <p>
-                                                            <span class="info-1 info lingo">French</span>
-                                                            <span class="info lingo">English</span>
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                    <p class="mb-2">Education</p>
-                                                        <p>
-                                                            <span class="info-1 info edu">Govt College Lahore Pakistan</span>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div class="row mt-2">
-                                                    <div class="col-md-12">
-                                                        <p><strong> About Tutor </strong></p>
-                                                        <p class="scrol-about">
-                                                            Lorem ipsum dolor sit amet,  est commodi pariatur deserunt distinctio consectetur necessitatibus vitae obcaecati magni recusandae blanditiis sint porro placeat. Quia voluptates atque rerum ipsa architecto.
-                                                        </p>
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
-                                            <div class="col-md-3 bg-price text-center">
-                                                <div class="row mt-30">
+                                        @endforeach
+                                    </div>
+                                @else
+                                    <div class="col-md-12">
+                                        <div class="card mt-0">
+                                            <div class="card-body">
+                                                <div class="row">
                                                     <div class="col-md-12">
-                                                        <p>starting from</p>
-                                                        <h1 class="f-60">$51</h1>
-                                                        <p>per hour</p>
-                                                            <button type="button" class="p-2 cencel-btn w-100">
-                                                                &nbsp; Message &nbsp;
-                                                            </button>
-                                                        <button type="button" class=" btn-general w-100 mt-2 p-2">
-                                                                &nbsp; Book Class &nbsp;
-                                                            </button>
+                                                        No Favourite Tutor Added Yet
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card mb-3">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-9">
-                                                <div class="row">
-                                                    <div class="col-md-9">
-                                                        <div class="row">
-                                                            <div class="col-md-2 col-3">
-                                                                <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
-                                                            </div>
-                                                            <div class="col-md-6 col-9">
-                                                                <h3>Danish Jaffery</h3>
-                                                                <small class="mb-0"><img src="../assets/images/ico/red-icon.png" alt="" class=""> Associate Professor at UKAS</small>
-                                                                <p><small><img src="../assets/images/ico/location-pro.png" alt="" class=""> Lahore,Pakistan</small></p>
-                                                            </div>
-                                                            <div class="col-md-4 col-6">
-                                                                <p>
-                                                                    <i class="fa fa-star text-yellow"></i>
-                                                                    <i class="fa fa-star text-yellow"></i>
-                                                                    <i class="fa fa-star text-yellow"></i>
-                                                                    <i class="fa fa-star text-yellow"></i>  4.0
-                                                                    <small class="text-grey">(25 reviews)</small>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3 col-6">
-                                                        <p><span class="text-green pr-3">Top Ranked</span> <span class="rank_icon"><img src="../assets/images/ico/rank.png" alt=""></span> </p>
-                                                    </div>
-                                                </div>
-                                                <div class="row mt-2">
-                                                    <div class="col-md-4">
-                                                        <p class="mb-2">Subject</p>
-                                                        <p> <span class="info-1 info">Computer Science</span><span class="info">Maths</span></p>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <p class="mb-2">Languages</p>
-                                                        <p>
-                                                            <span class="info-1 info lingo">French</span>
-                                                            <span class="info lingo">English</span>
-                                                        </p>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                    <p class="mb-2">Education</p>
-                                                        <p>
-                                                            <span class="info-1 info edu">Govt College Lahore Pakistan</span>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div class="row mt-2">
-                                                    <div class="col-md-12">
-                                                        <p><strong> About Tutor </strong></p>
-                                                        <p class="scrol-about">
-                                                            Lorem ipsum dolor sit amet,  est commodi pariatur deserunt distinctio consectetur necessitatibus vitae obcaecati magni recusandae blanditiis sint porro placeat. Quia voluptates atque rerum ipsa architecto.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 bg-price text-center">
-                                                <div class="row mt-30">
-                                                    <div class="col-md-12">
-                                                        <p>starting from</p>
-                                                        <h1 class="f-60">$51</h1>
-                                                        <p>per hour</p>
-                                                            <button type="button" class="p-2 cencel-btn w-100">
-                                                                &nbsp; Message &nbsp;
-                                                            </button>
-                                                        <button type="button" class=" btn-general w-100 mt-2 p-2">
-                                                                &nbsp; Book Class &nbsp;
-                                                            </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                @endif
+
+                            
                         </div>
                     </div>
                 
                 </div>
             </div>
             <div class="col-md-4">
-                    <div class="row ">
-                        <div class="col-md-12">
-                            <div class="card mt-0">
-                                <div class="card-body">
+                <div class="row ">
+                    <div class="col-md-12 mb-3">
+                        <div class="card mt-0">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        @if($user->picture)
+                                            <img src="{{asset ($user->picture)}}" alt=""  class="db_img">
+                                        @else
+                                            <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="db_img">
+                                        @endif
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p class="mb-0"><strong>{{$user->first_name}} {{$user->last_name}}</strong></p>
+                                        <p class="text-mute mb-0">Student ID# 548{{$user->id}}09 </p>
+                                        <label class="text-mute">Profile Completion</label>
+                                        <div class="progress">
+                                            
+                                            <div class="progress-bar bg-tutorvy" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
+                                        </div>
+                                        <a href="{{route('student.profile')}}" class="pull-right"><small>Complete Profile</small> </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card mt-0">
+                            <div class="card-body">
 
-                                    <div class="row mt-2">
-                                        <div class="col-md-8">
-                                                <p class="heading-third">
-                                                    Today Bookings
-                                                </p>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <a href="Booking/Booking.html" class="view-bookings">
-                                                View all 
+                                <div class="row mt-2">
+                                    <div class="col-md-8">
+                                            <p class="heading-third">
+                                                Today Bookings
+                                            </p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <a href="Booking/Booking.html" class="view-bookings">
+                                            View all 
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row mt-2 bg-bookings">
+                                    <div class="col-md-3 text-center">
+                                        <img src="{{asset('assets/images/ico/botal-ico.png') }}" alt="botal-ico"
+                                            style="margin-top: 32px;">
+                                    </div>
+                                    <div class="col-md-9">
+                                        <p class="mt-3 mb-2 periodic-cls">
+                                            <a class="chemistry-tex1">
+                                                Chemistry class:
                                             </a>
+                                            Periodic table
+                                        </p>
+                                        <p class="chemistry-tex2">
+                                            It is a long established fact that a reader will be distracted by.
+                                        </p>
+                                        <div style="display: inline-flex;">
+                                            <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class="watch-icon">
+                                            <p class="time-chemistry">
+                                                5 PM - 07 Feburary 2021
+                                            </p>
                                         </div>
                                     </div>
-                                    <div class="row mt-2 bg-bookings">
-                                        <div class="col-md-3 text-center">
-                                            <img src="{{asset('assets/images/ico/botal-ico.png') }}" alt="botal-ico"
-                                                style="margin-top: 32px;">
-                                        </div>
-                                        <div class="col-md-9">
-                                            <p class="mt-3 mb-2 periodic-cls">
-                                                <a class="chemistry-tex1">
-                                                    Chemistry class:
-                                                </a>
-                                                Periodic table
-                                            </p>
-                                            <p class="chemistry-tex2">
-                                                It is a long established fact that a reader will be distracted by.
-                                            </p>
-                                            <div style="display: inline-flex;">
-                                                <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class="watch-icon">
-                                                <p class="time-chemistry">
-                                                    5 PM - 07 Feburary 2021
-                                                </p>
-                                            </div>
-                                        </div>
+                                </div>
+                                <div class="row  mt-2 bg-bookings">
+                                    <div class="col-md-3 text-center">
+                                        <img src="{{asset('assets/images/ico/botal-ico.png') }}" alt="botal-ico"
+                                            style="margin-top: 32px;">
                                     </div>
-                                    <div class="row  mt-2 bg-bookings">
-                                        <div class="col-md-3 text-center">
-                                            <img src="{{asset('assets/images/ico/botal-ico.png') }}" alt="botal-ico"
-                                                style="margin-top: 32px;">
-                                        </div>
-                                        <div class="col-md-9">
-                                            <p class="mt-3 mb-2 periodic-cls">
-                                                <a class="chemistry-tex1">
-                                                    Chemistry class:
-                                                </a>
-                                                Periodic table
-                                            </p>
-                                            <p class="chemistry-tex2">
-                                                It is a long established fact that a reader will be distracted by.
-                                            </p>
-                                            <div style="display: inline-flex;">
-                                                <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class="watch-icon">
-                                                <p class="time-chemistry">
-                                                    5 PM - 07 Feburary 2021
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-2">
-                                        <div class="col-md-9">
-                                                <p class="heading-third">
-                                                    Upcoming Bookings
-                                                </p>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <a href="Booking/Booking.html" class="view-bookings">
-                                                View all
+                                    <div class="col-md-9">
+                                        <p class="mt-3 mb-2 periodic-cls">
+                                            <a class="chemistry-tex1">
+                                                Chemistry class:
                                             </a>
+                                            Periodic table
+                                        </p>
+                                        <p class="chemistry-tex2">
+                                            It is a long established fact that a reader will be distracted by.
+                                        </p>
+                                        <div style="display: inline-flex;">
+                                            <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class="watch-icon">
+                                            <p class="time-chemistry">
+                                                5 PM - 07 Feburary 2021
+                                            </p>
                                         </div>
                                     </div>
-                                    <div class="row mt-2 bg-bookings">
-                                        <div class="col-md-3 text-center">
-                                            <img src="{{asset('assets/images/ico/botal-ico.png') }}" alt="botal-ico"
-                                                style="margin-top: 32px;">
-                                        </div>
-                                        <div class="col-md-9">
-                                            <p class="mt-3 mb-2 periodic-cls">
-                                                <a class="chemistry-tex1">
-                                                    Chemistry class:
-                                                </a>
-                                                Periodic table
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-9">
+                                            <p class="heading-third">
+                                                Upcoming Bookings
                                             </p>
-                                            <p class="chemistry-tex2">
-                                                It is a long established fact that a reader will be distracted by.
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a href="Booking/Booking.html" class="view-bookings">
+                                            View all
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row mt-2 bg-bookings">
+                                    <div class="col-md-3 text-center">
+                                        <img src="{{asset('assets/images/ico/botal-ico.png') }}" alt="botal-ico"
+                                            style="margin-top: 32px;">
+                                    </div>
+                                    <div class="col-md-9">
+                                        <p class="mt-3 mb-2 periodic-cls">
+                                            <a class="chemistry-tex1">
+                                                Chemistry class:
+                                            </a>
+                                            Periodic table
+                                        </p>
+                                        <p class="chemistry-tex2">
+                                            It is a long established fact that a reader will be distracted by.
+                                        </p>
+                                        <div style="display: inline-flex;">
+                                            <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class="watch-icon">
+                                            <p class="time-chemistry">
+                                                5 PM - 07 Feburary 2021
                                             </p>
-                                            <div style="display: inline-flex;">
-                                                <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class="watch-icon">
-                                                <p class="time-chemistry">
-                                                    5 PM - 07 Feburary 2021
-                                                </p>
-                                            </div>
                                         </div>
                                     </div>
-                                    <div class="row mt-2 bg-bookings">
-                                        <div class="col-md-3 text-center">
-                                            <img src="{{asset('assets/images/ico/botal-ico.png') }}" alt="botal-ico"
-                                                style="margin-top: 32px;">
-                                        </div>
-                                        <div class="col-md-9">
-                                            <p class="mt-3 mb-2 periodic-cls">
-                                                <a class="chemistry-tex1">
-                                                    Chemistry class:
-                                                </a>
-                                                Periodic table
+                                </div>
+                                <div class="row mt-2 bg-bookings">
+                                    <div class="col-md-3 text-center">
+                                        <img src="{{asset('assets/images/ico/botal-ico.png') }}" alt="botal-ico"
+                                            style="margin-top: 32px;">
+                                    </div>
+                                    <div class="col-md-9">
+                                        <p class="mt-3 mb-2 periodic-cls">
+                                            <a class="chemistry-tex1">
+                                                Chemistry class:
+                                            </a>
+                                            Periodic table
+                                        </p>
+                                        <p class="chemistry-tex2">
+                                            It is a long established fact that a reader will be distracted by.
+                                        </p>
+                                        <div style="display: inline-flex;">
+                                            <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class="watch-icon">
+                                            <p class="time-chemistry">
+                                                5 PM - 07 Feburary 2021
                                             </p>
-                                            <p class="chemistry-tex2">
-                                                It is a long established fact that a reader will be distracted by.
-                                            </p>
-                                            <div style="display: inline-flex;">
-                                                <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class="watch-icon">
-                                                <p class="time-chemistry">
-                                                    5 PM - 07 Feburary 2021
-                                                </p>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+                    </div>
+
+                    <div class="col-md-12  ">
+                        <!-- <div class="card">
+                            <div class="card-body"> -->
+                                <div class="card bg-ad">
+                                    <div class="card-body">
+                                        <div>
+                                            <a href="">
+                                                    <img src="{{asset('assets/images/ico/playStore.png')}}" class="w-45" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="mt-2">
+                                            <a href="">
+                                                    <img src="{{asset('assets/images/ico/appStore.png')}}" class="w-45" alt="">
+                                            </a>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                               
+                            <!-- </div>
+                        </div> -->
                     </div>
                 </div>
+            </div>
         </div>
         <!-- Button trigger modal -->
         <!-- Modal -->
@@ -505,4 +564,7 @@
 <script>
  
 </script>
+@endsection
+@section('scripts')
+@include('js_files.student.dashboardJs')
 @endsection
