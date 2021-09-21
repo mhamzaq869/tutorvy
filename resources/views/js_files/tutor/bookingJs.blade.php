@@ -9,13 +9,12 @@ function acceptBookingRequest(){
         success:function(response){
             // console.log(response);
             if(response.status == 200) {
-                Swal.fire({
+                toastr.success('Booking Added Successfully!',{
                     position: 'top-end',
                     icon: 'success',
-                    title: 'Booking Approved Successfully!',
                     showConfirmButton: false,
                     timer: 2500
-                })
+                });
 
                 $('#approveModel').modal('hide');
                 setInterval(function(){

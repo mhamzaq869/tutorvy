@@ -19,8 +19,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <select name="subject" id="tutor_subjects" class="form-select form-select-lg w-100"
-                                        aria-label=".form-select-lg example">
-                                        <option value="Select Subject">Select Subject</option>
+                                        aria-label=".form-select-lg example" required>
+                                        <option selected="selected" value="Select Subject">Select Subject</option>
                                         @foreach($subjects as $subject)
                                         <option value="{{$subject->subject_id}}" data="{{$subject->user_id}}">{{$subject->sub_name}}</option>
                                         @endforeach
@@ -28,11 +28,11 @@
                                 </div>
                                 <div class="col-md-12 mt-3">
                                     <input type="text" class="form-control " name="topic"
-                                    placeholder="Type your Topic" value="">
+                                    placeholder="Type your Topic" value="" required>
                                 </div>
                                 <div class="col-md-12 mt-3">
                                     <select name="subject_plan" id="subject_plans" class="form-select form-select-lg w-100"
-                                        aria-label=".form-select-lg example" >
+                                        aria-label=".form-select-lg example" required>
                                         <option value="Select Subject">Select Plans</option>
                                     </select>
                                 </div>
@@ -119,26 +119,26 @@
                     </div><div class="row mt-3">
                         <div class="input-text col-md-12">
                             <input type="text"class="form-control " name="question"
-                                placeholder="What is the Question?" value="">
+                                placeholder="What is the Question?" value="" required>
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="input-text col-md-12 ">
-                            <textarea name="brief" id="brief" cols="30" rows="5" class="form-control" placeholder="Write brief about your question"></textarea>
+                            <textarea name="brief" id="brief" cols="30" rows="5" class="form-control" placeholder="Write brief about your question" required></textarea>
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-12">
                             <label for="" class="col-md-12 pl-0"><b>Upload any attachment if you want</b></label>
-                            <input type="file" class="form-control dropify" name="upload" id="" >
+                            <input type="file" class="form-control dropify" name="upload" id="" required>
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="input-text col-md-4">
-                            <input type="" class="form-control" name="date"  onfocus="(this.type='date')" placeholder="Class Date">
+                            <input type="" class="form-control" name="date"  onfocus="(this.type='date')" placeholder="Class Date" required>
                         </div>
                         <div class="input-text col-md-4">
-                            <input type="" class="form-control" name="time" onfocus="(this.type='time')" placeholder="Class Time">
+                            <input type="" class="form-control" name="time" onfocus="(this.type='time')" placeholder="Class Time" required>
                         </div>
                         <div class="input-text col-md-4">
                             <input type="number" min="1" max="24" class="form-control" name="duration" placeholder="Class Duration (in hours)" required>
@@ -148,9 +148,11 @@
                         <div class="col-12" >
                             
                             <button id="finish" type="submit"  
-                                class="btn-general   pull-right  mb-3">
+                                class="btn-general pull-right  mb-3" is="saveBtn">
                                 &nbsp; Send Request &nbsp;
                             </button>
+                            <button type="button" role="button" type="button" id="proBtn" disabled class="btn btn-primary pull-right mb-3" style="display:none">
+                                <i class="fa fa-circle-o-notch fa-spin fa-1x fa-fw"></i> <span class="sr-only">Loading...</span> Processing </button>
                         </div>
                     </div>
             </form>
