@@ -67,71 +67,81 @@
                             Statistics
                         </p>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-12 stats">
                         <div class="row">
                             <div class="col-md-3">
-                                <div class="container-fluid card 1">
-                                    <div class="text-home">
-                                        <p class="number-booking">
-                                             {{$delivered_count}}
-                                        </p>
-                                        <p class="class-booking mt-4">
-                                            Delivered classes
-                                        </p>
+                                <a href="{{route('student.bookings')}}">
+                                    <div class="container-fluid card 1">
+                                        
+                                        <div class="text-home">
+                                            <p class="number-booking">
+                                                {{$delivered_count}}
+                                            </p>
+                                            <p class="class-booking mt-4">
+                                                Delivered classes
+                                            </p>
+                                        </div>
+                                        <div class="iconside">
+                                            <img class="card-ico" src="{{asset('assets/images/ico/blue-ico.png')}}"
+                                                alt="blue-ico">
+                                        </div>
                                     </div>
-                                    <div class="iconside">
-                                        <img class="card-ico" src="{{asset('assets/images/ico/blue-ico.png')}}"
-                                            alt="blue-ico">
-                                    </div>
-                                </div>
+                                </a>
+                                
                             </div>
                             <div class="col-md-3">
-                                <div class="container-fluid card 1">
-                                    <div class="text-home">
-                                        <p class="number-booking">
-                                            {{$upcoming_count}}
-                                        </p>
-                                        <p class="class-booking mt-4">
-                                            Upcomming class
-                                        </p>
+                                <a href="{{route('student.bookings')}}">
+                                    <div class="container-fluid card 1">
+                                        <div class="text-home">
+                                            <p class="number-booking">
+                                                {{$upcoming_count}}
+                                            </p>
+                                            <p class="class-booking mt-4">
+                                                Upcomming class
+                                            </p>
+                                        </div>
+                                        <div class="iconside">
+                                            <img class="card-ico1" src="{{asset('assets/images/ico/red-ico.png')}}"
+                                                alt="red-ico">
+                                        </div>
                                     </div>
-                                    <div class="iconside">
-                                        <img class="card-ico1" src="{{asset('assets/images/ico/red-ico.png')}}"
-                                            alt="red-ico">
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                             <div class="col-md-3">
-                                <div class="container-fluid card 1">
-                                    <div class="text-home">
-                                        <p class="number-booking">
-                                            {{$pending_count}}
-                                        </p>
-                                        <p class="class-booking mt-4">
-                                            Pending Bookings
-                                        </p>
+                                <a href="{{route('student.bookings')}}">
+                                    <div class="container-fluid card 1">
+                                        <div class="text-home">
+                                            <p class="number-booking">
+                                                {{$pending_count}}
+                                            </p>
+                                            <p class="class-booking mt-4">
+                                                Pending Bookings
+                                            </p>
+                                        </div>
+                                        <div class="iconside">
+                                            <img class="card-ico" src="{{asset('assets/images/ico/ico-blue.png')}}"
+                                                alt="ico-blue">
+                                        </div>
                                     </div>
-                                    <div class="iconside">
-                                        <img class="card-ico" src="{{asset('assets/images/ico/ico-blue.png')}}"
-                                            alt="ico-blue">
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                             <div class="col-md-3">
-                                <div class="container-fluid card 1">
-                                    <div class="text-home">
-                                        <p class="number-booking">
-                                            {{$subject_count}}
-                                        </p>
-                                        <p class="class-booking mt-4">
-                                            Total Subjects
-                                        </p>
+                                <a href="{{route('student.bookings')}}">
+                                    <div class="container-fluid card 1">
+                                        <div class="text-home">
+                                            <p class="number-booking">
+                                                {{$subject_count}}
+                                            </p>
+                                            <p class="class-booking mt-4">
+                                                Total Subjects
+                                            </p>
+                                        </div>
+                                        <div class="iconside">
+                                            <img class="card-ico1" src="{{asset('assets/images/ico/yellow-ico.png')}}"
+                                                alt="yellow-ico">
+                                        </div>
                                     </div>
-                                    <div class="iconside">
-                                        <img class="card-ico1" src="{{asset('assets/images/ico/yellow-ico.png')}}"
-                                            alt="yellow-ico">
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -480,7 +490,7 @@
                                 <div class="card bg-ad">
                                     <div class="card-body">
                                         <div>
-                                            <a href="">
+                                            <a href="{{route('student.bookings')}}">
                                                     <img src="{{asset('assets/images/ico/playStore.png')}}" class="w-45" alt="">
                                             </a>
                                         </div>

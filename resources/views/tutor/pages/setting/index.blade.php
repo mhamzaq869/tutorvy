@@ -45,11 +45,11 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                <a class="nav-link {{session()->has('key') ? '' : 'active'}}" id="v-pills-General-tab" data-toggle="pill" href="#v-pills-General"
-                                    role="tab" aria-controls="v-pills-General" aria-selected="true">General</a>
+                                <!-- <a class="nav-link {{session()->has('key') ? '' : 'active'}}" id="v-pills-General-tab" data-toggle="pill" href="#v-pills-General"
+                                    role="tab" aria-controls="v-pills-General" aria-selected="true">General</a> -->
                                
-                                <a class="nav-link {{session()->has('key') ? 'active' : ''}}" id="v-pills-Security-tab" data-toggle="pill" href="#v-pills-Security"
-                                    role="tab" aria-controls="v-pills-Security" aria-selected="false">Secutiy</a>
+                                <a class="nav-link {{session()->has('key') ? '' : 'active'}}" id="v-pills-Security-tab" data-toggle="pill" href="#v-pills-Security"
+                                    role="tab" aria-controls="v-pills-Security" aria-selected="true">Secutiy</a>
                                 
                                 <a class="nav-link" id="v-pills-Payment-tab" data-toggle="pill"
                                     href="#v-pills-Payment" role="tab" aria-controls="v-pills-Payment"
@@ -64,7 +64,7 @@
                         <div class="card-body">
                             <div class="tab-content" id="v-pills-tabContent chang_photo">
 
-                                <div class="tab-pane fade {{session()->has('key') ? '' : 'active show'}} chee" id="v-pills-General" role="tabpanel"
+                                <!-- <div class="tab-pane fade {{session()->has('key') ? '' : 'active show'}} chee" id="v-pills-General" role="tabpanel"
                                     aria-labelledby="v-pills-General-tab">
                                     
                                     <form action="{{ route('tutor.profile.update', [Auth::user()->id]) }}" method="Post"
@@ -122,10 +122,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!-- <div class="form-group ">
-                                                        <input type="text" value="" class="form-control"
-                                                            placeholder="Complete Address">
-                                                    </div>  -->
                                                     <div class="float-right">
                                                         <button class="schedule-btn">Save changes</button>
                                                     </div>
@@ -133,9 +129,9 @@
                                                 </div>
                                         </div>
                                     </form>
-                                </div>
+                                </div> -->
 
-                                <div class="tab-pane fade chee {{session()->has('key') ? 'active show' : ''}}" id="v-pills-Security" role="tabpanel"
+                                <div class="tab-pane fade {{session()->has('key') ? '' : 'active show'}} chee" id="v-pills-Security" role="tabpanel"
                                     aria-labelledby="v-pills-Security-tab">
                                     <div class="row">
                                     <div class="col-md-12 mb-4">

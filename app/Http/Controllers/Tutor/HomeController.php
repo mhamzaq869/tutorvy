@@ -24,7 +24,7 @@ class HomeController extends Controller
         $delivered_count = Booking::where('booked_tutor',Auth::user()->id)->where('status',5)->count();
         $upcoming_count = Booking::where('booked_tutor',Auth::user()->id)->where('status',2)->count();
         $pending_count = Booking::where('booked_tutor',Auth::user()->id)->whereIn('status',[0,1])->count();
-        $subject_count = Teach::where('booked_tutor',Auth::user()->id)->count();
+        $subject_count = Teach::where('user_id',Auth::user()->id)->count();
         $user = User::where('id',Auth::user()->id)->first();
 
 

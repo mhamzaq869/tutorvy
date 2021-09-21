@@ -96,7 +96,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @if($all)
+                                                        @if($all != "[]")
                                                             @foreach ($all as $booking)
                                                             <tr>
                                                                 <td class="pt-4">
@@ -177,51 +177,57 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @foreach ($confirmed as $booking)
-                                                            <tr>
-                                                                <td class="pt-4">
-                                                                {{$booking->tutor->first_name}} {{$booking->tutor->last_name}}
-                                                                </td>
-                                                                <td class="pt-4">
-                                                                    {{$booking->subject->name}}
-                                                                </td>
-                                                                <td class="pt-4">
-                                                                    {{$booking->topic}}
-                                                                </td>
-                                                                <td class="pt-4">
-                                                                    {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
-                                                                </td>
-                                                               
-                                                                <td class="pt-4">
-                                                                    &nbsp;{{$booking->duration}} Hour(s)
-                                                                </td>
-                                                                <td class="pt-4">
-                                                                    &nbsp;${{$booking->price}}
-                                                                </td>
-                                                                <td class="pt-4">
-                                                                    @if($booking->status == 1)
-                                                                        <span class="bg-color-apporve3">
-                                                                            Payment Pending
-                                                                        </span>
-                                                                    @elseif($booking->status == 2)
-                                                                        <span class="bg-color-apporve1">
-                                                                            Approved
-                                                                        </span>
-                                                                    @elseif($booking->status == 0)
-                                                                        <span class="bg-color-apporve">
-                                                                            Pending
-                                                                        </span>
-                                                                    @endif
-                                                                </td> 
-                                                                <td class="pt-3 pb-3" style="text-align: center; " >
-                                                                    
-                                                                    <a href="{{route('student.booking-detail',[$booking->id])}}"  class="schedule-btn">
+                                                        @if($confirmed != "[]")
+                                                            @foreach ($confirmed as $booking)
+                                                                <tr>
+                                                                    <td class="pt-4">
+                                                                    {{$booking->tutor->first_name}} {{$booking->tutor->last_name}}
+                                                                    </td>
+                                                                    <td class="pt-4">
+                                                                        {{$booking->subject->name}}
+                                                                    </td>
+                                                                    <td class="pt-4">
+                                                                        {{$booking->topic}}
+                                                                    </td>
+                                                                    <td class="pt-4">
+                                                                        {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
+                                                                    </td>
+                                                                
+                                                                    <td class="pt-4">
+                                                                        &nbsp;{{$booking->duration}} Hour(s)
+                                                                    </td>
+                                                                    <td class="pt-4">
+                                                                        &nbsp;${{$booking->price}}
+                                                                    </td>
+                                                                    <td class="pt-4">
+                                                                        @if($booking->status == 1)
+                                                                            <span class="bg-color-apporve3">
+                                                                                Payment Pending
+                                                                            </span>
+                                                                        @elseif($booking->status == 2)
+                                                                            <span class="bg-color-apporve1">
+                                                                                Approved
+                                                                            </span>
+                                                                        @elseif($booking->status == 0)
+                                                                            <span class="bg-color-apporve">
+                                                                                Pending
+                                                                            </span>
+                                                                        @endif
+                                                                    </td> 
+                                                                    <td class="pt-3 pb-3" style="text-align: center; " >
                                                                         
-                                                                            View details
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                        @endforeach
+                                                                        <a href="{{route('student.booking-detail',[$booking->id])}}"  class="schedule-btn">
+                                                                            
+                                                                                View details
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                        @else 
+                                                        <tr>
+                                                            <td>No Booking Found</td>
+                                                        </tr>
+                                                    @endif
 
                                                     </tbody>
                                                 </table>
@@ -251,7 +257,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                    @if($pending != null || $pending != "" || $pending !=[])
+                                                    @if($pending !="[]")
                                                         @foreach ($pending as $booking)
                                                             <tr>
                                                                 <td class="pt-4">
