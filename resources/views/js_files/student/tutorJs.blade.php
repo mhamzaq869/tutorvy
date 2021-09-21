@@ -64,15 +64,15 @@ $("#location").change(function() {
     let location = $("#location").val();
     let gender = $("input[name='gender']:checked").val();
 
-
     search_tutors(price,subject,lang,rating,location ,gender);
 
 });
 
 $('input[type=radio][name=gender]').change(function() {
+    let price = $("#range").val();
     let subject = $("#subjects-list").val();
     let lang = $("#languages-list").val();
-    let price = $("#range").val();
+    let rating = $("input[name='rating_filter']:checked").val();
     let location = $("#location").val();
     var gender = $(this).val();
     search_tutors(price,subject,lang,rating,location ,gender);
