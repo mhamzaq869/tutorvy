@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TutorVy</title>
     <!-- <link href="./images/logo/logo.png" rel="icon"> -->
@@ -59,8 +60,7 @@
                                     <h3>Select the levels for this subject</h3>
                                 </div>
                             </div>
-                            <form action="{{route('tutor.assessment')}}" method="post" id="form">
-                            @csrf
+                            <form action="{{route('tutor.assessment')}}" id="subjectForm" method="post" id="form">
                             <div class="row mt-3">
                                 <div class="pt-3 col-md-6">
                                     <div class="custom-control custom-checkbox">
@@ -232,10 +232,10 @@
                                         rows="10" required></textarea>
                                 </div>
                             </div>
-                            <button type="button" class="schedule-btn mb-4 mt-4"
-                                style="width: 100px;float: right;margin-right: 50px;" onclick="checkExpertyLevel()">
-                                Submit
+                            <button type="submit" class="schedule-btn mb-4 mt-4" style="width: 100px;float: right;margin-right: 50px;" >
+                            <i class="fas fa-circle-notch fa-spin"></i> Submit
                             </button>
+
 
                         </div>
                     </form>
@@ -273,6 +273,7 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
         $(document).ready(function(){
@@ -281,6 +282,52 @@
             $("#secCheck").hide('slow');
             $("#highCheck").hide('slow');
             $("#postCheck").hide('slow');
+
+
+
+            $('#subjectForm').submit(function(e) {
+                e.preventDefault();
+
+                var form = new FormData(this);
+                var action = $(this).attr('action');
+                var method = $(this).attr('method');
+                
+
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: action,
+                    type:method,
+                    data:form,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success:function(response){
+                        if(response.status_code == 200 && response.success == true) {
+                            toastr.success(response.message,{
+                                position: 'top-end',
+                                icon: 'success',
+                                showConfirmButton: false,
+                                timer: 2500
+                            });
+                        }else{
+                            toastr.error(response.message,{
+                                position: 'top-end',
+                                icon: 'error',
+                                showConfirmButton: false,
+                                timer: 2500
+                            });
+                        }
+                    },
+                    error:function(e) {
+                        console.log(e)
+                    }
+                });
+
+            })
+
+
         })
        var test =  document.getElementById("test")
        var form =  document.getElementById("form")
