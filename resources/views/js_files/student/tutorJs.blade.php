@@ -4,10 +4,10 @@ let tutors = '';
 
 (function () {
     var user_language_code = "{{ $user->language ?? 'en-US'}}";
-    var option = '';
-    for (var language_code in languages_list) {
-        var selected = (language_code == user_language_code) ? ' selected' : '';
-        option += '<option value="' + language_code + '"' + selected + '>' + languages_list[language_code] + '</option>';
+    var option = '<option value=""> Select Language</option>';
+    // for (var language_code in languages_list) {
+    //     var selected = (language_code == user_language_code) ? ' selected' : '';
+        option += '<option value="' + language_code + '">' + languages_list[language_code] + '</option>';
     }
     document.getElementById('languages-list').innerHTML = option;
 })();
