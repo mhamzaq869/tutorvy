@@ -21,7 +21,7 @@ class TutorController extends Controller
         $subject = \Auth::user()->std_learn;
           
         $query = DB::table('users')
-        ->select('view_tutors_data.*','teachs.subject_id as subject_id')
+        ->select('view_tutors_data.*')
         ->leftJoin('teachs', 'users.id', '=', 'teachs.user_id')
         ->leftJoin('view_tutors_data', 'view_tutors_data.id', '=', 'users.id')
         ->where('users.role',2)
@@ -35,7 +35,7 @@ class TutorController extends Controller
             
         });
 
-        $available_tutors = $query->get();
+        $available_tutors = $query->orderByRaw('rating DESC')->groupByRaw('users.id')->get();
 
         foreach($available_tutors as $tutor) {
             $tutor->is_favourite = DB::table("fav_tutors")->where("user_id",Auth::user()->id)->where("tutor_id",$tutor->id)->first();
@@ -54,6 +54,17 @@ class TutorController extends Controller
         $lang = $request->language;
         $rating = $request->rating;
         $loc = $request->location;
+        $price = $request->price;
+        $gender = $request->gender;
+
+        $min_prc =  '';
+        $max_prc =  '';
+
+        if($price != null ){
+            $price = explode(';',$price);
+            $min_prc = $price[0];
+            $max_prc = $price[1];
+        }
 
         if($subject == '' || $subject == null){
             $subject = \Auth::user()->std_learn;
@@ -73,6 +84,7 @@ class TutorController extends Controller
             }
             
         });
+        
 
         $query->where(function($query3) use ($lang)
         {
@@ -93,10 +105,19 @@ class TutorController extends Controller
         $query->where(function($query5) use ($loc)
         {
             if($loc != null && $loc != ''){
-                $query5->where('users.country','<=', $loc);
+                $query5->where('users.country', $loc);
             }
             
         });
+
+        $query->where(function($query6) use ($gender)
+        {
+            if($gender != null && $gender != ''){
+                $query6->where('user.gender', $gender);
+            }
+            
+        });
+
         $available_tutors = $query->get();
 
 
