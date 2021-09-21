@@ -352,7 +352,7 @@
                         <div class="col-md-3">
                             <div class="card">
                                 <div class="card-body">
-                                    <p class="number-booking mt-0 ">  56  </p>
+                                    <p class="number-booking mt-0 " id="number-booking">  {{ sizeof($available_tutors) }}  </p>
                                     <p class="mb-0">Total Tutors</p>  
                                 </div>
                             </div>

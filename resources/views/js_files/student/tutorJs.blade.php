@@ -104,7 +104,7 @@ function list_tutors(){
     if(tutors.length > 0){
 
         $('#tutors-list').html('');
-
+        $('#number-booking').html(tutors.length)
         for(var i = 0 ; i<tutors.length ; i++){
             let inst ;
             let sub;
@@ -295,6 +295,7 @@ function list_tutors(){
         }
 
     }else{
+        $('#number-booking').html(0)
         let no_rec_html = `<div class="card">
                             <div class="card-body text-center">
                                 <img src="{{asset ('assets/images/ico/no-tutor.svg')}}" alt="" width="200">
