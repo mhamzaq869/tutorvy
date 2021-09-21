@@ -1,8 +1,40 @@
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log(Notification.permission  , "notifi")
+
+       
+
+
+        if(Notification.permission == 'denied') {
+
+             toastr.warning(`Allow Browser Notification for Realtime updates <br />`, "Warning");               
+            toastr.options = {
+                "closeButton": false,
+                "allowHtml": true,                  
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": 0,
+                "extendedTimeOut": 0,
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut",
+                "tapToDismiss": false
+            }
+
+        }else{
+            Notification.requestPermission();
+        }
+        
+    });
     $(document).ready(function() {
 
         get_all_categories();
-
 
         // save support form
         $('.supportForm').submit(function(e) {
@@ -48,6 +80,8 @@
             });
 
         });
+
+
     });
 
 
@@ -81,5 +115,46 @@
         });
 
 
+    }
+
+
+    function allowNotification() {
+        Notification.requestPermission();
+    }
+
+    function notifyMe() {
+        // Let's check if the browser supports notifications
+        if (!("Notification" in window)) {
+            alert("This browser does not support desktop notification");
+        }
+
+        // Let's check whether notification permissions have already been granted
+        else if (Notification.permission === "granted") {
+            // If it's okay let's create a notification
+            var notification = new Notification("Hi there!");
+        }
+
+        // Otherwise, we need to ask the user for permission
+        else if (Notification.permission !== "denied") {
+            Notification.requestPermission().then(function (permission) {
+            // If the user accepts, let's create a notification
+            if (permission === "granted") {
+                var notification = new Notification("Hi there!");
+            }
+            
+            });
+        }
+        else if(Notification.permission == "denied") {
+            alert("click");
+            // Notification.requestPermission().then(function(permission) { 
+            //     console.log(permission , "permission")
+            // });
+            let a = Notification.requestPermission();
+            console.log(a , "a");
+            console.log(a.PromiseResult , "a");
+        }
+        
+        // At last, if the user has denied notifications, and you
+        // want to be respectful there is no need to bother them any more.
     }
 </script>

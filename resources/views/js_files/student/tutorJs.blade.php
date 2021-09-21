@@ -2,15 +2,6 @@
 
 let tutors = '';
 
-(function () {
-    var user_language_code = "{{ $user->language ?? 'en-US'}}";
-    var option = '<option value=""> Select Language</option>';
-    // for (var language_code in languages_list) {
-    //     var selected = (language_code == user_language_code) ? ' selected' : '';
-        option += '<option value="' + language_code + '">' + languages_list[language_code] + '</option>';
-    }
-    document.getElementById('languages-list').innerHTML = option;
-})();
 
 
 $('#subjects-list').on("change", function(e) {
@@ -18,10 +9,11 @@ $('#subjects-list').on("change", function(e) {
     let subject = $("#subjects-list").val();
     let lang = $("#languages-list").val();
     let rating = $("input[name='rating_filter']:checked").val();
+    let gender = $("input[name='gender']:checked").val();
     let price = $("#range").val();
     let location = $("#location").val();
 
-    search_tutors(price,subject,lang,rating,location);
+    search_tutors(price,subject,lang,rating,location ,gender);
     
 });
 
@@ -32,8 +24,9 @@ $('#languages-list').on("change", function(e) {
     let rating = $("input[name='rating_filter']:checked").val();
     let price = $("#range").val();
     let location = $("#location").val();
+    let gender = $("input[name='gender']:checked").val();
 
-    search_tutors(price,subject,lang,rating,location);
+    search_tutors(price,subject,lang,rating,location ,gender);
 
 });
 
@@ -43,8 +36,9 @@ $('input[type=radio][name=rating_filter]').change(function() {
     let rating = $("input[name='rating_filter']:checked").val();
     let price = $("#range").val();
     let location = $("#location").val();
+    let gender = $("input[name='gender']:checked").val();
 
-    search_tutors(price,subject,lang,rating,location);
+    search_tutors(price,subject,lang,rating,location ,gender);
     
 });
 
@@ -55,8 +49,9 @@ $("#range").change(function() {
     let lang = $("#languages-list").val();
     let rating = $("input[name='rating_filter']:checked").val();
     let location = $("#location").val();
+    let gender = $("input[name='gender']:checked").val();
 
-    search_tutors(price,subject,lang,rating,location);
+    search_tutors(price,subject,lang,rating,location ,gender);
 
 });
 
@@ -67,13 +62,24 @@ $("#location").change(function() {
     let lang = $("#languages-list").val();
     let rating = $("input[name='rating_filter']:checked").val();
     let location = $("#location").val();
+    let gender = $("input[name='gender']:checked").val();
 
-
-    search_tutors(price,subject,lang,rating,location);
+    search_tutors(price,subject,lang,rating,location ,gender);
 
 });
 
-function search_tutors(price,subject,lang,rating,location){
+$('input[type=radio][name=gender]').change(function() {
+    let price = $("#range").val();
+    let subject = $("#subjects-list").val();
+    let lang = $("#languages-list").val();
+    let rating = $("input[name='rating_filter']:checked").val();
+    let location = $("#location").val();
+    var gender = $(this).val();
+    search_tutors(price,subject,lang,rating,location ,gender);
+    
+});
+
+function search_tutors(price,subject,lang,rating,location, gender){
 
     $.ajax({
         url: "{{ route('student.tutor.filter') }}",
@@ -83,7 +89,8 @@ function search_tutors(price,subject,lang,rating,location){
             language: lang,
             rating: rating,
             price : price,
-            location:location
+            location:location,
+            gender: gender,
         },
         success: function(response) {
             console.log(response);
@@ -101,7 +108,7 @@ function list_tutors(){
     if(tutors.length > 0){
 
         $('#tutors-list').html('');
-
+        $('#number-booking').html(tutors.length)
         for(var i = 0 ; i<tutors.length ; i++){
             let inst ;
             let sub;
@@ -272,7 +279,7 @@ function list_tutors(){
 
                                                 <div class="col-md-12">
                                                     <p>starting from</p>
-                                                    <h1 class="f-60">$`+tutors[i].tutor_subject_rate != null ? tutors[i].tutor_subject_rate : '-' +`</h1>
+                                                    <h1 class="f-60">$`+ (tutors[i].tutor_subject_rate != null ? tutors[i].tutor_subject_rate : '0') +`</h1>
                                                     <p>per hour</p>
                                                     <button type="button" class=" cencel-btn w-100">
                                                             &nbsp; Message &nbsp;
@@ -292,6 +299,7 @@ function list_tutors(){
         }
 
     }else{
+        $('#number-booking').html(0)
         let no_rec_html = `<div class="card">
                             <div class="card-body text-center">
                                 <img src="{{asset ('assets/images/ico/no-tutor.svg')}}" alt="" width="200">

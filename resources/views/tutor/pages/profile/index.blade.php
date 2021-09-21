@@ -592,8 +592,11 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
-                                                <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit"
+                                                <button class="schedule-btn" id="saveBtn" style="width:180px;font-size: 14px;" type="submit"
                                                     name="personal">Save Changes</button>
+                                                <button type="button" role="button" type="button" id="proBtn" disabled class="btn btn-primary mb-4 mt-4 mr-2" 
+                                                style="width: 180px;" >
+                                                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i> <span class="sr-only">Loading...</span> Processing </button>
                                             </div>
 
                                         </div>
@@ -843,9 +846,20 @@
 
                                 <div class="tab-pane fade chee" id="v-pills-Verification" role="tabpanel"
                                     aria-labelledby="v-pills-Verification-tab">
-                                    
-                                    @if($user_files != [])
-                                        <div class="card bg-toast infoCard">
+
+                                    @if(Auth::user()->status == 2)
+                                        <div class="card bg-success text-white">
+                                            <div class="card-body row">
+                                                <div class="col-md-2 text-center">
+                                                    <i class="fa fa-info" aria-hidden="true"></i>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    Your Documents are approved from Administrator.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @elseif(Auth::user()->status == 1)
+                                        <div class="card bg-toast infoCard" id="verfication_msg" >
                                             <div class="card-body row">
                                                 <div class="col-md-2 text-center">
                                                     <i class="fa fa-info" aria-hidden="true"></i>
@@ -883,7 +897,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <input id="textbox" type="number" name="document_no" placeholder="Document No" required>
+                                                    <input id="textbox" type="text" name="document_no" placeholder="Document No" required>
                                                 </div>
                                                 <div class="col-md-6 mt-2 passport" >
                                                     <input type="file" name="passport_pic" class="dropify">

@@ -25,8 +25,8 @@ class ProfileController extends Controller
         $subjects = Subject::all();
         $degrees = Degree::all();
         $institutes = Institute::all();
-        $user_files = DB::table("user_files")->where('user_id',Auth::user()->id)->where('type',Auth::user()->type)->get()->toArray();
-        return view('tutor.pages.profile.index',compact('subjects','degrees','institutes','user_files'));
+        // $user_files = DB::table("user_files")->where('user_id',Auth::user()->id)->where('type',Auth::user()->type)->get()->toArray();
+        return view('tutor.pages.profile.index',compact('subjects','degrees','institutes'));
     }
 
 

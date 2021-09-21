@@ -352,7 +352,7 @@
                         <div class="col-md-3">
                             <div class="card">
                                 <div class="card-body">
-                                    <p class="number-booking mt-0 ">  56  </p>
+                                    <p class="number-booking mt-0 " id="number-booking">  {{ sizeof($available_tutors) }}  </p>
                                     <p class="mb-0">Total Tutors</p>  
                                 </div>
                             </div>
@@ -386,7 +386,7 @@
                                                             @if($tutor->picture != null)
                                                                 <img src="{{asset($tutor->picture)}}" alt="" class="round-border">
                                                             @else
-                                                                <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
+                                                                <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="round-border">
                                                             @endif                                                        
                                                         </a>
                                                        
@@ -508,7 +508,7 @@
                                             <div class="col-md-12">
                                                 
                                                 <p>starting from</p>
-                                                <h1 class="f-60">${{$tutor->hourly_rate}}</h1>
+                                                <h1 class="f-60">${{$tutor->tutor_subject_rate != null ? $tutor->tutor_subject_rate : 0}}</h1>
                                                 <p>per hour</p>
                                                 <button type="button" class=" cencel-btn w-100">
                                                         &nbsp; Message &nbsp;

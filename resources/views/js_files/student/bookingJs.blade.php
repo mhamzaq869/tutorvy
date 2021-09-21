@@ -6,32 +6,55 @@ $( '#book_tutor_form' ).on( 'submit', function(e) {
 
     $('#tutor_id').val("{{$t_id ?? '' }}");
     // let _token   = $('meta[name="csrf_token"]').attr('content');
+    var tutor_subjects = $("#tutor_subjects").val();
 
-    $.ajax({
-      url: "{{route('student.booked.tutor')}}",
-      type:"POST",
-      data:new FormData( this ),
-      cache: false,
-      contentType: false,
-      processData: false,
-      success:function(response){
-        // console.log(response);
-        if(response.status == 200) {
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Booking Added Successfully!',
-                showConfirmButton: false,
-                timer: 2500
-            })
+    if(tutor_subjects != "Select Subject") {
+        $.ajax({
+            url: "{{route('student.booked.tutor')}}" + "Asdfasdfasdf",
+            type:"POST",
+            data:new FormData( this ),
+            cache: false,
+            contentType: false,
+            processData: false,
+            beforeSend:function(data) {
+                $("#saveBtn").hide();
+                $("#proBtn").show();
+            },
+            success:function(response){
+                // console.log(response);
+                if(response.status == 200) {
+                    toastr.success('Booking Added Successfully!',{
+                        position: 'top-end',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
 
-            setInterval(function(){
-                window.location.href = "{{ route('student.bookings') }}";
-            }, 1500);
+                    setInterval(function(){
+                        window.location.href = "{{ route('student.bookings') }}";
+                    }, 1500);
 
-        }
-      },
-     });
+                }
+            },
+            complete:function(data) {
+                $("#saveBtn").show();
+                $("#proBtn").hide();
+            },
+            error:function(e){
+                $("#saveBtn").show();
+                $("#proBtn").hide();
+            }
+        });
+    }else{
+        toastr.error('Subject Field is required',{
+            position: 'top-end',
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 2500
+        });
+    }
+
+
 });
 
 // 

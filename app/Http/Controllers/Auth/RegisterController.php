@@ -128,6 +128,9 @@ class RegisterController extends Controller
         // from Tutor/Student Registor Form .
         // dd($request->all());
         // return $request;
+
+        $account_id = mt_rand(100000,999999); 
+
         $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
@@ -148,6 +151,7 @@ class RegisterController extends Controller
             'last_name' => $request->last_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'account_id' => $account_id,
             // 'ip' => $request->ip,
             // 'dob' => $request->dob,
             // 'phone' => $request->phone,
@@ -176,6 +180,7 @@ class RegisterController extends Controller
             'last_name' => $request->last_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'account_id' => $account_id,
             // 'ip' => $request->ip,
             // 'dob' => $request->dob,
             // 'phone' => $request->phone,
