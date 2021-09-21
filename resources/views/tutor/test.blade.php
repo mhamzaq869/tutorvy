@@ -232,9 +232,11 @@
                                         rows="10" required></textarea>
                                 </div>
                             </div>
-                            <button type="submit" class="schedule-btn mb-4 mt-4" style="width: 100px;float: right;margin-right: 50px;" >
-                            <i class="fas fa-circle-notch fa-spin"></i> Submit
-                            </button>
+                            <button type="submit" class="schedule-btn mb-4 mt-4" id="saveBtn" style="width: 100px;float: right;margin-right: 50px;" > Submit </button>
+
+                            <button type="button" role="button" type="button" id="proBtn" disabled class="btn btn-primary mb-4 mt-4 mr-2" style="float: right;margin-right: 50px; display:none" >
+                                <i class="fas fa-circle-notch fa-spin"></i> Processing </button>
+                            
 
 
                         </div>
@@ -258,8 +260,7 @@
                                     <p class="text-center paragraph-line">
                                         We will get to you soon with your <br /> results within 24 hours
                                     </p>
-                                    <button type="button" id="test" data-toggle="modal"
-                                            data-target="#exampleModalCenter" class="schedule-btn mb-5"
+                                    <a href="{{route('tutor.subject')}}" type="button" id="test" class="schedule-btn mb-5"
                                             style="width: 180px;">Go to dashboard
                                     </button>
                                     </a>
@@ -273,7 +274,12 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <!-- jquery  -->
+        <script src="{{ asset('/admin/assets/js/jquery.js ')}}"></script>
+    <script src="{{ asset('/admin/assets/js/jquery-ui.js')}}"></script>
+      <!-- bootstrap 4 javascript -->
+    <script src="{{ asset('/admin/assets/js/popper.min.js')}}"></script>
+    <script src="{{ asset('/admin/assets/js/bootstrap.min.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
         $(document).ready(function(){
@@ -283,8 +289,6 @@
             $("#highCheck").hide('slow');
             $("#postCheck").hide('slow');
 
-
-
             $('#subjectForm').submit(function(e) {
                 e.preventDefault();
 
@@ -292,51 +296,56 @@
                 var action = $(this).attr('action');
                 var method = $(this).attr('method');
                 
+                var level_check = $( "input:checked" ).length;
+                if(level_check == 0) {
+                    alert('Please Select atleast One Level');
+                }else{
+                    
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        url: action,
+                        type:method,
+                        data:form,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        beforeSend:function(data) {
+                            $("#saveBtn").hide();
+                            $("#proBtn").show();
+                        },
+                        success:function(response){
+                            if(response.status_code == 200 && response.success == true) {
 
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: action,
-                    type:method,
-                    data:form,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    success:function(response){
-                        if(response.status_code == 200 && response.success == true) {
-                            toastr.success(response.message,{
-                                position: 'top-end',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 2500
-                            });
-                        }else{
-                            toastr.error(response.message,{
-                                position: 'top-end',
-                                icon: 'error',
-                                showConfirmButton: false,
-                                timer: 2500
-                            });
+                                $("#exampleModalCenter").modal('show');
+
+                            }else{
+                                toastr.error(response.message,{
+                                    position: 'top-end',
+                                    icon: 'error',
+                                    showConfirmButton: false,
+                                    timer: 2500
+                                });
+                            }
+                        },
+                        complete:function(data) {
+                            $("#saveBtn").show();
+                            $("#proBtn").hide();
+                        },
+                        error:function(e) {
+                            console.log(e);
+                            $("#saveBtn").show();
+                            $("#proBtn").hide();
                         }
-                    },
-                    error:function(e) {
-                        console.log(e)
-                    }
-                });
+                    });
+                }
 
             })
 
 
         })
-       var test =  document.getElementById("test")
-       var form =  document.getElementById("form")
 
-       test.addEventListener('click', function(e){
-            e.preventDefault();
-
-            form.submit()
-       })
        $("#preElementary").change(function(){
             if($('#preElementary').is(':checked'))
                 {
@@ -393,16 +402,16 @@
             }
        })
        
-       function checkExpertyLevel() {
+    //    function checkExpertyLevel() {
 
-            var level_check = $( "input:checked" ).length;
-            if(level_check == 0) {
-                alert('Please Select atleast One Level');
-            }else{
-                $("#exampleModalCenter").modal('show');
-            }
+    //         var level_check = $( "input:checked" ).length;
+    //         if(level_check == 0) {
+    //             alert('Please Select atleast One Level');
+    //         }else{
+    //             $("#exampleModalCenter").modal('show');
+    //         }
 
-       }
+    //    }
     </script>
 </body>
 
