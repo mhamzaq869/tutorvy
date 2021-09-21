@@ -389,17 +389,16 @@
                                     @if($today_bookings != "[]")
                                         @foreach($today_bookings as $booking)
                                             <div class="row mt-2 bg-bookings">
-                                                <div class="col-md-3 text-center">
-                                                @if($today_bookings->picture)
-                                                        <img src="{{asset ($today_bookings->picture)}}" alt=""  class="db_img">
+                                                <div class="col-md-4 text-center">
+                                                @if($booking->tutor->picture)
+                                                        <img src="{{asset ($booking->tutor->picture)}}" alt=""  class="db_img">
                                                 @else
                                                     <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="db_img">
                                                 @endif
-                                                    <img src="{{asset('assets/images/ico/botal-ico.png') }}" alt="botal-ico"
-                                                        style="margin-top: 32px;">
+                                                   
                                                 </div>
-                                                <div class="col-md-9">
-                                                    <p class="mt-3 mb-2 periodic-cls">
+                                                <div class="col-md-8">
+                                                    <p class="mb-2 periodic-cls">
                                                         <a class="chemistry-tex1">
                                                         {{$booking->subject->name}} class:
                                                         </a>
@@ -440,12 +439,15 @@
                                         @foreach($upcoming_bookings as $booking)
 
                                             <div class="row mt-2 bg-bookings">
-                                                <div class="col-md-3 text-center">
-                                                    <img src="{{asset('assets/images/ico/botal-ico.png') }}" alt="botal-ico"
-                                                        style="margin-top: 32px;">
+                                                <div class="col-md-4 text-center">
+                                                @if($booking->tutor->picture)
+                                                        <img src="{{asset ($booking->tutor->picture)}}" alt=""  class="db_img">
+                                                @else
+                                                    <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="db_img">
+                                                @endif
                                                 </div>
-                                                <div class="col-md-9">
-                                                    <p class="mt-3 mb-2 periodic-cls">
+                                                <div class="col-md-8">
+                                                    <p class=" mb-2 periodic-cls">
                                                         <a class="chemistry-tex1">
                                                         {{$booking->subject->name}} class:
                                                         </a>

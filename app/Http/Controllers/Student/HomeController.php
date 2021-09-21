@@ -30,8 +30,8 @@ class HomeController extends Controller
         ->where('users.status',2)
         ->get();
 
-        $today_bookings = Booking::with('user')->where('user_id',Auth::user()->id)->today()->take(2)->get();
-        $upcoming_bookings = Booking::with('user')->where('user_id',Auth::user()->id)->where('status',2)->take(2)->get();
+        $today_bookings = Booking::with(['tutor'])->where('user_id',Auth::user()->id)->today()->take(2)->get();
+        $upcoming_bookings = Booking::with(['tutor'])->where('user_id',Auth::user()->id)->where('status',2)->take(2)->get();
 
         $new_bookings = Booking::where('user_id',Auth::user()->id)->status(0)->get();
         $delivered_count = Booking::where('user_id',Auth::user()->id)->where('status',5)->count();
@@ -44,7 +44,7 @@ class HomeController extends Controller
         //     $tutor->tutor_subject_rate = DB::table("subject_plans")->where("user_id",$tutor->id)->min('rate');
         // }
         $user = User::where('id',Auth::user()->id)->first();
-        // return ($user);
+        // return ($today_bookings);
 
         return view('student.pages.index',compact('upcoming_bookings','today_bookings','new_bookings','delivered_count','upcoming_count','pending_count','subject_count','user','categories','favorite_tutors'));
     }
