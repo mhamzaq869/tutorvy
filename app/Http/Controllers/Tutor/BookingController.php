@@ -15,7 +15,7 @@ class BookingController extends Controller
 
     public function index()
     {
-        $today = Booking::where('booked_tutor',Auth::user()->id)->today()->status(0)->get();
+        $today = Booking::where('booked_tutor',Auth::user()->id)->status(0)->get();
        
         $tomorrow = Booking::where('booked_tutor',Auth::user()->id)->status(2)->get();
         $pending = Booking::where('booked_tutor',Auth::user()->id)->status(1)->get();

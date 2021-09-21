@@ -179,7 +179,7 @@
                         @if(!isset($user))
                         <div class="social-Icon ml-3 mr-3">
                             <div class="Google">
-                                <a href="{{route('social.google')}}">
+                                <a href="{{route('social.google',[0])}}">
                                     <img class="mr-3" src="../assets/images/ico/google.png" alt="google">
                                     Continue with Google
                                 </a>
