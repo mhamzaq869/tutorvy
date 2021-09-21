@@ -415,8 +415,14 @@
                             {{Auth::user()->first_name}} {{Auth::user()->last_name}}
                         @endif
                     </a>
-                    <img class="profile-img" src="{{ asset('/admin/assets/img/ico/porfile-main.svg')}}" data-toggle="dropdown"
-                        alt="profile">
+
+                    @if(Auth::user()->picture != null)
+                        <img class="profile-img" src="{{ asset(Auth::user()->picture)}}" data-toggle="dropdown"
+                            alt="profile">
+                    @else
+                        <img class="profile-img" src="{{ asset('/admin/assets/img/ico/Square-white.jpg')}}" data-toggle="dropdown"
+                            alt="profile">
+                    @endif
                     <ul class="dropdown-menu classdrop classdrop1">
                         <li>
                             <a tabindex="-1" class="disabled" href="setting/setting.html">

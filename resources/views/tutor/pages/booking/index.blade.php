@@ -46,7 +46,7 @@
                         <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
                             href="#nav-contact" role="tab" aria-controls="nav-contact"
                             aria-selected="false">
-                            Pending
+                            Pending 
                         </a>
                         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
                             href="#nav-profile" role="tab" aria-controls="nav-profile"
@@ -65,6 +65,7 @@
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
+
                     <div class="tab-pane tab-border-none tab-border-none-1 fade show active" id="nav-home" role="tabpanel"
                         aria-labelledby="nav-home-tab">
                             <div class="container-fluid ">
@@ -75,7 +76,7 @@
                                                 <tr
                                                     style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
                                                     <th scope="col">
-                                                        Subjects 
+                                                        Subjects
                                                     </th>
                                                     <th scope="col">
                                                         Topic
@@ -99,8 +100,8 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                               @if($today)
-                                                    @foreach ($today as $booking)
+                                               @if($all)
+                                                    @foreach ($all as $booking)
                                                         <tr>
                                                             <td class="pt-4">
                                                             {{$booking->subject->name}}
@@ -157,6 +158,7 @@
                             </div>
                             <!-- end -->
                     </div>
+                    
                     <div class="tab-pane tab-border-none fade" id="nav-profile" role="tabpanel"
                         aria-labelledby="nav-profile-tab">
                             <div class="container-fluid ">
@@ -166,7 +168,7 @@
                                             <thead>
                                                 <tr
                                                     style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
-                                                    <th scope="col">Subjects</th>
+                                                    <th scope="col">Subjects </th>
                                                     <th scope="col">Topic</th>
                                                     <th scope="col">Time</th>
                                                     <th scope="col">Student</th>
@@ -179,8 +181,8 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            @if($tomorrow)
-                                                @foreach ($tomorrow as $booking)
+                                            @if($confirmed)
+                                                @foreach ($confirmed as $booking)
                                                 <tr>
                                                     <td class="pt-4">
                                                        {{$booking->subject->name}}
@@ -236,7 +238,9 @@
                                     </div>
                                 </div>
                                 <!-- end -->
-                        </div>
+                            </div>
+                    
+
                         <div class="tab-pane tab-border-none fade" id="nav-contact" role="tabpanel"
                             aria-labelledby="nav-contact-tab">
 
@@ -248,7 +252,7 @@
                                                 <thead>
                                                     <tr
                                                         style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
-                                                        <th scope="col">Subjects</th>
+                                                        <th scope="col">Subjects </th>
                                                         <th scope="col">Topic</th>
                                                         <th scope="col">Time</th>
                                                         <th scope="col">Student</th>
@@ -262,7 +266,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                @if($tomorrow)
+                                                @if($pending)
                                                     @foreach ($pending as $booking)
                                                     <tr>
                                                         <td class="pt-4">
@@ -318,6 +322,7 @@
                                 </div>
                                 <!-- end -->
                         </div>
+
                         <div class="tab-pane tab-border-none fade" id="nav-about" role="tabpanel"
                             aria-labelledby="nav-about-tab">
 
@@ -329,7 +334,7 @@
                                                 <thead>
                                                     <tr
                                                         style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
-                                                        <th scope="col">Subjects</th>
+                                                        <th scope="col">Subjects </th>
                                                         <th scope="col">Topic</th>
                                                         <th scope="col">Time</th>
                                                         <th scope="col">Student</th>
@@ -345,8 +350,8 @@
                                                 </thead>
                                                 <tbody>
 
-                                                @if($delivered)
-                                                    @foreach ($delivered as $booking)
+                                                @if($completed)
+                                                    @foreach ($completed as $booking)
                                                     <tr>
                                                         <td class="pt-4">
                                                         {{$booking->subject->name}}
@@ -427,8 +432,8 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                @if($delivered)
-                                                    @foreach ($delivered as $booking)
+                                                @if($cancelled)
+                                                    @foreach ($cancelled as $booking)
                                                     <tr>
                                                         <td class="pt-4">
                                                         {{$booking->subject->name}}

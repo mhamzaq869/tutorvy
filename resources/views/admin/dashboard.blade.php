@@ -44,34 +44,38 @@ svg:not(:root) {
                         </h2>
                         <div class="row">
                             <div class="col-md-4">
-                                <div class="container card ">
-                                    <div class="text-home">
-                                        <p class="number-booking">
-                                            {{ $tutors_count }}
-                                        </p>
-                                        <p class="class-booking">
-                                            Total tutors
-                                        </p>
+                                <a href="{{route('admin.tutor')}}" class="text-dark" style="text-decoration: none;">
+                                    <div class="container card ">
+                                        <div class="text-home">
+                                            <p class="number-booking">
+                                                {{ $tutors_count }}
+                                            </p>
+                                            <p class="class-booking">
+                                                Total tutors
+                                            </p>
+                                        </div>
+                                        <div class="iconside">
+                                            <img class="card-ico" src="assets/img/ico/card-icon-1.svg" alt="blue-ico">
+                                        </div>
                                     </div>
-                                    <div class="iconside">
-                                        <img class="card-ico" src="assets/img/ico/card-icon-1.svg" alt="blue-ico">
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                             <div class="col-md-4">
-                                <div class="container card ">
-                                    <div class="text-home">
-                                        <p class="number-booking">
-                                            {{ $students_count }}
-                                        </p>
-                                        <p class="class-booking">
-                                            Total students
-                                        </p>
+                                <a href="{{route('admin.student')}}" class="text-dark" style="text-decoration: none;">
+                                    <div class="container card ">
+                                        <div class="text-home">
+                                            <p class="number-booking">
+                                                {{ $students_count }}
+                                            </p>
+                                            <p class="class-booking">
+                                                Total students
+                                            </p>
+                                        </div>
+                                        <div class="iconside">
+                                            <img class="card-ico1" src="assets/img/ico/card-icon-2.svg" alt="red-ico">
+                                        </div>
                                     </div>
-                                    <div class="iconside">
-                                        <img class="card-ico1" src="assets/img/ico/card-icon-2.svg" alt="red-ico">
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                             <div class="col-md-4">
                                 <div class="container card">
@@ -110,7 +114,7 @@ svg:not(:root) {
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <h1 class="d-flex number-postion">1564
+                                        <h1 class="d-flex number-postion">{{$all_users}}
                                             <span class="heading-user">users</span>
                                         </h1>
                                         <span class="heading-fifth-2">
@@ -330,40 +334,111 @@ svg:not(:root) {
                                                 <th scope="col">Email</th>
                                                 <th scope="col">Subjects</th>
                                                 <th scope="col">Location</th>
-                                                <th scope="col">Level</th>
+                                                <!-- <th scope="col">Grade</th> -->
                                                 <th scope="col">Availability </th>
                                                 <th scope="col">Rate</th>
-
+                                                <th scope="col">Status</th>
                                                 <th scope="col"></th>
-
                                             </tr>
                                         </thead>
                                         <tbody id="datas">
-                                            <tr>
-                                                <td class="">
-                                                     <img src="{{asset ('admin/assets/img/logo/boy.jpg')}}"  class="tutor-img" alt=""> M Harram Laraib
-                                                </td>
-                                                <td class="pt-24">
-                                                    <span href="#" data-toggle="tooltip"
-                                                        title="harramlaraib127@gmail.com">har***</span>
-                                                </td>
-                                                <td class="pt-24">English</td>
-                                                <td class="pt-24">Lahore, Punjab Pakistan</td>
-                                                <td class="pt-24">Advance</td>
-                                                <td class="pt-24" id="avalibility">8am-8pm</td>
-                                                <td class="pt-24">$50</td>
+                                            @foreach($new_requests as $request)
+                                                @if($request->status == 2 && $request->assessment_id != '' && $request->assessment_id != null && $request->assessment_status == 0)
+                                                    <tr>
+                                                        <td class="pt-4">
+                                                            {{ $request->first_name }} {{ $request->last_name }}
+                                                        </td>
+                                                        <td class="pt-4">
+                                                            <span data-toggle="tooltip"
+                                                                title="{{$request->email}}">{{Str::limit($request->email, 3, $end='***')}}</span>
+                                                        </td>
+                                                        <td class="pt-4">{{$request->subject_name}}</td>
+                                                        <td class="pt-4">{{$request->city != NULL ? $request->city.', ' : '---'}}{{$request->country != NULL ? $request->country : '---'}}</td>
+                                                                                                
+                                                        <td class="pt-4">---</td>
+                                                        <td class="pt-4">{{$request->hourly_rate}}</td>
+                                                        <td class="pt-4"> 
+                                                            @if($request->assessment_status == 0 && $request->status == 2)
+                                                                <span class="statusTag doc_sub_status">  Assessment Sumitted </span>
+                                                            @else
+                                                                @if( $request->status == 0)
+                                                                    <span class="statusTag doc_not_sub_status">  Document not Submitted </span>
+                                                                @elseif( $request->status == 1)
+                                                                    <span class="statusTag doc_sub_status">  Document Sumitted </span>
+                                                                @endif
+                                                            @endif
+                                                        </td>
+                                                        <td class="pt-3 text-right">
+                                                            <a href="{{ route('admin.tutorRequest',[$request->id,$request->assessment_id !=null ? $request->assessment_id : '']) }}" class="cencel-btn btn">
+                                                                View
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                @elseif($request->status == 0)
+                                                    <tr>
+                                                        <td class="pt-4">
+                                                            {{ $request->first_name }} {{ $request->last_name }}
+                                                        </td>
+                                                        <td class="pt-4">
+                                                            <span data-toggle="tooltip"
+                                                                title="{{$request->email}}">{{Str::limit($request->email, 3, $end='***')}}</span>
+                                                        </td>
+                                                        <td class="pt-4">{{$request->subject_name}}</td>
+                                                        <td class="pt-4">{{$request->city != NULL ? $request->city.', ' : '---'}}{{$request->country != NULL ? $request->country : '---'}}</td>
+                                                    
+                                                        
+                                                        <td class="pt-4">---</td>
+                                                        <td class="pt-4">{{$request->hourly_rate}}</td>
+                                                        <td class="pt-4"> 
+                                                            @if($request->assessment_status == 0 && $request->status == 2)
+                                                                <span class="statusTag doc_sub_status">  Assessment Sumitted </span>
+                                                            @else
+                                                                @if( $request->status == 0)
+                                                                    <span class="statusTag doc_not_sub_status">  Document not Submitted </span>
+                                                                @elseif( $request->status == 1)
+                                                                    <span class="statusTag doc_sub_status">  Document Sumitted </span>
+                                                                @endif
+                                                            @endif
+                                                        </td>
+                                                        <td class="pt-3 text-right">
+                                                            <a href="{{ route('admin.tutorRequest',[$request->id,$request->assessment_id !=null ? $request->assessment_id : '']) }}" class="cencel-btn btn">
+                                                                View
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                @elseif($request->status == 1)
+                                                    <tr>
+                                                        <td class="pt-4">
+                                                            {{ $request->first_name }} {{ $request->last_name }}
+                                                        </td>
+                                                        <td class="pt-4">
+                                                            <span data-toggle="tooltip"
+                                                                title="{{$request->email}}">{{Str::limit($request->email, 3, $end='***')}}</span>
+                                                        </td>
+                                                        <td class="pt-4">{{$request->subject_name}}</td>
+                                                        <td class="pt-4">{{$request->city != NULL ? $request->city.', ' : '---'}}{{$request->country != NULL ? $request->country : '---'}}</td>
 
-                                                <td class="pt-3 text-right">
-                                                    <a href="tutor-manage/request.html" class="cencel-btn btn">
-                                                        View
-                                                    </a>
-                                                </td>
-                                                <td class="pt-3 text-right">
-                                                    <button class="schedule-btn" data-toggle="modal"
-                                                        data-target="#exampleModalCenter">Assign</button>
-                                                </td>
-                                            </tr>
-                                            
+                                                        <td class="pt-4">---</td>
+                                                        <td class="pt-4">{{$request->hourly_rate}}</td>
+                                                        <td class="pt-4"> 
+                                                            @if($request->assessment_status == 0 && $request->status == 2)
+                                                                <span class="statusTag doc_sub_status">  Assessment Sumitted </span>
+                                                            @else
+                                                                @if( $request->status == 0)
+                                                                    <span class="statusTag doc_not_sub_status">  Document not Submitted </span>
+                                                                @elseif( $request->status == 1)
+                                                                    <span class="statusTag doc_sub_status">  Document Sumitted </span>
+                                                                @endif
+                                                            @endif
+                                                        </td>
+                                                        <td class="pt-3 text-right">
+                                                            <a href="{{ route('admin.tutorRequest',[$request->id,$request->assessment_id !=null ? $request->assessment_id : '']) }}" class="cencel-btn btn">
+                                                                View
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                @endif
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -384,6 +459,7 @@ svg:not(:root) {
                     </div>
                     <div class="card">
                         <div class="card-body">
+
                             <div class="row">
                                 <div class="col-md-11">
                                     <form class="row">
@@ -438,6 +514,7 @@ svg:not(:root) {
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="row ">
                                 <div class="col-md-12">
                                     <table class="table table-borderless">
@@ -451,67 +528,50 @@ svg:not(:root) {
                                                 <th scope="col">Answered by</th>
                                                 <th scope="col">Status</th>
                                                 <th scope="col"></th>
-
-
-
                                             </tr>
                                         </thead>
                                         <tbody id="datashow">
-                                            <tr>
-                                                <td class="pt-4">
-                                                    <span>1234567890</span>
-                                                </td>
-                                                <td class="pt-4">Harram Laraib</td>
-                                                <td class="pt-4">i have a issue for chemistry book and Solved this problem
+                                            @foreach($tickets as $ticket)
+                                                <tr>
+                                                    <td class="pt-4">
+                                                        {{$ticket->ticket_no}}
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        @if($ticket->tkt_created_by != null && $ticket->tkt_created_by != "" && $ticket->tkt_created_by != [])
+                                                            <span> {{$ticket->tkt_created_by->first_name}} {{$ticket->tkt_created_by->last_name}} </span>
+                                                        @else
+                                                            <span> - </span>
+                                                        @endif
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        {{$ticket->subject}}
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        Payment
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        {{date_format($ticket->created_at,"Y-m-d")}}
+                                                    </td>
+                                                    <td class="pt-4">
+                                                    @if($ticket->category != null && $ticket->category != "" && $ticket->category != [])
+                                                        <span> {{$ticket->category->title}} </span>
+                                                    @else
+                                                        <span> - </span>
+                                                    @endif
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        @if($ticket->status == 0)
+                                                            <span class="statusTag doc_not_sub_status"> Pending </span>
+                                                        @endif
+                                                    </td>
 
-                                                </td>
-                                                <td class="pt-4">Payment</td>
-                                                <td class="pt-4">03 jun, 21</td>
-                                                <td class="pt-4">Danish Jaffery</td>
-                                                <td class="pt-4">
-                                                    <span class="pending-text">Pending</span>
-                                                </td>
-                                                <td class="pt-3 float-right">
-                                                    <a href="support/ticket.html" class="schedule-btn btn">View</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pt-4">
-                                                    <span>1234567890</span>
-                                                </td>
-                                                <td class="pt-4">Harram Laraib</td>
-                                                <td class="pt-4">i have a issue for chemistry book and Solved this problem
-
-                                                </td>
-                                                <td class="pt-4">Payment</td>
-                                                <td class="pt-4">03 jun, 21</td>
-                                                <td class="pt-4">Danish Jaffery</td>
-                                                <td class="pt-4">
-                                                    <span class="pending-text">Pending</span>
-                                                </td>
-                                                <td class="pt-3 float-right">
-                                                    <a href="support/ticket.html" class="schedule-btn btn">View</a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="pt-4">
-                                                    <span>1234567890</span>
-                                                </td>
-                                                <td class="pt-4">Harram Laraib</td>
-                                                <td class="pt-4">i have a issue for chemistry book and Solved this problem
-
-                                                </td>
-                                                <td class="pt-4">Payment</td>
-                                                <td class="pt-4">03 jun, 21</td>
-                                                <td class="pt-4">Danish Jaffery</td>
-                                                <td class="pt-4">
-                                                    <span class="pending-text">Pending</span>
-                                                </td>
-                                                <td class="pt-3 float-right">
-                                                    <a href="support/ticket.html" class="schedule-btn btn">View</a>
-                                                </td>
-                                            </tr>
-
+                                                    <td style="text-align: center;">
+                                                        <a href="{{url('admin/ticket')}}/{{$ticket->ticket_no}}" class="btn schedule-btn w-100">
+                                                            View
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

@@ -23,16 +23,11 @@ class TutorController extends Controller
     |
     |
     */
-    public function index()
-    {
-        $staff_members = User::whereNotIn('role', [1,2,3])->get();
+    public function index() {
 
+        $staff_members = User::whereNotIn('role', [1,2,3])->get();
         $approved_tutors = User::with(['education','professional','teach'])->where('role',2)->whereIn('status',[2])->paginate(15);
         
-
-        // dd($approved_tutors);
-        // $new_requests = array();
-
         $tutor_assessments = Assessment::get();
 
         $new_requests = DB::table('users')

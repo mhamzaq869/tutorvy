@@ -162,8 +162,8 @@
             
             $('.schedule_date').text(data[1]);
             $('.schedule_time').text(moment(data[0],'hh:mm').format('LT'));
-            $('.schedule_duration').text(data[2] + ' Hours');
-            $('.total_fee').text(data[3]);
+            $('.schedule_duration').text(data[2] + ' Hour(s)');
+            $('.total_fee').text('$'+data[3]);
 
             $("#approveModel").modal('show');
 

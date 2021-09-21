@@ -13,15 +13,14 @@ class BookingController extends Controller
      *  Return Tutor Booking view
      */
 
-    public function index()
-    {
-        $today = Booking::where('booked_tutor',Auth::user()->id)->status(0)->get();
-       
-        $tomorrow = Booking::where('booked_tutor',Auth::user()->id)->status(2)->get();
-        $pending = Booking::where('booked_tutor',Auth::user()->id)->status(1)->get();
-        $delivered = Booking::where('booked_tutor',Auth::user()->id)->status(5)->get();
-
-        return view('tutor.pages.booking.index',compact('today','tomorrow','pending','delivered'));
+    public function index() {
+        $all = Booking::where('booked_tutor',Auth::user()->id)->get();
+        $pending = Booking::where('booked_tutor',Auth::user()->id)->whereIn('status',[0,1])->get();
+        $confirmed = Booking::where('booked_tutor',Auth::user()->id)->status(2)->get();
+        $completed = Booking::where('booked_tutor',Auth::user()->id)->status(5)->get();
+        $cancelled = Booking::where('booked_tutor',Auth::user()->id)->whereIn('status',[3,4])->get();
+        
+        return view('tutor.pages.booking.index',compact('all','pending','confirmed','completed','cancelled'));
     }
 
     /**

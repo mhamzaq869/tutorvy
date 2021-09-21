@@ -65,7 +65,7 @@
                         <div class="col-md-12 stats">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <a href="{{route('tutor.booking')}}">
+                                    <a href="{{route('tutor.classroom')}}">
                                         <div class="container-fluid card 1">
                                             <div class="text-home">
                                                 <p class="number-booking">
@@ -84,7 +84,7 @@
                                    
                                 </div>
                                 <div class="col-md-3">
-                                        <a href="{{route('tutor.booking')}}">
+                                        <a href="{{route('tutor.classroom')}}">
                                             <div class="container-fluid card 1">
                                                 <div class="text-home">
                                                     <p class="number-booking">
