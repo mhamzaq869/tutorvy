@@ -18,9 +18,6 @@ class AssessmentController extends Controller
 
     public function store(Request $request)
     {
-
-        return $request->all();
-
         Assessment::create([
             'user_id' =>  Auth::user()->id,
             'subject_id' => $request->subject,
