@@ -592,8 +592,11 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
-                                                <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit"
+                                                <button class="schedule-btn" id="saveBtn" style="width:180px;font-size: 14px;" type="submit"
                                                     name="personal">Save Changes</button>
+                                                <button type="button" role="button" type="button" id="proBtn" disabled class="btn btn-primary mb-4 mt-4 mr-2" 
+                                                style="width: 180px;" >
+                                                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i> <span class="sr-only">Loading...</span> Processing </button>
                                             </div>
 
                                         </div>
