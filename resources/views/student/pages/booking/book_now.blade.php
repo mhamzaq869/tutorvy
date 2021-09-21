@@ -47,7 +47,7 @@
                                             <div class="row">
                                                 <div class="col-md-2 col-6">
                                                     @if($user->picture == "" || $user->picture == null)
-                                                        <img src="{{asset('assets/images/logo/boy.jpg')}}" alt="" class="round-border">
+                                                        <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="round-border">
                                                     @else
                                                         <img src="{{asset($user->picture)}}"  alt="" class="round-border">
                                                     @endif
@@ -91,13 +91,23 @@
                                             </div>
                                         </div>
                                         <div class="col-md-3">
-                                            @if($user->rank == 1)
-                                                <p class="text-right"><span class="text-green ">Verified</span> <span class="rank_icon"><img src="{{asset('assets/images/ico/bluebadge.png')}}" alt=""></span> </p>
-                                            @elseif($user->rank == 2)
-                                                <p class="text-right"><span class="text-green ">Emerging</span> <span class="rank_icon"><img src="{{asset('assets/images/ico/yellow-rank.png')}}" alt=""></span> </p>
-                                            @elseif($user->rank == 3)
-                                                <p class="text-right"><span class="text-green ">Top Rank</span> <span class="rank_icon"><img src="{{asset('assets/images/ico/rank.png')}}" alt=""></span> </p>
-                                            @endif
+                                        @if($user->rank == 0)
+                                        <a class="ab_right" href="#" data-toggle="modal"
+                                            data-target="#rankModal">New <img src="/assets/images/ico/bluebadge.png" class="wd-30" alt="" widht="30">
+                                        </a>
+                                        @elseif($user->rank == 1)
+                                        <a class="ab_right" href="#" data-toggle="modal"
+                                            data-target="#rankModal">Emerging <img src="/assets/images/ico/yellow-rank.png" class="wd-30" alt="" widht="30">
+                                        </a>
+                                        @elseif($user->rank == 2)
+                                        <a class="ab_right" href="#" data-toggle="modal"
+                                            data-target="#rankModal">Top Rank <img src="/assets/images/ico/rank.png" class="wd-30" alt="" widht="30">
+                                        </a>
+                                        @else
+                                        <a class="ab_right" href="#" data-toggle="modal"
+                                            data-target="#rankModal">Upgrade badge <img src="/assets/images/ico/rank.png" class="wd-30" alt="" widht="30">
+                                        </a>
+                                        @endif
                                         </div>
                                         <div class="col-md-4">
                                             <p class="mb-0 "><img src="{{asset('assets/images/ico/red-icon.png')}}" alt="" class="pr-2">  {{$user->professional->last()->designation ?? '---'}}</p>

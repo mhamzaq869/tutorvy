@@ -84,9 +84,7 @@
                                                     <th scope="col">
                                                         Time
                                                     </th>
-                                                    <th scope="col">
-                                                        Student
-                                                    </th>
+                                                  
                                                     <th scope="col">
                                                         Duration
                                                     </th>
@@ -104,6 +102,9 @@
                                                     @foreach ($all as $booking)
                                                         <tr>
                                                             <td class="pt-4">
+                                                                {{$booking->user->fullname}}
+                                                            </td>
+                                                            <td class="pt-4">
                                                             {{$booking->subject->name}}
                                                             </td>
                                                             <td class="pt-4">
@@ -112,9 +113,7 @@
                                                             <td class="pt-4">
                                                             {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
                                                             </td>
-                                                            <td class="pt-4">
-                                                                {{$booking->user->fullname}}
-                                                            </td>
+                                                           
                                                             <td class="pt-4">
                                                                 &nbsp;{{$booking->duration}} Hour(s)
                                                             </td>
@@ -171,7 +170,6 @@
                                                     <th scope="col">Subjects </th>
                                                     <th scope="col">Topic</th>
                                                     <th scope="col">Time</th>
-                                                    <th scope="col">Student</th>
                                                     <th scope="col">Duration</th>
                                                     <th scope="col">Payment</th>
                                                     <th scope="col">
@@ -185,6 +183,9 @@
                                                 @foreach ($confirmed as $booking)
                                                 <tr>
                                                     <td class="pt-4">
+                                                        {{$booking->user->fullname}}
+                                                    </td>
+                                                    <td class="pt-4">
                                                        {{$booking->subject->name}}
                                                     </td>
                                                     <td class="pt-4">
@@ -193,9 +194,7 @@
                                                     <td class="pt-4">
                                                         {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
                                                     </td>
-                                                    <td class="pt-4">
-                                                        {{$booking->user->fullname}}
-                                                    </td>
+                                                   
                                                     <td class="pt-4">
                                                         &nbsp;{{$booking->duration}} Hour(s)
                                                     </td>
@@ -255,7 +254,6 @@
                                                         <th scope="col">Subjects </th>
                                                         <th scope="col">Topic</th>
                                                         <th scope="col">Time</th>
-                                                        <th scope="col">Student</th>
                                                         <th scope="col">Duration</th>
                                                         <th scope="col">Payment</th>
                                                         <th scope="col">
@@ -270,6 +268,9 @@
                                                     @foreach ($pending as $booking)
                                                     <tr>
                                                         <td class="pt-4">
+                                                            {{$booking->user->fullname}}
+                                                        </td>
+                                                        <td class="pt-4">
                                                         {{$booking->subject->name}}
                                                         </td>
                                                         <td class="pt-4">
@@ -278,9 +279,7 @@
                                                         <td class="pt-4">
                                                             {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
                                                         </td>
-                                                        <td class="pt-4">
-                                                            {{$booking->user->fullname}}
-                                                        </td>
+                                                        
                                                         <td class="pt-4">
                                                             &nbsp;{{$booking->duration}} Hour(s)
                                                         </td>
@@ -337,7 +336,6 @@
                                                         <th scope="col">Subjects </th>
                                                         <th scope="col">Topic</th>
                                                         <th scope="col">Time</th>
-                                                        <th scope="col">Student</th>
                                                         <th scope="col">Duration</th>
                                                         <th scope="col">Payment</th>
                                                         <th scope="col">
@@ -354,6 +352,9 @@
                                                     @foreach ($completed as $booking)
                                                     <tr>
                                                         <td class="pt-4">
+                                                            {{$booking->user->fullname}}
+                                                        </td>
+                                                        <td class="pt-4">
                                                         {{$booking->subject->name}}
                                                         </td>
                                                         <td class="pt-4">
@@ -362,9 +363,7 @@
                                                         <td class="pt-4">
                                                             {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
                                                         </td>
-                                                        <td class="pt-4">
-                                                            {{$booking->user->fullname}}
-                                                        </td>
+                                                        
                                                         <td class="pt-4">
                                                             &nbsp;{{$booking->duration}} Hour(s)
                                                         </td>
@@ -417,10 +416,10 @@
                                                 <thead>
                                                     <tr
                                                         style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
+                                                        <th scope="col">Student</th>
                                                         <th scope="col">Subjects</th>
                                                         <th scope="col">Topic</th>
                                                         <th scope="col">Time</th>
-                                                        <th scope="col">Student</th>
                                                         <th scope="col">Duration</th>
                                                         <th scope="col">Payment</th>
                                                         <th scope="col">
@@ -436,6 +435,9 @@
                                                     @foreach ($cancelled as $booking)
                                                     <tr>
                                                         <td class="pt-4">
+                                                            {{$booking->user->fullname}}
+                                                        </td>
+                                                        <td class="pt-4">
                                                         {{$booking->subject->name}}
                                                         </td>
                                                         <td class="pt-4">
@@ -444,9 +446,7 @@
                                                         <td class="pt-4">
                                                             {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
                                                         </td>
-                                                        <td class="pt-4">
-                                                            {{$booking->user->fullname}}
-                                                        </td>
+                                                        
                                                         <td class="pt-4">
                                                             &nbsp;{{$booking->duration}} Hour(s)
                                                         </td>

@@ -386,7 +386,7 @@
                                                             @if($tutor->picture != null)
                                                                 <img src="{{asset($tutor->picture)}}" alt="" class="round-border">
                                                             @else
-                                                                <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
+                                                                <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="round-border">
                                                             @endif                                                        
                                                         </a>
                                                        
