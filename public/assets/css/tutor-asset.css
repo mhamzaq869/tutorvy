@@ -2550,18 +2550,21 @@ select#paymentMethod option[value="others"] {
     background-color: #FFD9D8;
     border-radius: 4px;
     padding: 3px 12px;
+    display: block;
 }
 
 .bg-color-apporve1 {
     background-color: #E2F6ED;
     border-radius: 4px;
     padding: 3px 12px;
+    display: block;
 }
 
 .bg-color-apporve3 {
     background-color: #E9F2FF;
     border-radius: 4px;
     padding: 3px 12px;
+    display: block;
 }
 
 .bg-bookings {
