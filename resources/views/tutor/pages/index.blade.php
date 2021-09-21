@@ -13,9 +13,9 @@
                     </p>
                 </div>
                 <div class="col-md-8">
-                    <div class="row">
+                    <div class="row infoCard">
                         <div class="col-md-12 mb-3 ">
-                            <div class=" card mt-0 bg-toast infoCard">
+                            <div class=" card mt-0 bg-toast ">
                                 <div class="card-body row">
                                     <div class="col-md-1 text-center">
                                         <i class="fa fa-info" aria-hidden="true"></i>
@@ -142,7 +142,7 @@
                                             </p>
                                         </div>
                                         <div class="col-md-6">
-                                            <a href="Booking/Booking.html" class="view-bookings pt-3 mb-3">
+                                            <a href="{{route('tutor.booking')}}" class="view-bookings pt-3 mb-3">
                                                 View all Bookings
                                             </a>
                                         </div>
@@ -206,88 +206,153 @@
                 </div>
                 <div class="col-md-4">
                     <div class="row ">
+                        <div class="col-md-12 mb-3">
+                            <div class="card mt-0">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            @if($user->picture)
+                                                <img src="{{asset ($user->picture)}}" alt=""  class="db_img">
+                                            @else
+                                                <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="db_img">
+                                            @endif
+                                        </div>
+                                        <div class="col-md-8">
+                                            <p class="mb-0"><strong>{{$user->first_name}} {{$user->last_name}}</strong></p>
+                                            <p class="text-mute mb-0">Tutor ID# 548{{$user->id}}09 </p>
+                                            <label class="text-mute">Profile Completion</label>
+                                            <div class="progress">
+                                                
+                                                <div class="progress-bar bg-tutorvy" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
+                                            </div>
+                                            <a href="{{route('tutor.profile')}}" class="pull-right"><small>Complete Profile</small> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-12">
                             <div class="card mt-0">
                                 <div class="card-body"> 
                                     <div class="row mt-2">
-                                        <div class="col-md-7">
+                                        <div class="col-md-9">
                                                 <p class="heading-third">
                                                     Today Bookings
                                                 </p>
                                         </div>
-                                        <div class="col-md-5">
-                                            <a href="Booking/Booking.html" class="view-bookings">
-                                                View all Bookings
+                                        <div class="col-md-3">
+                                            <a href="{{route('tutor.booking')}}" class="view-bookings">
+                                                View all
                                             </a>
                                         </div>
                                     </div>
-                                    @foreach($today_bookings as $booking)
-                                        <div class="row mt-2 bg-bookings">
-                                            <div class="col-md-3 text-center">
-                                                <img src="{{asset('assets/images/ico/botal-ico.png') }}" alt="botal-ico"
-                                                    style="margin-top: 32px;">
-                                            </div>
-                                            <div class="col-md-9">
-                                                <p class="mt-3 mb-2 periodic-cls">
-                                                    <a class="chemistry-tex1">
-                                                    {{$booking->subject->name}} class:
-                                                    </a>
-                                                    {{$booking->topic}}
-                                                </p>
-                                                <p class="chemistry-tex2">
-                                                {{ \Illuminate\Support\Str::limit($booking->brief, $limit = 50, $end = '...') }}
-                                                </p>
-                                                <div style="display: inline-flex;">
-                                                    <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class="watch-icon">
-                                                    <p class="time-chemistry">
-                                                    {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
+                                    @if($today_bookings != "[]")
+                                        @foreach($today_bookings as $booking)
+                                            <div class="row mt-2 bg-bookings">
+                                                <div class="col-md-3 text-center">
+                                                    
+                                                    <img src="{{asset('assets/images/ico/botal-ico.png') }}" alt="botal-ico"
+                                                        style="margin-top: 32px;">
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <p class="mt-3 mb-2 periodic-cls">
+                                                        <a class="chemistry-tex1">
+                                                        {{$booking->subject->name}} class:
+                                                        </a>
+                                                        {{$booking->topic}}
                                                     </p>
+                                                    <p class="chemistry-tex2">
+                                                    {{ \Illuminate\Support\Str::limit($booking->brief, $limit = 50, $end = '...') }}
+                                                    </p>
+                                                    <div style="display: inline-flex;">
+                                                        <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class="watch-icon">
+                                                        <p class="time-chemistry">
+                                                        {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    @endforeach
+                                        @endforeach
+                                    @else
+                                    <div class="text-center">
+                                        <img src="{{asset('assets/images/clock.png')}}" alt=""> 
+                                        <p> No Bookings for Today</p>
+
+                                    </div>
+                                    @endif
                                     <div class="row mt-2">
-                                        <div class="col-md-7">
+                                        <div class="col-md-9">
                                                 <p class="heading-third">
                                                     Upcoming Bookings
                                                 </p>
                                         </div>
-                                        <div class="col-md-5">
-                                            <a href="Booking/Booking.html" class="view-bookings">
-                                                View all Bookings
+                                        <div class="col-md-3">
+                                            <a href="{{route('tutor.booking')}}" class="view-bookings">
+                                                View all
                                             </a>
                                         </div>
                                     </div>
-                                    @foreach($upcoming_bookings as $booking)
+                                    @if($upcoming_bookings != "[]")
+                                        @foreach($upcoming_bookings as $booking)
 
-                                        <div class="row mt-2 bg-bookings">
-                                            <div class="col-md-3 text-center">
-                                                <img src="{{asset('assets/images/ico/botal-ico.png') }}" alt="botal-ico"
-                                                    style="margin-top: 32px;">
-                                            </div>
-                                            <div class="col-md-9">
-                                                <p class="mt-3 mb-2 periodic-cls">
-                                                    <a class="chemistry-tex1">
-                                                    {{$booking->subject->name}} class:
-                                                    </a>
-                                                    {{$booking->topic}}
-                                                </p>
-                                                <p class="chemistry-tex2">
-                                                {{ \Illuminate\Support\Str::limit($booking->brief, $limit = 50, $end = '...') }}
-                                                </p>
-                                                <div style="display: inline-flex;">
-                                                    <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class="watch-icon">
-                                                    <p class="time-chemistry">
-                                                    {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
+                                            <div class="row mt-2 bg-bookings">
+                                                <div class="col-md-3 text-center">
+                                                    <img src="{{asset('assets/images/ico/botal-ico.png') }}" alt="botal-ico"
+                                                        style="margin-top: 32px;">
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <p class="mt-3 mb-2 periodic-cls">
+                                                        <a class="chemistry-tex1">
+                                                        {{$booking->subject->name}} class:
+                                                        </a>
+                                                        {{$booking->topic}}
                                                     </p>
+                                                    <p class="chemistry-tex2">
+                                                    {{ \Illuminate\Support\Str::limit($booking->brief, $limit = 50, $end = '...') }}
+                                                    </p>
+                                                    <div style="display: inline-flex;">
+                                                        <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class="watch-icon">
+                                                        <p class="time-chemistry">
+                                                        {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    @endforeach
+                                        @endforeach
+                                    @else
+                                    <div class="text-center">
+                                        <img src="{{asset('assets/images/learning.png')}}" alt=""> 
+                                        <p> No Upcoming Bookings Registered</p>
+
+                                    </div>
+                                    @endif
                                   
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-md-12  ">
+                        <!-- <div class="card">
+                            <div class="card-body"> -->
+                                <div class="card bg-ad">
+                                    <div class="card-body">
+                                        <div>
+                                            <a href="">
+                                                    <img src="{{asset('assets/images/ico/playStore.png')}}" class="w-45" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="mt-2">
+                                            <a href="">
+                                                    <img src="{{asset('assets/images/ico/appStore.png')}}" class="w-45" alt="">
+                                            </a>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                               
+                            <!-- </div>
+                        </div> -->
+                    </div>
                         
                     </div>
                 </div>

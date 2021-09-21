@@ -73,7 +73,7 @@
                                 <div class="container-fluid card 1">
                                     <div class="text-home">
                                         <p class="number-booking">
-                                            16
+                                             {{$delivered_count}}
                                         </p>
                                         <p class="class-booking mt-4">
                                             Delivered classes
@@ -89,7 +89,7 @@
                                 <div class="container-fluid card 1">
                                     <div class="text-home">
                                         <p class="number-booking">
-                                            09
+                                            {{$upcoming_count}}
                                         </p>
                                         <p class="class-booking mt-4">
                                             Upcomming class
@@ -105,7 +105,7 @@
                                 <div class="container-fluid card 1">
                                     <div class="text-home">
                                         <p class="number-booking">
-                                            09
+                                            {{$pending_count}}
                                         </p>
                                         <p class="class-booking mt-4">
                                             Pending Bookings
@@ -121,7 +121,7 @@
                                 <div class="container-fluid card 1">
                                     <div class="text-home">
                                         <p class="number-booking">
-                                            02
+                                            {{$subject_count}}
                                         </p>
                                         <p class="class-booking mt-4">
                                             Total Subjects
@@ -362,7 +362,7 @@
                                         <label class="text-mute">Profile Completion</label>
                                         <div class="progress">
                                             
-                                            <div class="progress-bar bg-tutorvy" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
+                                            <div class="progress-bar bg-tutorvy progress-bar-striped progress-bar-animated" role="progressbar"  style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
                                         </div>
                                         <a href="{{route('student.profile')}}" class="pull-right"><small>Complete Profile</small> </a>
                                     </div>
@@ -381,57 +381,49 @@
                                             </p>
                                     </div>
                                     <div class="col-md-4">
-                                        <a href="Booking/Booking.html" class="view-bookings">
+                                        <a href="{{route('student.bookings')}}" class="view-bookings">
                                             View all 
                                         </a>
                                     </div>
                                 </div>
-                                <div class="row mt-2 bg-bookings">
-                                    <div class="col-md-3 text-center">
-                                        <img src="{{asset('assets/images/ico/botal-ico.png') }}" alt="botal-ico"
-                                            style="margin-top: 32px;">
+                                    @if($today_bookings != "[]")
+                                        @foreach($today_bookings as $booking)
+                                            <div class="row mt-2 bg-bookings">
+                                                <div class="col-md-3 text-center">
+                                                @if($today_bookings->picture)
+                                                        <img src="{{asset ($today_bookings->picture)}}" alt=""  class="db_img">
+                                                @else
+                                                    <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="db_img">
+                                                @endif
+                                                    <img src="{{asset('assets/images/ico/botal-ico.png') }}" alt="botal-ico"
+                                                        style="margin-top: 32px;">
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <p class="mt-3 mb-2 periodic-cls">
+                                                        <a class="chemistry-tex1">
+                                                        {{$booking->subject->name}} class:
+                                                        </a>
+                                                        {{$booking->topic}}
+                                                    </p>
+                                                    <p class="chemistry-tex2">
+                                                    {{ \Illuminate\Support\Str::limit($booking->brief, $limit = 50, $end = '...') }}
+                                                    </p>
+                                                    <div style="display: inline-flex;">
+                                                        <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class="watch-icon">
+                                                        <p class="time-chemistry">
+                                                        {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @else
+                                    <div class="text-center">
+                                        <img src="{{asset('assets/images/clock.png')}}" alt=""> 
+                                        <p> No Bookings for Today</p>
+
                                     </div>
-                                    <div class="col-md-9">
-                                        <p class="mt-3 mb-2 periodic-cls">
-                                            <a class="chemistry-tex1">
-                                                Chemistry class:
-                                            </a>
-                                            Periodic table
-                                        </p>
-                                        <p class="chemistry-tex2">
-                                            It is a long established fact that a reader will be distracted by.
-                                        </p>
-                                        <div style="display: inline-flex;">
-                                            <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class="watch-icon">
-                                            <p class="time-chemistry">
-                                                5 PM - 07 Feburary 2021
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row  mt-2 bg-bookings">
-                                    <div class="col-md-3 text-center">
-                                        <img src="{{asset('assets/images/ico/botal-ico.png') }}" alt="botal-ico"
-                                            style="margin-top: 32px;">
-                                    </div>
-                                    <div class="col-md-9">
-                                        <p class="mt-3 mb-2 periodic-cls">
-                                            <a class="chemistry-tex1">
-                                                Chemistry class:
-                                            </a>
-                                            Periodic table
-                                        </p>
-                                        <p class="chemistry-tex2">
-                                            It is a long established fact that a reader will be distracted by.
-                                        </p>
-                                        <div style="display: inline-flex;">
-                                            <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class="watch-icon">
-                                            <p class="time-chemistry">
-                                                5 PM - 07 Feburary 2021
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                                    @endif
                                 <div class="row mt-2">
                                     <div class="col-md-9">
                                             <p class="heading-third">
@@ -439,57 +431,45 @@
                                             </p>
                                     </div>
                                     <div class="col-md-3">
-                                        <a href="Booking/Booking.html" class="view-bookings">
+                                        <a href="{{route('student.bookings')}}" class="view-bookings">
                                             View all
                                         </a>
                                     </div>
                                 </div>
-                                <div class="row mt-2 bg-bookings">
-                                    <div class="col-md-3 text-center">
-                                        <img src="{{asset('assets/images/ico/botal-ico.png') }}" alt="botal-ico"
-                                            style="margin-top: 32px;">
+                                @if($upcoming_bookings != "[]")
+                                        @foreach($upcoming_bookings as $booking)
+
+                                            <div class="row mt-2 bg-bookings">
+                                                <div class="col-md-3 text-center">
+                                                    <img src="{{asset('assets/images/ico/botal-ico.png') }}" alt="botal-ico"
+                                                        style="margin-top: 32px;">
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <p class="mt-3 mb-2 periodic-cls">
+                                                        <a class="chemistry-tex1">
+                                                        {{$booking->subject->name}} class:
+                                                        </a>
+                                                        {{$booking->topic}}
+                                                    </p>
+                                                    <p class="chemistry-tex2">
+                                                    {{ \Illuminate\Support\Str::limit($booking->brief, $limit = 50, $end = '...') }}
+                                                    </p>
+                                                    <div style="display: inline-flex;">
+                                                        <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class="watch-icon">
+                                                        <p class="time-chemistry">
+                                                        {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @else
+                                    <div class="text-center">
+                                        <img src="{{asset('assets/images/learning.png')}}" alt=""> 
+                                        <p> No Upcoming Bookings Registered</p>
+
                                     </div>
-                                    <div class="col-md-9">
-                                        <p class="mt-3 mb-2 periodic-cls">
-                                            <a class="chemistry-tex1">
-                                                Chemistry class:
-                                            </a>
-                                            Periodic table
-                                        </p>
-                                        <p class="chemistry-tex2">
-                                            It is a long established fact that a reader will be distracted by.
-                                        </p>
-                                        <div style="display: inline-flex;">
-                                            <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class="watch-icon">
-                                            <p class="time-chemistry">
-                                                5 PM - 07 Feburary 2021
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mt-2 bg-bookings">
-                                    <div class="col-md-3 text-center">
-                                        <img src="{{asset('assets/images/ico/botal-ico.png') }}" alt="botal-ico"
-                                            style="margin-top: 32px;">
-                                    </div>
-                                    <div class="col-md-9">
-                                        <p class="mt-3 mb-2 periodic-cls">
-                                            <a class="chemistry-tex1">
-                                                Chemistry class:
-                                            </a>
-                                            Periodic table
-                                        </p>
-                                        <p class="chemistry-tex2">
-                                            It is a long established fact that a reader will be distracted by.
-                                        </p>
-                                        <div style="display: inline-flex;">
-                                            <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class="watch-icon">
-                                            <p class="time-chemistry">
-                                                5 PM - 07 Feburary 2021
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                                    @endif
                             </div>
                         </div>
                     </div>
