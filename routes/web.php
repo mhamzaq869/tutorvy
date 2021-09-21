@@ -63,7 +63,6 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
 
     Route::post('/tutor-plans/',[TutorController::class,'showTutorPlans'])->name('admin.tutor.plans');
 
-
     Route::get('tutor/request/{id}/{assess_id?}',[TutorController::class,'tutorRequest'])->name('admin.tutorRequest');
     Route::get('tutor/assessment/{assessment_id}',[TutorController::class,'tutorAssessment'])->name('admin.tutotAssessment');
     Route::get('/tutor-request/{id}',[TutorController::class,'tutor_course_Request'])->name('admin.tutor-request');
