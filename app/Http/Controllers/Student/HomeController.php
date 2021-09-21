@@ -8,6 +8,8 @@ use App\Models\Admin\tktCat;
 use DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Booking;
+use App\Models\General\Teach;
 
 class HomeController extends Controller
 {
@@ -28,15 +30,23 @@ class HomeController extends Controller
         ->where('users.status',2)
         ->get();
 
+        $today_bookings = Booking::with(['tutor'])->where('user_id',Auth::user()->id)->today()->take(2)->get();
+        $upcoming_bookings = Booking::with(['tutor'])->where('user_id',Auth::user()->id)->where('status',2)->take(2)->get();
+
+        $new_bookings = Booking::where('user_id',Auth::user()->id)->status(0)->get();
+        $delivered_count = Booking::where('user_id',Auth::user()->id)->where('status',5)->count();
+        $upcoming_count = Booking::where('user_id',Auth::user()->id)->where('status',2)->count();
+        $pending_count = Booking::where('user_id',Auth::user()->id)->whereIn('status',[0,1])->count();
+        $subject_count = Teach::where('user_id',Auth::user()->id)->count();
 
         // foreach($favorite_tutors as $tutor) {
         //     $tutor->is_favourite = DB::table("fav_tutors")->where("user_id",Auth::user()->id)->where("tutor_id",$tutor->id)->first();
         //     $tutor->tutor_subject_rate = DB::table("subject_plans")->where("user_id",$tutor->id)->min('rate');
         // }
         $user = User::where('id',Auth::user()->id)->first();
-        // return ($user);
+        // return ($today_bookings);
 
-        return view('student.pages.index',compact('user','categories','favorite_tutors'));
+        return view('student.pages.index',compact('upcoming_bookings','today_bookings','new_bookings','delivered_count','upcoming_count','pending_count','subject_count','user','categories','favorite_tutors'));
     }
 
 
