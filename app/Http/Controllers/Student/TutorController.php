@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Activitylogs;
 use App\Models\User;
 use App\Models\General\Teach;
 use App\Models\Admin\Subject;

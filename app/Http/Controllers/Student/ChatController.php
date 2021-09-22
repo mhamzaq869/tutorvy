@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Events\NewMessage;
+use App\Models\Activitylogs;
 use App\Models\General\Message;
 
 class ChatController extends Controller

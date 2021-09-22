@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Tutor;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\General\GeneralController;
 use Illuminate\Http\Request;
 use App\Models\General\Degree;
 use App\Models\General\Institute;
 use App\Models\Admin\Subject;
+use App\Models\Activitylogs;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\General\Education;
 use App\Models\General\Professional;
 use App\Models\Userdetail;
+use Illuminate\Support\Facades\URL;
 
 class ProfileController extends Controller
 {
@@ -22,6 +25,7 @@ class ProfileController extends Controller
      */
 
     public function index(){
+
         $subjects = Subject::all();
         $degrees = Degree::all();
         $institutes = Institute::all();
@@ -62,6 +66,13 @@ class ProfileController extends Controller
                 'name' => $request->country,
             ]);
         }
+
+        // activity logs
+        $id = Auth::user()->id; 
+        $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+        $action_perform = '<a href="'.URL::to('/') . '/admin/tutor/profile/'. $id .'"> '.$name.' </a> Update his Profile';
+        $activity_logs = new GeneralController();
+        $activity_logs->save_activity_logs("Profile Updated", "users.id", $id, $action_perform, $request->header('User-Agent'), $id);
        
         return response()->json([
             "status_code" => 200,
@@ -95,6 +106,13 @@ class ProfileController extends Controller
             ]);
         }
 
+        // activity logs
+        $id = Auth::user()->id; 
+        $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+        $action_perform = '<a href="'.URL::to('/') . '/admin/tutor/profile/'. $id .'"> '.$name.' </a> Update his Education Record';
+        $activity_logs = new GeneralController();
+        $activity_logs->save_activity_logs("Profile Updated", "education.id", $id, $action_perform, $request->header('User-Agent'), $id);
+
         return response()->json([
             "status_code" => 200,
             "success" => true,
@@ -113,6 +131,13 @@ class ProfileController extends Controller
                 "end_date" => $request->degree_end[$i],
             ]);
         }
+
+        // activity logs
+        $id = Auth::user()->id; 
+        $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+        $action_perform = '<a href="'.URL::to('/') . '/admin/tutor/profile/'. $id .'"> '.$name.' </a> Update his Professional Record';
+        $activity_logs = new GeneralController();
+        $activity_logs->save_activity_logs("Profile Updated", "professionals.id", $id, $action_perform, $request->header('User-Agent'), $id);
         
         return response()->json([
             "status_code" => 200,
@@ -177,6 +202,13 @@ class ProfileController extends Controller
         }
 
 
+        // activity logs
+        $id = Auth::user()->id; 
+        $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+        $action_perform = '<a href="'.URL::to('/') . '/admin/tutor/profile/'. $id .'"> '.$name.' </a> Upload his documents for verification';
+        $activity_logs = new GeneralController();
+        $activity_logs->save_activity_logs("Profile Updated", "user_files.user_id", $id, $action_perform, $request->header('User-Agent'), $id);
+
         return response()->json([
             "status_code" => 200,
             "success" => true,
@@ -211,8 +243,7 @@ class ProfileController extends Controller
 
 
 
-    public function professionUpdate(Request $request)
-    {
+    public function professionUpdate(Request $request) {
         // return $request;
 
         // if(Auth::user()->professional){
@@ -238,6 +269,5 @@ class ProfileController extends Controller
         return redirect()->back()->with('message','Your Profession has been successfully updated');
 
     }
-
 
 }

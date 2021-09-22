@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Activitylogs;
 use App\Models\Admin\supportTkts;
 use App\Models\Admin\tktCat;
 use App\Events\NewNotification;
@@ -40,7 +41,8 @@ class HomeController extends Controller
         ->whereIn('users.status', [0, 1, 2])
         ->paginate(5);
 
+        $activity_logs = Activitylogs::paginate(5);
         $tickets = supportTkts::with(['category','tkt_created_by'])->get();
-        return view('admin.dashboard',compact('tutors_count','students_count','all_users','new_requests','tickets'));
+        return view('admin.dashboard',compact('tutors_count','students_count','all_users','new_requests','tickets','activity_logs'));
     }
 }

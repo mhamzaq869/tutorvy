@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\tktCat;
 use DB;
+use App\Models\Activitylogs;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Booking;
