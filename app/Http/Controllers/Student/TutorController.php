@@ -71,7 +71,7 @@ class TutorController extends Controller
         }
 
         $query = DB::table('users')
-        ->select('view_tutors_data.*','teachs.subject_id as subject_id')
+        ->select('view_tutors_data.*')
         ->leftJoin('teachs', 'users.id', '=', 'teachs.user_id')
         ->leftJoin('view_tutors_data', 'view_tutors_data.id', '=', 'users.id')
         ->where('users.role',2)
@@ -112,13 +112,13 @@ class TutorController extends Controller
 
         $query->where(function($query6) use ($gender)
         {
-            if($gender != null && $gender != ''){
-                $query6->where('user.gender', $gender);
+            if($gender != null && $gender != '' && $gender != 'any'){
+                $query6->where('users.gender', $gender);
             }
             
         });
 
-        $available_tutors = $query->get();
+        $available_tutors = $query->orderByRaw('rating DESC')->groupByRaw('users.id')->get();
 
 
         

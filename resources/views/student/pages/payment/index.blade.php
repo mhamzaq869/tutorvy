@@ -43,7 +43,7 @@
                         <img src="../assets/images/ico/dollars.png" style="width: 45px;" >
                         <div class="">
                             <p class="heading-fifth mt-3" style="line-height: 0;">Total Spend</p>
-                            <p class="heading-first mb-0"> 2550$</p>
+                            <p class="heading-first mb-0"> {{$spent_payment}}$</p>
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                         <img src="../assets/images/ico/doollarss.png" style="width: 45px;" >
                         <div class="">
                             <p class="heading-fifth mt-3" style="line-height: 0;">Current balance</p>
-                            <p class="heading-first mb-0"> 650$</p>
+                            <p class="heading-first mb-0"> 0$</p>
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                         <img src="../assets/images/ico/dollars.png" style="width: 45px;" >
                         <div class="">
                             <p class="heading-fifth mt-3" style="line-height: 0;">Pending balance</p>
-                            <p class="heading-first mb-0"> 963$</p>
+                            <p class="heading-first mb-0"> 0$</p>
                         </div>
                     </div>
                 </div>
