@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Student;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Classroom;
+use App\Models\Activitylogs;
 use App\Models\Booking;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;

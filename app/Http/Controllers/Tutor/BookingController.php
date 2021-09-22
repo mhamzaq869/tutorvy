@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Tutor;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Booking;
+use App\Models\Activitylogs;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 class BookingController extends Controller

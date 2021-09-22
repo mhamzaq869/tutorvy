@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Course;
 use App\Models\CourseLevel;
+use App\Models\Activitylogs;
 use App\Models\CourseOutline;
 
 class CourseController extends Controller

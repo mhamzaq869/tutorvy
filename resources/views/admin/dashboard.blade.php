@@ -579,6 +579,52 @@ svg:not(:root) {
                         </div>
                     </div>
                 </div>
+
+                <div class="col-md-12">
+                    <div class="row ">
+                        <div class="col-md-6">
+                            <h2 class="mt-4 ml-3"> Activity Logs </h2>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="pull-right">
+                                <!-- <a href="#" class="btn view-bookings"> View All Tickets</a> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            
+                            <div class="row ">
+                                <div class="col-md-12">
+                                    <table class="table table-borderless">
+                                        <thead>
+                                            <tr class="border-bottom table-margin-top">
+                                                <th scope="col"> Sr no.</th>
+                                                <th scope="col"> Action </th>
+                                                <th scope="col"> User Agent</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="datashow">
+                                            @foreach($activity_logs as $logs)
+                                                <tr>
+                                                    <td class="pt-4">
+                                                        {{$loop->iteration}}
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        {!! $logs->action_perform !!}
+                                                    </td>
+                                                    <td class="pt-4">
+                                                        {{$logs->user_agent}}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="chatbox-holder" style="display: none;">

@@ -8,6 +8,7 @@ use App\Models\Admin\Subject;
 use App\Models\General\Degree;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Activitylogs;
 use App\Models\User;
 use App\Models\General\Institute;
 use App\Models\Admin\SubjectCategory;

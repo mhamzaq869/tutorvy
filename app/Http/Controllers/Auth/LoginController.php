@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\General\GeneralController;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Exception;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\URL;
 
 class LoginController extends Controller
 {
@@ -66,9 +68,26 @@ class LoginController extends Controller
         if($request->filled('valid_email','password','role')){
             if(Auth::attempt(['email' => $request->valid_email, 'password' => $request->password,'role'=>$request->role ])){
                 if($request->role == 2){
+                    
+                    // activity logs
+                    $id = Auth::user()->id; 
+                    $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+                    $action_perform = '<a href="'.URL::to('/') . '/admin/tutor/profile/'. $id .'"> '.$name.' </a> Logged into system';
+                    $activity_logs = new GeneralController();
+                    $activity_logs->save_activity_logs("Login", "users", $id, $action_perform, $request->header('User-Agent'), $id);
+
+
                     return redirect()->route('tutor.dashboard');
                 }
                 if($request->role == 3){
+
+                    // activity logs
+                    $id = Auth::user()->id; 
+                    $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+                    $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> Logged into system';
+                    $activity_logs = new GeneralController();
+                    $activity_logs->save_activity_logs("Login", "users", $id, $action_perform, $request->header('User-Agent'), $id);
+
                     $value = "";
                     if(isset($_COOKIE['t_id'])){
                         $value = $_COOKIE['t_id'];
@@ -89,6 +108,9 @@ class LoginController extends Controller
                 return view('auth.login',compact('user','error'));
             }
         }
+
+        
+
         return redirect()->back()->with('error','Wrong! Email Address');
 
     }

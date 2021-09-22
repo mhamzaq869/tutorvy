@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\User;
+use App\Models\Activitylogs;
 use App\Models\General\Institute;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin\Subject;
@@ -91,5 +92,16 @@ class GeneralController extends Controller
         // return $courses;
         return view('frontend.course',compact('subjects','courses'));
 
+    }
+
+    public function save_activity_logs($module , $table_ref, $ref_id , $action_perform, $user_agent, $created_by) {
+        Activitylogs::create([
+            "module" => $module,
+            "table_ref" => $table_ref,
+            "ref_id" => $ref_id,
+            "action_perform" => $action_perform,
+            "user_agent" => $user_agent,
+            "created_by" =>  $created_by,
+        ]);
     }
 }

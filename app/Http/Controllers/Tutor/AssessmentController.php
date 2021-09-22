@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Tutor;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\General\GeneralController;
 use App\Models\Assessment;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Activitylogs;
 use App\Models\subjectPlans;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 
 class AssessmentController extends Controller
 {
@@ -16,9 +20,9 @@ class AssessmentController extends Controller
         return view('tutor.test',compact('id'));
     }
 
-    public function store(Request $request)
-    {
-        Assessment::create([
+    public function store(Request $request) {
+        
+        $assessment = Assessment::create([
             'user_id' =>  Auth::user()->id,
             'subject_id' => $request->subject,
             'question_1' => $request->question_1,
@@ -59,6 +63,18 @@ class AssessmentController extends Controller
             ]);
 
         }
+        if(count($plans) > 0 && $plans != null && $plans != "" && $plans != []) {
+            User::where('id',Auth::user()->id)->update([
+                "hourly_rate" => min(array_column($plans, 'rate')),
+            ]);
+        }
+
+        // activity logs
+        $id = Auth::user()->id; 
+        $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+        $action_perform = '<a href="'.URL::to('/') . '/admin/tutor/profile/'. $id .'"> '.$name.' </a> Create new Assessment';
+        $activity_logs = new GeneralController();
+        $activity_logs->save_activity_logs("Asseessment Created", "assessments.id", $assessment->id, $action_perform, $request->header('User-Agent'), $id);
 
         return response()->json([
             "status_code" => 200,
