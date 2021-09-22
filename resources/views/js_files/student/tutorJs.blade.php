@@ -279,7 +279,7 @@ function list_tutors(){
 
                                                 <div class="col-md-12">
                                                     <p>starting from</p>
-                                                    <h1 class="f-60">$`+ (tutors[i].tutor_subject_rate != null ? tutors[i].tutor_subject_rate : '0') +`</h1>
+                                                    <h1 class="f-60">$`+ (tutors[i].hourly_rate != null ? tutors[i].hourly_rate : '0') +`</h1>
                                                     <p>per hour</p>
                                                     <button type="button" class=" cencel-btn w-100">
                                                             &nbsp; Message &nbsp;

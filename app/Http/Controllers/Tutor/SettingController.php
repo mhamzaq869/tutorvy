@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Tutor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\General\GeneralController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
@@ -12,6 +13,7 @@ use App\Models\Classroom;
 use App\Models\Admin\tktCat;
 use App\Models\Admin\supportTkts;
 use App\Models\User;
+use Illuminate\Support\Facades\URL;
 
 class SettingController extends Controller
 {
@@ -53,6 +55,13 @@ class SettingController extends Controller
         }else{
             User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
 
+            // activity logs
+            $id = Auth::user()->id; 
+            $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+            $action_perform = '<a href="'.URL::to('/') . '/admin/tutor/profile/'. $id .'"> '.$name.' </a> Change his Password';
+            $activity_logs = new GeneralController();
+            $activity_logs->save_activity_logs("Change Password", "users.id", $id, $action_perform, $request->header('User-Agent'), $id);
+
             return redirect()->back('success','Password updated');
         }
 
@@ -89,6 +98,14 @@ class SettingController extends Controller
         if(Hash::check($request->current_password, \Auth::user()->password)) {
 
             User::find(\Auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+
+            // activity logs
+            $id = Auth::user()->id; 
+            $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+            $action_perform = '<a href="'.URL::to('/') . '/admin/tutor/profile/'. $id .'"> '.$name.' </a> Change his Password';
+            $activity_logs = new GeneralController();
+            $activity_logs->save_activity_logs("Change Password", "users.id", $id, $action_perform, $request->header('User-Agent'), $id);
+
             return redirect()->back()->with(['success' => 'Password Change ...' , 'key' => 'password_changed']);
         }else{
 

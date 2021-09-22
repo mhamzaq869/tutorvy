@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\General\GeneralController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -13,6 +14,7 @@ use App\Models\Activitylogs;
 use App\Models\Classroom;
 use App\Models\Admin\tktCat;
 use App\Models\Admin\supportTkts;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
 
 class SettingController extends Controller
@@ -89,6 +91,14 @@ class SettingController extends Controller
         if(Hash::check($request->current_password, \Auth::user()->password)) {
 
             User::find(\Auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+        
+            // activity logs
+            $id = Auth::user()->id; 
+            $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+            $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> Update his Password';
+            $activity_logs = new GeneralController();
+            $activity_logs->save_activity_logs("Password Changed", "users.id", $id, $action_perform, $request->header('User-Agent'), $id);
+
             return redirect()->back()->with(['success' => 'Password Change ...' , 'key' => 'password_changed']);
         }else{
 

@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Tutor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\General\GeneralController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Course;
 use App\Models\CourseLevel;
 use App\Models\Activitylogs;
 use App\Models\CourseOutline;
+use Illuminate\Support\Facades\URL;
 
 class CourseController extends Controller
 {

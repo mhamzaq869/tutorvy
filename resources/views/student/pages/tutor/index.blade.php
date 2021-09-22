@@ -3,7 +3,6 @@
 <link href="{{ asset('assets/css/booknow.css') }}" rel="stylesheet">
 @section('content')
  <!-- top Fixed navbar End -->
-
  <div class="content-wrapper " style="overflow: hidden;">
     <section id="findTutorsection" style="display: flex;">
         
@@ -508,7 +507,7 @@
                                             <div class="col-md-12">
                                                 
                                                 <p>starting from</p>
-                                                <h1 class="f-60">${{$tutor->tutor_subject_rate != null ? $tutor->tutor_subject_rate : 0}}</h1>
+                                                <h1 class="f-60">${{$tutor->hourly_rate != null ? $tutor->hourly_rate : 0}}</h1>
                                                 <p>per hour</p>
                                                 <button type="button" class=" cencel-btn w-100">
                                                         &nbsp; Message &nbsp;

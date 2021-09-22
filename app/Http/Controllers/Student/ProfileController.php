@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\General\GeneralController;
 use Illuminate\Http\Request;
 use App\Models\Admin\Subject;
 use App\Models\General\Degree;
@@ -12,6 +13,7 @@ use App\Models\Activitylogs;
 use App\Models\User;
 use App\Models\General\Institute;
 use App\Models\Admin\SubjectCategory;
+use Illuminate\Support\Facades\URL;
 
 
 class ProfileController extends Controller
@@ -55,6 +57,13 @@ class ProfileController extends Controller
 
         User::where('id', $request->user_id)->update($data);
 
+        // activity logs
+        $id = Auth::user()->id; 
+        $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+        $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> Update his Profile';
+        $activity_logs = new GeneralController();
+        $activity_logs->save_activity_logs("Profile Updated", "users.id", $id, $action_perform, $request->header('User-Agent'), $id);
+
         return response()->json([
             "status_code" => 200,
             "success" => true,
@@ -69,8 +78,7 @@ class ProfileController extends Controller
             "student_level" => $request->student_level,
             "std_subj" => $request->std_subj,
             "std_learn" => $request->std_learn,
-        ]);
-        
+        ]);     
 
         return response()->json([
             "status_code" => 200,
@@ -134,6 +142,13 @@ class ProfileController extends Controller
                 "files" => $file,
             ]); 
         }
+
+        // activity logs
+        $id = Auth::user()->id; 
+        $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+        $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> Upload Documents for verification';
+        $activity_logs = new GeneralController();
+        $activity_logs->save_activity_logs("Profile Updated", "users.id", $id, $action_perform, $request->header('User-Agent'), $id);
 
 
         return response()->json([
