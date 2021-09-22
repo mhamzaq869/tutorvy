@@ -646,7 +646,21 @@ td input{
                                 <img src="{{asset('assets/images/logo-footer.png')}}" alt="">
                         </div>
                         <video id="main-video"  playsinline autoplay></video>
-                        <div id="other-videos"></div>
+                        <div id="other-videos" class="w-100 m-0"></div>
+                        <div class="col-md-12 mt-1 vid-location">
+                            <a href="#" class="callSet vc">
+                                <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
+                            </a>
+                            <a href="#" class="callSet no-vc">
+                                <img src="{{asset('assets/images/ico/no-vc.png')}}" title="With Video" alt="">
+                            </a>
+                            <a href="#" class="callSet mk" id="mk">
+                                <img src="{{asset('assets/images/ico/mike.png')}}" title="Without Audio" alt="">
+                            </a>
+                            <a href="#" class="callSet no-mk">
+                                <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
+                            </a>
+                        </div>
                         <hr>
                         <div style="padding: 5px 10px;">
                             <div id="onUserStatusChanged"></div>
