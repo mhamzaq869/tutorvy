@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Tutor;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\General\GeneralController;
+use App\Http\Controllers\General\NotifyController;
 use Illuminate\Http\Request;
 use App\Models\General\Degree;
 use App\Models\General\Institute;
@@ -201,10 +202,25 @@ class ProfileController extends Controller
             ]); 
         }
 
+        // $sender,$receiver,$slug,$type,$data,$title,$icon,$class,$desc
+        $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+
+        $reciever = User::where('role',1)->first();
+        $notification = new NotifyController();
+        $sender_id = Auth::user()->id;
+        $reciever_id = $reciever->id;
+        $slug = '-' ;
+        $type = 'User Verification';
+        $data = 'data';
+        $title = 'User Verfication';
+        $icon = 'fas fa-tag';
+        $class = 'btn-success';
+        $desc = $name . ' Submiited documents for verification.';
+        $notification->GeneralNotifi(Auth::user()->id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
+
 
         // activity logs
         $id = Auth::user()->id; 
-        $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
         $action_perform = '<a href="'.URL::to('/') . '/admin/tutor/profile/'. $id .'"> '.$name.' </a> Upload his documents for verification';
         $activity_logs = new GeneralController();
         $activity_logs->save_activity_logs("Profile Updated", "user_files.user_id", $id, $action_perform, $request->header('User-Agent'), $id);

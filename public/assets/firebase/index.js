@@ -19,9 +19,8 @@ messaging.usePublicVapidKey("BK8CHpqRSc6qjQDVSc6eQZCOganeqlTqBZa4kpAWOIHhYJFQPdN
 messaging.requestPermission().then(function(){
   return messaging.getToken();
 }).then(function(token){
-  $('#fcm_token').val(token);
 
-  var check_value = $(".wrapper").data('id');
+  var check_value = $(".token_wrapper").data('id');
   console.log(token);
   if(check_value == 0) {
     saveFcmToken(token);
@@ -35,6 +34,24 @@ messaging.requestPermission().then(function(){
 messaging.onMessage((payload) => {
   console.log('Message received. ', payload);
   
+
+  var title = payload.notification.title;
+  var body = payload.notification.body;
+  var slug = payload.data.slug;
+  var icon = payload.data.icon;
+  var btn_class = payload.data.btn_class;
+
+
+  toastr.success(body , title,{
+      position: 'top-end',
+      icon: 'success',
+      showConfirmButton: false,
+      timer: 2500
+  });
+  var current_notification = $('.notification_counter').text();
+  var total = parseInt(current_notification)  + parseInt(payload.data.unread_count)
+  $('.notification_counter').text(total);
+
 });
 
 
@@ -48,7 +65,7 @@ function saveFcmToken(token) {
       headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
-      url: origin + "/tutor/save-token",
+      url: origin + "/general/save-token",
       type:"POST",
       data:{token:token},
       dataType: 'json',

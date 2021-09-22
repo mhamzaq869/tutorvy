@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Tutor;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\General\NotifyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Activitylogs;
@@ -27,7 +28,6 @@ class HomeController extends Controller
         $pending_count = Booking::where('booked_tutor',Auth::user()->id)->whereIn('status',[0,1])->count();
         $subject_count = Teach::where('user_id',Auth::user()->id)->count();
         $user = User::where('id',Auth::user()->id)->first();
-
 
         return view('tutor.pages.index',compact('upcoming_bookings','today_bookings','new_bookings','delivered_count','upcoming_count','pending_count','subject_count','user'));
     }

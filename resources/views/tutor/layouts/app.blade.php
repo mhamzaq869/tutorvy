@@ -30,6 +30,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-messaging.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
+    
     <script  src="{{asset('assets/firebase/index.js')}}"></script>
 
     <!--Select 2-->
@@ -40,7 +41,7 @@
 
 </head>
 <body>
-    <div class="wrapper" id="wrapper" data-id="{{Auth::user()->is_token_updated}}">
+    <div class="wrapper token_wrapper" id="wrapper" data-id="{{Auth::user()->is_token_updated}}">
         <!-- side navbar -->
         @include('tutor.layouts.sidebar')
         <!-- seide navbar end -->
