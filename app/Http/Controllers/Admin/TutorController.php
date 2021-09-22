@@ -10,6 +10,7 @@ use App\Models\subjectPlans;
 use App\Models\Assessment;
 use App\Models\General\Teach;
 use App\Models\Admin\Subject;
+use App\Models\Booking;
 use DB;
 
 class TutorController extends Controller
@@ -51,6 +52,10 @@ class TutorController extends Controller
             $subject->plans = subjectPlans::where("subject_id", $subject->subject_id)->where("user_id",$id)->select('experty_level','rate')->get();
         }
 
+        $total_classes = Booking::where('booked_tutor',$id)->where('status',5)->count();
+        $total_pending_payments = Booking::where('booked_tutor',$id)->where('status',5)->sum('price');
+
+
         if(!$tutor){
             return redirect()->route('admin.tutor');
         }
@@ -58,7 +63,7 @@ class TutorController extends Controller
         $approved_courses = Course::where('user_id',$id)->where('status',1)->get();
         $requested_courses = Course::where('user_id',$id)->where('status',0)->get();
 
-        return view('admin.pages.tutors.profile',compact('tutor','approved_courses','requested_courses'));
+        return view('admin.pages.tutors.profile',compact('tutor','total_pending_payments','total_classes','approved_courses','requested_courses'));
     }
 
     public function all_tutor_req(){

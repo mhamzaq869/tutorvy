@@ -133,8 +133,8 @@
             type: "double",
             min: 0,
             max: 1000,
-            from: 200,
-            to: 500,
+            from: 0,
+            to: 200,
             grid: true,
             prefix: "$"
         });

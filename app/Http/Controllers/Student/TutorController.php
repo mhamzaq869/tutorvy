@@ -58,21 +58,14 @@ class TutorController extends Controller
         $price = $request->price;
         $gender = $request->gender;
 
-        $min_prc =  '';
-        $max_prc =  '';
-
-        if($price != null ){
-            $price = explode(';',$price);
-            $min_prc = $price[0];
-            $max_prc = $price[1];
-        }
+        
 
         if($subject == '' || $subject == null){
             $subject = \Auth::user()->std_learn;
         }
 
         $query = DB::table('users')
-        ->select('view_tutors_data.*','teachs.subject_id as subject_id')
+        ->select('view_tutors_data.*')
         ->leftJoin('teachs', 'users.id', '=', 'teachs.user_id')
         ->leftJoin('view_tutors_data', 'view_tutors_data.id', '=', 'users.id')
         ->where('users.role',2)
@@ -113,13 +106,27 @@ class TutorController extends Controller
 
         $query->where(function($query6) use ($gender)
         {
-            if($gender != null && $gender != ''){
-                $query6->where('user.gender', $gender);
+            if($gender != null && $gender != '' && $gender != 'any'){
+                $query6->where('users.gender', $gender);
             }
             
         });
 
-        $available_tutors = $query->get();
+        $query->where(function($query7) use ($price)
+        {
+            if($price != null && $price != ''){
+                $min_prc =  '';
+                $max_prc =  '';
+                $price = explode(';',$price);
+                $min_prc = $price[0];
+                $max_prc = $price[1];
+                
+                $query7->where('users.hourly_rate','>=', $min_prc)->where('users.hourly_rate','<=', $max_prc);
+            }
+            
+        });
+
+        $available_tutors = $query->orderByRaw('rating DESC')->groupByRaw('users.id')->get();
 
 
         
