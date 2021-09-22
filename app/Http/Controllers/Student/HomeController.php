@@ -22,13 +22,14 @@ class HomeController extends Controller
         $categories = tktCat::all();
 
         $favorite_tutors = DB::table('users')
-        ->select('view_tutors_data.*','teachs.subject_id as subject_id')
+        ->select('view_tutors_data.*')
         ->leftJoin('teachs', 'users.id', '=', 'teachs.user_id')
         ->leftJoin('view_tutors_data', 'view_tutors_data.id', '=', 'users.id')
         ->leftJoin('fav_tutors','fav_tutors.tutor_id','=','users.id')
         ->where('fav_tutors.user_id',Auth::user()->id)
         ->where('users.role',2)
         ->where('users.status',2)
+        ->groupByRaw('users.id')
         ->get();
 
         $today_bookings = Booking::with(['tutor'])->where('user_id',Auth::user()->id)->today()->take(2)->get();

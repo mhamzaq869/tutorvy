@@ -10,8 +10,8 @@
         <div class="row">
             <div class="col-md-12">
                 <p class="heading-first "> 
-                        Dashboard 
-                    </p>
+                        Dashboard  
+                    </p> 
             </div>
 
             <div class="col-md-8">
@@ -70,9 +70,8 @@
                     <div class="col-md-12 stats">
                         <div class="row">
                             <div class="col-md-3">
-                                <a href="{{route('student.bookings')}}">
+                                <a href="{{route('student.classroom')}}">
                                     <div class="container-fluid card 1">
-                                        
                                         <div class="text-home">
                                             <p class="number-booking">
                                                 {{$delivered_count}}
@@ -90,7 +89,7 @@
                                 
                             </div>
                             <div class="col-md-3">
-                                <a href="{{route('student.bookings')}}">
+                                <a href="{{route('student.classroom')}}">
                                     <div class="container-fluid card 1">
                                         <div class="text-home">
                                             <p class="number-booking">
@@ -151,37 +150,6 @@
                                 <p class="heading-third pt-4 mb-3">
                                     Favourite Tutors</p>
                             </div>
-                            <!-- <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-md-9 row">
-                                        <div class="col-md-3 mt-2 w-100">
-                                            <select name="" id="" class="form-control">
-                                                <option value="Subject"> Subject</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3 mt-2">
-                                            <select name="" id="" class="form-control">
-                                                <option value="Location"> Location</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3 mt-2">
-                                            <select name="" id="" class="form-control">
-                                                <option value="Rate"> Rate</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3 mt-2">
-                                            <select name="" id="" class="form-control">
-                                                <option value="Rating"> Rating</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 mt-2">
-                                        <button class="btn-general w-100">Apply Filters</button>
-                                    </div>
-                                </div>
-                            </div> -->
-
-                            
                                 @if($favorite_tutors != "[]")
                                     <div class="col-md-12 scrollable h-666" id="Fav_tutor">
                                         @foreach($favorite_tutors as $tutor)

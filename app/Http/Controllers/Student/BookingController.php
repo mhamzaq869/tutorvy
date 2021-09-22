@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\General\GeneralController;
 use App\Models\Booking;
 use App\Models\Classroom;
 use App\Models\User;
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\General\Teach;
 use App\Models\Admin\tktCat;
 use App\Models\Admin\supportTkts;
-use URL;
+use Illuminate\Support\Facades\URL;
 use Session;
 use Redirect;
 use Input;
@@ -76,22 +77,18 @@ class BookingController extends Controller
     }
 
 
-    public function booked(Request $request)
-    {
+    public function booked(Request $request) {
         $attachments = [];
         $path = '';
         if($request->hasFile('upload')){
-            // foreach($request->upload as $i => $upload){
-                $path = 'storage/booking/docs/'.$request->upload->getClientOriginalName();
-                $request->upload->storeAs('booking/docs',$request->upload->getClientOriginalName(),'public');
-                // array_push($attachments,$path);
-            // }
+            $path = 'storage/booking/docs/'.$request->upload->getClientOriginalName();
+            $request->upload->storeAs('booking/docs',$request->upload->getClientOriginalName(),'public');
         }
 
         $tutor = User::where('id',$request->tutor_id)->first();
         $price = $request->subject_plan * $request->duration;
 
-        Booking::create([
+        $booking = Booking::create([
             'user_id' => Auth::user()->id,
             'booked_tutor' => $request->tutor_id,
             'subject_id' =>$request->subject,
@@ -105,6 +102,15 @@ class BookingController extends Controller
             'price' => $price,
         
         ]);
+
+        $subject_name = DB::table("subjects")->where("id",$request->subject)->value("name");
+
+        // activity logs
+        $id = Auth::user()->id; 
+        $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+        $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> request for book a class of '.$subject_name ;
+        $activity_logs = new GeneralController();
+        $activity_logs->save_activity_logs("Class Booking", "bookings.id", $booking->id, $action_perform, $request->header('User-Agent'), $id);
 
         return response()->json([
             'status'=>200,
