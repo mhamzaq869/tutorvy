@@ -40,7 +40,7 @@ class TutorController extends Controller
 
         foreach($available_tutors as $tutor) {
             $tutor->is_favourite = DB::table("fav_tutors")->where("user_id",Auth::user()->id)->where("tutor_id",$tutor->id)->first();
-            $tutor->tutor_subject_rate = DB::table("subject_plans")->where("user_id",$tutor->id)->min('rate');
+            // $tutor->tutor_subject_rate = DB::table("subject_plans")->where("user_id",$tutor->id)->min('rate');
         }
 
         $subjects = Subject::all();
@@ -146,7 +146,7 @@ class TutorController extends Controller
 
         foreach($available_tutors as $tutor) {
             $tutor->is_favourite = DB::table("fav_tutors")->where("user_id",Auth::user()->id)->where("tutor_id",$tutor->id)->first();
-            $tutor->tutor_subject_rate = DB::table("subject_plans")->where("user_id",$tutor->id)->min('rate');
+            // $tutor->tutor_subject_rate = DB::table("subject_plans")->where("user_id",$tutor->id)->min('rate');
         }
 
         return response()->json([
