@@ -10,7 +10,7 @@ $( '#book_tutor_form' ).on( 'submit', function(e) {
 
     if(tutor_subjects != "Select Subject") {
         $.ajax({
-            url: "{{route('student.booked.tutor')}}" + "Asdfasdfasdf",
+            url: "{{route('student.booked.tutor')}}",
             type:"POST",
             data:new FormData( this ),
             cache: false,

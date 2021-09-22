@@ -126,13 +126,20 @@ class SettingController extends Controller
 
         $ticket_no =  substr(str_shuffle($string),1,$length) . '-' . substr(str_shuffle($string),2,$length) . '-' . substr(str_shuffle($no),1,$length);
 
-        supportTkts::create([
+        $ticket = supportTkts::create([
             "subject" => $request->subject,
             "cat_id" => $request->category,
             "message" => $request->message,
             "user_id" => Auth::user()->id,
             "ticket_no" => $ticket_no,
         ]);
+
+        // activity logs
+        $id = Auth::user()->id; 
+        $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+        $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> Create a New Ticket';
+        $activity_logs = new GeneralController();
+        $activity_logs->save_activity_logs("Ticket Created", "support_tkts.id", $ticket->id, $action_perform, $request->header('User-Agent'), $id);
 
         return response()->json([
             "status_code" => 200, 

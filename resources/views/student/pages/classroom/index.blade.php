@@ -117,56 +117,56 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @if($classes != null && $classes != [] && $classes != "")
+                                                @foreach($classes as $class)
+                                                    @if($class->booking != null)
+                                                        <tr>
+                                                            <td class="pt-3">
+                                                                {{ $class->booking->user->first_name }} {{ $class->booking->user->last_name }}
+                                                            </td>
+                                                            <td class="pt-3">
+                                                            {{ $class->booking != null ? $class->booking->subject->name : '---' }}
+                                                            </td>
+                                                            <td class="pt-3">
+                                                                {{ $class->booking != null ? $class->booking->topic : '---' }}
+                                                            </td>
+                                                            <td class="pt-3">
+                                                                {{$class->booking->class_time}} {{date("g:i a", strtotime("$class->booking->class_time UTC"))}}
+                                                            </td>
+                                                            
+                                                            <td class="pt-3">
+                                                                {{ $class->booking->duration }} Hour(s)
+                                                            </td>
+                                                            <td class="pt-3">
+                                                                
+                                                                    @if($class->booking->status == 1)
+                                                                        <span class="bg-color-apporve3">
+                                                                            Payment Pending
+                                                                        </span>
+                                                                    @elseif($class->booking->status == 2)
+                                                                        <span class="bg-color-apporve1">
+                                                                            Approved
+                                                                        </span>
+                                                                    @elseif($class->booking->status == 0)
+                                                                        <span class="bg-color-apporve">
+                                                                            Pending
+                                                                        </span>
+                                                                    @endif
+                                                            </td>
 
-                                        @foreach($classes as $class)
-                                        @if($class->booking != null)
-                                            <tr>
-                                                <td class="pt-3">
-                                                    {{ $class->booking->user->first_name }} {{ $class->booking->user->last_name }}
-                                                </td>
-                                                <td class="pt-3">
-                                                {{ $class->booking != null ? $class->booking->subject->name : '---' }}
-                                                </td>
-                                                <td class="pt-3">
-                                                    {{ $class->booking != null ? $class->booking->topic : '---' }}
-                                                </td>
-                                                <td class="pt-3">
-                                                    {{$class->booking->class_time}} {{date("g:i a", strtotime("$class->booking->class_time UTC"))}}
-                                                </td>
-                                                
-                                                <td class="pt-3">
-                                                    {{ $class->booking->duration }} Hour(s)
-                                                </td>
-                                                <td class="pt-3">
-                                                      
-                                                        @if($class->booking->status == 1)
-                                                            <span class="bg-color-apporve3">
-                                                                Payment Pending
-                                                            </span>
-                                                        @elseif($class->booking->status == 2)
-                                                            <span class="bg-color-apporve1">
-                                                                Approved
-                                                            </span>
-                                                        @elseif($class->booking->status == 0)
-                                                            <span class="bg-color-apporve">
-                                                                Pending
-                                                            </span>
+                                                            
+                                                            <td style="text-align: center;padding-top:14px;">
+                                                                <a type="button" data-target="#callModal" class="schedule-btn"  data-toggle="modal">
+                                                                    Join Class
+                                                                </a>
+                                                                <!-- <a href="{{route('student.join_class',[$class->classroom_id])}}"  class="schedule-btn">
+                                                                    Join Class
+                                                                </a> -->
+                                                            </td>
+                                                        </tr>
                                                         @endif
-                                                </td>
-
-                                                
-                                                <td style="text-align: center;padding-top:14px;">
-                                                    <a type="button" data-target="#callModal" class="schedule-btn"  data-toggle="modal">
-                                                        Join Class
-                                                    </a>
-                                                    <!-- <a href="{{route('student.join_class',[$class->classroom_id])}}"  class="schedule-btn">
-                                                        Join Class
-                                                    </a> -->
-                                                </td>
-                                            </tr>
+                                                @endforeach
                                             @endif
-                                        @endforeach
-                                           
                                         </tbody>
                                     </table>
                                 </div>
@@ -261,7 +261,7 @@
                         <a href="#" class="callSet no-mk">
                             <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
                         </a>
-                        <a href="{{route('student.join_class',[$class->classroom_id])}}" class="btn btn-success ml-2">
+                        <a href="#" class="btn btn-success ml-2">
                             Join Class
                         </a>
                     </div>
