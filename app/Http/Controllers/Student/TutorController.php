@@ -69,7 +69,8 @@ class TutorController extends Controller
         ->leftJoin('teachs', 'users.id', '=', 'teachs.user_id')
         ->leftJoin('view_tutors_data', 'view_tutors_data.id', '=', 'users.id')
         ->where('users.role',2)
-        ->where('users.status',2);
+        ->where('users.status',2)
+        ->where('view_tutors_data.subject_names','!=',null);
 
         $query->where(function($query2) use ($subject)
         {
