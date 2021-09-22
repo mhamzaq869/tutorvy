@@ -76,6 +76,11 @@
                         <img src="{{ asset('/admin/assets/img/sidebar/support-icon.svg')}}" alt="class-ico" class=" mr-2"> Support
                     </a>
                 </li>
+                <li class="btn @if(\Request::path() === 'admin/activity-logs') active @endif w-100">
+                    <a href="{{route('admin.activity.logs')}}">
+                        <img src="{{ asset('/admin/assets/img/sidebar/support-icon.svg')}}" alt="class-ico" class=" mr-2"> Activity Logs
+                    </a>
+                </li>
                 <li class="btn @if(\Request::path() === 'admin/setting') active @endif w-100">
                     <a href="{{route('admin.setting')}}">
                         <img src="{{ asset('/admin/assets/img/sidebar/setting-icon.png')}}" alt="class-ico" class=" mr-2"> Settings

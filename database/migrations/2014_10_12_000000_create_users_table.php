@@ -46,6 +46,9 @@ class CreateUsersTable extends Migration
             $table->integer('status')->default(0)->comment('0-documents_not_submitted , 1-document_submitted, 2-verfied/enabled, 3-disbaled, 4-verification_rejected, 5-Assessment_submitted');
             $table->integer('rating')->default(0);
             $table->integer('rank')->default(0)->comment('0-New Tutor,1-Verified,2-Emerging Tutor,3-Top Rank');
+            $table->text('token')->nullable();
+            $table->timestamp('token_updated_at')->nullable();
+            $table->integer('is_token_updated')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

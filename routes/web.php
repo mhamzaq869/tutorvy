@@ -125,6 +125,9 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
 
     Route::get('/ticket-reply',[SupportController::class,'ticketReply'])->name('admin.ticketReply');
     Route::get('/setting',[SettingController::class,'index'])->name('admin.setting');
+
+    Route::get('/activity-logs',[SettingController::class,'activityLogs'])->name('admin.activity.logs');
+
     Route::post('/save-profile',[SettingController::class,'saveProfile'])->name('admin.profile');
 
     Route::post('/change-password',[SettingController::class,'changePassword'])->name('admin.change.password');
@@ -196,6 +199,8 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::post('/save-ticket',[TutorSettingController::class,'saveTicket'])->name('tutor.save.ticket');
 
     Route::get('/ticket/{id}',[TutorSettingController::class,'ticket'])->name('tutor.ticket');
+
+    Route::post('/save-token',[TutorSettingController::class,'saveToken'])->name('tutor.sve.token');
     
 });
 

@@ -587,13 +587,12 @@ svg:not(:root) {
                         </div>
                         <div class="col-md-6">
                             <div class="pull-right">
-                                <!-- <a href="#" class="btn view-bookings"> View All Tickets</a> -->
+                                <a href="{{route('admin.activity.logs')}}" class="btn view-bookings"> View All Tickets</a>
                             </div>
                         </div>
                     </div>
                     <div class="card">
-                        <div class="card-body">
-                            
+                        <div class="card-body">                            
                             <div class="row ">
                                 <div class="col-md-12">
                                     <table class="table table-borderless">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Activitylogs;
 use App\Models\User;
 use App\Models\Admin\sys_settings;
 use Illuminate\Http\Request;
@@ -112,6 +113,11 @@ class SettingController extends Controller
 
         User::where("id",$request->user_id)->update($data);
         return redirect()->back()->with(['success' => 'Profile Updated Successfully']);
+    }
+
+    public function activityLogs() {
+        $activity_logs = Activitylogs::paginate(15);
+        return view('admin.pages.activity_logs.index',compact('activity_logs'));
     }
 
 }

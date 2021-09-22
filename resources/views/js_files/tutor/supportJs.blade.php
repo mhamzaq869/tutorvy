@@ -2,9 +2,6 @@
     document.addEventListener('DOMContentLoaded', function() {
         console.log(Notification.permission  , "notifi")
 
-       
-
-
         if(Notification.permission == 'denied') {
 
              toastr.warning(`Allow Browser Notification for Realtime updates <br />`, "Warning");               

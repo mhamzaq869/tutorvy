@@ -40,7 +40,7 @@
 
 </head>
 <body>
-    <div class="wrapper" id="wrapper">
+    <div class="wrapper" id="wrapper" data-id="{{Auth::user()->is_token_updated}}">
         <!-- side navbar -->
         @include('tutor.layouts.sidebar')
         <!-- seide navbar end -->

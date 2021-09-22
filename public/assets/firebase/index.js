@@ -19,8 +19,14 @@ messaging.usePublicVapidKey("BK8CHpqRSc6qjQDVSc6eQZCOganeqlTqBZa4kpAWOIHhYJFQPdN
 messaging.requestPermission().then(function(){
   return messaging.getToken();
 }).then(function(token){
-  $('#fcm_token').val(token)
+  $('#fcm_token').val(token);
+
+  var check_value = $(".wrapper").data('id');
   console.log(token);
+  if(check_value == 0) {
+    saveFcmToken(token);
+  } 
+
 }).catch(function(err){
   console.log('unable to get permission.'+err)
 });
@@ -30,3 +36,27 @@ messaging.onMessage((payload) => {
   console.log('Message received. ', payload);
   
 });
+
+
+
+
+// save fcm token
+function saveFcmToken(token) {
+  var origin = window.location.origin;
+
+  $.ajax({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: origin + "/tutor/save-token",
+      type:"POST",
+      data:{token:token},
+      dataType: 'json',
+      success:function(response){
+        console.log(response , "token")
+      },
+      error:function(e) {
+          console.log(e)
+      }
+  });
+}
