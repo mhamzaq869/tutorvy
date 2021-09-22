@@ -58,14 +58,7 @@ class TutorController extends Controller
         $price = $request->price;
         $gender = $request->gender;
 
-        $min_prc =  '';
-        $max_prc =  '';
-
-        if($price != null ){
-            $price = explode(';',$price);
-            $min_prc = $price[0];
-            $max_prc = $price[1];
-        }
+        
 
         if($subject == '' || $subject == null){
             $subject = \Auth::user()->std_learn;
@@ -115,6 +108,20 @@ class TutorController extends Controller
         {
             if($gender != null && $gender != '' && $gender != 'any'){
                 $query6->where('users.gender', $gender);
+            }
+            
+        });
+
+        $query->where(function($query7) use ($price)
+        {
+            if($price != null && $price != ''){
+                $min_prc =  '';
+                $max_prc =  '';
+                $price = explode(';',$price);
+                $min_prc = $price[0];
+                $max_prc = $price[1];
+                
+                $query7->where('users.hourly_rate','>=', $min_prc)->where('users.hourly_rate','<=', $max_prc);
             }
             
         });
