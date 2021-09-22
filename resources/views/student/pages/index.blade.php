@@ -13,6 +13,7 @@
                         Dashboard  
                     </p> 
             </div>
+           
 
             <div class="col-md-8">
                 <div class="row infoCard">
@@ -35,19 +36,46 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <div class="card mt-0">
+                            <div class="card-body">
+                                    <p class="mb-2 ">Profile Strength: <strong class="text-success">
+                                        Strong
+                                    </strong></p>
+                                    <div class="progress">
+                                        <div class="bg-dead bg-levelTwo" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="bg-dead bg-levelThree ml-1" role="progressbar" style="width: 15%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="bg-dead bg-levelThree ml-1" role="progressbar" style="width: 15%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="bg-dead bg-levelFour ml-1" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="bg-dead bg-levelFour ml-1" role="progressbar" style="width: 15%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="bg-dead  bg-levelFive ml-1" role="progressbar" style="width: 15%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="bg-dead bg-levelFive ml-1" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <p class="text-mute mt-1 mb-0"> <i class="fa fa-check text-success"></i> Tutors with complete profile tends to have more students than the other tutors.</p>
+                                    <p class="text-mute mb-0"> <i class="fa fa-check text-success"></i> Tutors with complete profile get verified sooner than others.</p>
+                                    <p class="text-mute mb-0"> <i class="fa fa-check text-success"></i> Complete profile helps a tutor to earn more.</p>
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+               
+                
                
                 <div class="bg-homeimage1">
                     <div class="row">
                         <div class="col-md-7 text-white pl-4">
                             <div class="text mt-5 ml-2">
-                                <p class="res-textup">
+                                <h2 class="text-white">
                                     We have upgraded the classroom.
-                                </p>
-                                <p class="res-textup1">
+                                </h2>
+                                <p >
                                     Register yourself on Tutorvy and learn or teach anything from
                                     anywhere.
                                 </p>
-                                <a href=""class="text-white res-textup">
+                                <a href=""class="text-white ">
                                     Learn More
                                 </a>
                             </div>
@@ -323,7 +351,7 @@
             </div>
             <div class="col-md-4">
                 <div class="row ">
-                    <div class="col-md-12 mb-3">
+                    <!-- <div class="col-md-12 mb-3">
                         <div class="card mt-0">
                             <div class="card-body">
                                 <div class="row">
@@ -347,14 +375,14 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-md-12">
                         <div class="card mt-0">
                             <div class="card-body">
 
                                 <div class="row mt-2">
                                     <div class="col-md-8">
-                                            <p class="heading-third">
+                                            <p class="heading-forth">
                                                 Today Bookings
                                             </p>
                                     </div>
@@ -395,7 +423,7 @@
                                             </div>
                                         @endforeach
                                     @else
-                                    <div class="text-center">
+                                    <div class="text-center m-3">
                                         <img src="{{asset('assets/images/clock.png')}}" alt=""> 
                                         <p> No Bookings for Today</p>
 
@@ -403,7 +431,7 @@
                                     @endif
                                 <div class="row mt-2">
                                     <div class="col-md-9">
-                                            <p class="heading-third">
+                                            <p class="heading-forth">
                                                 Upcoming Bookings
                                             </p>
                                     </div>
@@ -444,7 +472,7 @@
                                             </div>
                                         @endforeach
                                     @else
-                                    <div class="text-center">
+                                    <div class="text-center m-3">
                                         <img src="{{asset('assets/images/learning.png')}}" alt=""> 
                                         <p> No Upcoming Bookings Registered</p>
 

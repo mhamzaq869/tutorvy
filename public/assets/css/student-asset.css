@@ -118,7 +118,7 @@
         color: #1173FF !important;
         font-size: 14px;
         font-weight: 500;
-        margin-top: 8px;
+        margin-top: 4px;
     }
     
     .inputtype {
@@ -1167,7 +1167,7 @@
     }
     
     .progress {
-        height: 12px;
+        height: 8px;
         font-size: 10px;
     }
     
@@ -1244,4 +1244,37 @@
     .pg {
         width: 40%;
         height: auto;
+    }
+    
+    .counter-text {
+        position: relative;
+        color: white;
+        padding: 3px 7px;
+        cursor: pointer !important;
+        border-radius: 70px;
+        font-size: 12px;
+    }
+    
+    .progress {
+        background: none;
+    }
+    
+    .bg-dead {
+        background: #E9ECEF;
+    }
+    
+    .bg-levelTwo {
+        background: #88B9FF;
+    }
+    
+    .bg-levelThree {
+        background: #65A5FF;
+    }
+    
+    .bg-levelFour {
+        background: #418FFF;
+    }
+    
+    .bg-levelFive {
+        background: #1173FF;
     }

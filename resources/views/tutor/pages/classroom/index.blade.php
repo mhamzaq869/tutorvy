@@ -40,11 +40,14 @@
                             <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
                                 href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
                                 All Classes
+                                <span class="counter-text bg-primary">9</span>
                             </a>
                             <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
                                 href="#nav-profile" role="tab" aria-controls="nav-profile"
                                 aria-selected="false">
                                 Delivered Classes
+                                <span class="counter-text bg-success">9</span>
+
                             </a>
                         </div>
                     </nav>
