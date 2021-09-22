@@ -271,16 +271,18 @@ td input{
 .ck p{
     height:400px !important;
 }
-
-
-
+.cust_vid{
+    height: 132px;
+    padding-top: 16%; 
+    border-radius:4px;
+}
 </style>
 @section('content')
  <!-- top Fixed navbar End -->
  <section>
     <div class="content-wrapper " style="overflow: hidden;">
         <div class="container-fluid">
-            <div class="row mb-5">
+            <div class="row mb-5 tech_weck">
                 <div class="col-md-9 card"> 
                     <div class="row">
                         <div class="col-md-12 mt-3">
@@ -307,314 +309,315 @@ td input{
                                     </div>
                                 </nav>
                                 <div class="tab-content" id="nav-tabContent">
-                                <div class="tab-pane tab-border-none tab-border-none-1 fade show active" id="nav-whiteBoard" role="tabpanel" aria-labelledby="nav-whiteBoard-tab">
-                                    <div class="container-fluid ">
-                                        <div class="row mt-2">
-                                            <div class="col-md-12">
-                                                <nav>
-                                                    <div class="nav nav-tabs board-nav" id="nav-tab" role="tablist">
-                                                        <!-- <a class="nav-item nav-link board-nav active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Board 1 <i class="pl-2 fa fa-times text-dark"></i></a>
-                                                        <a class="nav-item nav-link board-nav" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Board 2 <i class="pl-2 fa fa-times text-dark"></i></a>
-                                                        <a class="mt-2 ml-2" href="#">Add new Board +</a> -->
-                                                    </div>
-                                                </nav>
-                                                <div class="tab-content" id="nav-tabContent">
-                                                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                                        <!-- <div class="row">
-                                                            <div class="col-md-1 mt-2 p-0">
-                                                                <ul class=" text-center pl-0">
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/pointer.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/drag.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="pen">
-                                                                            <img src="{{asset('assets/images/ico/pencil.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="eraser">
-                                                                            <img src="{{asset('assets/images/ico/eraser.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="rect">
-                                                                            <img src="{{asset('assets/images/ico/rectangle.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/ellipse.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="line">
-                                                                            <img src="{{asset('assets/images/ico/line.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/text.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/diagonal.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/fx.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="clear">
-                                                                            C
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-md-11 mt-3 p-0">
-                                                                <canvas id="canvas" width="750" height="450"></canvas>
-                                                            </div> 
-                                                        </div> -->
-                                                        <div class="row">
-                                                            <div class="col-md-12 h-500 mt-5 mb-5">
-                                                                <div id="widget-container" style=""></div>
-                                                                <video id="screen-viewer" controls playsinline autoplay></video>
+                                    <div class="tab-pane tab-border-none tab-border-none-1 fade show active" id="nav-whiteBoard" role="tabpanel" aria-labelledby="nav-whiteBoard-tab">
+                                        <div class="container-fluid ">
+                                            <div class="row mt-2">
+                                                <div class="col-md-12">
+                                                    <nav>
+                                                        <div class="nav nav-tabs board-nav" id="nav-tab" role="tablist">
+                                                            <!-- <a class="nav-item nav-link board-nav active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Board 1 <i class="pl-2 fa fa-times text-dark"></i></a>
+                                                            <a class="nav-item nav-link board-nav" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Board 2 <i class="pl-2 fa fa-times text-dark"></i></a>
+                                                            <a class="mt-2 ml-2" href="#">Add new Board +</a> -->
+                                                        </div>
+                                                    </nav>
+                                                    <div class="tab-content" id="nav-tabContent">
+                                                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                                            <!-- <div class="row">
+                                                                <div class="col-md-1 mt-2 p-0">
+                                                                    <ul class=" text-center pl-0">
+                                                                        <li class="p-2">
+                                                                            <a href="#">
+                                                                                <img src="{{asset('assets/images/ico/pointer.png')}}" alt="">
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="p-2">
+                                                                            <a href="#">
+                                                                                <img src="{{asset('assets/images/ico/drag.png')}}" alt="">
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="p-2">
+                                                                            <a href="#" id="pen">
+                                                                                <img src="{{asset('assets/images/ico/pencil.png')}}" alt="">
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="p-2">
+                                                                            <a href="#" id="eraser">
+                                                                                <img src="{{asset('assets/images/ico/eraser.png')}}" alt="">
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="p-2">
+                                                                            <a href="#" id="rect">
+                                                                                <img src="{{asset('assets/images/ico/rectangle.png')}}" alt="">
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="p-2">
+                                                                            <a href="#">
+                                                                                <img src="{{asset('assets/images/ico/ellipse.png')}}" alt="">
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="p-2">
+                                                                            <a href="#" id="line">
+                                                                                <img src="{{asset('assets/images/ico/line.png')}}" alt="">
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="p-2">
+                                                                            <a href="#">
+                                                                                <img src="{{asset('assets/images/ico/text.png')}}" alt="">
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="p-2">
+                                                                            <a href="#">
+                                                                                <img src="{{asset('assets/images/ico/diagonal.png')}}" alt="">
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="p-2">
+                                                                            <a href="#">
+                                                                                <img src="{{asset('assets/images/ico/fx.png')}}" alt="">
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="p-2">
+                                                                            <a href="#" id="clear">
+                                                                                C
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="col-md-11 mt-3 p-0">
+                                                                    <canvas id="canvas" width="750" height="450"></canvas>
+                                                                </div> 
+                                                            </div> -->
+                                                            <div class="row">
+                                                                <div class="col-md-12 h-500 mt-5 mb-5">
+                                                                    <div id="widget-container" style=""></div>
+                                                                    <video id="screen-viewer" controls playsinline autoplay></video>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                                        <!-- <div class="row">
-                                                            <div class="col-md-1 mt-2 p-0">
-                                                                <ul class=" text-center pl-0">
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/pointer.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/drag.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="pen">
-                                                                            <img src="{{asset('assets/images/ico/pencil.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="eraser">
-                                                                            <img src="{{asset('assets/images/ico/eraser.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="rect">
-                                                                            <img src="{{asset('assets/images/ico/rectangle.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/ellipse.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="line">
-                                                                            <img src="{{asset('assets/images/ico/line.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/text.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/diagonal.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/fx.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="clear">
-                                                                            C
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-md-11 mt-3 p-0">
-                                                                <canvas id="canvas" width="750" height="500"></canvas>
-                                                            </div> 
-                                                        </div> -->
+                                                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                                            <!-- <div class="row">
+                                                                <div class="col-md-1 mt-2 p-0">
+                                                                    <ul class=" text-center pl-0">
+                                                                        <li class="p-2">
+                                                                            <a href="#">
+                                                                                <img src="{{asset('assets/images/ico/pointer.png')}}" alt="">
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="p-2">
+                                                                            <a href="#">
+                                                                                <img src="{{asset('assets/images/ico/drag.png')}}" alt="">
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="p-2">
+                                                                            <a href="#" id="pen">
+                                                                                <img src="{{asset('assets/images/ico/pencil.png')}}" alt="">
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="p-2">
+                                                                            <a href="#" id="eraser">
+                                                                                <img src="{{asset('assets/images/ico/eraser.png')}}" alt="">
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="p-2">
+                                                                            <a href="#" id="rect">
+                                                                                <img src="{{asset('assets/images/ico/rectangle.png')}}" alt="">
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="p-2">
+                                                                            <a href="#">
+                                                                                <img src="{{asset('assets/images/ico/ellipse.png')}}" alt="">
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="p-2">
+                                                                            <a href="#" id="line">
+                                                                                <img src="{{asset('assets/images/ico/line.png')}}" alt="">
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="p-2">
+                                                                            <a href="#">
+                                                                                <img src="{{asset('assets/images/ico/text.png')}}" alt="">
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="p-2">
+                                                                            <a href="#">
+                                                                                <img src="{{asset('assets/images/ico/diagonal.png')}}" alt="">
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="p-2">
+                                                                            <a href="#">
+                                                                                <img src="{{asset('assets/images/ico/fx.png')}}" alt="">
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="p-2">
+                                                                            <a href="#" id="clear">
+                                                                                C
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="col-md-11 mt-3 p-0">
+                                                                    <canvas id="canvas" width="750" height="500"></canvas>
+                                                                </div> 
+                                                            </div> -->
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <!-- -->
-                                        </div>
-                                    </div>
-                                    <!-- end -->
-                                </div>
-                                <div class="tab-pane tab-border-none fade" id="nav-calculator" role="tabpanel" aria-labelledby="nav-calculator-tab">
-                                    <div class="container-fluid ">
-                                        <div class="row">
-                                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <form action="" class="mt-5">
-                                                    <table class="w-100">
-                                                            <tr>
-                                                                <input id="display" name="display" value="0" size="28" maxlength="25">
-                                                            </tr>
-                                                            <tr>
-                                                                <div class="mt-3 mb-2 ">
-                                                                    <a href="Deg" class="p-5 text-dark ">DEG</a>
-                                                                    <a href="F-E" class="p-5 text-dark ">F-E</a>
-                                                                </div>
-                                                            </tr>
-                                                            <tr >
-                                                                <div class="mt-3 mb-2 text-dark">
-                                                                    <a href="MC" class="p-5 text-dark">MC</a>
-                                                                    <a href="MR" class="p-5 text-dark">MR</a>
-                                                                    <a href="M+" class="p-5 text-dark">M+</a>
-                                                                    <a href="M-" class="p-5 text-dark">M-</a>
-                                                                    <a href="MS" class="p-5 text-dark">Ms</a>
-                                                                </div>
-                                                            
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                <input type="button" class="btnMath" name="btnMath" value="Trignometry" onclick="addChar(this.form.display,')')">
-                                                                </td>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="f Functions " onclick="addChar(this.form.display,')')"></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><input type="button" class="btnOpps" name="btnOpps" value="2nd" onclick="addChar(this.form.display,'3.14159265359')"></td>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="Pi" onclick="if(checkNum(this.form.display.value)) { tan(this.form) }"></td>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="e" onclick=" percent(this.form.display)"></td>
-                                                                <td><input type="button" class="btnTop" name="btnTop" value="C" onclick="this.form.display.value=  0 "></td>
-                                                                <td><input type="button" class="btnTop" name="btnTop" value="AC" onclick="deleteChar(this.form.display)"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="x2" onclick="addChar(this.form.display, '(')"></td>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="|x|" onclick="addChar(this.form.display,')')"></td>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="10x" onclick="if(checkNum(this.form.display.value)) { cos(this.form) }"></td>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="exp" onclick="if(checkNum(this.form.display.value)) { sin(this.form) }"></td>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="mod" onclick="if(checkNum(this.form.display.value)) { tan(this.form) }"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="2/x" onclick="addChar(this.form.display,')')"></td>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="(" onclick="if(checkNum(this.form.display.value)) { cos(this.form) }"></td>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value=")" onclick="if(checkNum(this.form.display.value)) { sin(this.form) }"></td>
-                                                                
-                                                                <td><input type="button" class="btnOpps" name="btnOpps" value="n!" onclick="if(checkNum(this.form.display.value)) { exp(this.form) }"></td>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="/" onclick="addChar(this.form.display, '/')"></td>
-                                                            <tr>
-                                                            <td><input type="button" class="btnOpps" name="btnOpps" value="ln" onclick="if(checkNum(this.form.display.value)) { ln(this.form) }"></td>
-
-                                                                <td><input type="button" class="btnNum" name="btnNum" value="7" onclick="addChar(this.form.display, '7')"></td>
-                                                                <td><input type="button" class="btnNum" name="btnNum" value="8" onclick="addChar(this.form.display, '8')"></td>
-                                                                <td><input type="button" class="btnNum" name="btnNum" value="9" onclick="addChar(this.form.display, '9')"></td>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="X" onclick="addChar(this.form.display, '*')"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><input type="button" class="btnOpps" name="btnOpps" value="Xy" onclick="if(checkNum(this.form.display.value)) { sqrt(this.form) }"></td>
-                                                                <td><input type="button" class="btnNum" name="btnNum" value="4" onclick="addChar(this.form.display, '4')"></td>
-                                                                <td><input type="button" class="btnNum" name="btnNum" value="5" onclick="addChar(this.form.display, '5')"></td>
-                                                                <td><input type="button" class="btnNum" name="btnNum" value="6" onclick="addChar(this.form.display, '6')"></td>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="-" onclick="addChar(this.form.display, '-')"></td>
-                                                            </tr>
-                                                            <tr>
-                                                            <td><input type="button" class="btnOpps" name="btnOpps" value="10x" onclick="if(checkNum(this.form.display.value)) { square(this.form) }"></td>
-                                                            <td><input type="button" class="btnNum" name="btnNum" value="1" onclick="addChar(this.form.display, '1')"></td>
-                                                                <td><input type="button" class="btnNum" name="btnNum" value="2" onclick="addChar(this.form.display, '2')"></td>
-                                                                <td><input type="button" class="btnNum" name="btnNum" value="3" onclick="addChar(this.form.display, '3')"></td>
-                                                            
-                                                            
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="+" onclick="addChar(this.form.display, '+')"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="ln" onclick="addChar(this.form.display, '(')"></td>
-                                                                <td><input type="button" class="btnMath btnNum" name="btnMath" value="+/-" onclick="changeSign(this.form.display)"></td>
-                                                                <td><input type="button" class="btnNum" name="btnNum" value="0" onclick="addChar(this.form.display, '0')"></td>
-                                                                <td><input type="button" class="btnMath btnNum" name="btnMath" value="&#46;" onclick="addChar(this.form.display, '&#46;')"></td>
-                                                                <td><input type="button"  class="btnTop equal" name="btnTop" value="=" onclick="if(checkNum(this.form.display.value)) { compute(this.form) }"></td>
-                                                            </tr>
-                                                    </table>
-                                                </form>
+                                                <!-- -->
                                             </div>
                                         </div>
                                         <!-- end -->
                                     </div>
-                                </div>
-                                <div class="tab-pane tab-border-none fade" id="nav-textEditor" role="tabpanel" aria-labelledby="nav-textEditor-tab">
-
+                                    <div class="tab-pane tab-border-none fade" id="nav-calculator" role="tabpanel" aria-labelledby="nav-calculator-tab">
                                         <div class="container-fluid ">
-
-                                            <div class="row mt-5">
+                                            <div class="row">
                                                 <div class="col-md-12 col-sm-12 col-xs-12">
-                                                    <textarea name="content" id="editor" placeholder="">
-                                                    &lt;p&gt;Add your text here&lt;/p&gt;
-                                                    </textarea>
+                                                    <form action="" class="mt-5">
+                                                        <table class="w-100">
+                                                                <tr>
+                                                                    <input id="display" name="display" value="0" size="28" maxlength="25">
+                                                                </tr>
+                                                                <tr>
+                                                                    <div class="mt-3 mb-2 ">
+                                                                        <a href="Deg" class="p-5 text-dark ">DEG</a>
+                                                                        <a href="F-E" class="p-5 text-dark ">F-E</a>
+                                                                    </div>
+                                                                </tr>
+                                                                <tr >
+                                                                    <div class="mt-3 mb-2 text-dark">
+                                                                        <a href="MC" class="p-5 text-dark">MC</a>
+                                                                        <a href="MR" class="p-5 text-dark">MR</a>
+                                                                        <a href="M+" class="p-5 text-dark">M+</a>
+                                                                        <a href="M-" class="p-5 text-dark">M-</a>
+                                                                        <a href="MS" class="p-5 text-dark">Ms</a>
+                                                                    </div>
+                                                                
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                    <input type="button" class="btnMath" name="btnMath" value="Trignometry" onclick="addChar(this.form.display,')')">
+                                                                    </td>
+                                                                    <td><input type="button" class="btnMath" name="btnMath" value="f Functions " onclick="addChar(this.form.display,')')"></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><input type="button" class="btnOpps" name="btnOpps" value="2nd" onclick="addChar(this.form.display,'3.14159265359')"></td>
+                                                                    <td><input type="button" class="btnMath" name="btnMath" value="Pi" onclick="if(checkNum(this.form.display.value)) { tan(this.form) }"></td>
+                                                                    <td><input type="button" class="btnMath" name="btnMath" value="e" onclick=" percent(this.form.display)"></td>
+                                                                    <td><input type="button" class="btnTop" name="btnTop" value="C" onclick="this.form.display.value=  0 "></td>
+                                                                    <td><input type="button" class="btnTop" name="btnTop" value="AC" onclick="deleteChar(this.form.display)"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><input type="button" class="btnMath" name="btnMath" value="x2" onclick="addChar(this.form.display, '(')"></td>
+                                                                    <td><input type="button" class="btnMath" name="btnMath" value="|x|" onclick="addChar(this.form.display,')')"></td>
+                                                                    <td><input type="button" class="btnMath" name="btnMath" value="10x" onclick="if(checkNum(this.form.display.value)) { cos(this.form) }"></td>
+                                                                    <td><input type="button" class="btnMath" name="btnMath" value="exp" onclick="if(checkNum(this.form.display.value)) { sin(this.form) }"></td>
+                                                                    <td><input type="button" class="btnMath" name="btnMath" value="mod" onclick="if(checkNum(this.form.display.value)) { tan(this.form) }"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><input type="button" class="btnMath" name="btnMath" value="2/x" onclick="addChar(this.form.display,')')"></td>
+                                                                    <td><input type="button" class="btnMath" name="btnMath" value="(" onclick="if(checkNum(this.form.display.value)) { cos(this.form) }"></td>
+                                                                    <td><input type="button" class="btnMath" name="btnMath" value=")" onclick="if(checkNum(this.form.display.value)) { sin(this.form) }"></td>
+                                                                    
+                                                                    <td><input type="button" class="btnOpps" name="btnOpps" value="n!" onclick="if(checkNum(this.form.display.value)) { exp(this.form) }"></td>
+                                                                    <td><input type="button" class="btnMath" name="btnMath" value="/" onclick="addChar(this.form.display, '/')"></td>
+                                                                <tr>
+                                                                <td><input type="button" class="btnOpps" name="btnOpps" value="ln" onclick="if(checkNum(this.form.display.value)) { ln(this.form) }"></td>
+
+                                                                    <td><input type="button" class="btnNum" name="btnNum" value="7" onclick="addChar(this.form.display, '7')"></td>
+                                                                    <td><input type="button" class="btnNum" name="btnNum" value="8" onclick="addChar(this.form.display, '8')"></td>
+                                                                    <td><input type="button" class="btnNum" name="btnNum" value="9" onclick="addChar(this.form.display, '9')"></td>
+                                                                    <td><input type="button" class="btnMath" name="btnMath" value="X" onclick="addChar(this.form.display, '*')"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><input type="button" class="btnOpps" name="btnOpps" value="Xy" onclick="if(checkNum(this.form.display.value)) { sqrt(this.form) }"></td>
+                                                                    <td><input type="button" class="btnNum" name="btnNum" value="4" onclick="addChar(this.form.display, '4')"></td>
+                                                                    <td><input type="button" class="btnNum" name="btnNum" value="5" onclick="addChar(this.form.display, '5')"></td>
+                                                                    <td><input type="button" class="btnNum" name="btnNum" value="6" onclick="addChar(this.form.display, '6')"></td>
+                                                                    <td><input type="button" class="btnMath" name="btnMath" value="-" onclick="addChar(this.form.display, '-')"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                <td><input type="button" class="btnOpps" name="btnOpps" value="10x" onclick="if(checkNum(this.form.display.value)) { square(this.form) }"></td>
+                                                                <td><input type="button" class="btnNum" name="btnNum" value="1" onclick="addChar(this.form.display, '1')"></td>
+                                                                    <td><input type="button" class="btnNum" name="btnNum" value="2" onclick="addChar(this.form.display, '2')"></td>
+                                                                    <td><input type="button" class="btnNum" name="btnNum" value="3" onclick="addChar(this.form.display, '3')"></td>
+                                                                
+                                                                
+                                                                    <td><input type="button" class="btnMath" name="btnMath" value="+" onclick="addChar(this.form.display, '+')"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><input type="button" class="btnMath" name="btnMath" value="ln" onclick="addChar(this.form.display, '(')"></td>
+                                                                    <td><input type="button" class="btnMath btnNum" name="btnMath" value="+/-" onclick="changeSign(this.form.display)"></td>
+                                                                    <td><input type="button" class="btnNum" name="btnNum" value="0" onclick="addChar(this.form.display, '0')"></td>
+                                                                    <td><input type="button" class="btnMath btnNum" name="btnMath" value="&#46;" onclick="addChar(this.form.display, '&#46;')"></td>
+                                                                    <td><input type="button"  class="btnTop equal" name="btnTop" value="=" onclick="if(checkNum(this.form.display.value)) { compute(this.form) }"></td>
+                                                                </tr>
+                                                        </table>
+                                                    </form>
                                                 </div>
                                             </div>
+                                            <!-- end -->
                                         </div>
-                                        <!-- end -->
-                                </div>
-                                <div class="tab-pane tab-border-none fade" id="nav-codeEditor" role="tabpanel" aria-labelledby="nav-codeEditor-tab">
+                                    </div>
+                                    <div class="tab-pane tab-border-none fade" id="nav-textEditor" role="tabpanel" aria-labelledby="nav-textEditor-tab">
+
+                                            <div class="container-fluid ">
+
+                                                <div class="row mt-5">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <textarea name="content" id="editor" placeholder="">
+                                                        &lt;p&gt;Add your text here&lt;/p&gt;
+                                                        </textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end -->
+                                    </div>
+                                    <div class="tab-pane tab-border-none fade" id="nav-codeEditor" role="tabpanel" aria-labelledby="nav-codeEditor-tab">
+
+                                            <div class="container-fluid ">
+
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <pre><code class="language-html">
+                                                            
+                                                        </code></pre>
+                                                        <textarea name="" id="check" cols="30" rows="10" onkeypress="cheng()"></textarea>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end -->
+                                    </div>
+                                    <div class="tab-pane tab-border-none fade" id="nav-googleDocs" role="tabpanel" aria-labelledby="nav-googleDocs-tab">
 
                                         <div class="container-fluid ">
 
                                             <div class="row">
                                                 <div class="col-md-12 col-sm-12 col-xs-12">
-                                                    <pre><code class="language-html">
-                                                        
-                                                    </code></pre>
-                                                    <textarea name="" id="check" cols="30" rows="10" onkeypress="cheng()"></textarea>
-
+                                                    
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- end -->
-                                </div>
-                                <div class="tab-pane tab-border-none fade" id="nav-googleDocs" role="tabpanel" aria-labelledby="nav-googleDocs-tab">
+                                    </div>
+                                    <div class="tab-pane tab-border-none fade" id="nav-fileShare" role="tabpanel" aria-labelledby="nav-fileShare-tab">
+                                        <div class="container-fluid ">
 
-                                    <div class="container-fluid ">
-
-                                        <div class="row">
-                                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                                
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
                                     <!-- end -->
-                                </div>
-                                <div class="tab-pane tab-border-none fade" id="nav-fileShare" role="tabpanel" aria-labelledby="nav-fileShare-tab">
-                                    <div class="container-fluid ">
-
-                                        <div class="row">
-                                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                <!-- end -->
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
+                 
                     <!-- <div class="row mt-3 mb-3">
                     <div class="col-md-12">
                             <video class="callNew" autoplay muted></video>
@@ -638,7 +641,10 @@ td input{
                         </div>
                     </div>
                     </div> -->
-                    <div class="mt-5">
+                    <div class="mt-4">
+                        <div class="bg-dark w-100 cust_vid text-center">
+                                <img src="{{asset('assets/images/logo-footer.png')}}" alt="">
+                        </div>
                         <video id="main-video"  playsinline autoplay></video>
                         <div id="other-videos"></div>
                         <hr>
@@ -666,6 +672,46 @@ td input{
         </div>
     </div>
 </section>
+ <!-- Modal -->
+ <div class="modal" id="callModal" tabindex="-1" role="dialog"
+    aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <!-- <div class="modal-header">
+                <h5 class="modal-title" id="callModalTitle">Choose Features</h5>
+                <button type="button" class="close" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div> -->
+            <div class="modal-body bg-black" >
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <img src="{{asset($user->picture)}}" class="profile-img pg" alt="">
+                    </div>
+                    <div class="col-md-12 g-location">
+
+                        <a href="#" class="callSet vc">
+                           <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
+                        </a>
+                        <a href="#" class="callSet no-vc">
+                           <img src="{{asset('assets/images/ico/no-vc.png')}}" title="With Video" alt="">
+                        </a>
+                        <a href="#" class="callSet mk" id="mk">
+                            <img src="{{asset('assets/images/ico/mike.png')}}" title="Without Audio" alt="">
+                        </a>
+                        <a href="#" class="callSet no-mk">
+                            <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
+                        </a>
+                        <a href="#" id="join_now"  class="btn btn-success ml-2">
+                            Join Class
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 @section('scripts')
 @include('js_files.whiteBoard')
@@ -681,7 +727,45 @@ td input{
                 alert(ter);
                 $('.language-html').text(ter);
             }
-    </script>
+</script>
+
+
+<script>
+$(document).ready(function(){
+    $(".tech_weck").hide();
+    $(".mk").hide();
+    $(".vc").hide();
+    $(".no-vc").show();
+    $("#callModal").modal("show");
+})
+$("#join_now").click(function(){
+    $(".tech_weck").show();;
+    $("#callModal").modal("hide");
+})
+    $(".no-mk").click(function(){
+       
+        $(".no-mk").hide();
+        $(".mk").show();
+    });
+    $(".mk").click(function(){
+       
+        $(".no-mk").show();
+        $(".mk").hide();
+    });
+    $(".no-vc").click(function(){
+       
+       $(".no-vc").hide();
+       $(".vc").show();
+   });
+   $(".vc").click(function(){
+      
+       $(".vc").hide();
+       $(".no-vc").show();
+   });
+</script>
+
+
+
 <script>
 
 var connection = new RTCMultiConnection();

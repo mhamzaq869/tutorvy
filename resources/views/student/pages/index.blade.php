@@ -394,35 +394,36 @@
                                 </div>
                                     @if($today_bookings != "[]")
                                         @foreach($today_bookings as $booking)
-                                            <div class="row mt-2 bg-bookings">
-                                                <div class="col-md-4 text-center">
-                                                @if($booking->tutor->picture)
-                                                        <img src="{{asset ($booking->tutor->picture)}}" alt=""  class="db_img">
-                                                @else
-                                                    <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="db_img">
-                                                @endif
-                                                   
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <p class="mb-2 periodic-cls">
-                                                        <a class="chemistry-tex1">
-                                                        {{$booking->subject->name}} class:
-                                                        </a>
-                                                        {{$booking->topic}}
-                                                    </p>
-                                                    <p class="chemistry-tex2">
-                                                    {{ \Illuminate\Support\Str::limit($booking->brief, $limit = 50, $end = '...') }}
-                                                    </p>
-                                                    <div style="display: inline-flex;">
-                                                        <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class="watch-icon">
+                                            <a href="{{route('student.bookings')}}" class="decoration-none">
+                                                <div class="row mt-2 bg-bookings">
+                                                    <div class="col-md-3 text-center div-center">
+                                                        @if($booking->tutor->picture)
+                                                                <img src="{{asset ($booking->tutor->picture)}}" alt=""  class="profile-img book_dash">
+                                                        @else
+                                                            <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="profile-img book_dash">
+                                                        @endif
+                                                    </div>
+                                                    <div class="col-md-9 pl-0">
+                                                        <p class="  mb-1 chemistry-tex1">
+                                                        {{$booking->subject->name}}
+                                                        </p>
+                                                        <p class=" mb-0 chemistry-tex1">
+                                                            Class: {{$booking->topic}}
+
+                                                        </p>
+                                                        <p class="chemistry-tex2 pt-2 pb-2 mb-0">
+                                                            {{ \Illuminate\Support\Str::limit($booking->brief, $limit = 50, $end = '...') }}
+                                                        </p>
                                                         <p class="time-chemistry">
-                                                        {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
+                                                            <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class=" "> 
+                                                            <span class="pt-1 pl-1">  {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }} </span>
                                                         </p>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </a>
                                         @endforeach
                                     @else
+                                        
                                     <div class="text-center m-3">
                                         <img src="{{asset('assets/images/clock.png')}}" alt=""> 
                                         <p> No Bookings for Today</p>
@@ -444,32 +445,33 @@
                                 @if($upcoming_bookings != "[]")
                                         @foreach($upcoming_bookings as $booking)
 
-                                            <div class="row mt-2 bg-bookings">
-                                                <div class="col-md-4 text-center">
-                                                @if($booking->tutor->picture)
-                                                        <img src="{{asset ($booking->tutor->picture)}}" alt=""  class="db_img">
-                                                @else
-                                                    <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="db_img">
-                                                @endif
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <p class=" mb-2 periodic-cls">
-                                                        <a class="chemistry-tex1">
-                                                        {{$booking->subject->name}} class:
-                                                        </a>
-                                                        {{$booking->topic}}
-                                                    </p>
-                                                    <p class="chemistry-tex2">
-                                                    {{ \Illuminate\Support\Str::limit($booking->brief, $limit = 50, $end = '...') }}
-                                                    </p>
-                                                    <div style="display: inline-flex;">
-                                                        <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class="watch-icon">
+                                            <a href="{{route('student.bookings')}}" class="decoration-none">
+                                                <div class="row mt-2 bg-bookings">
+                                                    <div class="col-md-3 text-center div-center">
+                                                        @if($booking->tutor->picture)
+                                                                <img src="{{asset ($booking->tutor->picture)}}" alt=""  class="profile-img book_dash">
+                                                        @else
+                                                            <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="profile-img book_dash">
+                                                        @endif
+                                                    </div>
+                                                    <div class="col-md-9 pl-0">
+                                                        <p class="  mb-1 chemistry-tex1">
+                                                        {{$booking->subject->name}}
+                                                        </p>
+                                                        <p class=" mb-0 chemistry-tex1">
+                                                            Class: {{$booking->topic}}
+
+                                                        </p>
+                                                        <p class="chemistry-tex2 pt-2 pb-2 mb-0">
+                                                            {{ \Illuminate\Support\Str::limit($booking->brief, $limit = 50, $end = '...') }}
+                                                        </p>
                                                         <p class="time-chemistry">
-                                                        {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
+                                                            <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class=" "> 
+                                                            <span class="pt-1 pl-1">  {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }} </span>
                                                         </p>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </a>
                                         @endforeach
                                     @else
                                     <div class="text-center m-3">

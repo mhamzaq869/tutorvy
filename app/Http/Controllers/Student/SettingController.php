@@ -77,7 +77,8 @@ class SettingController extends Controller
 
     public function join_class($class_room_id){
         $class = Classroom::with('booking')->where('classroom_id',$class_room_id)->first();
-        return view('student.pages.classroom.classroom',compact('class'));
+        $user = User::where('id',\Auth::user()->id)->first();
+        return view('student.pages.classroom.classroom',compact('class','user'));
     }
 
     public function change_password(Request $request) {

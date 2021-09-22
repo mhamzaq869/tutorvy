@@ -1278,3 +1278,25 @@
     .bg-levelFive {
         background: #1173FF;
     }
+    /*Dashboard booking side*/
+    
+    .decoration-none {
+        text-decoration: none;
+    }
+    
+    .decoration-none:hover {
+        text-decoration: none;
+    }
+    
+    .div-center {
+        justify-content: center;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }

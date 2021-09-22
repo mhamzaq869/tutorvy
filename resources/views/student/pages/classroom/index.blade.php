@@ -158,13 +158,13 @@
 
                                                             
                                                             <td style="text-align: center;padding-top:14px;">
-                                                                <a type="button" data-target="#callModal" class="schedule-btn"  data-toggle="modal">
+                                                                <!--<a type="button" data-target="#callModal" class="schedule-btn"  data-toggle="modal">
                                                                     Join Class
-                                                                </a>
-                                                                <!-- <a href="{{route('student.join_class',[$class->classroom_id])}}"  class="schedule-btn">
+                                                                </a>-->
+                                                                 <a href="{{route('student.join_class',[$class->classroom_id])}}"  class="schedule-btn">
                                                                     Join Class
-                                                                </a> -->
-                                                            </td>
+                                                                </a>  
+                                                            </td> 
                                                         </tr>
                                                         @endif
                                                 @endforeach
@@ -232,50 +232,11 @@
         </div>
     </section>
 </div>
- <!-- Modal -->
- <div class="modal" id="callModal" tabindex="-1" role="dialog"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <!-- <div class="modal-header">
-                <h5 class="modal-title" id="callModalTitle">Choose Features</h5>
-                <button type="button" class="close" data-dismiss="modal"
-                    aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div> -->
-            <div class="modal-body bg-black" >
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <img src="{{asset($user->picture)}}" class="profile-img pg" alt="">
-                    </div>
-                    <div class="col-md-12 g-location">
 
-                        <a href="#" class="callSet vc">
-                           <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
-                        </a>
-                        <a href="#" class="callSet no-vc">
-                           <img src="{{asset('assets/images/ico/no-vc.png')}}" title="With Video" alt="">
-                        </a>
-                        <a href="#" class="callSet mk" id="mk">
-                            <img src="{{asset('assets/images/ico/mike.png')}}" title="Without Audio" alt="">
-                        </a>
-                        <a href="#" class="callSet no-mk">
-                            <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
-                        </a>
-                        <a href="#" class="btn btn-success ml-2">
-                            Join Class
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 @endsection
 @section('scripts')
 @include('js_files.room')
-<script>
+<!-- <script>
 $(document).ready(function(){
     $(".mk").hide();
     $(".vc").hide();
@@ -301,5 +262,5 @@ $(document).ready(function(){
        $(".vc").hide();
        $(".no-vc").show();
    });
-</script>
+</script> -->
 @endsection
