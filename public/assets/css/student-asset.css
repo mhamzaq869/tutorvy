@@ -1245,3 +1245,12 @@
         width: 40%;
         height: auto;
     }
+    
+    .counter-text {
+        position: relative;
+        color: white;
+        padding: 3px 7px;
+        cursor: pointer !important;
+        border-radius: 70px;
+        font-size: 12px;
+    }
