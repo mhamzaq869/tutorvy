@@ -154,39 +154,4 @@ class SettingController extends Controller
         return view('tutor.pages.history.ticket_details',compact('ticket'));
     }
 
-    public function saveToken(Request $request) {
-
-        $user = User::where("id", Auth::user()->id)->first();
-
-        if ($user->token != NULL && $user->token != '') {
-            $fcm_array = json_decode($user->token);
-            $token = $request->token;
-            $entry = current(array_filter($fcm_array, function ($e) use ($token) {
-                return $e->token == $token;
-            }));
-
-            if ($entry === false) {
-                $fcm_data = array();
-                $fcm_data['token'] = $request->token;
-                array_push($fcm_array, $fcm_data);
-
-                $user->token = $fcm_array;
-                $user->token_updated_at = date('Y-m-d h:m:s');
-                $user->is_token_updated = 1;
-                $user->save();
-            }
-        }else{
-            $fcm_data = array();
-            $fcm_array = array();
-
-            $fcm_data['token'] = $request->token;
-
-            array_push($fcm_array, $fcm_data);
-            
-            $user->token = json_encode($fcm_array);
-            $user->token_updated_at = date('Y-m-d h:m:s');
-            $user->is_token_updated = 1;
-            $user->save();
-        }
-    }
 }

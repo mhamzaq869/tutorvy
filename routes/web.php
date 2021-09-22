@@ -198,10 +198,7 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::get('/get-categories',[TutorSettingController::class,'getAllCategories'])->name('tutor.categories');
     Route::post('/save-ticket',[TutorSettingController::class,'saveTicket'])->name('tutor.save.ticket');
 
-    Route::get('/ticket/{id}',[TutorSettingController::class,'ticket'])->name('tutor.ticket');
-
-    Route::post('/save-token',[TutorSettingController::class,'saveToken'])->name('tutor.sve.token');
-    
+    Route::get('/ticket/{id}',[TutorSettingController::class,'ticket'])->name('tutor.ticket');    
 });
 
 /*
@@ -215,6 +212,9 @@ Route::group(['prefix' => '/general','middleware' => ['auth']],function () {
     Route::post('chat/store',[GenChatController::class,'sendMessage'])->name('store.text');
     Route::post('call/signal',[GenChatController::class,'sendSignal'])->name('tutor.sendsignal');
     Route::get('chat/user/talk/{id}',[GenChatController::class,'messages_between'])->name('user.chat');
+
+    Route::post('/save-token',[GenChatController::class,'saveToken'])->name('general.save.token');
+    Route::get('/get-notifications',[GenChatController::class,'getAllNotification'])->name('general.get.notification');
 
 });
 
