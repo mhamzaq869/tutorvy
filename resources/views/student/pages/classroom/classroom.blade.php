@@ -647,7 +647,7 @@ td input{
                         </div>
                         <video id="main-video"  playsinline autoplay></video>
                         <div id="other-videos" class="w-100 m-0"></div>
-                        <div class="col-md-12 mt-1 vid-location">
+                        <div class="col-md-12 mt-2 vid-location text-center">
                             <a href="#" class="callSet vc">
                                 <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
                             </a>
@@ -659,6 +659,9 @@ td input{
                             </a>
                             <a href="#" class="callSet no-mk">
                                 <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
+                            </a>
+                            <a href="#" class="callSet no-ph">
+                                <img src="{{asset('assets/images/ico/no-phone.png')}}" title="End Call" alt="">
                             </a>
                         </div>
                         <hr>
@@ -703,7 +706,7 @@ td input{
                     <div class="col-md-12 text-center">
                         <img src="{{asset($user->picture)}}" class="profile-img pg" alt="">
                     </div>
-                    <div class="col-md-12 g-location">
+                    <div class="col-md-12 g-location ">
 
                         <a href="#" class="callSet vc">
                            <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
@@ -745,17 +748,17 @@ td input{
 
 
 <script>
-$(document).ready(function(){
-    $(".tech_weck").hide();
-    $(".mk").hide();
-    $(".vc").hide();
-    $(".no-vc").show();
-    $("#callModal").modal("show");
-})
-$("#join_now").click(function(){
-    $(".tech_weck").show();;
-    $("#callModal").modal("hide");
-})
+    $(document).ready(function(){
+        $(".tech_weck").hide();
+        $(".mk").hide();
+        $(".vc").hide();
+        $(".no-vc").show();
+        $("#callModal").modal("show");
+    })
+    $("#join_now").click(function(){
+        $(".tech_weck").show();;
+        $("#callModal").modal("hide");
+    })
     $(".no-mk").click(function(){
        
         $(".no-mk").hide();

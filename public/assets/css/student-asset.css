@@ -1192,6 +1192,63 @@
         color: inherit;
     }
     
+    .counter-text {
+        position: relative;
+        color: white;
+        padding: 3px 7px;
+        cursor: pointer !important;
+        border-radius: 70px;
+        font-size: 12px;
+    }
+    
+    .progress {
+        background: none;
+    }
+    
+    .bg-dead {
+        background: #E9ECEF;
+    }
+    
+    .bg-levelTwo {
+        background: #88B9FF;
+    }
+    
+    .bg-levelThree {
+        background: #65A5FF;
+    }
+    
+    .bg-levelFour {
+        background: #418FFF;
+    }
+    
+    .bg-levelFive {
+        background: #1173FF;
+    }
+    /*Dashboard booking side */
+    
+    .decoration-none {
+        text-decoration: none;
+    }
+    
+    .decoration-none:hover {
+        text-decoration: none;
+    }
+    
+    .div-center {
+        justify-content: center;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+    /*Dashboard booking side End*/
+    /* Call Modal**/
+    
     .bg-black {
         background: #000;
         height: 300px;
@@ -1232,7 +1289,8 @@
     }
     
     .no-mk,
-    .no-vc {
+    .no-vc,
+    .no-ph {
         background: #DF615C;
     }
     
@@ -1241,65 +1299,16 @@
         background: #21B573;
     }
     
+    .no-ph:hover {
+        background: grey;
+    }
+    
     .pg {
         width: 40%;
         height: auto;
     }
-    
-    .counter-text {
-        position: relative;
-        color: white;
-        padding: 3px 7px;
-        cursor: pointer !important;
-        border-radius: 70px;
-        font-size: 12px;
-    }
-    
-    .progress {
-        background: none;
-    }
-    
-    .bg-dead {
-        background: #E9ECEF;
-    }
-    
-    .bg-levelTwo {
-        background: #88B9FF;
-    }
-    
-    .bg-levelThree {
-        background: #65A5FF;
-    }
-    
-    .bg-levelFour {
-        background: #418FFF;
-    }
-    
-    .bg-levelFive {
-        background: #1173FF;
-    }
-    /*Dashboard booking side*/
-    
-    .decoration-none {
-        text-decoration: none;
-    }
-    
-    .decoration-none:hover {
-        text-decoration: none;
-    }
-    
-    .div-center {
-        justify-content: center;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-justify-content: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-        -webkit-align-items: center;
-        -ms-flex-align: center;
-        align-items: center;
-    }
+    /*Call Modal End*/
+    /*Call Side*/
     
     .vid-location .no-vc,
     .vid-location .vc {
@@ -1311,38 +1320,27 @@
         width: 21px;
     }
     
-    .vid-location .no-mk,
-    .vid-location .mk {
-        padding: 5px 9px 11px 8px;
-    }
-    
     .vid-location .no-mk img,
     .vid-location .mk img {
         width: 21px;
     }
     
-    .vc {
-        padding: 12px 9px 16px 14px;
+    .vid-location .no-ph {
+        padding: 4px 6px 10px 5px;
     }
     
-    .no-vc {
-        padding: 12px 9px 16px 14px;
+    .vid-location .no-mk,
+    .vid-location .mk {
+        padding: 5px 3px 11px 8px;
     }
+    /*Call Side End*/
+    /* Call Video Student*/
     
-    .mk {
-        padding: 13px 10px 17px 14px;
+    #other-videos video {
+        width: 100%;
+        margin: 5px 0;
+        border: 1px solid black;
+        padding: 1px;
+        border-radius: 3px;
     }
-    
-    .no-mk {
-        padding: 13px 10px 16px 14px;
-    }
-    
-    .no-mk,
-    .no-vc {
-        background: #DF615C;
-    }
-    
-    .no-mk:hover,
-    .no-vc:hover {
-        background: #21B573;
-    }
+    /* Call Video Student End*/
