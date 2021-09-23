@@ -781,18 +781,7 @@ td input{
             }
     </script>
     <script>
-(function() {
-    var params = {},
-        r = /([^&=]+)=?([^&]*)/g;
 
-    function d(s) {
-        return decodeURIComponent(s.replace(/\+/g, ' '));
-    }
-    var match, search = window.location.search;
-    while (match = r.exec(search.substring(1)))
-        params[d(match[1])] = d(match[2]);
-    window.params = params;
-})();
 
 var connection = new RTCMultiConnection();
 
@@ -802,10 +791,10 @@ var fullName = '{{$class->booking->tutor->first_name}} {{$class->booking->tutor-
 // connection.socketURL = '/';
 connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
 
-connection.extra.userFullName = params.userFullName;
+connection.extra.userFullName = fullName;
 
 /// make this room public
-connection.publicRoomIdentifier = params.publicRoomIdentifier;
+connection.publicRoomIdentifier = '';
 
 connection.socketMessageEvent = 'canvas-dashboard-demo';
 
@@ -1035,11 +1024,23 @@ connection.onstreamended = function(event) {
 };
 $(".no-vc").click(function(){
     alert("No vc");
-    var localStream = connection.attachStreams[0];
-    localStream.mute('video');
+    // var localStream = connection.attachStreams[0];
+    // console.log(localStream)
+    // localStream.mute('video');
+    console.log(connection.streamEvents);
+    console.log(connection);
+
+
+    let localStream = connection.attachStreams[0];
+
+    if(localStream){
+    console.log(localStream);
+
+        localStream.mute('video'); 
+    } 
 })
 $(".vc").click(function(){
-    alert("Vc");
+    alert(connection.stream.streamid);
     var localStream = connection.attachStreams[0];
     localStream.unmute('video'); 
 })
@@ -1057,6 +1058,7 @@ $(".mk").click(function(){
 connection.onmute = function(e) { 
     e.mediaElement.setAttribute('poster', '//www.webrtc-experiment.com/images/muted.png'); 
 };
+
 
 
 var conversationPanel = document.getElementById('conversation-panel');
@@ -1271,9 +1273,9 @@ function updateLabel(progress, label) {
     label.innerHTML = position + '%';
 }
 
-if(!!params.password) {
-    connection.password = params.password;
-}
+// if(!!params.password) {
+//     connection.password = params.password;
+// }
 
 designer.appendTo(document.getElementById('widget-container'), function() {
     // if (params.open === true || params.open === 'true') {
@@ -1294,7 +1296,11 @@ designer.appendTo(document.getElementById('widget-container'), function() {
                     }
                     alert(error);
                 }
-
+                connection.join(roomid, function(isRoomJoined, roomid, error) {
+                        if(error) {
+                            alert(error);
+                        }
+                    });
                 connection.socket.on('disconnect', function() {
                     location.reload();
                 });

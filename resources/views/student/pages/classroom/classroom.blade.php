@@ -648,19 +648,19 @@ td input{
                         <video id="main-video"  playsinline autoplay></video>
                         <div id="other-videos" class="w-100 m-0"></div>
                         <div class="col-md-12 mt-2 vid-location text-center">
-                            <a  class="callSet vc">
+                            <a href="#" class="callSet vc">
                                 <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
                             </a>
                             <a  class="callSet no-vc">
                                 <img src="{{asset('assets/images/ico/no-vc.png')}}" title="With Video" alt="">
                             </a>
-                            <a  class="callSet mk" id="mk">
+                            <a href="#" class="callSet mk" id="mk">
                                 <img src="{{asset('assets/images/ico/mike.png')}}" title="Without Audio" alt="">
                             </a>
-                            <a  class="callSet no-mk">
+                            <a href="#" class="callSet no-mk">
                                 <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
                             </a>
-                            <a  class="callSet no-ph">
+                            <a href="#" class="callSet no-ph">
                                 <img src="{{asset('assets/images/ico/no-phone.png')}}" title="End Call" alt="">
                             </a>
                         </div>
@@ -1000,17 +1000,9 @@ $(".vc").click(function(){
     alert("Vc");
     var localStream = connection.attachStreams[0];
     localStream.unmute('video'); 
+    
 })
-$(".no-mk").click(function(){
-    alert("No mk");
-    var localStream = connection.attachStreams[0];
-    localStream.mute('audio');
-})
-$(".mk").click(function(){
-    alert("mk");
-    var localStream = connection.attachStreams[0];
-    localStream.unmute('audio'); 
-})
+
 
 connection.onmute = function(e) { 
     e.mediaElement.setAttribute('poster', '//www.webrtc-experiment.com/images/muted.png'); 
