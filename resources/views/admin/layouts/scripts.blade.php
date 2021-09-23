@@ -11,6 +11,7 @@
     <!-- Custom js -->
     <!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="{{ asset('/admin/assets/js/mobile.js')}}"></script>
      <script src="{{ asset('assets/js/multiselect.js')}}"></script>
     <script src="{{ asset('/admin/assets/js/global.js')}}"></script>
@@ -23,12 +24,62 @@
     <script type="text/javascript">
     $(document).ready(function(){
         $(".dropify").dropify();
+
+        get_all_notifications();
     })
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        function get_all_notifications() {
+            $.ajax({
+                url: "{{route('general.get.notification')}}",
+                type:"GET",
+                dataType:'json',
+                success:function(response){
+                    var obj = response.notification;
+                    if(response.status_code == 200 && response.success == true) {
+                        var notification = ``;
+                        $('.notification_counter').text(obj.length);
+                        for(var i =0; i < obj.length; i++) {
+
+                            notification +=`
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <img class="avatar mt-2" src="{{ asset('/admin/assets/img/notifiaction/layer.png')}}"
+                                            alt="layer">
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="head-1-noti">
+                                            <span class="notification-text6">
+                                                <strong>`+obj[i].noti_title+` </strong> <br>
+                                                `+obj[i].noti_desc+`
+                                            </span>
+                                        </div>
+                                        <span class="notification-time">
+                                        </span>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <img class="dot-image" src="{{ asset('/admin/assets/img/ico/3dot.png')}}"
+                                            alt="dot-ico">
+                                    </div>
+                                </div>`;
+                        }
+
+                        $(".show_all_notifications").html(notification);
+
+
+                    }else{
+                       
+                    }
+                },
+                error:function(e) {
+                    console.log(e)
+                }
+            });
+        }
     </script>
     <script>
     // var socketId = Echo.socketId();

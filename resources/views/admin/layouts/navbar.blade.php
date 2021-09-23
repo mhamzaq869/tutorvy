@@ -275,9 +275,7 @@
                         <div class="col-xs-2 pull-right">
                             <div class="notification mr-4">
                                 <img src="{{ asset('/admin/assets/img/ico/Notification.svg')}}" alt="notification-ico">
-                                <span class="notification-text">
-                                    4
-                                </span>
+                                <span class="notification-text notification_counter"> </span>
                                 <ul class="notification-menu navbarNav-1 mt-1">
                                     <li class="container-fluid">
                                         <div class="row nav-row">
@@ -297,8 +295,8 @@
                                             Recent
                                         </p>
                                     </li>
-                                    <li>
-                                        <div class="row">
+                                    <li class="show_all_notifications">
+                                        <!-- <div class="row">
                                             <div class="col-md-1">
                                                 <img class="avatar mt-2" src="{{ asset('/admin/assets/img/notifiaction/layer.png')}}"
                                                     alt="layer">
@@ -320,85 +318,7 @@
                                                 <img class="dot-image" src="{{ asset('/admin/assets/img/ico/3dot.png')}}"
                                                     alt="dot-ico">
                                             </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-md-1">
-                                                <img class="avatar mt-2" src="{{ asset('/admin/assets/img/notifiaction/layer.png')}}"
-                                                    alt="layer">
-                                            </div>
-                                            <div class="col-md-9">
-                                                <div class="head-1-noti">
-                                                    <span class="notification-text6">
-                                                        <span>
-                                                            Marina Hurst
-                                                        </span> request for book a class of chemistry on
-                                                        periodic tab ...
-                                                    </span>
-                                                </div>
-                                                <span class="notification-time">
-                                                    10 min ago
-                                                </span>
-                                            </div>
-                                            <div class="col-md-1">
-                                                <img class="dot-image" src="{{ asset('/admin/assets/img/ico/3dot.png')}}"
-                                                    alt="dot-ico">
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="mt-2 mb-2 ml-1 notification-text3">
-                                        Yesterday
-                                    </li>
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-md-1">
-                                                <img class="avatar mt-2" src="{{ asset('/admin/assets/img/notifiaction/layer.png')}}"
-                                                    alt="layer">
-                                            </div>
-                                            <div class="col-md-9">
-                                                <div class="head-1-noti">
-                                                    <span class="notification-text6">
-                                                        <span class="">
-                                                            Marina Hurst
-                                                        </span> request for book a class of chemistry on
-                                                        periodic tab ...
-                                                    </span>
-                                                </div>
-                                                <span class="notification-time">
-                                                    10 min ago
-                                                </span>
-                                            </div>
-                                            <div class="col-md-1">
-                                                <img class="dot-image" src="{{ asset('/admin/assets/img/ico/3dot.png')}}"
-                                                    alt="dot-ico">
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-md-1">
-                                                <img class="avatar mt-2" src="{{ asset('/admin/assets/img/notifiaction/layer.png')}}"
-                                                    alt="layer">
-                                            </div>
-                                            <div class="col-md-9">
-                                                <div class="head-1-noti">
-                                                    <span class="notification-text6">
-                                                        <span>
-                                                            Marina Hurst
-                                                        </span> request for book a class of chemistry on
-                                                        periodic tab ...
-                                                    </span>
-                                                </div>
-                                                <span class="notification-time">
-                                                    10 min ago
-                                                </span>
-                                            </div>
-                                            <div class="col-md-1">
-                                                <img class="dot-image" src="{{ asset('/admin/assets/img/ico/3dot.png')}}"
-                                                    alt="dot-ico">
-                                            </div>
-                                        </div>
+                                        </div> -->
                                     </li>
                                 </ul>
                             </div>
