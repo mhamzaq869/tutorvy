@@ -651,7 +651,7 @@ td input{
                             <a href="#" class="callSet vc">
                                 <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
                             </a>
-                            <a href="#" class="callSet no-vc">
+                            <a onclick="checkcam()" class="callSet no-vc">
                                 <img src="{{asset('assets/images/ico/no-vc.png')}}" title="With Video" alt="">
                             </a>
                             <a href="#" class="callSet mk" id="mk">
@@ -776,6 +776,8 @@ $("#join_now").click(function(){
        $(".vc").hide();
        $(".no-vc").show();
    });
+
+   
 </script>
 
 
@@ -986,6 +988,28 @@ connection.onstreamended = function(event) {
         video.style.display = 'none';
     }
 };
+
+function checkcam(){
+
+    var localStream = connection.attachStreams[0];
+     localStream.getVideoTracks().forEach(function(track){ 
+         track.stop(); // turn off light (maybe)
+     });
+
+}
+$('#btn-reenable-video').click(function() {
+     navigator.getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
+     navigator.getUserMedia({video:true}, function(videoStream) {
+           var localStream = conection.attachStraems()[0];
+           localStream.addTrack ( videoStream.getVideoTracks()[0] ); // enable video again
+           connection.renegotiate();  // share again with all users
+     }, function() {});
+});
+
+connection.onmute = function(e) { 
+    e.mediaElement.setAttribute('poster', '//www.webrtc-experiment.com/images/muted.png'); 
+};
+
 
 var conversationPanel = document.getElementById('conversation-panel');
 

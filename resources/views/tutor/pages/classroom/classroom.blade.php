@@ -698,6 +698,7 @@ td input{
 })();
 
 var connection = new RTCMultiConnection();
+
 var roomid = '{{$class->classroom_id}}';
 var fullName = '{{$class->booking->tutor->first_name}} {{$class->booking->tutor->last_name}}';
 
@@ -1176,6 +1177,8 @@ designer.appendTo(document.getElementById('widget-container'), function() {
                     location.reload();
                 });
             });
+
+            
     // } else {
     //     connection.join(roomid, function(isRoomJoined, roomid, error) {
     //         if (error) {
