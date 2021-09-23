@@ -1001,8 +1001,8 @@ function checkcam(){
 
 }
 $('#btn-reenable-video').click(function() {
-     navigator.getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
-     navigator.getUserMedia({video:true}, function(videoStream) {
+    navigator.getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
+    navigator.getUserMedia({video:true}, function(videoStream) {
            var localStream = conection.attachStraems()[0];
            localStream.addTrack ( videoStream.getVideoTracks()[0] ); // enable video again
            connection.renegotiate();  // share again with all users
