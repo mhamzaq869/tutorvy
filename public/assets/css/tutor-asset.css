@@ -120,6 +120,7 @@
     font-weight: 400;
     font-family: 'Poppins';
     border-radius: 4px;
+    display: inline-block;
 }
 
 .schedule-btn:focus {
@@ -2618,6 +2619,9 @@ select#paymentMethod option[value="others"] {
     float: right;
 }
 
+
+/*Tags */
+
 .statusTag {
     font-size: 12px;
     padding: 5px 10px;
@@ -2645,6 +2649,12 @@ select#paymentMethod option[value="others"] {
 .reject_status {
     background: #E9C6C6;
 }
+
+
+/*End Tags*/
+
+
+/*Dashboard booking side */
 
 .db_img {
     width: 85px;
@@ -2718,9 +2728,6 @@ select#paymentMethod option[value="others"] {
     font-size: 12px;
 }
 
-
-/*Dashboard booking side*/
-
 .decoration-none {
     text-decoration: none;
 }
@@ -2741,3 +2748,146 @@ select#paymentMethod option[value="others"] {
     -ms-flex-align: center;
     align-items: center;
 }
+
+
+/*Dashboard booking side End*/
+
+
+/*Table Counters*/
+
+.counter-text {
+    position: relative;
+    color: white;
+    padding: 3px 7px;
+    cursor: pointer !important;
+    border-radius: 70px;
+    font-size: 12px;
+}
+
+
+/*Table Counters End*/
+
+
+/* Profile Completion Bar */
+
+.progress {
+    background: none;
+}
+
+.bg-dead {
+    background: #E9ECEF;
+}
+
+.bg-levelTwo {
+    background: #88B9FF;
+}
+
+.bg-levelThree {
+    background: #65A5FF;
+}
+
+.bg-levelFour {
+    background: #418FFF;
+}
+
+.bg-levelFive {
+    background: #1173FF;
+}
+
+
+/* Profile Completion Bar End*/
+
+
+/*Call Modal */
+
+.bg-black {
+    background: #000;
+    height: 300px;
+}
+
+.g-location {
+    position: absolute;
+    bottom: 10%;
+    left: 25%;
+}
+
+.callSet {
+    border-radius: 50%;
+    margin: 5px;
+    text-decoration: none;
+    background: grey;
+}
+
+.callSet:hover {
+    background: #DF615C;
+    text-decoration: none;
+}
+
+.vc {
+    padding: 12px 9px 16px 14px;
+}
+
+.no-vc {
+    padding: 12px 9px 16px 14px;
+}
+
+.mk {
+    padding: 13px 10px 17px 14px;
+}
+
+.no-mk {
+    padding: 13px 10px 16px 14px;
+}
+
+.no-mk,
+.no-vc,
+.no-ph {
+    background: #DF615C;
+}
+
+.no-mk:hover,
+.no-vc:hover {
+    background: #21B573;
+}
+
+.no-ph:hover {
+    background: grey;
+}
+
+.pg {
+    width: 40%;
+    height: auto;
+}
+
+
+/*Call Modal End**/
+
+
+/*Call Side Buttons*/
+
+.vid-location .no-vc,
+.vid-location .vc {
+    padding: 5px 4px 11px 8px
+}
+
+.vid-location .no-vc img,
+.vid-location .vc img {
+    width: 21px;
+}
+
+.vid-location .no-ph {
+    padding: 4px 6px 10px 5px;
+}
+
+.vid-location .no-mk,
+.vid-location .mk {
+    padding: 5px 3px 11px 8px;
+}
+
+.vid-location .no-mk img,
+.vid-location .mk img {
+    width: 21px;
+}
+
+
+/*Call Side Buttons End*/

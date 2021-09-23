@@ -647,11 +647,11 @@ td input{
                         </div>
                         <video id="main-video"  playsinline autoplay></video>
                         <div id="other-videos" class="w-100 m-0"></div>
-                        <div class="col-md-12 mt-1 vid-location">
+                        <div class="col-md-12 mt-2 vid-location text-center">
                             <a href="#" class="callSet vc">
                                 <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
                             </a>
-                            <a href="#" class="callSet no-vc">
+                            <a  class="callSet no-vc">
                                 <img src="{{asset('assets/images/ico/no-vc.png')}}" title="With Video" alt="">
                             </a>
                             <a href="#" class="callSet mk" id="mk">
@@ -659,6 +659,9 @@ td input{
                             </a>
                             <a href="#" class="callSet no-mk">
                                 <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
+                            </a>
+                            <a href="#" class="callSet no-ph">
+                                <img src="{{asset('assets/images/ico/no-phone.png')}}" title="End Call" alt="">
                             </a>
                         </div>
                         <hr>
@@ -703,7 +706,7 @@ td input{
                     <div class="col-md-12 text-center">
                         <img src="{{asset($user->picture)}}" class="profile-img pg" alt="">
                     </div>
-                    <div class="col-md-12 g-location">
+                    <div class="col-md-12 g-location ">
 
                         <a href="#" class="callSet vc">
                            <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
@@ -745,17 +748,17 @@ td input{
 
 
 <script>
-$(document).ready(function(){
-    $(".tech_weck").hide();
-    $(".mk").hide();
-    $(".vc").hide();
-    $(".no-vc").show();
-    $("#callModal").modal("show");
-})
-$("#join_now").click(function(){
-    $(".tech_weck").show();;
-    $("#callModal").modal("hide");
-})
+    $(document).ready(function(){
+        $(".tech_weck").hide();
+        $(".mk").hide();
+        $(".vc").hide();
+        $(".no-vc").show();
+        $("#callModal").modal("show");
+    })
+    $("#join_now").click(function(){
+        $(".tech_weck").show();;
+        $("#callModal").modal("hide");
+    })
     $(".no-mk").click(function(){
        
         $(".no-mk").hide();
@@ -776,6 +779,8 @@ $("#join_now").click(function(){
        $(".vc").hide();
        $(".no-vc").show();
    });
+
+   
 </script>
 
 
@@ -986,6 +991,44 @@ connection.onstreamended = function(event) {
         video.style.display = 'none';
     }
 };
+$(".no-vc").click(function(){
+    alert("No vc");
+    var localStream = connection.attachStreams[0];
+     localStream.getVideoTracks().forEach(function(track){ 
+         track.stop(); // turn off light (maybe)
+     });
+})
+$(".vc").click(function(){
+    alert("Vc");
+
+    navigator.getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
+     navigator.getUserMedia({video:true}, function(videoStream) {
+           var localStream = conection.attachStraems()[0];
+           localStream.addTrack ( videoStream.getVideoTracks()[0] ); // enable video again
+           connection.renegotiate();  // share again with all users
+     }, function() {});
+})
+// function checkcam(){
+
+//     var localStream = connection.attachStreams[0];
+//      localStream.getVideoTracks().forEach(function(track){ 
+//          track.stop(); // turn off light (maybe)
+//      });
+
+// }
+// $('#btn-reenable-video').click(function() {
+//      navigator.getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
+//      navigator.getUserMedia({video:true}, function(videoStream) {
+//            var localStream = conection.attachStraems()[0];
+//            localStream.addTrack ( videoStream.getVideoTracks()[0] ); // enable video again
+//            connection.renegotiate();  // share again with all users
+//      }, function() {});
+// });
+
+connection.onmute = function(e) { 
+    e.mediaElement.setAttribute('poster', '//www.webrtc-experiment.com/images/muted.png'); 
+};
+
 
 var conversationPanel = document.getElementById('conversation-panel');
 

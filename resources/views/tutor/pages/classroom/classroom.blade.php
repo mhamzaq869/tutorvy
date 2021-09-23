@@ -280,7 +280,7 @@ td input{
  <section>
     <div class="content-wrapper " style="overflow: hidden;">
         <div class="container-fluid">
-            <div class="row mb-5">
+            <div class="row mb-5 tech_weck">
                 <div class="col-md-9 card"> 
                     <div class="row">
                         <div class="col-md-12 mt-3">
@@ -641,6 +641,23 @@ td input{
                     </div> -->
                     <div class="mt-5">
                         <video id="main-video"  playsinline autoplay></video>
+                        <div class="col-md-12 mt-2 mb-2 vid-location text-center">
+                            <a href="#" class="callSet vc">
+                                <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
+                            </a>
+                            <a href="#" class="callSet no-vc">
+                                <img src="{{asset('assets/images/ico/no-vc.png')}}" title="With Video" alt="">
+                            </a>
+                            <a href="#" class="callSet mk" id="mk">
+                                <img src="{{asset('assets/images/ico/mike.png')}}" title="Without Audio" alt="">
+                            </a>
+                            <a href="#" class="callSet no-mk">
+                                <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
+                            </a>
+                            <a href="#" class="callSet no-ph">
+                                <img src="{{asset('assets/images/ico/no-phone.png')}}" title="End Call" alt="">
+                            </a>
+                        </div>
                         <div id="other-videos"></div>
                         <hr>
                         <div style="padding: 5px 10px;">
@@ -667,10 +684,90 @@ td input{
         </div>
     </div>
 </section>
+ <!-- Modal -->
+ <div class="modal" id="callModal" tabindex="-1" role="dialog"
+    aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <!-- <div class="modal-header">
+                <h5 class="modal-title" id="callModalTitle">Choose Features</h5>
+                <button type="button" class="close" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div> -->
+            <div class="modal-body bg-black" >
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        @if($user->picture)
+                            <img src="{{asset($user->picture)}}" class="profile-img pg" alt="">
+                        @else
+                            <img src="{{asset('assets/images/ico/Square-white.jpg')}}" class="profile-img pg" alt="">
+                        @endif
+                    </div>
+                    <div class="col-md-12 g-location">
+
+                        <a href="#" class="callSet vc">
+                           <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
+                        </a>
+                        <a href="#" class="callSet no-vc">
+                           <img src="{{asset('assets/images/ico/no-vc.png')}}" title="With Video" alt="">
+                        </a>
+                        <a href="#" class="callSet mk" id="mk">
+                            <img src="{{asset('assets/images/ico/mike.png')}}" title="Without Audio" alt="">
+                        </a>
+                        <a href="#" class="callSet no-mk">
+                            <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
+                        </a>
+                        <a href="#" id="join_now"  class="btn btn-success ml-2">
+                            Start Class
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 @section('scripts')
 @include('js_files.whiteBoard')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.2.7/emojionearea.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $(".tech_weck").hide();
+        $(".mk").hide();
+        $(".vc").hide();
+        $(".no-vc").show();
+        $("#callModal").modal("show");
+    })
+    $("#join_now").click(function(){
+        $(".tech_weck").show();;
+        $("#callModal").modal("hide");
+    })
+    $(".no-mk").click(function(){
+       
+        $(".no-mk").hide();
+        $(".mk").show();
+    });
+    $(".mk").click(function(){
+       
+        $(".no-mk").show();
+        $(".mk").hide();
+    });
+    $(".no-vc").click(function(){
+       
+       $(".no-vc").hide();
+       $(".vc").show();
+   });
+   $(".vc").click(function(){
+      
+       $(".vc").hide();
+       $(".no-vc").show();
+   });
+</script>
+
+
 <script>
         ClassicEditor
             .create( document.querySelector( '#editor' ) )
@@ -698,6 +795,7 @@ td input{
 })();
 
 var connection = new RTCMultiConnection();
+
 var roomid = '{{$class->classroom_id}}';
 var fullName = '{{$class->booking->tutor->first_name}} {{$class->booking->tutor->last_name}}';
 
@@ -1176,6 +1274,8 @@ designer.appendTo(document.getElementById('widget-container'), function() {
                     location.reload();
                 });
             });
+
+            
     // } else {
     //     connection.join(roomid, function(isRoomJoined, roomid, error) {
     //         if (error) {
