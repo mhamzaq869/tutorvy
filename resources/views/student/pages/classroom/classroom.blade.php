@@ -994,19 +994,25 @@ connection.onstreamended = function(event) {
 $(".no-vc").click(function(){
     alert("No vc");
     var localStream = connection.attachStreams[0];
-     localStream.getVideoTracks().forEach(function(track){ 
-         track.stop(); // turn off light (maybe)
-     });
+    localStream.mute('video');
+//     var firstRemoteStream = connection.streamEvents.selectFirst({ local: true }).stream;
+// firstRemoteStream.mute();
+    // var localStream = connection.attachStreams[0];
+    //  localStream.getVideoTracks().forEach(function(track){ 
+    //      track.stop(); // turn off light (maybe)
+    //  });
 })
 $(".vc").click(function(){
     alert("Vc");
-
-    navigator.getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
-     navigator.getUserMedia({video:true}, function(videoStream) {
-           var localStream = conection.attachStraems()[0];
-           localStream.addTrack ( videoStream.getVideoTracks()[0] ); // enable video again
-           connection.renegotiate();  // share again with all users
-     }, function() {});
+    var localStream = connection.attachStreams[0];
+    localStream.unmute('video');
+    // navigator.getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
+    //  navigator.getUserMedia({video:true}, function(videoStream) {
+    //        var localStream = connection.attachStreams[0];
+    //        localStream.addTrack ( videoStream.getVideoTracks()[0] ); // enable video again
+    //        connection.renegotiate();  // share again with all users
+    //  }, function() {});
+     
 })
 // function checkcam(){
 
