@@ -995,41 +995,13 @@ $(".no-vc").click(function(){
     alert("No vc");
     var localStream = connection.attachStreams[0];
     localStream.mute('video');
-//     var firstRemoteStream = connection.streamEvents.selectFirst({ local: true }).stream;
-// firstRemoteStream.mute();
-    // var localStream = connection.attachStreams[0];
-    //  localStream.getVideoTracks().forEach(function(track){ 
-    //      track.stop(); // turn off light (maybe)
-    //  });
 })
 $(".vc").click(function(){
     alert("Vc");
     var localStream = connection.attachStreams[0];
-    localStream.unmute('video');
-    // navigator.getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
-    //  navigator.getUserMedia({video:true}, function(videoStream) {
-    //        var localStream = connection.attachStreams[0];
-    //        localStream.addTrack ( videoStream.getVideoTracks()[0] ); // enable video again
-    //        connection.renegotiate();  // share again with all users
-    //  }, function() {});
-     
+    localStream.unmute('video'); 
 })
-// function checkcam(){
 
-//     var localStream = connection.attachStreams[0];
-//      localStream.getVideoTracks().forEach(function(track){ 
-//          track.stop(); // turn off light (maybe)
-//      });
-
-// }
-// $('#btn-reenable-video').click(function() {
-//      navigator.getUserMedia = navigator.getUserMedia || navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
-//      navigator.getUserMedia({video:true}, function(videoStream) {
-//            var localStream = conection.attachStraems()[0];
-//            localStream.addTrack ( videoStream.getVideoTracks()[0] ); // enable video again
-//            connection.renegotiate();  // share again with all users
-//      }, function() {});
-// });
 
 connection.onmute = function(e) { 
     e.mediaElement.setAttribute('poster', '//www.webrtc-experiment.com/images/muted.png'); 
