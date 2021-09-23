@@ -1033,6 +1033,31 @@ connection.onstreamended = function(event) {
         video.style.display = 'none';
     }
 };
+$(".no-vc").click(function(){
+    alert("No vc");
+    var localStream = connection.attachStreams[0];
+    localStream.mute('video');
+})
+$(".vc").click(function(){
+    alert("Vc");
+    var localStream = connection.attachStreams[0];
+    localStream.unmute('video'); 
+})
+$(".no-mk").click(function(){
+    alert("No mk");
+    var localStream = connection.attachStreams[0];
+    localStream.mute('audio');
+})
+$(".mk").click(function(){
+    alert("mk");
+    var localStream = connection.attachStreams[0];
+    localStream.unmute('audio'); 
+})
+
+connection.onmute = function(e) { 
+    e.mediaElement.setAttribute('poster', '//www.webrtc-experiment.com/images/muted.png'); 
+};
+
 
 var conversationPanel = document.getElementById('conversation-panel');
 
