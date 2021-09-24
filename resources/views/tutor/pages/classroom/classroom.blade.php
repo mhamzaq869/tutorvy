@@ -928,6 +928,7 @@ connection.onopen = function(event) {
 };
 
 connection.onclose = connection.onerror = connection.onleave = function(event) {
+    console.log(event+" asdasdasdasdasdasdas");
     connection.onUserStatusChanged(event);
 };
 
@@ -1053,6 +1054,10 @@ $(".mk").click(function(){
     alert("mk");
     var localStream = connection.attachStreams[0];
     localStream.unmute('audio'); 
+})
+$(".no-ph").click(function(){
+    alert("mk");
+    connection.leave();
 })
 
 connection.onmute = function(e) { 
@@ -1296,11 +1301,7 @@ designer.appendTo(document.getElementById('widget-container'), function() {
                     }
                     alert(error);
                 }
-                connection.join(roomid, function(isRoomJoined, roomid, error) {
-                        if(error) {
-                            alert(error);
-                        }
-                    });
+            
                 connection.socket.on('disconnect', function() {
                     location.reload();
                 });

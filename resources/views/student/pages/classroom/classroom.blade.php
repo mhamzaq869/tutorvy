@@ -929,6 +929,7 @@ connection.onopen = function(event) {
 };
 
 connection.onclose = connection.onerror = connection.onleave = function(event) {
+    console.log(event+" dsfsdfsdfsdfsdfsdfsdf");
     connection.onUserStatusChanged(event);
 };
 
