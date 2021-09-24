@@ -744,12 +744,12 @@ td input{
                             <img src="{{asset('assets/images/ico/Square-white.jpg')}}" class="profile-img pg" alt="">
                         @endif
                     </div>
-                    <div class="col-md-12 g-location">
+                    <div class="col-md-12 text-center mt-3">
 
                         <a href="#" class="callSet vc">
                            <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
                         </a>
-                        <a href="#" class="callSet no-vc">
+                        <a href="#" class="callSet no-vc ">
                            <img src="{{asset('assets/images/ico/no-vc.png')}}" title="With Video" alt="">
                         </a>
                         <a href="#" class="callSet mk" id="mk">
@@ -758,7 +758,7 @@ td input{
                         <a href="#" class="callSet no-mk">
                             <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
                         </a>
-                        <a href="#" onclick="joinClass()" id="join_now"  class="btn btn-success ml-2">
+                        <a type="button" role="button" id="join_now"  class="btn btn-success ml-2">
                             Start Class
                         </a>
                     </div>
@@ -779,11 +779,15 @@ td input{
         $(".vc").hide();
         $(".no-vc").show();
         $("#callModal").modal("show");
+        $("#join_now").attr("disabled","disabled" );
+
     })
-    $("#join_now").click(function(){
-        $(".tech_weck").show();;
-        $("#callModal").modal("hide");
-    })
+
+    // $("#join_now").click(function(){
+    //     $(".tech_weck").show();;
+    //     $("#callModal").modal("hide");
+    //     joinClass();
+    // })
     $(".no-mk").click(function(){
        
         $(".no-mk").hide();
@@ -855,7 +859,43 @@ var fullName = '{{$class->booking->tutor->first_name}} {{$class->booking->tutor-
 connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
 
 connection.extra.userFullName = fullName;
+connection.DetectRTC.load(function() {
+    console.log(connection.DetectRTC);
+                if (connection.DetectRTC.hasMicrophone === true) {
+                    // enable microphone
+                    connection.mediaConstraints.audio = true;
+                    connection.session.audio = true;
+                    // alert('attach true microphone')
+                    $(".callSet").show();
+                     $("#join_now").removeAttr("disabled","disabled" );
+                    $("#join_now").click(function(){
+                        $(".tech_weck").show();
+                        $("#callModal").modal("hide");
+                        joinClass();
+                    })
+                }else{
+                    toastr.warning( "Audio Device is Mendatory ");
+                    $(".mk , .no-mk").hide();
+                }
 
+                if (connection.DetectRTC.hasWebcam === true) {
+                    // enable camera
+                    connection.mediaConstraints.video = true;
+                    connection.session.video = true;
+                    // alert('attach true camera')
+                    $(".vc , .no-vc").css("display",'block');
+
+
+                }else{
+                    $(".vc , .no-vc").css("display",'none');
+
+                    // alert('attach Cam')
+                }
+
+                if (connection.DetectRTC.hasSpeakers === false) { // checking for "false"
+                    // alert('Please attach a speaker device. You will unable to hear the incoming audios.');
+                }
+            });
 function joinClass(){
 
         /// make this room public
@@ -930,21 +970,21 @@ function joinClass(){
         connection.chunkSize = 16000;
         connection.enableFileSharing = true;
 
-        connection.session = {
-            audio: true,
-            video: true,
-            data: true
-        };
-        connection.sdpConstraints.mandatory = {
-            OfferToReceiveAudio: true,
-            OfferToReceiveVideo: true
-        };
-        connection.mediaConstraints = {
-            audio: true,
-            video: true,
-            data: true
+        // connection.session = {
+        //     audio: true,
+        //     video: true,
+        //     data: true
+        // };
+        // connection.sdpConstraints.mandatory = {
+        //     OfferToReceiveAudio: true,
+        //     OfferToReceiveVideo: true
+        // };
+        // connection.mediaConstraints = {
+        //     audio: true,
+        //     video: true,
+        //     data: true
 
-        };
+        // };
 
         connection.onUserStatusChanged = function(event) {
             var infoBar = document.getElementById('onUserStatusChanged');

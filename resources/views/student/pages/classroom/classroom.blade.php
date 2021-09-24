@@ -747,7 +747,7 @@ td input{
                     <div class="col-md-12 text-center">
                         <img src="{{asset($user->picture)}}" class="profile-img pg" alt="">
                     </div>
-                    <div class="col-md-12 g-location ">
+                    <div class="col-md-12 text-center mt-3 ">
 
                         <a href="#" class="callSet vc">
                            <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
@@ -761,7 +761,7 @@ td input{
                         <a href="#" class="callSet no-mk">
                             <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
                         </a>
-                        <a onclick="joinClass()" id="join_now"  class="btn btn-success ml-2">
+                        <a type="button" role="button" id="join_now"  class="btn btn-success ml-2">
                             Join Class
                         </a>
                     </div>
@@ -798,31 +798,10 @@ td input{
         $(".vc").hide();
         $(".no-vc").show();
         $("#callModal").modal("show");
-
+        $("#join_now").attr("disabled","disabled" );
       
 
-})
-
-    $("#join_now").click(function(){
-        $(".tech_weck").show();;
-        $("#callModal").modal("hide");
-
-          /** Javascript Timer */
-          var timer = new Timer();
-        timer.start({countdown: true, startValues: {seconds: 30}});
-
-        $('#countdownExample .values').html(timer.getTimeValues().toString());
-
-        timer.addEventListener('secondsUpdated', function (e) {
-            $('#countdownExample .values').html(timer.getTimeValues().toString());
-        });
-
-        timer.addEventListener('targetAchieved', function (e) {
-            $('#countdownExample .values').html('Class Time has Ended!!');
-        });
-    /* Javascript Timer ENd */
-
-    })
+        })
     $(".no-mk").click(function(){
        
         $(".no-mk").hide();
@@ -863,18 +842,52 @@ var fullName = '{{$class->booking->user->first_name}} {{$class->booking->user->l
 connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
 
 connection.socketMessageEvent = 'canvas-dashboard-demo';
-connection.session = {
-    audio: true,
-    video: true,
-    data: true
-};
-connection.mediaConstraints = {
-    audio: true,
-    video: true,
-    data: true
+// connection.session = {
+//     audio: true,
+//     video: true,
+//     data: true
+// };
+// connection.mediaConstraints = {
+//     audio: true,
+//     video: true,
+//     data: true
 
-};
+// };
+connection.DetectRTC.load(function() {
+                if (connection.DetectRTC.hasMicrophone === true) {
+                    // enable microphone
+                    connection.mediaConstraints.audio = true;
+                    connection.session.audio = true;
+                    // alert('attach true microphone')
+                    $(".callSet").show();
+                     $("#join_now").removeAttr("disabled","disabled" );
+                    $("#join_now").click(function(){
+                        $(".tech_weck").show();
+                        $("#callModal").modal("hide");
+                        joinClass();
+                    })
 
+                }else{
+                    toastr.warning( "Audio Device is Mendatory ");
+                    $(".mk , .no-mk").hide();
+                }
+
+                if (connection.DetectRTC.hasWebcam === true) {
+                    // enable camera
+                    connection.mediaConstraints.video = true;
+                    connection.session.video = true;
+                   // alert('attach true camera')
+                   $(".vc , .no-vc").css("display",'block');
+
+                }else{
+                    // alert('attach Cam')
+                    $(".vc , .no-vc").css("display",'none');
+                }
+
+                if (connection.DetectRTC.hasSpeakers === false) { // checking for "false"
+                    // alert('Please attach a speaker device. You will unable to hear the incoming audios.');
+                }
+            });
 function joinClass(){
     // keep room opened even if owner leaves
     connection.autoCloseEntireSession = true;
@@ -941,6 +954,7 @@ function joinClass(){
         OfferToReceiveAudio: true,
         OfferToReceiveVideo: true
     };
+  
 
     connection.onUserStatusChanged = function(event) {
         var infoBar = document.getElementById('onUserStatusChanged');
@@ -1186,27 +1200,7 @@ designer.appendTo(document.getElementById('widget-container'), function() {
 
         connection.join(roomid, function(isRoomJoined, roomid, error) {
             console.log(connection.DetectRTC)
-            connection.DetectRTC.load(function() {
-                if (connection.DetectRTC.hasMicrophone === true) {
-                    // enable microphone
-                    connection.mediaConstraints.audio = true;
-                    connection.session.audio = true;
-                }else{
-                    alerT('attach microphone')
-                }
-
-                if (connection.DetectRTC.hasWebcam === true) {
-                    // enable camera
-                    connection.mediaConstraints.video = true;
-                    connection.session.video = true;
-                }else{
-                    alerT('attach Cam')
-                }
-
-                if (connection.DetectRTC.hasSpeakers === false) { // checking for "false"
-                    alert('Please attach a speaker device. You will unable to hear the incoming audios.');
-                }
-            });
+           
             if (error) {
                 if (error === connection.errors.ROOM_NOT_AVAILABLE) {
                     alert('This room does not exist. Please either create it or wait for moderator to enter in the room.');
