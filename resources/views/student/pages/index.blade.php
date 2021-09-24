@@ -556,5 +556,5 @@
 </script>
 @endsection
 @section('scripts')
-@include('js_files.student.dashboardJs')
+@include('js_files.student.dashboardJS')
 @endsection
