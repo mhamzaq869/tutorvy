@@ -870,24 +870,11 @@ connection.session = {
 };
 connection.mediaConstraints = {
     audio: true,
-    video: false,
+    video: true,
     data: true
 
 };
-if (connection.DetectRTC.hasMicrophone === false) {
-    alert('Please attach a microphone device.');
 
-    // or ignore microphone
-    connection.mediaConstraints.audio = false;
-    connection.session.audio = false;
-}
-if (connection.DetectRTC.hasWebcam === false) {
-    alert('Please attach a camera device.');
-
-    // or ignore camera
-    connection.mediaConstraints.video = false;
-    connection.session.video = false;
-}
 function joinClass(){
     // keep room opened even if owner leaves
     connection.autoCloseEntireSession = true;
@@ -952,7 +939,7 @@ function joinClass(){
     
     connection.sdpConstraints.mandatory = {
         OfferToReceiveAudio: true,
-        OfferToReceiveVideo: false
+        OfferToReceiveVideo: true
     };
 
     connection.onUserStatusChanged = function(event) {
@@ -1198,6 +1185,28 @@ designer.appendTo(document.getElementById('widget-container'), function() {
 // connection.dontAttachStream = true; 
 
         connection.join(roomid, function(isRoomJoined, roomid, error) {
+            console.log(connection.DetectRTC)
+            connection.DetectRTC.load(function() {
+                if (connection.DetectRTC.hasMicrophone === true) {
+                    // enable microphone
+                    connection.mediaConstraints.audio = true;
+                    connection.session.audio = true;
+                }else{
+                    alerT('attach microphone')
+                }
+
+                if (connection.DetectRTC.hasWebcam === true) {
+                    // enable camera
+                    connection.mediaConstraints.video = true;
+                    connection.session.video = true;
+                }else{
+                    alerT('attach Cam')
+                }
+
+                if (connection.DetectRTC.hasSpeakers === false) { // checking for "false"
+                    alert('Please attach a speaker device. You will unable to hear the incoming audios.');
+                }
+            });
             if (error) {
                 if (error === connection.errors.ROOM_NOT_AVAILABLE) {
                     alert('This room does not exist. Please either create it or wait for moderator to enter in the room.');
@@ -1233,7 +1242,7 @@ designer.appendTo(document.getElementById('widget-container'), function() {
     // }
 });
 
-
+  
 }
 
 function appendChatMessage(event, checkmark_id) {

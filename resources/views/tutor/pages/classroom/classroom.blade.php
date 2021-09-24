@@ -939,6 +939,12 @@ function joinClass(){
             OfferToReceiveAudio: true,
             OfferToReceiveVideo: true
         };
+        connection.mediaConstraints = {
+            audio: true,
+            video: true,
+            data: true
+
+        };
 
         connection.onUserStatusChanged = function(event) {
             var infoBar = document.getElementById('onUserStatusChanged');
