@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Tutor;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\URL;
 use App\Models\Activitylogs;
 use App\Events\NewMessage;
 use App\Models\General\Message;

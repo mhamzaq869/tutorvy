@@ -12,7 +12,7 @@
                     <!-- <p id="sidenav-toggles" class="heading-first  mr-3 mb-2 ml-2">
                         Bookings
                     </p> -->
-                    <p class="heading-first ml-3 mr-3">Booking</p>
+                    <p class="heading-first ml-3 mr-3">Booking    </p>
                 </div>
             </div>
             @if (Session::has('error'))
@@ -47,38 +47,39 @@
                                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
                                     href="#nav-home " role="tab" aria-controls="nav-home" aria-selected="true">
                                     All 
-                                    <span class="counter-text bg-primary">9</span>
+                                    <span class="counter-text bg-primary"> {{count($all)}} </span>
                                 </a>
                                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
                                     href="#nav-contact" role="tab" aria-controls="nav-contact"
                                     aria-selected="false">
                                     Pending 
-                                    <span class="counter-text bg-warning">9</span>
+                                    <span class="counter-text bg-warning"> {{count($pending)}} </span>
 
                                 </a>
                                 <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
                                     href="#nav-profile" role="tab" aria-controls="nav-profile"
                                     aria-selected="false">
                                     Confirmed
-                                    <span class="counter-text bg-success">9</span>
+                                    <span class="counter-text bg-success"> {{count($confirmed)}} </span>
 
                                 </a>
                                 
                                 <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about"
                                     role="tab" aria-controls="nav-about" aria-selected="false">
                                     Completed
-                                    <span class="counter-text bg-info">9</span>
+                                    <span class="counter-text bg-info"> {{count($completed)}} </span>
 
                                 </a>
                                 <a class="nav-item nav-link" id="nav-cancel-tab" data-toggle="tab" href="#nav-cancel"
                                     role="tab" aria-controls="nav-cancel" aria-selected="false">
                                     Cancelled
-                                    <span class="counter-text bg-danger">9</span>
+                                    <span class="counter-text bg-danger"> {{count($cancelled)}} </span>
 
                                 </a>
                             </div>
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
+
                             <div class="tab-pane tab-border-none tab-border-none-1 fade show active" id="nav-home" role="tabpanel"
                                 aria-labelledby="nav-home-tab">
                                         <div class="row">
@@ -163,6 +164,7 @@
                                         </div>
                                     <!-- end -->
                             </div>
+
                             <div class="tab-pane tab-border-none fade" id="nav-profile" role="tabpanel"
                                 aria-labelledby="nav-profile-tab">
                                         <div class="row">
@@ -243,6 +245,7 @@
                                             </div>
                                         </div>
                             </div>
+
                             <div class="tab-pane tab-border-none fade" id="nav-contact" role="tabpanel"
                                 aria-labelledby="nav-contact-tab">
                                         <div class="row">
@@ -325,6 +328,7 @@
                                             </div>
                                         </div>
                             </div>
+
                             <div class="tab-pane tab-border-none fade" id="nav-about" role="tabpanel"
                                 aria-labelledby="nav-about-tab">
                                     <div class="row">
@@ -348,9 +352,59 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>No Booking Found</td>
-                                                    </tr>
+                                                    @if($completed !="[]")
+                                                        @foreach ($completed as $booking)
+                                                            <tr>
+                                                                <td class="pt-4">
+                                                                {{$booking->tutor->first_name}} {{$booking->tutor->last_name}}
+                                                                </td>
+                                                                <td class="pt-4">
+                                                                    {{$booking->subject->name}}
+                                                                </td>
+                                                                <td class="pt-4">
+                                                                    {{$booking->topic}}
+                                                                </td>
+                                                                <td class="pt-4">
+                                                                    {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
+                                                                </td>
+                                                                
+                                                                <td class="pt-4">
+                                                                    &nbsp;{{$booking->duration}} Hour(s)
+                                                                </td>
+                                                                <td class="pt-4">
+                                                                    &nbsp;${{$booking->price}}
+                                                                </td>
+                                                                <td class="pt-4">
+                                                                    @if($booking->status == 1)
+                                                                        <span class="bg-color-apporve3">
+                                                                            Payment Pending
+                                                                        </span>
+                                                                    @elseif($booking->status == 2)
+                                                                        <span class="bg-color-apporve1">
+                                                                            Approved
+                                                                        </span>
+                                                                    @elseif($booking->status == 0)
+                                                                        <span class="bg-color-apporve">
+                                                                            Pending
+                                                                        </span>
+                                                                    @endif
+                                                                </td> 
+                                                                <td class="pt-3 pb-3" style="text-align: center; " >
+                                                                    <a class="cencel-btn mr-2" data-toggle="modal" data-target="#payModel" >
+                                                                        Pay Now
+                                                                    </a>
+                                                                    <a href="{{route('student.booking-detail',[$booking->id])}}"  class="schedule-btn">
+                                                                        
+                                                                            View details
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                    @else 
+                                                        <tr>
+                                                            <td>No Booking Found</td>
+                                                        </tr>
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>
@@ -379,9 +433,59 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>No Booking Found</td>
-                                                </tr>
+                                                @if($cancelled !="[]")
+                                                    @foreach ($cancelled as $booking)
+                                                        <tr>
+                                                            <td class="pt-4">
+                                                            {{$booking->tutor->first_name}} {{$booking->tutor->last_name}}
+                                                            </td>
+                                                            <td class="pt-4">
+                                                                {{$booking->subject->name}}
+                                                            </td>
+                                                            <td class="pt-4">
+                                                                {{$booking->topic}}
+                                                            </td>
+                                                            <td class="pt-4">
+                                                                {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
+                                                            </td>
+                                                            
+                                                            <td class="pt-4">
+                                                                &nbsp;{{$booking->duration}} Hour(s)
+                                                            </td>
+                                                            <td class="pt-4">
+                                                                &nbsp;${{$booking->price}}
+                                                            </td>
+                                                            <td class="pt-4">
+                                                                @if($booking->status == 1)
+                                                                    <span class="bg-color-apporve3">
+                                                                        Payment Pending
+                                                                    </span>
+                                                                @elseif($booking->status == 2)
+                                                                    <span class="bg-color-apporve1">
+                                                                        Approved
+                                                                    </span>
+                                                                @elseif($booking->status == 0)
+                                                                    <span class="bg-color-apporve">
+                                                                        Pending
+                                                                    </span>
+                                                                @endif
+                                                            </td> 
+                                                            <td class="pt-3 pb-3" style="text-align: center; " >
+                                                                <a class="cencel-btn mr-2" data-toggle="modal" data-target="#payModel" >
+                                                                    Pay Now
+                                                                </a>
+                                                                <a href="{{route('student.booking-detail',[$booking->id])}}"  class="schedule-btn">
+                                                                    
+                                                                        View details
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                @else 
+                                                    <tr>
+                                                        <td>No Booking Found</td>
+                                                    </tr>
+                                                @endif
                                             </tbody>
                                         </table>
                                     </div>

@@ -48,7 +48,14 @@ class HomeController extends Controller
         $user = User::where('id',Auth::user()->id)->first();
         // return ($today_bookings);
 
-        return view('student.pages.index',compact('upcoming_bookings','today_bookings','new_bookings','delivered_count','upcoming_count','pending_count','subject_count','user','categories','favorite_tutors'));
+        $general_profile = DB::table("sys_settings")->where('user_id', Auth::user()->id)->where("title","student_profile_completed")->count();
+        $education_profile = User::where('id',Auth::user()->id)
+            ->where('experty_level', '!=', NULL)
+            ->where('std_subj' , '!=', NULL)
+            ->where('std_learn' , '!=', NULL)
+            ->count();
+
+        return view('student.pages.index',compact('upcoming_bookings','today_bookings','new_bookings','delivered_count','upcoming_count','pending_count','subject_count','user','categories','favorite_tutors','general_profile','education_profile'));
     }
 
 

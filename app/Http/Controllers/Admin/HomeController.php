@@ -26,6 +26,7 @@ class HomeController extends Controller
     
     public function index()
     {
+
         //event(new NewNotification('Hello this is test mesage'));
         $tutors_count = User::where('role',2)->count();
         $students_count = User::where('role',3)->count();
@@ -43,6 +44,7 @@ class HomeController extends Controller
 
         $activity_logs = Activitylogs::paginate(5);
         $tickets = supportTkts::with(['category','tkt_created_by'])->get();
+
         return view('admin.dashboard',compact('tutors_count','students_count','all_users','new_requests','tickets','activity_logs'));
     }
 }
