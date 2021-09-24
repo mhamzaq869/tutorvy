@@ -49,14 +49,13 @@ class BookingController extends Controller
     public function index()
     {
         $all = Booking::with(['tutor'])->where('user_id',Auth::user()->id)->get();
-        
-        $confirmed = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(2)->get();
         $pending = Booking::with('tutor')->where('user_id',Auth::user()->id)->whereIn('status',[0,1])->get();
+        $confirmed = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(2)->get();
+        
+        $completed = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(5)->get();
+        $cancelled = Booking::with('tutor')->where('user_id',Auth::user()->id)->whereIn('status',[3,4])->get();
 
-        $delivered = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(5)->get();
-        $booking = Booking::where('user_id',Auth::user()->id)->first();
-        // return $pending;
-        return view('student.pages.booking.index',compact('confirmed','pending','delivered','booking','all'));
+        return view('student.pages.booking.index',compact('confirmed','pending','completed','cancelled','all'));
     }
 
     public function bookNow($t_id){
@@ -182,6 +181,13 @@ class BookingController extends Controller
         
         Session::put('paypal_payment_id', $payment->getId());
         Session::put('booking_id', $booking->id);
+
+        // activity logs
+        $id = Auth::user()->id;
+        $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+        $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> Payment Completed Successfully';
+        $activity_logs = new GeneralController();
+        $activity_logs->save_activity_logs("Payment Success", "bookings.id",$booking->id, $action_perform, $request->header('User-Agent'), $id);
         
         if(isset($redirect_url)) {            
             return Redirect::away($redirect_url);
@@ -226,6 +232,13 @@ class BookingController extends Controller
             ]);
             $booking->status = 2;
             $booking->save();
+
+            // activity logs
+            $id = Auth::user()->id;
+            $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+            $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> Payment success';
+            $activity_logs = new GeneralController();
+            $activity_logs->save_activity_logs("Payment Success", "users.id", $id, $action_perform, $request->header('User-Agent'), $id);
 
             return Redirect::route('student.bookings');
         }

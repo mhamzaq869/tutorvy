@@ -476,7 +476,7 @@
                                                     <label for="exampleName">First Name</label>
                                                     <input type="text" name="first_name" class="form-control"
                                                         value="{{ Auth::user()->first_name }}" id="exampleName"
-                                                        aria-describedby="emailHelp">
+                                                        aria-describedby="emailHelp" required="required">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -484,7 +484,7 @@
                                                     <label for="exampleName">Last Name</label>
                                                     <input type="text" name="last_name" class="form-control"
                                                         value="{{ Auth::user()->last_name }}" id="exampleName"
-                                                        aria-describedby="emailHelp">
+                                                        aria-describedby="emailHelp" required="required">
                                                 </div>
                                             </div>
 
@@ -495,12 +495,12 @@
 
                                             <!-- date of birth dropdown -->
                                             <div class="col-md-4">
-                                                <select class="form-select form-select-lg" id="day" name="day"></select>
+                                                <select class="form-select form-select-lg" id="day" name="day" requried></select>
                                             </div>
                                             <!--  -->
                                             <div class="col-md-4">
                                                 <select class="form-select form-select-lg" name="month"
-                                                    aria-label=".form-select-lg example">
+                                                    aria-label=".form-select-lg example" required="required">
                                                     <option value="Jan" @if (Auth::user()->month == 'Jan') selected @endif>January</option>
                                                     <option value="Feb" @if (Auth::user()->month == 'Feb') selected @endif>February</option>
                                                     <option value="Mar" @if (Auth::user()->month == 'Mar') selected @endif>March</option>
@@ -517,14 +517,14 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <input type="" name="year" class=" yearpicker form-control" placeholder="Year"
-                                                    id="year">
+                                                    id="year" required="required">
                                             </div>
 
 
 
                                             <div class="col-md-12 my-3">
                                                 <input id="phone" name="phone" type="tel"
-                                                    value="{{ Auth::user()->phone ?? '' }}">
+                                                    value="{{ Auth::user()->phone ?? '' }}" required="required">
 
                                             </div>
 
@@ -534,12 +534,12 @@
                                             <div class="input-text col-md-6">
 
                                                 <input id="myInput" type="" name="city" placeholder="City"
-                                                    value="{{ Auth::user()->city ?? '' }}">
+                                                    value="{{ Auth::user()->city ?? '' }}" required="required">
 
                                             </div>
                                             <div class="input-text col-md-6 w-100">
 
-                                                <input id="country_selector" name="country" onchange="university()" type="">
+                                                <input id="country_selector" name="country" onchange="university()" type="" required="required">
                                                 <input id="country_short" value="{{ Auth::user()->country_short }}"
                                                     name="country_short" type="" hidden>
                                                 <label for="country_selector" style="display:none;">Select a country
@@ -567,13 +567,13 @@
                                                     <div class="col-md-6">
                                                         <input type="" name="language" id="lang" hidden>
                                                         <select class="form-select form-select-lg mb-3" id="languages-list"
-                                                            name="lang_short" onchange="langshort(this)">
+                                                            name="lang_short" onchange="langshort(this)" required="required">
                                                         </select>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <select class="form-select form-select-lg mb-3"
-                                                            aria-label=".form-select-lg example" name="gender">
-                                                            <option selected disabled>Gender</option>
+                                                            aria-label=".form-select-lg example" name="gender" required="required">
+                                                            <option value="" selected disabled>Gender</option>
                                                             <option value="male" @if (Auth::user()->gender == 'male') selected @endif>Male</option>
                                                             <option value="female" @if (Auth::user()->gender == 'female') selected @endif>Female</option>
                                                             <option value="other" @if (Auth::user()->gender == 'other') selected @endif>Other</option>
@@ -588,7 +588,7 @@
                                                     <label for="exampleText">About</label>
                                                     <textarea class="form-control" name="bio" id="exampleFormControlTextarea1"
                                                         rows="5"
-                                                        placeholder="Write about yourself...">{{ Auth::user()->bio ?? '' }}</textarea>
+                                                        placeholder="Write about yourself..." required="required">{{ Auth::user()->bio ?? '' }}</textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">

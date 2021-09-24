@@ -64,6 +64,15 @@ class ProfileController extends Controller
         $activity_logs = new GeneralController();
         $activity_logs->save_activity_logs("Profile Updated", "users.id", $id, $action_perform, $request->header('User-Agent'), $id);
 
+        $profile = DB::table("sys_settings")->where('user_id',Auth::user()->id)->where("title","student_profile_completed")->first();
+
+        if(!$profile) {
+            DB::table("sys_settings")->insert([
+                "user_id" => Auth::user()->id, 
+                "title" => "student_profile_completed",
+            ]);
+        }
+
         return response()->json([
             "status_code" => 200,
             "success" => true,
@@ -75,10 +84,17 @@ class ProfileController extends Controller
     public function profileEducationRecord(Request $request) {
 
         User::where('id', $request->user_id)->update([
-            "student_level" => $request->student_level,
+            "experty_level" => $request->student_level,
             "std_subj" => $request->std_subj,
             "std_learn" => $request->std_learn,
         ]);     
+
+        // activity logs
+        $id = Auth::user()->id; 
+        $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+        $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> Update his Educational Record';
+        $activity_logs = new GeneralController();
+        $activity_logs->save_activity_logs("Profile Updated", "users.id", $id, $action_perform, $request->header('User-Agent'), $id);
 
         return response()->json([
             "status_code" => 200,

@@ -117,6 +117,14 @@ class CourseController extends Controller
         $this->standardOutline($request);
         $this->advanceOutline($request);
 
+
+        // activity logs
+        $id = Auth::user()->id;
+        $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+        $action_perform = '<a href="'.URL::to('/') . '/admin/tutor/profile/'. $id .'"> '.$name.' </a> Add new Course ';
+        $activity_logs = new GeneralController();
+        $activity_logs->save_activity_logs('New Course', "courses.id",$id, $action_perform, $request->header('User-Agent'), $id);
+
         return redirect()->route('tutor.course');
     }
 
@@ -217,6 +225,13 @@ class CourseController extends Controller
         $this->basicOutline($request);
         $this->standardOutline($request);
         $this->advanceOutline($request);
+
+        // activity logs
+        $id = Auth::user()->id;
+        $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+        $action_perform = '<a href="'.URL::to('/') . '/admin/tutor/profile/'. $id .'"> '.$name.' </a> Update Course ';
+        $activity_logs = new GeneralController();
+        $activity_logs->save_activity_logs('Course Updated', "courses.id",$id, $action_perform, $request->header('User-Agent'), $id);
 
         return redirect()->route('tutor.course');
     }

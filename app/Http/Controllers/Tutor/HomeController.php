@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Activitylogs;
 use Illuminate\Support\Facades\DB;
 use App\Models\Booking;
+use Illuminate\Support\Facades\URL;
 use App\Models\General\Teach;
 use App\Models\User;
 class HomeController extends Controller
@@ -29,6 +30,11 @@ class HomeController extends Controller
         $subject_count = Teach::where('user_id',Auth::user()->id)->count();
         $user = User::where('id',Auth::user()->id)->first();
 
-        return view('tutor.pages.index',compact('upcoming_bookings','today_bookings','new_bookings','delivered_count','upcoming_count','pending_count','subject_count','user'));
+
+        $education_percentage = DB::table("educations")->where('user_id',Auth::user()->id)->count();
+        $professional_percentage = DB::table("professionals")->where('user_id',Auth::user()->id)->count();
+        $general_profile = DB::table("sys_settings")->where('user_id', Auth::user()->id)->where("title","tutor_profile_completed")->count();
+       
+        return view('tutor.pages.index',compact('upcoming_bookings','today_bookings','new_bookings','delivered_count','upcoming_count','pending_count','subject_count','user','education_percentage','professional_percentage','general_profile'));
     }
 }

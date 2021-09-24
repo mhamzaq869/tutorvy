@@ -111,6 +111,9 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
     Route::post('/staff/insert',[StaffController::class,'insertStaff'])->name('admin.insertStaff');
     Route::get('/staff/profile/{id}',[StaffController::class,'staffProfile'])->name('admin.staffProfile');
 
+    Route::get('/role-permission/{id}',[StaffController::class,'rolePermission'])->name('admin.role.permission');
+    Route::post('/role-permission-store',[StaffController::class,'saveRolePermission'])->name('admin.save.permission');
+
     Route::get('/role',[StaffController::class,'role'])->name('admin.role');
     Route::post('/role/insert-role',[StaffController::class,'insertRole'])->name('admin.insertRole');
     Route::post('/role/delete-role',[StaffController::class,'deleteRole'])->name('admin.deleteRole');
@@ -297,6 +300,9 @@ Route::post('/resendOtp',[ResetPasswordController::class,'resendOtp'])->name('re
 
 
 Route::view('/','welcome');
+
+// Route::get('/',[GeneralController::class,'home']);
+
 Route::get('/widget',[FrontTutorController::class,'widgetTech'])->name('whiteBoard.canvas');
 Route::get('/widget',[FrontTutorController::class,'widgetTech'])->name('whiteBoard.canvas');
 Route::view('/role','role');

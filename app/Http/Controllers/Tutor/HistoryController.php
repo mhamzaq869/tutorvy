@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin\tktCat;
 use App\Models\Activitylogs;
+use Illuminate\Support\Facades\URL;
 use App\Models\Admin\supportTkts;
 
 class HistoryController extends Controller

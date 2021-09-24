@@ -10,7 +10,7 @@
                     <!-- <p id="sidenav-toggles" class="heading-first  mr-3 mb-2 ml-2">
                         Bookings
                     </p> -->
-                    <p class="heading-first ml-3 mr-3">Classroom</p>
+                    <p class="heading-first ml-3 mr-3">Classroom   </p>
                 </div>
             </div>
             <!-- <div class="row">
@@ -90,13 +90,13 @@
                             <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
                                 href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
                                 All Classes
-                                <span class="counter-text bg-primary">9</span>
+                                <span class="counter-text bg-primary"> {{count($classes)}} </span>
                             </a>
                             <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
                                 href="#nav-profile" role="tab" aria-controls="nav-profile"
                                 aria-selected="false">
                                 Upcomming Classes
-                                <span class="counter-text bg-success">9</span>
+                                <span class="counter-text bg-success"> {{$upcomming_classes}} </span>
                             </a>
                         </div>
                     </nav>
@@ -194,19 +194,19 @@
                                         <tbody>
                                             <tr>
                                                 <td class="pt-3">
-                                                    Hellow
+                                                    static data Hellow
                                                 </td>
                                                 <td class="pt-3">
-                                                    I'm done
+                                                static data  I'm done
                                                 </td>
                                                 <td class="pt-3">
-                                                    Hellow
+                                                static data  Hellow
                                                 </td>
                                                 <td class="pt-3">
-                                                    I'm done
+                                                static data  I'm done
                                                 </td>
                                                 <td class="pt-3">
-                                                    Hellow
+                                                static data  Hellow
                                                 </td>
                                                 <td class="pt-3">
                                                     <span class="bg-color-apporve">
