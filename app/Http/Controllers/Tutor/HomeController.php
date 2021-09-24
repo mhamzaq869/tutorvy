@@ -29,6 +29,22 @@ class HomeController extends Controller
         $subject_count = Teach::where('user_id',Auth::user()->id)->count();
         $user = User::where('id',Auth::user()->id)->first();
 
+
+        $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+
+        $reciever = User::where('role',1)->first();
+        $notification = new NotifyController();
+        $sender_id = Auth::user()->id;
+        $reciever_id = $reciever->id;
+        $slug = '-' ;
+        $type = 'testing';
+        $data = 'data';
+        $title = 'testing';
+        $icon = 'fas fa-tag';
+        $class = 'btn-success';
+        $desc = $name . ' notification testing';
+        $notification->GeneralNotifi(Auth::user()->id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
+
         return view('tutor.pages.index',compact('upcoming_bookings','today_bookings','new_bookings','delivered_count','upcoming_count','pending_count','subject_count','user'));
     }
 }

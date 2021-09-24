@@ -27,11 +27,11 @@
     <link rel="stylesheet" href="{{ asset('assets/css/emojionearea.css')}}">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-messaging.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script> -->
     
-    <script  src="{{asset('assets/firebase/index.js')}}"></script>
+    <script type="module" src="{{asset('assets/firebase/index.js')}}"></script>
 
     <!--Select 2-->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -92,8 +92,15 @@
     </div>
 
      <!-- custom js -->
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
+     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
+    
+     <!-- jquery  -->
+    <script src="{{asset('/admin/assets/js/jquery.js')}}" ></script>
+    <script src="{{asset('/admin/assets/js/jquery-ui.js')}}"></script>
+
+    <script src="{{ asset('/admin/assets/js/popper.min.js')}}"></script>
+    <script src="{{ asset('/admin/assets/js/bootstrap.min.js')}}"></script>
+     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script> -->
      <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/intlTelInput.js"></script>
      <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
      <script src="{{ asset('assets/js/mobile.js') }}"></script>
@@ -106,6 +113,7 @@
      <script src="{{ asset('assets/js/multiselect.js')}}"></script>
      <script src="{{ asset('assets/js/countrySelect.js')}}"></script>
      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+     <script src="https://cdn.jsdelivr.net/npm/easytimer@1.1.1/dist/easytimer.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.2.7/emojionearea.min.js"></script>

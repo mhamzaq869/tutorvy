@@ -1,63 +1,68 @@
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js';
+import { getMessaging, getToken, onMessage  } from 'https://www.gstatic.com/firebasejs/9.0.2/firebase-messaging.js';
+
 const firebaseConfig = {
-  apiKey: "AIzaSyBXaJPa95dTLBz36lmoDgVnR80_EQVVwVA",
-  authDomain: "live-tech-cms.firebaseapp.com",
-  databaseURL: "https://live-tech-cms-default-rtdb.firebaseio.com",
-  projectId: "live-tech-cms",
-  storageBucket: "live-tech-cms.appspot.com",
-  messagingSenderId: "16545791116",
-  appId: "1:16545791116:web:e55cbea48308f9b1828fa9",
-  measurementId: "G-H3C052Z2LH"
+  apiKey: "AIzaSyANnRCERSRDsQKB1tTSbPsV0y7JkAbod-0",
+  authDomain: "todaylecture.firebaseapp.com",
+  databaseURL: "https://todaylecture.firebaseio.com",
+  projectId: "todaylecture",
+  storageBucket: "todaylecture.appspot.com",
+  messagingSenderId: "229770008752",
+  appId: "1:229770008752:web:2df73a2333da1d73b4c375",
+  measurementId: "G-89WMDYHMG6"
 };
 
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+const app = initializeApp(firebaseConfig);
 
-
-const messaging = firebase.messaging();
-messaging.usePublicVapidKey("BK8CHpqRSc6qjQDVSc6eQZCOganeqlTqBZa4kpAWOIHhYJFQPdNqe8rcngMWITo1UkHTcq9AQBva7Zuf8GRY0Hw");
-        
-messaging.requestPermission().then(function(){
-  return messaging.getToken();
-}).then(function(token){
-
-  var check_value = $(".token_wrapper").data('id');
-  console.log(token);
-  if(check_value == 0) {
-    saveFcmToken(token);
-  } 
-
-}).catch(function(err){
-  console.log('unable to get permission.'+err)
+// Get registration token. Initially this makes a network call, once retrieved
+// subsequent calls to getToken will return from cache.
+const messaging = getMessaging();
+getToken(messaging, { vapidKey: 'BLVqHTURHbHlM3aUGrU5qhW6GwwWsES9n_4An4W9aRTeW67sJPOg6SGRmZ7EvXVIXQMVqRLwHazcpIRb9Qg5x-Y' }).then((currentToken) => {
+  if (currentToken) {
+    // Send the token to your server and update the UI if necessary
+    // ...
+    var check_value = $(".token_wrapper").data('id');
+    if(check_value == 0) {
+      saveFcmToken(currentToken);
+    } 
+    console.log(currentToken , "currentToken");
+  } else {
+    // Show permission request UI
+    console.log('No registration token available. Request permission to generate one.');
+    // ...
+  }
+}).catch((err) => {
+  console.log('An error occurred while retrieving token. ', err);
+  // ...
 });
 
-
-messaging.onMessage((payload) => {
+const messagings = getMessaging();
+onMessage(messagings, (payload) => {
   console.log('Message received. ', payload);
-  
-
-  var title = payload.notification.title;
-  var body = payload.notification.body;
-  var slug = payload.data.slug;
-  var icon = payload.data.icon;
-  var btn_class = payload.data.btn_class;
-
-
-  toastr.success(body , title,{
-      position: 'top-end',
-      icon: 'success',
-      showConfirmButton: false,
-      timer: 2500
-  });
-  var current_notification = $('.notification_counter').text();
-  var total = parseInt(current_notification)  + parseInt(payload.data.unread_count)
-  $('.notification_counter').text(total);
-
+  // ...
 });
 
+// firebase.initializeApp(firebaseConfig);
+// firebase.analytics();
 
 
+// const messaging = firebase.messaging();
+// messaging.usePublicVapidKey("BK8CHpqRSc6qjQDVSc6eQZCOganeqlTqBZa4kpAWOIHhYJFQPdNqe8rcngMWITo1UkHTcq9AQBva7Zuf8GRY0Hw");
+// // messaging.useServiceWorker('/framework/firebase-messaging-sw.js')
+        
+// messaging.requestPermission().then(function(){
+//   return messaging.getToken();
+// }).then(function(token){
+//   $('#fcm_token').val(token)
+//   console.log(token)
+// }).catch(function(err){
+//   console.log('unable to get permission.'+err)
+// });
 
-// save fcm token
+// messaging.onMessage((payload) => {
+//   console.log('Message received. ', payload);
+//   // ...
+// });
 function saveFcmToken(token) {
   var origin = window.location.origin;
 
