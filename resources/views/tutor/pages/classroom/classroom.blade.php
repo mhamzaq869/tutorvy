@@ -941,12 +941,16 @@ connection.enableFileSharing = true;
 
 connection.session = {
     audio: true,
-    video: true,
+    video: false,
     data: true
+};
+connection.mediaConstraints = {
+    audio: true,
+    video: true
 };
 connection.sdpConstraints.mandatory = {
     OfferToReceiveAudio: true,
-    OfferToReceiveVideo: true
+    OfferToReceiveVideo: false
 };
 
 connection.onUserStatusChanged = function(event) {
