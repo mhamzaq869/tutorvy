@@ -153,6 +153,9 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
 */
 Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function () {
 
+    // remove
+    Route::post('/testing',[TutorSettingController::class,'testing'])->name('tutor.testing');
+
     Route::get('/dashboard',[TutorHomeController::class,'index'])->name('tutor.dashboard');
     Route::get('/booking',[BookingController::class,'index'])->name('tutor.booking');
     Route::get('/booking-detail/{id}',[BookingController::class,'bookingDetail'])->name('tutor.booking.detail');
