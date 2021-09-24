@@ -769,26 +769,36 @@ td input{
 
 
 <script>
-        ClassicEditor
-            .create( document.querySelector( '#editor' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-            function cheng(){
-                var ter = $(this).html();
-                alert(ter);
-                $('.language-html').text(ter);
-            }
-    </script>
-    <script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+        function cheng(){
+            var ter = $(this).html();
+            alert(ter);
+            $('.language-html').text(ter);
+        }
+</script>
+<script>
+(function() {
+    var params = {},
+        r = /([^&=]+)=?([^&]*)/g;
 
+    function d(s) {
+        return decodeURIComponent(s.replace(/\+/g, ' '));
+    }
+    var match, search = window.location.search;
+    while (match = r.exec(search.substring(1)))
+        params[d(match[1])] = d(match[2]);
+    window.params = params;
+})();
 
 var connection = new RTCMultiConnection();
-
 var roomid = '{{$class->classroom_id}}';
 var fullName = '{{$class->booking->tutor->first_name}} {{$class->booking->tutor->last_name}}';
 
-// connection.socketURL = '/';
+//connection.socketURL = '/';
 connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
 
 connection.extra.userFullName = fullName;
@@ -802,49 +812,29 @@ connection.socketMessageEvent = 'canvas-dashboard-demo';
 connection.autoCloseEntireSession = true;
 
 // https://www.rtcmulticonnection.org/docs/maxParticipantsAllowed/
-//connection.maxParticipantsAllowed = 1000;
+connection.maxParticipantsAllowed = 2;
 // set value 2 for one-to-one connection
- connection.maxParticipantsAllowed = 2;
-
-
-    connection.extra.userFullName = fullName;
-
-    // if($('#chk-room-password').prop('checked') === true){
-    //   var roomPassword = $('#txt-room-password').val().toString();
-    //   if (!roomPassword || !roomPassword.replace(/ /g, '').length) {
-    //       alertBox('Please enter room password.', 'Password Box Is Empty');
-    //       return;
-    //   }
-
-    //   connection.password = roomPassword;
-    // }    
-
-    // var initialHTML = $('#btn-create-room').html();
-
-    // $('#btn-create-room').html('Please wait...').prop('disabled', true);
-
-    connection.checkPresence(roomid, function(isRoomExist) {
+// connection.maxParticipantsAllowed = 2;
+connection.checkPresence(roomid, function(isRoomExist) {
       
-        if (isRoomExist === true) {
-            alert('This room-id is already taken and room is active. Please join instead.', 'Room ID In Use');
-            return;
-        }
+      if (isRoomExist === true) {
+          alert('This room-id is already taken and room is active. Please join instead.', 'Room ID In Use');
+          return;
+      }
 
-        // if ($('#chk-hidden-room').prop('checked') === true) {
-            // either make it unique!
-            // connection.publicRoomIdentifier = connection.token() + connection.token();
+      // if ($('#chk-hidden-room').prop('checked') === true) {
+          // either make it unique!
+          // connection.publicRoomIdentifier = connection.token() + connection.token();
 
-            // or set an empty value (recommended)
-            connection.publicRoomIdentifier = '';
-        // }
+          // or set an empty value (recommended)
+          connection.publicRoomIdentifier = '';
+      // }
 
-        connection.sessionid = roomid;
-        connection.isInitiator = true;
-        // openCanvasDesigner();
-        // $('#btn-create-room').html(initialHTML).prop('disabled', false);
-    });
-
-
+      connection.sessionid = roomid;
+      connection.isInitiator = true;
+      // openCanvasDesigner();
+      // $('#btn-create-room').html(initialHTML).prop('disabled', false);
+  });
 // here goes canvas designer
 var designer = new CanvasDesigner();
 
@@ -861,24 +851,24 @@ designer.setSelected('pencil');
 designer.setTools({
     pencil: true,
     text: true,
-    image: false,
-    pdf: false,
+    image: true,
+    pdf: true,
     eraser: true,
     line: true,
-    arrow: false,
+    arrow: true,
     dragSingle: true,
     dragMultiple: true,
     arc: true,
     rectangle: true,
     quadratic: false,
-    bezier: false,
-    marker: false,
+    bezier: true,
+    marker: true,
     zoom: false,
     lineWidth: false,
     colorsPicker: false,
     extraOptions: false,
     code: false,
-    undo: false,
+    undo: true
 });
 
 // here goes RTCMultiConnection
@@ -888,16 +878,12 @@ connection.enableFileSharing = true;
 
 connection.session = {
     audio: true,
-    video: false,
+    video: true,
     data: true
-};
-connection.mediaConstraints = {
-    audio: true,
-    video: true
 };
 connection.sdpConstraints.mandatory = {
     OfferToReceiveAudio: true,
-    OfferToReceiveVideo: false
+    OfferToReceiveVideo: true
 };
 
 connection.onUserStatusChanged = function(event) {
@@ -932,7 +918,6 @@ connection.onopen = function(event) {
 };
 
 connection.onclose = connection.onerror = connection.onleave = function(event) {
-    console.log(event+" asdasdasdasdasdasdas");
     connection.onUserStatusChanged(event);
 };
 
@@ -1027,48 +1012,6 @@ connection.onstreamended = function(event) {
         video.style.display = 'none';
     }
 };
-$(".no-vc").click(function(){
-    alert("No vc");
-    // var localStream = connection.attachStreams[0];
-    // console.log(localStream)
-    // localStream.mute('video');
-    console.log(connection.streamEvents);
-    console.log(connection);
-
-
-    let localStream = connection.attachStreams[0];
-
-    if(localStream){
-    console.log(localStream);
-
-        localStream.mute('video'); 
-    } 
-})
-$(".vc").click(function(){
-    alert(connection.stream.streamid);
-    var localStream = connection.attachStreams[0];
-    localStream.unmute('video'); 
-})
-$(".no-mk").click(function(){
-    alert("No mk");
-    var localStream = connection.attachStreams[0];
-    localStream.mute('audio');
-})
-$(".mk").click(function(){
-    alert("mk");
-    var localStream = connection.attachStreams[0];
-    localStream.unmute('audio'); 
-})
-$(".no-ph").click(function(){
-    alert("mk");
-    connection.leave();
-})
-
-connection.onmute = function(e) { 
-    e.mediaElement.setAttribute('poster', '//www.webrtc-experiment.com/images/muted.png'); 
-};
-
-
 
 var conversationPanel = document.getElementById('conversation-panel');
 
@@ -1099,15 +1042,13 @@ function appendChatMessage(event, checkmark_id) {
 
 var keyPressTimer;
 var numberOfKeys = 0;
-$(document).ready(function(){
-    $('#txt-chat-message').emojioneArea({
+$('#txt-chat-message').emojioneArea({
     pickerPosition: "top",
     filtersPosition: "bottom",
     tones: false,
     autocomplete: true,
     inline: true,
     hidePickerOnBlur: true,
-    hideSource: false,
     events: {
         focus: function() {
             $('.emojionearea-category').unbind('click').bind('click', function() {
@@ -1146,8 +1087,6 @@ $(document).ready(function(){
         }
     }
 });
-})
-
 
 window.onkeyup = function(e) {
     var code = e.keyCode || e.which;
@@ -1305,15 +1244,13 @@ designer.appendTo(document.getElementById('widget-container'), function() {
                     }
                     alert(error);
                 }
-            
+
                 connection.socket.on('disconnect', function() {
                     location.reload();
                 });
             });
-
-            
     // } else {
-    //     connection.join(roomid, function(isRoomJoined, roomid, error) {
+    //     connection.join(params.sessionid, function(isRoomJoined, roomid, error) {
     //         if (error) {
     //             if (error === connection.errors.ROOM_NOT_AVAILABLE) {
     //                 alert('This room does not exist. Please either create it or wait for moderator to enter in the room.');
@@ -1329,7 +1266,7 @@ designer.appendTo(document.getElementById('widget-container'), function() {
     //                     alert('Invalid password.');
     //                     return;
     //                 }
-    //                 connection.join(roomid, function(isRoomJoined, roomid, error) {
+    //                 connection.join(params.sessionid, function(isRoomJoined, roomid, error) {
     //                     if(error) {
     //                         alert(error);
     //                     }
@@ -1471,4 +1408,6 @@ $('#btn-share-screen').click(function() {
     }
 });
 </script>
+
+
 @endsection
