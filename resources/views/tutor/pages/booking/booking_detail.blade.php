@@ -180,8 +180,8 @@
                                                     <img src="{{asset('assets/images/logo/boy.png')}}" alt="boy" style="width: 35px;border-radius: 30px;">
                                                     @endif
                                                 <p style="color: #00132D; font-family: Poppins;font-size: 14px;font-weight: 500;"
-                                                    class="ml-2 mt-2"> {{$booking->user->full_name}}</p>
-                                                <p style="position: relative;left: -100px;top: 27px;font-size: 12px;">
+                                                    class="ml-2 "> {{$booking->user->full_name}}</p>
+                                                <p style="position: relative;left: -100px;top: 18px;font-size: 12px;">
                                                     Student</p>
                                                 </p>
 

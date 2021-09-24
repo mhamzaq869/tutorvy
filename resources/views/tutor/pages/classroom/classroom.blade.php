@@ -893,7 +893,7 @@ var designer = new CanvasDesigner();
 
 // you can place widget.html anywhere
 designer.widgetHtmlURL = "{{ route('whiteBoard.canvas')}}";
-designer.widgetJsURL = "{{asset('assets/js/widget.min.js')}}"
+designer.widgetJsURL = "{{asset('assets/js/widget.min.js').'?ver='.rand()}}"
 
 designer.addSyncListener(function(data) {
     connection.send(data);

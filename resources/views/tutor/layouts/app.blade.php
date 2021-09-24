@@ -107,7 +107,6 @@
      <script src="{{ asset('assets/js/history.js') }}"></script>
      <script src="{{ asset('assets/js/subject.js') }}"></script>
      <script src="{{ asset('assets/js/homePage.js') }}"></script>
-     <script src="{{ asset('assets/js/clander.js') }}"></script>
      <script src="{{ asset('assets/js/registration.js') }}"></script>
      <script src="{{ asset('assets/js/dropify.js')}}"></script>
      <script src="{{ asset('assets/js/multiselect.js')}}"></script>

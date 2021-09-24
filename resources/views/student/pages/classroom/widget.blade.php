@@ -540,13 +540,13 @@
 
 <body>
     <section class="design-surface">
-        <canvas id="temp-canvas"></canvas>
-        <canvas id="main-canvas"></canvas>
+        <canvas id="temp-canvas" style="width:100% !important; height:100% !important;"></canvas>
+        <canvas id="main-canvas" style="width:100% !important; height:100% !important;"></canvas>
     </section>
 
     <!-- toolbox -->
 
-    <section id="tool-box" class="tool-box">
+    <section id="tool-box" class="tool-box" style="height:100% !important;">
         <canvas class="mb-1" id="pencil-icon" width="40" height="40" title="Panchil">
         </canvas>
         <canvas class="mb-1" id="eraser-icon" width="40" height="40" title="Erase drawings"></canvas>
@@ -858,6 +858,7 @@
 
     <!-- url-parameters -->
     <script>
+       
         (function() {
             var params = {},
                 r = /([^&=]+)=?([^&]*)/g;
