@@ -822,20 +822,6 @@ td input{
 
 
 <script>
-<<<<<<< HEAD
-        ClassicEditor
-            .create( document.querySelector( '#editor' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-            function cheng(){
-                var ter = $(this).html();
-                alert(ter);
-                $('.language-html').text(ter);
-            }
-</script>
-<script>
-=======
     ClassicEditor
         .create( document.querySelector( '#editor' ) )
         .catch( error => {
@@ -851,7 +837,6 @@ td input{
 (function() {
     var params = {},
         r = /([^&=]+)=?([^&]*)/g;
->>>>>>> acf58323066f451506c57cdba647225fbb36669b
 
     function d(s) {
         return decodeURIComponent(s.replace(/\+/g, ' '));
@@ -1080,55 +1065,6 @@ connection.onstreamended = function(event) {
         video.style.display = 'none';
     }
 };
-<<<<<<< HEAD
-$(".no-vc").click(function(){
-    alert("No vc");
-    // var localStream = connection.attachStreams[0];
-    // console.log(localStream)
-    // localStream.mute('video');
-    console.log(connection.streamEvents);
-    console.log(connection);
-
-
-    let localStream = connection.attachStreams[0];
-
-    if(localStream){
-    console.log(localStream);
-
-        localStream.mute('video'); 
-    } 
-})
-$(".vc").click(function(){
-    alert(connection.stream.streamid);
-    var localStream = connection.attachStreams[0];
-    localStream.unmute('video'); 
-})
-$(".no-mk").click(function(){
-    alert("No mk");
-    var localStream = connection.attachStreams[0];
-    localStream.mute('audio');
-})
-$(".mk").click(function(){
-    alert("mk");
-    var localStream = connection.attachStreams[0];
-    localStream.unmute('audio'); 
-})
-$(".no-ph").click(function(){
-    $("#endCall").modal("show");
-})
-$("#ending").click(function(){
-    alert("ending");
-    connection.leave();
-
-})
-
-connection.onmute = function(e) { 
-    e.mediaElement.setAttribute('poster', '//www.webrtc-experiment.com/images/muted.png'); 
-};
-
-
-=======
->>>>>>> acf58323066f451506c57cdba647225fbb36669b
 
 var conversationPanel = document.getElementById('conversation-panel');
 
