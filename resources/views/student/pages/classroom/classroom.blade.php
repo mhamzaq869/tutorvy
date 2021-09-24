@@ -802,6 +802,7 @@ td input{
       
 
 })
+
     $("#join_now").click(function(){
         $(".tech_weck").show();;
         $("#callModal").modal("hide");
@@ -863,7 +864,7 @@ connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
 
 connection.socketMessageEvent = 'canvas-dashboard-demo';
 connection.session = {
-    audio: false,
+    audio: true,
     video: true,
     data: true
 };
@@ -873,6 +874,20 @@ connection.mediaConstraints = {
     data: true
 
 };
+if (connection.DetectRTC.hasMicrophone === false) {
+    alert('Please attach a microphone device.');
+
+    // or ignore microphone
+    connection.mediaConstraints.audio = false;
+    connection.session.audio = false;
+}
+if (connection.DetectRTC.hasWebcam === false) {
+    alert('Please attach a camera device.');
+
+    // or ignore camera
+    connection.mediaConstraints.video = false;
+    connection.session.video = false;
+}
 function joinClass(){
     // keep room opened even if owner leaves
     connection.autoCloseEntireSession = true;
