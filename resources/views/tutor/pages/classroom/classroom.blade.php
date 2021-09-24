@@ -280,6 +280,13 @@ td input{
  <section>
     <div class="content-wrapper " style="overflow: hidden;">
         <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <div id="countdownExample">
+                        <div class="values"></div>
+                    </div>
+                </div>
+            </div>
             <div class="row mb-5 tech_weck">
                 <div class="col-md-9 card"> 
                     <div class="row">
@@ -684,6 +691,38 @@ td input{
         </div>
     </div>
 </section>
+
+ <!-- End Call Modal -->
+ <div class="modal fade custom_modal" id="endCall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-body bg-custom text-center p-5">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="p-2"> <img src="{{asset('assets/images/logo-footer.png')}}" alt="">
+                            </h1>
+                            <h3 class="mb-4 p-2"> Are you a</h3>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="bg-btn-light">
+                                <a type="button" id="rescue" class="btn  modal-btn animate__animated">Re-schedule</a>
+                                <a type="button" id="ending"  class="btn  modal-btn animate__animated">End Call</a>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <!-- <div class="modal-footer">
+
+                </div> -->
+            </div>
+        </div>
+    </div>
+ 
  <!-- Modal -->
  <div class="modal" id="callModal" tabindex="-1" role="dialog"
     aria-hidden="true" data-backdrop="static">
@@ -765,6 +804,20 @@ td input{
        $(".vc").hide();
        $(".no-vc").show();
    });
+     /** Javascript Timer */
+     var timer = new Timer();
+        timer.start({countdown: true, startValues: {seconds: 30}});
+
+        $('#countdownExample .values').html(timer.getTimeValues().toString());
+
+        timer.addEventListener('secondsUpdated', function (e) {
+            $('#countdownExample .values').html(timer.getTimeValues().toString());
+        });
+
+        timer.addEventListener('targetAchieved', function (e) {
+            $('#countdownExample .values').html('Class Time has Ended!!');
+        });
+    /* Javascript Timer ENd */
 </script>
 
 
@@ -779,8 +832,8 @@ td input{
                 alert(ter);
                 $('.language-html').text(ter);
             }
-    </script>
-    <script>
+</script>
+<script>
 
 
 var connection = new RTCMultiConnection();
@@ -1056,8 +1109,12 @@ $(".mk").click(function(){
     localStream.unmute('audio'); 
 })
 $(".no-ph").click(function(){
-    alert("mk");
+    $("#endCall").modal("show");
+})
+$("#ending").click(function(){
+    alert("ending");
     connection.leave();
+
 })
 
 connection.onmute = function(e) { 

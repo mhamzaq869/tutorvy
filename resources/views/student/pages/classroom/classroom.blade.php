@@ -21,6 +21,7 @@
   <script src="https://rtcmulticonnection.herokuapp.com/node_modules/canvas-designer/canvas-designer-widget.js"></script>
   <!-- <script src="https://raw.githubusercontent.com/muaz-khan/RTCMultiConnection/master/demos/js/emojionearea.min.js"></script> -->
 
+<link href="{{ asset('assets/css/modal.css') }}" rel="stylesheet">
   
   <!-- <script src="/node_modules/multistreamsmixer/MultiStreamsMixer.js"></script> -->
   <style>
@@ -277,7 +278,10 @@ td input{
     border-radius:4px;
 }
 #countdownExample{
-    font-family:'Orbitron',initial;
+    font-family:'Orbitron';
+}
+.w-20{
+    width:20px;
 }
 </style>
 @section('content')
@@ -699,9 +703,36 @@ td input{
         </div>
     </div>
 </section>
- <!-- Modal -->
+<!-- End Call Modal -->
+<div class="modal fade custom_modal" id="endCall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-body bg-custom text-center p-5">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="p-2"> <img src="{{asset('assets/images/logo-footer.png')}}" alt="">
+                            </h1>
+                            <h3 class="mb-4 p-2"> Are you a</h3>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="bg-btn-light">
+                                <a type="button" id="rescue" class="btn  modal-btn animate__animated">Re-schedule</a>
+                                <a type="button" id="ending"  class="btn  modal-btn animate__animated">End Call</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="modal-footer">
+                </div> -->
+            </div>
+        </div>
+    </div>
+ 
+ 
+<!-- Modal -->
  <div class="modal" id="callModal" tabindex="-1" role="dialog"
-    aria-hidden="true" data-backdrop="static">
+    aria-hidden="true" data-backdrop="false">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <!-- <div class="modal-header">
@@ -811,6 +842,10 @@ td input{
        $(".vc").hide();
        $(".no-vc").show();
    });
+   $(".no-ph").click(function(){
+    $("#endCall").modal("show");
+    })
+    
 
    
 </script>
@@ -1009,7 +1044,11 @@ connection.onstream = function(event) {
 
     connection.onUserStatusChanged(event);
 };
+$("#ending").click(function(){
+        alert("ending");
+        connection.leave();
 
+    })
 connection.onstreamended = function(event) {
     var video = document.querySelector('video[data-streamid="' + event.streamid + '"]');
     if (!video) {
