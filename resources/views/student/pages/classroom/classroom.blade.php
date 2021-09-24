@@ -276,12 +276,22 @@ td input{
     padding-top: 16%; 
     border-radius:4px;
 }
+#countdownExample{
+    font-family:'Orbitron',initial;
+}
 </style>
 @section('content')
  <!-- top Fixed navbar End -->
  <section>
     <div class="content-wrapper " style="overflow: hidden;">
         <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <div id="countdownExample">
+                        <div class="values"></div>
+                    </div>
+                </div>
+            </div>
             <div class="row mb-5 tech_weck">
                 <div class="col-md-9 card"> 
                     <div class="row">
@@ -733,6 +743,7 @@ td input{
 @section('scripts')
 @include('js_files.whiteBoard')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.2.7/emojionearea.min.js"></script>
+
 <script>
         ClassicEditor
             .create( document.querySelector( '#editor' ) )
@@ -748,16 +759,37 @@ td input{
 
 
 <script>
+    // var timerInstance = new easytimer.Timer();
     $(document).ready(function(){
+        
         $(".tech_weck").hide();
         $(".mk").hide();
         $(".vc").hide();
         $(".no-vc").show();
         $("#callModal").modal("show");
-    })
+
+      
+
+})
     $("#join_now").click(function(){
         $(".tech_weck").show();;
         $("#callModal").modal("hide");
+
+          /** Javascript Timer */
+          var timer = new Timer();
+        timer.start({countdown: true, startValues: {seconds: 30}});
+
+        $('#countdownExample .values').html(timer.getTimeValues().toString());
+
+        timer.addEventListener('secondsUpdated', function (e) {
+            $('#countdownExample .values').html(timer.getTimeValues().toString());
+        });
+
+        timer.addEventListener('targetAchieved', function (e) {
+            $('#countdownExample .values').html('Class Time has Ended!!');
+        });
+    /* Javascript Timer ENd */
+
     })
     $(".no-mk").click(function(){
        

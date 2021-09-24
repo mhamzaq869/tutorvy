@@ -127,6 +127,7 @@ body {
     border-radius: 4px;
 }
 
+
 /* .Google:hover{
     background-color: black;
     color: white;
@@ -221,6 +222,7 @@ input:focus+.label {
     background-color: white;
 }
 
+
 /* .fa-eye{
     position: relative;
     top: -20px;
@@ -253,8 +255,8 @@ label {
 input {
     width: 100%;
 }
-.cl
-.checkbox:focus {
+
+.cl .checkbox:focus {
     width: 10px;
 }
 
@@ -288,6 +290,7 @@ input {
     display: flex;
     position: relative;
 }
+
 
 /* .content .lock {
     position: absolute;
@@ -354,11 +357,14 @@ input:valid~.show-hide i {
     /* left: 50px; */
     display: flex;
 }
-#message{
+
+#message {
     position: absolute !important;
-left: 10px;
-top: 50px;
+    left: 10px;
+    top: 50px;
 }
+
+
 /* email validation */
 
 .add {
@@ -374,4 +380,12 @@ top: 50px;
     top: 50px;
     font-family: "Poppins";
     font-size: 16px;
+}
+
+.profile-img {
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    border: 2px solid #1173FF;
+    border-radius: 50%;
 }
