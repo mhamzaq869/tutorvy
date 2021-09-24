@@ -27,7 +27,9 @@
 <!--Plugin CSS file with desired skin-->
 <link rel="stylesheet" href="{{ asset('assets/css/ion.rangeSlider.css')}}"/>
 <link rel="stylesheet" href="{{ asset('assets/css/emojionearea.css')}}">
-    
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Styles -->
     @include('student.layouts.css')
 </head>
@@ -94,10 +96,10 @@
      <script src="{{ asset('assets/js/languages.js') }}"></script>
 
      <script src="{{ asset('assets/js/homePage.js') }}"></script>
-     <script src="{{ asset('assets/js/clander.js') }}"></script>
      <script src="{{ asset('assets/js/registration.js') }}"></script>
      <script src="{{ asset('assets/js/dropify.js')}}"></script>
      <script src="{{ asset('assets/js/multiselect.js')}}"></script>
+     <script src="https://cdn.jsdelivr.net/npm/easytimer@1.1.1/dist/easytimer.min.js"></script>
      <script src="{{ asset('assets/js/jquery.validate.js')}}"></script>
      <script src="{{ asset('assets/js/countrySelect.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -171,6 +173,7 @@
 
             
             /* Table Sorting */
+    
     })
     $("#country_selector").countrySelect({
                 defaultCountry: "{{ $user->country_short ?? '' }}",
@@ -200,15 +203,15 @@ $("#country_selector").on('change', function(){
 
 
 // var languages_list = {...};
-(function () {
-   var user_language_code = "{{ $user->language ?? 'en-US'}}";
-   var option = '<option value=""> Select Language</option>';
-   for (var language_code in languages_list) {
-    //    var selected = (language_code == user_language_code) ? ' selected' : '';
-       option += '<option value="' + language_code + '">' + languages_list[language_code] + '</option>';
-   }
-   document.getElementById('languages-list').innerHTML = option;
-})();
+// (function () {
+//    var user_language_code = "{{ $user->language ?? 'en-US'}}";
+//    var option = '<option value=""> Select Language</option>';
+//    for (var language_code in languages_list) {
+//     //    var selected = (language_code == user_language_code) ? ' selected' : '';
+//        option += '<option value="' + language_code + '">' + languages_list[language_code] + '</option>';
+//    }
+//    document.getElementById('languages-list').innerHTML = option;
+// })();
 
 $("#register").validate({
    rules: {

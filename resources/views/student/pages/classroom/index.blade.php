@@ -235,7 +235,7 @@
 
 @endsection
 @section('scripts')
-@include('js_files.room')
+<!-- @include('js_files.room') -->
 <!-- <script>
 $(document).ready(function(){
     $(".mk").hide();

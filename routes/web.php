@@ -156,6 +156,9 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
 */
 Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function () {
 
+    // remove
+    Route::post('/testing',[TutorSettingController::class,'testing'])->name('tutor.testing');
+
     Route::get('/dashboard',[TutorHomeController::class,'index'])->name('tutor.dashboard');
     Route::get('/booking',[BookingController::class,'index'])->name('tutor.booking');
     Route::get('/booking-detail/{id}',[BookingController::class,'bookingDetail'])->name('tutor.booking.detail');
@@ -304,7 +307,7 @@ Route::view('/','welcome');
 // Route::get('/',[GeneralController::class,'home']);
 
 Route::get('/widget',[FrontTutorController::class,'widgetTech'])->name('whiteBoard.canvas');
-Route::get('/widget',[FrontTutorController::class,'widgetTech'])->name('whiteBoard.canvas');
+// Route::get('/widget',[FrontTutorController::class,'widgetTech'])->name('whiteBoard.canvas');
 Route::view('/role','role');
 Route::get('/register_role',[GeneralController  ::class,'loginOnRole'])->name('register.role');
 Route::view('/tutor','frontend.tutor');

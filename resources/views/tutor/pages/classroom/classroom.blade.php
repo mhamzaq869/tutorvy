@@ -280,6 +280,13 @@ td input{
  <section>
     <div class="content-wrapper " style="overflow: hidden;">
         <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <div id="countdownExample">
+                        <div class="values"></div>
+                    </div>
+                </div>
+            </div>
             <div class="row mb-5 tech_weck">
                 <div class="col-md-9 card"> 
                     <div class="row">
@@ -684,6 +691,38 @@ td input{
         </div>
     </div>
 </section>
+
+ <!-- End Call Modal -->
+ <div class="modal fade custom_modal" id="endCall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-body bg-custom text-center p-5">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="p-2"> <img src="{{asset('assets/images/logo-footer.png')}}" alt="">
+                            </h1>
+                            <h3 class="mb-4 p-2"> Are you a</h3>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="bg-btn-light">
+                                <a type="button" id="rescue" class="btn  modal-btn animate__animated">Re-schedule</a>
+                                <a type="button" id="ending"  class="btn  modal-btn animate__animated">End Call</a>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <!-- <div class="modal-footer">
+
+                </div> -->
+            </div>
+        </div>
+    </div>
+ 
  <!-- Modal -->
  <div class="modal" id="callModal" tabindex="-1" role="dialog"
     aria-hidden="true" data-backdrop="static">
@@ -705,12 +744,12 @@ td input{
                             <img src="{{asset('assets/images/ico/Square-white.jpg')}}" class="profile-img pg" alt="">
                         @endif
                     </div>
-                    <div class="col-md-12 g-location">
+                    <div class="col-md-12 text-center mt-3">
 
                         <a href="#" class="callSet vc">
                            <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
                         </a>
-                        <a href="#" class="callSet no-vc">
+                        <a href="#" class="callSet no-vc ">
                            <img src="{{asset('assets/images/ico/no-vc.png')}}" title="With Video" alt="">
                         </a>
                         <a href="#" class="callSet mk" id="mk">
@@ -719,7 +758,7 @@ td input{
                         <a href="#" class="callSet no-mk">
                             <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
                         </a>
-                        <a href="#" id="join_now"  class="btn btn-success ml-2">
+                        <a type="button" role="button" id="join_now"  class="btn btn-success ml-2">
                             Start Class
                         </a>
                     </div>
@@ -740,11 +779,15 @@ td input{
         $(".vc").hide();
         $(".no-vc").show();
         $("#callModal").modal("show");
+        $("#join_now").attr("disabled","disabled" );
+
     })
-    $("#join_now").click(function(){
-        $(".tech_weck").show();;
-        $("#callModal").modal("hide");
-    })
+
+    // $("#join_now").click(function(){
+    //     $(".tech_weck").show();;
+    //     $("#callModal").modal("hide");
+    //     joinClass();
+    // })
     $(".no-mk").click(function(){
        
         $(".no-mk").hide();
@@ -765,70 +808,114 @@ td input{
        $(".vc").hide();
        $(".no-vc").show();
    });
+     /** Javascript Timer */
+     var timer = new Timer();
+        timer.start({countdown: true, startValues: {seconds: 30}});
+
+        $('#countdownExample .values').html(timer.getTimeValues().toString());
+
+        timer.addEventListener('secondsUpdated', function (e) {
+            $('#countdownExample .values').html(timer.getTimeValues().toString());
+        });
+
+        timer.addEventListener('targetAchieved', function (e) {
+            $('#countdownExample .values').html('Class Time has Ended!!');
+        });
+    /* Javascript Timer ENd */
 </script>
 
 
 <script>
-        ClassicEditor
-            .create( document.querySelector( '#editor' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-            function cheng(){
-                var ter = $(this).html();
-                alert(ter);
-                $('.language-html').text(ter);
-            }
-    </script>
-    <script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+        function cheng(){
+            var ter = $(this).html();
+            alert(ter);
+            $('.language-html').text(ter);
+        }
+</script>
+<script>
+(function() {
+    var params = {},
+        r = /([^&=]+)=?([^&]*)/g;
 
+    function d(s) {
+        return decodeURIComponent(s.replace(/\+/g, ' '));
+    }
+    var match, search = window.location.search;
+    while (match = r.exec(search.substring(1)))
+        params[d(match[1])] = d(match[2]);
+    window.params = params;
+})();
 
 var connection = new RTCMultiConnection();
-
 var roomid = '{{$class->classroom_id}}';
 var fullName = '{{$class->booking->tutor->first_name}} {{$class->booking->tutor->last_name}}';
 
-// connection.socketURL = '/';
+//connection.socketURL = '/';
 connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
 
 connection.extra.userFullName = fullName;
+connection.DetectRTC.load(function() {
+    console.log(connection.DetectRTC);
+                if (connection.DetectRTC.hasMicrophone === true) {
+                    // enable microphone
+                    connection.mediaConstraints.audio = true;
+                    connection.session.audio = true;
+                    // alert('attach true microphone')
+                    $(".callSet").show();
+                     $("#join_now").removeAttr("disabled","disabled" );
+                    $("#join_now").click(function(){
+                        $(".tech_weck").show();
+                        $("#callModal").modal("hide");
+                        joinClass();
+                    })
+                }else{
+                    toastr.warning( "Audio Device is Mendatory ");
+                    $(".mk , .no-mk").hide();
+                }
 
-/// make this room public
-connection.publicRoomIdentifier = '';
-
-connection.socketMessageEvent = 'canvas-dashboard-demo';
-
-// keep room opened even if owner leaves
-connection.autoCloseEntireSession = true;
-
-// https://www.rtcmulticonnection.org/docs/maxParticipantsAllowed/
-//connection.maxParticipantsAllowed = 1000;
-// set value 2 for one-to-one connection
- connection.maxParticipantsAllowed = 2;
+                if (connection.DetectRTC.hasWebcam === true) {
+                    // enable camera
+                    connection.mediaConstraints.video = true;
+                    connection.session.video = true;
+                    // alert('attach true camera')
+                    $(".vc , .no-vc").css("display",'block');
 
 
-    connection.extra.userFullName = fullName;
+                }else{
+                    $(".vc , .no-vc").css("display",'none');
 
-    // if($('#chk-room-password').prop('checked') === true){
-    //   var roomPassword = $('#txt-room-password').val().toString();
-    //   if (!roomPassword || !roomPassword.replace(/ /g, '').length) {
-    //       alertBox('Please enter room password.', 'Password Box Is Empty');
-    //       return;
-    //   }
+                    // alert('attach Cam')
+                }
 
-    //   connection.password = roomPassword;
-    // }    
+                if (connection.DetectRTC.hasSpeakers === false) { // checking for "false"
+                    // alert('Please attach a speaker device. You will unable to hear the incoming audios.');
+                }
+            });
+function joinClass(){
 
-    // var initialHTML = $('#btn-create-room').html();
+        /// make this room public
+        connection.publicRoomIdentifier = '';
 
-    // $('#btn-create-room').html('Please wait...').prop('disabled', true);
+        connection.socketMessageEvent = 'canvas-dashboard-demo';
 
-    connection.checkPresence(roomid, function(isRoomExist) {
-      
-        if (isRoomExist === true) {
-            alert('This room-id is already taken and room is active. Please join instead.', 'Room ID In Use');
-            return;
-        }
+        // keep room opened even if owner leaves
+        connection.autoCloseEntireSession = true;
+
+        // https://www.rtcmulticonnection.org/docs/maxParticipantsAllowed/
+        connection.maxParticipantsAllowed = 2;
+        // set value 2 for one-to-one connection
+        // connection.maxParticipantsAllowed = 2;
+        connection.checkPresence(roomid, function(isRoomExist) {
+            
+            if (isRoomExist === true) {
+                alert('This room-id is already taken and room is active. Please join instead.', 'Room ID In Use');
+                return;
+            }
 
         // if ($('#chk-hidden-room').prop('checked') === true) {
             // either make it unique!
@@ -841,227 +928,322 @@ connection.autoCloseEntireSession = true;
         connection.sessionid = roomid;
         connection.isInitiator = true;
         // openCanvasDesigner();
-        // $('#btn-create-room').html(initialHTML).prop('disabled', false);
-    });
-
-
-// here goes canvas designer
-var designer = new CanvasDesigner();
-
-// you can place widget.html anywhere
-designer.widgetHtmlURL = "{{ route('whiteBoard.canvas')}}";
-designer.widgetJsURL = "{{asset('assets/js/widget.min.js')}}"
-
-designer.addSyncListener(function(data) {
-    connection.send(data);
-});
-
-designer.setSelected('pencil');
-
-designer.setTools({
-    pencil: true,
-    text: true,
-    image: false,
-    pdf: false,
-    eraser: true,
-    line: true,
-    arrow: false,
-    dragSingle: true,
-    dragMultiple: true,
-    arc: true,
-    rectangle: true,
-    quadratic: false,
-    bezier: false,
-    marker: false,
-    zoom: false,
-    lineWidth: false,
-    colorsPicker: false,
-    extraOptions: false,
-    code: false,
-    undo: false,
-});
-
-// here goes RTCMultiConnection
-
-connection.chunkSize = 16000;
-connection.enableFileSharing = true;
-
-connection.session = {
-    audio: true,
-    video: true,
-    data: true
-};
-connection.sdpConstraints.mandatory = {
-    OfferToReceiveAudio: true,
-    OfferToReceiveVideo: true
-};
-
-connection.onUserStatusChanged = function(event) {
-    var infoBar = document.getElementById('onUserStatusChanged');
-    var names = [];
-    connection.getAllParticipants().forEach(function(pid) {
-        names.push(getFullName(pid));
-    });
-
-    if (!names.length) {
-        names = ['Only You'];
-    } else {
-        names = [connection.extra.userFullName || 'You'].concat(names);
-    }
-
-    infoBar.innerHTML = '<b>Active users:</b> ' + names.join(', ');
-};
-
-connection.onopen = function(event) {
-    connection.onUserStatusChanged(event);
-
-    if (designer.pointsLength <= 0) {
-        // make sure that remote user gets all drawings synced.
-        setTimeout(function() {
-            connection.send('plz-sync-points');
-        }, 1000);
-    }
-
-    document.getElementById('btn-chat-message').disabled = false;
-    document.getElementById('btn-attach-file').style.display = 'inline-block';
-    document.getElementById('btn-share-screen').style.display = 'inline-block';
-};
-
-connection.onclose = connection.onerror = connection.onleave = function(event) {
-    connection.onUserStatusChanged(event);
-};
-
-connection.onmessage = function(event) {
-    if(event.data.showMainVideo) {
-        // $('#main-video').show();
-        $('#screen-viewer').css({
-            top: $('#widget-container').offset().top,
-            left: $('#widget-container').offset().left,
-            width: $('#widget-container').width(),
-            height: $('#widget-container').height()
+            // $('#btn-create-room').html(initialHTML).prop('disabled', false);
         });
-        $('#screen-viewer').show();
-        return;
-    }
+        // here goes canvas designer
+        var designer = new CanvasDesigner();
 
-    if(event.data.hideMainVideo) {
-        // $('#main-video').hide();
-        $('#screen-viewer').hide();
-        return;
-    }
+        // you can place widget.html anywhere
+        designer.widgetHtmlURL = "{{ route('whiteBoard.canvas')}}";
+        designer.widgetJsURL = "{{asset('assets/js/widget.min.js').'?ver='.rand()}}"
 
-    if(event.data.typing === true) {
-        $('#key-press').show().find('span').html(event.extra.userFullName + ' is typing');
-        return;
-    }
+        designer.addSyncListener(function(data) {
+            connection.send(data);
+        });
+        designer.setSelected('pencil');
 
-    if(event.data.typing === false) {
-        $('#key-press').hide().find('span').html('');
-        return;
-    }
+        designer.setTools({
+            pencil: true,
+            text: true,
+            image: true,
+            pdf: true,
+            eraser: true,
+            line: true,
+            arrow: true,
+            dragSingle: true,
+            dragMultiple: true,
+            arc: true,
+            rectangle: true,
+            quadratic: false,
+            bezier: true,
+            marker: true,
+            zoom: false,
+            lineWidth: false,
+            colorsPicker: false,
+            extraOptions: false,
+            code: false,
+            undo: true
+        });
 
-    if (event.data.chatMessage) {
-        appendChatMessage(event);
-        return;
-    }
+        // here goes RTCMultiConnection
 
-    if (event.data.checkmark === 'received') {
-        var checkmarkElement = document.getElementById(event.data.checkmark_id);
-        if (checkmarkElement) {
-            checkmarkElement.style.display = 'inline';
-        }
-        return;
-    }
+        connection.chunkSize = 16000;
+        connection.enableFileSharing = true;
 
-    if (event.data === 'plz-sync-points') {
-        designer.sync();
-        return;
-    }
+        // connection.session = {
+        //     audio: true,
+        //     video: true,
+        //     data: true
+        // };
+        // connection.sdpConstraints.mandatory = {
+        //     OfferToReceiveAudio: true,
+        //     OfferToReceiveVideo: true
+        // };
+        // connection.mediaConstraints = {
+        //     audio: true,
+        //     video: true,
+        //     data: true
 
-    designer.syncData(event.data);
-};
+        // };
 
-// extra code
+        connection.onUserStatusChanged = function(event) {
+            var infoBar = document.getElementById('onUserStatusChanged');
+            var names = [];
+            connection.getAllParticipants().forEach(function(pid) {
+                names.push(getFullName(pid));
+            });
 
-connection.onstream = function(event) {
-    if (event.stream.isScreen && !event.stream.canvasStream) {
-        $('#screen-viewer').get(0).srcObject = event.stream;
-        $('#screen-viewer').hide();
-    }
-    else if (event.extra.roomOwner === true) {
-        var video = document.getElementById('main-video');
-        video.setAttribute('data-streamid', event.streamid);
-        // video.style.display = 'none';
-        if(event.type === 'local') {
-            video.muted = true;
-            video.volume = 0;
-        }
-        video.srcObject = event.stream;
-        $('#main-video').show();
-    } else {
-        event.mediaElement.controls = false;
+            if (!names.length) {
+                names = ['Only You'];
+            } else {
+                names = [connection.extra.userFullName || 'You'].concat(names);
+            }
 
-        var otherVideos = document.querySelector('#other-videos');
-        otherVideos.appendChild(event.mediaElement);
-    }
+            infoBar.innerHTML = '<b>Active users:</b> ' + names.join(', ');
+        };
 
-    connection.onUserStatusChanged(event);
-};
+        connection.onopen = function(event) {
+            connection.onUserStatusChanged(event);
 
-connection.onstreamended = function(event) {
-    var video = document.querySelector('video[data-streamid="' + event.streamid + '"]');
-    if (!video) {
-        video = document.getElementById(event.streamid);
-        if (video) {
-            video.parentNode.removeChild(video);
-            return;
-        }
-    }
-    if (video) {
-        video.srcObject = null;
-        video.style.display = 'none';
-    }
-};
-$(".no-vc").click(function(){
-    alert("No vc");
-    // var localStream = connection.attachStreams[0];
-    // console.log(localStream)
-    // localStream.mute('video');
-    console.log(connection.streamEvents);
-    console.log(connection);
+            if (designer.pointsLength <= 0) {
+                // make sure that remote user gets all drawings synced.
+                setTimeout(function() {
+                    connection.send('plz-sync-points');
+                }, 1000);
+            }
+
+            document.getElementById('btn-chat-message').disabled = false;
+            document.getElementById('btn-attach-file').style.display = 'inline-block';
+            document.getElementById('btn-share-screen').style.display = 'inline-block';
+        };
+
+        connection.onclose = connection.onerror = connection.onleave = function(event) {
+            connection.onUserStatusChanged(event);
+        };
+
+        connection.onmessage = function(event) {
+            if(event.data.showMainVideo) {
+                // $('#main-video').show();
+                $('#screen-viewer').css({
+                    top: $('#widget-container').offset().top,
+                    left: $('#widget-container').offset().left,
+                    width: $('#widget-container').width(),
+                    height: $('#widget-container').height()
+                });
+                $('#screen-viewer').show();
+                return;
+            }
+
+            if(event.data.hideMainVideo) {
+                // $('#main-video').hide();
+                $('#screen-viewer').hide();
+                return;
+            }
+
+            if(event.data.typing === true) {
+                $('#key-press').show().find('span').html(event.extra.userFullName + ' is typing');
+                return;
+            }
+
+            if(event.data.typing === false) {
+                $('#key-press').hide().find('span').html('');
+                return;
+            }
+
+            if (event.data.chatMessage) {
+                appendChatMessage(event);
+                return;
+            }
+
+            if (event.data.checkmark === 'received') {
+                var checkmarkElement = document.getElementById(event.data.checkmark_id);
+                if (checkmarkElement) {
+                    checkmarkElement.style.display = 'inline';
+                }
+                return;
+            }
+
+            if (event.data === 'plz-sync-points') {
+                designer.sync();
+                return;
+            }
+
+            designer.syncData(event.data);
+        };
+
+        // extra code
+
+        connection.onstream = function(event) {
+            if (event.stream.isScreen && !event.stream.canvasStream) {
+                $('#screen-viewer').get(0).srcObject = event.stream;
+                $('#screen-viewer').hide();
+            }
+            else if (event.extra.roomOwner === true) {
+                var video = document.getElementById('main-video');
+                video.setAttribute('data-streamid', event.streamid);
+                // video.style.display = 'none';
+                if(event.type === 'local') {
+                    video.muted = true;
+                    video.volume = 0;
+                }
+                video.srcObject = event.stream;
+                $('#main-video').show();
+            } else {
+                event.mediaElement.controls = false;
+
+                var otherVideos = document.querySelector('#other-videos');
+                otherVideos.appendChild(event.mediaElement);
+            }
+
+            connection.onUserStatusChanged(event);
+        };
+
+        connection.onstreamended = function(event) {
+            var video = document.querySelector('video[data-streamid="' + event.streamid + '"]');
+            if (!video) {
+                video = document.getElementById(event.streamid);
+                if (video) {
+                    video.parentNode.removeChild(video);
+                    return;
+                }
+            }
+            if (video) {
+                video.srcObject = null;
+                video.style.display = 'none';
+            }
+        };
+
+        var conversationPanel = document.getElementById('conversation-panel');
+        var keyPressTimer;
+        var numberOfKeys = 0;
+        var recentFile;
+
+            connection.onFileEnd = function(file) {
+                var html = getFileHTML(file);
+                var div = progressHelper[file.uuid].div;
+
+                if (file.userid === connection.userid) {
+                    div.innerHTML = '<b>You:</b><br>' + html;
+                    div.style.background = '#cbffcb';
+
+                    if(recentFile) {
+                        recentFile.userIndex++;
+                        var nextUserId = connection.getAllParticipants()[recentFile.userIndex];
+                        if(nextUserId) {
+                            connection.send(recentFile, nextUserId);
+                        }
+                        else {
+                            recentFile = null;
+                        }
+                    }
+                    else {
+                        recentFile = null;
+                    }
+                } else {
+                    div.innerHTML = '<b>' + getFullName(file.userid) + ':</b><br>' + html;
+                }
+            };
+
+            // to make sure file-saver dialog is not invoked.
+            connection.autoSaveToDisk = false;
+
+            var progressHelper = {};
+
+            connection.onFileProgress = function(chunk, uuid) {
+                var helper = progressHelper[chunk.uuid];
+                helper.progress.value = chunk.currentPosition || chunk.maxChunks || helper.progress.max;
+                updateLabel(helper.progress, helper.label);
+            };
+
+            connection.onFileStart = function(file) {
+                var div = document.createElement('div');
+                div.className = 'message';
+
+                if (file.userid === connection.userid) {
+                    var userFullName = file.remoteUserId;
+                    if(connection.peersBackup[file.remoteUserId]) {
+                        userFullName = connection.peersBackup[file.remoteUserId].extra.userFullName;
+                    }
+
+                    div.innerHTML = '<b>You (to: ' + userFullName + '):</b><br><label>0%</label> <progress></progress>';
+                    div.style.background = '#cbffcb';
+                } else {
+                    div.innerHTML = '<b>' + getFullName(file.userid) + ':</b><br><label>0%</label> <progress></progress>';
+                }
+
+                div.title = file.name;
+                conversationPanel.appendChild(div);
+                progressHelper[file.uuid] = {
+                    div: div,
+                    progress: div.querySelector('progress'),
+                    label: div.querySelector('label')
+                };
+                progressHelper[file.uuid].progress.max = file.maxChunks;
+
+                conversationPanel.scrollTop = conversationPanel.clientHeight;
+                conversationPanel.scrollTop = conversationPanel.scrollHeight - conversationPanel.scrollTop;
+            };
+            designer.appendTo(document.getElementById('widget-container'), function() {
+    // if (params.open === true || params.open === 'true') {
+            var tempStreamCanvas = document.getElementById('temp-stream-canvas');
+            var tempStream = tempStreamCanvas.captureStream();
+            tempStream.isScreen = true;
+            tempStream.streamid = tempStream.id;
+            tempStream.type = 'local';
+            connection.attachStreams.push(tempStream);
+            window.tempStream = tempStream;
+
+            connection.extra.roomOwner = true;
+            connection.open(roomid, function(isRoomOpened, roomid, error) {
+                if (error) {
+                    if (error === connection.errors.ROOM_NOT_AVAILABLE) {
+                        alert('Someone already created this room. Please either join or create a separate room.');
+                        return;
+                    }
+                    alert(error);
+                }
+
+                connection.socket.on('disconnect', function() {
+                    location.reload();
+                });
+            });
+    // } else {
+    //     connection.join(params.sessionid, function(isRoomJoined, roomid, error) {
+    //         if (error) {
+    //             if (error === connection.errors.ROOM_NOT_AVAILABLE) {
+    //                 alert('This room does not exist. Please either create it or wait for moderator to enter in the room.');
+    //                 return;
+    //             }
+    //             if (error === connection.errors.ROOM_FULL) {
+    //                 alert('Room is full.');
+    //                 return;
+    //             }
+    //             if (error === connection.errors.INVALID_PASSWORD) {
+    //                 connection.password = prompt('Please enter room password.') || '';
+    //                 if(!connection.password.length) {
+    //                     alert('Invalid password.');
+    //                     return;
+    //                 }
+    //                 connection.join(params.sessionid, function(isRoomJoined, roomid, error) {
+    //                     if(error) {
+    //                         alert(error);
+    //                     }
+    //                 });
+    //                 return;
+    //             }
+    //             alert(error);
+    //         }
+
+    //         connection.socket.on('disconnect', function() {
+    //             location.reload();
+    //         });
+    //     });
+    // }
+});
 
 
-    let localStream = connection.attachStreams[0];
 
-    if(localStream){
-    console.log(localStream);
-
-        localStream.mute('video'); 
-    } 
-})
-$(".vc").click(function(){
-    alert(connection.stream.streamid);
-    var localStream = connection.attachStreams[0];
-    localStream.unmute('video'); 
-})
-$(".no-mk").click(function(){
-    alert("No mk");
-    var localStream = connection.attachStreams[0];
-    localStream.mute('audio');
-})
-$(".mk").click(function(){
-    alert("mk");
-    var localStream = connection.attachStreams[0];
-    localStream.unmute('audio'); 
-})
-
-connection.onmute = function(e) { 
-    e.mediaElement.setAttribute('poster', '//www.webrtc-experiment.com/images/muted.png'); 
-};
-
-
-
-var conversationPanel = document.getElementById('conversation-panel');
+} 
 
 function appendChatMessage(event, checkmark_id) {
     var div = document.createElement('div');
@@ -1088,17 +1270,14 @@ function appendChatMessage(event, checkmark_id) {
     conversationPanel.scrollTop = conversationPanel.scrollHeight - conversationPanel.scrollTop;
 }
 
-var keyPressTimer;
-var numberOfKeys = 0;
-$(document).ready(function(){
-    $('#txt-chat-message').emojioneArea({
+
+$('#txt-chat-message').emojioneArea({
     pickerPosition: "top",
     filtersPosition: "bottom",
     tones: false,
     autocomplete: true,
     inline: true,
     hidePickerOnBlur: true,
-    hideSource: false,
     events: {
         focus: function() {
             $('.emojionearea-category').unbind('click').bind('click', function() {
@@ -1137,8 +1316,6 @@ $(document).ready(function(){
         }
     }
 });
-})
-
 
 window.onkeyup = function(e) {
     var code = e.keyCode || e.which;
@@ -1167,7 +1344,6 @@ document.getElementById('btn-chat-message').onclick = function() {
     });
 };
 
-var recentFile;
 document.getElementById('btn-attach-file').onclick = function() {
     var file = new FileSelector();
     file.selectSingleFile(function(file) {
@@ -1201,72 +1377,6 @@ function getFullName(userid) {
     return _userFullName;
 }
 
-connection.onFileEnd = function(file) {
-    var html = getFileHTML(file);
-    var div = progressHelper[file.uuid].div;
-
-    if (file.userid === connection.userid) {
-        div.innerHTML = '<b>You:</b><br>' + html;
-        div.style.background = '#cbffcb';
-
-        if(recentFile) {
-            recentFile.userIndex++;
-            var nextUserId = connection.getAllParticipants()[recentFile.userIndex];
-            if(nextUserId) {
-                connection.send(recentFile, nextUserId);
-            }
-            else {
-                recentFile = null;
-            }
-        }
-        else {
-            recentFile = null;
-        }
-    } else {
-        div.innerHTML = '<b>' + getFullName(file.userid) + ':</b><br>' + html;
-    }
-};
-
-// to make sure file-saver dialog is not invoked.
-connection.autoSaveToDisk = false;
-
-var progressHelper = {};
-
-connection.onFileProgress = function(chunk, uuid) {
-    var helper = progressHelper[chunk.uuid];
-    helper.progress.value = chunk.currentPosition || chunk.maxChunks || helper.progress.max;
-    updateLabel(helper.progress, helper.label);
-};
-
-connection.onFileStart = function(file) {
-    var div = document.createElement('div');
-    div.className = 'message';
-
-    if (file.userid === connection.userid) {
-        var userFullName = file.remoteUserId;
-        if(connection.peersBackup[file.remoteUserId]) {
-            userFullName = connection.peersBackup[file.remoteUserId].extra.userFullName;
-        }
-
-        div.innerHTML = '<b>You (to: ' + userFullName + '):</b><br><label>0%</label> <progress></progress>';
-        div.style.background = '#cbffcb';
-    } else {
-        div.innerHTML = '<b>' + getFullName(file.userid) + ':</b><br><label>0%</label> <progress></progress>';
-    }
-
-    div.title = file.name;
-    conversationPanel.appendChild(div);
-    progressHelper[file.uuid] = {
-        div: div,
-        progress: div.querySelector('progress'),
-        label: div.querySelector('label')
-    };
-    progressHelper[file.uuid].progress.max = file.maxChunks;
-
-    conversationPanel.scrollTop = conversationPanel.clientHeight;
-    conversationPanel.scrollTop = conversationPanel.scrollHeight - conversationPanel.scrollTop;
-};
-
 function updateLabel(progress, label) {
     if (progress.position == -1) return;
     var position = +progress.position.toFixed(2).split('.')[1] || 100;
@@ -1277,69 +1387,7 @@ function updateLabel(progress, label) {
 //     connection.password = params.password;
 // }
 
-designer.appendTo(document.getElementById('widget-container'), function() {
-    // if (params.open === true || params.open === 'true') {
-            var tempStreamCanvas = document.getElementById('temp-stream-canvas');
-            var tempStream = tempStreamCanvas.captureStream();
-            tempStream.isScreen = true;
-            tempStream.streamid = tempStream.id;
-            tempStream.type = 'local';
-            connection.attachStreams.push(tempStream);
-            window.tempStream = tempStream;
 
-            connection.extra.roomOwner = true;
-            connection.open(roomid, function(isRoomOpened, roomid, error) {
-                if (error) {
-                    if (error === connection.errors.ROOM_NOT_AVAILABLE) {
-                        alert('Someone already created this room. Please either join or create a separate room.');
-                        return;
-                    }
-                    alert(error);
-                }
-                connection.join(roomid, function(isRoomJoined, roomid, error) {
-                        if(error) {
-                            alert(error);
-                        }
-                    });
-                connection.socket.on('disconnect', function() {
-                    location.reload();
-                });
-            });
-
-            
-    // } else {
-    //     connection.join(roomid, function(isRoomJoined, roomid, error) {
-    //         if (error) {
-    //             if (error === connection.errors.ROOM_NOT_AVAILABLE) {
-    //                 alert('This room does not exist. Please either create it or wait for moderator to enter in the room.');
-    //                 return;
-    //             }
-    //             if (error === connection.errors.ROOM_FULL) {
-    //                 alert('Room is full.');
-    //                 return;
-    //             }
-    //             if (error === connection.errors.INVALID_PASSWORD) {
-    //                 connection.password = prompt('Please enter room password.') || '';
-    //                 if(!connection.password.length) {
-    //                     alert('Invalid password.');
-    //                     return;
-    //                 }
-    //                 connection.join(roomid, function(isRoomJoined, roomid, error) {
-    //                     if(error) {
-    //                         alert(error);
-    //                     }
-    //                 });
-    //                 return;
-    //             }
-    //             alert(error);
-    //         }
-
-    //         connection.socket.on('disconnect', function() {
-    //             location.reload();
-    //         });
-    //     });
-    // }
-});
 
 function addStreamStopListener(stream, callback) {
     stream.addEventListener('ended', function() {
@@ -1466,4 +1514,6 @@ $('#btn-share-screen').click(function() {
     }
 });
 </script>
+
+
 @endsection

@@ -89,8 +89,8 @@ class Notification extends Model
             // print_r($tokens);exit;
             $downstreamResponse = FCM::sendTo($tokens, $option, $notification, $data);
             // echo $downstreamResponse->numberSuccess();exit;
-            //$downstreamResponse->numberFailure();
-            //$downstreamResponse->numberModification();
+            // echo $downstreamResponse->numberFailure();exit();
+            // echo $downstreamResponse->numberModification();exit();
     
             // return Array - you must remove all this tokens in your database
             $exp_tkns = $downstreamResponse->tokensToDelete();
