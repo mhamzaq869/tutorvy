@@ -720,7 +720,7 @@ td input{
                         <a href="#" class="callSet no-mk">
                             <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
                         </a>
-                        <a href="#" id="join_now"  class="btn btn-success ml-2">
+                        <a onclick="joinClass()" id="join_now"  class="btn btn-success ml-2">
                             Join Class
                         </a>
                     </div>
@@ -795,362 +795,231 @@ var fullName = '{{$class->booking->user->first_name}} {{$class->booking->user->l
 connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
 
 connection.socketMessageEvent = 'canvas-dashboard-demo';
-
-// keep room opened even if owner leaves
-connection.autoCloseEntireSession = true;
-
-// https://www.rtcmulticonnection.org/docs/maxParticipantsAllowed/
-// connection.maxParticipantsAllowed = 1000;
-// set value 2 for one-to-one connection
-connection.maxParticipantsAllowed = 2;
-connection.extra.userFullName = fullName;
-
-connection.checkPresence(roomid, function(isRoomExist) {
-      
-    connection.publicRoomIdentifier = '';
-    connection.sessionid = roomid;
-    connection.isInitiator = true;
-        // openCanvasDesigner();
-        // $('#btn-create-room').html(initialHTML).prop('disabled', false);
-});
-
-// here goes canvas designer
-var designer = new CanvasDesigner();
-
-// you can place widget.html anywhere
-designer.widgetHtmlURL = "{{ route('whiteBoard.canvas')}}";
-designer.widgetJsURL = "{{asset('assets/js/widget.min.js')}}"
-
-designer.addSyncListener(function(data) {
-    connection.send(data);
-});
-
-designer.setSelected('pencil');
-
-designer.setTools({
-    pencil: true,
-    text: true,
-    image: false,
-    pdf: false,
-    eraser: true,
-    line: true,
-    arrow: false,
-    dragSingle: true,
-    dragMultiple: true,
-    arc: true,
-    rectangle: true,
-    quadratic: false,
-    bezier: false,
-    marker: false,
-    zoom: false,
-    lineWidth: false,
-    colorsPicker: false,
-    extraOptions: false,
-    code: false,
-    undo: false,
-});
-
-// here goes RTCMultiConnection
-
-connection.chunkSize = 16000;
-connection.enableFileSharing = true;
-
 connection.session = {
-    audio: true,
+    audio: false,
     video: true,
     data: true
 };
-connection.sdpConstraints.mandatory = {
-    OfferToReceiveAudio: true,
-    OfferToReceiveVideo: true
-};
+connection.mediaConstraints = {
+    audio: true,
+    video: false,
+    data: true
 
-connection.onUserStatusChanged = function(event) {
-    var infoBar = document.getElementById('onUserStatusChanged');
-    var names = [];
-    connection.getAllParticipants().forEach(function(pid) {
-        names.push(getFullName(pid));
+};
+function joinClass(){
+    // keep room opened even if owner leaves
+    connection.autoCloseEntireSession = true;
+
+    // https://www.rtcmulticonnection.org/docs/maxParticipantsAllowed/
+    // connection.maxParticipantsAllowed = 1000;
+    // set value 2 for one-to-one connection
+    connection.maxParticipantsAllowed = 2;
+    connection.extra.userFullName = fullName;
+
+    connection.checkPresence(roomid, function(isRoomExist) {
+        
+        connection.publicRoomIdentifier = '';
+        connection.sessionid = roomid;
+        // connection.isInitiator = true;
+            // openCanvasDesigner();
+            // $('#btn-create-room').html(initialHTML).prop('disabled', false);
     });
 
-    if (!names.length) {
-        names = ['Only You'];
-    } else {
-        names = [connection.extra.userFullName || 'You'].concat(names);
-    }
+    // here goes canvas designer
+    var designer = new CanvasDesigner();
 
-    infoBar.innerHTML = '<b>Active users:</b> ' + names.join(', ');
-};
+    // you can place widget.html anywhere
+    designer.widgetHtmlURL = "{{ route('whiteBoard.canvas')}}";
+    designer.widgetJsURL = "{{asset('assets/js/widget.min.js')}}"
 
-connection.onopen = function(event) {
-    connection.onUserStatusChanged(event);
+    designer.addSyncListener(function(data) {
+        connection.send(data);
+    });
 
-    if (designer.pointsLength <= 0) {
-        // make sure that remote user gets all drawings synced.
-        setTimeout(function() {
-            connection.send('plz-sync-points');
-        }, 1000);
-    }
+    designer.setSelected('pencil');
 
-    document.getElementById('btn-chat-message').disabled = false;
-    document.getElementById('btn-attach-file').style.display = 'inline-block';
-    document.getElementById('btn-share-screen').style.display = 'inline-block';
-};
+    designer.setTools({
+        pencil: true,
+        text: true,
+        image: false,
+        pdf: false,
+        eraser: true,
+        line: true,
+        arrow: false,
+        dragSingle: true,
+        dragMultiple: true,
+        arc: true,
+        rectangle: true,
+        quadratic: false,
+        bezier: false,
+        marker: false,
+        zoom: false,
+        lineWidth: false,
+        colorsPicker: false,
+        extraOptions: false,
+        code: false,
+        undo: false,
+    });
 
-connection.onclose = connection.onerror = connection.onleave = function(event) {
-    console.log(event+" dsfsdfsdfsdfsdfsdfsdf");
-    connection.onUserStatusChanged(event);
-};
+    // here goes RTCMultiConnection
 
-connection.onmessage = function(event) {
-    if(event.data.showMainVideo) {
-        // $('#main-video').show();
-        $('#screen-viewer').css({
-            top: $('#widget-container').offset().top,
-            left: $('#widget-container').offset().left,
-            width: $('#widget-container').width(),
-            height: $('#widget-container').height()
+    connection.chunkSize = 16000;
+    connection.enableFileSharing = true;
+
+    
+    
+    connection.sdpConstraints.mandatory = {
+        OfferToReceiveAudio: true,
+        OfferToReceiveVideo: false
+    };
+
+    connection.onUserStatusChanged = function(event) {
+        var infoBar = document.getElementById('onUserStatusChanged');
+        var names = [];
+        connection.getAllParticipants().forEach(function(pid) {
+            names.push(getFullName(pid));
         });
-        $('#screen-viewer').show();
-        return;
-    }
 
-    if(event.data.hideMainVideo) {
-        // $('#main-video').hide();
-        $('#screen-viewer').hide();
-        return;
-    }
-
-    if(event.data.typing === true) {
-        $('#key-press').show().find('span').html(event.extra.userFullName + ' is typing');
-        return;
-    }
-
-    if(event.data.typing === false) {
-        $('#key-press').hide().find('span').html('');
-        return;
-    }
-
-    if (event.data.chatMessage) {
-        appendChatMessage(event);
-        return;
-    }
-
-    if (event.data.checkmark === 'received') {
-        var checkmarkElement = document.getElementById(event.data.checkmark_id);
-        if (checkmarkElement) {
-            checkmarkElement.style.display = 'inline';
+        if (!names.length) {
+            names = ['Only You'];
+        } else {
+            names = [connection.extra.userFullName || 'You'].concat(names);
         }
-        return;
-    }
 
-    if (event.data === 'plz-sync-points') {
-        designer.sync();
-        return;
-    }
+        infoBar.innerHTML = '<b>Active users:</b> ' + names.join(', ');
+    };
 
-    designer.syncData(event.data);
-};
+    connection.onopen = function(event) {
+        connection.onUserStatusChanged(event);
 
-// extra code
-
-connection.onstream = function(event) {
-    if (event.stream.isScreen && !event.stream.canvasStream) {
-        $('#screen-viewer').get(0).srcObject = event.stream;
-        $('#screen-viewer').hide();
-    }
-    else if (event.extra.roomOwner === true) {
-        var video = document.getElementById('main-video');
-        video.setAttribute('data-streamid', event.streamid);
-        // video.style.display = 'none';
-        if(event.type === 'local') {
-            video.muted = true;
-            video.volume = 0;
+        if (designer.pointsLength <= 0) {
+            // make sure that remote user gets all drawings synced.
+            setTimeout(function() {
+                connection.send('plz-sync-points');
+            }, 1000);
         }
-        video.srcObject = event.stream;
-        $('#main-video').show();
-    } else {
-        event.mediaElement.controls = false;
 
-        var otherVideos = document.querySelector('#other-videos');
-        otherVideos.appendChild(event.mediaElement);
-    }
+        document.getElementById('btn-chat-message').disabled = false;
+        document.getElementById('btn-attach-file').style.display = 'inline-block';
+        document.getElementById('btn-share-screen').style.display = 'inline-block';
+    };
 
-    connection.onUserStatusChanged(event);
-};
+    connection.onclose = connection.onerror = connection.onleave = function(event) {
+        console.log(event+" dsfsdfsdfsdfsdfsdfsdf");
+        connection.onUserStatusChanged(event);
+    };
 
-connection.onstreamended = function(event) {
-    var video = document.querySelector('video[data-streamid="' + event.streamid + '"]');
-    if (!video) {
-        video = document.getElementById(event.streamid);
-        if (video) {
-            video.parentNode.removeChild(video);
+    connection.onmessage = function(event) {
+        if(event.data.showMainVideo) {
+            // $('#main-video').show();
+            $('#screen-viewer').css({
+                top: $('#widget-container').offset().top,
+                left: $('#widget-container').offset().left,
+                width: $('#widget-container').width(),
+                height: $('#widget-container').height()
+            });
+            $('#screen-viewer').show();
             return;
         }
-    }
-    if (video) {
-        video.srcObject = null;
-        video.style.display = 'none';
-    }
-};
-$(".no-vc").click(function(){
-    alert("No vc");
-    var localStream = connection.attachStreams[0];
-    localStream.mute('video');
-})
-$(".vc").click(function(){
-    alert("Vc");
-    var localStream = connection.attachStreams[0];
-    localStream.unmute('video'); 
-    
-})
 
-
-connection.onmute = function(e) { 
-    e.mediaElement.setAttribute('poster', '//www.webrtc-experiment.com/images/muted.png'); 
-};
-
-
-var conversationPanel = document.getElementById('conversation-panel');
-
-function appendChatMessage(event, checkmark_id) {
-    var div = document.createElement('div');
-
-    div.className = 'message';
-
-    if (event.data) {
-        div.innerHTML = '<b>' + (event.extra.userFullName || event.userid) + ':</b><br>' + event.data.chatMessage;
-
-        if (event.data.checkmark_id) {
-            connection.send({
-                checkmark: 'received',
-                checkmark_id: event.data.checkmark_id
-            });
+        if(event.data.hideMainVideo) {
+            // $('#main-video').hide();
+            $('#screen-viewer').hide();
+            return;
         }
-    } else {
-        div.innerHTML = '<b>You:</b> <img class="checkmark" id="' + checkmark_id + '" title="Received" src="https://www.webrtc-experiment.com/images/checkmark.png"><br>' + event;
-        div.style.background = '#cbffcb';
-    }
 
-    conversationPanel.appendChild(div);
+        if(event.data.typing === true) {
+            $('#key-press').show().find('span').html(event.extra.userFullName + ' is typing');
+            return;
+        }
 
-    conversationPanel.scrollTop = conversationPanel.clientHeight;
-    conversationPanel.scrollTop = conversationPanel.scrollHeight - conversationPanel.scrollTop;
-}
+        if(event.data.typing === false) {
+            $('#key-press').hide().find('span').html('');
+            return;
+        }
 
-var keyPressTimer;
-var numberOfKeys = 0;
-$(document).ready(function(){
-$('#txt-chat-message').emojioneArea({
-    pickerPosition: "top",
-    filtersPosition: "bottom",
-    tones: false,
-    autocomplete: true,
-    inline: true,
-    hidePickerOnBlur: true,
-    hideSource: false,
-    events: {
-        focus: function() {
-            $('.emojionearea-category').unbind('click').bind('click', function() {
-                $('.emojionearea-button-close').click();
-            });
-        },
-        keyup: function(e) {
-            var chatMessage = $('.emojionearea-editor').html();
-            if (!chatMessage || !chatMessage.replace(/ /g, '').length) {
-                connection.send({
-                    typing: false
-                });
+        if (event.data.chatMessage) {
+            appendChatMessage(event);
+            return;
+        }
+
+        if (event.data.checkmark === 'received') {
+            var checkmarkElement = document.getElementById(event.data.checkmark_id);
+            if (checkmarkElement) {
+                checkmarkElement.style.display = 'inline';
             }
+            return;
+        }
 
+        if (event.data === 'plz-sync-points') {
+            designer.sync();
+            return;
+        }
 
-            clearTimeout(keyPressTimer);
-            numberOfKeys++;
+        designer.syncData(event.data);
+    };
 
-            if (numberOfKeys % 3 === 0) {
-                connection.send({
-                    typing: true
-                });
+    // extra code
+
+    connection.onstream = function(event) {
+        console.log(connection+' asdasdasd')
+        if (event.stream.isScreen && !event.stream.canvasStream) {
+            $('#screen-viewer').get(0).srcObject = event.stream;
+            $('#screen-viewer').hide();
+        }
+        else if (event.extra.roomOwner === true) {
+            var video = document.getElementById('main-video');
+            video.setAttribute('data-streamid', event.streamid);
+            // video.style.display = 'none';
+            if(event.type === 'local') {
+                video.muted = true;
+                video.volume = 0;
             }
-
-            keyPressTimer = setTimeout(function() {
-                connection.send({
-                    typing: false
-                });
-            }, 1200);
-        },
-        blur: function() {
-            // $('#btn-chat-message').click();
-            connection.send({
-                typing: false
-            });
+            video.srcObject = event.stream;
+            $('#main-video').show();
+        } else {
+            event.mediaElement.controls = false;
+            var otherVideos = document.querySelector('#other-videos');
+            otherVideos.appendChild(event.mediaElement);
         }
-    }
-});
-})
+        connection.onUserStatusChanged(event);
+    };
 
-
-window.onkeyup = function(e) {
-    var code = e.keyCode || e.which;
-    if (code == 13) {
-        $('#btn-chat-message').click();
-    }
-};
-
-document.getElementById('btn-chat-message').onclick = function() {
-    var chatMessage = $('.emojionearea-editor').html();
-    $('.emojionearea-editor').html('');
-
-    if (!chatMessage || !chatMessage.replace(/ /g, '').length) return;
-
-    var checkmark_id = connection.userid + connection.token();
-
-    appendChatMessage(chatMessage, checkmark_id);
-
-    connection.send({
-        chatMessage: chatMessage,
-        checkmark_id: checkmark_id
-    });
-
-    connection.send({
-        typing: false
-    });
-};
-
-var recentFile;
-document.getElementById('btn-attach-file').onclick = function() {
-    var file = new FileSelector();
-    file.selectSingleFile(function(file) {
-        recentFile = file;
-
-        if(connection.getAllParticipants().length >= 1) {
-            recentFile.userIndex = 0;
-            connection.send(file, connection.getAllParticipants()[recentFile.userIndex]);
+    connection.onstreamended = function(event) {
+        var video = document.querySelector('video[data-streamid="' + event.streamid + '"]');
+        if (!video) {
+            video = document.getElementById(event.streamid);
+            if (video) {
+                video.parentNode.removeChild(video);
+                return;
+            }
         }
-    });
-};
+        if (video) {
+            video.srcObject = null;
+            video.style.display = 'none';
+        }
+    };
+    $(".no-vc").click(function(){
+        alert("No vc");
+        var localStream = connection.attachStreams[0];
+        localStream.mute('video');
+    })
+    $(".vc").click(function(){
+        alert("Vc");
+        var localStream = connection.attachStreams[0];
+        localStream.unmute('video'); 
+        
+    })
 
-function getFileHTML(file) {
-    var url = file.url || URL.createObjectURL(file);
-    var attachment = '<a href="' + url + '" target="_blank" download="' + file.name + '">Download: <b>' + file.name + '</b></a>';
-    if (file.name.match(/\.jpg|\.png|\.jpeg|\.gif/gi)) {
-        attachment += '<br><img crossOrigin="anonymous" src="' + url + '">';
-    } else if (file.name.match(/\.wav|\.mp3/gi)) {
-        attachment += '<br><audio src="' + url + '" controls></audio>';
-    } else if (file.name.match(/\.pdf|\.js|\.txt|\.sh/gi)) {
-        attachment += '<iframe class="inline-iframe" src="' + url + '"></iframe></a>';
-    }
-    return attachment;
-}
 
-function getFullName(userid) {
-    var _userFullName = userid;
-    if (connection.peers[userid] && connection.peers[userid].extra.userFullName) {
-        _userFullName = connection.peers[userid].extra.userFullName;
-    }
-    return _userFullName;
-}
+    connection.onmute = function(e) { 
+        e.mediaElement.setAttribute('poster', '//www.webrtc-experiment.com/images/muted.png'); 
+    };
 
-connection.onFileEnd = function(file) {
+
+    var conversationPanel = document.getElementById('conversation-panel');
+
+    connection.onFileEnd = function(file) {
     var html = getFileHTML(file);
     var div = progressHelper[file.uuid].div;
 
@@ -1216,11 +1085,7 @@ connection.onFileStart = function(file) {
     conversationPanel.scrollTop = conversationPanel.scrollHeight - conversationPanel.scrollTop;
 };
 
-function updateLabel(progress, label) {
-    if (progress.position == -1) return;
-    var position = +progress.position.toFixed(2).split('.')[1] || 100;
-    label.innerHTML = position + '%';
-}
+
 
 
 designer.appendTo(document.getElementById('widget-container'), function() {
@@ -1248,6 +1113,8 @@ designer.appendTo(document.getElementById('widget-container'), function() {
             //     });
             // });
     // } else {
+// connection.dontAttachStream = true; 
+
         connection.join(roomid, function(isRoomJoined, roomid, error) {
             if (error) {
                 if (error === connection.errors.ROOM_NOT_AVAILABLE) {
@@ -1265,6 +1132,8 @@ designer.appendTo(document.getElementById('widget-container'), function() {
                         alert('Invalid password.');
                         return;
                     }
+// connection.dontAttachStream = true; 
+
                     connection.join(roomid, function(isRoomJoined, roomid, error) {
                         if(error) {
                             alert(error);
@@ -1281,6 +1150,154 @@ designer.appendTo(document.getElementById('widget-container'), function() {
         });
     // }
 });
+
+
+}
+
+function appendChatMessage(event, checkmark_id) {
+    var div = document.createElement('div');
+
+    div.className = 'message';
+
+    if (event.data) {
+        div.innerHTML = '<b>' + (event.extra.userFullName || event.userid) + ':</b><br>' + event.data.chatMessage;
+
+        if (event.data.checkmark_id) {
+            connection.send({
+                checkmark: 'received',
+                checkmark_id: event.data.checkmark_id
+            });
+        }
+    } else {
+        div.innerHTML = '<b>You:</b> <img class="checkmark" id="' + checkmark_id + '" title="Received" src="https://www.webrtc-experiment.com/images/checkmark.png"><br>' + event;
+        div.style.background = '#cbffcb';
+    }
+
+    conversationPanel.appendChild(div);
+
+    conversationPanel.scrollTop = conversationPanel.clientHeight;
+    conversationPanel.scrollTop = conversationPanel.scrollHeight - conversationPanel.scrollTop;
+}
+
+var keyPressTimer;
+var numberOfKeys = 0;
+$(document).ready(function(){
+    $('#txt-chat-message').emojioneArea({
+        pickerPosition: "top",
+        filtersPosition: "bottom",
+        tones: false,
+        autocomplete: true,
+        inline: true,
+        hidePickerOnBlur: true,
+        hideSource: false,
+        events: {
+            focus: function() {
+                $('.emojionearea-category').unbind('click').bind('click', function() {
+                    $('.emojionearea-button-close').click();
+                });
+            },
+            keyup: function(e) {
+                var chatMessage = $('.emojionearea-editor').html();
+                if (!chatMessage || !chatMessage.replace(/ /g, '').length) {
+                    connection.send({
+                        typing: false
+                    });
+                }
+
+
+                clearTimeout(keyPressTimer);
+                numberOfKeys++;
+
+                if (numberOfKeys % 3 === 0) {
+                    connection.send({
+                        typing: true
+                    });
+                }
+
+                keyPressTimer = setTimeout(function() {
+                    connection.send({
+                        typing: false
+                    });
+                }, 1200);
+            },
+            blur: function() {
+                // $('#btn-chat-message').click();
+                connection.send({
+                    typing: false
+                });
+            }
+        }
+    });
+})
+
+
+window.onkeyup = function(e) {
+    var code = e.keyCode || e.which;
+    if (code == 13) {
+        $('#btn-chat-message').click();
+    }
+};
+
+document.getElementById('btn-chat-message').onclick = function() {
+    var chatMessage = $('.emojionearea-editor').html();
+    $('.emojionearea-editor').html('');
+
+    if (!chatMessage || !chatMessage.replace(/ /g, '').length) return;
+
+    var checkmark_id = connection.userid + connection.token();
+
+    appendChatMessage(chatMessage, checkmark_id);
+
+    connection.send({
+        chatMessage: chatMessage,
+        checkmark_id: checkmark_id
+    });
+
+    connection.send({
+        typing: false
+    });
+};
+
+var recentFile;
+document.getElementById('btn-attach-file').onclick = function() {
+    var file = new FileSelector();
+    file.selectSingleFile(function(file) {
+        recentFile = file;
+
+        if(connection.getAllParticipants().length >= 1) {
+            recentFile.userIndex = 0;
+            connection.send(file, connection.getAllParticipants()[recentFile.userIndex]);
+        }
+    });
+};
+
+function getFileHTML(file) {
+    var url = file.url || URL.createObjectURL(file);
+    var attachment = '<a href="' + url + '" target="_blank" download="' + file.name + '">Download: <b>' + file.name + '</b></a>';
+    if (file.name.match(/\.jpg|\.png|\.jpeg|\.gif/gi)) {
+        attachment += '<br><img crossOrigin="anonymous" src="' + url + '">';
+    } else if (file.name.match(/\.wav|\.mp3/gi)) {
+        attachment += '<br><audio src="' + url + '" controls></audio>';
+    } else if (file.name.match(/\.pdf|\.js|\.txt|\.sh/gi)) {
+        attachment += '<iframe class="inline-iframe" src="' + url + '"></iframe></a>';
+    }
+    return attachment;
+}
+
+function getFullName(userid) {
+    var _userFullName = userid;
+    if (connection.peers[userid] && connection.peers[userid].extra.userFullName) {
+        _userFullName = connection.peers[userid].extra.userFullName;
+    }
+    return _userFullName;
+}
+
+
+function updateLabel(progress, label) {
+    if (progress.position == -1) return;
+    var position = +progress.position.toFixed(2).split('.')[1] || 100;
+    label.innerHTML = position + '%';
+}
 
 function addStreamStopListener(stream, callback) {
     stream.addEventListener('ended', function() {
