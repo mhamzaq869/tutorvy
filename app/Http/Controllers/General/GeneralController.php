@@ -16,6 +16,18 @@ use App\Models\Course;
 class GeneralController extends Controller
 {
 
+    public function home() {
+        // if(Auth::user()->role != null) {
+        //     if(Auth::user()->role != 2 && Auth::user()->role != 3) {
+        //         return redirect('/admin/dashboard');
+        //     }else{
+        //         return view('welcome');
+        //     }
+        // }else{
+        //     return view('welcome');
+        // }
+        return view('welcome');
+    }
 
     public function university(Request $request)
     {

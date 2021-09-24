@@ -42,30 +42,30 @@
                         <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
                             href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
                             All 
-                            <span class="counter-text bg-primary">9</span>
+                            <span class="counter-text bg-primary">{{count($all)}}</span>
                         </a>
                         <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
                             href="#nav-contact" role="tab" aria-controls="nav-contact"
                             aria-selected="false">
                             Pending 
-                            <span class="counter-text bg-warning">9</span>
+                            <span class="counter-text bg-warning"> {{count($pending)}} </span>
                         </a>
                         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
                             href="#nav-profile" role="tab" aria-controls="nav-profile"
                             aria-selected="false">
                             Confirmed
-                            <span class="counter-text bg-success">9</span>
+                            <span class="counter-text bg-success">{{count($confirmed)}}</span>
                         </a>
                       
                         <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about"
                             role="tab" aria-controls="nav-about" aria-selected="false">
                             Completed
-                            <span class="counter-text bg-info">9</span>
+                            <span class="counter-text bg-info">{{count($completed)}}</span>
                         </a>
                         <a class="nav-item nav-link" id="nav-cancel-tab" data-toggle="tab" href="#nav-cancel"
                             role="tab" aria-controls="nav-cancel" aria-selected="false">
                             Cancelled
-                            <span class="counter-text bg-danger">9</span>
+                            <span class="counter-text bg-danger"> {{count($cancelled)}} </span>
                         </a>
                     </div>
                 </nav>

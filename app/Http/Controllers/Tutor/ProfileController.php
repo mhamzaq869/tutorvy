@@ -74,7 +74,16 @@ class ProfileController extends Controller
         $action_perform = '<a href="'.URL::to('/') . '/admin/tutor/profile/'. $id .'"> '.$name.' </a> Update his Profile';
         $activity_logs = new GeneralController();
         $activity_logs->save_activity_logs("Profile Updated", "users.id", $id, $action_perform, $request->header('User-Agent'), $id);
-       
+
+        $profile = DB::table("sys_settings")->where('user_id',Auth::user()->id)->where("title","tutor_profile_completed")->first();
+
+        if(!$profile) {
+            DB::table("sys_settings")->insert([
+                "user_id" => Auth::user()->id, 
+                "title" => "tutor_profile_completed",
+            ]);
+        }
+
         return response()->json([
             "status_code" => 200,
             "success" => true,
@@ -205,18 +214,18 @@ class ProfileController extends Controller
         // $sender,$receiver,$slug,$type,$data,$title,$icon,$class,$desc
         $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
 
-        $reciever = User::where('role',1)->first();
-        $notification = new NotifyController();
-        $sender_id = Auth::user()->id;
-        $reciever_id = $reciever->id;
-        $slug = '-' ;
-        $type = 'User Verification';
-        $data = 'data';
-        $title = 'User Verfication';
-        $icon = 'fas fa-tag';
-        $class = 'btn-success';
-        $desc = $name . ' Submiited documents for verification.';
-        $notification->GeneralNotifi(Auth::user()->id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
+        // $reciever = User::where('role',1)->first();
+        // $notification = new NotifyController();
+        // $sender_id = Auth::user()->id;
+        // $reciever_id = $reciever->id;
+        // $slug = '-' ;
+        // $type = 'User Verification';
+        // $data = 'data';
+        // $title = 'User Verfication';
+        // $icon = 'fas fa-tag';
+        // $class = 'btn-success';
+        // $desc = $name . ' Submiited documents for verification.';
+        // $notification->GeneralNotifi(Auth::user()->id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
 
 
         // activity logs

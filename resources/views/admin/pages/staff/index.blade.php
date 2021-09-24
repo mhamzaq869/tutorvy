@@ -214,6 +214,9 @@
                                             <a type="button" onclick="editRole({{ $role->id }})">
                                                     <img src=" {{ asset('admin/assets/img/ico/edit-icon.png')}}" alt="edit-icon" class="ml-1">
                                                 </a>
+                                            <a href="{{url('admin/role-permission')}}/{{$role->id}}">
+                                                <img src=" {{ asset('admin/assets/images/ico/edit-icon.png')}}" alt="edit-icon" class="ml-1">
+                                            </a>
                                             <!-- <button class="btn btn-danger" onclick="delRole({{ $role->id }})"> Delete </button> -->
                                         </td>
                                     </tr>

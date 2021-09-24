@@ -755,7 +755,7 @@ td input{
                         <a href="#" class="callSet no-vc">
                            <img src="{{asset('assets/images/ico/no-vc.png')}}" title="With Video" alt="">
                         </a>
-                        <a href="#" class="callSet mk" id="mk">
+                        <a href="#" class="callSet mk" >
                             <img src="{{asset('assets/images/ico/mike.png')}}" title="Without Audio" alt="">
                         </a>
                         <a href="#" class="callSet no-mk">
@@ -799,11 +799,8 @@ td input{
         $(".no-vc").show();
         $("#callModal").modal("show");
         $("#join_now").attr("disabled","disabled" );
-      
-
-        })
+        });
     $(".no-mk").click(function(){
-       
         $(".no-mk").hide();
         $(".mk").show();
     });
@@ -823,8 +820,8 @@ td input{
        $(".no-vc").show();
    });
    $(".no-ph").click(function(){
-    $("#endCall").modal("show");
-    })
+        $("#endCall").modal("show");
+    });
     
 
    
@@ -877,11 +874,11 @@ connection.DetectRTC.load(function() {
                     connection.mediaConstraints.video = true;
                     connection.session.video = true;
                    // alert('attach true camera')
-                   $(".vc , .no-vc").css("display",'block');
+                   $(".vc , .no-vc").show();
 
                 }else{
                     // alert('attach Cam')
-                    $(".vc , .no-vc").css("display",'none');
+                    $(".vc , .no-vc").hide();
                 }
 
                 if (connection.DetectRTC.hasSpeakers === false) { // checking for "false"
