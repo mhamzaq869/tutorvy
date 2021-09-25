@@ -158,6 +158,9 @@
 
                                                             
                                                             <td style="text-align: center;padding-top:14px;">
+                                                                <a type="button" data-target="#reviewModal" class="cencel-btn"  data-toggle="modal">
+                                                                    Review
+                                                                </a>
                                                                 <span data-id="{{$class->booking->id}}" data-duration="{{$class->booking->duration}}" data-time="{{$class->booking->class_time}}"
                                                                     id="class_time_{{$class->booking->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success">{{$class->booking->class_date}} {{$class->booking->class_time}} </span>     
                                                                 <div id="join_class_{{$class->booking->id}}"></div>
@@ -229,7 +232,63 @@
         </div>
     </section>
 </div>
-
+  <!--Review Modal -->
+  <div class="modal " id="reviewModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content pt-4 pb-4">
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="iconss" style="text-align: center;">
+                                    <img src="../assets/images/ico/submit-test.png" width="60px">
+                                    <p
+                                        style="font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 500;margin-top: 10px;">
+                                        Review Class</p>
+                                    <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;"
+                                        class="ml-4 mr-4">
+                                        Send review for class with a short note about why are you reviewing this to this
+                                        class
+                                    </p>
+                                </div>
+                                <div class="ml-4 mr-4">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-12 text-center">
+                                                <p class="star-review">
+                                                    <a href="#">
+                                                        <i class="fa fa-star bigStar text-yellow "></i>
+                                                    </a>
+                                                    <a href="#">
+                                                        <i class="fa fa-star bigStar text-yellow"></i>
+                                                    </a>
+                                                    <a href="#">
+                                                        <i class="fa fa-star bigStar text-yellow"></i>
+                                                    </a>
+                                                    <a href="#">
+                                                        <i class="fa fa-star bigStar text-yellow"></i>
+                                                    </a>
+                                                    <a href="#">
+                                                        <i class="fa fa-star bigStar text-yellow"></i>
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <textarea class="form-control mt-3" rows="6" cols="50"
+                                            placeholder="Write reason"></textarea>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 mb-2" style="text-align: right;">
+                        <button type="button" class="schedule-btn" data-dismiss="modal"
+                            style="width: 130px;margin-right: 40px;">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 <script src="{{asset('/admin/assets/js/jquery.js')}}"></script>
