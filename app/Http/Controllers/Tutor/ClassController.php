@@ -17,7 +17,6 @@ class ClassController extends Controller
      */
 
     public function index(){
-        
         $classes = Classroom::with('booking')->get();
         $user = User::where('id',Auth::user()->id)->first();
 

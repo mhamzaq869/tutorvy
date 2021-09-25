@@ -158,12 +158,9 @@
 
                                                             
                                                             <td style="text-align: center;padding-top:14px;">
-                                                                <!--<a type="button" data-target="#callModal" class="schedule-btn"  data-toggle="modal">
-                                                                    Join Class
-                                                                </a>-->
-                                                                 <a href="{{route('student.join_class',[$class->classroom_id])}}"  class="schedule-btn">
-                                                                    Join Class
-                                                                </a>  
+                                                                <span data-id="{{$class->booking->id}}" data-duration="{{$class->booking->duration}}" data-time="{{$class->booking->class_time}}"
+                                                                    id="class_time_{{$class->booking->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success">{{$class->booking->class_date}} {{$class->booking->class_time}} </span>     
+                                                                <div id="join_class_{{$class->booking->id}}"></div>
                                                             </td> 
                                                         </tr>
                                                         @endif
@@ -234,33 +231,56 @@
 </div>
 
 @endsection
-@section('scripts')
-<!-- @include('js_files.room') -->
-<!-- <script>
-$(document).ready(function(){
-    $(".mk").hide();
-    $(".vc").hide();
-    $(".no-vc").show();
-})
-    $(".no-mk").click(function(){
-       
-        $(".no-mk").hide();
-        $(".mk").show();
+
+<script src="{{asset('/admin/assets/js/jquery.js')}}"></script>
+<script src="{{asset('/admin/assets/js/jquery-ui.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $( ".current_time" ).each(function() {
+
+            var booking_time = $( this ).text();
+            var attr_id = $(this).data('id');
+            var duration = $(this).data('duration');
+            var time = $(this).data('time');
+
+            let split_time = time.split(':');
+            let create_time = parseInt(split_time[0]) + parseInt(duration);
+
+            let actual_time  = create_time + ':' + split_time[1];
+
+            var time = moment(booking_time).format('MMM D, YYYY h:mm:ss a');
+
+            var countDownDate = new Date(time).getTime();
+            var x = setInterval(function() {
+
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                var total_time = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+                
+                $("#class_time_"+attr_id).html(total_time);
+
+                if (distance < 0) {
+                    clearInterval(x);
+
+                    let join_btn = `<a href="{{route('student.join_class',[$class->classroom_id])}}"  class="schedule-btn"> Join Class </a>`;
+                    
+                    if(time > actual_time) {
+                        $("#class_time_"+attr_id).text("Class Expired");
+                    }else{
+                        $("#join_class_"+attr_id).html(join_btn);
+                    }
+                    
+                }
+            }, 1000);
+
+        }); 
     });
-    $(".mk").click(function(){
-       
-        $(".no-mk").show();
-        $(".mk").hide();
-    });
-    $(".no-vc").click(function(){
-       
-       $(".no-vc").hide();
-       $(".vc").show();
-   });
-   $(".vc").click(function(){
-      
-       $(".vc").hide();
-       $(".no-vc").show();
-   });
-</script> -->
-@endsection
+
+</script>

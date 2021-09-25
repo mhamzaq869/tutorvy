@@ -120,7 +120,9 @@ class BookingController extends Controller
    
     public function bookingPayment(Request $request,$id){
 
+        
         $booking = Booking::where('id',$request->id)->first();
+        
         if(!$booking){
             \Session::put('error','Unable to process booking not available.');
             return Redirect::route('student.bookings'); 

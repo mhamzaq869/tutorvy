@@ -278,6 +278,11 @@ td input{
 @section('content')
  <!-- top Fixed navbar End -->
  <section>
+
+ <!--  -->
+    <input type="hidden" id="class_room_id" value="{{$class->id}}">
+    <input type="hidden" id="current_user_id" value="{{Auth::user()->id}}">
+
     <div class="content-wrapper " style="overflow: hidden;">
         <div class="container-fluid">
             <div class="row">
@@ -771,6 +776,7 @@ td input{
 @section('scripts')
 @include('js_files.whiteBoard')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.2.7/emojionearea.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
 <script>
     $(document).ready(function(){
@@ -780,6 +786,8 @@ td input{
         $(".no-vc").show();
         $("#callModal").modal("show");
         $("#join_now").attr("disabled","disabled" );
+
+        saveClassLogs();
 
     })
 
@@ -1513,6 +1521,35 @@ $('#btn-share-screen').click(function() {
         alert('getDisplayMedia API is not available in this browser.');
     }
 });
+
+
+// save class room logs
+function saveClassLogs() {
+
+    // used in class_
+    var current_date_time = moment(new Date()).format('YYYY-MM-DD h:m:s');
+    var class_room_id = $("#class_room_id").val();
+
+    var form_data = {
+        tutor_join_time : current_date_time, 
+        class_room_id : class_room_id,
+    }
+
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: "{{route('tutor.class.logs')}}",
+        type: "POST",
+        data:form_data,
+        success:function(response){
+            console.log(response);
+        },
+        error:function(e) {
+            console.log(e)
+        }
+    });
+}
 </script>
 
 
