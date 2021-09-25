@@ -247,6 +247,9 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
 
     Route::get('/classroom',[StudentClassController::class,'index'])->name('student.classroom');
     Route::get('/wallet',[StudentClassController::class,'payment'])->name('student.wallet');
+    
+    Route::post('/save-review',[StudentClassController::class,'saveReview'])->name('student.save.review');
+
     Route::get('/calendar',[CalendarController::class,'calendarStudent'])->name('student.calendar');
     // Route::get('/history',[HistoryController::class,'index'])->name('tutor.history');
     // Route::get('/payment',[PaymentController::class,'index'])->name('tutor.payment');
