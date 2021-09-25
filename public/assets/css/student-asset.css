@@ -1344,3 +1344,21 @@
         border-radius: 3px;
     }
     /* Call Video Student End*/
+
+    /*Review Stars*/
+.star-review a{
+    text-decoration:none;
+}
+.star-review a:hover{
+    text-decoration:none;
+}
+.bigStar{
+font-size:xx-large;
+-webkit-text-stroke-width: 1px;
+-webkit-text-stroke-color: #FAAF3A;
+}
+.text-yellow {
+    color: #FAAF3A;
+}
+
+    /*Review Stars End*/

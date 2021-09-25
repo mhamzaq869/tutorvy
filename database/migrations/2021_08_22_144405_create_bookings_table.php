@@ -14,6 +14,7 @@ class CreateBookingsTable extends Migration
     public function up()
     {
         Schema::create('bookings', function (Blueprint $table) {
+            
             $table->id();
             $table->integer('user_id')->nullable();
             $table->integer('booked_tutor')->nullable();
@@ -27,6 +28,8 @@ class CreateBookingsTable extends Migration
             $table->integer('duration')->nullable();
             $table->integer('status')->nullable()->comment('1-Pending , 2-Payment Pending , 3-Approved , 4-Cancelled by tutor , 5-Cancelled by student , 6-Delivered');
             $table->text('cancel_note')->nullable();
+            $table->text('student_review')->nullable();
+            $table->text('tutor_review')->nullable();
             $table->text('reschedule_note')->nullable();
             $table->double('price', 15, 2);
 
