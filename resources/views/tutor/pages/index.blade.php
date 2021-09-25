@@ -16,7 +16,6 @@
                 
                
                 <div class="col-md-8">
-                <button onclick="test()">click</button>
 
                     <div class="row infoCard">
                         <div class="col-md-12 mb-3 ">
@@ -422,21 +421,4 @@
     </section>
     <div class="line"></div>
 </div>
-
-
-<script>
-    function test() {
-        $.ajax({
-            headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-            url: "{{route('tutor.testing')}}",
-            type:"POST",
-            success:function(response){
-                console.log('request send');
-                console.log(response);
-            },
-        });
-    }
-</script>
 @endsection

@@ -196,6 +196,7 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
 
     Route::get('/call',[TutorSettingController::class,'call'])->name('tutor.call');
     Route::get('/class/{class_room_id}',[TutorSettingController::class,'start_class'])->name('tutor.start_class');
+    Route::post('/save-class-logs',[TutorSettingController::class,'saveClassLogs'])->name('tutor.class.logs');
 
     Route::get('/whiteBoard',[TutorSettingController::class,'whiteBoard'])->name('tutor.whiteBoard');
 
@@ -246,6 +247,9 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
 
     Route::get('/classroom',[StudentClassController::class,'index'])->name('student.classroom');
     Route::get('/wallet',[StudentClassController::class,'payment'])->name('student.wallet');
+    
+    Route::post('/save-review',[StudentClassController::class,'saveReview'])->name('student.save.review');
+
     Route::get('/calendar',[CalendarController::class,'calendarStudent'])->name('student.calendar');
     // Route::get('/history',[HistoryController::class,'index'])->name('tutor.history');
     // Route::get('/payment',[PaymentController::class,'index'])->name('tutor.payment');

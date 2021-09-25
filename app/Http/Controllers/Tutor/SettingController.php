@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Activitylogs;
 use App\Models\Classroom;
+use App\Models\ClassroomLogs;
 use App\Models\Admin\tktCat;
 use App\Models\Admin\supportTkts;
 use App\Models\User;
@@ -87,6 +88,21 @@ class SettingController extends Controller
         $user = User::where('id',Auth::user()->id)->first();
 
         return view('tutor.pages.classroom.classroom',compact('class','user'));
+
+    }
+
+    public function saveClassLogs(Request $request) {
+
+        ClassroomLogs::create([
+            "class_room_id" => $request->class_room_id, 
+            "tutor_join_time" => $request->tutor_join_time,
+        ]);
+
+        return response()->json([
+            "message" => "Classroom logs saved",
+            "status_code" => 200,
+            "success" => true,
+        ]);
 
     }
 

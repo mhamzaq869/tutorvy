@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Booking;
 use App\Models\General\Teach;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
