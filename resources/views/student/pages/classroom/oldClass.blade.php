@@ -283,16 +283,6 @@ td input{
 .w-20{
     width:20px;
 }
-.mk,
-.vc{
-    display:none;
-}
-.tech_weck-none{
-    display:none !important;
-}
-.w-22{
-    width:22%;
-}
 </style>
 @section('content')
  <!-- top Fixed navbar End -->
@@ -306,7 +296,7 @@ td input{
                     </div>
                 </div>
             </div>
-            <div class="row mb-5 tech_weck tech_weck-none">
+            <div class="row mb-5 tech_weck">
                 <div class="col-md-9 card"> 
                     <div class="row">
                         <div class="col-md-12 mt-3">
@@ -714,18 +704,24 @@ td input{
     </div>
 </section>
 <!-- End Call Modal -->
-    <div class="modal fade " id="endCall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade custom_modal" id="endCall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Do you want to end the call?</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body text-center ">
-                    <button type="button" class="btn-general " id="endCallYes">End Call</button>
-                    <button type="button" class="btn-outline-general " data-dismiss="modal"> Not Yet </button>
+
+                <div class="modal-body bg-custom text-center p-5">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="p-2"> <img src="{{asset('assets/images/logo-footer.png')}}" alt="">
+                            </h1>
+                            <h3 class="mb-4 p-2"> Are you a</h3>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="bg-btn-light">
+                                <a type="button" id="rescue" class="btn  modal-btn animate__animated">Re-schedule</a>
+                                <a type="button" id="ending"  class="btn  modal-btn animate__animated">End Call</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- <div class="modal-footer">
                 </div> -->
@@ -734,96 +730,46 @@ td input{
     </div>
  
  
-<!--Call Modal -->
-<div class="modal fade " id="callModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" >
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body bg-black" >
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <img src="{{asset($user->picture)}}" class="profile-img pg" alt="">
-                        </div>
-                        <div class="col-md-12 text-center mt-3 ">
+<!-- Modal -->
+ <div class="modal" id="callModal" tabindex="-1" role="dialog"
+    aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <!-- <div class="modal-header">
+                <h5 class="modal-title" id="callModalTitle">Choose Features</h5>
+                <button type="button" class="close" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div> -->
+            <div class="modal-body bg-black" >
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <img src="{{asset($user->picture)}}" class="profile-img pg" alt="">
+                    </div>
+                    <div class="col-md-12 text-center mt-3 ">
 
-                            <a href="#" class="callSet vc">
-                            <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
-                            </a>
-                            <a href="#" class="callSet no-vc">
-                            <img src="{{asset('assets/images/ico/no-vc.png')}}" title="With Video" alt="">
-                            </a>
-                            <a href="#" class="callSet mk" >
-                                <img src="{{asset('assets/images/ico/mike.png')}}" title="Without Audio" alt="">
-                            </a>
-                            <a href="#" class="callSet no-mk">
-                                <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
-                            </a>
-                            <a type="button" role="button" id="join_now"  class="btn btn-success ml-2">
-                                Join Class
-                            </a>
-                        </div>
+                        <a href="#" class="callSet vc">
+                           <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
+                        </a>
+                        <a href="#" class="callSet no-vc">
+                           <img src="{{asset('assets/images/ico/no-vc.png')}}" title="With Video" alt="">
+                        </a>
+                        <a href="#" class="callSet mk" >
+                            <img src="{{asset('assets/images/ico/mike.png')}}" title="Without Audio" alt="">
+                        </a>
+                        <a href="#" class="callSet no-mk">
+                            <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
+                        </a>
+                        <a type="button" role="button" id="join_now"  class="btn btn-success ml-2">
+                            Join Class
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-<!--Review Modal -->
-    <div class="modal fade " id="reviewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body text-center ">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="iconss" style="text-align: center;">
-                                <img src="{{asset('assets/images/ico/submit-test.png')}}" width="60px">
-                                <p
-                                    style="font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 500;margin-top: 10px;">
-                                    Review Class</p>
-                                <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;"
-                                    class="ml-4 mr-4">
-                                    Send review for class with a short note about why are you reviewing this to this
-                                    class
-                                </p>
-                            </div>
-                            <div class="ml-4 mr-4">
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-12 text-center">
-                                            <p class="star-review">
-                                                <a href="#">
-                                                    <i class="fa fa-star bigStar text-yellow "></i>
-                                                </a>
-                                                <a href="#">
-                                                    <i class="fa fa-star bigStar text-yellow"></i>
-                                                </a>
-                                                <a href="#">
-                                                    <i class="fa fa-star bigStar text-yellow"></i>
-                                                </a>
-                                                <a href="#">
-                                                    <i class="fa fa-star bigStar text-yellow"></i>
-                                                </a>
-                                                <a href="#">
-                                                    <i class="fa fa-star bigStar text-yellow"></i>
-                                                </a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <textarea class="form-control mt-3" rows="6" cols="50"
-                                        placeholder="Write reason"></textarea>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-md-12 p-0 text-right">
-                            <button type="button" class="schedule-btn" data-dismiss="modal"
-                            style="width: 130px;margin-right: 40px;">Send</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
- 
+</div>
 @endsection
 @section('scripts')
 @include('js_files.whiteBoard')
@@ -845,11 +791,12 @@ td input{
 
 <script>
     // var timerInstance = new easytimer.Timer();
-
     $(document).ready(function(){
         
-        // $(".tech_weck").hide();
-     
+        $(".tech_weck").hide();
+        $(".mk").hide();
+        $(".vc").hide();
+        $(".no-vc").show();
         $("#callModal").modal("show");
         $("#join_now").attr("disabled","disabled" );
         });
@@ -875,11 +822,7 @@ td input{
    $(".no-ph").click(function(){
         $("#endCall").modal("show");
     });
-    $("#endCallYes").click(function(){
-        $("#reviewModal").modal("show");
-        $("#endCall").modal("hide");
-
-    })
+    
 
    
 </script>
@@ -907,16 +850,16 @@ connection.socketMessageEvent = 'canvas-dashboard-demo';
 //     data: true
 
 // };
-            connection.DetectRTC.load(function() {
+connection.DetectRTC.load(function() {
                 if (connection.DetectRTC.hasMicrophone === true) {
                     // enable microphone
                     connection.mediaConstraints.audio = true;
                     connection.session.audio = true;
                     // alert('attach true microphone')
-                    // $(".callSet").show();
+                    $(".callSet").show();
                      $("#join_now").removeAttr("disabled","disabled" );
                     $("#join_now").click(function(){
-                        $(".tech_weck").removeClass("tech_weck-none");
+                        $(".tech_weck").show();
                         $("#callModal").modal("hide");
                         joinClass();
                     })
@@ -931,7 +874,7 @@ connection.socketMessageEvent = 'canvas-dashboard-demo';
                     connection.mediaConstraints.video = true;
                     connection.session.video = true;
                    // alert('attach true camera')
-                //    $(".vc , .no-vc").show();
+                   $(".vc , .no-vc").show();
 
                 }else{
                     // alert('attach Cam')

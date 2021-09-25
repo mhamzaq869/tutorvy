@@ -272,6 +272,19 @@ td input{
     height:400px !important;
 }
 
+.w-20{
+    width:20px;
+}
+.mk,
+.vc{
+    display:none;
+}
+.tech_weck-none{
+    display:none !important;
+}
+.w-22{
+    width:22%;
+}
 
 
 </style>
@@ -287,7 +300,7 @@ td input{
                     </div>
                 </div>
             </div>
-            <div class="row mb-5 tech_weck">
+            <div class="row mb-5 tech_weck tech_weck-none">
                 <div class="col-md-9 card"> 
                     <div class="row">
                         <div class="col-md-12 mt-3">
@@ -693,38 +706,33 @@ td input{
 </section>
 
  <!-- End Call Modal -->
- <div class="modal fade custom_modal" id="endCall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+ <!-- <div class="modal fade custom_modal" id="endCall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
 
-                <div class="modal-body bg-custom text-center p-5">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="p-2"> <img src="{{asset('assets/images/logo-footer.png')}}" alt="">
-                            </h1>
-                            <h3 class="mb-4 p-2"> Are you a</h3>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="bg-btn-light">
-                                <a type="button" id="rescue" class="btn  modal-btn animate__animated">Re-schedule</a>
-                                <a type="button" id="ending"  class="btn  modal-btn animate__animated">End Call</a>
-
-                            </div>
+            <div class="modal-body bg-custom text-center p-5">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="p-2"> <img src="{{asset('assets/images/logo-footer.png')}}" alt="">
+                        </h1>
+                        <h3 class="mb-4 p-2"> Are you a</h3>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="bg-btn-light">
+                            <a type="button" id="rescue" class="btn  modal-btn animate__animated">Re-schedule</a>
+                            <a type="button" id="ending"  class="btn  modal-btn animate__animated">End Call</a>
                         </div>
                     </div>
-
-
-
                 </div>
-                <!-- <div class="modal-footer">
-
-                </div> -->
             </div>
         </div>
     </div>
+</div> -->
  
- <!-- Modal -->
- <div class="modal" id="callModal" tabindex="-1" role="dialog"
+ 
+    <!-- Modal -->
+ 
+<div class="modal" id="callModal" tabindex="-1" role="dialog"
     aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -767,6 +775,25 @@ td input{
         </div>
     </div>
 </div>
+
+<!-- End Call Modal -->
+<div class="modal fade " id="endCall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Do you want to end the call?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center ">
+                    <button type="button" class="btn-general " id="endCallYes">End Call</button>
+                    <button type="button" class="btn-outline-general " data-dismiss="modal"> Not Yet </button>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
 @endsection
 @section('scripts')
 @include('js_files.whiteBoard')
@@ -774,7 +801,7 @@ td input{
 
 <script>
     $(document).ready(function(){
-        $(".tech_weck").hide();
+        // $(".tech_weck").hide();
         $(".mk").hide();
         $(".vc").hide();
         $(".no-vc").show();
@@ -808,6 +835,9 @@ td input{
        $(".vc").hide();
        $(".no-vc").show();
    });
+   $(".no-ph").click(function(){
+        $("#endCall").modal("show");
+    });
      /** Javascript Timer */
      var timer = new Timer();
         timer.start({countdown: true, startValues: {seconds: 30}});
@@ -866,30 +896,30 @@ connection.DetectRTC.load(function() {
                     connection.mediaConstraints.audio = true;
                     connection.session.audio = true;
                     // alert('attach true microphone')
-                    $(".callSet").show();
+                    // $(".callSet").show();
                      $("#join_now").removeAttr("disabled","disabled" );
-                    $("#join_now").click(function(){
-                        $(".tech_weck").show();
-                        $("#callModal").modal("hide");
-                        joinClass();
-                    })
+                        $("#join_now").click(function(){
+                            $(".tech_weck").removeClass("tech_weck-none");
+                            $("#callModal").modal("hide");
+                            joinClass();
+                        })
                 }else{
                     toastr.warning( "Audio Device is Mendatory ");
-                    $(".mk , .no-mk").hide();
+                    // $(".mk , .no-mk").hide();
                 }
 
                 if (connection.DetectRTC.hasWebcam === true) {
                     // enable camera
                     connection.mediaConstraints.video = true;
                     connection.session.video = true;
-                    // alert('attach true camera')
-                    $(".vc , .no-vc").css("display",'block');
+                    alert('attach true camera')
+                    // $(".vc , .no-vc").css("display",'block');
 
 
                 }else{
-                    $(".vc , .no-vc").css("display",'none');
+                    // $(".vc , .no-vc").css("display",'none');
 
-                    // alert('attach Cam')
+                    alert('attach Cam')
                 }
 
                 if (connection.DetectRTC.hasSpeakers === false) { // checking for "false"

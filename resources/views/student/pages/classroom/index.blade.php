@@ -233,7 +233,7 @@
     </section>
 </div>
   <!--Review Modal -->
-  <div class="modal " id="reviewModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal " id="reviewModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content pt-4 pb-4">
                 <div class="modal-body">

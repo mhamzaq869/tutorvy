@@ -122,6 +122,9 @@
         });
       
     $(document).ready(function(){
+        
+        $(".mk").hide();
+        $(".vc").hide();
         $(".dropify").dropify();
         $('.js-multiSelect').select2();
         $('.accSelect2').select2();
