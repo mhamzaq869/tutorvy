@@ -26,7 +26,7 @@
                                     {{$booking->subject->name}} Class
                                 </p>
                                 <p style="text-align: right;" class="col-md-6 col-xs-12 class-btn-center">
-                                    <button type="button" data-toggle="modal" data-target="#exampleModalCenter"
+                                        <button type="button" data-toggle="modal" data-target="#exampleModalCenter"
                                         class="cencel-btn mr-2" style="font-size: 12px;width: 150px;"> Cancel
                                         Bookings</button>
                                         <button type="button" data-toggle="modal" data-target="#exampleModalCente"
@@ -37,7 +37,7 @@
                                             class="schedule-btn" style="font-size: 12px;width: 150px;"> Approve
                                             class</button>
                                         @endif
-                                </p>
+                                    </p>
                             </div>
                             <card class="body">
                                 <div class="container-fluid">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\General\GeneralController;
+use App\Http\Controllers\General\NotifyController;
 use App\Models\Booking;
 use App\Models\Classroom;
 use App\Models\User;
@@ -110,6 +111,27 @@ class BookingController extends Controller
         $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> request for book a class of '.$subject_name ;
         $activity_logs = new GeneralController();
         $activity_logs->save_activity_logs("Class Booking", "bookings.id", $booking->id, $action_perform, $request->header('User-Agent'), $id);
+        $reciever_ids = [];
+
+        $reciever = User::where('role',1)->first();
+        array_push($reciever_ids , $reciever->id);
+        array_push($reciever_ids , $request->tutor_id);
+        
+        for($i =0; $i < count($reciever_ids); $i++) {
+            $notification = new NotifyController();
+            $sender_id = Auth::user()->id;
+            $reciever_id = $reciever_ids[$i];
+            $slug = '-' ;
+            $type = 'class_book';
+            $data =  $name . ' Book a Class';
+            $title = 'Class Booking';
+            $icon = 'fas fa-tag';
+            $class = 'btn-success';
+            $desc = $name . ' Book a Class';
+            $notification->GeneralNotifi(Auth::user()->id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
+        }
+
+
 
         return response()->json([
             'status'=>200,
