@@ -126,8 +126,6 @@ class RegisterController extends Controller
     {
         // Get a validator for an incoming registration request
         // from Tutor/Student Registor Form .
-        // dd($request->all());
-        // return $request;
 
         $account_id = mt_rand(100000,999999); 
 
