@@ -167,6 +167,51 @@ class LoginController extends Controller
         }
     }
 
+
+    public function redirectFacebook($id)
+    {
+        Session::put('c_id',$id);
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function handleFacebookCallback()
+    {
+        $c_id = Session::get('c_id');
+        
+        $user = Socialite::driver('facebook')->user();
+        $user->user['provider'] = 'facebook';
+        
+        $data = $this->_registerOrLogin($user->user,$c_id);
+        
+        if($data == false || $data == ''){
+            
+            if($c_id == 2) {
+                return redirect()->route('tutor.register')->with('error','Unable to login with this email.');
+            }else if($c_id == 3) {
+                return redirect()->route('student.register')->with('error','Unable to login with this email.');
+            }else if($c_id == 0) {
+                return redirect()->route('login')->with('error','Facebook account is not attached with any account.');
+            }else{
+                return redirect()->to('/');
+            }
+            // return redirect()->back()->with('error','Unable to login with this email.');
+        }
+        Auth::login($data);
+
+        if($data->role == 2){
+            return redirect()->route('tutor.dashboard');
+        }
+
+        if($data->role == 3){
+            return redirect()->route('student.dashboard');
+        }
+
+        if(!$data->role){
+            return redirect('role');
+        }
+    }
+
+    
      /*
     *  Register User if not exist in db and if exist will login
     *  and redirect to dashboard

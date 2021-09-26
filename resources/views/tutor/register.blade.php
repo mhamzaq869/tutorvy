@@ -406,8 +406,10 @@
                                                                 </a>
                                                             </div>
                                                             <div class="facebook">
-                                                                <img class="mr-3" src="{{asset('assets/images/ico/facebook(1).png')}}" alt="facebook">
-                                                                Continue with Facebook
+                                                                <a href="{{route('social.facebook',[2])}}">
+                                                                    <img class="mr-3" src="{{asset('assets/images/ico/facebook(1).png')}}" alt="facebook">
+                                                                    Continue with Facebook
+                                                                </a>
                                                             </div>
                                                             <div class="Apple">
                                                                 <img class="mr-3" src="{{asset('assets/images/ico/apple.png')}}" alt="apple">

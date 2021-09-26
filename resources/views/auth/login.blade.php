@@ -187,8 +187,11 @@
                                 </a>
                             </div>
                             <div class="facebook">
+                                <a href="{{route('social.facebook',[0])}}">
+                            
                                 <img class="mr-3" src="../assets/images/ico/facebook(1).png" alt="facebook">
                                 Continue with Facebook
+                                </a>
                             </div>
                             <div class="Apple">
                                 <img class="mr-3" src="../assets/images/ico/apple.png" alt="apple">
