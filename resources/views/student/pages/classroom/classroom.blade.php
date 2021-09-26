@@ -82,10 +82,10 @@
 #main-video {
     width: 100%;
     margin-top: -9px;
-    border-bottom: 1px solid #121010;
+    border: 1px solid #121010;
     display: none;
-    padding-bottom: 1px;
-    display: none;
+    padding: 1px;
+    border-radius: 3px;
 }
 
 hr {
@@ -669,7 +669,7 @@ td input{
                         <div class="bg-dark w-100 cust_vid text-center">
                                 <img src="{{asset('assets/images/logo-footer.png')}}" alt="">
                         </div>
-                        <video id="main-video"  playsinline autoplay></video>
+                        <video id="main-video" class="w-100 m-0" playsinline autoplay></video>
                         <div id="other-videos" class="w-100 m-0"></div>
                         <div class="col-md-12 mt-2 vid-location text-center">
                             <a href="#" class="callSet vc">
@@ -913,29 +913,44 @@ connection.socketMessageEvent = 'canvas-dashboard-demo';
                     connection.mediaConstraints.audio = true;
                     connection.session.audio = true;
                     // alert('attach true microphone')
-                    // $(".callSet").show();
+                    $(".no-mk").show();
                      $("#join_now").removeAttr("disabled","disabled" );
                     $("#join_now").click(function(){
                         $(".tech_weck").removeClass("tech_weck-none");
                         $("#callModal").modal("hide");
                         joinClass();
+                         /** Javascript Timer */
+                         var timer = new Timer();
+                                    timer.start({countdown: true, startValues: {seconds: 30}});
+
+                                    $('#countdownExample .values').html(timer.getTimeValues().toString());
+
+                                    timer.addEventListener('secondsUpdated', function (e) {
+                                        $('#countdownExample .values').html(timer.getTimeValues().toString());
+                                    });
+
+                                    timer.addEventListener('targetAchieved', function (e) {
+                                        $('#countdownExample .values').html('Class Time has Ended!!');
+                                    });
+                                /* Javascript Timer ENd */
+
                     })
 
                 }else{
                     toastr.warning( "Audio Device is Mendatory ");
-                    $(".mk , .no-mk").hide();
+                    $(".no-mk").hide();
                 }
 
                 if (connection.DetectRTC.hasWebcam === true) {
                     // enable camera
                     connection.mediaConstraints.video = true;
                     connection.session.video = true;
-                   // alert('attach true camera')
-                //    $(".vc , .no-vc").show();
+                   alert('attach true camera')
+                   $(".no-vc").show();
 
                 }else{
                     // alert('attach Cam')
-                    $(".vc , .no-vc").hide();
+                    $(".no-vc").hide();
                 }
 
                 if (connection.DetectRTC.hasSpeakers === false) { // checking for "false"
@@ -1145,6 +1160,17 @@ function joinClass(){
         alert("Vc");
         var localStream = connection.attachStreams[0];
         localStream.unmute('video'); 
+        
+    })
+    $(".no-mk").click(function(){
+        alert("No mk");
+        var localStream = connection.attachStreams[0];
+        localStream.mute('audio');
+    })
+    $(".mk").click(function(){
+        alert("mk");
+        var localStream = connection.attachStreams[0];
+        localStream.unmute('audio'); 
         
     })
 

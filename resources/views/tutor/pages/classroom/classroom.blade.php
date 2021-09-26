@@ -81,10 +81,10 @@
 #main-video {
     width: 100%;
     margin-top: -9px;
-    border-bottom: 1px solid #121010;
+    border: 1px solid #121010;
+    border-radius:3px;
     display: none;
-    padding-bottom: 1px;
-    display: none;
+    padding: 1px;
 }
 
 hr {
@@ -286,7 +286,12 @@ td input{
     width:22%;
 }
 
-
+#countdownExample{
+    font-family:'Orbitron';
+}
+.h-35{
+    height:35px;
+}
 </style>
 @section('content')
  <!-- top Fixed navbar End -->
@@ -667,7 +672,7 @@ td input{
                     <div class="mt-5">
                         <video id="main-video"  playsinline autoplay></video>
                         <div class="col-md-12 mt-2 mb-2 vid-location text-center">
-                            <a href="#" class="callSet vc">
+                            <!-- <a href="#" class="callSet vc">
                                 <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
                             </a>
                             <a href="#" class="callSet no-vc">
@@ -678,10 +683,11 @@ td input{
                             </a>
                             <a href="#" class="callSet no-mk">
                                 <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
-                            </a>
-                            <a href="#" class="callSet no-ph">
+                            </a> -->
+                            <!-- <a href="#" class="callSet no-ph">
                                 <img src="{{asset('assets/images/ico/no-phone.png')}}" title="End Call" alt="">
-                            </a>
+                            </a> -->
+                            <button class="btn-danger btn h-35 w-100 pb-0 pt-0 no-ph">End Call</button>
                         </div>
                         <div id="other-videos"></div>
                         <hr>
@@ -759,7 +765,7 @@ td input{
                     </div>
                     <div class="col-md-12 text-center mt-3">
 
-                        <a href="#" class="callSet vc">
+                        <!-- <a href="#" class="callSet vc">
                            <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
                         </a>
                         <a href="#" class="callSet no-vc ">
@@ -770,7 +776,7 @@ td input{
                         </a>
                         <a href="#" class="callSet no-mk">
                             <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
-                        </a>
+                        </a> -->
                         <a type="button" role="button" id="join_now"  class="btn btn-success ml-2">
                             Start Class
                         </a>
@@ -810,7 +816,6 @@ td input{
         // $(".tech_weck").hide();
         $(".mk").hide();
         $(".vc").hide();
-        $(".no-vc").show();
         $("#callModal").modal("show");
         $("#join_now").attr("disabled","disabled" );
 
@@ -846,20 +851,7 @@ td input{
    $(".no-ph").click(function(){
         $("#endCall").modal("show");
     });
-     /** Javascript Timer */
-     var timer = new Timer();
-        timer.start({countdown: true, startValues: {seconds: 30}});
-
-        $('#countdownExample .values').html(timer.getTimeValues().toString());
-
-        timer.addEventListener('secondsUpdated', function (e) {
-            $('#countdownExample .values').html(timer.getTimeValues().toString());
-        });
-
-        timer.addEventListener('targetAchieved', function (e) {
-            $('#countdownExample .values').html('Class Time has Ended!!');
-        });
-    /* Javascript Timer ENd */
+    
 </script>
 
 
@@ -903,17 +895,31 @@ connection.DetectRTC.load(function() {
                     // enable microphone
                     connection.mediaConstraints.audio = true;
                     connection.session.audio = true;
-                    // alert('attach true microphone')
-                    // $(".callSet").show();
+                    alert('attach true microphone')
+                    $(".no-mk").show();
                      $("#join_now").removeAttr("disabled","disabled" );
                         $("#join_now").click(function(){
                             $(".tech_weck").removeClass("tech_weck-none");
                             $("#callModal").modal("hide");
                             joinClass();
+                             /** Javascript Timer */
+                            var timer = new Timer();
+                                timer.start({countdown: true, startValues: {seconds: 30}});
+
+                                $('#countdownExample .values').html(timer.getTimeValues().toString());
+
+                                timer.addEventListener('secondsUpdated', function (e) {
+                                    $('#countdownExample .values').html(timer.getTimeValues().toString());
+                                });
+
+                                timer.addEventListener('targetAchieved', function (e) {
+                                    $('#countdownExample .values').html('Class Time has Ended!!');
+                                });
+                            /* Javascript Timer ENd */
                         })
                 }else{
                     toastr.warning( "Audio Device is Mendatory ");
-                    // $(".mk , .no-mk").hide();
+                    $(".no-mk").hide();
                 }
 
                 if (connection.DetectRTC.hasWebcam === true) {
@@ -921,11 +927,11 @@ connection.DetectRTC.load(function() {
                     connection.mediaConstraints.video = true;
                     connection.session.video = true;
                     alert('attach true camera')
-                    // $(".vc , .no-vc").css("display",'block');
+                    $(".no-vc").show();
 
 
                 }else{
-                    // $(".vc , .no-vc").css("display",'none');
+                    $(".no-vc").hide();
 
                     alert('attach Cam')
                 }
@@ -1150,7 +1156,17 @@ function joinClass(){
                 video.style.display = 'none';
             }
         };
-
+        $(".no-vc").click(function(){
+            alert("No vc");
+            var localStream = connection.attachStreams[0];
+            localStream.mute('video');
+        })
+        $(".vc").click(function(){
+            alert("Vc");
+            var localStream = connection.attachStreams[0];
+            localStream.unmute('video'); 
+            
+        })
         var conversationPanel = document.getElementById('conversation-panel');
         var keyPressTimer;
         var numberOfKeys = 0;
