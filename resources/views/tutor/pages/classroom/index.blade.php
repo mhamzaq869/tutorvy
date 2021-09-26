@@ -246,7 +246,7 @@
 
                 if (distance < 0) {
                     clearInterval(x);
-                    let join_btn = `<a href="{{route('tutor.start_class',[$class->classroom_id])}}"  class="schedule-btn"> Start Call </a>`;
+                    let join_btn = `<a href="{{url('tutor/class')}}/`+attr_id+`"  class="schedule-btn"> Start Call </a>`;
                     // if(time > actual_time) {
                     //     $("#class_time_"+attr_id).text("Class Expired");
                     // }else{

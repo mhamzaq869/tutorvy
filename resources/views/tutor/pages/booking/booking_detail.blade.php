@@ -161,11 +161,9 @@
                                         <button type="button" data-toggle="modal" data-target="#exampleModalCente"
                                         class="schedule-btn" style="font-size: 12px;width: 150px;"> Re-schedule
                                         class</button>
-                                        @if($booking->status == 0)
                                             <button type="button" data-toggle="modal" data-target="#approveModel"
                                             class="schedule-btn" style="font-size: 12px;width: 150px;"> Approve
                                             class</button>
-                                        @endif
                                 </p>
                             </div>
                             <card class="body">
