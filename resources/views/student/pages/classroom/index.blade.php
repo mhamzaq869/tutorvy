@@ -183,6 +183,8 @@
                                                                         Review
                                                                     </a>
                                                                 @endif
+                                                                <!-- <a href="{{route('student.join_class',[$class->classroom_id])}}"  class="schedule-btn"> Join Class </a> -->
+
                                                                 <span data-id="{{$class->booking->id}}" data-duration="{{$class->booking->duration}}" data-time="{{$class->booking->class_time}}"
                                                                     id="class_time_{{$class->booking->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success">{{$class->booking->class_date}} {{$class->booking->class_time}} </span>     
                                                                 <div id="join_class_{{$class->booking->id}}"></div>

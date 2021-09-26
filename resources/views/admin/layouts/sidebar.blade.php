@@ -1,4 +1,4 @@
-<aside class="side-nav token_wrapper" id="show-side-navigation1" data-id="{{Auth::user()->is_token_updated}}">
+<aside class="side-nav token_wrapper">
     <nav id="sidebar" class="bg-dark1 ">
         <div class="sidebar-header">
             <div class="logoImage">

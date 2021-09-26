@@ -294,6 +294,10 @@ Auth::routes(['verify' => true]);
 //Google
 Route::get('/google/redirect/{c_id?}', [LoginController::class,'redirectGoogle'])->name('social.google');
 Route::get('/login/google/callback', [LoginController::class,'handleGoogleCallback']);
+// Facebook
+
+Route::get('/facebook/redirect/{c_id?}', [LoginController::class,'redirectFacebook'])->name('social.facebook');
+Route::get('/login/facebook/callback', [LoginController::class,'handleFacebookCallback']);
 
 Route::get('/student/register',[RegisterController::class,'showStudentRegistrationForm'])->name('student.register')->middleware('guest');
 Route::post('/register',[RegisterController::class,'register'])->name('tutor.register')->middleware('guest');
