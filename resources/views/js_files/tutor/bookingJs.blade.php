@@ -16,7 +16,7 @@ function acceptBookingRequest(){
                     timer: 2500
                 });
 
-                $('#approveModel').modal('hide');
+                // $('#approveModel').modal('hide');
                 setInterval(function(){
                     window.location.href = "{{ route('tutor.booking') }}";
                 }, 1500);

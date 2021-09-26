@@ -99,7 +99,7 @@
                                         <img src="{{asset($user->picture)}}" alt="boy" class="profile-img" style="width: 40px;">
 
                                     @else
-                                        <img src="../assets/images/logo/boy.jpg" alt="boy" style="width: 40px;">
+                                        <img src="../assets/images/ico/Square-white.jpg" alt="boy" style="width: 40px;">
                                     @endif
                                 </p>
                                 <p class="ml-3 mt-5 Welcome-text"> {{$user->first_name ?? ''}} {{$user->last_name ?? ''}}</p>
