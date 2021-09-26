@@ -1627,25 +1627,25 @@ function removeFields(id) {
 function removeFields2(id) {
     $('#record2_' + id + '').empty();
 }
-$("#password").focusout(function() {
-    var decimal = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,150}$/;
-    var ter = $(this).val();
+// $("#password").focusout(function() {
+//     var decimal = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,150}$/;
+//     var ter = $(this).val();
 
-    if (ter.match(decimal)) {
-        $("#password_error").css("display", "none");
-        $("#passTech").css("display", "block");
-        $("#password").removeClass("is-invalid");
-        $("#password").addClass("valid");
+//     if (ter.match(decimal)) {
+//         $("#password_error").css("display", "none");
+//         $("#passTech").css("display", "block");
+//         $("#password").removeClass("is-invalid");
+//         $("#password").addClass("valid");
+//         return true;
+//     } else {
+//         // alert('Wrong...!')
+//         $("#password_error").css("display", "block");
+//         $("#passTech").css("display", "none");
+//         $("#password").removeClass("valid");
+//         $("#password").addClass("is-invalid");
 
-    } else {
-        // alert('Wrong...!')
-        $("#password_error").css("display", "block");
-        $("#passTech").css("display", "none");
-        $("#password").removeClass("valid");
-        $("#password").addClass("is-invalid");
+//         $("#password_error").text("Field should have at least one lowercase letter, one uppercase letter, one numeric digit, and one special character")
 
-        $("#password_error").text("Field should have at least one lowercase letter, one uppercase letter, one numeric digit, and one special character")
-
-        // return false;
-    }
-})
+//         return false;
+//     }
+// })
