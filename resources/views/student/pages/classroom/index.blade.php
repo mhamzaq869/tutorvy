@@ -115,7 +115,7 @@
                             <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
                                 href="#nav-profile" role="tab" aria-controls="nav-profile"
                                 aria-selected="false">
-                                Upcomming Classes
+                                Delivered Classes
                                 <span class="counter-text bg-success"> {{$upcomming_classes}} </span>
                             </a>
                         </div>
@@ -197,6 +197,12 @@
                                                         </tr>
                                                         @endif
                                                 @endforeach
+                                            @else
+                                            <tr>
+                                                <td>
+                                                    No Class Found
+                                                </td>
+                                            </tr>
                                             @endif
                                         </tbody>
                                     </table>
