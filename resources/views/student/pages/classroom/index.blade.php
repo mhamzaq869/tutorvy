@@ -116,7 +116,7 @@
                                 href="#nav-profile" role="tab" aria-controls="nav-profile"
                                 aria-selected="false">
                                 Delivered Classes
-                                <span class="counter-text bg-success"> {{$upcomming_classes}} </span>
+                                <span class="counter-text bg-success"> {{count($booked_classes )}} </span>
                             </a>
                         </div>
                     </nav>
@@ -225,35 +225,46 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td class="pt-3">
-                                                    static data Hellow
-                                                </td>
-                                                <td class="pt-3">
-                                                static data  I'm done
-                                                </td>
-                                                <td class="pt-3">
-                                                static data  Hellow
-                                                </td>
-                                                <td class="pt-3">
-                                                static data  I'm done
-                                                </td>
-                                                <td class="pt-3">
-                                                static data  Hellow
-                                                </td>
-                                                <td class="pt-3">
-                                                    <span class="bg-color-apporve">
-                                                        Rejected
-                                                    </span>
+                                        @if($booked_classes != null && $booked_classes != [] && $booked_classes != "")
+                                            @foreach($booked_classes as $class)
+                                                <tr>
+                                                    <td class="pt-3">
+                                                        {{ $class->user->first_name }} {{ $class->user->last_name }}
+                                                    </td>
+                                                    <td class="pt-3">
+                                                    {{ $class != null ? $class->subject->name : '---' }}
+                                                    </td>
+                                                    <td class="pt-3">
+                                                        {{ $class != null ? $class->topic : '---' }}
+                                                    </td>
+                                                    <td class="pt-3">
+                                                        {{$class->class_time}} {{date("g:i a", strtotime("$class->class_time UTC"))}}
+                                                    </td>
                                                     
-                                                </td>
+                                                    <td class="pt-3">
+                                                        {{ $class->duration }} Hour(s)
+                                                    </td>
+                                                    <td class="pt-3">
+                                                        @if($class->status == 5)
+                                                            <span class="bg-color-apporve3"> Delivered </span>
+                                                        @endif
+                                                    </td>
 
-                                                <td style="text-align: center; padding-top: 14px;">
-                                                    <button class="schedule-btn" type="button">
-                                                        Class Details
-                                                    </button>
-                                                </td>
-                                            </tr>
+                                                
+                                                    <td style="text-align: center;padding-top:14px;">
+                                                            <a type="button" onclick="showReviewModal('{{$class->id}}')" class="cencel-btn">
+                                                                Review
+                                                            </a>
+                                                    </td> 
+                                                </tr>
+                                                @endforeach
+                                        @else
+                                        <tr>
+                                            <td>
+                                                No Class Found
+                                            </td>
+                                        </tr>
+                                        @endif
                                         </tbody>
                                     </table>
                                 </div>

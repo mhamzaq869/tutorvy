@@ -458,9 +458,11 @@
                                                         <label for="imageUpload"></label>
                                                     </div>
                                                     <div class="avatar-preview">
-                                                        <div id="imagePreview"
-                                                            style="background-image: url({{ asset(Auth::user()->picture != null ? Auth::user()->picture :  'assets/images/ico/porfile-main.png') }});">
-                                                        </div>
+                                                        @if(Auth::user()->picture != null)
+                                                            <div id="imagePreview" style="background-image: url('{{asset(Auth::user()->picture)}}');"> </div>
+                                                        @else
+                                                        <div id="imagePreview" style="background-image: url({{asset('assets/images/ico/porfile-main.png')}});"> </div>
+                                                        @endif
                                                     </div>
                                                 </div>
 
