@@ -44,7 +44,7 @@
                                         <strong class="text-info">
                                             @php 
                                                 $default = 10;
-                                                $default = $general_profile == 1 ? ($default + 20) : $default;
+                                                $default = Auth::user()->profile_completed == 1 ? ($default + 20) : $default;
                                                 $default = Auth::user()->picture != null ? ($default + 10) : $default;
                                                 $default = $education_percentage > 0 ? ($default + 20) : $default;
                                                 $default = $professional_percentage > 0 ? ($default + 20) : $default;

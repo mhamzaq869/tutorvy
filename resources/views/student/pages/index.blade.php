@@ -45,7 +45,7 @@
                                     <p class="mb-2 ">Profile Strength: <strong class="text-success">
                                         @php 
                                             $default = 10;
-                                            $default = $general_profile == 1 ? ($default + 40) :  $default;
+                                            $default = Auth::user()->profile_completed == 1 ? ($default + 40) :  $default;
                                             $default = Auth::user()->picture != null ? ($default + 20) : $default;
                                             $default = $education_profile > 0 ? ($default + 30) : $default;
                                             echo $default .'%';

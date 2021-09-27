@@ -64,13 +64,9 @@ class ProfileController extends Controller
         $activity_logs = new GeneralController();
         $activity_logs->save_activity_logs("Profile Updated", "users.id", $id, $action_perform, $request->header('User-Agent'), $id);
 
-        $profile = DB::table("sys_settings")->where('user_id',Auth::user()->id)->where("title","student_profile_completed")->first();
-
-        if(!$profile) {
-            DB::table("sys_settings")->insert([
-                "user_id" => Auth::user()->id, 
-                "title" => "student_profile_completed",
-            ]);
+        $user_general_profile = User::where('id',Auth::user()->id)->first();
+        if($user_general_profile->profile_completed == 0) {
+            User::where('id',Auth::user()->id)->update(["profile_completed" => 1]);
         }
 
         return response()->json([
