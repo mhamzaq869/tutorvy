@@ -68,57 +68,63 @@
                             </div>
                         </div>
                     </div>
-                    <div class="bg-homeimage1">
-                        <div class="row">
-                            <div class="col-md-7 text-white pl-4">
-                                <div class="text mt-5 ml-2">
-                                    <p class="res-textup">
-                                        Welcome to Tutorvy
-                                    </p>
-                                    <p class="res-textup1">
-                                    Register yourself on Tutorvy and learn or teach anything
-                                    from anywhere.
-                                    </p>
-                                    <a href=""class="text-white res-textup">
-                                        Learn More
-                                    </a>
+
+                    @if($default > 90) 
+                        <div class="bg-homeimage2 ">
+                            <div class="row">
+                                <div class="col-md-7 text-white pl-4">
+                                    <div class="text mt-5 ml-2 ">
+                                        <h2 class="text-white ">
+                                            We have upgraded the classroom.
+                                        </h2>
+                                        <p >
+                                            Register yourself on Tutorvy and learn or teach anything from
+                                            anywhere.
+                                        </p>
+                                        <a href=""class="text-white ">
+                                            Learn More
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-5  ">
+                                    <div class="home-image">
+                                        <img src="{{asset('assets/images/backgrounds/home.svg')}}" alt="home-image"
+                                            style="width: 100%;">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-5  ">
-                                <div class="home-image">
-                                    <img src="{{asset('assets/images/backgrounds/home-main.png')}}" alt="home-image"
-                                        style="width: 100%;">
+                            
+                        </div>
+                    @else
+                        <div class="bg-homeimage1">
+                            <div class="row">
+                                <div class="col-md-7 text-white pl-4">
+                                    <div class="text mt-5 ml-2">
+                                        <p class="res-textup">
+                                            Welcome to Tutorvy
+                                        </p>
+                                        <p class="res-textup1">
+                                        Register yourself on Tutorvy and learn or teach anything
+                                        from anywhere.
+                                        </p>
+                                        <a href=""class="text-white res-textup">
+                                            Learn More
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-5  ">
+                                    <div class="home-image">
+                                        <img src="{{asset('assets/images/backgrounds/home-main.png')}}" alt="home-image"
+                                            style="width: 100%;">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        
-                    </div>
+                    @endif
+
+
+
                 
-                    <div class="bg-homeimage2 ">
-                        <div class="row">
-                            <div class="col-md-7 text-white pl-4">
-                                <div class="text mt-5 ml-2 ">
-                                    <h2 class="text-white ">
-                                        We have upgraded the classroom.
-                                    </h2>
-                                    <p >
-                                        Register yourself on Tutorvy and learn or teach anything from
-                                        anywhere.
-                                    </p>
-                                    <a href=""class="text-white ">
-                                        Learn More
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-5  ">
-                                <div class="home-image">
-                                    <img src="{{asset('assets/images/backgrounds/home.svg')}}" alt="home-image"
-                                        style="width: 100%;">
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             <p class="heading-third mt-4 mb-0">

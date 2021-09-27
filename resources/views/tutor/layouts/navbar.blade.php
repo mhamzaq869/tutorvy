@@ -282,7 +282,9 @@
                     <a class="nav-link profile-name  pl-4 mr-3 mt-0 pb-0" href="#"
                         data-toggle="dropdown" aria-expanded="true">
                         {{Auth::user()->first_name}} {{Auth::user()->last_name}}
-                        <p class="text-mute mb-0">User Id#  56{{Auth::user()->id}}21</p>
+                        @if(Auth::user()->account_id != null)
+                            <p class="text-mute mb-0">User Id# {{Auth::user()->account_id}}</p>
+                        @endif
                     </a>
                     
                     @auth
