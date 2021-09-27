@@ -211,21 +211,20 @@ class ProfileController extends Controller
             ]); 
         }
 
-        // $sender,$receiver,$slug,$type,$data,$title,$icon,$class,$desc
         $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
 
-        // $reciever = User::where('role',1)->first();
-        // $notification = new NotifyController();
-        // $sender_id = Auth::user()->id;
-        // $reciever_id = $reciever->id;
-        // $slug = '-' ;
-        // $type = 'User Verification';
-        // $data = 'data';
-        // $title = 'User Verfication';
-        // $icon = 'fas fa-tag';
-        // $class = 'btn-success';
-        // $desc = $name . ' Submiited documents for verification.';
-        // $notification->GeneralNotifi(Auth::user()->id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
+        $reciever = User::where('role',1)->first();
+        $notification = new NotifyController();
+        $sender_id = Auth::user()->id;
+        $reciever_id = $reciever->id;
+        $slug = '-' ;
+        $type = 'doc_verification';
+        $data = 'data';
+        $title = 'Document Verfication';
+        $icon = 'fas fa-tag';
+        $class = 'btn-success';
+        $desc = $name . ' Submitted documents for verification.';
+        $notification->GeneralNotifi(Auth::user()->id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
 
 
         // activity logs
