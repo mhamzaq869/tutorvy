@@ -58,6 +58,39 @@
 .Google:hover a {
     color: #C94131;
 }
+.facebook{
+    border:1px solid #1173FF;
+}
+.facebook a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.facebook:hover {
+    background-color: #fff;
+}
+
+.facebook:hover a {
+    color: #1173FF;
+}
+.Apple {
+    border: 1px solid #000000;
+}
+
+.Apple a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.Apple:hover {
+    background-color: #fff;
+    color: #000000;
+
+}
+
+.Apple:hover a {
+    color: #000000;
+}
 
     </style>
 </head>
@@ -191,12 +224,14 @@
                             <div class="facebook">
                                 <a href="{{route('social.facebook',[0])}}">
                             
-                                <img class="mr-3" src="../assets/images/ico/facebook(1).png" alt="facebook">
+                                <!-- <img class="mr-3" src="../assets/images/ico/facebook(1).png" alt="facebook"> -->
+                                <i class="fa fa-facebook fa-lg mr-2" aria-hidden="true"></i>
                                 Continue with Facebook
                                 </a>
                             </div>
                             <div class="Apple">
-                                <img class="mr-3" src="../assets/images/ico/apple.png" alt="apple">
+                                <!-- <img class="mr-3" src="../assets/images/ico/apple.png" alt="apple"> -->
+                                <i class="fa fa-apple fa-lg mr-2" aria-hidden="true"></i>
                                 Continue with Apple
                             </div>
                             <div class="Policy-text" style="display: flex;">

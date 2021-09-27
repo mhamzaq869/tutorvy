@@ -524,12 +524,16 @@
                                                                     </div>
                                                                     <div class="facebook">
                                                                         <a href="{{route('social.facebook',[3])}}">
-                                                                            <img class="mr-3" src="{{asset('assets/images/ico/facebook(1).png')}}" alt="facebook">
+                                                                            <i class="fa fa-facebook  fa-lg mr-2" aria-hidden="true"></i>
+
+                                                                            <!-- <img class="mr-3" src="{{asset('assets/images/ico/facebook(1).png')}}" alt="facebook"> -->
                                                                             Continue with Facebook
                                                                         </a>
                                                                     </div>
                                                                     <div class="Apple">
-                                                                        <img class="mr-3" src="{{asset('assets/images/ico/apple.png')}}" alt="apple">
+                                                                        <i class="fa fa-apple  fa-lg mr-2" aria-hidden="true"></i>
+
+                                                                        <!-- <img class="mr-3" src="{{asset('assets/images/ico/apple.png')}}" alt="apple"> -->
                                                                         Continue with Apple
                                                                     </div>
                                                                     <div class="Policy-text" style="display: flex;">
