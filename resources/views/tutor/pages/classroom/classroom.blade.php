@@ -1010,21 +1010,21 @@ connection.sdpConstraints.mandatory = {
     OfferToReceiveVideo: true
 };
 
-connection.onUserStatusChanged = function(event) {
-    var infoBar = document.getElementById('onUserStatusChanged');
-    var names = [];
-    connection.getAllParticipants().forEach(function(pid) {
-        names.push(getFullName(pid));
-    });
+// connection.onUserStatusChanged = function(event) {
+//     var infoBar = document.getElementById('onUserStatusChanged');
+//     var names = [];
+//     connection.getAllParticipants().forEach(function(pid) {
+//         names.push(getFullName(pid));
+//     });
 
-    if (!names.length) {
-        names = ['Only You'];
-    } else {
-        names = [connection.extra.userFullName || 'You'].concat(names);
-    }
+//     if (!names.length) {
+//         names = ['Only You'];
+//     } else {
+//         names = [connection.extra.userFullName || 'You'].concat(names);
+//     }
 
-    infoBar.innerHTML = '<b>Active users:</b> ' + names.join(', ');
-};
+//     infoBar.innerHTML = '<b>Active users:</b> ' + names.join(', ');
+// };
 
 connection.onopen = function(event) {
     connection.onUserStatusChanged(event);
