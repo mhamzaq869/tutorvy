@@ -35,7 +35,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="tab p-0">
-                                <button class="tablinks nav-link" onclick="openCity(event, 'tab1')"
+                                <button class="tablinks nav-link active " onclick="openCity(event, 'tab1')"
                                     id="defaultOpen">General</button>
                                 <button class="tablinks nav-link" onclick="openCity(event, 'tab2')">Security</button>
                                 <button class="tablinks nav-link" onclick="openCity(event, 'tab3')">Payment</button>
@@ -50,7 +50,7 @@
                         <div class="card-body">
                             <div class="settings-data">
                                 
-                                <div id="tab1" class="tabcontent">
+                                <div id="tab1" class="tabcontent" style="display:block;">
                                     <form method="POST" action="{{route('admin.profile')}}">
                                         @csrf
                                         <div class="row">
