@@ -72,7 +72,9 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                   @foreach($classes as $class)
+                                            @if($classes != null && $classes != [] && $classes != "")
+
+                                                    @foreach($classes as $class)
                                                         @if($class != null && $class != "")
                                                             <tr>
                                                                 <td class="pt-4">
@@ -132,6 +134,13 @@
                                                             </tr>
                                                         @endif
                                                     @endforeach
+                                            @else
+                                                    <tr>
+                                                        <td>
+                                                            No Class Found
+                                                        </td>
+                                                    </tr>
+                                                @endif
                                                 </tbody>
                                             </table>
                                         </div>
