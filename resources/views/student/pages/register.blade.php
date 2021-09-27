@@ -267,7 +267,7 @@
                                 </ul>
                             </div> -->
                             <form action="{{ url('register') }}" method="post" id="register"
-                                enctype="multipart/form-data">
+                                enctype="multipart/form-data" onsubmit="return false">
                                 @csrf
                                 <input type="hidden" name="role" value="3">
                                 <div class="tab-content mt-5">
@@ -517,8 +517,10 @@
                                                                         </a>
                                                                     </div>
                                                                     <div class="facebook">
-                                                                        <img class="mr-3" src="{{asset('assets/images/ico/facebook(1).png')}}" alt="facebook">
-                                                                        Continue with Facebook
+                                                                        <a href="{{route('social.facebook',[3])}}">
+                                                                            <img class="mr-3" src="{{asset('assets/images/ico/facebook(1).png')}}" alt="facebook">
+                                                                            Continue with Facebook
+                                                                        </a>
                                                                     </div>
                                                                     <div class="Apple">
                                                                         <img class="mr-3" src="{{asset('assets/images/ico/apple.png')}}" alt="apple">
@@ -651,6 +653,8 @@
         </div>
         </div>
         </div>
+        
+    </section>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/intlTelInput.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -665,16 +669,19 @@
         <script src="{{ asset('assets/js/multiselect.js') }}"></script>
         <script src="{{ asset('assets/js/dropify.js') }}"></script>
         <script src="{{ asset('assets/js/jquery.validate.js') }} "></script>
+        <script></script>
         <script>
-            for (var i = 1; i <= 31; i++) {
-                $("#day").append("<option value='" + i + "'" + (i == {{ $user->day ?? 1 }} ? 'selected' : '') + ">" + i +
-                    "</option>");
-            }
 
-            $("#finish").on('click', function() {
-                $(this).attr('name', 'finish');
-            });
             $(document).ready(function() {
+
+                for (var i = 1; i <= 31; i++) {
+                    $("#day").append("<option value='" + i + "'" + (i == {{ $user->day ?? 1 }} ? 'selected' : '') + ">" + i +
+                        "</option>");
+                }
+
+                $("#finish").on('click', function() {
+                    $(this).attr('name', 'finish');
+                });
                
                 $("#year,#grad-year").yearpicker({
                     year: {{ $user->year ?? '1990' }},
@@ -683,7 +690,38 @@
                 });
                 $("#teach_error").hide();
                 $(".text-red").hide();
-            });
+
+                $("#password").keyup(function() {
+                    var decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+                    var ter = $(this).val();
+                    if (ter.match(decimal))
+                    {
+                        console.log("password ok");
+                        $("#password_error").css("display", "none");
+                        $("#passTech").css("display", "block");
+                        $("#password").removeClass("is-invalid");
+                        $("#password").addClass("valid");
+                        $('#register').removeAttr('onsubmit');
+                        
+                    }else{
+                        var attr = $('#register').attr('onsubmit');
+
+                        if (typeof attr !== 'undefined' && attr !== false) {
+                            $('#register').removeAttr('onsubmit');
+                        }else{
+                            $('#register').attr('onsubmit','return false');
+                        }
+
+                        $("#password_error").css("display", "block");
+                        $("#passTech").css("display", "none");
+                        $("#password").removeClass("valid");
+                        $("#password").addClass("is-invalid");
+
+                        $("#password_error").text("Field should have at least one lowercase letter, one uppercase letter, one numeric digit, and one special character")
+
+                        return false;
+                    }
+                });
 
             $("#country_selector").countrySelect({
                 defaultCountry: "{{ $user->country_short ?? '' }}",
@@ -694,6 +732,7 @@
                 var short = $(this).countrySelect("getSelectedCountryData");
                 $("#country_short").val(short.iso2);
             });
+        });
 
             // var languages_list = {...};
             (function() {
@@ -705,7 +744,7 @@
                         '</option>';
                 }
                 // document.getElementById('languages-list').innerHTML = option;
-            })();
+            });
 
             $('.extra-fields-customer').click(function() {
                 count_field = document.querySelectorAll(".customer_records").length;
@@ -880,7 +919,6 @@
             });
 
         </script>
-    </section>
 </body>
 
 </html>

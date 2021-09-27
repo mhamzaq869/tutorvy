@@ -141,9 +141,9 @@ a:hover {
     font-weight: 600;
 }
 
-.fade.show {
-    background-color: #fff !important;
-}
+/* .fade.show {
+    background-color: #fff ;
+} */
 
 .nav-link.active {
     border-bottom: 5px solid #1173FF;

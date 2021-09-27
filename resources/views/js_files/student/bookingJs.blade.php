@@ -30,9 +30,9 @@ $( '#book_tutor_form' ).on( 'submit', function(e) {
                         timer: 2500
                     });
 
-                    setInterval(function(){
-                        window.location.href = "{{ route('student.bookings') }}";
-                    }, 1500);
+                    // setInterval(function(){
+                    //     window.location.href = "{{ route('student.bookings') }}";
+                    // }, 1500);
 
                 }
             },

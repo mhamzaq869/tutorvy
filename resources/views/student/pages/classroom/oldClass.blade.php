@@ -82,10 +82,10 @@
 #main-video {
     width: 100%;
     margin-top: -9px;
-    border: 1px solid #121010;
+    border-bottom: 1px solid #121010;
     display: none;
-    padding: 1px;
-    border-radius: 3px;
+    padding-bottom: 1px;
+    display: none;
 }
 
 hr {
@@ -283,16 +283,6 @@ td input{
 .w-20{
     width:20px;
 }
-.mk,
-.vc{
-    display:none;
-}
-.tech_weck-none{
-    display:none !important;
-}
-.w-22{
-    width:22%;
-}
 </style>
 @section('content')
  <!-- top Fixed navbar End -->
@@ -306,7 +296,7 @@ td input{
                     </div>
                 </div>
             </div>
-            <div class="row mb-5 tech_weck tech_weck-none">
+            <div class="row mb-5 tech_weck">
                 <div class="col-md-9 card"> 
                     <div class="row">
                         <div class="col-md-12 mt-3">
@@ -669,22 +659,22 @@ td input{
                         <div class="bg-dark w-100 cust_vid text-center">
                                 <img src="{{asset('assets/images/logo-footer.png')}}" alt="">
                         </div>
-                        <video id="main-video" class="w-100 m-0" playsinline autoplay></video>
+                        <video id="main-video"  playsinline autoplay></video>
                         <div id="other-videos" class="w-100 m-0"></div>
                         <div class="col-md-12 mt-2 vid-location text-center">
-                            <a  class="callSet vc">
+                            <a href="#" class="callSet vc">
                                 <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
                             </a>
                             <a  class="callSet no-vc">
                                 <img src="{{asset('assets/images/ico/no-vc.png')}}" title="With Video" alt="">
                             </a>
-                            <a  class="callSet mk" id="mk">
+                            <a href="#" class="callSet mk" id="mk">
                                 <img src="{{asset('assets/images/ico/mike.png')}}" title="Without Audio" alt="">
                             </a>
-                            <a  class="callSet no-mk">
+                            <a href="#" class="callSet no-mk">
                                 <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
                             </a>
-                            <a  class="callSet no-ph">
+                            <a href="#" class="callSet no-ph">
                                 <img src="{{asset('assets/images/ico/no-phone.png')}}" title="End Call" alt="">
                             </a>
                         </div>
@@ -714,18 +704,24 @@ td input{
     </div>
 </section>
 <!-- End Call Modal -->
-    <div class="modal fade " id="endCall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade custom_modal" id="endCall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Do you want to end the call?</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body text-center ">
-                    <button type="button" class="btn-general " id="endCallYes">End Call</button>
-                    <button type="button" class="btn-outline-general " data-dismiss="modal"> Not Yet </button>
+
+                <div class="modal-body bg-custom text-center p-5">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="p-2"> <img src="{{asset('assets/images/logo-footer.png')}}" alt="">
+                            </h1>
+                            <h3 class="mb-4 p-2"> Are you a</h3>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="bg-btn-light">
+                                <a type="button" id="rescue" class="btn  modal-btn animate__animated">Re-schedule</a>
+                                <a type="button" id="ending"  class="btn  modal-btn animate__animated">End Call</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- <div class="modal-footer">
                 </div> -->
@@ -734,98 +730,46 @@ td input{
     </div>
  
  
-<!--Call Modal -->
-<div class="modal fade " id="callModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" >
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body bg-black" >
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <img src="{{asset($user->picture)}}" class="profile-img pg" alt="">
-                        </div>
-                        <div class="col-md-12 text-center mt-3 ">
+<!-- Modal -->
+ <div class="modal" id="callModal" tabindex="-1" role="dialog"
+    aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <!-- <div class="modal-header">
+                <h5 class="modal-title" id="callModalTitle">Choose Features</h5>
+                <button type="button" class="close" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div> -->
+            <div class="modal-body bg-black" >
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <img src="{{asset($user->picture)}}" class="profile-img pg" alt="">
+                    </div>
+                    <div class="col-md-12 text-center mt-3 ">
 
-                            <a  class="callSet vc">
-                            <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
-                            </a>
-                            <a  class="callSet no-vc">
-                            <img src="{{asset('assets/images/ico/no-vc.png')}}" title="With Video" alt="">
-                            </a>
-                            <a  class="callSet mk" >
-                                <img src="{{asset('assets/images/ico/mike.png')}}" title="Without Audio" alt="">
-                            </a>
-                            <a  class="callSet no-mk">
-                                <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
-                            </a>
-                            <a type="button" role="button" id="join_now"  class="btn btn-success ml-2">
-                                Join Class
-                            </a>
-                        </div>
+                        <a href="#" class="callSet vc">
+                           <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
+                        </a>
+                        <a href="#" class="callSet no-vc">
+                           <img src="{{asset('assets/images/ico/no-vc.png')}}" title="With Video" alt="">
+                        </a>
+                        <a href="#" class="callSet mk" >
+                            <img src="{{asset('assets/images/ico/mike.png')}}" title="Without Audio" alt="">
+                        </a>
+                        <a href="#" class="callSet no-mk">
+                            <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
+                        </a>
+                        <a type="button" role="button" id="join_now"  class="btn btn-success ml-2">
+                            Join Class
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-<!--Review Modal -->
-    <div class="modal fade " id="reviewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body text-center ">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="iconss" style="text-align: center;">
-                                <img src="{{asset('assets/images/ico/submit-test.png')}}" width="60px">
-                                <p
-                                    style="font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 500;margin-top: 10px;">
-                                    Review Class</p>
-                                <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;"
-                                    class="ml-4 mr-4">
-                                    Send review for class with a short note about why are you reviewing this to this
-                                    class
-                                </p>
-                            </div>
-                            <div class="ml-4 mr-4">
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-12 text-center">
-                                            <p class="star-review">
-                                                <a href="#">
-                                                    <i class="fa fa-star bigStar text-yellow "></i>
-                                                </a>
-                                                <a href="#">
-                                                    <i class="fa fa-star bigStar text-yellow"></i>
-                                                </a>
-                                                <a href="#">
-                                                    <i class="fa fa-star bigStar text-yellow"></i>
-                                                </a>
-                                                <a href="#">
-                                                    <i class="fa fa-star bigStar text-yellow"></i>
-                                                </a>
-                                                <a href="#">
-                                                    <i class="fa fa-star bigStar text-yellow"></i>
-                                                </a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <textarea class="form-control mt-3" rows="6" cols="50"
-                                        placeholder="Write reason"></textarea>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-md-12 p-0 text-right">
-                        <button type="button" class="cencel-btn mr-2" id="reviewLater"
-                            style="width: 130px;">Review Later</button>
-                            <button type="button" class="schedule-btn" data-dismiss="modal"
-                            style="width: 130px;margin-right: 40px;">Send</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
- 
+</div>
 @endsection
 @section('scripts')
 @include('js_files.whiteBoard')
@@ -847,11 +791,12 @@ td input{
 
 <script>
     // var timerInstance = new easytimer.Timer();
-
     $(document).ready(function(){
         
-        // $(".tech_weck").hide();
-     
+        $(".tech_weck").hide();
+        $(".mk").hide();
+        $(".vc").hide();
+        $(".no-vc").show();
         $("#callModal").modal("show");
         $("#join_now").attr("disabled","disabled" );
         });
@@ -877,117 +822,102 @@ td input{
    $(".no-ph").click(function(){
         $("#endCall").modal("show");
     });
-    $("#reviewLater").click(function(){
-        window.location.href="{{route('student.classroom')}}";
-    })
+    
 
    
 </script>
 
-<script>
 
+
+<script>
 
 var connection = new RTCMultiConnection();
 var roomid = '{{$class->classroom_id}}';
 var fullName = '{{$class->booking->user->first_name}} {{$class->booking->user->last_name}}';
 
-
-(function() {
-    var params = {},
-        r = /([^&=]+)=?([^&]*)/g;
-
-    function d(s) {
-        return decodeURIComponent(s.replace(/\+/g, ' '));
-    }
-    var match, search = window.location.search;
-    while (match = r.exec(search.substring(1)))
-        params[d(match[1])] = d(match[2]);
-    window.params = params;
-})();
-
-
-//connection.socketURL = '/';
+// connection.socketURL = '/';
 connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
 
-connection.extra.userFullName = fullName;
-connection.DetectRTC.load(function() {
-            console.log(connection.DetectRTC);
-                        if (connection.DetectRTC.hasMicrophone === true) {
-                            // enable microphone
-                            connection.mediaConstraints.audio = true;
-                            connection.session.audio = true;
-                            alert('attach true microphone')
-                            $(".no-mk").show();
-                            $("#join_now").removeAttr("disabled","disabled" );
-                                $("#join_now").click(function(){
-                                    $(".tech_weck").removeClass("tech_weck-none");
-                                    $("#callModal").modal("hide");
-                                    // joinClass();
-                                    /** Javascript Timer */
-                                    var timer = new Timer();
-                                        timer.start({countdown: true, startValues: {seconds: 30}});
-
-                                        $('#countdownExample .values').html(timer.getTimeValues().toString());
-
-                                        timer.addEventListener('secondsUpdated', function (e) {
-                                            $('#countdownExample .values').html(timer.getTimeValues().toString());
-                                        });
-
-                                        timer.addEventListener('targetAchieved', function (e) {
-                                            $('#countdownExample .values').html('Class Time has Ended!!');
-                                        });
-                                    /* Javascript Timer ENd */
-                                })
-                        }else{
-                            toastr.warning( "Audio Device is Mendatory ");
-                            $(".no-mk").hide();
-                        }
-
-                        if (connection.DetectRTC.hasWebcam === true) {
-                            // enable camera
-                            connection.mediaConstraints.video = true;
-                            connection.session.video = true;
-                            alert('attach true camera')
-                            $(".no-vc").show();
-
-
-                        }else{
-                            $(".no-vc").hide();
-
-                            alert('attach Cam')
-                        }
-
-                        if (connection.DetectRTC.hasSpeakers === false) { // checking for "false"
-                            // alert('Please attach a speaker device. You will unable to hear the incoming audios.');
-                        }
-        });
-/// make this room public
-connection.publicRoomIdentifier = '';
-
 connection.socketMessageEvent = 'canvas-dashboard-demo';
+// connection.session = {
+//     audio: true,
+//     video: true,
+//     data: true
+// };
+// connection.mediaConstraints = {
+//     audio: true,
+//     video: true,
+//     data: true
 
-// keep room opened even if owner leaves
-connection.autoCloseEntireSession = true;
+// };
+connection.DetectRTC.load(function() {
+                if (connection.DetectRTC.hasMicrophone === true) {
+                    // enable microphone
+                    connection.mediaConstraints.audio = true;
+                    connection.session.audio = true;
+                    // alert('attach true microphone')
+                    $(".callSet").show();
+                     $("#join_now").removeAttr("disabled","disabled" );
+                    $("#join_now").click(function(){
+                        $(".tech_weck").show();
+                        $("#callModal").modal("hide");
+                        joinClass();
+                    })
 
-// https://www.rtcmulticonnection.org/docs/maxParticipantsAllowed/
-connection.maxParticipantsAllowed = 1000;
-// set value 2 for one-to-one connection
-// connection.maxParticipantsAllowed = 2;
+                }else{
+                    toastr.warning( "Audio Device is Mendatory ");
+                    $(".mk , .no-mk").hide();
+                }
 
-// here goes canvas designer
-var designer = new CanvasDesigner();
+                if (connection.DetectRTC.hasWebcam === true) {
+                    // enable camera
+                    connection.mediaConstraints.video = true;
+                    connection.session.video = true;
+                   // alert('attach true camera')
+                   $(".vc , .no-vc").show();
 
-// you can place widget.html anywhere
-designer.widgetHtmlURL = "{{ route('whiteBoard.canvas')}}";
-designer.widgetJsURL = "{{asset('assets/js/widget.min.js').'?ver='.rand()}}";
+                }else{
+                    // alert('attach Cam')
+                    $(".vc , .no-vc").hide();
+                }
 
-designer.addSyncListener(function(data) {
-    connection.send(data);
-});
+                if (connection.DetectRTC.hasSpeakers === false) { // checking for "false"
+                    // alert('Please attach a speaker device. You will unable to hear the incoming audios.');
+                }
+            });
+function joinClass(){
+    // keep room opened even if owner leaves
+    connection.autoCloseEntireSession = true;
 
-designer.setSelected('pencil');
+    // https://www.rtcmulticonnection.org/docs/maxParticipantsAllowed/
+    // connection.maxParticipantsAllowed = 1000;
+    // set value 2 for one-to-one connection
+    connection.maxParticipantsAllowed = 2;
+    connection.extra.userFullName = fullName;
 
-designer.setTools({
+    connection.checkPresence(roomid, function(isRoomExist) {
+        
+        connection.publicRoomIdentifier = '';
+        connection.sessionid = roomid;
+        // connection.isInitiator = true;
+            // openCanvasDesigner();
+            // $('#btn-create-room').html(initialHTML).prop('disabled', false);
+    });
+
+    // here goes canvas designer
+    var designer = new CanvasDesigner();
+
+    // you can place widget.html anywhere
+    designer.widgetHtmlURL = "{{ route('whiteBoard.canvas')}}";
+    designer.widgetJsURL = "{{asset('assets/js/widget.min.js').'?ver='.rand()}}"
+
+    designer.addSyncListener(function(data) {
+        connection.send(data);
+    });
+
+    designer.setSelected('pencil');
+
+    designer.setTools({
         pencil: true,
         text: true,
         image: false,
@@ -1010,153 +940,146 @@ designer.setTools({
         undo: false,
     });
 
-// here goes RTCMultiConnection
+    // here goes RTCMultiConnection
 
-connection.chunkSize = 16000;
-connection.enableFileSharing = true;
+    connection.chunkSize = 16000;
+    connection.enableFileSharing = true;
 
-connection.session = {
-    audio: true,
-    video: true,
-    data: true
-};
-connection.sdpConstraints.mandatory = {
-    OfferToReceiveAudio: true,
-    OfferToReceiveVideo: true
-};
+    
+    
+    connection.sdpConstraints.mandatory = {
+        OfferToReceiveAudio: true,
+        OfferToReceiveVideo: true
+    };
+  
 
-connection.onUserStatusChanged = function(event) {
-    var infoBar = document.getElementById('onUserStatusChanged');
-    var names = [];
-    connection.getAllParticipants().forEach(function(pid) {
-        names.push(getFullName(pid));
-    });
-
-    if (!names.length) {
-        names = ['Only You'];
-    } else {
-        names = [connection.extra.userFullName || 'You'].concat(names);
-    }
-
-    // infoBar.innerHTML = '<b>Active users:</b> ' + names.join(', ');
-};
-
-connection.onopen = function(event) {
-    connection.onUserStatusChanged(event);
-
-    if (designer.pointsLength <= 0) {
-        // make sure that remote user gets all drawings synced.
-        setTimeout(function() {
-            connection.send('plz-sync-points');
-        }, 1000);
-    }
-
-    document.getElementById('btn-chat-message').disabled = false;
-    document.getElementById('btn-attach-file').style.display = 'inline-block';
-    document.getElementById('btn-share-screen').style.display = 'inline-block';
-};
-
-connection.onclose = connection.onerror = connection.onleave = function(event) {
-    toastr.success("Tutor has ended the call!");
-
-    connection.onUserStatusChanged(event);
-    $("#reviewModal").modal("show");
-
-
-};
-
-connection.onmessage = function(event) {
-    if(event.data.showMainVideo) {
-        // $('#main-video').show();
-        $('#screen-viewer').css({
-            top: $('#widget-container').offset().top,
-            left: $('#widget-container').offset().left,
-            width: $('#widget-container').width(),
-            height: $('#widget-container').height()
+    connection.onUserStatusChanged = function(event) {
+        var infoBar = document.getElementById('onUserStatusChanged');
+        var names = [];
+        connection.getAllParticipants().forEach(function(pid) {
+            names.push(getFullName(pid));
         });
-        $('#screen-viewer').show();
-        return;
-    }
 
-    if(event.data.hideMainVideo) {
-        // $('#main-video').hide();
-        $('#screen-viewer').hide();
-        return;
-    }
-
-    if(event.data.typing === true) {
-        $('#key-press').show().find('span').html(event.extra.userFullName + ' is typing');
-        return;
-    }
-
-    if(event.data.typing === false) {
-        $('#key-press').hide().find('span').html('');
-        return;
-    }
-
-    if (event.data.chatMessage) {
-        appendChatMessage(event);
-        return;
-    }
-
-    if (event.data.checkmark === 'received') {
-        var checkmarkElement = document.getElementById(event.data.checkmark_id);
-        if (checkmarkElement) {
-            checkmarkElement.style.display = 'inline';
+        if (!names.length) {
+            names = ['Only You'];
+        } else {
+            names = [connection.extra.userFullName || 'You'].concat(names);
         }
-        return;
-    }
 
-    if (event.data === 'plz-sync-points') {
-        designer.sync();
-        return;
-    }
+        infoBar.innerHTML = '<b>Active users:</b> ' + names.join(', ');
+    };
 
-    designer.syncData(event.data);
-};
+    connection.onopen = function(event) {
+        connection.onUserStatusChanged(event);
 
-// extra code
-
-connection.onstream = function(event) {
-    if (event.stream.isScreen && !event.stream.canvasStream) {
-        $('#screen-viewer').get(0).srcObject = event.stream;
-        $('#screen-viewer').hide();
-    }
-    else if (event.extra.roomOwner === true) {
-        var video = document.getElementById('main-video');
-        video.setAttribute('data-streamid', event.streamid);
-        // video.style.display = 'none';
-        if(event.type === 'local') {
-            video.muted = true;
-            video.volume = 0;
+        if (designer.pointsLength <= 0) {
+            // make sure that remote user gets all drawings synced.
+            setTimeout(function() {
+                connection.send('plz-sync-points');
+            }, 1000);
         }
-        video.srcObject = event.stream;
-        $('#main-video').show();
-    } else {
-        event.mediaElement.controls = false;
 
-        var otherVideos = document.querySelector('#other-videos');
-        otherVideos.appendChild(event.mediaElement);
-    }
+        document.getElementById('btn-chat-message').disabled = false;
+        document.getElementById('btn-attach-file').style.display = 'inline-block';
+        document.getElementById('btn-share-screen').style.display = 'inline-block';
+    };
 
-    connection.onUserStatusChanged(event);
-};
+    connection.onclose = connection.onerror = connection.onleave = function(event) {
+        console.log(event+" dsfsdfsdfsdfsdfsdfsdf");
+        connection.onUserStatusChanged(event);
+    };
 
-connection.onstreamended = function(event) {
-    var video = document.querySelector('video[data-streamid="' + event.streamid + '"]');
-    if (!video) {
-        video = document.getElementById(event.streamid);
-        if (video) {
-            video.parentNode.removeChild(video);
+    connection.onmessage = function(event) {
+        if(event.data.showMainVideo) {
+            // $('#main-video').show();
+            $('#screen-viewer').css({
+                top: $('#widget-container').offset().top,
+                left: $('#widget-container').offset().left,
+                width: $('#widget-container').width(),
+                height: $('#widget-container').height()
+            });
+            $('#screen-viewer').show();
             return;
         }
-    }
-    if (video) {
-        video.srcObject = null;
-        video.style.display = 'none';
-    }
-};
-$(".no-vc").click(function(){
+
+        if(event.data.hideMainVideo) {
+            // $('#main-video').hide();
+            $('#screen-viewer').hide();
+            return;
+        }
+
+        if(event.data.typing === true) {
+            $('#key-press').show().find('span').html(event.extra.userFullName + ' is typing');
+            return;
+        }
+
+        if(event.data.typing === false) {
+            $('#key-press').hide().find('span').html('');
+            return;
+        }
+
+        if (event.data.chatMessage) {
+            appendChatMessage(event);
+            return;
+        }
+
+        if (event.data.checkmark === 'received') {
+            var checkmarkElement = document.getElementById(event.data.checkmark_id);
+            if (checkmarkElement) {
+                checkmarkElement.style.display = 'inline';
+            }
+            return;
+        }
+
+        if (event.data === 'plz-sync-points') {
+            designer.sync();
+            return;
+        }
+
+        designer.syncData(event.data);
+    };
+
+    // extra code
+
+    connection.onstream = function(event) {
+        console.log(connection+' asdasdasd')
+        if (event.stream.isScreen && !event.stream.canvasStream) {
+            $('#screen-viewer').get(0).srcObject = event.stream;
+            $('#screen-viewer').hide();
+        }
+        else if (event.extra.roomOwner === true) {
+            var video = document.getElementById('main-video');
+            video.setAttribute('data-streamid', event.streamid);
+            // video.style.display = 'none';
+            if(event.type === 'local') {
+                video.muted = true;
+                video.volume = 0;
+            }
+            video.srcObject = event.stream;
+            $('#main-video').show();
+        } else {
+            event.mediaElement.controls = false;
+            var otherVideos = document.querySelector('#other-videos');
+            otherVideos.appendChild(event.mediaElement);
+        }
+        connection.onUserStatusChanged(event);
+    };
+
+    connection.onstreamended = function(event) {
+        var video = document.querySelector('video[data-streamid="' + event.streamid + '"]');
+        if (!video) {
+            video = document.getElementById(event.streamid);
+            if (video) {
+                video.parentNode.removeChild(video);
+                return;
+            }
+        }
+        if (video) {
+            video.srcObject = null;
+            video.style.display = 'none';
+        }
+    };
+    $(".no-vc").click(function(){
         alert("No vc");
         var localStream = connection.attachStreams[0];
         localStream.mute('video');
@@ -1167,162 +1090,16 @@ $(".no-vc").click(function(){
         localStream.unmute('video'); 
         
     })
-    $(".no-mk").click(function(){
-        alert("No mk");
-        var localStream = connection.attachStreams[0];
-        localStream.mute('audio');
-    })
-    $(".mk").click(function(){
-        alert("mk");
-        var localStream = connection.attachStreams[0];
-        localStream.unmute('audio'); 
-        
-    })
-    $("#endCallYes").click(function(){
-        connection.leave();
-        toastr.success("Call has Ended Successfully");
-        $("#reviewModal").modal("show");
-        $("#endCall").modal("hide");
-        
-
-    })
-var conversationPanel = document.getElementById('conversation-panel');
-
-function appendChatMessage(event, checkmark_id) {
-    var div = document.createElement('div');
-
-    div.className = 'message';
-
-    if (event.data) {
-        div.innerHTML = '<b>' + (event.extra.userFullName || event.userid) + ':</b><br>' + event.data.chatMessage;
-
-        if (event.data.checkmark_id) {
-            connection.send({
-                checkmark: 'received',
-                checkmark_id: event.data.checkmark_id
-            });
-        }
-    } else {
-        div.innerHTML = '<b>You:</b> <img class="checkmark" id="' + checkmark_id + '" title="Received" src="https://www.webrtc-experiment.com/images/checkmark.png"><br>' + event;
-        div.style.background = '#cbffcb';
-    }
-
-    conversationPanel.appendChild(div);
-
-    conversationPanel.scrollTop = conversationPanel.clientHeight;
-    conversationPanel.scrollTop = conversationPanel.scrollHeight - conversationPanel.scrollTop;
-}
-
-var keyPressTimer;
-var numberOfKeys = 0;
-$('#txt-chat-message').emojioneArea({
-    pickerPosition: "top",
-    filtersPosition: "bottom",
-    tones: false,
-    autocomplete: true,
-    inline: true,
-    hidePickerOnBlur: true,
-    events: {
-        focus: function() {
-            $('.emojionearea-category').unbind('click').bind('click', function() {
-                $('.emojionearea-button-close').click();
-            });
-        },
-        keyup: function(e) {
-            var chatMessage = $('.emojionearea-editor').html();
-            if (!chatMessage || !chatMessage.replace(/ /g, '').length) {
-                connection.send({
-                    typing: false
-                });
-            }
 
 
-            clearTimeout(keyPressTimer);
-            numberOfKeys++;
+    connection.onmute = function(e) { 
+        e.mediaElement.setAttribute('poster', '//www.webrtc-experiment.com/images/muted.png'); 
+    };
 
-            if (numberOfKeys % 3 === 0) {
-                connection.send({
-                    typing: true
-                });
-            }
 
-            keyPressTimer = setTimeout(function() {
-                connection.send({
-                    typing: false
-                });
-            }, 1200);
-        },
-        blur: function() {
-            // $('#btn-chat-message').click();
-            connection.send({
-                typing: false
-            });
-        }
-    }
-});
+    var conversationPanel = document.getElementById('conversation-panel');
 
-window.onkeyup = function(e) {
-    var code = e.keyCode || e.which;
-    if (code == 13) {
-        $('#btn-chat-message').click();
-    }
-};
-
-document.getElementById('btn-chat-message').onclick = function() {
-    var chatMessage = $('.emojionearea-editor').html();
-    $('.emojionearea-editor').html('');
-
-    if (!chatMessage || !chatMessage.replace(/ /g, '').length) return;
-
-    var checkmark_id = connection.userid + connection.token();
-
-    appendChatMessage(chatMessage, checkmark_id);
-
-    connection.send({
-        chatMessage: chatMessage,
-        checkmark_id: checkmark_id
-    });
-
-    connection.send({
-        typing: false
-    });
-};
-
-var recentFile;
-document.getElementById('btn-attach-file').onclick = function() {
-    var file = new FileSelector();
-    file.selectSingleFile(function(file) {
-        recentFile = file;
-
-        if(connection.getAllParticipants().length >= 1) {
-            recentFile.userIndex = 0;
-            connection.send(file, connection.getAllParticipants()[recentFile.userIndex]);
-        }
-    });
-};
-
-function getFileHTML(file) {
-    var url = file.url || URL.createObjectURL(file);
-    var attachment = '<a href="' + url + '" target="_blank" download="' + file.name + '">Download: <b>' + file.name + '</b></a>';
-    if (file.name.match(/\.jpg|\.png|\.jpeg|\.gif/gi)) {
-        attachment += '<br><img crossOrigin="anonymous" src="' + url + '">';
-    } else if (file.name.match(/\.wav|\.mp3/gi)) {
-        attachment += '<br><audio src="' + url + '" controls></audio>';
-    } else if (file.name.match(/\.pdf|\.js|\.txt|\.sh/gi)) {
-        attachment += '<iframe class="inline-iframe" src="' + url + '"></iframe></a>';
-    }
-    return attachment;
-}
-
-function getFullName(userid) {
-    var _userFullName = userid;
-    if (connection.peers[userid] && connection.peers[userid].extra.userFullName) {
-        _userFullName = connection.peers[userid].extra.userFullName;
-    }
-    return _userFullName;
-}
-
-connection.onFileEnd = function(file) {
+    connection.onFileEnd = function(file) {
     var html = getFileHTML(file);
     var div = progressHelper[file.uuid].div;
 
@@ -1388,43 +1165,39 @@ connection.onFileStart = function(file) {
     conversationPanel.scrollTop = conversationPanel.scrollHeight - conversationPanel.scrollTop;
 };
 
-function updateLabel(progress, label) {
-    if (progress.position == -1) return;
-    var position = +progress.position.toFixed(2).split('.')[1] || 100;
-    label.innerHTML = position + '%';
-}
 
-// if(!!params.password) {
-//     connection.password = params.password;
-// }
+
 
 designer.appendTo(document.getElementById('widget-container'), function() {
     // if (params.open === true || params.open === 'true') {
-    //         var tempStreamCanvas = document.getElementById('temp-stream-canvas');
-    //         var tempStream = tempStreamCanvas.captureStream();
-    //         tempStream.isScreen = true;
-    //         tempStream.streamid = tempStream.id;
-    //         tempStream.type = 'local';
-    //         connection.attachStreams.push(tempStream);
-    //         window.tempStream = tempStream;
+            // var tempStreamCanvas = document.getElementById('temp-stream-canvas');
+            // var tempStream = tempStreamCanvas.captureStream();
+            // tempStream.isScreen = true;
+            // tempStream.streamid = tempStream.id;
+            // tempStream.type = 'local';
+            // connection.attachStreams.push(tempStream);
+            // window.tempStream = tempStream;
 
-    //         connection.extra.roomOwner = true;
-    //         connection.open(params.sessionid, function(isRoomOpened, roomid, error) {
-    //             if (error) {
-    //                 if (error === connection.errors.ROOM_NOT_AVAILABLE) {
-    //                     alert('Someone already created this room. Please either join or create a separate room.');
-    //                     return;
-    //                 }
-    //                 alert(error);
-    //             }
+            // connection.extra.roomOwner = true;
+            // connection.open(roomid, function(isRoomOpened, roomid, error) {
+            //     if (error) {
+            //         if (error === connection.errors.ROOM_NOT_AVAILABLE) {
+            //             alert('Someone already created this room. Please either join or create a separate room.');
+            //             return;
+            //         }
+            //         alert(error);
+            //     }
 
-    //             connection.socket.on('disconnect', function() {
-    //                 location.reload();
-    //             });
-    //         });
+            //     connection.socket.on('disconnect', function() {
+            //         location.reload();
+            //     });
+            // });
     // } else {
+// connection.dontAttachStream = true; 
+
         connection.join(roomid, function(isRoomJoined, roomid, error) {
-            
+            console.log(connection.DetectRTC)
+           
             if (error) {
                 if (error === connection.errors.ROOM_NOT_AVAILABLE) {
                     alert('This room does not exist. Please either create it or wait for moderator to enter in the room.');
@@ -1432,6 +1205,7 @@ designer.appendTo(document.getElementById('widget-container'), function() {
                 }
                 if (error === connection.errors.ROOM_FULL) {
                     alert('Room is full.');
+                    window.location.href = "{{route('student.classroom')}}";
                     return;
                 }
                 if (error === connection.errors.INVALID_PASSWORD) {
@@ -1440,6 +1214,8 @@ designer.appendTo(document.getElementById('widget-container'), function() {
                         alert('Invalid password.');
                         return;
                     }
+// connection.dontAttachStream = true; 
+
                     connection.join(roomid, function(isRoomJoined, roomid, error) {
                         if(error) {
                             alert(error);
@@ -1456,6 +1232,154 @@ designer.appendTo(document.getElementById('widget-container'), function() {
         });
     // }
 });
+
+  
+}
+
+function appendChatMessage(event, checkmark_id) {
+    var div = document.createElement('div');
+
+    div.className = 'message';
+
+    if (event.data) {
+        div.innerHTML = '<b>' + (event.extra.userFullName || event.userid) + ':</b><br>' + event.data.chatMessage;
+
+        if (event.data.checkmark_id) {
+            connection.send({
+                checkmark: 'received',
+                checkmark_id: event.data.checkmark_id
+            });
+        }
+    } else {
+        div.innerHTML = '<b>You:</b> <img class="checkmark" id="' + checkmark_id + '" title="Received" src="https://www.webrtc-experiment.com/images/checkmark.png"><br>' + event;
+        div.style.background = '#cbffcb';
+    }
+
+    conversationPanel.appendChild(div);
+
+    conversationPanel.scrollTop = conversationPanel.clientHeight;
+    conversationPanel.scrollTop = conversationPanel.scrollHeight - conversationPanel.scrollTop;
+}
+
+var keyPressTimer;
+var numberOfKeys = 0;
+$(document).ready(function(){
+    $('#txt-chat-message').emojioneArea({
+        pickerPosition: "top",
+        filtersPosition: "bottom",
+        tones: false,
+        autocomplete: true,
+        inline: true,
+        hidePickerOnBlur: true,
+        hideSource: false,
+        events: {
+            focus: function() {
+                $('.emojionearea-category').unbind('click').bind('click', function() {
+                    $('.emojionearea-button-close').click();
+                });
+            },
+            keyup: function(e) {
+                var chatMessage = $('.emojionearea-editor').html();
+                if (!chatMessage || !chatMessage.replace(/ /g, '').length) {
+                    connection.send({
+                        typing: false
+                    });
+                }
+
+
+                clearTimeout(keyPressTimer);
+                numberOfKeys++;
+
+                if (numberOfKeys % 3 === 0) {
+                    connection.send({
+                        typing: true
+                    });
+                }
+
+                keyPressTimer = setTimeout(function() {
+                    connection.send({
+                        typing: false
+                    });
+                }, 1200);
+            },
+            blur: function() {
+                // $('#btn-chat-message').click();
+                connection.send({
+                    typing: false
+                });
+            }
+        }
+    });
+})
+
+
+window.onkeyup = function(e) {
+    var code = e.keyCode || e.which;
+    if (code == 13) {
+        $('#btn-chat-message').click();
+    }
+};
+
+document.getElementById('btn-chat-message').onclick = function() {
+    var chatMessage = $('.emojionearea-editor').html();
+    $('.emojionearea-editor').html('');
+
+    if (!chatMessage || !chatMessage.replace(/ /g, '').length) return;
+
+    var checkmark_id = connection.userid + connection.token();
+
+    appendChatMessage(chatMessage, checkmark_id);
+
+    connection.send({
+        chatMessage: chatMessage,
+        checkmark_id: checkmark_id
+    });
+
+    connection.send({
+        typing: false
+    });
+};
+
+var recentFile;
+document.getElementById('btn-attach-file').onclick = function() {
+    var file = new FileSelector();
+    file.selectSingleFile(function(file) {
+        recentFile = file;
+
+        if(connection.getAllParticipants().length >= 1) {
+            recentFile.userIndex = 0;
+            connection.send(file, connection.getAllParticipants()[recentFile.userIndex]);
+        }
+    });
+};
+
+function getFileHTML(file) {
+    var url = file.url || URL.createObjectURL(file);
+    var attachment = '<a href="' + url + '" target="_blank" download="' + file.name + '">Download: <b>' + file.name + '</b></a>';
+    if (file.name.match(/\.jpg|\.png|\.jpeg|\.gif/gi)) {
+        attachment += '<br><img crossOrigin="anonymous" src="' + url + '">';
+    } else if (file.name.match(/\.wav|\.mp3/gi)) {
+        attachment += '<br><audio src="' + url + '" controls></audio>';
+    } else if (file.name.match(/\.pdf|\.js|\.txt|\.sh/gi)) {
+        attachment += '<iframe class="inline-iframe" src="' + url + '"></iframe></a>';
+    }
+    return attachment;
+}
+
+function getFullName(userid) {
+    var _userFullName = userid;
+    if (connection.peers[userid] && connection.peers[userid].extra.userFullName) {
+        _userFullName = connection.peers[userid].extra.userFullName;
+    }
+    return _userFullName;
+}
+
+
+function updateLabel(progress, label) {
+    if (progress.position == -1) return;
+    var position = +progress.position.toFixed(2).split('.')[1] || 100;
+    label.innerHTML = position + '%';
+}
 
 function addStreamStopListener(stream, callback) {
     stream.addEventListener('ended', function() {

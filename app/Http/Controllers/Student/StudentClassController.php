@@ -37,4 +37,19 @@ class StudentClassController extends Controller
         $spent_payment = Booking::where('status',2)->sum('price');
         return view('student.pages.payment.index',compact('payment','spent_payment'));
     }
+
+    public function saveReview(Request $request) {
+
+        Booking::where('id',$request->booking_id)->update([
+            "student_review" => $request->review,
+            "rating" => $request->star_rating,
+        ]);
+
+        return response()->json([
+            "message" => "Rating Saved Successfully",
+            "status_code" => 200, 
+            "success" => true,
+        ]);
+
+    }
 }

@@ -247,6 +247,9 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
 
     Route::get('/classroom',[StudentClassController::class,'index'])->name('student.classroom');
     Route::get('/wallet',[StudentClassController::class,'payment'])->name('student.wallet');
+    
+    Route::post('/save-review',[StudentClassController::class,'saveReview'])->name('student.save.review');
+
     Route::get('/calendar',[CalendarController::class,'calendarStudent'])->name('student.calendar');
     // Route::get('/history',[HistoryController::class,'index'])->name('tutor.history');
     // Route::get('/payment',[PaymentController::class,'index'])->name('tutor.payment');
@@ -291,6 +294,10 @@ Auth::routes(['verify' => true]);
 //Google
 Route::get('/google/redirect/{c_id?}', [LoginController::class,'redirectGoogle'])->name('social.google');
 Route::get('/login/google/callback', [LoginController::class,'handleGoogleCallback']);
+// Facebook
+
+Route::get('/facebook/redirect/{c_id?}', [LoginController::class,'redirectFacebook'])->name('social.facebook');
+Route::get('/login/facebook/callback', [LoginController::class,'handleFacebookCallback']);
 
 Route::get('/student/register',[RegisterController::class,'showStudentRegistrationForm'])->name('student.register')->middleware('guest');
 Route::post('/register',[RegisterController::class,'register'])->name('tutor.register')->middleware('guest');

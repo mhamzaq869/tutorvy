@@ -1356,9 +1356,45 @@
 font-size:xx-large;
 -webkit-text-stroke-width: 1px;
 -webkit-text-stroke-color: #FAAF3A;
+color:#fbfbfb;
 }
 .text-yellow {
     color: #FAAF3A;
 }
 
     /*Review Stars End*/
+
+    /* buttons General now */
+    
+    .btn-general {
+        background: #1173FF;
+        color: #fff;
+        border-radius: 4px;
+        font-size: 14px;
+        padding: 5px 29px;
+        border: 1px solid #1173FF;
+        font-weight: 600;
+        transition: all 0.9s;
+    }
+    
+    .btn-general:hover {
+        color: #1173FF;
+        background: #fff;
+    }
+    .btn-outline-general {
+        background: #fff;
+        color: #1173FF;
+        border-radius: 4px;
+        font-size: 14px;
+        padding: 5px 29px;
+        border: 1px solid #1173FF;
+        font-weight: 600;
+        transition: all 0.9s;
+    }
+    
+    .btn-outline-general:hover {
+        color: #fff;
+        background: #1173FF;
+    }
+
+    /* buttons General End now */

@@ -31,17 +31,20 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-messaging.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script> -->
     
-    <script type="module" src="{{asset('assets/firebase/index.js')}}"></script>
-
     <!--Select 2-->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- Styles -->
    
     @include('tutor.layouts.css')
 
 </head>
 <body>
-    <div class="wrapper token_wrapper" id="wrapper" data-id="{{Auth::user()->is_token_updated}}">
+    <div class="wrapper token_wrapper" >
+        <input type="hidden" id="tutor_role_id" value={{Auth::user()->role}}>
         <!-- side navbar -->
         @include('tutor.layouts.sidebar')
         <!-- seide navbar end -->
@@ -117,6 +120,15 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.2.7/emojionearea.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-storage.js"></script>
+    <script  src="{{asset('assets/firebase/index.js')}}"></script>
     
 
 <!-- <script src="{{ asset('assets/js/jquery_ui_multiselector.js')}}"></script> -->
@@ -129,7 +141,7 @@
 
     $(document).ready(function(){
         // $('.table').DataTable();
-     
+        get_all_notifications();
         
         $(".dropify").dropify();
         $('.js-multiSelect').select2();
@@ -161,18 +173,68 @@
             /* Table Sorting */
     })
     $("#country_selector").countrySelect({
-                defaultCountry: "{{ $user->country_short ?? '' }}",
-                preferredCountries: ['ca', 'gb', 'us', 'pk']
-            });
+        defaultCountry: "{{ $user->country_short ?? '' }}",
+        preferredCountries: ['ca', 'gb', 'us', 'pk']
+    });
 
-            $("#country_selector").on('change', function() {
-                var short = $(this).countrySelect("getSelectedCountryData");
-                $("#country_short").val(short.iso2);
-            });
-            function hideCard(){
-                    // alert();
-                    $(".infoCard").hide('slow');
-                };
+    $("#country_selector").on('change', function() {
+        var short = $(this).countrySelect("getSelectedCountryData");
+        $("#country_short").val(short.iso2);
+    });
+    function hideCard(){
+        // alert();
+        $(".infoCard").hide('slow');
+    };
+
+    function get_all_notifications() {
+        $.ajax({
+            url: "{{route('general.get.notification')}}",
+            type:"GET",
+            dataType:'json',
+            success:function(response){
+                var obj = response.notification;
+                console.log(obj , "asd");
+                if(response.status_code == 200 && response.success == true) {
+                    var notification = ``;
+                    $('.tutor_notification_counts').text(obj.length);
+                    for(var i =0; i < obj.length; i++) {
+
+                        notification +=`
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <img class="avatar mt-2" src="{{ asset('/admin/assets/img/notifiaction/layer.png')}}"
+                                        alt="layer">
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="head-1-noti">
+                                        <span class="notification-text6">
+                                            <strong>`+obj[i].noti_title+` </strong> <br>
+                                            `+obj[i].noti_desc+`
+                                        </span>
+                                    </div>
+                                    <span class="notification-time">
+                                    </span>
+                                </div>
+                                <div class="col-md-1">
+                                    <img class="dot-image" src="{{ asset('/admin/assets/img/ico/3dot.png')}}"
+                                        alt="dot-ico">
+                                </div>
+                            </div>
+                            <hr>`;
+                    }
+
+                    $(".show_all_notifications").html(notification);
+
+
+                }else{
+                    notification +=`<span> No Notification </span>`;
+                }
+            },
+            error:function(e) {
+                console.log(e)
+            }
+        });
+        }
 </script>
 </body>
 </html>

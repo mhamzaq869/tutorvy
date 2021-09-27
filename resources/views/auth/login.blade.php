@@ -99,7 +99,7 @@
                                         <img src="{{asset($user->picture)}}" alt="boy" class="profile-img" style="width: 40px;">
 
                                     @else
-                                        <img src="../assets/images/logo/boy.jpg" alt="boy" style="width: 40px;">
+                                        <img src="../assets/images/ico/Square-white.jpg" alt="boy" style="width: 40px;">
                                     @endif
                                 </p>
                                 <p class="ml-3 mt-5 Welcome-text"> {{$user->first_name ?? ''}} {{$user->last_name ?? ''}}</p>
@@ -187,8 +187,11 @@
                                 </a>
                             </div>
                             <div class="facebook">
+                                <a href="{{route('social.facebook',[0])}}">
+                            
                                 <img class="mr-3" src="../assets/images/ico/facebook(1).png" alt="facebook">
                                 Continue with Facebook
+                                </a>
                             </div>
                             <div class="Apple">
                                 <img class="mr-3" src="../assets/images/ico/apple.png" alt="apple">

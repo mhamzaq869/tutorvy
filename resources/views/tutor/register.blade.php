@@ -293,7 +293,7 @@
                                 </ul>
                             </div> -->
                             <form action="{{ url('register') }}" method="post" id="register"
-                                enctype="multipart/form-data">
+                                enctype="multipart/form-data" onsubmit="return false">
                                 @csrf
                                 <input type="hidden" name="role" value="2">
                                 <div class="tab-content mt-5">
@@ -406,8 +406,10 @@
                                                                 </a>
                                                             </div>
                                                             <div class="facebook">
-                                                                <img class="mr-3" src="{{asset('assets/images/ico/facebook(1).png')}}" alt="facebook">
-                                                                Continue with Facebook
+                                                                <a href="{{route('social.facebook',[2])}}">
+                                                                    <img class="mr-3" src="{{asset('assets/images/ico/facebook(1).png')}}" alt="facebook">
+                                                                    Continue with Facebook
+                                                                </a>
                                                             </div>
                                                             <div class="Apple">
                                                                 <img class="mr-3" src="{{asset('assets/images/ico/apple.png')}}" alt="apple">
@@ -1065,6 +1067,38 @@
                 });
                 $("#teach_error").hide();
                 $(".text-red").hide();
+
+                $("#password").keyup(function() {
+                    var decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+                    var ter = $(this).val();
+                    if (ter.match(decimal))
+                    {
+                        console.log("password ok");
+                        $("#password_error").css("display", "none");
+                        $("#passTech").css("display", "block");
+                        $("#password").removeClass("is-invalid");
+                        $("#password").addClass("valid");
+                        $('#register').removeAttr('onsubmit');
+                        
+                    }else{
+                        var attr = $('#register').attr('onsubmit');
+
+                        if (typeof attr !== 'undefined' && attr !== false) {
+                            $('#register').removeAttr('onsubmit');
+                        }else{
+                            $('#register').attr('onsubmit','return false');
+                        }
+
+                        $("#password_error").css("display", "block");
+                        $("#passTech").css("display", "none");
+                        $("#password").removeClass("valid");
+                        $("#password").addClass("is-invalid");
+
+                        $("#password_error").text("Field should have at least one lowercase letter, one uppercase letter, one numeric digit, and one special character")
+
+                        return false;
+                    }
+                });
             });
 
             $("#country_selector").countrySelect({
