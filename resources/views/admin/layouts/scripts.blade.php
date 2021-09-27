@@ -25,7 +25,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-storage.js"></script>
-    <script  src="{{asset('assets/firebase/index.js')}}"></script>
+    <script src="{{asset('assets/firebase/index.js').'?ver='.rand()}}"></script>
 
     <script src="{{ asset('assets/js/dropify.js')}}"></script>
 

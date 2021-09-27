@@ -26,7 +26,7 @@ messaging.requestPermission().then(function(){
 messaging.onMessage((payload) => {
   console.log('Message received. ', payload);
 
-  var tutor_role_id = $("#tutor_role_id").val();
+  var user_role_id = $(".tutor_role_id").val();
 
   var btn_class = payload.data.btn_class;
   var icon = payload.data.icon;
@@ -37,56 +37,139 @@ messaging.onMessage((payload) => {
   var body = payload.notification.body;
   var title = payload.notification.title;
 
-  if(type == "class_book") {
-
+  if(user_role_id == 1) {
     toastr.success(title + '<br>' +  body,{
         position: 'top-end',
         icon: 'success',
         showConfirmButton: false,
-        timer: 2500
-    });
-
-  }else if(type == "tutor_profile_verfication") {
-
-    toastr.success(title + '<br>' +  body,{
-        position: 'top-end',
-        icon: 'success',
-        showConfirmButton: false,
-        timer: 2500
-    });
-  }else if(type == "tutor_assessment") {
-    
-    toastr.success(title + '<br>' +  body,{
-        position: 'top-end',
-        icon: 'success',
-        showConfirmButton: false,
-        timer: 2500
-    });
-  }else if(type == "class_booking") {
-    
-    toastr.success(title + '<br>' +  body,{
-        position: 'top-end',
-        icon: 'success',
-        showConfirmButton: false,
-        timer: 2500
-    });
-  }else if(type == "doc_verification") {
-    
-    toastr.success(title + '<br>' +  body,{
-        position: 'top-end',
-        icon: 'success',
-        showConfirmButton: false,
-        timer: 2500
-    });
-  }else if(type == "user_logout") {
-    
-    toastr.success(title + '<br>' +  body,{
-        position: 'top-end',
-        icon: 'success',
-        showConfirmButton: false,
-        timer: 2500
+        timer: 8000,
     });
   }
+
+  if(user_role_id == 2) {
+    if(type == "tutor_profile_verfication") {
+      toastr.success(title + '<br>' +  body,{
+          position: 'top-end',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 8000,
+      });
+    }
+
+    if(type == "tutor_assessment") {
+      toastr.success(title + '<br>' +  body,{
+          position: 'top-end',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 8000,
+      });
+    }
+
+    if(type == "tutor_submit_assessment") {
+      toastr.success(title + '<br>' +  body,{
+          position: 'top-end',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 8000,
+      });
+    }
+
+    if(type == "class_booking") {
+      toastr.success(title + '<br>' +  body,{
+          position: 'top-end',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 8000,
+      });
+    }
+    
+  }
+
+  if(user_role_id == 3) {
+   if(type == "class_book") {
+      toastr.success(title + '<br>' +  body,{
+          position: 'top-end',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 8000,
+      });
+    } 
+    if(type == "class_booking") {
+      toastr.success(title + '<br>' +  body,{
+          position: 'top-end',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 8000,
+      });
+    } 
+  }
+
+
+
+  // if(type == "class_book") {
+
+  //   toastr.success(title + '<br>' +  body,{
+  //       position: 'top-end',
+  //       icon: 'success',
+  //       showConfirmButton: false,
+  //       timer: 8000,
+  //   });
+
+  // } 
+  // if(type == "tutor_profile_verfication") {
+
+  //   toastr.success(title + '<br>' +  body,{
+  //       position: 'top-end',
+  //       icon: 'success',
+  //       showConfirmButton: false,
+  //       timer: 8000,
+  //   });
+  // }
+  // if(type == "tutor_assessment") {
+    
+  //   toastr.success(title + '<br>' +  body,{
+  //       position: 'top-end',
+  //       icon: 'success',
+  //       showConfirmButton: false,
+  //       timer: 8000,
+  //   });
+  // }
+  // if(type == "class_booking") {
+    
+  //   toastr.success(title + '<br>' +  body,{
+  //       position: 'top-end',
+  //       icon: 'success',
+  //       showConfirmButton: false,
+  //       timer: 8000,
+  //   });
+  // }
+  // if(type == "doc_verification") {
+    
+  //   toastr.success(title + '<br>' +  body,{
+  //       position: 'top-end',
+  //       icon: 'success',
+  //       showConfirmButton: false,
+  //       timer: 8000,
+  //   });
+  // }
+  // if(type == "user_logout") {
+    
+  //   toastr.success(title + '<br>' +  body,{
+  //       position: 'top-end',
+  //       icon: 'success',
+  //       showConfirmButton: false,
+  //       timer: 8000,
+  //   });
+  // }
+  // if(type == "tutor_submit_assessment") {
+    
+  //   toastr.success(title + '<br>' +  body,{
+  //       position: 'top-end',
+  //       icon: 'success',
+  //       showConfirmButton: false,
+  //       timer: 8000,
+  //   });
+  // }
 
   $('.tutor_notification_counts').text(unread_count);
 

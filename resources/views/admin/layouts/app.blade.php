@@ -29,14 +29,6 @@
     <link rel="stylesheet" href="{{ asset('assets/css/home.css')}}" />
     <link rel="stylesheet" href="{{ asset('assets/css/dropify.css')}}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <!-- <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-messaging.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script> -->
-
-    <script type="module" src="{{asset('assets/firebase/index.js')}}"></script>
-
-
-
 
 </head>
 <!-- <body>
@@ -45,6 +37,7 @@
     @include('admin.layouts.sidebar')
 
     <section id="contents">
+    <input type="hidden" class="tutor_role_id" value={{Auth::user()->role}}>
         <!-- navbar-->
         @include('admin.layouts.navbar')
         <!-- navbar end -->

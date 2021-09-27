@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Tutor;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\General\GeneralController;
+use App\Http\Controllers\General\NotifyController;
 use App\Models\Assessment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Activitylogs;
+use App\Models\Admin\Subject;
 use App\Models\subjectPlans;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -76,6 +78,22 @@ class AssessmentController extends Controller
         $action_perform = '<a href="'.URL::to('/') . '/admin/tutor/profile/'. $id .'"> '.$name.' </a> Create new Assessment';
         $activity_logs = new GeneralController();
         $activity_logs->save_activity_logs("Asseessment Created", "assessments.id", $assessment->id, $action_perform, $request->header('User-Agent'), $id);
+
+        $subject = Subject::where('id',$request->subject)->first();
+
+        $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+        $user = User::where('role',1)->first();
+        $notification = new NotifyController();
+        $sender_id = Auth::user()->id;
+        $reciever_id = $user->id;
+        $slug = '-' ;
+        $type = 'tutor_submit_assessment';
+        $data = 'data';
+        $title = 'Assessment Verification';
+        $icon = 'fas fa-tag';
+        $class = 'btn-success';
+        $desc =  $name . 'Submitted Assessment of ' . $subject->name . ' for Verfication';
+        $notification->GeneralNotifi($sender_id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
 
         return response()->json([
             "status_code" => 200,
