@@ -94,6 +94,12 @@ $(document).ready(function() {
     });
 })
 
+
+
+function openPayNowModal(id) {
+    $("#payModel").modal('show');
+    
+}
 // show tutor plans
 
 </script>
