@@ -41,6 +41,7 @@
                         <div class="col-md-12 mb-3">
                             <div class="card mt-0">
                                 <div class="card-body">
+                                    
                                     <p class="mb-2 ">Profile Strength: <strong class="text-success">
                                         @php 
                                             $default = 10;
@@ -49,7 +50,9 @@
                                             $default = $education_profile > 0 ? ($default + 30) : $default;
                                             echo $default .'%';
                                         @endphp         
-                                    </strong></p>
+                                    </strong>
+                                    <small class="pull-right"><a href="{{route('student.profile')}}"> View Profile </a></small>
+                                </p>
                                     <div class="progress">
                                         <div class="bg-dead bg-levelTwo" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
                                         <div class="bg-dead {{$default >= 30  ? 'bg-levelThree' : ''}} ml-1" role="progressbar" style="width: 15%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>

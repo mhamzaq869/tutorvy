@@ -52,6 +52,8 @@
                                                 echo $default.'%';
                                             @endphp                                              
                                         </strong>
+                                        <small class="pull-right"><a href="{{route('tutor.profile')}}"> View Profile </a></small>
+
                                     </p>
                                     <div class="progress">
                                         <div class="bg-dead bg-levelTwo" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
