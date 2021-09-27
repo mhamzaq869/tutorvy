@@ -446,9 +446,10 @@
                     let join_btn = `<a href="{{url('tutor/class')}}/`+room_id+`"  class="schedule-btn"> Join Class </a>`;
                     
                     if(time > actual_time) {
-                        $("#class_time_"+attr_id).text("Class Expired");
-                    }else{
+                        
                         $("#join_class_"+attr_id).html(join_btn);
+                    }else{
+                        $("#class_time_"+attr_id).text("Class Expired");
                     }
                     
                 }
