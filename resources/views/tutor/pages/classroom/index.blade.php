@@ -117,7 +117,7 @@
                                                                 @endif
                                                                 </td>
                                                                 <td>
-                                                                    <span data-id="{{$class->booking->id}}" data-duration="{{$class->booking->duration}}" data-time="{{$class->booking->class_time}}"
+                                                                    <span data-id="{{$class->booking->id}}" data-room="{{$class->classroom_id}}" data-duration="{{$class->booking->duration}}" data-time="{{$class->booking->class_time}}"
                                                                         id="class_time_{{$class->booking->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success mt-3">{{$class->booking->class_date}} {{$class->booking->class_time}} </span>     
                                                                     <div id="join_class_{{$class->booking->id}}" class="text-center">
                                                                 </td>
@@ -247,6 +247,7 @@
             var attr_id = $(this).data('id');
             var duration = $(this).data('duration');
             var time = $(this).data('time');
+            var room_id = $(this).data('room');
 
             let split_time = time.split(':');
             let create_time = parseInt(split_time[0]) + parseInt(duration);
@@ -272,7 +273,7 @@
 
                 if (distance < 0) {
                     clearInterval(x);
-                    let join_btn = `<a href="{{url('tutor/class')}}/`+attr_id+`"  class="schedule-btn"> Start Call </a>`;
+                    let join_btn = `<a href="{{url('tutor/class')}}/`+room_id+`"  class="schedule-btn"> Start Call </a>`;
                     // if(time > actual_time) {
                     //     $("#class_time_"+attr_id).text("Class Expired");
                     // }else{
