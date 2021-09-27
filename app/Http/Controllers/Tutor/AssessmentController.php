@@ -82,9 +82,10 @@ class AssessmentController extends Controller
         $subject = Subject::where('id',$request->subject)->first();
 
         $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+        $user = User::where('role',1)->first();
         $notification = new NotifyController();
         $sender_id = Auth::user()->id;
-        $reciever_id = $request->id;
+        $reciever_id = $user->id;
         $slug = '-' ;
         $type = 'tutor_submit_assessment';
         $data = 'data';
