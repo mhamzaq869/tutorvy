@@ -500,134 +500,124 @@
                     <div class="modal-body">
                         <div class="container">
                             <div class="row">
-                                <div class="col-md-12">
-                                    <div class="iconss" style="text-align: center;">
-                                    
-                                        <img src="{{asset ('admin/assets/img/ico/doollarss.png')}}" width="60px">
-                                        <p
-                                            style="font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 500;margin-top: 10px;">
-                                            Note</p>
-                                        <!-- <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;"
-                                            class="ml-4 mr-4">
-                                            Send approved time for class.
-                                        </p> -->
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="iconss" style="text-align: center;">
+                                            
+                                                <img src="{{asset ('admin/assets/img/ico/doollarss.png')}}" width="60px">
+                                                <p
+                                                    style="font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 500;margin-top: 10px;">
+                                                    Note</p>
+                                                <!-- <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;"
+                                                    class="ml-4 mr-4">
+                                                    Send approved time for class.
+                                                </p> -->
+                                            </div>
+                                        </div>
                                         <div class="col-md-12">
                                             <h3>Class Details</h3>
                                         </div>
                                         <div class="col-md-6 col-6 col-sm-6 ">
-                                            <p>Schedule Date: </p> 
+                                            <p class="mb-0">Schedule Date: </p> 
                                         </div>
                                         <div class="col-md-6 col-6 col-sm-6 text-right" >                                            
-                                            <span id="scdule_date"></span>
+                                            <strong id="scdule_date"></strong>
                                         </div>
                                         <div class="col-md-6 col-6 col-sm-6">
-                                            <p>Schedule Time: </p> 
+                                            <p class="mb-0">Schedule Time: </p> 
                                         </div>
                                         <div class="col-md-6 col-6 col-sm-6 text-right" >
-                                            <span id="class_time"></span>
+                                            <strong id="class_time"></strong>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6 col-6 col-sm-6">
-                                        <p>Schedule Duration: </p> 
-                                    </div>
-                                    <div class="col-md-6 col-6 col-sm-6 text-right" >    
-                                        <p id="duration"></p>                                     
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <h3>Payment Details</h3>
-                                    </div>
+                                        <div class="col-md-6 col-6 col-sm-6">
+                                             <p class="">Schedule Duration: </p> 
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 text-right" >    
+                                            <strong id="duration"></strong>                                     
+                                        </div>
+                                        <div class="col-md-12">
+                                            <h3>Payment Details</h3>
+                                         </div>
                                     
-                                    <div class="col-md-6 col-6 col-sm-6">
-                                        <p>Tutor Fee: </p> 
-                                    </div>
-                                    
-                                    <div class="col-md-6 col-6 col-sm-6 text-right" >
-                                        <span id="price"></span>
-                                    </div>
+                                        <div class="col-md-6 col-6 col-sm-6">
+                                            <p class="mb-0">Tutor Fee: </p> 
+                                        </div>
+                                        
+                                        <div class="col-md-6 col-6 col-sm-6 text-right" >
+                                            <strong id="price"></strong>
+                                        </div>
 
-                                    <div class="col-md-6 col-6 col-sm-6">
-                                        <p>Service Fee: <span id="total_commision"></span>
-                                        </p> 
-                                    </div>
-                                    <div class="col-md-6 col-6 col-sm-6 text-right"> 
-                                        <span id="commission"></span>
-                                    </div>
-                                    <div class="col-md-6 col-6 col-sm-6">
-                                        <p>Total Fee: </p> 
-                                    </div>
-                                    <div class="col-md-6 col-6 col-sm-6 text-right"> 
-                                       <span id="total_price"></span>
-                                    </div>
-                                    <div class="col-md-12 col-12 col-sm-12 pt-2">
-                                        <p>Payment Method: </p> 
-                                    </div>
-                                    <div class="col-md-12 col-12 col-sm-12 "> 
-                                        <div class="row mb-3">
-                                                <div class="col-md-12">
-                                                    <hr>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <div class="text-center">
-                                                                <img src="{{asset ('assets/images/payment-icon/paypal2.png')}}" class="w-50" alt="">
-                                                                <!-- <span class="payment-menu dropdown d-flex"> 
-                                                                    <a class=" d-flex" href="#" data-toggle="dropdown" aria-expanded="true">
-                                                                        <img src="{{asset ('assets/images/payment-icon/menu_dots.png')}}" alt="">
+                                        <div class="col-md-6 col-6 col-sm-6">
+                                            <p class="mb-0">Service Fee: <span id="total_commision"></span>
+                                            </p> 
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 text-right"> 
+                                            <strong id="commission"></strong>
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6">
+                                            <p class="mb-0">Total Fee: </p> 
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 text-right"> 
+                                            <strong id="total_price"></strong>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <hr>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <h3>Payment Method</h3>
+                                         </div>
+                                        <div class="col-md-6">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="text-center">
+                                                        <img src="{{asset ('assets/images/payment-icon/paypal2.png')}}" class="w-50" alt="">
+                                                        <!-- <span class="payment-menu dropdown d-flex"> 
+                                                            <a class=" d-flex" href="#" data-toggle="dropdown" aria-expanded="true">
+                                                                <img src="{{asset ('assets/images/payment-icon/menu_dots.png')}}" alt="">
+                                                            </a>
+                                                            <ul class="dropdown-menu  " >
+                                                                <li>
+                                                                    <a tabindex="-1" class="" href="">
+                                                                        Delete
                                                                     </a>
-                                                                    <ul class="dropdown-menu  " >
-                                                                        <li>
-                                                                            <a tabindex="-1" class="" href="">
-                                                                                Delete
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </span> -->
-                                                                <span class="round">
-                                                                    <input type="checkbox" id="checkbox1" checked />
-                                                                    <label for="checkbox1"></label>
-                                                                </span>
-                                                            </div>
-                                                        </div>
+                                                                </li>
+                                                            </ul>
+                                                        </span> -->
+                                                        <span class="round">
+                                                            <input type="checkbox" id="checkbox1" checked />
+                                                            <label for="checkbox1"></label>
+                                                        </span>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <div class="text-center">
-                                                                <img src="{{asset ('assets/images/payment-icon/skrill.png')}}" class="w-50" alt="">
-                                                                <!-- <span class="payment-menu dropdown d-flex"> 
-                                                                    <a class=" d-flex" href="#" data-toggle="dropdown" aria-expanded="true">
-                                                                        <img src="{{asset ('assets/images/payment-icon/menu_dots.png')}}" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="text-center">
+                                                        <img src="{{asset ('assets/images/payment-icon/skrill.png')}}" class="w-50" alt="">
+                                                        <!-- <span class="payment-menu dropdown d-flex"> 
+                                                            <a class=" d-flex" href="#" data-toggle="dropdown" aria-expanded="true">
+                                                                <img src="{{asset ('assets/images/payment-icon/menu_dots.png')}}" alt="">
+                                                            </a>
+                                                            <ul class="dropdown-menu  " >
+                                                                <li>
+                                                                    <a tabindex="-1" class="" href="">
+                                                                        Delete
                                                                     </a>
-                                                                    <ul class="dropdown-menu  " >
-                                                                        <li>
-                                                                            <a tabindex="-1" class="" href="">
-                                                                                Delete
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </span> -->
-                                                                <span class="round">
-                                                                    <input type="checkbox" id="checkbox2" disabled/>
-                                                                    <label for="checkbox2"></label>
-                                                                </span>
-                                                            </div>
-                                                        </div>
+                                                                </li>
+                                                            </ul>
+                                                        </span> -->
+                                                        <span class="round">
+                                                            <input type="checkbox" id="checkbox2" disabled/>
+                                                            <label for="checkbox2"></label>
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-12 text-right mt-3" id="show_pay_btn">
                                         </div>
-                                    </div>
-                                </div>
+                                    
                             </div>
                         </div>
                         <div class="mt-4 mb-2" style="text-align: right;">
