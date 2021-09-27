@@ -307,11 +307,10 @@
                                                                     @endif
                                                                 </td> 
                                                                 <td class="pt-3 pb-3" style="text-align: center; " >
-                                                                    <button  onclick="pay_now({{$booking->id}})" type="button" role="button" class="cencel-btn mr-2"> Pay Now </button>
-                                                                    <a href="{{route('student.booking-detail',[$booking->id])}}"  class="schedule-btn">
-                                                                        
-                                                                            View details
-                                                                    </a>
+                                                                    @if($booking->status == 1 )
+                                                                        <button  onclick="pay_now({{$booking->id}})" type="button" role="button" class="cencel-btn mr-2"> Pay Now </button>
+                                                                    @endif
+                                                                    <a href="{{route('student.booking-detail',[$booking->id])}}"  class="schedule-btn"> View details </a>
                                                                 </td>
                                                             </tr>
                                                         @endforeach
