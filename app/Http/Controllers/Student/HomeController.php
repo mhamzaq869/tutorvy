@@ -50,6 +50,7 @@ class HomeController extends Controller
         // return ($today_bookings);
 
         $general_profile = DB::table("sys_settings")->where('user_id', Auth::user()->id)->where("title","student_profile_completed")->count();
+        
         $education_profile = User::where('id',Auth::user()->id)
             ->where('experty_level', '!=', NULL)
             ->where('std_subj' , '!=', NULL)

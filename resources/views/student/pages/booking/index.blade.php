@@ -571,19 +571,38 @@
                                         <p>Tutor Fee: </p> 
                                     </div>
                                     <div class="col-md-6 col-6 col-sm-6 text-right"> 
-                                        <p><strong> ${{$booking->price}}  </strong></p> 
+                                        <p><strong> ${{$booking->price}}</strong></p> 
                                     </div>
                                     <div class="col-md-6 col-6 col-sm-6">
-                                        <p>Service Fee: </p> 
+                                        <p>Service Fee: 
+                                            @if($commission != null && $commission != "")
+                                                ({{$commission->commission}}%) 
+                                            @else
+                                                <span>(0%)</span>
+                                            @endif
+                                        </p> 
                                     </div>
                                     <div class="col-md-6 col-6 col-sm-6 text-right"> 
-                                        <p><strong> $00.00  </strong></p> 
+                                        <p><strong>
+                                            @if($commission != null && $commission != "")
+                                                @php 
+                                                    $total_price = ($booking->price * $commission->commission ) / 100;
+                                                    echo '$'.$total_price;
+                                                @endphp     
+                                            @else 
+                                                <span>$0</span>
+                                            @endif
+                                        </strong></p> 
                                     </div>
                                     <div class="col-md-6 col-6 col-sm-6">
                                         <p>Total Fee: </p> 
                                     </div>
                                     <div class="col-md-6 col-6 col-sm-6 text-right"> 
-                                        <p><strong> ${{$booking->price}}  </strong></p> 
+                                        @if($commission != null && $commission != "")
+                                            <p><strong> ${{$booking->price + $total_price}}  </strong></p> 
+                                        @else
+                                            <p><strong> ${{$booking->price}}  </strong></p> 
+                                        @endif
                                     </div>
                                     <div class="col-md-12 col-12 col-sm-12 pt-2">
                                         <p>Payment Method: </p> 
@@ -611,7 +630,7 @@
                                                                     </ul>
                                                                 </span> -->
                                                                 <span class="round">
-                                                                    <input type="checkbox" id="checkbox1" />
+                                                                    <input type="checkbox" id="checkbox1" checked />
                                                                     <label for="checkbox1"></label>
                                                                 </span>
                                                             </div>
@@ -636,7 +655,7 @@
                                                                     </ul>
                                                                 </span> -->
                                                                 <span class="round">
-                                                                    <input type="checkbox" id="checkbox2" />
+                                                                    <input type="checkbox" id="checkbox2" disabled/>
                                                                     <label for="checkbox2"></label>
                                                                 </span>
                                                             </div>

@@ -49,6 +49,7 @@ class BookingController extends Controller
     
     public function index()
     {
+       
         $all = Booking::with(['tutor'])->where('user_id',Auth::user()->id)->get();
         $pending = Booking::with('tutor')->where('user_id',Auth::user()->id)->whereIn('status',[0,1])->get();
         $confirmed = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(2)->get();
@@ -56,7 +57,9 @@ class BookingController extends Controller
         $completed = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(5)->get();
         $cancelled = Booking::with('tutor')->where('user_id',Auth::user()->id)->whereIn('status',[3,4])->get();
 
-        return view('student.pages.booking.index',compact('confirmed','pending','completed','cancelled','all'));
+        $commission = DB::table("sys_settings")->first();
+        
+        return view('student.pages.booking.index',compact('confirmed','pending','completed','cancelled','all','commission'));
     }
 
     public function bookNow($t_id){
@@ -142,14 +145,22 @@ class BookingController extends Controller
    
     public function bookingPayment(Request $request,$id){
 
-        
+        $total_price = 0;
         $booking = Booking::where('id',$request->id)->first();
+        $commission = DB::table("sys_settings")->first();
+                
+        if($commission) {
+            $comm = ($booking->price * $commission->commission) / 100;
+            $total_price = $booking->price + $comm;
+        }else{
+            $total_price = $booking->price;
+        }
         
         if(!$booking){
             \Session::put('error','Unable to process booking not available.');
             return Redirect::route('student.bookings'); 
         }
-        if($booking->price == null || $booking->price == 0.00){
+        if($total_price == null || $total_price == 0.00 || $total_price == 0){
             \Session::put('error','Unable to process booking with invalid amount.');
             return Redirect::route('student.bookings'); 
         }
@@ -161,14 +172,14 @@ class BookingController extends Controller
         $item_1->setName('Online Class')
             ->setCurrency('USD')
             ->setQuantity(1)
-            ->setPrice($booking->price);
+            ->setPrice($total_price);
 
         $item_list = new ItemList();
         $item_list->setItems(array($item_1));
 
         $amount = new Amount();
         $amount->setCurrency('USD')
-            ->setTotal($booking->price);
+            ->setTotal($total_price);
 
         $transaction = new Transaction();
         $transaction->setAmount($amount)
