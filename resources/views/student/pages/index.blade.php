@@ -43,19 +43,18 @@
                                     <p class="mb-2 ">Profile Strength: <strong class="text-success">
                                         @php 
                                             $default = 10;
-                                            $default += $general_profile > 0 ? 40 : 0;
-                                            $default += Auth::user()->picture != null ? 20 : 0;
-                                            $default += $education_profile > 0 ? 30 : 0;
-                                            echo $default.'%';
+                                            $default = $general_profile == 1 ? ($default + 40) :  $default;
+                                            $default = Auth::user()->picture != null ? ($default + 20) : $default;
+                                            $default = $education_profile > 0 ? ($default + 30) : $default;
+                                            echo $default .'%';
                                         @endphp         
                                     </strong></p>
                                     <div class="progress">
                                         <div class="bg-dead bg-levelTwo" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                                        <div class="bg-dead {{$default == 60 ? 'bg-levelThree' : ''}} ml-1" role="progressbar" style="width: 15%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                        <div class="bg-dead {{$default == 60  ? 'bg-levelThree' : ''}} ml-1" role="progressbar" style="width: 15%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                        <div class="bg-dead {{$default == 60  ? 'bg-levelThree' : ''}} ml-1" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                                        <div class="bg-dead {{$default == 80 ? 'bg-levelFour' : '' }} ml-1" role="progressbar" style="width: 15%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                        <div class="bg-dead {{$default == 100 ? 'bg-levelFive' : ''}} ml-1" role="progressbar" style="width: 15%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="bg-dead {{$default >= 50  ? 'bg-levelThree' : ''}} ml-1" role="progressbar" style="width: 15%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="bg-dead {{$default >= 50  ? 'bg-levelThree' : ''}} ml-1" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="bg-dead {{$default >= 70 ? 'bg-levelFour' : '' }} ml-1" role="progressbar" style="width: 15%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="bg-dead {{$default >= 70 ? 'bg-levelFive' : ''}} ml-1" role="progressbar" style="width: 15%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                                         <div class="bg-dead {{$default == 100 ? 'bg-levelFive' : ''}} ml-1" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                     <p class="text-mute mt-1 mb-0"> <i class="fa fa-check text-success"></i> Tutors with complete profile tends to have more students than the other tutors.</p>

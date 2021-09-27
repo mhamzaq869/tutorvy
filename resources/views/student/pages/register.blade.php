@@ -32,6 +32,7 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <!-- Dropify CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/dropify.css') }}" />
+    <link href="{{ asset('assets/css/fontawesome.min.css') }}" rel="stylesheet">
 
     <!-- Moment Js -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -267,13 +268,13 @@
                                 </ul>
                             </div> -->
                             <form action="{{ url('register') }}" method="post" id="register"
-                                enctype="multipart/form-data" onsubmit="return false">
+                                enctype="multipart/form-data" onsubmit="return false" autocomplete="off">
                                 @csrf
                                 <input type="hidden" name="role" value="3">
                                 <div class="tab-content mt-5">
                                     <div role="tabpanel" class="border-right tab-pane active" id="step-1">
                                         <div class="col-md-12">
-                                            <p class="heading-third mt-3">Personal information</p>
+                                            <p class="heading-third mt-3">Personal information <i class="fa fa-address-book" aria-hidden="true"></i></p>
                                             @if (Session::has('error'))
                                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-top:-12px">
@@ -334,11 +335,11 @@
                                                     <small id="passTech">
                                                             Field should have at least:
                                                             <ul>
-                                                                <li>One uppercase letter</li>
-                                                                <li>One lowercase letter</li>
-                                                                <li>One numeric value</li>
-                                                                <li>One special character</li>
-                                                                <li>8 characters</li>
+                                                                <li id="capital_letter">One uppercase letter</li>
+                                                                <li id="lower_letter">One lowercase letter</li>
+                                                                <li id="numeric">One numeric value</li>
+                                                                <li id="special_character">One special character</li>
+                                                                <li id="min_character">8 characters</li>
                                                             </ul>
                                                         </small>
                                                     <span for="" id="password_error" class="invalid-feedback" role="alert">
@@ -692,18 +693,17 @@
                 $(".text-red").hide();
 
                 $("#password").keyup(function() {
-                    var decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
-                    var ter = $(this).val();
-                    if (ter.match(decimal))
-                    {
-                        console.log("password ok");
-                        $("#password_error").css("display", "none");
-                        $("#passTech").css("display", "block");
-                        $("#password").removeClass("is-invalid");
-                        $("#password").addClass("valid");
+                    var capital_leters = new RegExp('[A-Z]');
+                    var lower_leters = new RegExp('[a-z]');
+                    var numeric = new RegExp('[0-9]');
+                    var special = /[_~\-!@#\$%\^&\*\(\)]+$/;
+                    var password = $(this).val();
+
+                    if(password.match(capital_leters)) {
+                        $("#capital_letter").css('color','green');
                         $('#register').removeAttr('onsubmit');
-                        
                     }else{
+                        $("#capital_letter").css('color','red');
                         var attr = $('#register').attr('onsubmit');
 
                         if (typeof attr !== 'undefined' && attr !== false) {
@@ -711,16 +711,95 @@
                         }else{
                             $('#register').attr('onsubmit','return false');
                         }
-
-                        $("#password_error").css("display", "block");
-                        $("#passTech").css("display", "none");
-                        $("#password").removeClass("valid");
-                        $("#password").addClass("is-invalid");
-
-                        $("#password_error").text("Field should have at least one lowercase letter, one uppercase letter, one numeric digit, and one special character")
-
-                        return false;
                     }
+
+                    if(password.match(lower_leters)) {
+                        $("#lower_letter").css('color','green');
+                        $('#register').removeAttr('onsubmit');
+                    }else{
+                        $("#lower_letter").css('color','red');
+                        var attr = $('#register').attr('onsubmit');
+
+                        if (typeof attr !== 'undefined' && attr !== false) {
+                            $('#register').removeAttr('onsubmit');
+                        }else{
+                            $('#register').attr('onsubmit','return false');
+                        }
+                    }
+
+                    if(password.match(numeric)) {
+                        $("#numeric").css('color','green');
+                        $('#register').removeAttr('onsubmit');
+                    }else{
+                        $("#numeric").css('color','red');
+                        var attr = $('#register').attr('onsubmit');
+
+                        if (typeof attr !== 'undefined' && attr !== false) {
+                            $('#register').removeAttr('onsubmit');
+                        }else{
+                            $('#register').attr('onsubmit','return false');
+                        }
+                    }
+
+                    if(password.length > 8) {
+                        $("#min_character").css('color','green');
+                        $('#register').removeAttr('onsubmit');
+                    }else{
+                        $("#min_character").css('color','red');
+                        var attr = $('#register').attr('onsubmit');
+
+                        if (typeof attr !== 'undefined' && attr !== false) {
+                            $('#register').removeAttr('onsubmit');
+                        }else{
+                            $('#register').attr('onsubmit','return false');
+                        }
+                    }
+
+                    if(password.match(special)) {
+                        $("#special_character").css('color','green');
+                        $('#register').removeAttr('onsubmit');
+                    }else{
+                        $("#special_character").css('color','red');
+                        var attr = $('#register').attr('onsubmit');
+
+                        if (typeof attr !== 'undefined' && attr !== false) {
+                            $('#register').removeAttr('onsubmit');
+                        }else{
+                            $('#register').attr('onsubmit','return false');
+                        }
+                    }
+
+                    console.log(password , "password");
+
+                    // var decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+                    // var ter = $(this).val();
+                    // if (ter.match(decimal))
+                    // {
+                    //     console.log("password ok");
+                    //     // $("#password_error").css("display", "none");
+                    //     // $("#passTech").css("display", "block");
+                    //     // $("#password").removeClass("is-invalid");
+                    //     // $("#password").addClass("valid");
+                    //     // $('#register').removeAttr('onsubmit');
+                        
+                    // }else{
+                    //     var attr = $('#register').attr('onsubmit');
+
+                    //     if (typeof attr !== 'undefined' && attr !== false) {
+                    //         $('#register').removeAttr('onsubmit');
+                    //     }else{
+                    //         $('#register').attr('onsubmit','return false');
+                    //     }
+
+                    //     // $("#password_error").css("display", "block");
+                    //     // $("#passTech").css("display", "none");
+                    //     // $("#password").removeClass("valid");
+                    //     // $("#password").addClass("is-invalid");
+
+                    //     // $("#password_error").text("Field should have at least one lowercase letter, one uppercase letter, one numeric digit, and one special character")
+
+                    //     return false;
+                    // }
                 });
 
             $("#country_selector").countrySelect({
@@ -886,7 +965,7 @@
                     var x = $("#teacher").val();
                     if(x == null){
                         $("#teach_error").show();
-                        $("#teach_error").focus();
+                        // $("#teach_error").focus();
                     }
                     else{
                         $("#teach_error").hide();
@@ -904,7 +983,7 @@
                     success: function(result) {
                         if(result == "Trust me"){
                             $("#email_error_duplicate").show();
-                            $("#email_error_duplicate").focus();
+                            // $("#email_error_duplicate").focus();
                             $("#email").addClass("is-invalid");
                             $("#email_error").hide();
 
