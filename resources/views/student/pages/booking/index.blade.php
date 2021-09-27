@@ -471,7 +471,7 @@
                                                                 @endif
                                                             </td> 
                                                             <td class="pt-3 pb-3" style="text-align: center; " >
-                                                                <a class="cencel-btn mr-2" data-toggle="modal" data-target="#payModel" >
+                                                                <a class="cencel-btn mr-2" onclick >
                                                                     Pay Now
                                                                 </a>
                                                                 <a href="{{route('student.booking-detail',[$booking->id])}}"  class="schedule-btn">

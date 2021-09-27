@@ -234,6 +234,7 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     Route::get('/bookings',[StudentBookingController::class,'index'])->name('student.bookings');
     
     Route::get('/book-now/{id}',[StudentBookingController::class,'bookNow'])->name('student.book-now');
+    Route::post('/bookNew',[StudentBookingController::class,'bookingNew'])->name('student.book-new');
     Route::post('/tutor-plan',[StudentBookingController::class,'tutorPlans'])->name('student.tutor.plans');
 
     Route::get('/booking-detail/{id}',[StudentBookingController::class,'bookingDetail'])->name('student.booking-detail');

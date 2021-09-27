@@ -94,6 +94,28 @@ $(document).ready(function() {
     });
 })
 
+function payNow(id){
+
+    $.ajax({
+            url: "{{route('student.book-new')}}",
+            type:"post",
+            data: {id:id},
+            success:function(response){
+                // console.log(response);
+                if(response.status == 200) {
+                   
+
+                }
+            },
+            complete:function(data) {
+              
+            },
+            error:function(e){
+               alert();
+            }
+        });
+}
+
 // show tutor plans
 
 </script>
