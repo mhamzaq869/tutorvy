@@ -12,7 +12,8 @@ use App\Models\Assessment;
 use App\Models\General\Teach;
 use App\Models\Admin\Subject;
 use App\Models\Booking;
-use DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class TutorController extends Controller
 {

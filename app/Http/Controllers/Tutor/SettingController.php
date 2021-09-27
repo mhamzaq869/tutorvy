@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\General\GeneralController;
 use App\Http\Controllers\General\NotifyController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Activitylogs;

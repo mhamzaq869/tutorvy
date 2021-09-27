@@ -76,7 +76,12 @@ class BookingController extends Controller
     public function bookingNew(Request $request){
 
         $booking = Booking::with(['tutor','user','subject'])->where('id',$request->id)->first();
-        return view('student.pages.booking.index',compact('booking'));
+
+        return response()->json([
+            'status'=>200,
+            'message' => 'success',
+            'booking' => $booking,
+        ]);
         
     }
     public function directBooking($id)
