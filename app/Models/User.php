@@ -60,6 +60,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'token',
         'token_updated_at',
         'is_token_updated',
+        'profile_completed',
     ];
 
 
