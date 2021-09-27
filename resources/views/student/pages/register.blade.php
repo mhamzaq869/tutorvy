@@ -79,7 +79,12 @@
             color: red;
             border-color:red;
         }
-
+        ul{
+            padding-left:20px;
+        }
+        ul li{
+            list-style-type: none;
+        }
         ul.bs-autocomplete-menu {
             position: absolute;
             top: 0;
@@ -274,7 +279,7 @@
                                 <div class="tab-content mt-5">
                                     <div role="tabpanel" class="border-right tab-pane active" id="step-1">
                                         <div class="col-md-12">
-                                            <p class="heading-third mt-3">Personal information <i class="fa fa-address-book" aria-hidden="true"></i></p>
+                                            <p class="heading-third mt-3">Personal information </p>
                                             @if (Session::has('error'))
                                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-top:-12px">
@@ -335,11 +340,11 @@
                                                     <small id="passTech">
                                                             Field should have at least:
                                                             <ul>
-                                                                <li id="capital_letter">One uppercase letter</li>
-                                                                <li id="lower_letter">One lowercase letter</li>
-                                                                <li id="numeric">One numeric value</li>
-                                                                <li id="special_character">One special character</li>
-                                                                <li id="min_character">8 characters</li>
+                                                                <li id="capital_letter"><i class="fa fa-times"></i> One uppercase letter</li>
+                                                                <li id="lower_letter"><i class="fa fa-times"></i> One lowercase letter</li>
+                                                                <li id="numeric"><i class="fa fa-times"></i> One numeric value</li>
+                                                                <li id="special_character"><i class="fa fa-times"></i> One special character</li>
+                                                                <li id="min_character"><i class="fa fa-times"></i> 8 characters</li>
                                                             </ul>
                                                         </small>
                                                     <span for="" id="password_error" class="invalid-feedback" role="alert">
@@ -701,9 +706,13 @@
 
                     if(password.match(capital_leters)) {
                         $("#capital_letter").css('color','green');
+                        $("#capital_letter").find(".fa").removeClass("fa-times");
+                        $("#capital_letter").find(".fa").addClass("fa-check");
                         $('#register').removeAttr('onsubmit');
                     }else{
                         $("#capital_letter").css('color','red');
+                        $("#capital_letter").find(".fa").removeClass("fa-check");
+                        $("#capital_letter").find(".fa").addClass("fa-times");
                         var attr = $('#register').attr('onsubmit');
 
                         if (typeof attr !== 'undefined' && attr !== false) {
@@ -715,9 +724,13 @@
 
                     if(password.match(lower_leters)) {
                         $("#lower_letter").css('color','green');
+                         $("#lower_letter").find(".fa").removeClass("fa-times");
+                        $("#lower_letter").find(".fa").addClass("fa-check");
                         $('#register').removeAttr('onsubmit');
                     }else{
                         $("#lower_letter").css('color','red');
+                         $("#lower_letter").find(".fa").addClass("fa-times");
+                        $("#lower_letter").find(".fa").removeClass("fa-check");
                         var attr = $('#register').attr('onsubmit');
 
                         if (typeof attr !== 'undefined' && attr !== false) {
@@ -729,9 +742,13 @@
 
                     if(password.match(numeric)) {
                         $("#numeric").css('color','green');
+                         $("#numeric").find(".fa").removeClass("fa-times");
+                        $("#numeric").find(".fa").addClass("fa-check");
                         $('#register').removeAttr('onsubmit');
                     }else{
                         $("#numeric").css('color','red');
+                         $("#numeric").find(".fa").addClass("fa-times");
+                        $("#numeric").find(".fa").removeClass("fa-check");
                         var attr = $('#register').attr('onsubmit');
 
                         if (typeof attr !== 'undefined' && attr !== false) {
@@ -743,9 +760,13 @@
 
                     if(password.length > 8) {
                         $("#min_character").css('color','green');
+                         $("#min_character").find(".fa").removeClass("fa-times");
+                        $("#min_character").find(".fa").addClass("fa-check");
                         $('#register').removeAttr('onsubmit');
                     }else{
                         $("#min_character").css('color','red');
+                         $("#min_character").find(".fa").addClass("fa-times");
+                        $("#min_character").find(".fa").removeClass("fa-check");
                         var attr = $('#register').attr('onsubmit');
 
                         if (typeof attr !== 'undefined' && attr !== false) {
@@ -757,9 +778,13 @@
 
                     if(password.match(special)) {
                         $("#special_character").css('color','green');
+                         $("#special_character").find(".fa").removeClass("fa-times");
+                        $("#special_character").find(".fa").addClass("fa-check");
                         $('#register').removeAttr('onsubmit');
                     }else{
                         $("#special_character").css('color','red');
+                         $("#special_character").find(".fa").addClass("fa-times");
+                        $("#special_character").find(".fa").removeClass("fa-check");
                         var attr = $('#register').attr('onsubmit');
 
                         if (typeof attr !== 'undefined' && attr !== false) {
