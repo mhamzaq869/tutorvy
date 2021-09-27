@@ -86,6 +86,14 @@ messaging.onMessage((payload) => {
         showConfirmButton: false,
         timer: 2500
     });
+  }else if(type == "tutor_submit_assessment") {
+    
+    toastr.success(title + '<br>' +  body,{
+        position: 'top-end',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 2500
+    });
   }
 
   $('.tutor_notification_counts').text(unread_count);
