@@ -2915,7 +2915,7 @@ select#paymentMethod option[value="others"] {
 
 /* buttons General End now */
 
-.sidebar-header{
-    background: #fff;
+.sidebar-header {
+    background: #fbfbfb;
     z-index: 999;
-    }
+}
