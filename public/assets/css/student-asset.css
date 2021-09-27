@@ -1405,3 +1405,8 @@
     .text-responsive {
         font-size: calc(100% + 1vw + 1vh);
     }
+
+    .sidebar-header{
+        background: #fff;
+        z-index: 999;
+        }

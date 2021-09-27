@@ -465,7 +465,7 @@
                                                     </div>
                                                     <div class="avatar-preview">
                                                         <div id="imagePreview"
-                                                            style="background-image: url({{ asset(Auth::user()->picture ?? 'assets/images/ico/porfile-main.png') }});">
+                                                            style="background-image: url({{ asset(Auth::user()->picture != null ? Auth::user()->picture : 'assets/images/ico/porfile-main.png') }});">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -592,7 +592,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
-                                                <button class="schedule-btn" id="saveBtn" style="width:180px;font-size: 14px;" type="submit"
+                                                <button class="schedule-btn" id="saveBtn" style="width:180px;float:right;font-size: 14px;" type="submit"
                                                     name="personal">Save Changes</button>
                                                 <button type="button" role="button" type="button" id="proBtn" disabled class="btn btn-primary mb-4 mt-4 mr-2" 
                                                 style="width: 180px; display:none" >
@@ -741,7 +741,7 @@
                                     @endif
 
                                         <div class="col-md-12 mt-3">
-                                            <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit"
+                                            <button class="schedule-btn" style="width: 180px;float:right;font-size: 14px;" type="submit"
                                                 id="edu2">Save Changes</button>
                                         </div>
                                     </form>
@@ -837,7 +837,7 @@
                                             
                                         <div class="row mt-1">
                                             <div class="col-md-12">
-                                                <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit"
+                                                <button class="schedule-btn" style="width: 180px;float:right;font-size: 14px;" type="submit"
                                                     name="profession">Save Changes</button>
                                             </div>
                                         </div>
@@ -924,7 +924,7 @@
 
                                             <div class="row mt-3">
                                                 <div class="col-md-12">
-                                                    <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit" name="personal">Save Changes</button>
+                                                    <button class="schedule-btn" style="width: 180px;float:right;font-size: 14px;" type="submit" name="personal">Save Changes</button>
                                                 </div>
                                             </div>
                                         </form>
