@@ -43,7 +43,7 @@ messaging.onMessage((payload) => {
         position: 'top-end',
         icon: 'success',
         showConfirmButton: false,
-        timer: 2500
+        timer: 5000,
     });
 
   }else if(type == "tutor_profile_verfication") {
@@ -52,7 +52,7 @@ messaging.onMessage((payload) => {
         position: 'top-end',
         icon: 'success',
         showConfirmButton: false,
-        timer: 2500
+        timer: 5000,
     });
   }else if(type == "tutor_assessment") {
     
@@ -60,7 +60,7 @@ messaging.onMessage((payload) => {
         position: 'top-end',
         icon: 'success',
         showConfirmButton: false,
-        timer: 2500
+        timer: 5000,
     });
   }else if(type == "class_booking") {
     
@@ -68,7 +68,7 @@ messaging.onMessage((payload) => {
         position: 'top-end',
         icon: 'success',
         showConfirmButton: false,
-        timer: 2500
+        timer: 5000,
     });
   }else if(type == "doc_verification") {
     
@@ -76,7 +76,7 @@ messaging.onMessage((payload) => {
         position: 'top-end',
         icon: 'success',
         showConfirmButton: false,
-        timer: 2500
+        timer: 5000,
     });
   }else if(type == "user_logout") {
     
@@ -84,7 +84,7 @@ messaging.onMessage((payload) => {
         position: 'top-end',
         icon: 'success',
         showConfirmButton: false,
-        timer: 2500
+        timer: 5000,
     });
   }else if(type == "tutor_submit_assessment") {
     
@@ -92,7 +92,7 @@ messaging.onMessage((payload) => {
         position: 'top-end',
         icon: 'success',
         showConfirmButton: false,
-        timer: 2500
+        timer: 5000,
     });
   }
 
