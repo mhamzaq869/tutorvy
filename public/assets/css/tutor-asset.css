@@ -2914,3 +2914,8 @@ select#paymentMethod option[value="others"] {
 
 
 /* buttons General End now */
+
+.sidebar-header{
+    background: #fff;
+    z-index: 999;
+    }

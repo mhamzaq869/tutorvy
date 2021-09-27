@@ -459,7 +459,7 @@
                                                     </div>
                                                     <div class="avatar-preview">
                                                         <div id="imagePreview"
-                                                            style="background-image: url({{ asset(Auth::user()->picture ?? 'assets/images/ico/porfile-main.png') }});">
+                                                            style="background-image: url({{ asset(Auth::user()->picture != null ? Auth::user()->picture :  'assets/images/ico/porfile-main.png') }});">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -571,7 +571,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
-                                                <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit">Save Changes</button>
+                                                <button class="schedule-btn" style="width: 180px;float:right;font-size: 14px;" type="submit">Save Changes</button>
                                             </div>
 
                                         </div>
@@ -665,11 +665,11 @@
                                                     <select name="student_level"
                                                         class="form-select form-select-lg mb-3 w-100" >
                                                         <option value="" disabled selected>Which grade you are in?</option>
-                                                            <option value="1" {{Auth::user()->student_level == 1 ? 'selected' : ''}}>Pre Elementary School</option>
-                                                            <option value="2" {{Auth::user()->student_level == 2 ? 'selected' : ''}}>Elementary School</option>
-                                                            <option value="3" {{Auth::user()->student_level == 3 ? 'selected' : ''}}>Secondary School</option>
-                                                            <option value="4" {{Auth::user()->student_level == 4 ? 'selected' : ''}}>High School</option>
-                                                            <option value="5" {{Auth::user()->student_level == 5 ? 'selected' : ''}}> Post Secondary</option>
+                                                            <option value="1" {{Auth::user()->experty_level == 1 ? 'selected' : ''}}>Pre Elementary School</option>
+                                                            <option value="2" {{Auth::user()->experty_level == 2 ? 'selected' : ''}}>Elementary School</option>
+                                                            <option value="3" {{Auth::user()->experty_level == 3 ? 'selected' : ''}}>Secondary School</option>
+                                                            <option value="4" {{Auth::user()->experty_level == 4 ? 'selected' : ''}}>High School</option>
+                                                            <option value="5" {{Auth::user()->experty_level == 5 ? 'selected' : ''}}> Post Secondary</option>
                                                     
                                                     </select>
                                                 </div>
@@ -716,7 +716,7 @@
                                         </div> -->
                                         <div class="row mt-3">
                                             <div class="col-md-12">
-                                                <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit" name="personal">Save Changes</button>
+                                                <button class="schedule-btn" style="width: 180px;float:right;font-size: 14px;" type="submit" name="personal">Save Changes</button>
                                             </div>
                                         </div>
                                     </form>

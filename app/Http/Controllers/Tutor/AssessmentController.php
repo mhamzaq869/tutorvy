@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\Activitylogs;
 use App\Models\subjectPlans;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 
 class AssessmentController extends Controller

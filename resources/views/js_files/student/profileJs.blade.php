@@ -2,6 +2,11 @@
 
     $(document).ready(function() {
 
+        $("#phone").on('keyup', function(){
+            var ter=$(this).val();
+            console.log(ter , "phone");
+        });
+
         $("#selection").on('change', function(){
         var ter=$(this).val();
             if(ter == 3){
@@ -86,7 +91,7 @@
                 contentType: false,
                 processData: false,
                 success:function(response){
-                    console.log(response.path);
+                    // console.log(response.path);
                     if(response.status_code == 200 && response.success == true) {
                         toastr.success(response.message,{
                             position: 'top-end',
@@ -94,9 +99,9 @@
                             showConfirmButton: false,
                             timer: 2500
                         });
-                        console.log(response.path);
-                        var origin   = window.location.origin
-                        $('.profile-img2').attr('src',origin + '/'+ response.path);
+                        // console.log(response.path);
+                        // var origin   = window.location.origin
+                        // $('.profile-img2').attr('src',origin + '/'+ response.path);
                     }else{
                         toastr.error(response.message,{
                             position: 'top-end',
@@ -171,6 +176,8 @@
                         showConfirmButton: false,
                         timer: 2500
                     });
+                    var origin   = window.location.origin
+                    $('.profile-img').attr('src',origin + '/'+ response.path);
                 }else{
                     toastr.error(response.message,{
                         position: 'top-end',
