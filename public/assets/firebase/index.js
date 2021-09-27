@@ -39,7 +39,14 @@ messaging.onMessage((payload) => {
 
   if(type == "class_book") {
 
-    $('.tutor_notification_counts').text(unread_count);
+    toastr.success(title + '<br>' +  body,{
+        position: 'top-end',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 2500
+    });
+
+  }else if(type == "tutor_profile_verfication") {
 
     toastr.success(title + '<br>' +  body,{
         position: 'top-end',
@@ -47,30 +54,65 @@ messaging.onMessage((payload) => {
         showConfirmButton: false,
         timer: 2500
     });
-      var html = `
-        <div class="row">
-          <div class="col-md-1">
-              <img class="avatar mt-2" src="{{ asset('/admin/assets/img/notifiaction/layer.png')}}"
-                  alt="layer">
-          </div>
-          <div class="col-md-9">
-              <div class="head-1-noti">
-                  <span class="notification-text6">
-                      <strong>`+title+` 1231 </strong> <br>
-                      `+body+`
-                  </span>
-              </div>
-              <span class="notification-time">
-              </span>
-          </div>
-          <div class="col-md-1">
-              <img class="dot-image" src="{{ asset('/admin/assets/img/ico/3dot.png')}}"
-                  alt="dot-ico">
-          </div>
-      </div>`;
-
-      $('.show_all_notifications').prepend(html);
+  }else if(type == "tutor_assessment") {
+    
+    toastr.success(title + '<br>' +  body,{
+        position: 'top-end',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 2500
+    });
+  }else if(type == "class_booking") {
+    
+    toastr.success(title + '<br>' +  body,{
+        position: 'top-end',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 2500
+    });
+  }else if(type == "doc_verification") {
+    
+    toastr.success(title + '<br>' +  body,{
+        position: 'top-end',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 2500
+    });
+  }else if(type == "user_logout") {
+    
+    toastr.success(title + '<br>' +  body,{
+        position: 'top-end',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 2500
+    });
   }
+
+  $('.tutor_notification_counts').text(unread_count);
+
+    var html = `
+      <div class="row">
+        <div class="col-md-1">
+            <img class="avatar mt-2" src="{{ asset('/admin/assets/img/notifiaction/layer.png')}}"
+                alt="layer">
+        </div>
+        <div class="col-md-9">
+            <div class="head-1-noti">
+                <span class="notification-text6">
+                    <strong>`+title+` 1231 </strong> <br>
+                    `+body+`
+                </span>
+            </div>
+            <span class="notification-time">
+            </span>
+        </div>
+        <div class="col-md-1">
+            <img class="dot-image" src="{{ asset('/admin/assets/img/ico/3dot.png')}}"
+                alt="dot-ico">
+        </div>
+    </div>`;
+
+    $('.show_all_notifications').prepend(html);
 
 
 
