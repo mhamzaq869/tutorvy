@@ -197,6 +197,12 @@
                                                         </tr>
                                                         @endif
                                                 @endforeach
+                                            @else
+                                            <tr>
+                                                <td>
+                                                    No Class Found
+                                                </td>
+                                            </tr>
                                             @endif
                                         </tbody>
                                     </table>

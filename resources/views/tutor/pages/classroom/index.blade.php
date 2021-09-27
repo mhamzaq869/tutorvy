@@ -158,6 +158,8 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                @if($classes != null && $classes != [] && $classes != "")
+
                                                     @foreach($classes as $class)
                                                         @if($class != null && $class != "" )
                                                             @if($class->booking->status == 5)
@@ -201,6 +203,13 @@
                                                             @endif
                                                         @endif
                                                     @endforeach
+                                                @else
+                                                    <tr>
+                                                        <td>
+                                                            No Class Found
+                                                        </td>
+                                                    </tr>
+                                            @endif
                                                 </tbody>
                                             </table>
                                         </div>
