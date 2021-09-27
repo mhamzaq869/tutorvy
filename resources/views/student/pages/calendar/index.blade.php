@@ -1,7 +1,7 @@
 @extends('student.layouts.app')
 
 @section('content')
-<link href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.css' rel='stylesheet' />
+<!-- <link href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.css' rel='stylesheet' /> -->
 <link href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.1/css/all.css' rel='stylesheet'>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
@@ -13,13 +13,35 @@
     .fc-daygrid-day-frame {
         border:1px solid #f5f5f5;
     }
+    .fc-col-header .fa-sort{
+        display:none;
+    }
+    .fc-day-sat{
+        color:inherit !important;
+    }
+    .fc .fc-daygrid-day-number{
+        font-size:24px;
+    }
 </style>
-
 <div class="content-wrapper " style="overflow: hidden;">
-    <section id="homesection" style="display: flex;">
-        <!-- dashborad home -->
+    <section id="bookingSection" >
         <div class="container-fluid m-0 p-0">
-            <p class="heading-first ml-3 mr-3">Calendar</p>
+        <!-- Calender home -->
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="heading-first ml-3 mr-3"> 
+                    Calendar  
+                        </p> 
+                </div>
+            </div>
+            @if (Session::has('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-top:-12px">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    {{ Session::get('error') }}
+                </div>
+            @endif
             <div class="row ml-2 mr-2">
                  <div class="col-md-12 mb-1 ">
                     <div class=" card  bg-toast infoCard">
@@ -42,33 +64,22 @@
                     </div>
                 </div>
             </div>
-               <div class="row ml-2 mr-2">
-                   <div class="col-md-12">
-                       <div class="card">
-                           <div class="card-body">
-                                <span class="moreBooking text-right mt-3 ">
-                                    <!-- <a href="#" class="btn-general  btn-large">
-                                            View today bookigs
-                                    </a> -->
-                                </span>
-                                <div class="" id="calendar" class="day mt-0">
-                                </div>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-            <!-- <div class="card ml-2 mr-2">
-                <div class="card-body">
-                    <div class="row ">
-                      
-                        <div class="col-md-10 offset-md-1">
-                            <div id='calendar'></div>
+            <div class="row ml-2 mr-2">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <span class="moreBooking text-right mt-3 ">
+                                <!-- <a href="#" class="btn-general  btn-large">
+                                        View today bookigs
+                                </a> -->
+                            </span>
+                            <div class="" id="calendar" class="day mt-0">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
         </div>
-            
     </section>
 </div>
 

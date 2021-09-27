@@ -229,7 +229,9 @@ function list_tutors(){
                                                             </a>
                                                         </div>
                                                         <div class="col-md-5 col-6">
-                                                            <h3>`+tutors[i].first_name+ ' ' +tutors[i].last_name+`</h3>
+                                                            <a href="`+url2+`" class="decoration-none">
+                                                                <h3>`+tutors[i].first_name+ ' ' +tutors[i].last_name+`</h3>
+                                                            </a>
                                                             <p class="mb-0"><img src="../assets/images/ico/red-icon.png" alt="" class="">`+tutors[i].designation+` </p>
                                                             <p class="mb-0"><img src="../assets/images/ico/location-pro.png" alt="" class="">`+tutors[i].city + ',' + tutors[i].country+`</p>
                                                         </div>

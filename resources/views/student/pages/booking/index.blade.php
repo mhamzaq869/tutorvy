@@ -5,7 +5,7 @@
 
  
  <div class="content-wrapper " style="overflow: hidden;">
-    <section id="bookingSection" style="display: flex;">
+    <section id="bookingSection" >
         <div class="container-fluid m-0 p-0">
             <div class="row">
                 <div class="col-md-12">
@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="col-md-11 pl-0">
                                     <small>
-                                        Booking Details and all about your schedule for meetings <a href="#">Learn More</a>
+                                        Ticket Details and all about your isuues opened for dicussion <a href="#">Learn More</a>
                                     </small>
                                     <a href="#" class="cross"  onclick="hideCard()"> 
                                         <i class="fa fa-times" aria-hidden="true"></i>
@@ -496,172 +496,172 @@
         </div>
 
         <!--Pay Now Class Modal -->
-    <div class="modal " id="payModel" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content pt-4 pb-4">
-                <div class="modal-body">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="iconss" style="text-align: center;">
-                                
-                                    <img src="{{asset ('admin/assets/img/ico/doollarss.png')}}" width="60px">
-                                    <p
-                                        style="font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 500;margin-top: 10px;">
-                                        Note</p>
-                                    <!-- <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;"
-                                        class="ml-4 mr-4">
-                                        Send approved time for class.
-                                    </p> -->
+        <div class="modal " id="payModel" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content pt-4 pb-4">
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="iconss" style="text-align: center;">
+                                    
+                                        <img src="{{asset ('admin/assets/img/ico/doollarss.png')}}" width="60px">
+                                        <p
+                                            style="font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 500;margin-top: 10px;">
+                                            Note</p>
+                                        <!-- <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;"
+                                            class="ml-4 mr-4">
+                                            Send approved time for class.
+                                        </p> -->
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-12">
-                                @if($booking)
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <h3>Class Details</h3>
-                                    </div>
-                                    <div class="col-md-6 col-6 col-sm-6 ">
-                                        <p>Schedule Date: </p> 
-                                    </div>
-                                    <div class="col-md-6 col-6 col-sm-6 text-right"> 
-                                        @if($booking)
-                                            <p><strong> {{$booking->class_date != null ? $booking->class_date : '-'}} </strong></p> 
-                                        @else
-                                            <span> - </span>
-                                        @endif
-                                        
-                                    </div>
-                                    <div class="col-md-6 col-6 col-sm-6">
-                                        <p>Schedule Time: </p> 
-                                    </div>
-                                    <div class="col-md-6 col-6 col-sm-6 text-right"> 
-                                        <p>
-                                            <strong> 
-                                                @if($booking)
-                                                    @if($booking->class_time  != null)
-                                                        <span>{{date("g:i a", strtotime("$booking->class_time UTC"))}}  </span>
+                                <div class="col-md-12">
+                                    @if($booking)
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h3>Class Details</h3>
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 ">
+                                            <p>Schedule Date: </p> 
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 text-right"> 
+                                            @if($booking)
+                                                <p><strong> {{$booking->class_date != null ? $booking->class_date : '-'}} </strong></p> 
+                                            @else
+                                                <span> - </span>
+                                            @endif
+                                            
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6">
+                                            <p>Schedule Time: </p> 
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 text-right"> 
+                                            <p>
+                                                <strong> 
+                                                    @if($booking)
+                                                        @if($booking->class_time  != null)
+                                                            <span>{{date("g:i a", strtotime("$booking->class_time UTC"))}}  </span>
+                                                        @else
+                                                            <span> - </span>
+                                                        @endif
                                                     @else
                                                         <span> - </span>
                                                     @endif
-                                                @else
-                                                    <span> - </span>
-                                                @endif
 
-                                            </strong>
-                                        </p> 
+                                                </strong>
+                                            </p> 
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6">
+                                            <p>Schedule Duration: </p> 
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 text-right"> 
+                                            @if($booking) 
+                                            <p><strong> {{$booking->duration != null ? $booking->duration : '-'}} Hour(s)</strong></p> 
+                                            @else
+                                                <span> - </span>
+                                            @endif
+                                            
+                                        </div>
                                     </div>
-                                    <div class="col-md-6 col-6 col-sm-6">
-                                        <p>Schedule Duration: </p> 
-                                    </div>
-                                    <div class="col-md-6 col-6 col-sm-6 text-right"> 
-                                        @if($booking) 
-                                        <p><strong> {{$booking->duration != null ? $booking->duration : '-'}} Hour(s)</strong></p> 
-                                        @else
-                                            <span> - </span>
-                                        @endif
-                                        
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <h3>Payment Details</h3>
-                                    </div>
-                                    <div class="col-md-6 col-6 col-sm-6">
-                                        <p>Tutor Fee: </p> 
-                                    </div>
-                                    <div class="col-md-6 col-6 col-sm-6 text-right"> 
-                                        <p><strong> ${{$booking->price}}  </strong></p> 
-                                    </div>
-                                    <div class="col-md-6 col-6 col-sm-6">
-                                        <p>Service Fee: </p> 
-                                    </div>
-                                    <div class="col-md-6 col-6 col-sm-6 text-right"> 
-                                        <p><strong> $00.00  </strong></p> 
-                                    </div>
-                                    <div class="col-md-6 col-6 col-sm-6">
-                                        <p>Total Fee: </p> 
-                                    </div>
-                                    <div class="col-md-6 col-6 col-sm-6 text-right"> 
-                                        <p><strong> ${{$booking->price}}  </strong></p> 
-                                    </div>
-                                    <div class="col-md-12 col-12 col-sm-12 pt-2">
-                                        <p>Payment Method: </p> 
-                                    </div>
-                                    <div class="col-md-12 col-12 col-sm-12 "> 
-                                        <div class="row mb-3">
-                                                <div class="col-md-12">
-                                                    <hr>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <div class="text-center">
-                                                                <img src="{{asset ('assets/images/payment-icon/paypal2.png')}}" class="w-50" alt="">
-                                                                <!-- <span class="payment-menu dropdown d-flex"> 
-                                                                    <a class=" d-flex" href="#" data-toggle="dropdown" aria-expanded="true">
-                                                                        <img src="{{asset ('assets/images/payment-icon/menu_dots.png')}}" alt="">
-                                                                    </a>
-                                                                    <ul class="dropdown-menu  " >
-                                                                        <li>
-                                                                            <a tabindex="-1" class="" href="">
-                                                                                Delete
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </span> -->
-                                                                <span class="round">
-                                                                    <input type="checkbox" id="checkbox1" />
-                                                                    <label for="checkbox1"></label>
-                                                                </span>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h3>Payment Details</h3>
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6">
+                                            <p>Tutor Fee: </p> 
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 text-right"> 
+                                            <p><strong> ${{$booking->price}}  </strong></p> 
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6">
+                                            <p>Service Fee: </p> 
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 text-right"> 
+                                            <p><strong> $00.00  </strong></p> 
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6">
+                                            <p>Total Fee: </p> 
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 text-right"> 
+                                            <p><strong> ${{$booking->price}}  </strong></p> 
+                                        </div>
+                                        <div class="col-md-12 col-12 col-sm-12 pt-2">
+                                            <p>Payment Method: </p> 
+                                        </div>
+                                        <div class="col-md-12 col-12 col-sm-12 "> 
+                                            <div class="row mb-3">
+                                                    <div class="col-md-12">
+                                                        <hr>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <div class="text-center">
+                                                                    <img src="{{asset ('assets/images/payment-icon/paypal2.png')}}" class="w-50" alt="">
+                                                                    <!-- <span class="payment-menu dropdown d-flex"> 
+                                                                        <a class=" d-flex" href="#" data-toggle="dropdown" aria-expanded="true">
+                                                                            <img src="{{asset ('assets/images/payment-icon/menu_dots.png')}}" alt="">
+                                                                        </a>
+                                                                        <ul class="dropdown-menu  " >
+                                                                            <li>
+                                                                                <a tabindex="-1" class="" href="">
+                                                                                    Delete
+                                                                                </a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </span> -->
+                                                                    <span class="round">
+                                                                        <input type="checkbox" id="checkbox1" />
+                                                                        <label for="checkbox1"></label>
+                                                                    </span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <div class="text-center">
-                                                                <img src="{{asset ('assets/images/payment-icon/skrill.png')}}" class="w-50" alt="">
-                                                                <!-- <span class="payment-menu dropdown d-flex"> 
-                                                                    <a class=" d-flex" href="#" data-toggle="dropdown" aria-expanded="true">
-                                                                        <img src="{{asset ('assets/images/payment-icon/menu_dots.png')}}" alt="">
-                                                                    </a>
-                                                                    <ul class="dropdown-menu  " >
-                                                                        <li>
-                                                                            <a tabindex="-1" class="" href="">
-                                                                                Delete
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </span> -->
-                                                                <span class="round">
-                                                                    <input type="checkbox" id="checkbox2" />
-                                                                    <label for="checkbox2"></label>
-                                                                </span>
+                                                    <div class="col-md-6">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <div class="text-center">
+                                                                    <img src="{{asset ('assets/images/payment-icon/skrill.png')}}" class="w-50" alt="">
+                                                                    <!-- <span class="payment-menu dropdown d-flex"> 
+                                                                        <a class=" d-flex" href="#" data-toggle="dropdown" aria-expanded="true">
+                                                                            <img src="{{asset ('assets/images/payment-icon/menu_dots.png')}}" alt="">
+                                                                        </a>
+                                                                        <ul class="dropdown-menu  " >
+                                                                            <li>
+                                                                                <a tabindex="-1" class="" href="">
+                                                                                    Delete
+                                                                                </a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </span> -->
+                                                                    <span class="round">
+                                                                        <input type="checkbox" id="checkbox2" />
+                                                                        <label for="checkbox2"></label>
+                                                                    </span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-md-12 text-right mt-3">
+                                            <a  class="schedule-btn btn w-30" href="{{route('student.booking.payment',[$booking->id])}}"
+                                            >Pay Now</a>
+                                        </div>
                                     </div>
-                                    <div class="col-md-12 text-right mt-3">
-                                        <a  class="schedule-btn btn w-30" href="{{route('student.booking.payment',[$booking->id])}}"
-                                        >Pay Now</a>
-                                    </div>
+                                    @endif
                                 </div>
-                                @endif
                             </div>
                         </div>
-                    </div>
-                    <div class="mt-4 mb-2" style="text-align: right;">
-                      
+                        <div class="mt-4 mb-2" style="text-align: right;">
+                        
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </section>
 </div>
 @endsection

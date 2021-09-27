@@ -44,8 +44,6 @@
     opacity: 0.5;
 }
 
-
-
 .cencel-btn {
     background-color: #fff !important;
     border: 1px solid #1173FF !important;
@@ -2669,7 +2667,8 @@ select#paymentMethod option[value="others"] {
     background-image: url("../images/ico/ad_desc.jpg");
     width: 100% !important;
     min-height: 244px !important;
-    background-size: contain;
+    background-size: cover;
+    background-position: right;
 }
 
 .w-45 {
@@ -2878,8 +2877,9 @@ select#paymentMethod option[value="others"] {
 
 /*Call Side Buttons End*/
 
+
 /* buttons General now */
-    
+
 .btn-general {
     background: #1173FF;
     color: #fff;
@@ -2895,6 +2895,7 @@ select#paymentMethod option[value="others"] {
     color: #1173FF;
     background: #fff;
 }
+
 .btn-outline-general {
     background: #fff;
     color: #1173FF;
@@ -2910,5 +2911,6 @@ select#paymentMethod option[value="others"] {
     color: #fff;
     background: #1173FF;
 }
+
 
 /* buttons General End now */

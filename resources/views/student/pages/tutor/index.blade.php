@@ -391,7 +391,7 @@
                                                        
                                                     </div>
                                                     <div class="col-md-5 col-6">
-                                                        <h3>{{$tutor->first_name}} {{$tutor->last_name}}</h3>
+                                                        <a href="{{route('student.tutor.show',[$tutor->id])}}" class="decoration-none"><h3>{{$tutor->first_name}} {{$tutor->last_name}}</h3></a>
                                                         <p class="mb-0"><img src="../assets/images/ico/red-icon.png" alt="" class="">  {{$tutor->designation ?? '---'}}</p>
                                                         <p class="mb-0"><img src="../assets/images/ico/location-pro.png" alt="" class="">{{ $tutor->city != NULL ? $tutor->city.' , ' : '---' }} {{ $tutor->country != NULL ? $tutor->country: '---' }}</p>
                                                     </div>

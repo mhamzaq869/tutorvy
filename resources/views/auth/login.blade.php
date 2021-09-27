@@ -28,7 +28,8 @@
     <style>
         .toggle-password{
             position: absolute;
-    right: 43px;
+            right: 12px;
+            top: 43px;
         }
         
 .Google {
@@ -152,6 +153,7 @@
                                                 <input type="text" name="role" value="{{$user->role}}" hidden/>
                                                 <input type="password" name="password" id="pswd" placeholder="Enter your password"
                                                 class="@isset($error) is-invalid @endisset">
+                                                <span toggle="#password-field" id="togglepass" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                                 @isset($error)
                                                         <span class="invalid-feedback d-block" role="alert">
                                                             <strong>{{$error}}</strong>
@@ -161,7 +163,7 @@
                                             <input type="submit" class="submit schedule-btn w-25 mt-3 float-right" value="Submit">
                                     </div>
                                     @if(isset($user))
-                                    <span toggle="#password-field" id="togglepass" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                                    
                                     <p class="checkboxs d-inline-block w-100 mt-4">
                                         <input style="width: 15px;" type="checkbox" class="checkbox">
                                         <span style="position: absolute;left: 55px;font-size: 16px;font-family: Poppins;">

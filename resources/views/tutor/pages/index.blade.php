@@ -71,11 +71,11 @@
                             <div class="col-md-7 text-white pl-4">
                                 <div class="text mt-5 ml-2">
                                     <p class="res-textup">
-                                        We have upgraded the classroom.
+                                        Welcome to Tutorvy
                                     </p>
                                     <p class="res-textup1">
-                                        Register yourself on Tutorvy and learn or teach anything from
-                                        anywhere.
+                                    Register yourself on Tutorvy and learn or teach anything
+                                    from anywhere.
                                     </p>
                                     <a href=""class="text-white res-textup">
                                         Learn More
@@ -85,6 +85,32 @@
                             <div class="col-md-5  ">
                                 <div class="home-image">
                                     <img src="{{asset('assets/images/backgrounds/home-main.png')}}" alt="home-image"
+                                        style="width: 100%;">
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                
+                    <div class="bg-homeimage2 ">
+                        <div class="row">
+                            <div class="col-md-7 text-white pl-4">
+                                <div class="text mt-5 ml-2 ">
+                                    <h2 class="text-white ">
+                                        We have upgraded the classroom.
+                                    </h2>
+                                    <p >
+                                        Register yourself on Tutorvy and learn or teach anything from
+                                        anywhere.
+                                    </p>
+                                    <a href=""class="text-white ">
+                                        Learn More
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-5  ">
+                                <div class="home-image">
+                                    <img src="{{asset('assets/images/backgrounds/home.svg')}}" alt="home-image"
                                         style="width: 100%;">
                                 </div>
                             </div>
@@ -213,7 +239,7 @@
                                                         </th>
                                                         
                                                         <th scope="col"></th>
-                                                        <th scope="col"></th>
+                                                        <!-- <th scope="col"></th> -->
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -238,12 +264,12 @@
                                                                 </a>
                                                                 
                                                             </td>
-                                                            <td>
+                                                            <!-- <td>
                                                                 <button type="button" class="schedule-btn"
                                                                     style="float: right;width: 100px;">
                                                                     Accept
                                                                 </button>
-                                                            </td>
+                                                            </td> -->
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -320,7 +346,7 @@
                                                         <p class="chemistry-tex2 pt-2 pb-2 mb-0">
                                                             {{ \Illuminate\Support\Str::limit($booking->brief, $limit = 50, $end = '...') }}
                                                         </p>
-                                                        <p class="time-chemistry">
+                                                        <p class="time-chemistry mb-0">
                                                             <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class=" "> 
                                                             <span class="pt-1 pl-1">  {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }} </span>
                                                         </p>
@@ -370,7 +396,7 @@
                                                         <p class="chemistry-tex2 pt-2 pb-2 mb-0">
                                                             {{ \Illuminate\Support\Str::limit($booking->brief, $limit = 50, $end = '...') }}
                                                         </p>
-                                                        <p class="time-chemistry">
+                                                        <p class="time-chemistry mb-0">
                                                             <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class=" "> 
                                                             <span class="pt-1 pl-1">  {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }} </span>
                                                         </p>

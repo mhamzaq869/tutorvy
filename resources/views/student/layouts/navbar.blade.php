@@ -414,9 +414,10 @@
             </li>
             <li class="nav-item profile-name1" id="imageDropdowns">
                 <div class="dropdown d-flex ">
-                    <a class="nav-link profile-name d-flex pl-4 mr-3 mt-1 pb-1" href="#"
+                    <a class="nav-link profile-name  pl-4 mr-3 mt-0 pb-0" href="#"
                         data-toggle="dropdown" aria-expanded="true">
-                        {{Auth::user()->first_name}}
+                        {{Auth::user()->first_name}} {{Auth::user()->last_name}}
+                        <p class="text-mute mb-0">User Id#  56{{Auth::user()->id}}21</p>
                     </a>
                     @auth
                         @if(Auth::user()->picture)
