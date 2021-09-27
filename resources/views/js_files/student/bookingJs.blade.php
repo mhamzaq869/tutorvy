@@ -94,7 +94,6 @@ $(document).ready(function() {
     });
 })
 
-// href="{{route('student.booking.payment',[$booking->id])}}"
 
 function pay_now(id) {
     $.ajax({
