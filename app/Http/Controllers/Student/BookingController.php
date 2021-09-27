@@ -76,11 +76,13 @@ class BookingController extends Controller
     public function bookingNew(Request $request){
 
         $booking = Booking::with(['tutor','user','subject'])->where('id',$request->id)->first();
+        $commission = $commission = DB::table("sys_settings")->first();
 
         return response()->json([
-            'status'=>200,
-            'message' => 'success',
+            'status_code'=>200,
+            'success' => true,
             'booking' => $booking,
+            'commission' => $commission,
         ]);
         
     }

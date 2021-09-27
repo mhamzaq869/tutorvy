@@ -307,9 +307,7 @@
                                                                     @endif
                                                                 </td> 
                                                                 <td class="pt-3 pb-3" style="text-align: center; " >
-                                                                    <a class="cencel-btn mr-2" onclick="payNow({{$booking->id}})">
-                                                                        Pay Now
-                                                                    </a>
+                                                                    <button  onclick="pay_now({{$booking->id}})" type="button" role="button" class="cencel-btn mr-2"> Pay Now </button>
                                                                     <a href="{{route('student.booking-detail',[$booking->id])}}"  class="schedule-btn">
                                                                         
                                                                             View details
@@ -516,7 +514,6 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    @if($booking)
                                     <div class="row">
                                         <div class="col-md-12">
                                             <h3>Class Details</h3>
@@ -524,85 +521,48 @@
                                         <div class="col-md-6 col-6 col-sm-6 ">
                                             <p>Schedule Date: </p> 
                                         </div>
-                                        <div class="col-md-6 col-6 col-sm-6 text-right"> 
-                                            @if($booking)
-                                                <p><strong> {{$booking->class_date != null ? $booking->class_date : '-'}} </strong></p> 
-                                            @else
-                                                <span> - </span>
-                                            @endif
-                                            
+                                        <div class="col-md-6 col-6 col-sm-6 text-right" >                                            
+                                            <span id="scdule_date"></span>
                                         </div>
                                         <div class="col-md-6 col-6 col-sm-6">
                                             <p>Schedule Time: </p> 
                                         </div>
-                                        <div class="col-md-6 col-6 col-sm-6 text-right"> 
-                                            <p>
-                                                <strong> 
-                                                    @if($booking)
-                                                        @if($booking->class_time  != null)
-                                                            <span>{{date("g:i a", strtotime("$booking->class_time UTC"))}}  </span>
-                                                        @else
-                                                            <span> - </span>
-                                                        @endif
-                                                    @else
-                                                        <span> - </span>
-                                                    @endif
-
-                                            </strong>
-                                        </p> 
+                                        <div class="col-md-6 col-6 col-sm-6 text-right" >
+                                            <span id="class_time"></span>
+                                        </div>
                                     </div>
                                     <div class="col-md-6 col-6 col-sm-6">
                                         <p>Schedule Duration: </p> 
                                     </div>
-                                    <div class="col-md-6 col-6 col-sm-6 text-right"> 
-                                        @if($booking) 
-                                        <p><strong> {{$booking->duration != null ? $booking->duration : '-'}} Hour(s)</strong></p> 
-                                        @else
-                                            <span> - </span>
-                                        @endif
-                                        
+                                    <div class="col-md-6 col-6 col-sm-6 text-right" >    
+                                        <p id="duration"></p>                                     
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <h3>Payment Details</h3>
                                     </div>
+                                    
                                     <div class="col-md-6 col-6 col-sm-6">
                                         <p>Tutor Fee: </p> 
                                     </div>
-                                    <div class="col-md-6 col-6 col-sm-6 text-right"> 
-                                        <p><strong> ${{$booking->price}}</strong></p> 
+                                    
+                                    <div class="col-md-6 col-6 col-sm-6 text-right" >
+                                        <span id="price"></span>
                                     </div>
+
                                     <div class="col-md-6 col-6 col-sm-6">
-                                        <p>Service Fee: 
-                                            @if($commission != null && $commission != "")
-                                                ({{$commission->commission}}%) 
-                                            @else
-                                                <span>(0%)</span>
-                                            @endif
+                                        <p>Service Fee: <span id="total_commision"></span>
                                         </p> 
                                     </div>
                                     <div class="col-md-6 col-6 col-sm-6 text-right"> 
-                                        <p><strong>
-                                            @if($commission != null && $commission != "")
-                                                @php 
-                                                    $total_price = ($booking->price * $commission->commission ) / 100;
-                                                    echo '$'.$total_price;
-                                                @endphp     
-                                            @else 
-                                                <span>$0</span>
-                                            @endif
-                                        </strong></p> 
+                                        <span id="commission"></span>
                                     </div>
                                     <div class="col-md-6 col-6 col-sm-6">
                                         <p>Total Fee: </p> 
                                     </div>
                                     <div class="col-md-6 col-6 col-sm-6 text-right"> 
-                                        @if($commission != null && $commission != "")
-                                            <p><strong> ${{$booking->price + $total_price}}  </strong></p> 
-                                        @else
-                                            <p><strong> ${{$booking->price}}  </strong></p> 
-                                        @endif
+                                       <span id="total_price"></span>
                                     </div>
                                     <div class="col-md-12 col-12 col-sm-12 pt-2">
                                         <p>Payment Method: </p> 
@@ -664,12 +624,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-12 text-right mt-3">
-                                            <a  class="schedule-btn btn w-30" href="{{route('student.booking.payment',[$booking->id])}}"
-                                            >Pay Now</a>
+                                        <div class="col-md-12 text-right mt-3" id="show_pay_btn">
                                         </div>
                                     </div>
-                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -685,5 +642,5 @@
 @endsection
 
 @section('scripts')
-@include('js_files.student.bookingJs')
+    @include('js_files.student.bookingJs')
 @endsection
