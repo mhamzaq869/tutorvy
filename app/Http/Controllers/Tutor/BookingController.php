@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Tutor;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\General\GeneralController;
+use App\Http\Controllers\General\NotifyController;
 use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\Activitylogs;
@@ -42,11 +43,28 @@ class BookingController extends Controller
         $booking->status = 1;
         $booking->save();
 
+        $student = User::where('id',$booking->user_id)->first();
+        $student_name = $student->first_name . ' ' . $student->last_name;
+
         // activity logs
         $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
         $action_perform = '<a href="'.URL::to('/') . '/admin/tutor/profile/'. $id .'"> '.$name.' </a> Approve the Class ';
         $activity_logs = new GeneralController();
         $activity_logs->save_activity_logs("Approve Class", "bookings.id", $id, $action_perform, $request->header('User-Agent'), $id);
+
+        $reciever = User::where('role',1)->first();
+        $notification = new NotifyController();
+        $sender_id = Auth::user()->id;
+        $reciever_id = $reciever->id;
+        $slug = '-' ;
+        $type = 'class_booking';
+        $data = 'data';
+        $title = 'Class Booking';
+        $icon = 'fas fa-tag';
+        $class = 'btn-success';
+        $desc = $name . ' Approve the Class Request of ' . $student_name;
+        $notification->GeneralNotifi($sender_id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
+        $notification->GeneralNotifi($booking->user_id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
 
         return response()->json([
             'status'=>'200',

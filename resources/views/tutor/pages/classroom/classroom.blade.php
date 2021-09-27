@@ -1392,7 +1392,7 @@ designer.appendTo(document.getElementById('widget-container'), function() {
             window.tempStream = tempStream;
 
             connection.extra.roomOwner = true;
-            connection.open(params.sessionid, function(isRoomOpened, roomid, error) {
+            connection.open(roomid, function(isRoomOpened, roomid, error) {
                 if (error) {
                     if (error === connection.errors.ROOM_NOT_AVAILABLE) {
                         alert('Someone already created this room. Please either join or create a separate room.');
