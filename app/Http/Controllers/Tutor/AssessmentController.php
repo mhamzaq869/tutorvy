@@ -66,9 +66,13 @@ class AssessmentController extends Controller
             ]);
 
         }
-        if(count($plans) > 0 && $plans != null && $plans != "" && $plans != []) {
+
+        
+        $minimum_rate = DB::table("subject_plans")->where('user_id',Auth::user()->id)->min('rate');
+
+        if($minimum_rate) {
             User::where('id',Auth::user()->id)->update([
-                "hourly_rate" => min(array_column($plans, 'rate')),
+                "hourly_rate" => $minimum_rate,
             ]);
         }
 

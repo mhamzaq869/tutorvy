@@ -114,7 +114,7 @@ function pay_now(id) {
                 
                 let commission = comm.commission != null ? comm.commission : '0' ;
                 let price_calcualtion = (price * commission) / 100;
-                let total_price = price + price_calcualtion;
+                let total_price = parseFloat(price) + parseFloat(price_calcualtion);
 
                 $("#scdule_date").text(class_date);
                 $("#class_time").text(class_time);
