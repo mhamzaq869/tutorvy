@@ -42,28 +42,26 @@
                         <div class="col-md-12 mb-3">
                             <div class="card mt-0">
                                 <div class="card-body">
-                                        <p class="mb-2 ">Profile Strength: <strong class="text-success">
-                                            @php 
-                                                $default = 10;
-                                                $default += $general_profile > 0 ? 40 : 0;
-                                                $default += Auth::user()->picture != null ? 20 : 0;
-                                                $default += $education_profile > 0 ? 30 : 0;
-                                                echo $default.'%';
-                                            @endphp         
-                                        </strong></p>
+                                    <p class="mb-2 ">Profile Strength: <strong class="text-success">
+                                        @php 
+                                            $default = 10;
+                                            $default = $general_profile == 1 ? ($default + 40) :  $default;
+                                            $default = Auth::user()->picture != null ? ($default + 20) : $default;
+                                            $default = $education_profile > 0 ? ($default + 30) : $default;
+                                            echo $default .'%';
+                                        @endphp         
+                                    </strong></p>
                                         <div class="progress">
                                             <div class="bg-dead bg-levelTwo" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                                            <div class="bg-dead {{$default == 60 ? 'bg-levelThree' : ''}} ml-1" role="progressbar" style="width: 15%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                            <div class="bg-dead {{$default == 60  ? 'bg-levelThree' : ''}} ml-1" role="progressbar" style="width: 15%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                            <div class="bg-dead {{$default == 60  ? 'bg-levelThree' : ''}} ml-1" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                                            <div class="bg-dead {{$default == 80 ? 'bg-levelFour' : '' }} ml-1" role="progressbar" style="width: 15%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                            <div class="bg-dead {{$default == 100 ? 'bg-levelFive' : ''}} ml-1" role="progressbar" style="width: 15%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="bg-dead {{$default >= 50  ? 'bg-levelThree' : ''}} ml-1" role="progressbar" style="width: 15%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="bg-dead {{$default >= 50  ? 'bg-levelThree' : ''}} ml-1" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="bg-dead {{$default >= 70 ? 'bg-levelFour' : '' }} ml-1" role="progressbar" style="width: 15%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="bg-dead {{$default >= 70 ? 'bg-levelFive' : ''}} ml-1" role="progressbar" style="width: 15%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                                             <div class="bg-dead {{$default == 100 ? 'bg-levelFive' : ''}} ml-1" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
-                                        <p class="text-mute mt-1 mb-0"> <i class="fa fa-check text-success"></i> Tutors with complete profile tends to have more students than the other tutors.</p>
-                                        <p class="text-mute mb-0"> <i class="fa fa-check text-success"></i> Tutors with complete profile get verified sooner than others.</p>
-                                        <p class="text-mute mb-0"> <i class="fa fa-check text-success"></i> Complete profile helps a tutor to earn more.</p>
-                                    
+                                    <p class="text-mute mt-1 mb-0"> <i class="fa fa-check text-success"></i> Tutors with complete profile tends to have more students than the other tutors.</p>
+                                    <p class="text-mute mb-0"> <i class="fa fa-check text-success"></i> Tutors with complete profile get verified sooner than others.</p>
+                                    <p class="text-mute mb-0"> <i class="fa fa-check text-success"></i> Complete profile helps a tutor to earn more.</p>
                                 </div>
                             </div>
                             
@@ -205,185 +203,187 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <p class="heading-third pt-4 mb-3">
-                                        Favourite Tutors</p>
-                                </div>
-                                    @if($favorite_tutors != "[]")
-                                        <div class="col-md-12 scrollable h-666" id="Fav_tutor">
-                                            @foreach($favorite_tutors as $tutor)
-                                                <div class="card  mt-0">
-                                                    <div class="card-body">
-                                                        
-                                                        <div class="row">
-                                                            <div class="col-md-9">
-                                                                <div class="row">
-                                                                    <div class="col-md-9">
-                                                                        <div class="row">
-                                                                            
-                                                                            <div class="col-md-2 col-6">
-                                                                                <a href="{{route('student.tutor.show',[$tutor->id])}}">
-                                                                                    @if($tutor->picture != null)
-                                                                                        <img src="{{asset($tutor->picture)}}" alt="" class="round-border profile-img">
-                                                                                    @else
-                                                                                        <img src="../assets/images/ico/Square-white.jpg" alt="" class="round-border profile-img">
-                                                                                    @endif                                                        
-                                                                                </a>
-                                                                            
-                                                                            </div>
-                                                                            <div class="col-md-5 col-6">
-                                                                                <a href="{{route('student.tutor.show',[$tutor->id])}}" class="decoration-none">
-                                                                                    <h3>{{$tutor->first_name}} {{$tutor->last_name}}</h3>
-                                                                                </a>
-                                                                                <p class="mb-0"><img src="../assets/images/ico/red-icon.png" alt="" class="">  {{$tutor->designation ?? '---'}}</p>
-                                                                                <p class="mb-0"><img src="../assets/images/ico/location-pro.png" alt="" class="">{{ $tutor->city != NULL ? $tutor->city.' , ' : '---' }} {{ $tutor->country != NULL ? $tutor->country: '---' }}</p>
-                                                                            </div>
-                                                                            <div class="col-md-4 col-12">
-                                                                                <p>
-                                                                                    @if($tutor->rating == 1)
-                                                                                    <i class="fa fa-star text-yellow"></i>
-                                                                                    <i class="fa fa-star "></i>
-                                                                                    <i class="fa fa-star "></i>
-                                                                                    <i class="fa fa-star "></i>
-                                                                                    <i class="fa fa-star "></i> 1.0
-                                                                                    @elseif($tutor->rating == 2)
-                                                                                    <i class="fa fa-star text-yellow"></i>
-                                                                                    <i class="fa fa-star text-yellow"></i>
-                                                                                    <i class="fa fa-star "></i>
-                                                                                    <i class="fa fa-star "></i>
-                                                                                    <i class="fa fa-star "></i>  2.0
-                                                                                    @elseif($tutor->rating == 3)
-                                                                                    <i class="fa fa-star text-yellow"></i>
-                                                                                    <i class="fa fa-star text-yellow"></i>
-                                                                                    <i class="fa fa-star text-yellow"></i>
-                                                                                    <i class="fa fa-star "></i>
-                                                                                    <i class="fa fa-star "></i>  3.0
-                                                                                    @elseif($tutor->rating == 4)
-                                                                                    <i class="fa fa-star text-yellow"></i>
-                                                                                    <i class="fa fa-star text-yellow"></i>
-                                                                                    <i class="fa fa-star text-yellow"></i>
-                                                                                    <i class="fa fa-star text-yellow"></i>
-                                                                                    <i class="fa fa-star "></i>4.0
-                                                                                    @elseif($tutor->rating == 5)
-                                                                                    <i class="fa fa-star text-yellow"></i>
-                                                                                    <i class="fa fa-star text-yellow"></i>
-                                                                                    <i class="fa fa-star text-yellow"></i>
-                                                                                    <i class="fa fa-star text-yellow"></i>
-                                                                                    <i class="fa fa-star text-yellow"></i>  5.0
-                                                                                    @else
-                                                                                    <i class="fa fa-star "></i>
-                                                                                    <i class="fa fa-star "></i>
-                                                                                    <i class="fa fa-star "></i>
-                                                                                    <i class="fa fa-star "></i>
-                                                                                    <i class="fa fa-star "></i>  0.0
-                                                                                    @endif
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p class="heading-third pt-4 mb-3">
+                                            Favourite Tutors</p>
+                                    </div>
+                                        @if($favorite_tutors != "[]")
+                                            <div class="col-md-12 scrollable h-666" id="Fav_tutor">
+                                                @foreach($favorite_tutors as $tutor)
+                                                    <div class="card  mt-0">
+                                                        <div class="card-body">
+                                                            
+                                                            <div class="row">
+                                                                <div class="col-md-9">
+                                                                    <div class="row">
+                                                                        <div class="col-md-9">
+                                                                            <div class="row">
                                                                                 
-                                                                                    <small class="text-grey">(0 reviews)</small>
-                                                                                </p>
+                                                                                <div class="col-md-2 col-6">
+                                                                                    <a href="{{route('student.tutor.show',[$tutor->id])}}">
+                                                                                        @if($tutor->picture != null)
+                                                                                            <img src="{{asset($tutor->picture)}}" alt="" class="round-border profile-img">
+                                                                                        @else
+                                                                                            <img src="../assets/images/ico/Square-white.jpg" alt="" class="round-border profile-img">
+                                                                                        @endif                                                        
+                                                                                    </a>
+                                                                                
+                                                                                </div>
+                                                                                <div class="col-md-5 col-6">
+                                                                                    <a href="{{route('student.tutor.show',[$tutor->id])}}" class="decoration-none">
+                                                                                        <h3>{{$tutor->first_name}} {{$tutor->last_name}}</h3>
+                                                                                    </a>
+                                                                                    <p class="mb-0"><img src="../assets/images/ico/red-icon.png" alt="" class="">  {{$tutor->designation ?? '---'}}</p>
+                                                                                    <p class="mb-0"><img src="../assets/images/ico/location-pro.png" alt="" class="">{{ $tutor->city != NULL ? $tutor->city.' , ' : '---' }} {{ $tutor->country != NULL ? $tutor->country: '---' }}</p>
+                                                                                </div>
+                                                                                <div class="col-md-4 col-12">
+                                                                                    <p>
+                                                                                        @if($tutor->rating == 1)
+                                                                                        <i class="fa fa-star text-yellow"></i>
+                                                                                        <i class="fa fa-star "></i>
+                                                                                        <i class="fa fa-star "></i>
+                                                                                        <i class="fa fa-star "></i>
+                                                                                        <i class="fa fa-star "></i> 1.0
+                                                                                        @elseif($tutor->rating == 2)
+                                                                                        <i class="fa fa-star text-yellow"></i>
+                                                                                        <i class="fa fa-star text-yellow"></i>
+                                                                                        <i class="fa fa-star "></i>
+                                                                                        <i class="fa fa-star "></i>
+                                                                                        <i class="fa fa-star "></i>  2.0
+                                                                                        @elseif($tutor->rating == 3)
+                                                                                        <i class="fa fa-star text-yellow"></i>
+                                                                                        <i class="fa fa-star text-yellow"></i>
+                                                                                        <i class="fa fa-star text-yellow"></i>
+                                                                                        <i class="fa fa-star "></i>
+                                                                                        <i class="fa fa-star "></i>  3.0
+                                                                                        @elseif($tutor->rating == 4)
+                                                                                        <i class="fa fa-star text-yellow"></i>
+                                                                                        <i class="fa fa-star text-yellow"></i>
+                                                                                        <i class="fa fa-star text-yellow"></i>
+                                                                                        <i class="fa fa-star text-yellow"></i>
+                                                                                        <i class="fa fa-star "></i>4.0
+                                                                                        @elseif($tutor->rating == 5)
+                                                                                        <i class="fa fa-star text-yellow"></i>
+                                                                                        <i class="fa fa-star text-yellow"></i>
+                                                                                        <i class="fa fa-star text-yellow"></i>
+                                                                                        <i class="fa fa-star text-yellow"></i>
+                                                                                        <i class="fa fa-star text-yellow"></i>  5.0
+                                                                                        @else
+                                                                                        <i class="fa fa-star "></i>
+                                                                                        <i class="fa fa-star "></i>
+                                                                                        <i class="fa fa-star "></i>
+                                                                                        <i class="fa fa-star "></i>
+                                                                                        <i class="fa fa-star "></i>  0.0
+                                                                                        @endif
+                                                                                    
+                                                                                        <small class="text-grey">(0 reviews)</small>
+                                                                                    </p>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        @if($tutor->rank == 1)
-                                                                            <p class="text-right"><span class="text-green ">New</span> <span class="rank_icon"><img src="../assets/images/ico/bluebadge.png" alt=""></span> </p>
-                                                                        @elseif($tutor->rank == 2)
-                                                                            <p class="text-right"><span class="text-green ">Emerging</span> <span class="rank_icon"><img src="../assets/images/ico/yellow-rank.png" alt=""></span> </p>
-                                                                        @elseif($tutor->rank == 3)
-                                                                            <p class="text-right"><span class="text-green ">Top Rank</span> <span class="rank_icon"><img src="../assets/images/ico/rank.png" alt=""></span> </p>
-                                                                        @endif
-                                                                        <small> <strong> 3 hours</strong> tutoring in (this subject) </small>
+                                                                        <div class="col-md-3">
+                                                                            @if($tutor->rank == 1)
+                                                                                <p class="text-right"><span class="text-green ">New</span> <span class="rank_icon"><img src="../assets/images/ico/bluebadge.png" alt=""></span> </p>
+                                                                            @elseif($tutor->rank == 2)
+                                                                                <p class="text-right"><span class="text-green ">Emerging</span> <span class="rank_icon"><img src="../assets/images/ico/yellow-rank.png" alt=""></span> </p>
+                                                                            @elseif($tutor->rank == 3)
+                                                                                <p class="text-right"><span class="text-green ">Top Rank</span> <span class="rank_icon"><img src="../assets/images/ico/rank.png" alt=""></span> </p>
+                                                                            @endif
+                                                                            <small> <strong> 3 hours</strong> tutoring in (this subject) </small>
 
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="row mt-2">
-                                                                    <div class="col-md-4">
-                                                                        @php
+                                                                    <div class="row mt-2">
+                                                                        <div class="col-md-4">
+                                                                            @php
 
-                                                                            $sub = explode(',',$tutor->subject_names);
-                                                                            
-                                                                        @endphp
-                                                                        <p class="mb-2">Subject</p>
-                                                                        <p>
-                                                                        @for ($i=0 ; $i < sizeof($sub); $i++)
-                                                                        <span class="info-1 info">{{$sub[$i]}}</span>
-                                                                        @endfor
-                                                                    </p>
-                                                                    </div>
-                                                                    <div class="col-md-4">
-                                                                        <p class="mb-2">Languages</p>
-                                                                        <p>
-                                                                            <span class="info-1 info lingo">{{$tutor->lang_short ?? ''}}</span>
+                                                                                $sub = explode(',',$tutor->subject_names);
+                                                                                
+                                                                            @endphp
+                                                                            <p class="mb-2">Subject</p>
+                                                                            <p>
+                                                                            @for ($i=0 ; $i < sizeof($sub); $i++)
+                                                                            <span class="info-1 info">{{$sub[$i]}}</span>
+                                                                            @endfor
                                                                         </p>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <p class="mb-2">Languages</p>
+                                                                            <p>
+                                                                                <span class="info-1 info lingo">{{$tutor->lang_short ?? ''}}</span>
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                        <p class="mb-2">Education</p>
+                                                                            @php
+                                                                                $inst = explode(',',$tutor->insti_names);
+                                                                            @endphp
+                                                                            <p>
+                                                                            @for ($i=0 ; $i < sizeof($inst); $i++)
+                                                                            <span class="info-1 info edu">{{$inst[$i]}}</span>
+                                                                            @endfor
+                                                                            </p>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="col-md-4">
-                                                                    <p class="mb-2">Education</p>
-                                                                        @php
-                                                                            $inst = explode(',',$tutor->insti_names);
-                                                                        @endphp
-                                                                        <p>
-                                                                        @for ($i=0 ; $i < sizeof($inst); $i++)
-                                                                        <span class="info-1 info edu">{{$inst[$i]}}</span>
-                                                                        @endfor
-                                                                        </p>
+                                                                    <div class="row mt-2">
+                                                                        <div class="col-md-12 find_tutor">
+                                                                            <p><strong> About Tutor </strong></p>
+                                                                            <p class="scrol-about ">
+                                                                                    {{$tutor->bio}}
+                                                                            </p>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="row mt-2">
-                                                                    <div class="col-md-12 find_tutor">
-                                                                        <p><strong> About Tutor </strong></p>
-                                                                        <p class="scrol-about ">
-                                                                                {{$tutor->bio}}
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-3 bg-price text-center">
-                                                                <div class="row mt-30">
-                                                                    
-                                                                        <a type="button" onclick="favourite_tutor({{$tutor->id}},'un_fav')" class="fav" title="Favourite">
-                                                                            <i class="fa fa-star text-yellow" id="favorite_start_{{$tutor->id}}"></i>
-                                                                        </a>
-                                                                    <div class="col-md-12">
+                                                                <div class="col-md-3 bg-price text-center">
+                                                                    <div class="row mt-30">
                                                                         
-                                                                        <p>starting from</p>
-                                                                        <h1 class="f-60">${{$tutor->hourly_rate}}</h1>
-                                                                        <p>per hour</p>
-                                                                        <button type="button" class=" cencel-btn w-100">
-                                                                                &nbsp; Message &nbsp;
+                                                                            <a type="button" onclick="favourite_tutor({{$tutor->id}},'un_fav')" class="fav" title="Favourite">
+                                                                                <i class="fa fa-star text-yellow" id="favorite_start_{{$tutor->id}}"></i>
+                                                                            </a>
+                                                                        <div class="col-md-12">
+                                                                            
+                                                                            <p>starting from</p>
+                                                                            <h1 class="f-60">${{$tutor->hourly_rate}}</h1>
+                                                                            <p>per hour</p>
+                                                                            <button type="button" class=" cencel-btn w-100">
+                                                                                    &nbsp; Message &nbsp;
+                                                                                </button>
+                                                                            <button type="button" onclick="location.href = '{{route('student.book-now',[$tutor->id])}}';" class=" btn-general w-100 mt-2 p-2" >
+                                                                                    &nbsp; Book Class &nbsp;
                                                                             </button>
-                                                                        <button type="button" onclick="location.href = '{{route('student.book-now',[$tutor->id])}}';" class=" btn-general w-100 mt-2 p-2" >
-                                                                                &nbsp; Book Class &nbsp;
-                                                                        </button>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            
                                                         </div>
-                                                        
                                                     </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    @else
-                                        <div class="col-md-12">
-                                            <div class="card mt-0">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            No Favourite Tutor Added Yet
+                                                @endforeach
+                                            </div>
+                                        @else
+                                            <div class="col-md-12">
+                                                <div class="card mt-0">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                No Favourite Tutor Added Yet
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    @endif
+                                        @endif
 
-                                
+                                    
+                                </div>
                             </div>
-                        </div>
                     
+                        </div>
                     </div>
                 </div>
+               
                 <div class="col-md-4">
                     <div class="row ">
                         <!-- <div class="col-md-12 mb-3">
