@@ -889,7 +889,6 @@ var fullName = '{{$class->booking->tutor->first_name}} {{$class->booking->tutor-
     window.params = params;
 })();
 
-
 //connection.socketURL = '/';
 connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
 

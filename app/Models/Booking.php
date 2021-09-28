@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Classroom;
 
 class Booking extends Model
 {
@@ -47,6 +48,12 @@ class Booking extends Model
     {
         return $this->belongsTo(User::class,'booked_tutor');
     }
+
+    public function classroom()
+    {
+        return $this->hasOne(Classroom::class,'booking_id','id');
+    }
+
     // Scopes for Filteration
     public function scopeToday($query)
     {

@@ -20,7 +20,8 @@ class StudentClassController extends Controller
      */
 
     public function index(){
-        $classes = Classroom::with('booking')->get();
+        
+        $classes = Booking::with(['classroom','user','tutor','subject'])->where('user_id',Auth::user()->id)->get();
         $user = User::where('id',Auth::user()->id)->first();
 
         $booked_classes = Booking::with('user')->where('user_id',Auth::user()->id)->where('status',5)->get();

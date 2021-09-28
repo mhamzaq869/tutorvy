@@ -142,35 +142,34 @@
                                         <tbody>
                                             @if($classes != null && $classes != [] && $classes != "")
                                                 @foreach($classes as $class)
-                                                    @if($class->booking != null)
                                                         <tr>
                                                             <td class="pt-3">
-                                                                {{ $class->booking->user->first_name }} {{ $class->booking->user->last_name }}
+                                                                {{ $class->tutor->first_name }} {{ $class->tutor->last_name }}
                                                             </td>
                                                             <td class="pt-3">
-                                                            {{ $class->booking != null ? $class->booking->subject->name : '---' }}
+                                                            {{ $class->booking != null ? $class->subject->name : '---' }}
                                                             </td>
                                                             <td class="pt-3">
-                                                                {{ $class->booking != null ? $class->booking->topic : '---' }}
+                                                                {{ $class != null ? $class->topic : '---' }}
                                                             </td>
                                                             <td class="pt-3">
-                                                                {{$class->booking->class_time}} {{date("g:i a", strtotime("$class->booking->class_time UTC"))}}
+                                                                {{$class->class_time}} {{date("g:i a", strtotime("$class->class_time UTC"))}}
                                                             </td>
                                                             
                                                             <td class="pt-3">
-                                                                {{ $class->booking->duration }} Hour(s)
+                                                                {{ $class->duration }} Hour(s)
                                                             </td>
                                                             <td class="pt-3">
                                                                 
-                                                                    @if($class->booking->status == 1)
+                                                                    @if($class->status == 1)
                                                                         <span class="bg-color-apporve3">
                                                                             Payment Pending
                                                                         </span>
-                                                                    @elseif($class->booking->status == 2)
+                                                                    @elseif($class->status == 2)
                                                                         <span class="bg-color-apporve1">
                                                                             Approved
                                                                         </span>
-                                                                    @elseif($class->booking->status == 0)
+                                                                    @elseif($class->status == 0)
                                                                         <span class="bg-color-apporve">
                                                                             Pending
                                                                         </span>
@@ -178,22 +177,21 @@
                                                             </td>
 
                                                             <td>
-                                                                <span data-id="{{$class->booking->id}}" data-room="{{$class->classroom_id}}" data-duration="{{$class->booking->duration}}" data-time="{{$class->booking->class_time}}"
-                                                                    id="class_time_{{$class->booking->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success mt-2">{{$class->booking->class_date}} {{$class->booking->class_time}} </span>     
-                                                                <div id="join_class_{{$class->booking->id}}"></div>
+                                                                <span data-id="{{$class->id}}" data-room="{{$class->classroom_id}}" data-duration="{{$class->duration}}" data-time="{{$class->class_time}}"
+                                                                    id="class_time_{{$class->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success mt-2">{{$class->class_date}} {{$class->class_time}} </span>     
+                                                                <div id="join_class_{{$class->id}}"></div>
                                                             </td>
                                                             <td style="text-align: center;padding-top:14px;">
-                                                                @if($class->booking->status == 5 && $class->booking->student_review != null )
-                                                                    <a type="button" onclick="showReviewModal('{{$class->booking->id}}')" class="cencel-btn">
+                                                                @if($class->status == 5 && $class->student_review != null )
+                                                                    <a type="button" onclick="showReviewModal('{{$class->id}}')" class="cencel-btn">
                                                                         Review
                                                                     </a>
                                                                 @endif
-                                                                <span data-id="{{$class->booking->id}}" data-room="{{$class->classroom_id}}" data-duration="{{$class->booking->duration}}" data-time="{{$class->booking->class_time}}"
-                                                                    id="class_time_{{$class->booking->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success">{{$class->booking->class_date}} {{$class->booking->class_time}} </span>     
-                                                                <div id="join_class_{{$class->booking->id}}"></div>
+                                                                <span data-id="{{$class->id}}" data-room="{{$class->classroom_id}}" data-duration="{{$class->duration}}" data-time="{{$class->class_time}}"
+                                                                    id="class_time_{{$class->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success">{{$class->class_date}} {{$class->class_time}} </span>     
+                                                                <div id="join_class_{{$class->id}}"></div>
                                                             </td> 
                                                         </tr>
-                                                        @endif
                                                 @endforeach
                                             @else
                                             <tr>
@@ -229,7 +227,7 @@
                                             @foreach($booked_classes as $class)
                                                 <tr>
                                                     <td class="pt-3">
-                                                        {{ $class->user->first_name }} {{ $class->user->last_name }}
+                                                        {{ $class->tutor->first_name }} {{ $class->tutor->last_name }}
                                                     </td>
                                                     <td class="pt-3">
                                                     {{ $class != null ? $class->subject->name : '---' }}
