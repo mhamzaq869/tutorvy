@@ -125,7 +125,7 @@ class BookingController extends Controller
         // activity logs
         $id = Auth::user()->id; 
         $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
-        $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> request for book a class of '.$subject_name ;
+        $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> request for book a class of '.$subject->name ;
         $activity_logs = new GeneralController();
         $activity_logs->save_activity_logs("Class Booking", "bookings.id", $booking->id, $action_perform, $request->header('User-Agent'), $id);
         $reciever_ids = [];
