@@ -24,7 +24,7 @@ class AssessmentController extends Controller
     }
 
     public function store(Request $request) {
-        
+
         $assessment = Assessment::create([
             'user_id' =>  Auth::user()->id,
             'subject_id' => $request->subject,

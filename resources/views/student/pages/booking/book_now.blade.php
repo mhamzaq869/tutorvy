@@ -157,11 +157,8 @@
                     <div class="row mt-3">
                         <div class="col-12" >
                             
-                            <button id="finish" type="submit"  
-                                class="btn-general pull-right  mb-3" is="saveBtn">
-                                &nbsp; Send Request &nbsp;
-                            </button>
-                            <button type="button" role="button" type="button" id="proBtn" disabled class="btn btn-primary pull-right mb-3" style="display:none">
+                            <button id="finish" type="submit"class="btn-general pull-right  mb-3">  Send Request </button>
+                            <button type="button" role="button" type="button" id="proBtn" disabled class="btn btn-primary pull-right mb-3 mr-2" style="width:140px; display:none">
                                 <i class="fa fa-circle-o-notch fa-spin fa-1x fa-fw"></i> <span class="sr-only">Loading...</span> Processing </button>
                         </div>
                     </div>

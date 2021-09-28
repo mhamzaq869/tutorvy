@@ -297,15 +297,17 @@ td input{
 @section('content')
  <!-- top Fixed navbar End -->
  <section>
+     <input type="text" id="sbooking_id" value="{{$class->booking_id}}">
+
     <div class="content-wrapper " style="overflow: hidden;">
         <div class="container-fluid">
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-md-12 text-right">
                     <div id="countdownExample">
                         <div class="values"></div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="row mb-5 tech_weck tech_weck-none">
                 <div class="col-md-9 card"> 
                     <div class="row">
@@ -790,22 +792,27 @@ td input{
                                 <form>
                                     <div class="row">
                                         <div class="col-md-12 text-center">
-                                            <p class="star-review">
-                                                <a href="#">
-                                                    <i class="fa fa-star bigStar text-yellow "></i>
-                                                </a>
-                                                <a href="#">
-                                                    <i class="fa fa-star bigStar text-yellow"></i>
-                                                </a>
-                                                <a href="#">
-                                                    <i class="fa fa-star bigStar text-yellow"></i>
-                                                </a>
-                                                <a href="#">
-                                                    <i class="fa fa-star bigStar text-yellow"></i>
-                                                </a>
-                                                <a href="#">
-                                                    <i class="fa fa-star bigStar text-yellow"></i>
-                                                </a>
+                                            <input type="hidden" id="star_rating" value="5">
+                                            <p class="star-review" id='stars'>
+                                                <div class='rating-stars text-center'>
+                                                    <ul id='stars'>
+                                                        <li class='star selected' title='Poor' data-value='1'>
+                                                            <i class="fa fa-star "></i>
+                                                        </li>
+                                                        <li class='star selected' title='Poor' data-value='2'>
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li class='star selected' title='Poor' data-value='3'>
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li class='star selected' title='Poor' data-value='4'>
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li class='star selected' title='Poor' data-value='5'>
+                                                            <i class="fa fa-star "></i>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </p>
                                         </div>
                                     </div>
@@ -817,7 +824,7 @@ td input{
                         <div class="col-md-12 p-0 text-right">
                         <button type="button" class="cencel-btn mr-2" id="reviewLater"
                             style="width: 130px;">Review Later</button>
-                            <button type="button" class="schedule-btn" data-dismiss="modal"
+                            <button type="button" class="schedule-btn" id="send_review"
                             style="width: 130px;margin-right: 40px;">Send</button>
                         </div>
                     </div>
@@ -879,8 +886,69 @@ td input{
     });
     $("#reviewLater").click(function(){
         window.location.href="{{route('student.classroom')}}";
-    })
+    });
 
+    $('#stars li').on('click', function(){
+        var onStar = parseInt($(this).data('value'), 10);
+        var stars = $(this).parent().children('li.star');
+        
+        for (i = 0; i < stars.length; i++) {
+            $(stars[i]).removeClass('selected');
+        }
+        
+        for (i = 0; i < onStar; i++) {
+            $(stars[i]).addClass('selected');
+        }
+        
+        var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+        $("#star_rating").val(ratingValue);
+        
+    });
+
+    $("#send_review").click(function() {
+        var star_rating = $("#star_rating").val();
+        var review = $("#std_review").val();
+        var booking_id = $("#sbooking_id").val();
+
+        var form_data = {
+            review:review, 
+            star_rating:star_rating,
+            booking_id:booking_id,
+        }
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{route('student.save.review')}}",
+            type: "POST",
+            data: form_data, 
+            dataType: 'json',
+            success:function(response){
+                console.log(response , "data");
+                if(response.status_code == 200 && response.success == true) {
+                    toastr.success(response.message,{
+                        position: 'top-end',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
+                    $("#reviewModal").modal('hide');
+                    window.location.href = "{{route('student.classroom')}}";
+                }else{
+                    toastr.error(response.message,{
+                        position: 'top-end',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
+                }
+            },
+            error:function(e) {
+                console.log(e)
+            }
+        });
+
+    });
    
 </script>
 

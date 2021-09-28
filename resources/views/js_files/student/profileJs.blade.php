@@ -183,7 +183,7 @@
             data:form,
             cache: false,
             contentType: false,
-            processData: false,
+            processData: true,
             beforeSend:function(data) {
                 $("#general_btn").hide();
                 $("#general_loading").show();

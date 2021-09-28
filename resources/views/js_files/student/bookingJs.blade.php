@@ -17,7 +17,7 @@ $( '#book_tutor_form' ).on( 'submit', function(e) {
             contentType: false,
             processData: false,
             beforeSend:function(data) {
-                $("#saveBtn").hide();
+                $("#finish").hide();
                 $("#proBtn").show();
             },
             success:function(response){
@@ -30,19 +30,25 @@ $( '#book_tutor_form' ).on( 'submit', function(e) {
                         timer: 2500
                     });
 
-                    // setInterval(function(){
-                    //     window.location.href = "{{ route('student.bookings') }}";
-                    // }, 1500);
+                    setInterval(function(){
+                        window.location.href = "{{ route('student.bookings') }}";
+                    }, 1500);
 
                 }
             },
             complete:function(data) {
-                $("#saveBtn").show();
+                $("#finish").show();
                 $("#proBtn").hide();
             },
             error:function(e){
-                $("#saveBtn").show();
+                $("#finish").show();
                 $("#proBtn").hide();
+                toastr.error('Something Went Wrong',{
+                    position: 'top-end',
+                    icon: 'error',
+                    showConfirmButton: false,
+                    timer: 2500
+                });
             }
         });
     }else{

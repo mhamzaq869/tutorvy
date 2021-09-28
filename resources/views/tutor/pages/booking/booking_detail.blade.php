@@ -269,8 +269,10 @@
                                                 <p><strong> ${{$booking->price}}  </strong></p> 
                                             </div>
                                             <div class="col-md-12 text-right">
-                                            <button type="button" class="btn-general" onclick="acceptBookingRequest()"
-                                                >Accept</button>
+                                                <button type="button" id="approve_button" style="width: 140px;" class="btn btn-primary" onclick="acceptBookingRequest()">Accept</button>
+                                                <button type="button" role="button" type="button" id="approve_loading" disabled class="btn btn-primary" 
+                                                style="width: 140px;float:right;display:none">
+                                                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i> <span class="sr-only">Loading...</span> Processing </button>
                                             </div>
                                         </div>
                                     </div>

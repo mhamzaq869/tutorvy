@@ -1,32 +1,32 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        console.log(Notification.permission  , "notifi")
+        // console.log(Notification.permission  , "notifi")
 
-        if(Notification.permission == 'denied') {
+        // if(Notification.permission == 'denied') {
 
-             toastr.warning(`Allow Browser Notification for Realtime updates <br />`, "Warning");               
-            toastr.options = {
-                "closeButton": false,
-                "allowHtml": true,                  
-                "debug": false,
-                "newestOnTop": false,
-                "progressBar": false,
-                "positionClass": "toast-top-right",
-                "preventDuplicates": false,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": 0,
-                "extendedTimeOut": 0,
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut",
-                "tapToDismiss": false
-            }
+        //      toastr.warning(`Allow Browser Notification for Realtime updates <br />`, "Warning");               
+        //     toastr.options = {
+        //         "closeButton": false,
+        //         "allowHtml": true,                  
+        //         "debug": false,
+        //         "newestOnTop": false,
+        //         "progressBar": false,
+        //         "positionClass": "toast-top-right",
+        //         "preventDuplicates": false,
+        //         "showDuration": "300",
+        //         "hideDuration": "1000",
+        //         "timeOut": 0,
+        //         "extendedTimeOut": 0,
+        //         "showEasing": "swing",
+        //         "hideEasing": "linear",
+        //         "showMethod": "fadeIn",
+        //         "hideMethod": "fadeOut",
+        //         "tapToDismiss": false
+        //     }
 
-        }else{
-            Notification.requestPermission();
-        }
+        // }else{
+        //     Notification.requestPermission();
+        // }
         
     });
     $(document).ready(function() {

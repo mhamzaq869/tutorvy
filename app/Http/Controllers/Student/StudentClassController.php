@@ -24,7 +24,7 @@ class StudentClassController extends Controller
         
         $classes = Booking::with(['classroom','user','tutor','subject'])->where('user_id',Auth::user()->id)->get();
         $user = User::where('id',Auth::user()->id)->first();
-
+        
         $booked_classes = Booking::with('user')->where('user_id',Auth::user()->id)->where('status',5)->get();
         return view('student.pages.classroom.index',compact('classes','user','booked_classes'));
     }
