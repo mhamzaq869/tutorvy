@@ -34,24 +34,25 @@
                                         class</button>
                                 </p>
                             </div>
-                            <card class="body">
-                                <div class="container">
+                            <div class="card-body">
+                                <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-md-9">
-                                            <div class="row image1 mt-3 ml-1">
+                                            <div class="row image1 mt-3 ">
                                                 
-                                                <p> 
-                                                @if ($booking->user->picture)
-                                                <img src="{{asset($booking->user->picture)}}" alt="profile-image"  class="w-50 profile-image" >
-                                                @else
-                                                <img src="{{asset ('assets/images/ico/Square-white.jpg')}}"  alt="profile-image" class="w-50 profile-image" >
-                                                @endif
-                                                <p style="color: #00132D; font-family: Poppins;font-size: 14px;font-weight: 500;"
-                                                    class="ml-2 mt-2"> {{$booking->user->full_name}} </p>
-                                                <p
-                                                    style="position: relative;left: -100px;top: 27px;font-size: 12px;">
-                                                    Student</p>
-                                                </p>
+                                                <div class="col-md-1">
+                                                     @if ($booking->user->picture)
+                                                        <img src="{{asset($booking->user->picture)}}" alt="profile-image"  class="profile-img" >
+                                                    @else
+                                                        <img src="{{asset ('assets/images/ico/Square-white.jpg')}}"  alt="profile-image" class=" profile-img" >
+                                                    @endif
+                                                </div>
+                                                <div class="col-md-10">
+                                                        <p style="color: #00132D; font-family: Poppins;font-size: 14px;font-weight: 500;"
+                                                            class=" mt-1 mb-0"> {{$booking->user->full_name}} </p>
+                                                        <p style="font-size: 12px;">
+                                                        Student</p>
+                                                </div>
 
                                             </div>
                                             <div class="text1"
@@ -88,7 +89,6 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                           
                                         </div>
                                         <div class="col-md-3"></div>
                                         <div class="container-fluid" style="">
