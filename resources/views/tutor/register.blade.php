@@ -1257,7 +1257,7 @@
                  /* Password STrength */
 
 
-           $("#password").keyup(function() {
+           $("#password").keyup(function(e) {
                     var capital_leters = new RegExp('[A-Z]');
                     var lower_leters = new RegExp('[a-z]');
                     var numeric = new RegExp('[0-9]');
@@ -1336,7 +1336,9 @@
                         }
                     }
 
-                    if(password.match(special)) {
+                    var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+
+                    if(format.test(password)) {
                         $("#special_character").css('color','green');
                          $("#special_character").find(".fa").removeClass("fa-times");
                         $("#special_character").find(".fa").addClass("fa-check");
