@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Student;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\tktCat;
-use DB;
 use App\Models\Activitylogs;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Booking;
 use App\Models\General\Teach;
@@ -48,8 +48,6 @@ class HomeController extends Controller
         // }
         $user = User::where('id',Auth::user()->id)->first();
         // return ($today_bookings);
-
-        $general_profile = DB::table("sys_settings")->where('user_id', Auth::user()->id)->where("title","student_profile_completed")->count();
         
         $education_profile = User::where('id',Auth::user()->id)
             ->where('experty_level', '!=', NULL)
@@ -57,7 +55,7 @@ class HomeController extends Controller
             ->where('std_learn' , '!=', NULL)
             ->count();
         
-        return view('student.pages.index',compact('upcoming_bookings','today_bookings','new_bookings','delivered_count','upcoming_count','pending_count','subject_count','user','categories','favorite_tutors','general_profile','education_profile'));
+        return view('student.pages.index',compact('upcoming_bookings','today_bookings','new_bookings','delivered_count','upcoming_count','pending_count','subject_count','user','categories','favorite_tutors','education_profile'));
     }
 
 

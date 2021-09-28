@@ -22,10 +22,7 @@ class Classroom extends Model
       
     ];
 
-    public function booking()
-    {
-        return $this->hasOne(Booking::class,'id','booking_id')->with('user')->with('tutor')->with('subject');
-    }
+    
 
 }
 

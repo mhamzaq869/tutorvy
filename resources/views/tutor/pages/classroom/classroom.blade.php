@@ -873,7 +873,7 @@ td input{
 
 var connection = new RTCMultiConnection();
 var roomid = '{{$class->classroom_id}}';
-var fullName = '{{$class->booking->user->first_name}} {{$class->booking->user->last_name}}';
+var fullName = '{{$class->booking->tutor->first_name}} {{$class->booking->tutor->last_name}}';
 
 
 (function() {
@@ -888,7 +888,6 @@ var fullName = '{{$class->booking->user->first_name}} {{$class->booking->user->l
         params[d(match[1])] = d(match[2]);
     window.params = params;
 })();
-
 
 //connection.socketURL = '/';
 connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
@@ -1010,21 +1009,21 @@ connection.sdpConstraints.mandatory = {
     OfferToReceiveVideo: true
 };
 
-connection.onUserStatusChanged = function(event) {
-    var infoBar = document.getElementById('onUserStatusChanged');
-    var names = [];
-    connection.getAllParticipants().forEach(function(pid) {
-        names.push(getFullName(pid));
-    });
+// connection.onUserStatusChanged = function(event) {
+//     var infoBar = document.getElementById('onUserStatusChanged');
+//     var names = [];
+//     connection.getAllParticipants().forEach(function(pid) {
+//         names.push(getFullName(pid));
+//     });
 
-    if (!names.length) {
-        names = ['Only You'];
-    } else {
-        names = [connection.extra.userFullName || 'You'].concat(names);
-    }
+//     if (!names.length) {
+//         names = ['Only You'];
+//     } else {
+//         names = [connection.extra.userFullName || 'You'].concat(names);
+//     }
 
-    infoBar.innerHTML = '<b>Active users:</b> ' + names.join(', ');
-};
+//     infoBar.innerHTML = '<b>Active users:</b> ' + names.join(', ');
+// };
 
 connection.onopen = function(event) {
     connection.onUserStatusChanged(event);

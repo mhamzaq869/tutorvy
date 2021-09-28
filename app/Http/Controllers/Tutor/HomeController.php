@@ -46,8 +46,7 @@ class HomeController extends Controller
 
         $education_percentage = DB::table("educations")->where('user_id',Auth::user()->id)->count();
         $professional_percentage = DB::table("professionals")->where('user_id',Auth::user()->id)->count();
-        $general_profile = DB::table("sys_settings")->where('user_id', Auth::user()->id)->where("title","tutor_profile_completed")->count();
                
-        return view('tutor.pages.index',compact('upcoming_bookings','today_bookings','new_bookings','delivered_count','upcoming_count','pending_count','subject_count','user','education_percentage','professional_percentage','general_profile'));
+        return view('tutor.pages.index',compact('upcoming_bookings','today_bookings','new_bookings','delivered_count','upcoming_count','pending_count','subject_count','user','education_percentage','professional_percentage'));
     }
 }

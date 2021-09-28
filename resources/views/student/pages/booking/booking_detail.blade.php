@@ -95,9 +95,9 @@
                                             <div class="col-md-12 mt-3">
                                                 <p
                                                     style="color: #00132D;font-size: 16px;font-family: Poppins;font-weight: 500;">
-                                                    2 attachments</p>
+                                                    Attachments</p>
                                                 <div class="row">
-                                                    <div class="col-md-3 col-sm-12 card bg-light mb-3"
+                                                    <!-- <div class="col-md-3 col-sm-12 card bg-light mb-3"
                                                         style="">
                                                         <div class="container-fluid m-0 p-0">
                                                         <div class="text-home mt-3" style="display: flex;">
@@ -143,7 +143,24 @@
                                                                     style="width: 30px;position: absolute;top: 10px;right: 10px;">
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
+                                                    @if($booking->attachments)
+                                                        <div class="col-md-2 mt-1 mb-3">
+                                                            <div class="card__corner">
+                                                                <div class="card__corner-triangle"></div>
+                                                            </div>
+                                                            <div class="borderOne">
+                                                                <span class="overlayAttach"></span>
+                                                                <img src="{{ asset($booking->attachments) }}" alt="">
+                                                                <!-- <span class="fileName">FileNameProplus.png</span> -->
+                                                                <a href="{{asset($booking->attachments)}}" class="downFile"><i class="fa fa-download"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    @else
+                                                        <div class="col-md-12">
+                                                            <p>No attachments found</p>
+                                                        </div>
+                                                    @endif
                                             </div>
                                         </div>
                                     </div>

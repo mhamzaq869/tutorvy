@@ -75,13 +75,9 @@ class ProfileController extends Controller
         $activity_logs = new GeneralController();
         $activity_logs->save_activity_logs("Profile Updated", "users.id", $id, $action_perform, $request->header('User-Agent'), $id);
 
-        $profile = DB::table("sys_settings")->where('user_id',Auth::user()->id)->where("title","tutor_profile_completed")->first();
-
-        if(!$profile) {
-            DB::table("sys_settings")->insert([
-                "user_id" => Auth::user()->id, 
-                "title" => "tutor_profile_completed",
-            ]);
+        $user_general_profile = User::where('id',Auth::user()->id)->first();
+        if($user_general_profile->profile_completed == 0) {
+            User::where('id',Auth::user()->id)->update(["profile_completed" => 1]);
         }
 
         return response()->json([
@@ -211,21 +207,20 @@ class ProfileController extends Controller
             ]); 
         }
 
-        // $sender,$receiver,$slug,$type,$data,$title,$icon,$class,$desc
         $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
 
-        // $reciever = User::where('role',1)->first();
-        // $notification = new NotifyController();
-        // $sender_id = Auth::user()->id;
-        // $reciever_id = $reciever->id;
-        // $slug = '-' ;
-        // $type = 'User Verification';
-        // $data = 'data';
-        // $title = 'User Verfication';
-        // $icon = 'fas fa-tag';
-        // $class = 'btn-success';
-        // $desc = $name . ' Submiited documents for verification.';
-        // $notification->GeneralNotifi(Auth::user()->id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
+        $reciever = User::where('role',1)->first();
+        $notification = new NotifyController();
+        $sender_id = Auth::user()->id;
+        $reciever_id = $reciever->id;
+        $slug = '-' ;
+        $type = 'doc_verification';
+        $data = 'data';
+        $title = 'Document Verfication';
+        $icon = 'fas fa-tag';
+        $class = 'btn-success';
+        $desc = $name . ' Submitted documents for verification.';
+        $notification->GeneralNotifi(Auth::user()->id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
 
 
         // activity logs

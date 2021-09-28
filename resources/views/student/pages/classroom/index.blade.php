@@ -115,8 +115,8 @@
                             <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
                                 href="#nav-profile" role="tab" aria-controls="nav-profile"
                                 aria-selected="false">
-                                Upcomming Classes
-                                <span class="counter-text bg-success"> {{$upcomming_classes}} </span>
+                                Delivered Classes
+                                <span class="counter-text bg-success"> {{count($booked_classes )}} </span>
                             </a>
                         </div>
                     </nav>
@@ -142,35 +142,34 @@
                                         <tbody>
                                             @if($classes != null && $classes != [] && $classes != "")
                                                 @foreach($classes as $class)
-                                                    @if($class->booking != null)
                                                         <tr>
                                                             <td class="pt-3">
-                                                                {{ $class->booking->user->first_name }} {{ $class->booking->user->last_name }}
+                                                                {{ $class->tutor->first_name }} {{ $class->tutor->last_name }}
                                                             </td>
                                                             <td class="pt-3">
-                                                            {{ $class->booking != null ? $class->booking->subject->name : '---' }}
+                                                            {{ $class->booking != null ? $class->subject->name : '---' }}
                                                             </td>
                                                             <td class="pt-3">
-                                                                {{ $class->booking != null ? $class->booking->topic : '---' }}
+                                                                {{ $class != null ? $class->topic : '---' }}
                                                             </td>
                                                             <td class="pt-3">
-                                                                {{$class->booking->class_time}} {{date("g:i a", strtotime("$class->booking->class_time UTC"))}}
+                                                                {{$class->class_time}} {{date("g:i a", strtotime("$class->class_time UTC"))}}
                                                             </td>
                                                             
                                                             <td class="pt-3">
-                                                                {{ $class->booking->duration }} Hour(s)
+                                                                {{ $class->duration }} Hour(s)
                                                             </td>
                                                             <td class="pt-3">
                                                                 
-                                                                    @if($class->booking->status == 1)
+                                                                    @if($class->status == 1)
                                                                         <span class="bg-color-apporve3">
                                                                             Payment Pending
                                                                         </span>
-                                                                    @elseif($class->booking->status == 2)
+                                                                    @elseif($class->status == 2)
                                                                         <span class="bg-color-apporve1">
                                                                             Approved
                                                                         </span>
-                                                                    @elseif($class->booking->status == 0)
+                                                                    @elseif($class->status == 0)
                                                                         <span class="bg-color-apporve">
                                                                             Pending
                                                                         </span>
@@ -178,25 +177,28 @@
                                                             </td>
 
                                                             <td>
-                                                                <span data-id="{{$class->booking->id}}" data-duration="{{$class->booking->duration}}" data-time="{{$class->booking->class_time}}"
-                                                                    id="class_time_{{$class->booking->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success mt-2">{{$class->booking->class_date}} {{$class->booking->class_time}} </span>     
-                                                                <div id="join_class_{{$class->booking->id}}"></div>
+                                                                <span data-id="{{$class->id}}" data-room="{{$class->classroom_id}}" data-duration="{{$class->duration}}" data-time="{{$class->class_time}}"
+                                                                    id="class_time_{{$class->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success mt-2">{{$class->class_date}} {{$class->class_time}} </span>     
+                                                                <div id="join_class_{{$class->id}}"></div>
                                                             </td>
                                                             <td style="text-align: center;padding-top:14px;">
-                                                                @if($class->booking->status == 5 && $class->booking->student_review != null )
-                                                                    <a type="button" onclick="showReviewModal('{{$class->booking->id}}')" class="cencel-btn">
+                                                                @if($class->status == 5 && $class->student_review != null )
+                                                                    <a type="button" onclick="showReviewModal('{{$class->id}}')" class="cencel-btn">
                                                                         Review
                                                                     </a>
                                                                 @endif
-                                                                <!-- <a href="{{route('student.join_class',[$class->classroom_id])}}"  class="schedule-btn"> Join Class </a> -->
-
-                                                                <span data-id="{{$class->booking->id}}" data-duration="{{$class->booking->duration}}" data-time="{{$class->booking->class_time}}"
-                                                                    id="class_time_{{$class->booking->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success">{{$class->booking->class_date}} {{$class->booking->class_time}} </span>     
-                                                                <div id="join_class_{{$class->booking->id}}"></div>
+                                                                <span data-id="{{$class->id}}" data-room="{{$class->classroom_id}}" data-duration="{{$class->duration}}" data-time="{{$class->class_time}}"
+                                                                    id="class_time_{{$class->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success">{{$class->class_date}} {{$class->class_time}} </span>     
+                                                                <div id="join_class_{{$class->id}}"></div>
                                                             </td> 
                                                         </tr>
-                                                        @endif
                                                 @endforeach
+                                            @else
+                                            <tr>
+                                                <td>
+                                                    No Class Found
+                                                </td>
+                                            </tr>
                                             @endif
                                         </tbody>
                                     </table>
@@ -221,35 +223,46 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td class="pt-3">
-                                                    static data Hellow
-                                                </td>
-                                                <td class="pt-3">
-                                                static data  I'm done
-                                                </td>
-                                                <td class="pt-3">
-                                                static data  Hellow
-                                                </td>
-                                                <td class="pt-3">
-                                                static data  I'm done
-                                                </td>
-                                                <td class="pt-3">
-                                                static data  Hellow
-                                                </td>
-                                                <td class="pt-3">
-                                                    <span class="bg-color-apporve">
-                                                        Rejected
-                                                    </span>
+                                        @if($booked_classes != null && $booked_classes != [] && $booked_classes != "")
+                                            @foreach($booked_classes as $class)
+                                                <tr>
+                                                    <td class="pt-3">
+                                                        {{ $class->tutor->first_name }} {{ $class->tutor->last_name }}
+                                                    </td>
+                                                    <td class="pt-3">
+                                                    {{ $class != null ? $class->subject->name : '---' }}
+                                                    </td>
+                                                    <td class="pt-3">
+                                                        {{ $class != null ? $class->topic : '---' }}
+                                                    </td>
+                                                    <td class="pt-3">
+                                                        {{$class->class_time}} {{date("g:i a", strtotime("$class->class_time UTC"))}}
+                                                    </td>
                                                     
-                                                </td>
+                                                    <td class="pt-3">
+                                                        {{ $class->duration }} Hour(s)
+                                                    </td>
+                                                    <td class="pt-3">
+                                                        @if($class->status == 5)
+                                                            <span class="bg-color-apporve3"> Delivered </span>
+                                                        @endif
+                                                    </td>
 
-                                                <td style="text-align: center; padding-top: 14px;">
-                                                    <button class="schedule-btn" type="button">
-                                                        Class Details
-                                                    </button>
-                                                </td>
-                                            </tr>
+                                                
+                                                    <td style="text-align: center;padding-top:14px;">
+                                                            <a type="button" onclick="showReviewModal('{{$class->id}}')" class="cencel-btn">
+                                                                Review
+                                                            </a>
+                                                    </td> 
+                                                </tr>
+                                                @endforeach
+                                        @else
+                                        <tr>
+                                            <td>
+                                                No Class Found
+                                            </td>
+                                        </tr>
+                                        @endif
                                         </tbody>
                                     </table>
                                 </div>
@@ -400,6 +413,7 @@
             var booking_time = $( this ).text();
             var attr_id = $(this).data('id');
             var duration = $(this).data('duration');
+            var room_id = $(this).data('room');
             var time = $(this).data('time');
 
             let split_time = time.split(':');
@@ -427,12 +441,15 @@
                 if (distance < 0) {
                     clearInterval(x);
 
-                    let join_btn = `<a href="{{route('student.join_class',[$class->classroom_id])}}"  class="schedule-btn"> Join Class </a>`;
+                    let join_btn = `<a href="{{url('student/class')}}/`+room_id+`"  class="schedule-btn"> Join Class </a>`;
                     
                     if(time > actual_time) {
-                        $("#class_time_"+attr_id).text("Class Expired");
-                    }else{
+                        
                         $("#join_class_"+attr_id).html(join_btn);
+                        $("#class_time_"+attr_id).text("");
+
+                    }else{
+                        $("#class_time_"+attr_id).text("Class Expired");
                     }
                     
                 }

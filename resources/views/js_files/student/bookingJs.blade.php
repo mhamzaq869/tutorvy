@@ -95,33 +95,58 @@ $(document).ready(function() {
 })
 
 
-
-function openPayNowModal(id) {
-    $("#payModel").modal('show');
-    
-}
-function payNow(id){
-
+function pay_now(id) {
     $.ajax({
-            url: "{{route('student.book-new')}}",
-            type:"post",
-            data: {id:id},
-            success:function(response){
-                // console.log(response);
-                if(response.status == 200) {
-                   
+        url: "{{route('student.book-new')}}",
+        type:"post",
+        data: {id:id},
+        dataType:'json',
+        success:function(response){
+            var obj = response.booking;
+            var comm = response.commission;
 
-                }
-            },
-            complete:function(data) {
-              
-            },
-            error:function(e){
-               alert();
+            if(response.status_code == 200 && response.success == true) {
+
+                let class_date = obj.class_date != null ? obj.class_date : '' ;
+                let class_time = obj.class_time != null ? obj.class_time : '' ;
+                let duration = obj.duration != null ? obj.duration : '' ;
+                let price = obj.price != null ? obj.price : '' ;
+                
+                let commission = comm.commission != null ? comm.commission : '0' ;
+                let price_calcualtion = (price * commission) / 100;
+                let total_price = parseFloat(price) + parseFloat(price_calcualtion);
+
+                $("#scdule_date").text(class_date);
+                $("#class_time").text(class_time);
+                $("#duration").text(duration + 'Hour(s)');
+                $("#price").text('$'+price);
+                $("#commission").text('$'+price_calcualtion);
+                $("#total_commision").text(commission + '%');
+                $("#total_price").text('$'+total_price);
+
+                var origin   = window.location.origin;
+                var url = origin + '/student/booking/payment/'+ obj.id;
+                let btn = ` <a href="`+url+`" class="schedule-btn btn w-30"> Pay Now </a>`;
+                $("#show_pay_btn").html(btn);
+
+                $("#payModel").modal('show');
+
+                
+               
+            }else{
+
             }
-        });
+
+
+        },
+        error:function(e){
+            console.log(e);
+        }
+    });    
 }
 
-// show tutor plans
+function openPayNow() {
+    alert("cliadf");
+}
 
 </script>

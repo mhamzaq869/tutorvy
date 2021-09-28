@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\General\GeneralController;
 use App\Http\Controllers\General\NotifyController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Activitylogs;
@@ -130,7 +131,7 @@ class SettingController extends Controller
             $sender_id = Auth::user()->id;
             $reciever_id = $reciever->id;
             $slug = '-' ;
-            $type = 'User Logout';
+            $type = 'user_logout';
             $data = 'data';
             $title = 'User Logout';
             $icon = 'fas fa-tag';
@@ -185,22 +186,4 @@ class SettingController extends Controller
         $ticket = supportTkts::where('ticket_no',$id)->with(['category','tkt_created_by'])->first();
         return view('tutor.pages.history.ticket_details',compact('ticket'));
     }
-
-    public function testing() {
-        $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
-
-        $reciever = User::where('role',1)->first();
-        $notification = new NotifyController();
-        $sender_id = Auth::user()->id;
-        $reciever_id = $reciever->id;
-        $slug = '-' ;
-        $type = 'testing';
-        $data = 'data';
-        $title = 'testing';
-        $icon = 'fas fa-tag';
-        $class = 'btn-success';
-        $desc = $name . ' notification testing';
-        $notification->GeneralNotifi(Auth::user()->id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
-    }
-
 }
