@@ -491,7 +491,11 @@
 
                                             <!-- date of birth dropdown -->
                                             <div class="col-md-4">
-                                                <select class="form-select form-select-lg w-100" id="day" name="day" required="required"></select>
+                                                <select class="form-select form-select-lg w-100" id="day" name="day" required="required">
+                                                    @for($i = 0 ; $i <= 31 ; $i++)
+                                                        <option value="{{$i}}" @if (Auth::user()->day == $i) selected @endif >{{$i}}</option>
+                                                    @endfor
+                                                </select>
                                             </div>
                                             <!--  -->
                                             <div class="col-md-4">
@@ -849,13 +853,7 @@
     <script src="{{ asset('assets/js/countrySelect.js') }}"></script>
     @include('js_files.student.profileJs')
     <script>
-        
-        for (var i = 1; i <= 31; i++) {
-            $("#day").append("<option value='" + i + "'" + (i == {{ Auth::user()->day ?? 1 }} ? 'selected' : '') + ">" +
-                i + "</option>");
-        }
-
-
+    
         $(document).ready(function() {
             $("#year").yearpicker({
                 year: {{ Auth::user()->year ?? '1990' }},
