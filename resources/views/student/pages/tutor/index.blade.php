@@ -332,7 +332,7 @@
                 </div>
                 <div class="col-md-9 " >
                     <div class="row">
-                        <div class="col-md-9">
+                        <!-- <div class="col-md-9">
                             <div class="card">
                                 <div class="card-body">
                                     <p><strong>  Searched Filters:  </strong></p>
@@ -355,7 +355,7 @@
                                     <p class="mb-0">Total Tutors</p>  
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="row">
                         <div class="col-md-12" id="tutors-list">
@@ -377,25 +377,25 @@
                                 <div class="row">
                                     <div class="col-md-9">
                                         <div class="row">
-                                            <div class="col-md-9">
+                                            <div class="col-md-10">
                                                 <div class="row">
                                                     
-                                                    <div class="col-md-2 col-6">
+                                                    <div class="col-md-2 col-6 pr-0">
                                                         <a href="{{route('student.tutor.show',[$tutor->id])}}">
                                                             @if($tutor->picture != null)
-                                                                <img src="{{asset($tutor->picture)}}" alt="" class="profile-img">
+                                                                <img src="{{asset($tutor->picture)}}" alt="" class="profile-img w-100" style="height:auto;">
                                                             @else
-                                                                <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="profile-img">
+                                                                <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="profile-img w-100" style="height:auto;">
                                                             @endif                                                        
                                                         </a>
                                                        
                                                     </div>
-                                                    <div class="col-md-5 col-6">
-                                                        <a href="{{route('student.tutor.show',[$tutor->id])}}" class="decoration-none"><h3>{{$tutor->first_name}} {{$tutor->last_name}}</h3></a>
+                                                    <div class="col-md-4 col-6 mt-2">
+                                                        <a href="{{route('student.tutor.show',[$tutor->id])}}" class="decoration-none"><h3 class="mb-0">{{$tutor->first_name}} {{$tutor->last_name}}</h3></a>
                                                         <p class="mb-0"><img src="../assets/images/ico/red-icon.png" alt="" class="">  {{$tutor->designation ?? '---'}}</p>
                                                         <p class="mb-0"><img src="../assets/images/ico/location-pro.png" alt="" class="">{{ $tutor->city != NULL ? $tutor->city.' , ' : '---' }} {{ $tutor->country != NULL ? $tutor->country: '---' }}</p>
                                                     </div>
-                                                    <div class="col-md-4 col-12">
+                                                    <div class="col-md-6 col-12">
                                                         <p>
                                                             @if($tutor->rating == 1)
                                                             <i class="fa fa-star text-yellow"></i>
@@ -437,10 +437,11 @@
                                                         
                                                             <small class="text-grey">(0 reviews)</small>
                                                         </p>
+                                                        <p> 3 hours tutoring in (this subject) </p>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-md-2">
                                                 @if($tutor->rank == 1)
                                                     <p class="text-right"><span class="text-green ">New</span> <span class="rank_icon"><img src="../assets/images/ico/bluebadge.png" alt=""></span> </p>
                                                 @elseif($tutor->rank == 2)
@@ -448,7 +449,7 @@
                                                 @elseif($tutor->rank == 3)
                                                     <p class="text-right"><span class="text-green ">Top Rank</span> <span class="rank_icon"><img src="../assets/images/ico/rank.png" alt=""></span> </p>
                                                 @endif
-                                                <small> <strong> 3 hours</strong> tutoring in (this subject) </small>
+                                                <!-- <small> <strong> 3 hours</strong> tutoring in (this subject) </small> -->
 
                                             </div>
                                         </div>
@@ -461,8 +462,8 @@
                                                 @endphp
                                                 <p class="mb-2">Subject</p>
                                                 <p>
-                                                @for ($i=0 ; $i < sizeof($sub); $i++)
-                                                <span class="info-1 info">{{$sub[$i]}}</span>
+                                                @for ($i=0 ; $i < 1; $i++)
+                                                    <span class="info-1 info">{{$sub[$i]}}</span><small><a href="#" class="text-dark decoration-none"> +2 Others</a></small>
                                                 @endfor
                                             </p>
                                             </div>
