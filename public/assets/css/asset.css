@@ -110,10 +110,11 @@
     color: #00132D !important;
 }
 
-.nav-item.active .nav-link {
+
+/* .nav-item.active .nav-link {
     color: #1173FF !important;
     border-bottom: 2px solid #1173FF;
-}
+} */
 
 .nav-link {
     position: relative;
@@ -985,3 +986,58 @@ footer a:hover {
 .reject_status {
     background: #E9C6C6;
 }
+
+
+/*Profile Image*/
+
+.profile-img {
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    border: 2px solid #1173FF;
+    border-radius: 50%;
+}
+
+
+/*End Profile Image*/
+
+
+/* dropdown menu in front-end */
+
+.classdrop {
+    text-align: left !important;
+    background-color: white !important;
+    text-decoration: none !important;
+}
+
+.classdrop1 {
+    padding-bottom: 5px;
+    padding-top: 5px;
+    position: absolute;
+    top: 50px;
+}
+
+.classdrop li:hover {
+    background-color: #F2F8FF !important;
+}
+
+.classdrop li {
+    padding: 5px !important;
+}
+
+.classdrop li a {
+    text-align: left !important;
+    margin-left: 20px !important;
+    text-decoration: none !important;
+    color: #00132D;
+    font-family: "Poppins";
+}
+
+.text-mute {
+    color: grey;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+
+/* dropdown menu in front-end */

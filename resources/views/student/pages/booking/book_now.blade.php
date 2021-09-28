@@ -47,9 +47,9 @@
                                             <div class="row">
                                                 <div class="col-md-2 col-6">
                                                     @if($user->picture == "" || $user->picture == null)
-                                                        <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="round-border">
+                                                        <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="profile-img">
                                                     @else
-                                                        <img src="{{asset($user->picture)}}"  alt="" class="round-border">
+                                                        <img src="{{asset($user->picture)}}"  alt="" class="profile-img">
                                                     @endif
                                                 </div>
                                                 <div class="col-md-5 col-6">

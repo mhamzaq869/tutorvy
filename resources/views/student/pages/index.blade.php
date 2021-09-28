@@ -231,9 +231,9 @@
                                                                             <div class="col-md-2 col-6">
                                                                                 <a href="{{route('student.tutor.show',[$tutor->id])}}">
                                                                                     @if($tutor->picture != null)
-                                                                                        <img src="{{asset($tutor->picture)}}" alt="" class="round-border profile-img">
+                                                                                        <img src="{{asset($tutor->picture)}}" alt="" class="profile-img profile-img">
                                                                                     @else
-                                                                                        <img src="../assets/images/ico/Square-white.jpg" alt="" class="round-border profile-img">
+                                                                                        <img src="../assets/images/ico/Square-white.jpg" alt="" class="profile-img profile-img">
                                                                                     @endif                                                        
                                                                                 </a>
                                                                             
