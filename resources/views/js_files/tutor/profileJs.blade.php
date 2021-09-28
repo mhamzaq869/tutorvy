@@ -67,6 +67,10 @@
                 cache: false,
                 contentType: false,
                 processData: false,
+                beforeSend:function(data) {
+                    $("#educational_save").hide();
+                    $("#educational_loading").show();
+                },
                 success:function(response){
                     if(response.status_code == 200 && response.success == true) {
                         toastr.success(response.message,{
@@ -84,8 +88,20 @@
                         });
                     }
                 },
+                complete:function(data) {
+                    $("#educational_save").show();
+                    $("#educational_loading").hide();
+                },
                 error:function(e) {
-                    console.log(e)
+                    $("#educational_save").show();
+                    $("#educational_loading").hide();
+                    console.log(e);
+                    toastr.error('Something Went Wrong',{
+                        position: 'top-end',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
                 }
             });
 
@@ -108,6 +124,10 @@
                 cache: false,
                 contentType: false,
                 processData: false,
+                beforeSend:function(data) {
+                    $("#professinal_btn").hide();
+                    $("#professinal_loading").show();
+                },
                 success:function(response){
                     if(response.status_code == 200 && response.success == true) {
                         toastr.success(response.message,{
@@ -125,8 +145,20 @@
                         });
                     }
                 },
+                complete:function(data) {
+                    $("#professinal_btn").show();
+                    $("#professinal_loading").hide();
+                },
                 error:function(e) {
-                    console.log(e)
+                    console.log(e);
+                    $("#professinal_btn").show();
+                    $("#professinal_loading").hide();
+                    toastr.error('Something Went Wrong',{
+                        position: 'top-end',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
                 }
             });
 
@@ -149,6 +181,10 @@
                 cache: false,
                 contentType: false,
                 processData: false,
+                beforeSend:function(data) {
+                    $("#verfication_btn").hide();
+                    $("#verfication_loading").show();
+                },
                 success:function(response){
                     if(response.status_code == 200 && response.success == true) {
                         toastr.success(response.message,{
@@ -168,8 +204,20 @@
                         });
                     }
                 },
+                complete:function(data) {
+                    $("#verfication_btn").show();
+                    $("#verfication_loading").hide();
+                },
                 error:function(e) {
-                    console.log(e)
+                    console.log(e);
+                    $("#verfication_btn").show();
+                    $("#verfication_loading").hide();
+                    toastr.error('Something Went Wrong',{
+                        position: 'top-end',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
                 }
             });
 
@@ -189,6 +237,10 @@
             cache: false,
             contentType: false,
             processData: false,
+            beforeSend:function(data) {
+                $("#general_save").hide();
+                $("#general_loading").show();
+            },
             success:function(response){
                 if(response.status_code == 200 && response.success == true) {
                     toastr.success(response.message,{
@@ -208,8 +260,20 @@
                     });
                 }
             },
+            complete:function(data) {
+                $("#general_save").show();
+                $("#general_loading").hide();
+            },
             error:function(e) {
-                console.log(e)
+                $("#general_save").show();
+                $("#general_loading").hide();
+                console.log(e);
+                toastr.error('Something Went Wrong',{
+                    position: 'top-end',
+                    icon: 'error',
+                    showConfirmButton: false,
+                    timer: 2500
+                });
             }
         });
     }

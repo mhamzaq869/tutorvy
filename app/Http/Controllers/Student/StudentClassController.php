@@ -30,7 +30,7 @@ class StudentClassController extends Controller
     }
     public function payment(){
         $payment = Booking::with(['tutor','subject'])->where('user_id',Auth::user()->id)->whereIn('status',['2','1'])->get();
-        $spent_payment = Booking::where('status',2)->where('user_id',Auth::user()->id)-sum('price');
+        $spent_payment = Booking::where('status',2)->where('user_id',Auth::user()->id)->sum('price');
         
         return view('student.pages.payment.index',compact('payment','spent_payment'));
     }

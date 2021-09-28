@@ -198,11 +198,6 @@
             });
 
 
-
-for(var i=1; i<=31; i++){
-   $("#day").append("<option value='"+i+"'"+ (i=={{$user->day ?? 1}} ? 'selected' : '')+">"+i+"</option>");
-}
-
 $("#country_selector").countrySelect({
    defaultCountry: "{{$user->country_short ?? ''}}",
    preferredCountries: ['ca', 'gb', 'us', 'pk']
