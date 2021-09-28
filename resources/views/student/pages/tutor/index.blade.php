@@ -33,9 +33,9 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h5 class=""
+                                    <!-- <h5 class=""
                                     style="">
-                                    Advance search</h5>
+                                    Advance search</h5> -->
                                 </div>
                                 <!-- <div class="col-md-12 mt-2">
                                     <input type="search" style="width: 100%;" class="form-control input12" data-search
@@ -331,8 +331,8 @@
                     </div>
                 </div>
                 <div class="col-md-9 " >
-                    <div class="row">
-                        <!-- <div class="col-md-9">
+                    <!-- <div class="row">
+                        <div class="col-md-9">
                             <div class="card">
                                 <div class="card-body">
                                     <p><strong>  Searched Filters:  </strong></p>
@@ -355,9 +355,13 @@
                                     <p class="mb-0">Total Tutors</p>  
                                 </div>
                             </div>
-                        </div> -->
-                    </div>
+                        </div>
+                        
+                    </div> -->
                     <div class="row">
+                        <div class="col-md-12" id="number-booking">
+                            <h3  class="mb-0  mt-4">  {{ sizeof($available_tutors) }}  Tutors Available</h3>
+                        </div>
                         <div class="col-md-12" id="tutors-list">
                         @if(sizeof($available_tutors) == 0 || $available_tutors == '[]' )
                         <div class="card">
@@ -463,7 +467,12 @@
                                                 <p class="mb-2">Subject</p>
                                                 <p>
                                                 @for ($i=0 ; $i < 1; $i++)
-                                                    <span class="info-1 info">{{$sub[$i]}}</span><small><a href="#" class="text-dark decoration-none"> +2 Others</a></small>
+                                                    <span class="info-1 info">{{$sub[$i]}}</span>
+                                                    <small>
+                                                        <a href="#" class="text-dark decoration-none"> 
+                                                            +2 Others
+                                                        </a>
+                                                    </small>
                                                 @endfor
                                             </p>
                                             </div>
@@ -488,8 +497,10 @@
                                         <div class="row mt-2">
                                             <div class="col-md-12 find_tutor">
                                                 <p><strong> About Tutor </strong></p>
-                                                <p class="scrol-about ">
-                                                        {{$tutor->bio}}
+                                                <p >
+                                                        <?php
+                                                            echo substr($tutor->bio,200);
+                                                        ?>
                                                 </p>
                                             </div>
                                         </div>
