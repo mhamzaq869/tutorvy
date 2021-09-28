@@ -594,10 +594,10 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
-                                                <button class="schedule-btn" id="saveBtn" style="width:180px;float:right;font-size: 14px;" type="submit"
+                                                <button class="schedule-btn" id="general_save" style="width:180px;float:right;font-size: 14px;" type="submit"
                                                     name="personal">Save Changes</button>
-                                                <button type="button" role="button" type="button" id="proBtn" disabled class="btn btn-primary mb-4 mt-4 mr-2" 
-                                                style="width: 180px; display:none" >
+                                                <button type="button" role="button" type="button" id="general_loading" disabled class="btn btn-primary mb-4 mr-2" 
+                                                style="width: 180px;float:right; display:none">
                                                 <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i> <span class="sr-only">Loading...</span> Processing </button>
                                             </div>
 
@@ -743,8 +743,11 @@
                                     @endif
 
                                         <div class="col-md-12 mt-3">
-                                            <button class="schedule-btn" style="width: 180px;float:right;font-size: 14px;" type="submit"
+                                            <button class="schedule-btn" id="educational_save" style="width: 180px;float:right;font-size: 14px;" type="submit"
                                                 id="edu2">Save Changes</button>
+                                            <button type="button" role="button" type="button" id="educational_loading" disabled class="btn btn-primary mb-4 mr-2" 
+                                                style="width: 180px;float:right; display:none">
+                                                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i> <span class="sr-only">Loading...</span> Processing </button>
                                         </div>
                                     </form>
                                 </div>
@@ -839,8 +842,11 @@
                                             
                                         <div class="row mt-1">
                                             <div class="col-md-12">
-                                                <button class="schedule-btn" style="width: 180px;float:right;font-size: 14px;" type="submit"
+                                                <button class="schedule-btn" id="professinal_btn" style="width: 180px;float:right;font-size: 14px;" type="submit"
                                                     name="profession">Save Changes</button>
+                                                <button type="button" role="button" type="button" id="professinal_loading" disabled class="btn btn-primary mb-4 mr-2" 
+                                                style="width: 180px;float:right; display:none">
+                                                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i> <span class="sr-only">Loading...</span> Processing </button>
                                             </div>
                                         </div>
                                     </form>
@@ -926,7 +932,10 @@
 
                                             <div class="row mt-3">
                                                 <div class="col-md-12">
-                                                    <button class="schedule-btn" style="width: 180px;float:right;font-size: 14px;" type="submit" name="personal">Save Changes</button>
+                                                    <button class="schedule-btn" id="verfication_btn" style="width: 180px;float:right;font-size: 14px;" type="submit" name="personal">Save Changes</button>
+                                                    <button type="button" role="button" type="button" id="verfication_loading" disabled class="btn btn-primary mb-4 mr-2" 
+                                                        style="width: 180px;float:right; display:none">
+                                                        <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i> <span class="sr-only">Loading...</span> Processing </button>
                                                 </div>
                                             </div>
                                         </form>

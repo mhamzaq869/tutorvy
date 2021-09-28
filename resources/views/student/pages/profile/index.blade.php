@@ -573,7 +573,10 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
-                                                <button class="schedule-btn" style="width: 180px;float:right;font-size: 14px;" type="submit">Save Changes</button>
+                                                <button class="schedule-btn" id="general_btn" style="width: 180px;float:right;font-size: 14px;" type="submit">Save Changes</button>
+                                                <button type="button" role="button" type="button" id="general_loading" disabled class="btn btn-primary mb-4 mr-2" 
+                                                        style="width: 180px;float:right;display:none">
+                                                        <i class="fa fa-circle-o-notch fa-spin fa-1x fa-fw"></i> <span class="sr-only">Loading...</span> Processing </button>
                                             </div>
 
                                         </div>
@@ -718,7 +721,10 @@
                                         </div> -->
                                         <div class="row mt-3">
                                             <div class="col-md-12">
-                                                <button class="schedule-btn" style="width: 180px;float:right;font-size: 14px;" type="submit" name="personal">Save Changes</button>
+                                                <button class="schedule-btn" id="education_btn" style="width: 180px;float:right;font-size: 14px;" type="submit" name="personal">Save Changes</button>
+                                                <button type="button" role="button" type="button" id="education_loading" disabled class="btn btn-primary mb-4 mr-2" 
+                                                        style="width: 180px;float:right;display:none">
+                                                        <i class="fa fa-circle-o-notch fa-spin fa-1x fa-fw"></i> <span class="sr-only">Loading...</span> Processing </button>
                                             </div>
                                         </div>
                                     </form>
