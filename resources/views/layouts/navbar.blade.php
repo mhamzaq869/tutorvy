@@ -41,11 +41,15 @@
                                      </ul>
                                      <ul class="navbar-nav ml-auto py-1 py-md-0">
                                         @auth
-                                            <li class="nav-item profile-name1" id="imageDropdowns">
+                                            <li class=" profile-name1 " id="imageDropdowns">
                                                 <div class="dropdown d-flex ">
-                                                    <a class="nav-link profile-name d-flex pl-4 mr-3 mt-1 pb-1" href="#"
+                                                    <a class="nav-link profile-name  pl-4 mr-3 mt-1 pb-1" href="#"
                                                         data-toggle="dropdown" aria-expanded="true">
                                                         {{Auth::user()->first_name}}
+                                                        @if(Auth::user()->account_id != null)
+                                                            <p class="text-mute mb-0">User Id# {{Auth::user()->account_id}}</p>
+                                                        @endif
+
                                                     </a>
                                                     @auth
                                                         @if(Auth::user()->picture)
