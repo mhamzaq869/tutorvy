@@ -200,9 +200,9 @@ function list_tutors(){
             let img = ``;
             if(tutors[i].picture != null){
                 console.log(tutors[i].picture)
-                img = `<img src="{{asset('`+tutors[i].picture+`')}}" alt="" class="round-border">`;
+                img = `<img src="{{asset('`+tutors[i].picture+`')}}" alt="" class="profile-img">`;
             }else{
-                img = `<img src="../assets/images/ico/Square-white.jpg" alt="" class="round-border">`;
+                img = `<img src="../assets/images/ico/Square-white.jpg" alt="" class="profile-img">`;
             }
 
             var fav_btn = `

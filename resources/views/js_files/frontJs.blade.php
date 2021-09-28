@@ -158,7 +158,7 @@ function list_tutors(tutors){
                                                 <div class="col-md-9">
                                                     <div class="row">
                                                         <div class="col-md-2 col-6">
-                                                            <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
+                                                            <img src="../assets/images/logo/boy.jpg" alt="" class="profile-img">
                                                         </div>
                                                         <div class="col-md-5 col-6">
                                                             <h3>`+tutors[i].first_name+ ' ' +tutors[i].last_name+`</h3>
