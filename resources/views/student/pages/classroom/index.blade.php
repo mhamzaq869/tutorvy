@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="modal-body ">
                                     <div class="d-flex std-name">
-                                        <img src="../assets/images/logo/boy.jpg" alt="boy" style="width: 30px;">
+                                        <img src="../assets/images/ico/Square-white.jpg" alt="boy" style="width: 30px;">
                                         <p class="heading-fifth ml-2">Harram Laraib</p>
                                         <p class="std-student">Student</p>
                                         <img src="../assets/images/ico/3dot.png" alt="dots"
