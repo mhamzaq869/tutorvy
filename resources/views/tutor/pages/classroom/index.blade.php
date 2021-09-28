@@ -78,48 +78,48 @@
                                                         @if($class != null && $class != "")
                                                             <tr>
                                                                 <td class="pt-4">
-                                                                    @if($class->booking->user != null && $class->booking->user != "")
-                                                                        {{ $class->booking->user->first_name }} {{ $class->booking->user->last_name }}
+                                                                    @if($class->user != null && $class->user != "")
+                                                                        {{ $class->user->first_name }} {{ $class->user->last_name }}
                                                                     @else
                                                                     <span> - </span>
                                                                     @endif
                                                                 </td>
                                                                 <td class="pt-4">
-                                                                    {{ $class->booking->subject->name }}
+                                                                    {{ $class->subject->name }}
                                                                 </td>
                                                                 <td class="pt-4">
-                                                                    {{ $class->booking->topic }}
+                                                                    {{ $class->topic }}
                                                                 </td>
                                                                 <td class="pt-4">
-                                                                {{$class->booking->class_time}} {{date("g:i a", strtotime("$class->booking->class_time UTC"))}}
+                                                                {{$class->class_time}} {{date("g:i a", strtotime("$class->class_time UTC"))}}
                                                                 </td>
                                                                
                                                                 <td class="pt-4">
-                                                                    {{ $class->booking->duration }} Hour(s)
+                                                                    {{ $class->duration }} Hour(s)
                                                                 </td>
                                                                 <td class="pt-4">
-                                                                @if($class->booking->status == 1)
+                                                                @if($class->status == 1)
                                                                     <span class="bg-color-apporve3">
                                                                         Payment Pending
                                                                     </span>
-                                                                @elseif($class->booking->status == 2)
+                                                                @elseif($class->status == 2)
                                                                     <span class="bg-color-apporve1">
                                                                         Approved
                                                                     </span>
-                                                                @elseif($class->booking->status == 5)
+                                                                @elseif($class->status == 5)
                                                                     <span class="bg-color-apporve1">
                                                                         Delivered
                                                                     </span>
-                                                                @elseif($class->booking->status == 0)
+                                                                @elseif($class->status == 0)
                                                                     <span class="bg-color-apporve">
                                                                         Pending
                                                                     </span>
                                                                 @endif
                                                                 </td>
                                                                 <td style="text-align: center;">
-                                                                    <span data-id="{{$class->booking->id}}" data-room="{{$class->classroom_id}}" data-duration="{{$class->booking->duration}}" data-time="{{$class->booking->class_time}}"
-                                                                        id="class_time_{{$class->booking->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success mt-3">{{$class->booking->class_date}} {{$class->booking->class_time}} </span>     
-                                                                    <div id="join_class_{{$class->booking->id}}" class="text-center">
+                                                                    <span data-id="{{$class->id}}" data-room="{{$class->classroom != null ? $class->classroom->classroom_id : ''}}" data-duration="{{$class->duration}}" data-time="{{$class->class_time}}"
+                                                                        id="class_time_{{$class->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success mt-3">{{$class->class_date}} {{$class->class_time}} </span>     
+                                                                    <div id="join_class_{{$class->id}}" class="text-center">
                                                                 </td>
                                                                 <td style="text-align: center;">
                                                                     
@@ -127,9 +127,7 @@
                                                                     
                                                                     
                                                                     
-                                                                </div>
-                                                                <!-- <a href="{{route('tutor.start_class',[$class->classroom_id])}}"  class="schedule-btn"> Start Call </a> -->
-                                                                    
+                                                                </div>                                                                    
                                                                 </td>
                                                             </tr>
                                                         @endif
@@ -171,27 +169,27 @@
 
                                                     @foreach($classes as $class)
                                                         @if($class != null && $class != "" )
-                                                            @if($class->booking->status == 5)
+                                                            @if($class->status == 5)
                                                                 <tr>
                                                                     <td class="pt-4">
-                                                                        @if($class->booking->user != null && $class->booking->user != "")
-                                                                            {{ $class->booking->user->first_name }} {{ $class->booking->user->last_name }}
+                                                                        @if($class->user != null && $class->user != "")
+                                                                            {{ $class->user->first_name }} {{ $class->user->last_name }}
                                                                         @else
                                                                         <span> - </span>
                                                                         @endif
                                                                     </td>
                                                                     <td class="pt-4">
-                                                                        {{ $class->booking->subject->name }}
+                                                                        {{ $class->subject->name }}
                                                                     </td>
                                                                     <td class="pt-4">
-                                                                        {{ $class->booking->topic }}
+                                                                        {{ $class->topic }}
                                                                     </td>
                                                                     <td class="pt-4">
-                                                                    {{$class->booking->class_time}} {{date("g:i a", strtotime("$class->booking->class_time UTC"))}}
+                                                                    {{$class->class_time}} {{date("g:i a", strtotime("$class->class_time UTC"))}}
                                                                     </td>
                                                                     
                                                                     <td class="pt-4">
-                                                                        {{ $class->booking->duration }} Hour(s)
+                                                                        {{ $class->duration }} Hour(s)
                                                                     </td>
                                                                     <td class="pt-4">
                                                                    
@@ -202,11 +200,7 @@
                                                                     </td>
 
                                                                     <td style="text-align: center;">
-                                                                        
-                                                                        <button class="cencel-btn" type="button">
-                                                                            View details
-                                                                        </button>
-                                                                        
+                                                                        <button class="cencel-btn" type="button"> View details </button>
                                                                     </td>
                                                                 </tr>
                                                             @endif
