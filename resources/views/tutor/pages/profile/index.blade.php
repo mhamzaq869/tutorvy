@@ -964,10 +964,7 @@
     <script src="{{ asset('assets/js/countrySelect.js') }}"></script>
     @include('js_files.tutor.profileJs')
     <script>
-        for (var i = 1; i <= 31; i++) {
-            $("#day").append("<option value='" + i + "'" + (i == {{ Auth::user()->day ?? 1 }} ? 'selected' : '') + ">" +
-                i + "</option>");
-        }
+      
 
 
         $(document).ready(function() {

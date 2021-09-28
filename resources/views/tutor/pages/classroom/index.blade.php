@@ -117,9 +117,11 @@
                                                                 @endif
                                                                 </td>
                                                                 <td style="text-align: center;">
+                                                                    @if($class->classroom != null)
                                                                     <span data-id="{{$class->id}}" data-room="{{$class->classroom != null ? $class->classroom->classroom_id : ''}}" data-duration="{{$class->duration}}" data-time="{{$class->class_time}}"
                                                                         id="class_time_{{$class->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success mt-3">{{$class->class_date}} {{$class->class_time}} </span>     
                                                                     <div id="join_class_{{$class->id}}" class="text-center">
+                                                                    @endif
                                                                 </td>
                                                                 <td style="text-align: center;">
                                                                     

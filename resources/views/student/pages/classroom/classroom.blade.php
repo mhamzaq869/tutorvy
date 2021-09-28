@@ -954,10 +954,9 @@ td input{
 
 <script>
 
-
 var connection = new RTCMultiConnection();
 var roomid = '{{$class->classroom_id}}';
-var fullName = '{{$class->booking->user->first_name}} {{$class->booking->user->last_name}}';
+var fullName = '{{$user->first_name}} {{$user->last_name}}';
 
 
 (function() {
