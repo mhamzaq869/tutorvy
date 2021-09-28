@@ -51,8 +51,8 @@ class Notification extends Model
         $downstreamResponse->tokensWithError();
         return ;
     }
-    public function scopeToMultiDevice($query,$user_id, $title = NULL , $body = NULL , $type = NULL ,$slug = NULL, $icon = NULL , $btn_class = NULL){
-
+    public function scopeToMultiDevice($query,$user_id,$slug = NULL, $type = NULL ,$title = NULL , $icon = NULL , $btn_class = NULL , $body = NULL ){
+                                                
         $optionBuilder = new OptionsBuilder();
         $optionBuilder->setTimeToLive(60*20);
 

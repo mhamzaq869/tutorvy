@@ -269,7 +269,7 @@
                                                 <p><strong> ${{$booking->price}}  </strong></p> 
                                             </div>
                                             <div class="col-md-12 text-right">
-                                            <button type="button" class="btn-general" onclick="acceptBookingRequest()"
+                                            <button type="button" style="cursor: pointer;" class="btn-general" onclick="acceptBookingRequest()"
                                                 >Accept</button>
                                             </div>
                                         </div>

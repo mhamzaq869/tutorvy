@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\General\Teach;
 use App\Models\Admin\tktCat;
 use App\Models\Admin\supportTkts;
+use App\Models\Admin\Subject;
 use Illuminate\Support\Facades\URL;
 use Session;
 use Redirect;
@@ -119,7 +120,7 @@ class BookingController extends Controller
         
         ]);
 
-        $subject_name = DB::table("subjects")->where("id",$request->subject)->value("name");
+        $subject = Subject::where("id",$request->subject)->first();
 
         // activity logs
         $id = Auth::user()->id; 
@@ -135,19 +136,16 @@ class BookingController extends Controller
         
         for($i =0; $i < count($reciever_ids); $i++) {
             $notification = new NotifyController();
-            $sender_id = Auth::user()->id;
             $reciever_id = $reciever_ids[$i];
             $slug = '-' ;
             $type = 'class_book';
-            $data =  $name . ' Book a Class';
-            $title = 'Class Booking';
+            $title = 'Class Booking Request';
             $icon = 'fas fa-tag';
             $class = 'btn-success';
-            $desc = $name . ' Book a Class';
-            $notification->GeneralNotifi(Auth::user()->id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
+            $desc = $name . ' request for book a class of '.$subject->name;
+
+            $notification->GeneralNotifi($reciever_id ,$slug,$type,$title,$icon,$class,$desc);
         }
-
-
 
         return response()->json([
             'status'=>200,

@@ -40,6 +40,7 @@ use App\Http\Controllers\Student\SettingController as StudentSettingController;
 use App\Http\Controllers\Tutor\ChatController;
 use App\Http\Controllers\Student\ChatController as StdChatController;
 use App\Http\Controllers\General\GenChatController;
+use App\Http\Controllers\General\NotifyController;
 use App\Http\Controllers\Frontend\TutorController as FrontTutorController;
 
 
@@ -220,8 +221,8 @@ Route::group(['prefix' => '/general','middleware' => ['auth']],function () {
     Route::post('call/signal',[GenChatController::class,'sendSignal'])->name('tutor.sendsignal');
     Route::get('chat/user/talk/{id}',[GenChatController::class,'messages_between'])->name('user.chat');
 
-    Route::post('/save-token',[GenChatController::class,'saveToken'])->name('general.save.token');
-    Route::get('/get-notifications',[GenChatController::class,'getAllNotification'])->name('general.get.notification');
+    Route::post('/save-token',[NotifyController::class,'saveToken'])->name('general.save.token');
+    Route::get('/get-notifications',[NotifyController::class,'getAllNotification'])->name('getNotification');
 
 });
 
