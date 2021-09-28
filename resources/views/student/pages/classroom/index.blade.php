@@ -177,9 +177,11 @@
                                                             </td>
 
                                                             <td>
-                                                                <span data-id="{{$class->id}}" data-room="{{$class->classroom_id}}" data-duration="{{$class->duration}}" data-time="{{$class->class_time}}"
+                                                                @if($class->classroom != null)
+                                                                <span data-id="{{$class->id}}" data-room="{{$class->classroom != null ? $class->classroom->classroom_id : ''}}" data-duration="{{$class->duration}}" data-time="{{$class->class_time}}"
                                                                     id="class_time_{{$class->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success mt-2">{{$class->class_date}} {{$class->class_time}} </span>     
                                                                 <div id="join_class_{{$class->id}}"></div>
+                                                                @endif
                                                             </td>
                                                             <td style="text-align: center;padding-top:14px;">
                                                                 @if($class->status == 5 && $class->student_review != null )
@@ -187,9 +189,11 @@
                                                                         Review
                                                                     </a>
                                                                 @endif
-                                                                <span data-id="{{$class->id}}" data-room="{{$class->classroom_id}}" data-duration="{{$class->duration}}" data-time="{{$class->class_time}}"
+                                                                @if($class->classroom != null)
+                                                                <span data-id="{{$class->id}}" data-room="{{$class->classroom != null ? $class->classroom->classroom_id : ''}}" data-duration="{{$class->duration}}" data-time="{{$class->class_time}}"
                                                                     id="class_time_{{$class->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success">{{$class->class_date}} {{$class->class_time}} </span>     
                                                                 <div id="join_class_{{$class->id}}"></div>
+                                                                @endif
                                                             </td> 
                                                         </tr>
                                                 @endforeach

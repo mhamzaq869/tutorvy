@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Activitylogs;
 use App\Models\Classroom;
+use App\Models\Booking;
 use App\Models\ClassroomLogs;
 use App\Models\Admin\tktCat;
 use App\Models\Admin\supportTkts;
@@ -85,10 +86,13 @@ class SettingController extends Controller
 
     public function start_class($class_room_id){
 
-        $class = Classroom::with('booking')->where('classroom_id',$class_room_id)->first();
+        $class = Classroom::where('classroom_id',$class_room_id)->first();
+        $booking = Booking::where('id',$class->booking_id)->first();
+
+        // $class = Classroom::with('booking')->where('classroom_id',$class_room_id)->first();
         $user = User::where('id',Auth::user()->id)->first();
 
-        return view('tutor.pages.classroom.classroom',compact('class','user'));
+        return view('tutor.pages.classroom.classroom',compact('class','user','booking'));
 
     }
 

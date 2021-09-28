@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\FavTutors;
+use App\Models\Booking;
 use App\Models\Activitylogs;
 use App\Models\Classroom;
 use App\Models\Admin\tktCat;
@@ -76,9 +77,10 @@ class SettingController extends Controller
     }
 
     public function join_class($class_room_id){
-        $class = Classroom::with('booking')->where('classroom_id',$class_room_id)->first();
+        $class = Classroom::where('classroom_id',$class_room_id)->first();
+        $booking = Booking::where('id',$class->booking_id)->first();
         $user = User::where('id',\Auth::user()->id)->first();
-        return view('student.pages.classroom.classroom',compact('class','user'));
+        return view('student.pages.classroom.classroom',compact('class','user','booking'));
     }
 
     public function change_password(Request $request) {
