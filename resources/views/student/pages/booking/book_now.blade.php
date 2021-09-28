@@ -140,7 +140,7 @@
                     <div class="row mt-3">
                         <div class="col-md-12">
                             <label for="" class="col-md-12 pl-0"><b>Upload any attachment if you want</b></label>
-                            <input type="file" class="form-control dropify" name="upload" id="" required>
+                            <input type="file" class="form-control dropify" name="upload" id="" >
                         </div>
                     </div>
                     <div class="row mt-3">

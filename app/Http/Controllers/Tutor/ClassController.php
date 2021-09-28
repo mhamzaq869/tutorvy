@@ -18,7 +18,7 @@ class ClassController extends Controller
      */
 
     public function index(){
-        $classes = Booking::with(['classroom','user','tutor','subject'])->where('booked_tutor',Auth::user()->id)->get();
+        $classes = Booking::with(['classroom','user','tutor','subject'])->where('booked_tutor',Auth::user()->id)->where('status',2)->get();
 
         // dd($classes);
 
