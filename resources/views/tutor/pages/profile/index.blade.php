@@ -497,7 +497,11 @@
 
                                             <!-- date of birth dropdown -->
                                             <div class="col-md-4">
-                                                <select class="form-select form-select-lg" id="day" name="day" requried></select>
+                                                <select class="form-select form-select-lg" id="day" name="day" requried>
+                                                    @for($i = 0 ; $i <= 31 ; $i++)
+                                                        <option value="{{$i}}" @if (Auth::user()->day == $i) selected @endif >{{$i}}</option>
+                                                    @endfor
+                                                </select>
                                             </div>
                                             <!--  -->
                                             <div class="col-md-4">
