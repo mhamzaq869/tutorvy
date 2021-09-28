@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Http\Request;
 use App\Models\Activitylogs;
 use App\Models\Classroom;
+use App\Models\Booking;
 use App\Models\User;
 class ClassController extends Controller
 {
@@ -17,9 +18,11 @@ class ClassController extends Controller
      */
 
     public function index(){
-        $classes = Classroom::with('booking')->get();
-        $user = User::where('id',Auth::user()->id)->first();
+        $classes = Booking::with(['classroom','user','tutor','subject'])->where('booked_tutor',Auth::user()->id)->get();
 
+        // dd($classes);
+
+        $user = User::where('id',Auth::user()->id)->first();
         $delivered_classess = DB::table("classroom")
         ->leftJoin('bookings', 'classroom.booking_id', '=', 'bookings.id')
         ->where('user_id',Auth::user()->id)
