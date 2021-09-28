@@ -114,8 +114,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-storage.js"></script>
-    <script  src="{{asset('assets/firebase/index.js')}}"></script>
-
+    <script src="{{asset('assets/firebase/index.js').'?ver='.rand()}}"></script>
 
     </script>
         <!--Plugin JavaScript file-->
@@ -131,6 +130,8 @@
         });
       
     $(document).ready(function(){
+
+        get_all_notifications();
         
         $(".mk").hide();
         $(".vc").hide();
@@ -143,7 +144,7 @@
         //         startYear: 1950,
         //         endYear: 2050,
         //     });
-            $(".js-range-slider").ionRangeSlider({
+        $(".js-range-slider").ionRangeSlider({
             type: "double",
             min: 0,
             max: 1000,
@@ -261,6 +262,58 @@ function hideCard(){
     // alert();
     $(".infoCard").hide('slow');
 };
+
+function get_all_notifications() {
+        $.ajax({
+            url: "{{route('getNotification')}}",
+            type:"GET",
+            dataType:'json',
+            success:function(response){
+                var obj = response.data;
+                // console.log(obj , "asd");
+                if(response.status_code == 200 && response.success == true) {
+                    var notification = ``;
+                    if(obj.length == 0){
+                        $('.std_notification_counts').text(0);
+                    }else{
+                        $('.std_notification_counts').text(obj.length);
+                        for(var i =0; i < obj.length; i++) {
+                            notification +=`
+                                    <div class="row">
+                                        <div class="col-md-1">
+                                            <img class="avatar mt-2" src="{{ asset('/admin/assets/img/notifiaction/layer.png')}}"
+                                                alt="layer">
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="head-1-noti">
+                                                <span class="notification-text6">
+                                                    <strong>`+obj[i].noti_title+` </strong> <br>
+                                                    `+obj[i].noti_desc+`
+                                                </span>
+                                            </div>
+                                            <span class="notification-time">
+                                            </span>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <img class="dot-image" src="{{ asset('/admin/assets/img/ico/3dot.png')}}"
+                                                alt="dot-ico">
+                                        </div>
+                                    </div>
+                                    <hr>`;
+                            }
+                            $(".show_all_notifications").html(notification);
+                    }
+
+                }else{
+                    notification +=`<span> No Notification </span>`;
+                }
+            },
+            error:function(e) {
+                console.log(e)
+            }
+        });
+    }
+
 </script>
 
 </body>
