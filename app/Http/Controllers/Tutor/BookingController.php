@@ -40,7 +40,7 @@ class BookingController extends Controller
 
     public function acceptBooking($id ,Request $request){
 
-        $booking = Booking::find($id);
+        $booking = Booking::with('subject')->find($id);
         $booking->status = 1;
         $booking->save();
 
@@ -53,19 +53,29 @@ class BookingController extends Controller
         $activity_logs = new GeneralController();
         $activity_logs->save_activity_logs("Approve Class", "bookings.id", $id, $action_perform, $request->header('User-Agent'), $id);
 
-        $reciever = User::where('role',1)->first();
+        $admin = User::where('role',1)->first();
+        $student_id = $student->id;
+
+
         $notification = new NotifyController();
         $sender_id = Auth::user()->id;
-        $reciever_id = $reciever->id;
-        $slug = '-' ;
-        $type = 'class_booking';
+        $reciever_id = $admin->id;
+        $slug = URL::to('/') . '/student/booking-detail/'. $booking->id ;
+        $admin_slug = URL::to('/') . '/admin/booking-detail/'. $booking->id ;
+
+        $type = 'class_booking_approved';
         $data = 'data';
         $title = 'Class Booking';
         $icon = 'fas fa-tag';
+        
         $class = 'btn-success';
-        $desc = $name . ' Approve the Class Request of ' . $student_name;
-        $notification->GeneralNotifi($sender_id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
-        $notification->GeneralNotifi($booking->user_id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
+
+        $desc = $name . ' Approved the booking request of ' . $student_name;
+        $stddesc = $name . ' Approved your booking request for ' . $booking->subject->name;
+        $pic = Auth::user()->picture;
+
+        $notification->GeneralNotifi( $reciever_id , $admin_slug ,  $type , $title , $icon , $class ,$desc,$pic);
+        $notification->GeneralNotifi( $student_id , $slug ,  $type  , $title , $icon , $class ,$stddesc,$pic);
 
         return response()->json([
             'status'=>'200',

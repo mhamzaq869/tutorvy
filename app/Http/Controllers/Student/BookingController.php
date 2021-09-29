@@ -137,14 +137,15 @@ class BookingController extends Controller
         for($i =0; $i < count($reciever_ids); $i++) {
             $notification = new NotifyController();
             $reciever_id = $reciever_ids[$i];
-            $slug = '-' ;
+            $slug = URL::to('/') . '/tutor/booking-detail/'. $booking->id  ;
             $type = 'class_book';
             $title = 'Class Booking Request';
             $icon = 'fas fa-tag';
             $class = 'btn-success';
             $desc = $name . ' request for book a class of '.$subject->name;
+            $pic = Auth::user()->picture;
 
-            $notification->GeneralNotifi($reciever_id ,$slug,$type,$title,$icon,$class,$desc);
+            $notification->GeneralNotifi($reciever_id ,$slug,$type,$title,$icon,$class,$desc,$pic);
         }
 
         return response()->json([

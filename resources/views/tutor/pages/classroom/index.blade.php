@@ -72,8 +72,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                            @if($classes != null && $classes != [] && $classes != "")
-
+                                                @if($classes != null && $classes != [] && $classes != "")
                                                     @foreach($classes as $class)
                                                         @if($class != null && $class != "")
                                                             <tr>
@@ -124,17 +123,13 @@
                                                                     @endif
                                                                 </td>
                                                                 <td style="text-align: center;">
-                                                                    
                                                                     <button class="cencel-btn" type="button"> View details </button>
-                                                                    
-                                                                    
-                                                                    
                                                                 </div>                                                                    
                                                                 </td>
                                                             </tr>
                                                         @endif
                                                     @endforeach
-                                            @else
+                                                @else
                                                     <tr>
                                                         <td>
                                                             No Class Found

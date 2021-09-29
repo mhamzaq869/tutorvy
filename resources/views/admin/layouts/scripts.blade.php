@@ -405,7 +405,7 @@
                         for(var i =0; i < obj.length; i++) {
 
                         notification +=`
-                        <li>
+                        <li href="`+obj[i].noti_slug+`">
                             <div class="row">
                                 <div class="col-md-2 text-center">
                                     <img class="avatar mt-2" src="{{ asset('/admin/assets/img/notifiaction/layer.png')}}"
@@ -414,7 +414,7 @@
                                 <div class="col-md-10">
                                     <div class="head-1-noti">
                                         <span class="notification-text6">
-                                            <strong>` +obj[i].noti_title+ ` 1231 </strong> 
+                                            <strong>` +obj[i].noti_title+ ` </strong> 
                                             `+obj[i].noti_desc+`
                                         </span>
                                     </div>
