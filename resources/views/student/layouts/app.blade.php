@@ -35,6 +35,7 @@
 </head>
 <body>
     <div class="wrapper" id="wrapper">
+        <input type="hidden" class="user_role_id" value={{Auth::user()->role}}>
         <!-- side navbar -->
         @include('student.layouts.sidebar')
         <!-- seide navbar end -->

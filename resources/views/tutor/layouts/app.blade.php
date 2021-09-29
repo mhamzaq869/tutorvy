@@ -44,7 +44,8 @@
 </head>
 <body>
     <div class="wrapper token_wrapper" >
-        <input type="hidden" class="tutor_role_id" value={{Auth::user()->role}}>
+        <input type="hidden" class="user_role_id" value={{Auth::user()->role}}>
+
         <!-- side navbar -->
         @include('tutor.layouts.sidebar')
         <!-- seide navbar end -->

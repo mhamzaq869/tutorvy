@@ -72,8 +72,8 @@
                 <li>
                     <div class="notification mt-2 ml-3">
                         <img src="{{asset('assets/images/ico/Notification.png') }}" alt="notifiaction">
-                        <span class="notification-text">
-                            4
+                        <span class="notification-text std_notification_counts">
+                          0
                         </span>
                         <ul class="notification-menu">
                             <li class="container-fluid">
@@ -93,8 +93,8 @@
                                     Recent
                                 </p>
                             </li>
-                            <span>
-                                <li>
+                            <span class="show_all_notifications">
+                                <!-- <li>
                                     <div class="row">
                                         <div class="col-md-1">
                                             <img class="avatar mt-2 mb-2 "
@@ -201,7 +201,7 @@
                                                 alt="dot-ico">
                                         </div>
                                     </div>
-                                </li>
+                                </li> -->
                             </span>
                             
                         </ul>
@@ -237,6 +237,8 @@
     </div>
 </header>
 <!-- end mobile nav -->
+
+
 <!-- side navbar of icons button with navbar -->
 <nav class="navbar navbar-expand-lg mb-4 pb-2" style="width: 100%;background-color: #FBFBFB !important;">
     <button onclick="navicon()" class="sidenav-toggle rotate">
@@ -268,7 +270,7 @@
                             <div class="notification">
                                 <img src="{{asset('assets/images/ico/Notification.png') }}" alt="notification-ico">
                                 <span class="notification-text">
-                                    4
+                                    
                                 </span>
                                 <ul class="notification-menu">
                                     <li class="container-fluid">
@@ -288,34 +290,8 @@
                                             Recent
                                         </p>
                                     </li>
-                                    
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-md-2 text-center">
-                                                <img class="avatar mt-2"
-                                                    src="{{asset('assets/images/notifiaction/Layer.png') }}"
-                                                    alt="Layer">
-                                            </div>
-                                            <div class="col-md-10">
-                                                <div style="display: flex;line-height: 1.3;">
-                                                    <span
-                                                        style="color: #00132D; font-family: 'Poppins', sans-serif;font-size: 14px;font-weight: 500;">
-                                                        <span style="font-weight: 500; font-size: 14px;">
-                                                            Marina Hurst
-                                                        </span>
-                                                        request for book a class of chemistry on periodic
-                                                        tab ...
-                                                    </span>
-                                                </div>
-                                                <span class="notification-time">
-                                                    10 min ago
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="mt-2 mb-2 ml-1 notification-text3">
-                                        Yesterday
-                                    </li>
+                                    <span class="show_all_notifications">
+                                    </span>
                                 </ul>
                             </div>
                         </div>

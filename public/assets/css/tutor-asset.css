@@ -3017,5 +3017,11 @@ select#paymentMethod option[value="others"] {
     border-color: #E6E7E8 #fff #fff #fff;
 }
 
+/*Notification*/
+.notification-menu a,
+.show_all_notifications a{
+    color:#00132D !important;
+    text-decoration: none;
+}
 
 /*Attach Files Ending*/

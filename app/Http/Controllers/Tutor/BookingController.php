@@ -58,7 +58,6 @@ class BookingController extends Controller
 
 
         $notification = new NotifyController();
-        $sender_id = Auth::user()->id;
         $reciever_id = $admin->id;
         $slug = URL::to('/') . '/student/booking-detail/'. $booking->id ;
         $admin_slug = URL::to('/') . '/admin/booking-detail/'. $booking->id ;

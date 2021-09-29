@@ -26,7 +26,7 @@ messaging.requestPermission().then(function() {
 messaging.onMessage((payload) => {
     console.log('Message received. ', payload);
 
-    var user_role_id = $(".tutor_role_id").val();
+    var user_role_id = $(".user_role_id").val();
 
     var btn_class = payload.data.btn_class;
     var icon = payload.data.icon;
