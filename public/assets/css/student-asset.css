@@ -1505,7 +1505,6 @@
         border-width: 1.5em 1.5em 0 0;
         border-color: #E6E7E8 #fff #fff #fff;
     }
-<<<<<<< HEAD
 
     .notification-menu a,
     .show_all_notifications a{
@@ -1513,11 +1512,9 @@
         text-decoration: none;
     }
     /*Attach Files Ending*/
-=======
     /*Attach Files Ending*/
     /* Toaster Link  */
 .notification_link{
     color: #1173FF !important;
 }
 /*Toaster Link ENd*/
->>>>>>> 4932f9637c3fd47e95414dd9e25b89db54a11f33
