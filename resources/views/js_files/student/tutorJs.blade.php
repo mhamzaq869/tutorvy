@@ -222,9 +222,9 @@ function list_tutors(){
             let img = ``;
             if(tutors[i].picture != null){
                 console.log(tutors[i].picture)
-                img = `<img src="{{asset('`+tutors[i].picture+`')}}" alt="" class="profile-img w-100" style="height:100%;"`;
+                img = `<img src="{{asset('`+tutors[i].picture+`')}}" alt="" class="profile-img w-100" style="height:auto;"`;
             }else{
-                img = `<img src="../assets/images/ico/Square-white.jpg" alt="" class="profile-img w-100" style="height:100%;">`;
+                img = `<img src="../assets/images/ico/Square-white.jpg" alt="" class="profile-img w-100" style="height:auto;">`;
             }
 
             var fav_btn = `

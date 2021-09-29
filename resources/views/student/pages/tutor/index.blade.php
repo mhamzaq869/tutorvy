@@ -466,15 +466,16 @@
                                                 @endphp
                                                 <p class="mb-2">Subject</p>
                                                 <p>
-                                                @for ($i=0 ; $i < 1; $i++)
-                                                    <span class="info-1 info">{{$sub[$i]}}</span>
-                                                    <small>
-                                                        <a href="#" class="text-dark decoration-none"> 
-                                                            +2 Others
-                                                        </a>
-                                                    </small>
-                                                @endfor
-                                            </p>
+                                                    @for ($i=0 ; $i < 1; $i++)
+                                                        <span class="info-1 info">{{$sub[$i]}}</span>
+                                                        
+                                                        <small>
+                                                            <a href="#" class="text-dark decoration-none"> 
+                                                                +2 Others
+                                                            </a>
+                                                        </small>
+                                                    @endfor
+                                                </p>
                                             </div>
                                             <div class="col-md-4">
                                                 <p class="mb-2">Languages</p>
@@ -497,10 +498,10 @@
                                         <div class="row mt-2">
                                             <div class="col-md-12 find_tutor">
                                                 <p><strong> About Tutor </strong></p>
-                                                <p >
+                                                <p>
                                                         <?php
                                                             echo substr($tutor->bio,200);
-                                                        ?>
+                                                        ?> ...
                                                 </p>
                                             </div>
                                         </div>

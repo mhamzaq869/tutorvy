@@ -29,7 +29,7 @@
                     <li class="btn w-100">
                         <a href="#">
                             <img src="{{asset('assets/images/ico/class-ico.png') }}" alt="class-ico" class=" mr-2">
-                            Classroom
+                            Classroom <span class="counter-text bg-primary">  </span>
                         </a>
                     </li>
                     <li class="btn w-100">
