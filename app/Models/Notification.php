@@ -58,8 +58,8 @@ class Notification extends Model
 
         $notificationBuilder = new PayloadNotificationBuilder($title);
         $notificationBuilder->setBody($body)
-                            ->setSound('default');
-                            // ->setClickAction('home');
+                            ->setSound('default')
+                            ->setClickAction($slug);
 
         $dataBuilder = new PayloadDataBuilder();
         $dataBuilder->addData([

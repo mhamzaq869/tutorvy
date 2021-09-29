@@ -138,7 +138,7 @@ class BookingController extends Controller
             $notification = new NotifyController();
             $reciever_id = $reciever_ids[$i];
             $slug = URL::to('/') . '/tutor/booking-detail/'. $booking->id  ;
-            $type = 'class_book';
+            $type = 'class_booking';
             $title = 'Class Booking Request';
             $icon = 'fas fa-tag';
             $class = 'btn-success';
