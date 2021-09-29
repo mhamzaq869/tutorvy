@@ -1242,7 +1242,7 @@ body {
 .switch {
     position: relative;
     display: inline-block;
-    width: 40px !important;
+    width: 40px;
     height: 20px;
 }
 
@@ -3019,3 +3019,46 @@ select#paymentMethod option[value="others"] {
 
 
 /*Attach Files Ending*/
+
+
+/*Chat Emoji*/
+
+.emojionearea.emojionearea-inline>.emojionearea-button {
+    top: 4px;
+    right: 28px;
+}
+
+.emojionearea .emojionearea-picker.emojionearea-picker-position-top {
+    margin-top: -286px;
+    right: 14px;
+}
+
+#btn-chat-message {
+    position: absolute;
+    top: 4px;
+    right: 18px;
+}
+
+#btn-chat-message .paper {
+    font-size: 17px;
+    color: #1173FF;
+}
+
+#btn-attach-file {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    right: 62px;
+}
+
+#btn-attach-file .clip {
+    font-size: 17px;
+    color: #626C7B;
+}
+
+#btn-attach-file .clip:hover {
+    color: #14233A;
+}
+
+
+/*Chat EMoji End*/

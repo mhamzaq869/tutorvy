@@ -63,15 +63,19 @@
 #conversation-panel {
     margin-bottom: 20px;
     text-align: left;
-    max-height: 200px;
+    max-height: 365px;
     overflow: auto;
     border-top: 1px solid #E5E5E5;
-    width: 106%;
+    width: 100%;
 }
 
 #conversation-panel .message {
     border-bottom: 1px solid #E5E5E5;
     padding: 5px 10px;
+
+}
+.bg-chat-head{
+    background-color:#fefefe !important;
 }
 
 #conversation-panel .message img, #conversation-panel .message video, #conversation-panel .message iframe {
@@ -244,15 +248,15 @@ hr {
 }
 
 /* Chat Box */
-.h-360{
-  height:360px;
+.h-460{
+  height:460px;
   overflow-y:auto;
 }
 .chatInput{
 height:25px;
 }
 #canvas {
-  background-image:url("../assets/images/ico/graph.png")
+  /* background-image:url("../assets/images/ico/graph.png") */
 }
 #display{
     border: none;
@@ -292,6 +296,27 @@ td input{
 .h-35{
     height:35px;
 }
+.nav-whiteBoard-nav{
+    border-bottom:2px solid #D6DBE2;
+}
+.switch {
+    width: 50px !important;
+    height: 30px !important;
+}
+.round {
+    position: absolute;
+    top: -15px !important;
+    left: 10px;
+    bottom: 25px !important;
+}
+.bright{
+    position:absolute;
+    right:0;
+    top: 17px;
+}
+.bright input:checked+.slider {
+    background-color: #1173ff;
+}
 </style>
 @section('content')
  <!-- top Fixed navbar End -->
@@ -311,11 +336,11 @@ td input{
                 </div>
             </div>
             <div class="row mb-5 tech_weck tech_weck-none">
-                <div class="col-md-9 card"> 
+                <div class="col-md-9 "> 
                     <div class="row">
-                        <div class="col-md-12 mt-3">
+                        <div class="col-md-12 ">
                                 <nav class="">
-                                    <div class="nav nav-stwich nav-whiteBoard-nav pb-0" id="nav-tab" role="tablist">
+                                    <div class="nav nav-stwich nav-whiteBoard-nav pb-0" id="nav-tab" role="tablist" >
                                         <a class="nav-item nav-link active" id="nav-whiteBoard-tab" data-toggle="tab" href="#nav-whiteBoard" role="tab" aria-controls="nav-whiteBoard" aria-selected="true">
                                             White Board
                                         </a>
@@ -331,162 +356,38 @@ td input{
                                         <a class="nav-item nav-link" id="nav-googleDocs-tab" data-toggle="tab" href="#nav-googleDocs" role="tab" aria-controls="nav-googleDocs" aria-selected="false">
                                             Google Docs
                                         </a>
-                                        <a class="nav-item nav-link" id="nav-fileShare-tab" data-toggle="tab" href="#nav-fileShare" role="tab" aria-controls="nav-fileShare" aria-selected="false">
+                                        <!-- <a class="nav-item nav-link" id="nav-fileShare-tab" data-toggle="tab" href="#nav-fileShare" role="tab" aria-controls="nav-fileShare" aria-selected="false">
                                             File Sharing
-                                        </a>
+                                        </a> -->
+                                        <span class="bright">
+                                            <label > Share Screen </label>   
+                                                    <label class="switch  ml-2" style="">
+                                                        <input type="checkbox" class="s_status" val_id="3" val_st="1" checked="">
+                                                        <!-- <input type="checkbox" class="s_status" val_id="3" val_st="1 "  checked -->
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                        </span>
                                     </div>
                                 </nav>
-                                <div class="tab-content" id="nav-tabContent">
+                                <div class="tab-content mt-3" id="nav-tabContent">
                                 <div class="tab-pane tab-border-none tab-border-none-1 fade show active" id="nav-whiteBoard" role="tabpanel" aria-labelledby="nav-whiteBoard-tab">
                                     <div class="container-fluid ">
                                         <div class="row ">
                                             <div class="col-md-12">
                                                 <nav>
-                                                    <div class="nav nav-tabs board-nav" id="nav-tab" role="tablist">
-                                                        <!-- <a class="nav-item nav-link board-nav active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Board 1 <i class="pl-2 fa fa-times text-dark"></i></a> -->
-                                                        <!-- <a class="nav-item nav-link board-nav active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Board </a> -->
-                                                        <!-- <a class="nav-item nav-link board-nav" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Board 2 <i class="pl-2 fa fa-times text-dark"></i></a>
-                                                        <a class="mt-2 ml-2" href="#">Add new Board +</a> -->
+                                                    <div class="nav nav-tabs board-nav ml-0 pl-0 newTabs" id="nav-tab" role="tablist">
+                                                        <a class="nav-item nav-link board-nav active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Board 1 </a>
+                                                        <a class="mt-2 ml-2" href="#" id="addNewBoard">Add new Board +</a>
                                                     </div>
                                                 </nav>
-                                                <div class="tab-content" id="nav-tabContent">
-                                                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                                        <!-- <div class="row">
-                                                            <div class="col-md-1 mt-2 p-0">
-                                                                <ul class=" text-center pl-0">
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/pointer.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/drag.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="pen">
-                                                                            <img src="{{asset('assets/images/ico/pencil.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="eraser">
-                                                                            <img src="{{asset('assets/images/ico/eraser.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="rect">
-                                                                            <img src="{{asset('assets/images/ico/rectangle.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/ellipse.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="line">
-                                                                            <img src="{{asset('assets/images/ico/line.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/text.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/diagonal.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/fx.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="clear">
-                                                                            C
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-md-11 mt-3 p-0">
-                                                                <canvas id="canvas" width="750" height="450"></canvas>
-                                                            </div> 
-                                                        </div> -->
+                                                <div class="tab-content newWhite" id="nav-tabContent">
+                                                    <div class="tab-pane whitePane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                                         <div class="row">
-                                                            <div class="col-md-12 h-500 mt-5 mb-5">
+                                                            <div class="col-md-12 h-500 mb-5">
                                                                 <div id="widget-container" style=""></div>
                                                                 <video id="screen-viewer"  playsinline ></video>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                                        <!-- <div class="row">
-                                                            <div class="col-md-1 mt-2 p-0">
-                                                                <ul class=" text-center pl-0">
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/pointer.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/drag.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="pen">
-                                                                            <img src="{{asset('assets/images/ico/pencil.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="eraser">
-                                                                            <img src="{{asset('assets/images/ico/eraser.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="rect">
-                                                                            <img src="{{asset('assets/images/ico/rectangle.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/ellipse.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="line">
-                                                                            <img src="{{asset('assets/images/ico/line.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/text.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/diagonal.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/fx.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="clear">
-                                                                            C
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-md-11 mt-3 p-0">
-                                                                <canvas id="canvas" width="750" height="500"></canvas>
-                                                            </div> 
-                                                        </div> -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -646,33 +547,56 @@ td input{
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <!-- <div class="row mt-3 mb-3">
-                    <div class="col-md-12">
-                            <video class="callNew" autoplay muted></video>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                Chat <i class="fa fa-person"></i>
-                            </div>
-                            <div class="card-body h-360">
-
-                            </div>
-                            <div class="card-footer">
-                                <div class="row">
-                                <div class="col-md-12">
-                                    <input type="text" class="chatInput">
-
+                    <div class="row mt-3 mb-3">
+                        <div class="col-md-12">
+                            <video id="main-video"  playsinline autoplay></video>
+                            <!-- <video id="other-videos"  playsinline autoplay></video> -->
+                        </div>
+                        <div class="col-md-12 mt-2 mb-2 vid-location text-center">
+                            <button class="btn-danger btn h-35 w-100 pb-0 pt-0 no-ph">End Call</button>
+                        </div>
+                        <div style="col-md-12 padding: 5px 10px;">
+                            <div id="onUserStatusChanged"></div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header bg-chat-head">
+                                    Chat <i class="fa fa-person"></i>
                                 </div>
+                                <div class="card-body h-460" id="conversation-panel">
+                                    <div class='text-center'>
+                                        <small>
+                                            Your all communications will be monitored for maintaining quality, will not share your personal information. 
+                                        </small>
+                                        <small>
+                                            <a href="#">View Privacy Policy</a>
+                                        </small>
+                                    </div>
+                                    <div id="key-press" style="text-align: right; display: none; font-size: 11px;">
+                                        <span style="vertical-align: middle;"></span>
+                                        <img src="https://www.webrtc-experiment.com/images/key-press.gif" style="height: 12px; vertical-align: middle;">
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-chat-head">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <textarea id="txt-chat-message" style="display:none;" ></textarea>
+                                            <div id="check"></div>
+                                            <a type="button" id="btn-chat-message" disabled><i class="fa fa-paper-plane-o paper" aria-hidden="true"></i></a>
+                                            <a id="btn-attach-file" type="button"><i class="fa fa-paperclip clip" aria-hidden="true"></i></a>
+                                            <!-- <img id="btn-attach-file" src="https://www.webrtc-experiment.com/images/attach-file.png" title="Attach a File"> -->
+                                            <img id="btn-share-screen" src="https://www.webrtc-experiment.com/images/share-screen.png" title="Share Your Screen">
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    </div> -->
                     <div class="mt-5">
-                        <video id="main-video"  playsinline autoplay></video>
-                        <div class="col-md-12 mt-2 mb-2 vid-location text-center">
-                            <!-- <a href="#" class="callSet vc">
+                        <!-- <video id="main-video"  playsinline autoplay></video> -->
+                        <!-- <div class="col-md-12 mt-2 mb-2 vid-location text-center">
+                            <a href="#" class="callSet vc">
                                 <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
                             </a>
                             <a href="#" class="callSet no-vc">
@@ -683,29 +607,29 @@ td input{
                             </a>
                             <a href="#" class="callSet no-mk">
                                 <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
-                            </a> -->
-                            <!-- <a href="#" class="callSet no-ph">
+                            </a>
+                            <a href="#" class="callSet no-ph">
                                 <img src="{{asset('assets/images/ico/no-phone.png')}}" title="End Call" alt="">
-                            </a> -->
+                            </a>
                             <button class="btn-danger btn h-35 w-100 pb-0 pt-0 no-ph">End Call</button>
-                        </div>
-                        <div id="other-videos"></div>
-                        <hr>
-                        <div style="padding: 5px 10px;">
+                        </div> -->
+                        <!-- <div id="other-videos"></div>
+                        <hr> -->
+                        <!-- <div style="padding: 5px 10px;">
                             <div id="onUserStatusChanged"></div>
-                        </div>
+                        </div> -->
 
                         <div style="margin-top: 20px;bottom: 0;background: white; padding-bottom: 20px; width: 100%">
-                            <div id="conversation-panel"></div>
+                            <!-- <div id="conversation-panel"></div>
                             <div id="key-press" style="text-align: right; display: none; font-size: 11px;">
                                 <span style="vertical-align: middle;"></span>
                                 <img src="https://www.webrtc-experiment.com/images/key-press.gif" style="height: 12px; vertical-align: middle;">
-                            </div>
-                            <textarea id="txt-chat-message" style="display:none;" ></textarea>
+                            </div> -->
+                            <!-- <textarea id="txt-chat-message" style="display:none;" ></textarea>
                             <div id="check"></div>
                             <button class="btn btn-primary" id="btn-chat-message" disabled>Send</button>
                             <img id="btn-attach-file" src="https://www.webrtc-experiment.com/images/attach-file.png" title="Attach a File">
-                            <img id="btn-share-screen" src="https://www.webrtc-experiment.com/images/share-screen.png" title="Share Your Screen">
+                            <img id="btn-share-screen" src="https://www.webrtc-experiment.com/images/share-screen.png" title="Share Your Screen"> -->
                         </div>
 
                         <canvas id="temp-stream-canvas" style="display: none;"></canvas>
@@ -1563,6 +1487,38 @@ $('#btn-share-screen').click(function() {
         alert('getDisplayMedia API is not available in this browser.');
     }
 });
+
+var count = 2;
+
+/* Add New Board Section */
+
+$("#addNewBoard").click(function(){
+   
+    var techno = `
+        <a class="nav-item white-item nav-link board-nav active" id="nav-whiteboard-`+count+`" data-toggle="tab" href="#nav-home-`+count+`" role="tab" aria-controls="nav-profile" aria-selected="false">Board `+count+` <i class="pl-2 fa fa-times text-dark"></i></a>
+    `;
+    var tech = `
+            <div class="tab-pane fade show active whitePane" id="nav-home-`+count+`" role="tabpanel" aria-labelledby="nav-home-tab">
+                                                      
+                <div class="row">
+                    <div class="col-md-12 h-500 mb-5">
+                        <div class="" id="widget-container" style=""></div>
+                        <video id="screen-viewer"  playsinline ></video>
+                    </div>
+                </div>
+            </div>`;
+    $(".board-nav").removeClass("active");
+    $(".whitePane").removeClass("show");
+    $(".newTabs").prepend(techno);
+    $(".newWhite").append(tech);
+    alert("New Board Added");
+    count++;
+})
+
+
+
+
+/* Add New Board Section */
 </script>
 
 

@@ -73,6 +73,7 @@
 #conversation-panel .message {
     border-bottom: 1px solid #E5E5E5;
     padding: 5px 10px;
+    margin-right: 15px;
 }
 
 #conversation-panel .message img, #conversation-panel .message video, #conversation-panel .message iframe {
@@ -703,8 +704,10 @@ td input{
                             </div>
                             <textarea id="txt-chat-message" style="display:none;" ></textarea>
                             <div id="check"></div>
-                            <button class="btn btn-primary" id="btn-chat-message" disabled>Send</button>
-                            <img id="btn-attach-file" src="https://www.webrtc-experiment.com/images/attach-file.png" title="Attach a File">
+                            <a type="button" id="btn-chat-message" disabled><i class="fa fa-paper-plane-o paper" aria-hidden="true"></i></a>
+                                            <a id="btn-attach-file" type="button"><i class="fa fa-paperclip clip" aria-hidden="true"></i></a>
+                            <!-- <button class="btn btn-primary" id="btn-chat-message" disabled>Send</button>
+                            <img id="btn-attach-file" src="https://www.webrtc-experiment.com/images/attach-file.png" title="Attach a File"> -->
                             <img id="btn-share-screen" src="https://www.webrtc-experiment.com/images/share-screen.png" title="Share Your Screen">
                         </div>
 

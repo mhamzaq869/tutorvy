@@ -525,7 +525,7 @@
       
 #main-canvas{
     /* background-image: url('../assets/images/ico/graph.png'); */
-    border:1px solid grey;
+    /* border:1px solid grey; */
     background:#fff;
     
 }

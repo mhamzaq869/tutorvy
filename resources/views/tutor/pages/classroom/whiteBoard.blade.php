@@ -134,7 +134,7 @@
 height:25px;
 }
 #canvas {
-  background-image:url("../assets/images/ico/graph.png")
+  /* background-image:url("../assets/images/ico/graph.png") */
 }
 #display{
     border: none;
