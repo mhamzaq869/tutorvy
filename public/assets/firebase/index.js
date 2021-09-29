@@ -77,11 +77,12 @@ messaging.onMessage((payload) => {
         }
 
         if (type == "class_booking") {
-            toastr.success(title + '<br>' + body, {
+            let redirect =body + '<br> '+  `<a href="`+slug+`" class="notification_link"> click here</a> to view the booking details`;
+            toastr.success(title + '<br>' + redirect, {
                 position: 'top-end',
                 icon: 'success',
                 showConfirmButton: false,
-                timer: 8000,
+                timer: 80000000,
             });
         }
 
