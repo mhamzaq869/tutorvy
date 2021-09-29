@@ -1057,9 +1057,21 @@ footer a:hover {
     font-weight: 500;
 }
 
+<<<<<<< HEAD
 .notification-menu a,
 .show_all_notifications a{
     color:#00132D !important;
     text-decoration: none;
 }
 /*Notificatipon Settings end*/
+=======
+
+/*Notificatipon Settings end*/
+
+
+/* Toaster Link  */
+.notification_link{
+    color: #1173FF !important;
+}
+/*Toaster Link ENd*/
+>>>>>>> 4932f9637c3fd47e95414dd9e25b89db54a11f33

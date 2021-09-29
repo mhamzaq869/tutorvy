@@ -3025,3 +3025,10 @@ select#paymentMethod option[value="others"] {
 }
 
 /*Attach Files Ending*/
+
+
+/* Toaster Link  */
+.notification_link{
+    color: #1173FF !important;
+}
+/*Toaster Link ENd*/
