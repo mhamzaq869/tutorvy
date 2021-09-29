@@ -1506,3 +1506,8 @@
         border-color: #E6E7E8 #fff #fff #fff;
     }
     /*Attach Files Ending*/
+    /* Toaster Link  */
+.notification_link{
+    color: #1173FF !important;
+}
+/*Toaster Link ENd*/
