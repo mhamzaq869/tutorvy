@@ -1505,4 +1505,16 @@
         border-width: 1.5em 1.5em 0 0;
         border-color: #E6E7E8 #fff #fff #fff;
     }
+
+    .notification-menu a,
+    .show_all_notifications a{
+        color:#00132D !important;
+        text-decoration: none;
+    }
     /*Attach Files Ending*/
+    /*Attach Files Ending*/
+    /* Toaster Link  */
+.notification_link{
+    color: #1173FF !important;
+}
+/*Toaster Link ENd*/

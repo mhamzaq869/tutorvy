@@ -147,7 +147,7 @@
                                                                 {{ $class->tutor->first_name }} {{ $class->tutor->last_name }}
                                                             </td>
                                                             <td class="pt-3">
-                                                            {{ $class->booking != null ? $class->subject->name : '---' }}
+                                                            {{ $class != null ? $class->subject->name : '---' }}
                                                             </td>
                                                             <td class="pt-3">
                                                                 {{ $class != null ? $class->topic : '---' }}

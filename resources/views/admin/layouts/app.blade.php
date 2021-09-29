@@ -37,7 +37,7 @@
     @include('admin.layouts.sidebar')
 
     <section id="contents">
-    <input type="hidden" class="tutor_role_id" value={{Auth::user()->role}}>
+    <input type="hidden" class="user_role_id" value={{Auth::user()->role}}>
         <!-- navbar-->
         @include('admin.layouts.navbar')
         <!-- navbar end -->

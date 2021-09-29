@@ -3018,6 +3018,15 @@ select#paymentMethod option[value="others"] {
 }
 
 
+/*Notification*/
+
+.notification-menu a,
+.show_all_notifications a {
+    color: #00132D !important;
+    text-decoration: none;
+}
+
+
 /*Attach Files Ending*/
 
 
@@ -3062,3 +3071,13 @@ select#paymentMethod option[value="others"] {
 
 
 /*Chat EMoji End*/
+
+
+/* Toaster Link  */
+
+.notification_link {
+    color: #1173FF !important;
+}
+
+
+/*Toaster Link ENd*/

@@ -5,11 +5,13 @@ namespace App\Http\Controllers\General;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Notification;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class NotifyController extends Controller
 {
 
-    public function GeneralNotifi($receiver,$slug,$type,$title,$icon,$class,$desc){
+    public function GeneralNotifi($receiver,$slug,$type,$title,$icon,$class,$desc,$pic){
 
         $notify = new Notification;
         $notify->receiver_id = $receiver;
@@ -19,10 +21,11 @@ class NotifyController extends Controller
         $notify->noti_icon = $icon;
         $notify->btn_class = $class;
         $notify->noti_desc = $desc;
+        $notify->sender_pic = $pic;
   
         if($notify->save()){
           // $notify->toMultiDevice($receiver,$title,$desc, $type ,$slug ,$icon,$class);
-          $notify->toMultiDevice($receiver,$slug,$type,$title,$icon,$class,$desc);
+          $notify->toMultiDevice($receiver,$slug,$type,$title,$icon,$class,$desc,$pic);
 
         }
     }
