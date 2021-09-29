@@ -32,6 +32,8 @@ messaging.onMessage((payload) => {
     var icon = payload.data.icon;
     var slug = payload.data.slug;
     var type = payload.data.type;
+    var pic = payload.data.pic;
+
     var unread_count = payload.data.unread_count;
 
     var body = payload.notification.body;
@@ -178,14 +180,13 @@ messaging.onMessage((payload) => {
     else{
         img = `<img class="avatar mt-2" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
     }
-
     $('.tutor_notification_counts').text(unread_count);
     var html = `
      <li>
      <a href="`+slug+`">
         <div class="row">
           <div class="col-md-2 text-center">
-          `+img+`
+              `+img+`
           </div>
           <div class="col-md-10">
               <div class="head-1-noti">
