@@ -403,13 +403,19 @@
                     }else{
                         $('.notification_counter').text(obj.length);
                         for(var i =0; i < obj.length; i++) {
+                            let img = '';
 
+                            if(obj[i].sender_pic != null){
+                                img = `<img class="avatar mt-2" src="{{asset('`+obj[i].sender_pic+`')}}" alt="layer">`;
+                            }
+                            else{
+                                img = `<img class="avatar mt-2" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
+                            }
                         notification +=`
                         <li href="`+obj[i].noti_slug+`">
                             <div class="row">
                                 <div class="col-md-2 text-center">
-                                    <img class="avatar mt-2" src="{{ asset('/admin/assets/img/notifiaction/layer.png')}}"
-                                        alt="layer">
+                                `+img+`
                                 </div>
                                 <div class="col-md-10">
                                     <div class="head-1-noti">

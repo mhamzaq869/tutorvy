@@ -40,21 +40,25 @@ messaging.onMessage((payload) => {
     var title = payload.notification.title;
 
     if (user_role_id == 1) {
+        $('.notification_counts').text(unread_count);
+
         toastr.success(title + '<br>' + body, {
             position: 'top-end',
             icon: 'success',
             showConfirmButton: false,
-            timer: 8000,
+            timer: 20000,
         });
     }
 
     if (user_role_id == 2) {
+        $('.tutor_notification_counts').text(unread_count);
+
         if (type == "tutor_profile_verfication") {
             toastr.success(title + '<br>' + body, {
                 position: 'top-end',
                 icon: 'success',
                 showConfirmButton: false,
-                timer: 8000,
+                timer: 20000,
             });
         }
 
@@ -63,7 +67,7 @@ messaging.onMessage((payload) => {
                 position: 'top-end',
                 icon: 'success',
                 showConfirmButton: false,
-                timer: 8000,
+                timer: 20000,
             });
         }
 
@@ -72,29 +76,32 @@ messaging.onMessage((payload) => {
                 position: 'top-end',
                 icon: 'success',
                 showConfirmButton: false,
-                timer: 8000,
+                timer: 20000,
             });
         }
 
         if (type == "class_booking") {
-            let redirect =body + '<br> '+  `<a href="`+slug+`" class="notification_link"> click here</a> to view the booking details`;
+            let redirect =body + '<br> '+  `<a href="`+slug+`" class="notification_link"> click here to view.</a>`;
             toastr.success(title + '<br>' + redirect, {
                 position: 'top-end',
                 icon: 'success',
                 showConfirmButton: false,
-                timer: 80000000,
+                timer: 20000,
             });
         }
 
     }
 
     if (user_role_id == 3) {
-        if (type == "class_book") {
-            toastr.success(title + '<br>' + body, {
+        $('.std_notification_counts').text(unread_count);
+
+        if (type == "class_booking_approved") {
+            let redirect =body + '<br> '+  `<a href="`+slug+`" class="notification_link"> click here to view.</a>`;
+            toastr.success(title + '<br>' + redirect, {
                 position: 'top-end',
                 icon: 'success',
                 showConfirmButton: false,
-                timer: 8000,
+                timer: 20000,
             });
         }
         if (type == "class_booking") {
@@ -102,7 +109,7 @@ messaging.onMessage((payload) => {
                 position: 'top-end',
                 icon: 'success',
                 showConfirmButton: false,
-                timer: 8000,
+                timer: 20000,
             });
         }
     }
@@ -115,7 +122,7 @@ messaging.onMessage((payload) => {
     //       position: 'top-end',
     //       icon: 'success',
     //       showConfirmButton: false,
-    //       timer: 8000,
+    //       timer: 20000,
     //   });
 
     // } 
@@ -125,7 +132,7 @@ messaging.onMessage((payload) => {
     //       position: 'top-end',
     //       icon: 'success',
     //       showConfirmButton: false,
-    //       timer: 8000,
+    //       timer: 20000,
     //   });
     // }
     // if(type == "tutor_assessment") {
@@ -134,7 +141,7 @@ messaging.onMessage((payload) => {
     //       position: 'top-end',
     //       icon: 'success',
     //       showConfirmButton: false,
-    //       timer: 8000,
+    //       timer: 20000,
     //   });
     // }
     // if(type == "class_booking") {
@@ -143,7 +150,7 @@ messaging.onMessage((payload) => {
     //       position: 'top-end',
     //       icon: 'success',
     //       showConfirmButton: false,
-    //       timer: 8000,
+    //       timer: 20000,
     //   });
     // }
     // if(type == "doc_verification") {
@@ -152,7 +159,7 @@ messaging.onMessage((payload) => {
     //       position: 'top-end',
     //       icon: 'success',
     //       showConfirmButton: false,
-    //       timer: 8000,
+    //       timer: 20000,
     //   });
     // }
     // if(type == "user_logout") {
@@ -161,7 +168,7 @@ messaging.onMessage((payload) => {
     //       position: 'top-end',
     //       icon: 'success',
     //       showConfirmButton: false,
-    //       timer: 8000,
+    //       timer: 20000,
     //   });
     // }
     // if(type == "tutor_submit_assessment") {
@@ -170,7 +177,7 @@ messaging.onMessage((payload) => {
     //       position: 'top-end',
     //       icon: 'success',
     //       showConfirmButton: false,
-    //       timer: 8000,
+    //       timer: 20000,
     //   });
     // }
     let img = '';
@@ -181,7 +188,6 @@ messaging.onMessage((payload) => {
     else{
         img = `<img class="avatar mt-2" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
     }
-    $('.tutor_notification_counts').text(unread_count);
     var html = `
      <li>
      <a href="`+slug+`">
@@ -192,7 +198,7 @@ messaging.onMessage((payload) => {
           <div class="col-md-10">
               <div class="head-1-noti">
                   <span class="notification-text6">
-                      <strong>` + title + ` 1231 </strong> 
+                      <strong>` + title + ` </strong> 
                       ` + body + `
                   </span>
               </div>
