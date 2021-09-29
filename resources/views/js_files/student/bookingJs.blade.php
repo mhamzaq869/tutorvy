@@ -112,6 +112,7 @@ function pay_now(id) {
             var comm = response.commission;
 
             if(response.status_code == 200 && response.success == true) {
+                let price_calcualtion = "";
 
                 let class_date = obj.class_date != null ? obj.class_date : '' ;
                 let class_time = obj.class_time != null ? obj.class_time : '' ;
@@ -119,7 +120,12 @@ function pay_now(id) {
                 let price = obj.price != null ? obj.price : '' ;
                 
                 let commission = comm.commission != null ? comm.commission : '0' ;
-                let price_calcualtion = (price * commission) / 100;
+                if(commission == '0' || commission == null ){
+                    price_calcualtion = price;
+                }
+                else{
+                    price_calcualtion = (price * commission) / 100;
+                }
                 let total_price = parseFloat(price) + parseFloat(price_calcualtion);
 
                 $("#scdule_date").text(class_date);

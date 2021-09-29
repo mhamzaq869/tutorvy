@@ -285,7 +285,32 @@
                                     </div>
                                 </div>
                             </li>
-                          
+                            <li>
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <img class="avatar mt-2 mb-2 "
+                                            src="{{asset('assets/images/notifiaction/star-ico.png') }}" alt="Layer">
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="notification-flex">
+                                            <span class="notification-text4">
+                                                <span class="notification-text5">
+                                                    Marina Hurst
+                                                </span>
+                                                request for book a class of chemistry on periodic tab
+                                                ...
+                                            </span>
+                                        </div>
+                                        <span class="notification-time">
+                                            10 min ago
+                                        </span>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <img class="dot-image" src="{{asset('assets/images/ico/3dot.png') }}"
+                                            alt="dot-ico">
+                                    </div>
+                                </div>
+                            </li>
                             <li class="mt-2 mb-2 ml-3 notification-text3">
                                 Yesterday
                             </li>
@@ -316,7 +341,32 @@
                                     </div>
                                 </div>
                             </li>
-                          
+                            <li>
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <img class="avatar mt-2 mb-2 "
+                                            src="{{asset('assets/images/notifiaction/tick-ico.png') }}" alt="Layer">
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="notification-flex">
+                                            <span class="notification-text4">
+                                                <span class="notification-text5">
+                                                    Marina Hurst
+                                                </span>
+                                                request for book a class of chemistry on periodic tab
+                                                ...
+                                            </span>
+                                        </div>
+                                        <span class="notification-time">
+                                            10 min ago
+                                        </span>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <img class="dot-image" src="{{asset('assets/images/ico/3dot.png') }}"
+                                            alt="dot-ico">
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </li>
@@ -380,8 +430,28 @@
                             <div class="notification">
                                 <img src="{{asset('assets/images/ico/Notification.png') }}" alt="notification-ico">
                                 <span class="notification-text tutor_notification_counts"> 0 </span>
-                                <ul class="notification-menu show_all_notifications">
+                                <ul class="notification-menu ">
+                                    <li class="container-fluid mb-0 pb-0">
+                                        <div class="row nav-row">
+                                            <span class="col-md-6" style="text-align: left;">
+                                                <a href="" class="notification-text1 decoration-none">
+                                                    Notifications
+                                                </a>
+                                            </span>
+                                            <span class="col-md-6" style="text-align: right;">
+                                                <a href="" class="notification-text2">
+                                                    Mark all read
+                                                </a>
+                                            </span>
+                                        </div>
+                                        <p class="mt-2 mb-2 notification-text3">
+                                            Recent
+                                        </p>
+                                    </li>
+                                    
+                                    <span class="show_all_notifications">
 
+                                    </span>
                                 </ul>
                             </div>
                         </div>

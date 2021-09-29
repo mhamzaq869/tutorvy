@@ -26,12 +26,18 @@
                                     style="margin-top: 10px; text-align: left;color: #00132D;font-size: 22px;font-family: Poppins;font-weight: 500;">
                                     {{$booking->subject->name}} Class</p>
                                 <p style="text-align: right;" class="col-md-6 col-xs-12 class-btn-center">
+                                    
                                     <button type="button" data-toggle="modal" data-target="#exampleModalCenter"
                                         class="cencel-btn mr-2" style="font-size: 12px;width: 150px;"> Cancel
                                         Bookings</button>
                                     <button type="button" data-toggle="modal" data-target="#exampleModalCente"
-                                        class="schedule-btn" style="font-size: 12px;width: 150px;"> Re-schedule
+                                        class="schedule-btn mr-2" style="font-size: 12px;width: 150px;"> Re-schedule
                                         class</button>
+                                        @if($booking->status == 1)
+                                        <button type="button" onclick="pay_now({{$booking->id}})"
+                                        class="schedule-btn" style="font-size: 12px;width: 150px;"> Pay Now 
+                                        </button>
+                                        @endif
                                 </p>
                             </div>
                             <div class="card-body">
@@ -244,9 +250,144 @@
                     </div>
                 </div>
             </div>
+              <!--Pay Now Class Modal -->
+        <div class="modal " id="payModel" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content pt-4 pb-4">
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="iconss" style="text-align: center;">
+                                            
+                                                <img src="{{asset ('admin/assets/img/ico/doollarss.png')}}" width="60px">
+                                                <p
+                                                    style="font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 500;margin-top: 10px;">
+                                                    Note</p>
+                                                <!-- <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;"
+                                                    class="ml-4 mr-4">
+                                                    Send approved time for class.
+                                                </p> -->
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <h3>Class Details</h3>
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 ">
+                                            <p class="mb-0">Schedule Date: </p> 
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 text-right" >                                            
+                                            <strong id="scdule_date"></strong>
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6">
+                                            <p class="mb-0">Schedule Time: </p> 
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 text-right" >
+                                            <strong id="class_time"></strong>
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6">
+                                             <p class="">Schedule Duration: </p> 
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 text-right" >    
+                                            <strong id="duration"></strong>                                     
+                                        </div>
+                                        <div class="col-md-12">
+                                            <h3>Payment Details</h3>
+                                         </div>
+                                    
+                                        <div class="col-md-6 col-6 col-sm-6">
+                                            <p class="mb-0">Tutor Fee: </p> 
+                                        </div>
+                                        
+                                        <div class="col-md-6 col-6 col-sm-6 text-right" >
+                                            <strong id="price"></strong>
+                                        </div>
+
+                                        <div class="col-md-6 col-6 col-sm-6">
+                                            <p class="mb-0">Service Fee: <span id="total_commision"></span>
+                                            </p> 
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 text-right"> 
+                                            <strong id="commission"></strong>
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6">
+                                            <p class="mb-0">Total Fee: </p> 
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 text-right"> 
+                                            <strong id="total_price"></strong>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <hr>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <h3>Payment Method</h3>
+                                         </div>
+                                        <div class="col-md-6">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="text-center">
+                                                        <img src="{{asset ('assets/images/payment-icon/paypal2.png')}}" class="w-50" alt="">
+                                                        <!-- <span class="payment-menu dropdown d-flex"> 
+                                                            <a class=" d-flex" href="#" data-toggle="dropdown" aria-expanded="true">
+                                                                <img src="{{asset ('assets/images/payment-icon/menu_dots.png')}}" alt="">
+                                                            </a>
+                                                            <ul class="dropdown-menu  " >
+                                                                <li>
+                                                                    <a tabindex="-1" class="" href="">
+                                                                        Delete
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </span> -->
+                                                        <span class="round">
+                                                            <input type="checkbox" id="checkbox1" checked />
+                                                            <label for="checkbox1"></label>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="text-center">
+                                                        <img src="{{asset ('assets/images/payment-icon/skrill.png')}}" class="w-50" alt="">
+                                                        <!-- <span class="payment-menu dropdown d-flex"> 
+                                                            <a class=" d-flex" href="#" data-toggle="dropdown" aria-expanded="true">
+                                                                <img src="{{asset ('assets/images/payment-icon/menu_dots.png')}}" alt="">
+                                                            </a>
+                                                            <ul class="dropdown-menu  " >
+                                                                <li>
+                                                                    <a tabindex="-1" class="" href="">
+                                                                        Delete
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </span> -->
+                                                        <span class="round">
+                                                            <input type="checkbox" id="checkbox2" disabled/>
+                                                            <label for="checkbox2"></label>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 text-right mt-3" id="show_pay_btn">
+                                        </div>
+                                    
+                            </div>
+                        </div>
+                        <div class="mt-4 mb-2" style="text-align: right;">
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 </div>
- <section>
-    
-</section>
+@endsection
+
+@section('scripts')
+    @include('js_files.student.bookingJs')
 @endsection
