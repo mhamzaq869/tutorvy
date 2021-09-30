@@ -14,6 +14,7 @@ use App\Models\Admin\Subject;
 use App\Models\Booking;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 
 class TutorController extends Controller
 {
@@ -214,17 +215,27 @@ class TutorController extends Controller
             $notify_msg = 'Your Profile is Disabled';
         }
         
+        // $notification = new NotifyController();
+        // $sender_id = Auth::user()->id;
+        // $reciever_id = $request->id;
+        // $slug = '-' ;
+        // $type = 'tutor_profile_verfication';
+        // $data = 'data';
+        // $title = 'Profile Verfication';
+        // $icon = 'fas fa-tag';
+        // $class = 'btn-success';
+        // $desc = $notify_msg;
+        // $notification->GeneralNotifi($sender_id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
+
         $notification = new NotifyController();
-        $sender_id = Auth::user()->id;
-        $reciever_id = $request->id;
-        $slug = '-' ;
+        $slug = URL::to('/') . '/tutor/profile#v-pills-Verification';
         $type = 'tutor_profile_verfication';
-        $data = 'data';
         $title = 'Profile Verfication';
         $icon = 'fas fa-tag';
         $class = 'btn-success';
         $desc = $notify_msg;
-        $notification->GeneralNotifi($sender_id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
+        $pic = Auth::user()->picture;
+        $notification->GeneralNotifi($request->id,$slug,$type,$title,$icon,$class,$desc,$pic);
 
         return response()->json([
             'status'=>'200',

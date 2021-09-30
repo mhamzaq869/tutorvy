@@ -429,7 +429,7 @@
                         <div class="col-xs-2 pull-right">
                             <div class="notification">
                                 <img src="{{asset('assets/images/ico/Notification.png') }}" alt="notification-ico">
-                                <span class="notification-text tutor_notification_counts"> 0 </span>
+                                <span class="notification-text show_notification_counts"> 0 </span>
                                 <ul class="notification-menu ">
                                     <li class="container-fluid mb-0 pb-0">
                                         <div class="row nav-row">

@@ -26,35 +26,74 @@ messaging.requestPermission().then(function() {
 messaging.onMessage((payload) => {
     console.log('Message received. ', payload);
 
+    var user_id = $(".user_id").val();
     var user_role_id = $(".user_role_id").val();
 
-    var btn_class = payload.data.btn_class;
-    var icon = payload.data.icon;
     var slug = payload.data.slug;
     var type = payload.data.type;
     var pic = payload.data.pic;
+    var current_user_id = payload.data.receiver_id;
 
     var unread_count = payload.data.unread_count;
 
     var body = payload.notification.body;
     var title = payload.notification.title;
 
-    if (user_role_id == 1) {
-        $('.notification_counts').text(unread_count);
+    if (user_id == current_user_id &&  user_role_id == 1 ) {
+        $('.show_notification_counts').text(unread_count);
 
-        toastr.success(title + '<br>' + body, {
-            position: 'top-end',
-            icon: 'success',
-            showConfirmButton: false,
-            timer: 20000,
-        });
+        // doc verification
+        if(type == "doc_verification") {
+            let redirect = body + '<br> '+  `<a href="`+slug+`" class="notification_link"> click here to view.</a>`;
+            toastr.success(title + '<br>' + redirect, {
+                position: 'top-end',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 20000,
+            });
+        }
+
+
+
+        let img = '';
+
+        if(pic != null){
+            img = `<img class="avatar mt-2" src="{{asset('`+pic+`')}}" alt="layer">`;
+        }
+        else{
+            img = `<img class="avatar mt-2" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
+        }
+        var html = `
+         <li>
+         <a href="`+slug+`">
+            <div class="row">
+              <div class="col-md-2 text-center">
+                  `+img+`
+              </div>
+              <div class="col-md-10">
+                  <div class="head-1-noti">
+                      <span class="notification-text6">
+                          <strong>` + title + ` </strong> 
+                          ` + body + `
+                      </span>
+                  </div>
+                  <span class="notification-time">
+                   </span>
+              </div>
+          </div>
+          </a>
+        </li>`;
+    
+        $('.show_all_notifications').prepend(html);
+    
     }
 
-    if (user_role_id == 2) {
-        $('.tutor_notification_counts').text(unread_count);
+    if (user_id == current_user_id && user_role_id == 2) {
+        $('.show_notification_counts').text(unread_count);
 
         if (type == "tutor_profile_verfication") {
-            toastr.success(title + '<br>' + body, {
+            let redirect = body + '<br> '+  `<a href="`+slug+`" class="notification_link"> click here to view.</a>`;
+            toastr.success(title + '<br>' + redirect, {
                 position: 'top-end',
                 icon: 'success',
                 showConfirmButton: false,
@@ -81,7 +120,7 @@ messaging.onMessage((payload) => {
         }
 
         if (type == "class_booking") {
-            let redirect =body + '<br> '+  `<a href="`+slug+`" class="notification_link"> click here to view.</a>`;
+            let redirect = body + '<br> '+  `<a href="`+slug+`" class="notification_link"> click here to view.</a>`;
             toastr.success(title + '<br>' + redirect, {
                 position: 'top-end',
                 icon: 'success',
@@ -90,10 +129,42 @@ messaging.onMessage((payload) => {
             });
         }
 
+        let img = '';
+
+        if(pic != null){
+            img = `<img class="avatar mt-2" src="{{asset('`+pic+`')}}" alt="layer">`;
+        }
+        else{
+            img = `<img class="avatar mt-2" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
+        }
+        var html = `
+         <li>
+         <a href="`+slug+`">
+            <div class="row">
+              <div class="col-md-2 text-center">
+                  `+img+`
+              </div>
+              <div class="col-md-10">
+                  <div class="head-1-noti">
+                      <span class="notification-text6">
+                          <strong>` + title + ` </strong> 
+                          ` + body + `
+                      </span>
+                  </div>
+                  <span class="notification-time">
+                   </span>
+              </div>
+          </div>
+          </a>
+        </li>`;
+    
+        $('.show_all_notifications').prepend(html);
+    
+
     }
 
-    if (user_role_id == 3) {
-        $('.std_notification_counts').text(unread_count);
+    if (user_id == current_user_id && user_role_id == 3) {
+        $('.show_notification_counts').text(unread_count);
 
         if (type == "class_booking_approved") {
             let redirect =body + '<br> '+  `<a href="`+slug+`" class="notification_link"> click here to view.</a>`;
@@ -112,104 +183,42 @@ messaging.onMessage((payload) => {
                 timer: 20000,
             });
         }
-    }
 
 
+        let img = '';
 
-    // if(type == "class_book") {
-
-    //   toastr.success(title + '<br>' +  body,{
-    //       position: 'top-end',
-    //       icon: 'success',
-    //       showConfirmButton: false,
-    //       timer: 20000,
-    //   });
-
-    // } 
-    // if(type == "tutor_profile_verfication") {
-
-    //   toastr.success(title + '<br>' +  body,{
-    //       position: 'top-end',
-    //       icon: 'success',
-    //       showConfirmButton: false,
-    //       timer: 20000,
-    //   });
-    // }
-    // if(type == "tutor_assessment") {
-
-    //   toastr.success(title + '<br>' +  body,{
-    //       position: 'top-end',
-    //       icon: 'success',
-    //       showConfirmButton: false,
-    //       timer: 20000,
-    //   });
-    // }
-    // if(type == "class_booking") {
-
-    //   toastr.success(title + '<br>' +  body,{
-    //       position: 'top-end',
-    //       icon: 'success',
-    //       showConfirmButton: false,
-    //       timer: 20000,
-    //   });
-    // }
-    // if(type == "doc_verification") {
-
-    //   toastr.success(title + '<br>' +  body,{
-    //       position: 'top-end',
-    //       icon: 'success',
-    //       showConfirmButton: false,
-    //       timer: 20000,
-    //   });
-    // }
-    // if(type == "user_logout") {
-
-    //   toastr.success(title + '<br>' +  body,{
-    //       position: 'top-end',
-    //       icon: 'success',
-    //       showConfirmButton: false,
-    //       timer: 20000,
-    //   });
-    // }
-    // if(type == "tutor_submit_assessment") {
-
-    //   toastr.success(title + '<br>' +  body,{
-    //       position: 'top-end',
-    //       icon: 'success',
-    //       showConfirmButton: false,
-    //       timer: 20000,
-    //   });
-    // }
-    let img = '';
-
-    if(pic != null){
-        img = `<img class="avatar mt-2" src="{{asset('`+pic+`')}}" alt="layer">`;
-    }
-    else{
-        img = `<img class="avatar mt-2" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
-    }
-    var html = `
-     <li>
-     <a href="`+slug+`">
-        <div class="row">
-          <div class="col-md-2 text-center">
-              `+img+`
-          </div>
-          <div class="col-md-10">
-              <div class="head-1-noti">
-                  <span class="notification-text6">
-                      <strong>` + title + ` </strong> 
-                      ` + body + `
-                  </span>
+        if(pic != null){
+            img = `<img class="avatar mt-2" src="{{asset('`+pic+`')}}" alt="layer">`;
+        }
+        else{
+            img = `<img class="avatar mt-2" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
+        }
+        var html = `
+         <li>
+         <a href="`+slug+`">
+            <div class="row">
+              <div class="col-md-2 text-center">
+                  `+img+`
               </div>
-              <span class="notification-time">
-               </span>
+              <div class="col-md-10">
+                  <div class="head-1-noti">
+                      <span class="notification-text6">
+                          <strong>` + title + ` </strong> 
+                          ` + body + `
+                      </span>
+                  </div>
+                  <span class="notification-time">
+                   </span>
+              </div>
           </div>
-      </div>
-      </a>
-    </li>`;
+          </a>
+        </li>`;
+    
+        $('.show_all_notifications').prepend(html);
 
-    $('.show_all_notifications').prepend(html);
+        
+    }
+
 
 
 

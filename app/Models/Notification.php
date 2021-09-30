@@ -68,6 +68,7 @@ class Notification extends Model
             'slug' => $slug,
             'icon' => $icon,
             'pic' => $pic,
+            'receiver_id' => $user_id,
             'btn_class' => $btn_class
         ]);
 
