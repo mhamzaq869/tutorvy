@@ -968,6 +968,12 @@
 
 
         $(document).ready(function() {
+            var url = window.location.href;
+            var text = "#v-pills-Verification";
+            if(url.indexOf(text) != -1){
+                $("#v-pills-Verification-tab").click();
+            }
+
             $("#year").yearpicker({
                 year: {{ Auth::user()->year ?? '1990' }},
                 startYear: 1950,

@@ -27,7 +27,10 @@
                     @if($tutor_assessment != null)
                         <button class="schedule-btn" style="width: 110px;" onclick="verifyTutor(`{{$tutor->id}}`,2,`{{$tutor_assessment->status}}`)">Accept </button>
                     @else
-                        <button class="schedule-btn" style="width: 110px;" onclick="verifyTutor(`{{$tutor->id}}`,2)">Accept </button>
+                        <button class="schedule-btn" id="save_btn" style="width: 110px;" onclick="verifyTutor(`{{$tutor->id}}`,2)">Accept </button>
+                        <button type="button" role="button" type="button" id="verfication_loading" disabled class="btn btn-primary mb-4 mr-2" 
+                        style="float:right;display:none">
+                        <i class="fa fa-circle-o-notch fa-spin fa-1x fa-fw"></i> <span class="sr-only">Loading...</span> Processing </button>
                     @endif
                 </div>
 

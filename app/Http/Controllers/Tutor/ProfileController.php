@@ -210,17 +210,16 @@ class ProfileController extends Controller
         $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
 
         $reciever = User::where('role',1)->first();
+
         $notification = new NotifyController();
-        $sender_id = Auth::user()->id;
-        $reciever_id = $reciever->id;
-        $slug = '-' ;
+        $slug = URL::to('/') . '/admin/tutor/request/'. Auth::user()->id;
         $type = 'doc_verification';
-        $data = 'data';
         $title = 'Document Verfication';
         $icon = 'fas fa-tag';
         $class = 'btn-success';
-        $desc = $name . ' Submitted documents for verification.';
-        $notification->GeneralNotifi(Auth::user()->id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
+        $desc = $name . ' Submit Documents for Verfication';
+        $pic = $reciever->picture;
+        $notification->GeneralNotifi($reciever->id ,$slug,$type,$title,$icon,$class,$desc,$pic);
 
 
         // activity logs

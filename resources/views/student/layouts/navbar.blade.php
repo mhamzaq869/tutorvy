@@ -72,9 +72,7 @@
                 <li>
                     <div class="notification mt-2 ml-3">
                         <img src="{{asset('assets/images/ico/Notification.png') }}" alt="notifiaction">
-                        <span class="notification-text std_notification_counts">
-                          0
-                        </span>
+                        <span class="notification-text show_notification_counts"> 0 </span>
                         <ul class="notification-menu">
                             <li class="container-fluid">
                                 <div class="row nav-row">
