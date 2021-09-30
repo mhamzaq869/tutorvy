@@ -37,17 +37,15 @@
   text-shadow: 1px 1px white;
 }
 
-#other-videos {
-    margin-top: 5px;
-}
 
-#other-videos video {
+
+/* #other-videos video {
     width: 45%;
     margin: 5px;
     border: 1px solid black;
     padding: 1px;
     border-radius: 3px;
-}
+} */
 
 #txt-chat-message {
     width: 100%;
@@ -64,7 +62,7 @@
 #conversation-panel {
     margin-bottom: 20px;
     text-align: left;
-    max-height: 200px;
+    max-height: 365px;
     overflow: auto;
     border-top: 1px solid #E5E5E5;
     width: 106%;
@@ -80,15 +78,9 @@
     max-width: 100%;
 }
 
-#main-video {
-    width: 100%;
-    margin-top: -9px;
-    border: 1px solid #121010;
-    display: none;
-    padding: 1px;
-    border-radius: 3px;
+.bg-chat-head{
+    background-color:#fefefe !important;
 }
-
 hr {
     height: 1px;
     border: 0;
@@ -127,7 +119,6 @@ hr {
 .h-500{
     height:500px !important;
 }
-<style>
    .container-police {
   display: grid;
   /* min-width: 1250px; */
@@ -246,8 +237,8 @@ hr {
 }
 
 /* Chat Box */
-.h-360{
-  height:360px;
+.h-460{
+  height:460px;
   overflow-y:auto;
 }
 .chatInput{
@@ -294,6 +285,40 @@ td input{
 .w-22{
     width:22%;
 }
+/*Whiteboard nav Border */
+.nav .nav-item {
+    text-align: left !important;
+    color: #00132D;
+    font-size: 16px;
+    opacity: 0.51;
+    font-weight: 600;
+}
+.nav-whiteBoard-nav{
+    border-bottom:2px solid #D6DBE2;
+}
+
+/**Nav Border */
+/**Switch */
+.switch {
+    width: 50px !important;
+    height: 30px !important;
+}
+.round {
+    position: absolute;
+    top: -15px !important;
+    left: 10px;
+    bottom: 25px !important;
+}
+.bright{
+    position:absolute;
+    right:0;
+    top: 17px;
+}
+.bright input:checked+.slider {
+    background-color: #1173ff;
+}
+
+/*Switch End */
 </style>
 @section('content')
  <!-- top Fixed navbar End -->
@@ -310,7 +335,7 @@ td input{
                 </div>
             </div> -->
             <div class="row mb-5 tech_weck tech_weck-none">
-                <div class="col-md-9 card"> 
+                <div class="col-md-9 "> 
                     <div class="row">
                         <div class="col-md-12 mt-3">
                                 <nav class="">
@@ -330,9 +355,17 @@ td input{
                                         <a class="nav-item nav-link" id="nav-googleDocs-tab" data-toggle="tab" href="#nav-googleDocs" role="tab" aria-controls="nav-googleDocs" aria-selected="false">
                                             Google Docs
                                         </a>
-                                        <a class="nav-item nav-link" id="nav-fileShare-tab" data-toggle="tab" href="#nav-fileShare" role="tab" aria-controls="nav-fileShare" aria-selected="false">
+                                        <!-- <a class="nav-item nav-link" id="nav-fileShare-tab" data-toggle="tab" href="#nav-fileShare" role="tab" aria-controls="nav-fileShare" aria-selected="false">
                                             File Sharing
-                                        </a>
+                                        </a> -->
+                                        <span class="bright">
+                                            <label > Share Screen </label>   
+                                                    <label class="switch  ml-2" style="">
+                                                        <input type="checkbox" class="s_status" val_id="3" val_st="1" checked="">
+                                                        <!-- <input type="checkbox" class="s_status" val_id="3" val_st="1 "  checked -->
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                        </span>
                                     </div>
                                 </nav>
                                 <div class="tab-content" id="nav-tabContent">
@@ -341,150 +374,19 @@ td input{
                                             <div class="row mt-2">
                                                 <div class="col-md-12">
                                                     <nav>
-                                                        <div class="nav nav-tabs board-nav" id="nav-tab" role="tablist">
-                                                            <!-- <a class="nav-item nav-link board-nav active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Board 1 <i class="pl-2 fa fa-times text-dark"></i></a>
-                                                            <a class="nav-item nav-link board-nav" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Board 2 <i class="pl-2 fa fa-times text-dark"></i></a>
-                                                            <a class="mt-2 ml-2" href="#">Add new Board +</a> -->
+                                                        <div class="nav nav-tabs board-nav ml-0 pl-0 newTabs" id="nav-tab" role="tablist">
+                                                            <a class="nav-item nav-link board-nav active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Board 1 </a>
+                                                            <a class="mt-2 ml-2" href="#" id="addNewBoard">Add new Board +</a>
                                                         </div>
                                                     </nav>
-                                                    <div class="tab-content" id="nav-tabContent">
-                                                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                                            <!-- <div class="row">
-                                                                <div class="col-md-1 mt-2 p-0">
-                                                                    <ul class=" text-center pl-0">
-                                                                        <li class="p-2">
-                                                                            <a href="#">
-                                                                                <img src="{{asset('assets/images/ico/pointer.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#">
-                                                                                <img src="{{asset('assets/images/ico/drag.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#" id="pen">
-                                                                                <img src="{{asset('assets/images/ico/pencil.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#" id="eraser">
-                                                                                <img src="{{asset('assets/images/ico/eraser.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#" id="rect">
-                                                                                <img src="{{asset('assets/images/ico/rectangle.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#">
-                                                                                <img src="{{asset('assets/images/ico/ellipse.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#" id="line">
-                                                                                <img src="{{asset('assets/images/ico/line.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#">
-                                                                                <img src="{{asset('assets/images/ico/text.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#">
-                                                                                <img src="{{asset('assets/images/ico/diagonal.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#">
-                                                                                <img src="{{asset('assets/images/ico/fx.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#" id="clear">
-                                                                                C
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="col-md-11 mt-3 p-0">
-                                                                    <canvas id="canvas" width="750" height="450"></canvas>
-                                                                </div> 
-                                                            </div> -->
+                                                    <div class="tab-content newWhite" id="nav-tabContent">
+                                                        <div class="tab-pane whitePane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                                             <div class="row">
-                                                                <div class="col-md-12 h-500 mt-5 mb-5">
+                                                                <div class="col-md-12 h-500 mb-5">
                                                                     <div id="widget-container" style=""></div>
-                                                                    <video id="screen-viewer" controls playsinline autoplay></video>
+                                                                    <video id="screen-viewer"  playsinline ></video>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                                            <!-- <div class="row">
-                                                                <div class="col-md-1 mt-2 p-0">
-                                                                    <ul class=" text-center pl-0">
-                                                                        <li class="p-2">
-                                                                            <a href="#">
-                                                                                <img src="{{asset('assets/images/ico/pointer.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#">
-                                                                                <img src="{{asset('assets/images/ico/drag.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#" id="pen">
-                                                                                <img src="{{asset('assets/images/ico/pencil.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#" id="eraser">
-                                                                                <img src="{{asset('assets/images/ico/eraser.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#" id="rect">
-                                                                                <img src="{{asset('assets/images/ico/rectangle.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#">
-                                                                                <img src="{{asset('assets/images/ico/ellipse.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#" id="line">
-                                                                                <img src="{{asset('assets/images/ico/line.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#">
-                                                                                <img src="{{asset('assets/images/ico/text.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#">
-                                                                                <img src="{{asset('assets/images/ico/diagonal.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#">
-                                                                                <img src="{{asset('assets/images/ico/fx.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#" id="clear">
-                                                                                C
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="col-md-11 mt-3 p-0">
-                                                                    <canvas id="canvas" width="750" height="500"></canvas>
-                                                                </div> 
-                                                            </div> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -668,12 +570,11 @@ td input{
                         </div>
                     </div>
                     </div> -->
-                    <div class="mt-4">
-                        <div class="bg-dark w-100 cust_vid text-center">
-                                <img src="{{asset('assets/images/logo-footer.png')}}" alt="">
+                    <div class="row mt-3 mb-3">
+                        <div class="col-md-12">
+                            <video id="main-video"  playsinline autoplay></video>
+                            <div id="other-videos"  playsinline autoplay></div>
                         </div>
-                        <video id="main-video" class="w-100 m-0" playsinline autoplay></video>
-                        <div id="other-videos" class="w-100 m-0"></div>
                         <div class="col-md-12 mt-2 vid-location text-center">
                             <a  class="callSet vc">
                                 <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
@@ -691,7 +592,67 @@ td input{
                                 <img src="{{asset('assets/images/ico/no-phone.png')}}" title="End Call" alt="">
                             </a>
                         </div>
-                        <hr>
+                        <div style="col-md-12 padding: 5px 10px;">
+                            <div id="onUserStatusChanged"></div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header bg-chat-head">
+                                    Chat <i class="fa fa-person"></i>
+                                </div>
+                                <div class="card-body h-460" id="conversation-panel">
+                                    <div class='text-center mb-3'>
+                                        <small>
+                                            Your all communications will be monitored for maintaining quality, will not share your personal information. 
+                                        </small>
+                                        <small>
+                                            <a href="#">View Privacy Policy</a>
+                                        </small>
+                                    </div>
+                                    <div id="key-press" style="text-align: right; display: none; font-size: 11px;">
+                                        <span style="vertical-align: middle;"></span>
+                                        <img src="https://www.webrtc-experiment.com/images/key-press.gif" style="height: 12px; vertical-align: middle;">
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-chat-head">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <textarea id="txt-chat-message" style="display:none;" ></textarea>
+                                            <div id="check"></div>
+                                            <a type="button" id="btn-chat-message" disabled><i class="fa fa-paper-plane-o paper" aria-hidden="true"></i></a>
+                                            <a id="btn-attach-file" type="button"><i class="fa fa-paperclip clip" aria-hidden="true"></i></a>
+                                            <!-- <img id="btn-attach-file" src="https://www.webrtc-experiment.com/images/attach-file.png" title="Attach a File"> -->
+                                            <img id="btn-share-screen" src="https://www.webrtc-experiment.com/images/share-screen.png" title="Share Your Screen">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <!-- <div class="bg-dark w-100 cust_vid text-center">
+                                <img src="{{asset('assets/images/logo-footer.png')}}" alt="">
+                        </div> -->
+                        <!-- <video id="main-video" class="w-100 m-0" playsinline autoplay></video> -->
+                        <!-- <div id="other-videos" class="w-100 m-0"></div> -->
+                        <!-- <div class="col-md-12 mt-2 vid-location text-center">
+                            <a  class="callSet vc">
+                                <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
+                            </a>
+                            <a  class="callSet no-vc">
+                                <img src="{{asset('assets/images/ico/no-vc.png')}}" title="With Video" alt="">
+                            </a>
+                            <a  class="callSet mk" id="mk">
+                                <img src="{{asset('assets/images/ico/mike.png')}}" title="Without Audio" alt="">
+                            </a>
+                            <a  class="callSet no-mk">
+                                <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
+                            </a>
+                            <a  class="callSet no-ph">
+                                <img src="{{asset('assets/images/ico/no-phone.png')}}" title="End Call" alt="">
+                            </a>
+                        </div> -->
+                        <!-- <hr>
                         <div style="padding: 5px 10px;">
                             <div id="onUserStatusChanged"></div>
                         </div>
@@ -705,11 +666,11 @@ td input{
                             <textarea id="txt-chat-message" style="display:none;" ></textarea>
                             <div id="check"></div>
                             <a type="button" id="btn-chat-message" disabled><i class="fa fa-paper-plane-o paper" aria-hidden="true"></i></a>
-                                            <a id="btn-attach-file" type="button"><i class="fa fa-paperclip clip" aria-hidden="true"></i></a>
+                            <a id="btn-attach-file" type="button"><i class="fa fa-paperclip clip" aria-hidden="true"></i></a> -->
                             <!-- <button class="btn btn-primary" id="btn-chat-message" disabled>Send</button>
                             <img id="btn-attach-file" src="https://www.webrtc-experiment.com/images/attach-file.png" title="Attach a File"> -->
-                            <img id="btn-share-screen" src="https://www.webrtc-experiment.com/images/share-screen.png" title="Share Your Screen">
-                        </div>
+                            <!-- <img id="btn-share-screen" src="https://www.webrtc-experiment.com/images/share-screen.png" title="Share Your Screen">
+                        </div> -->
 
                         <canvas id="temp-stream-canvas" style="display: none;"></canvas>
                     </div>
@@ -797,7 +758,7 @@ td input{
                                         <div class="col-md-12 text-center">
                                             <input type="hidden" id="star_rating" value="5">
                                             <p class="star-review" id='stars'>
-                                                <div class='rating-stars text-center'>
+                                                <div class='rating-stars text-center '>
                                                     <ul id='stars'>
                                                         <li class='star selected' title='Poor' data-value='1'>
                                                             <i class="fa fa-star "></i>
