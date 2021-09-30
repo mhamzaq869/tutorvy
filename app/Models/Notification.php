@@ -69,7 +69,7 @@ class Notification extends Model
             'icon' => $icon,
             'pic' => $pic,
             'receiver_id' => $user_id,
-            'btn_class' => $btn_class
+            'btn_class' => $btn_class,
         ]);
 
         $option = $optionBuilder->build();

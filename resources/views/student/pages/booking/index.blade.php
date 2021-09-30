@@ -306,7 +306,7 @@
                                                                         </span>
                                                                     @endif
                                                                 </td> 
-                                                                <td class="pt-3 pb-3" style="text-align: center; " >
+                                                                <td class="pt-3 pb-3 action_button" style="text-align: center; " >
                                                                     @if($booking->status == 1 )
                                                                         <button  onclick="pay_now({{$booking->id}})" type="button" role="button" class="cencel-btn mr-2"> Pay Now </button>
                                                                     @endif
