@@ -68,7 +68,8 @@ class Notification extends Model
             'slug' => $slug,
             'icon' => $icon,
             'pic' => $pic,
-            'btn_class' => $btn_class
+            'receiver_id' => $user_id,
+            'btn_class' => $btn_class,
         ]);
 
         $option = $optionBuilder->build();

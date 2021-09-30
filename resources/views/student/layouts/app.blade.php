@@ -35,6 +35,7 @@
 </head>
 <body>
     <div class="wrapper" id="wrapper">
+        <input type="hidden" class="user_id" value={{Auth::user()->id}}>
         <input type="hidden" class="user_role_id" value={{Auth::user()->role}}>
         <!-- side navbar -->
         @include('student.layouts.sidebar')
@@ -275,9 +276,9 @@ function get_all_notifications() {
                 if(response.status_code == 200 && response.success == true) {
                     var notification = ``;
                     if(obj.length == 0){
-                        $('.std_notification_counts').text(0);
+                        $('.show_notification_counts').text(0);
                     }else{
-                        $('.std_notification_counts').text(obj.length);
+                        $('.show_notification_counts').text(obj.length);
                         for(var i =0; i < obj.length; i++) {
                             let img = '';
 

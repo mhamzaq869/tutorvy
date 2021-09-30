@@ -1207,6 +1207,8 @@ $(".no-vc").click(function(){
         alert("mk");
         var localStream = connection.attachStreams[0];
         localStream.unmute('audio'); 
+        connection.streamEvents.selectFirst('local').mediaElement.muted=true;
+        connection.streamEvents.selectFirst('local').mediaElement.volume=0;
         
     })
     $("#endCallYes").click(function(){

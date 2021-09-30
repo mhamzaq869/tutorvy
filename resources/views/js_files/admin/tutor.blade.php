@@ -61,6 +61,10 @@
           status:status,
           reason:reason,
         },
+        beforeSend:function(data) {
+          $("#save_btn").hide();
+          $("#verfication_loading").show();
+        },
         success:function(response){
 
           if(response.status == 200) {
@@ -87,7 +91,7 @@
 
           }else{
 
-            toastr.error( response.message,{
+            toastr.error( 'Something Went Wrong',{
                 position: 'top-end',
                 icon: 'error',
                 showConfirmButton: false,
@@ -96,6 +100,20 @@
 
           }
         },
+        complete:function(data) {
+          $("#save_btn").show();
+          $("#verfication_loading").hide();
+        },
+        error:function(e) {
+          $("#save_btn").show();
+          $("#verfication_loading").hide();
+          toastr.error( 'Something Went Wrong',{
+                position: 'top-end',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 2500
+            });
+        }
     });
   }
 

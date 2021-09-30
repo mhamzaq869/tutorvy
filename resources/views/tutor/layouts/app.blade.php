@@ -44,6 +44,7 @@
 </head>
 <body>
     <div class="wrapper token_wrapper" >
+        <input type="hidden" class="user_id" value={{Auth::user()->id}}>
         <input type="hidden" class="user_role_id" value={{Auth::user()->role}}>
 
         <!-- side navbar -->
@@ -196,9 +197,9 @@
                 if(response.status_code == 200 && response.success == true) {
                     var notification = ``;
                     if(obj.length == 0){
-                        $('.tutor_notification_counts').text(0);
+                        $('.show_notification_counts').text(0);
                     }else{
-                        $('.tutor_notification_counts').text(obj.length);
+                        $('.show_notification_counts').text(obj.length);
                         for(var i =0; i < obj.length; i++) {
                             let img = '';
 

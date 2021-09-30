@@ -26,40 +26,158 @@ messaging.requestPermission().then(function() {
 messaging.onMessage((payload) => {
     console.log('Message received. ', payload);
 
+    var user_id = $(".user_id").val();
     var user_role_id = $(".user_role_id").val();
 
-    var btn_class = payload.data.btn_class;
-    var icon = payload.data.icon;
     var slug = payload.data.slug;
     var type = payload.data.type;
     var pic = payload.data.pic;
+    var current_user_id = payload.data.receiver_id;
+    var notification_time = 330000;
 
     var unread_count = payload.data.unread_count;
 
     var body = payload.notification.body;
     var title = payload.notification.title;
 
-    if (user_role_id == 1) {
-        $('.notification_counts').text(unread_count);
+    if (user_id == current_user_id && user_role_id == 1) {
+        $('.show_notification_counts').text(unread_count);
 
-        toastr.success(title + '<br>' + body, {
-            position: 'top-end',
-            icon: 'success',
-            showConfirmButton: false,
-            timer: 20000,
-        });
-    }
-
-    if (user_role_id == 2) {
-        $('.tutor_notification_counts').text(unread_count);
-
-        if (type == "tutor_profile_verfication") {
-            toastr.success(title + '<br>' + body, {
+        // doc verification
+        if (type == "doc_verification") {
+            let redirect = body + '<br> ' + `<a href="` + slug + `" class="notification_link"> click here to view.</a>`;
+            toastr.success(title + '<br>' + redirect, {
                 position: 'top-end',
                 icon: 'success',
                 showConfirmButton: false,
-                timer: 20000,
+                timer: notification_time,
             });
+        }
+
+        if (type == "booking_confirmed") {
+            let redirect = body + '<br> ' + `<a href="` + slug + `" class="notification_link"> click here to view.</a>`;
+            toastr.success(title + '<br>' + redirect, {
+                position: 'top-end',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: notification_time,
+            });
+        }
+
+        let img = '';
+
+        if (pic != null) {
+            img = `<img class="profile-img mt-2 p-0 w-100" src="{{asset('` + pic + `')}}" alt="layer">`;
+        } else {
+            img = `<img class="profile-img mt-2 p-0 w-100" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
+        }
+        var html = `
+         <li>
+         <a href="` + slug + `" class="bgm">
+            <div class="row">
+              <div class="col-md-2 text-center">
+                  ` + img + `
+              </div>
+              <div class="col-md-10">
+                  <div class="head-1-noti">
+                      <span class="notification-text6">
+                          <strong>` + title + ` </strong> 
+                          ` + body + `
+                      </span>
+                  </div>
+                  <span class="notification-time">
+                   </span>
+              </div>
+          </div>
+          </a>
+        </li>`;
+
+        $('.show_all_notifications').prepend(html);
+
+    }
+
+    if (user_id == current_user_id && user_role_id == 2) {
+        $('.show_notification_counts').text(unread_count);
+        let redirect = body + '<br> ' + `<a href="` + slug + `" class="notification_link"> click here to view.</a>`;
+
+        if (type == "tutor_profile_verfication") {
+            toastr.success(title + '<br>' + redirect, {
+                position: 'top-end',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: notification_time,
+            });
+        }
+
+        if (type == "booking_confirmed") {
+            toastr.success(title + '<br>' + redirect, {
+                position: 'top-end',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: notification_time,
+            });
+            var url = window.location.href;
+            var text = "tutor/booking";
+
+            if (url.indexOf(text) != -1) {
+
+                var url = slug.replace(/[^0-9]/gi, '');
+                var booking_id = parseInt(url, 10);
+                var html = ``;
+                for (var i = 0; i < pending_booking.length; i++) {
+                    if (booking_id == pending_booking[i].id) {
+                        let first_name = '';
+                        let last_name = '';
+                        let subject = '';
+                        if (pending_booking[i].user != null && pending_booking[i].user != [] && pending_booking[i].user != "") {
+                            first_name = pending_booking[i].user.first_name != null ? pending_booking[i].user.first_name : '-';
+                            first_name = pending_booking[i].user.last_name != null ? pending_booking[i].user.last_name : '-';
+                        } else {
+                            username = '-';
+                        }
+                        if (pending_booking[i].subject != null && pending_booking[i].subject != [] && pending_booking[i].subject != "") {
+                            subject = pending_booking[i].subject.name != null ? pending_booking[i].subject.name : '-';
+                        } else {
+                            subject = '-';
+                        }
+
+                        var topic = pending_booking[i].topic != null ? pending_booking[i].topic : '-';
+                        var duration = pending_booking[i].duration != null ? pending_booking[i].duration + ' Hour(s)' : '-';
+                        var price = pending_booking[i].price != null ? '$' + pending_booking[i].price : '-';
+
+                        html += `
+                            <tr>
+                                <td class="pt-4"> ` + first_name + ' ' + last_name + ` </td>
+                                <td class="pt-4"> ` + subject + ` </td>
+                                <td class="pt-4">  ` + topic + ` </td>
+                                <td class="pt-4"> ` + pending_booking[i].class_time + ` </td>
+                            
+                                <td class="pt-4"> ` + duration + ` </td>
+                                <td class="pt-4">  ` + price + ` </td>
+                                <td class="pt-4">
+                                    <span class="bg-color-apporve1"> Approved </span>
+                                </td>        
+                                <td style="text-align: center;">
+                                    <a href="` + slug + `">
+                                        <button class="schedule-btn" type="button"> View details </button>
+                                    </a>
+                                </td>
+                            </tr>
+                        `;
+                    }
+                }
+
+                let pending_counts = $('.pending_counts').text();
+                let confirmed_counts = $('.confirmed_counts').text();
+
+                $('#pending_counts').text(parseInt(pending_counts) - 1);
+                $('#confirmed_counts').text(parseInt(confirmed_counts) + 1);
+
+                $("#pending_" + booking_id).remove();
+                $("#confirm_booking_table").append(html);
+                $("#nav-profile-tab").click();
+
+            }
         }
 
         if (type == "tutor_assessment") {
@@ -67,7 +185,7 @@ messaging.onMessage((payload) => {
                 position: 'top-end',
                 icon: 'success',
                 showConfirmButton: false,
-                timer: 20000,
+                timer: notification_time,
             });
         }
 
@@ -76,7 +194,7 @@ messaging.onMessage((payload) => {
                 position: 'top-end',
                 icon: 'success',
                 showConfirmButton: false,
-                timer: 20000,
+                timer: notification_time,
             });
         }
 
@@ -86,14 +204,45 @@ messaging.onMessage((payload) => {
                 position: 'top-end',
                 icon: 'success',
                 showConfirmButton: false,
-                timer: 20000,
+                timer: notification_time,
             });
         }
 
+        let img = '';
+
+        if (pic != null) {
+            img = `<img class="profile-img mt-2 p-0 w-100" src="{{asset('` + pic + `')}}" alt="layer">`;
+        } else {
+            img = `<img class="profile-img mt-2 p-0 w-100" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
+        }
+        var html = `
+         <li>
+         <a href="` + slug + `" class="bgm" >
+            <div class="row">
+              <div class="col-md-2 text-center">
+                  ` + img + `
+              </div>
+              <div class="col-md-10">
+                  <div class="head-1-noti">
+                      <span class="notification-text6">
+                          <strong>` + title + ` </strong> 
+                          ` + body + `
+                      </span>
+                  </div>
+                  <span class="notification-time">
+                   </span>
+              </div>
+          </div>
+          </a>
+        </li>`;
+
+        $('.show_all_notifications').prepend(html);
+
+
     }
 
-    if (user_role_id == 3) {
-        $('.std_notification_counts').text(unread_count);
+    if (user_id == current_user_id && user_role_id == 3) {
+        $('.show_notification_counts').text(unread_count);
 
         if (type == "class_booking_approved") {
             let redirect = body + '<br> ' + `<a href="` + slug + `" class="notification_link"> click here to view.</a>`;
@@ -101,114 +250,67 @@ messaging.onMessage((payload) => {
                 position: 'top-end',
                 icon: 'success',
                 showConfirmButton: false,
-                timer: 20000,
+                timer: notification_time,
             });
+
+            var url = window.location.href;
+            var text = "/student/bookings";
+
+            if (url.indexOf(text) != -1) {
+
+                var url = slug.replace(/[^0-9]/gi, '');
+                var getid = parseInt(url, 10);
+                var pay_now_btn = `
+                    <button onclick="pay_now(` + getid + `)" type="button" role="button" class="cencel-btn mr-2"> Pay Now </button>
+                    <a href="` + slug + `" class="schedule-btn"> View details </a>`;
+                $('.action_button').html(pay_now_btn);
+                $("#nav-contact-tab").click();
+            }
+
+
         }
         if (type == "class_booking") {
             toastr.success(title + '<br>' + body, {
                 position: 'top-end',
                 icon: 'success',
                 showConfirmButton: false,
-                timer: 20000,
+                timer: notification_time,
             });
         }
-    }
 
 
+        let img = '';
 
-    // if(type == "class_book") {
-
-    //   toastr.success(title + '<br>' +  body,{
-    //       position: 'top-end',
-    //       icon: 'success',
-    //       showConfirmButton: false,
-    //       timer: 20000,
-    //   });
-
-    // } 
-    // if(type == "tutor_profile_verfication") {
-
-    //   toastr.success(title + '<br>' +  body,{
-    //       position: 'top-end',
-    //       icon: 'success',
-    //       showConfirmButton: false,
-    //       timer: 20000,
-    //   });
-    // }
-    // if(type == "tutor_assessment") {
-
-    //   toastr.success(title + '<br>' +  body,{
-    //       position: 'top-end',
-    //       icon: 'success',
-    //       showConfirmButton: false,
-    //       timer: 20000,
-    //   });
-    // }
-    // if(type == "class_booking") {
-
-    //   toastr.success(title + '<br>' +  body,{
-    //       position: 'top-end',
-    //       icon: 'success',
-    //       showConfirmButton: false,
-    //       timer: 20000,
-    //   });
-    // }
-    // if(type == "doc_verification") {
-
-    //   toastr.success(title + '<br>' +  body,{
-    //       position: 'top-end',
-    //       icon: 'success',
-    //       showConfirmButton: false,
-    //       timer: 20000,
-    //   });
-    // }
-    // if(type == "user_logout") {
-
-    //   toastr.success(title + '<br>' +  body,{
-    //       position: 'top-end',
-    //       icon: 'success',
-    //       showConfirmButton: false,
-    //       timer: 20000,
-    //   });
-    // }
-    // if(type == "tutor_submit_assessment") {
-
-    //   toastr.success(title + '<br>' +  body,{
-    //       position: 'top-end',
-    //       icon: 'success',
-    //       showConfirmButton: false,
-    //       timer: 20000,
-    //   });
-    // }
-    let img = '';
-
-    if (pic != null) {
-        img = `<img class="profile-img p-0 mt-2 w-100" src="{{asset('` + pic + `')}}" alt="layer">`;
-    } else {
-        img = `<img class="profile-img p-0 mt-2 w-100 mt-2" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
-    }
-    var html = `
-     <li>
-     <a href="` + slug + `" class="bgm">
-        <div class="row">
-          <div class="col-md-2 pr-0 text-center">
-              ` + img + `
-          </div>
-          <div class="col-md-10">
-              <div class="head-1-noti">
-                  <span class="notification-text6">
-                      <strong>` + title + ` </strong> 
-                      ` + body + `
-                  </span>
+        if (pic != null) {
+            img = `<img class="profile-img mt-2 p-0 w-100" src="{{asset('` + pic + `')}}" alt="layer">`;
+        } else {
+            img = `<img class="profile-img mt-2 p-0 w-100" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
+        }
+        var html = `
+         <li>
+         <a href="` + slug + `" class="bgm">
+            <div class="row">
+              <div class="col-md-2 text-center">
+                  ` + img + `
               </div>
-              <span class="notification-time">
-               </span>
+              <div class="col-md-10">
+                  <div class="head-1-noti">
+                      <span class="notification-text6">
+                          <strong>` + title + ` </strong> 
+                          ` + body + `
+                      </span>
+                  </div>
+                  <span class="notification-time">
+                   </span>
+              </div>
           </div>
-      </div>
-      </a>
-    </li>`;
+          </a>
+        </li>`;
 
-    $('.show_all_notifications').prepend(html);
+        $('.show_all_notifications').prepend(html);
+
+
+    }
 
 });
 
@@ -225,7 +327,7 @@ function saveFcmToken(token) {
         data: { token: token },
         dataType: 'json',
         success: function(response) {
-            console.log(response, "token")
+            // console.log(response, "token")
         },
         error: function(e) {
             console.log(e)

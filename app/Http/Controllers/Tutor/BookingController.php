@@ -56,7 +56,6 @@ class BookingController extends Controller
         $admin = User::where('role',1)->first();
         $student_id = $student->id;
 
-
         $notification = new NotifyController();
         $reciever_id = $admin->id;
         $slug = URL::to('/') . '/student/booking-detail/'. $booking->id ;
@@ -66,9 +65,7 @@ class BookingController extends Controller
         $data = 'data';
         $title = 'Class Booking';
         $icon = 'fas fa-tag';
-        
         $class = 'btn-success';
-
         $desc = $name . ' Approved the booking request of ' . $student_name;
         $stddesc = $name . ' Approved your booking request for ' . $booking->subject->name;
         $pic = Auth::user()->picture;

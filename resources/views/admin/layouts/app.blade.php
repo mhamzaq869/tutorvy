@@ -37,6 +37,7 @@
     @include('admin.layouts.sidebar')
 
     <section id="contents">
+    <input type="hidden" class="user_id" value={{Auth::user()->id}}>
     <input type="hidden" class="user_role_id" value={{Auth::user()->role}}>
         <!-- navbar-->
         @include('admin.layouts.navbar')
