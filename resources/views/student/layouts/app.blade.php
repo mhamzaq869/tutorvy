@@ -289,21 +289,23 @@ function get_all_notifications() {
                             }
                             notification +=`
                             <li>
-                                <div class="row">
-                                    <div class="col-md-2 text-center">
-                                    `+img+`
-                                    </div>
-                                    <div class="col-md-10">
-                                        <div class="head-1-noti">
-                                            <span class="notification-text6">
-                                                <strong>` +obj[i].noti_title+ ` 1231 </strong> 
-                                                `+obj[i].noti_desc+`
+                                <a href="`+obj[i].slug+`">
+                                    <div class="row">
+                                        <div class="col-md-2 text-center">
+                                        `+img+`
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div class="head-1-noti">
+                                                <span class="notification-text6">
+                                                    <strong>` +obj[i].noti_title+ ` </strong> 
+                                                    `+obj[i].noti_desc+`
+                                                </span>
+                                            </div>
+                                            <span class="notification-time">
                                             </span>
                                         </div>
-                                        <span class="notification-time">
-                                        </span>
                                     </div>
-                                </div>
+                                </a>    
                             </li>`;
                             }
                             $(".show_all_notifications").html(notification);

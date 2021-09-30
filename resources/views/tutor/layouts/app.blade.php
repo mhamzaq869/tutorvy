@@ -209,22 +209,24 @@
                                 img = `<img class="avatar mt-2" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
                             }
                             notification +=`
-                            <li href="`+obj[i].noti_slug+`">
-                                <div class="row">
-                                    <div class="col-md-2 text-center">
-                                    `+img+`
-                                    </div>
-                                    <div class="col-md-10">
-                                        <div class="head-1-noti">
-                                            <span class="notification-text6">
-                                                <strong>` +obj[i].noti_title+ ` </strong> 
-                                                `+obj[i].noti_desc+`
+                            <li>
+                                <a href="`+obj[i].slug+`">
+                                    <div class="row">
+                                        <div class="col-md-2 text-center">
+                                        `+img+`
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div class="head-1-noti">
+                                                <span class="notification-text6">
+                                                    <strong>` +obj[i].noti_title+ ` </strong> 
+                                                    `+obj[i].noti_desc+`
+                                                </span>
+                                            </div>
+                                            <span class="notification-time">
                                             </span>
                                         </div>
-                                        <span class="notification-time">
-                                        </span>
                                     </div>
-                                </div>
+                                </a>    
                             </li>
                                     `;
                             }
