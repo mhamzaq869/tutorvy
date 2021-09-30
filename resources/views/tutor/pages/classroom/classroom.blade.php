@@ -877,9 +877,9 @@ connection.socketMessageEvent = 'canvas-dashboard-demo';
 connection.autoCloseEntireSession = true;
 
 // https://www.rtcmulticonnection.org/docs/maxParticipantsAllowed/
-connection.maxParticipantsAllowed = 1000;
+// connection.maxParticipantsAllowed = 1000;
 // set value 2 for one-to-one connection
-// connection.maxParticipantsAllowed = 2;
+connection.maxParticipantsAllowed = 2;
 
 // here goes canvas designer
 var designer = new CanvasDesigner();

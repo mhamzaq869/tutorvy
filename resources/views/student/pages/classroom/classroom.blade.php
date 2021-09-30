@@ -1040,9 +1040,10 @@ connection.socketMessageEvent = 'canvas-dashboard-demo';
 connection.autoCloseEntireSession = true;
 
 // https://www.rtcmulticonnection.org/docs/maxParticipantsAllowed/
-connection.maxParticipantsAllowed = 1000;
+// connection.maxParticipantsAllowed = 1000;
 // set value 2 for one-to-one connection
-// connection.maxParticipantsAllowed = 2;
+connection.maxParticipantsAllowed = 2;
+connection.autoCloseEntireSession = true;
 
 // here goes canvas designer
 var designer = new CanvasDesigner();
@@ -1251,7 +1252,6 @@ $(".no-vc").click(function(){
         
     })
     $("#endCallYes").click(function(){
-        connection.leave();
         toastr.success("Call has Ended Successfully");
         $("#reviewModal").modal("show");
         $("#endCall").modal("hide");
