@@ -183,13 +183,13 @@ messaging.onMessage((payload) => {
     let img = '';
 
     if (pic != null) {
-        img = `<img class="profile-img p-0 w-100" src="{{asset('` + pic + `')}}" alt="layer">`;
+        img = `<img class="profile-img p-0 mt-2 w-100" src="{{asset('` + pic + `')}}" alt="layer">`;
     } else {
-        img = `<img class="profile-img p-0 w-100" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
+        img = `<img class="profile-img p-0 mt-2 w-100 mt-2" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
     }
     var html = `
      <li>
-     <a href="` + slug + `">
+     <a href="` + slug + `" class="bgm">
         <div class="row">
           <div class="col-md-2 pr-0 text-center">
               ` + img + `
@@ -209,9 +209,6 @@ messaging.onMessage((payload) => {
     </li>`;
 
     $('.show_all_notifications').prepend(html);
-
-
-
 
 });
 

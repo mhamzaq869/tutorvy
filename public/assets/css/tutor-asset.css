@@ -3026,6 +3026,10 @@ select#paymentMethod option[value="others"] {
     text-decoration: none;
 }
 
+.bgm:hover .row {
+    background: rgba(138, 155, 165, 0.15);
+}
+
 
 /*Attach Files Ending*/
 
