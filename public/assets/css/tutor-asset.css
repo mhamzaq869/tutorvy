@@ -2903,6 +2903,7 @@ select#paymentMethod option[value="others"] {
 #other-videos {
     position: absolute;
     top: 0;
+    margin-left: 5px;
     margin-top: 5px;
 }
 
