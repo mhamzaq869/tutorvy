@@ -81,7 +81,7 @@ messaging.onMessage((payload) => {
         }
 
         if (type == "class_booking") {
-            let redirect =body + '<br> '+  `<a href="`+slug+`" class="notification_link"> click here to view.</a>`;
+            let redirect = body + '<br> ' + `<a href="` + slug + `" class="notification_link"> click here to view.</a>`;
             toastr.success(title + '<br>' + redirect, {
                 position: 'top-end',
                 icon: 'success',
@@ -96,7 +96,7 @@ messaging.onMessage((payload) => {
         $('.std_notification_counts').text(unread_count);
 
         if (type == "class_booking_approved") {
-            let redirect =body + '<br> '+  `<a href="`+slug+`" class="notification_link"> click here to view.</a>`;
+            let redirect = body + '<br> ' + `<a href="` + slug + `" class="notification_link"> click here to view.</a>`;
             toastr.success(title + '<br>' + redirect, {
                 position: 'top-end',
                 icon: 'success',
@@ -182,18 +182,17 @@ messaging.onMessage((payload) => {
     // }
     let img = '';
 
-    if(pic != null){
-        img = `<img class="avatar mt-2" src="{{asset('`+pic+`')}}" alt="layer">`;
-    }
-    else{
-        img = `<img class="avatar mt-2" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
+    if (pic != null) {
+        img = `<img class="profile-img p-0 w-100" src="{{asset('` + pic + `')}}" alt="layer">`;
+    } else {
+        img = `<img class="profile-img p-0 w-100" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
     }
     var html = `
      <li>
-     <a href="`+slug+`">
+     <a href="` + slug + `">
         <div class="row">
-          <div class="col-md-2 text-center">
-              `+img+`
+          <div class="col-md-2 pr-0 text-center">
+              ` + img + `
           </div>
           <div class="col-md-10">
               <div class="head-1-noti">
