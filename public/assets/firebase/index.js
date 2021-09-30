@@ -33,6 +33,7 @@ messaging.onMessage((payload) => {
     var type = payload.data.type;
     var pic = payload.data.pic;
     var current_user_id = payload.data.receiver_id;
+    var notification_time = 330000;
 
     var unread_count = payload.data.unread_count;
 
@@ -49,11 +50,19 @@ messaging.onMessage((payload) => {
                 position: 'top-end',
                 icon: 'success',
                 showConfirmButton: false,
-                timer: 20000,
+                timer: notification_time,
             });
         }
 
-
+        if (type == "booking_confirmed") {
+            let redirect = body + '<br> '+  `<a href="`+slug+`" class="notification_link"> click here to view.</a>`;
+            toastr.success(title + '<br>' + redirect, {
+                position: 'top-end',
+                icon: 'success',
+                showConfirmButton: false,
+                timer:notification_time,
+            });
+        }
 
         let img = '';
 
@@ -90,14 +99,23 @@ messaging.onMessage((payload) => {
 
     if (user_id == current_user_id && user_role_id == 2) {
         $('.show_notification_counts').text(unread_count);
-
+        let redirect = body + '<br> '+  `<a href="`+slug+`" class="notification_link"> click here to view.</a>`;
+        
         if (type == "tutor_profile_verfication") {
-            let redirect = body + '<br> '+  `<a href="`+slug+`" class="notification_link"> click here to view.</a>`;
             toastr.success(title + '<br>' + redirect, {
                 position: 'top-end',
                 icon: 'success',
                 showConfirmButton: false,
-                timer: 20000,
+                timer: notification_time,
+            });
+        }
+
+        if (type == "booking_confirmed") {
+            toastr.success(title + '<br>' + redirect, {
+                position: 'top-end',
+                icon: 'success',
+                showConfirmButton: false,
+                timer:notification_time,
             });
         }
 
@@ -106,7 +124,7 @@ messaging.onMessage((payload) => {
                 position: 'top-end',
                 icon: 'success',
                 showConfirmButton: false,
-                timer: 20000,
+                timer: notification_time,
             });
         }
 
@@ -115,7 +133,7 @@ messaging.onMessage((payload) => {
                 position: 'top-end',
                 icon: 'success',
                 showConfirmButton: false,
-                timer: 20000,
+                timer: notification_time,
             });
         }
 
@@ -125,7 +143,7 @@ messaging.onMessage((payload) => {
                 position: 'top-end',
                 icon: 'success',
                 showConfirmButton: false,
-                timer: 20000,
+                timer: notification_time,
             });
         }
 
@@ -172,7 +190,7 @@ messaging.onMessage((payload) => {
                 position: 'top-end',
                 icon: 'success',
                 showConfirmButton: false,
-                timer: 20000,
+                timer: notification_time,
             });
         }
         if (type == "class_booking") {
@@ -180,7 +198,7 @@ messaging.onMessage((payload) => {
                 position: 'top-end',
                 icon: 'success',
                 showConfirmButton: false,
-                timer: 20000,
+                timer: notification_time,
             });
         }
 
@@ -218,10 +236,6 @@ messaging.onMessage((payload) => {
 
         
     }
-
-
-
-
 
 });
 

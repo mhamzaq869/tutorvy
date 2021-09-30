@@ -229,13 +229,7 @@ class BookingController extends Controller
         Session::put('paypal_payment_id', $payment->getId());
         Session::put('booking_id', $booking->id);
 
-        // activity logs
-        $id = Auth::user()->id;
-        $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
-        $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> Payment Completed Successfully';
-        $activity_logs = new GeneralController();
-        $activity_logs->save_activity_logs("Payment Success", "bookings.id",$booking->id, $action_perform, $request->header('User-Agent'), $id);
-        
+
         if(isset($redirect_url)) {            
             return Redirect::away($redirect_url);
         }
@@ -249,8 +243,7 @@ class BookingController extends Controller
     {        
         $payment_id = Session::get('paypal_payment_id');
         $booking_id = Session::get('booking_id');
-
-
+       
         Session::forget('paypal_payment_id');
         if (empty($request->input('PayerID')) || empty($request->input('token'))) {
             \Session::put('error','Payment failed');
@@ -273,6 +266,8 @@ class BookingController extends Controller
             );
             // return $red;
             $booking = Booking::where('id',$booking_id)->first();
+            $subject = Subject::where('id',$booking->subject_id)->first();
+
             Classroom::create([
                 'booking_id' => $booking_id,
                 'classroom_id' => $classroom_id
@@ -280,16 +275,30 @@ class BookingController extends Controller
             $booking->status = 2;
             $booking->save();
 
-            // activity logs
             $id = Auth::user()->id;
             $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
             $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> Payment success';
             $activity_logs = new GeneralController();
             $activity_logs->save_activity_logs("Payment Success", "users.id", $id, $action_perform, $request->header('User-Agent'), $id);
 
+            $admin = User::where('role',1)->first();
+
+            $notification = new NotifyController();
+            $slug = URL::to('/') . '/tutor/booking-detail/' . $booking->id;
+            $type = 'booking_confirmed';
+            $title = 'Booking Confirmed';
+            $icon = 'fas fa-tag';
+            $class = 'btn-success';
+            $desc = $name . ' Paid for Class of ' . $subject->name;
+            $pic = Auth::User()->picture;
+            $notification->GeneralNotifi($booking->booked_tutor ,$slug,$type,$title,$icon,$class,$desc,$pic);
+
+            // send to admin
+            $admin_slug = URL::to('/') . '/admin/booking-detail/' . $booking->id;
+            $notification->GeneralNotifi($admin->id,$admin_slug,$type,$title,$icon,$class,$desc,$pic);
+
             return Redirect::route('student.bookings');
         }
-
         \Session::put('error','Payment failed !!');
 		return Redirect::route('student.bookings');
     }
