@@ -40,12 +40,12 @@ messaging.onMessage((payload) => {
     var body = payload.notification.body;
     var title = payload.notification.title;
 
-    if (user_id == current_user_id &&  user_role_id == 1 ) {
+    if (user_id == current_user_id && user_role_id == 1) {
         $('.show_notification_counts').text(unread_count);
 
         // doc verification
-        if(type == "doc_verification") {
-            let redirect = body + '<br> '+  `<a href="`+slug+`" class="notification_link"> click here to view.</a>`;
+        if (type == "doc_verification") {
+            let redirect = body + '<br> ' + `<a href="` + slug + `" class="notification_link"> click here to view.</a>`;
             toastr.success(title + '<br>' + redirect, {
                 position: 'top-end',
                 icon: 'success',
@@ -55,29 +55,28 @@ messaging.onMessage((payload) => {
         }
 
         if (type == "booking_confirmed") {
-            let redirect = body + '<br> '+  `<a href="`+slug+`" class="notification_link"> click here to view.</a>`;
+            let redirect = body + '<br> ' + `<a href="` + slug + `" class="notification_link"> click here to view.</a>`;
             toastr.success(title + '<br>' + redirect, {
                 position: 'top-end',
                 icon: 'success',
                 showConfirmButton: false,
-                timer:notification_time,
+                timer: notification_time,
             });
         }
 
         let img = '';
 
-        if(pic != null){
-            img = `<img class="avatar mt-2" src="{{asset('`+pic+`')}}" alt="layer">`;
-        }
-        else{
-            img = `<img class="avatar mt-2" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
+        if (pic != null) {
+            img = `<img class="profile-img mt-2 p-0 w-100" src="{{asset('` + pic + `')}}" alt="layer">`;
+        } else {
+            img = `<img class="profile-img mt-2 p-0 w-100" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
         }
         var html = `
          <li>
-         <a href="`+slug+`">
+         <a href="` + slug + `" class="bgm">
             <div class="row">
               <div class="col-md-2 text-center">
-                  `+img+`
+                  ` + img + `
               </div>
               <div class="col-md-10">
                   <div class="head-1-noti">
@@ -92,15 +91,15 @@ messaging.onMessage((payload) => {
           </div>
           </a>
         </li>`;
-    
+
         $('.show_all_notifications').prepend(html);
-    
+
     }
 
     if (user_id == current_user_id && user_role_id == 2) {
         $('.show_notification_counts').text(unread_count);
-        let redirect = body + '<br> '+  `<a href="`+slug+`" class="notification_link"> click here to view.</a>`;
-        
+        let redirect = body + '<br> ' + `<a href="` + slug + `" class="notification_link"> click here to view.</a>`;
+
         if (type == "tutor_profile_verfication") {
             toastr.success(title + '<br>' + redirect, {
                 position: 'top-end',
@@ -115,30 +114,30 @@ messaging.onMessage((payload) => {
                 position: 'top-end',
                 icon: 'success',
                 showConfirmButton: false,
-                timer:notification_time,
+                timer: notification_time,
             });
             var url = window.location.href;
             var text = "tutor/booking";
-            
-            if(url.indexOf(text) != -1){
-                
-                var url = slug.replace(/[^0-9]/gi, ''); 
+
+            if (url.indexOf(text) != -1) {
+
+                var url = slug.replace(/[^0-9]/gi, '');
                 var booking_id = parseInt(url, 10);
                 var html = ``;
-                for(var i = 0; i < pending_booking.length; i++) {
-                    if(booking_id == pending_booking[i].id) {
+                for (var i = 0; i < pending_booking.length; i++) {
+                    if (booking_id == pending_booking[i].id) {
                         let first_name = '';
                         let last_name = '';
                         let subject = '';
-                        if(pending_booking[i].user != null && pending_booking[i].user != [] && pending_booking[i].user != "") {
+                        if (pending_booking[i].user != null && pending_booking[i].user != [] && pending_booking[i].user != "") {
                             first_name = pending_booking[i].user.first_name != null ? pending_booking[i].user.first_name : '-';
                             first_name = pending_booking[i].user.last_name != null ? pending_booking[i].user.last_name : '-';
-                        }else{
+                        } else {
                             username = '-';
                         }
-                        if(pending_booking[i].subject != null && pending_booking[i].subject != [] && pending_booking[i].subject != "") {
+                        if (pending_booking[i].subject != null && pending_booking[i].subject != [] && pending_booking[i].subject != "") {
                             subject = pending_booking[i].subject.name != null ? pending_booking[i].subject.name : '-';
-                        }else{
+                        } else {
                             subject = '-';
                         }
 
@@ -148,18 +147,18 @@ messaging.onMessage((payload) => {
 
                         html += `
                             <tr>
-                                <td class="pt-4"> `+first_name + ' ' + last_name +` </td>
-                                <td class="pt-4"> `+subject+` </td>
-                                <td class="pt-4">  `+ topic +` </td>
-                                <td class="pt-4"> `+pending_booking[i].class_time+` </td>
+                                <td class="pt-4"> ` + first_name + ' ' + last_name + ` </td>
+                                <td class="pt-4"> ` + subject + ` </td>
+                                <td class="pt-4">  ` + topic + ` </td>
+                                <td class="pt-4"> ` + pending_booking[i].class_time + ` </td>
                             
-                                <td class="pt-4"> `+ duration +` </td>
-                                <td class="pt-4">  `+ price +` </td>
+                                <td class="pt-4"> ` + duration + ` </td>
+                                <td class="pt-4">  ` + price + ` </td>
                                 <td class="pt-4">
                                     <span class="bg-color-apporve1"> Approved </span>
                                 </td>        
                                 <td style="text-align: center;">
-                                    <a href="`+slug+`">
+                                    <a href="` + slug + `">
                                         <button class="schedule-btn" type="button"> View details </button>
                                     </a>
                                 </td>
@@ -174,7 +173,7 @@ messaging.onMessage((payload) => {
                 $('#pending_counts').text(parseInt(pending_counts) - 1);
                 $('#confirmed_counts').text(parseInt(confirmed_counts) + 1);
 
-                $("#pending_"+booking_id).remove();
+                $("#pending_" + booking_id).remove();
                 $("#confirm_booking_table").append(html);
                 $("#nav-profile-tab").click();
 
@@ -200,7 +199,7 @@ messaging.onMessage((payload) => {
         }
 
         if (type == "class_booking") {
-            let redirect = body + '<br> '+  `<a href="`+slug+`" class="notification_link"> click here to view.</a>`;
+            let redirect = body + '<br> ' + `<a href="` + slug + `" class="notification_link"> click here to view.</a>`;
             toastr.success(title + '<br>' + redirect, {
                 position: 'top-end',
                 icon: 'success',
@@ -211,18 +210,17 @@ messaging.onMessage((payload) => {
 
         let img = '';
 
-        if(pic != null){
-            img = `<img class="avatar mt-2" src="{{asset('`+pic+`')}}" alt="layer">`;
-        }
-        else{
-            img = `<img class="avatar mt-2" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
+        if (pic != null) {
+            img = `<img class="profile-img mt-2 p-0 w-100" src="{{asset('` + pic + `')}}" alt="layer">`;
+        } else {
+            img = `<img class="profile-img mt-2 p-0 w-100" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
         }
         var html = `
          <li>
-         <a href="`+slug+`">
+         <a href="` + slug + `" class="bgm" >
             <div class="row">
               <div class="col-md-2 text-center">
-                  `+img+`
+                  ` + img + `
               </div>
               <div class="col-md-10">
                   <div class="head-1-noti">
@@ -237,9 +235,9 @@ messaging.onMessage((payload) => {
           </div>
           </a>
         </li>`;
-    
+
         $('.show_all_notifications').prepend(html);
-    
+
 
     }
 
@@ -247,7 +245,7 @@ messaging.onMessage((payload) => {
         $('.show_notification_counts').text(unread_count);
 
         if (type == "class_booking_approved") {
-            let redirect =body + '<br> '+  `<a href="`+slug+`" class="notification_link"> click here to view.</a>`;
+            let redirect = body + '<br> ' + `<a href="` + slug + `" class="notification_link"> click here to view.</a>`;
             toastr.success(title + '<br>' + redirect, {
                 position: 'top-end',
                 icon: 'success',
@@ -257,14 +255,14 @@ messaging.onMessage((payload) => {
 
             var url = window.location.href;
             var text = "/student/bookings";
-            
-            if(url.indexOf(text) != -1){
-                
-                var url = slug.replace(/[^0-9]/gi, ''); 
+
+            if (url.indexOf(text) != -1) {
+
+                var url = slug.replace(/[^0-9]/gi, '');
                 var getid = parseInt(url, 10);
                 var pay_now_btn = `
-                    <button onclick="pay_now(`+getid+`)" type="button" role="button" class="cencel-btn mr-2"> Pay Now </button>
-                    <a href="`+slug+`" class="schedule-btn"> View details </a>`;
+                    <button onclick="pay_now(` + getid + `)" type="button" role="button" class="cencel-btn mr-2"> Pay Now </button>
+                    <a href="` + slug + `" class="schedule-btn"> View details </a>`;
                 $('.action_button').html(pay_now_btn);
                 $("#nav-contact-tab").click();
             }
@@ -283,18 +281,17 @@ messaging.onMessage((payload) => {
 
         let img = '';
 
-        if(pic != null){
-            img = `<img class="avatar mt-2" src="{{asset('`+pic+`')}}" alt="layer">`;
-        }
-        else{
-            img = `<img class="avatar mt-2" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
+        if (pic != null) {
+            img = `<img class="profile-img mt-2 p-0 w-100" src="{{asset('` + pic + `')}}" alt="layer">`;
+        } else {
+            img = `<img class="profile-img mt-2 p-0 w-100" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
         }
         var html = `
          <li>
-         <a href="`+slug+`">
+         <a href="` + slug + `" class="bgm">
             <div class="row">
               <div class="col-md-2 text-center">
-                  `+img+`
+                  ` + img + `
               </div>
               <div class="col-md-10">
                   <div class="head-1-noti">
@@ -309,10 +306,10 @@ messaging.onMessage((payload) => {
           </div>
           </a>
         </li>`;
-    
+
         $('.show_all_notifications').prepend(html);
 
-        
+
     }
 
 });

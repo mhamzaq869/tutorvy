@@ -283,16 +283,16 @@ function get_all_notifications() {
                             let img = '';
 
                             if(obj[i].sender_pic != null){
-                                img = `<img class="avatar mt-2" src="{{asset('`+obj[i].sender_pic+`')}}" alt="layer">`;
+                                img = `<img class="profile-img w-100 p-0 mt-2" src="{{asset('`+obj[i].sender_pic+`')}}" alt="layer">`;
                             }
                             else{
-                                img = `<img class="avatar mt-2" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
+                                img = `<img class="profile-img w-100 p-0 mt-2" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
                             }
                             notification +=`
                             <li>
-                                <a href="`+obj[i].slug+`">
+                                <a href="`+obj[i].slug+`" class="bgm">
                                     <div class="row">
-                                        <div class="col-md-2 text-center">
+                                        <div class="col-md-2 text-center pr-0">
                                         `+img+`
                                         </div>
                                         <div class="col-md-10">
