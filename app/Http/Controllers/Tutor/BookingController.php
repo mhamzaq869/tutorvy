@@ -38,6 +38,17 @@ class BookingController extends Controller
         return view('tutor.pages.booking.booking_detail',compact('booking','tutor'));
     }
 
+
+    public function getBookingDetail(Request $request) {
+        $booking = Booking::with(['user','subject'])->where('id',$request->id)->first();
+
+        return response()->json([
+            "status_code" => 200, 
+            "success" => true, 
+            "booking" => $booking,
+        ]);
+    }
+
     public function acceptBooking($id ,Request $request){
 
         $booking = Booking::with('subject')->find($id);
