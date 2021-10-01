@@ -30,6 +30,17 @@
                         <img src="{{ asset('/admin/assets/img/sidebar/institues.svg')}}" alt="user-icon" class=" mr-2"> Institute
                     </a>
                 </li> -->
+                <li class="btn  @if(\Request::path() === 'admin/booking') active @endif w-100">
+                        <a href="{{route('admin.booking')}}">
+                            <img src="{{ asset('/assets/images/ico/book-icons.png')}}" alt="class-ico" class=" mr-2">
+                            Bookings
+                        </a>
+                </li>
+                <li class="btn  @if(\Request::path() === 'admin/classroom') active @endif w-100">
+                    <a href="{{route('admin.classroom')}}">
+                        <img src="{{ asset('/assets/images/ico/class-ico.png')}}" alt="class-ico" class=" mr-2"> Classrooms
+                    </a>
+                </li>
                 <li class="btn @if(\Request::path() === 'admin/course') active @endif w-100">
                     <a href="{{route('admin.course')}}">
                         <img src="{{ asset('/admin/assets/img/sidebar/manage-icon.svg')}}" alt="class-ico" class=" mr-2"> Courses

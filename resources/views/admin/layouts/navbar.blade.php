@@ -29,6 +29,7 @@
                             <img src="{{ asset('/admin/assets/img/sidebar/students.svg')}}" alt="user-icon" class=" mr-2"> Student
                         </a>
                     </li>
+
                     <li class="btn w-100">
                         <a href="manage-institute/institute.html" class="btn-manage">
                             <img src="{{ asset('/admin/assets/img/sidebar/institues.svg')}}" alt="user-icon" class=" mr-2"> Institute
