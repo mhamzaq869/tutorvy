@@ -308,6 +308,21 @@ td input{
 .bright input:checked+.slider {
     background-color: #1173ff;
 }
+
+/*End Call Button */
+.endBtn{
+    padding: 2px 11px 6px 9px;
+}
+.vid-btn{
+    position: absolute !important;
+    bottom: 2px;
+    left: 6px;
+}
+.btn-outline-danger{
+    border:1px solid red;
+}
+/*End Call Button End*/
+
 </style>
 @section('content')
  <!-- top Fixed navbar End -->
@@ -541,10 +556,14 @@ td input{
                         <div class="col-md-12">
                             <video id="main-video"  playsinline autoplay></video>
                             <div id="other-videos"  playsinline autoplay></div>
+                            <div class="col-md-12 mt-2 mb-2 vid-location vid-btn text-left">
+                                <!-- <button class="btn-danger btn h-35 w-100 pb-0 pt-0 ">End Call</button> -->
+                                <a href="#" class="btn-outline-danger rounded-circle endBtn ">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-md-12 mt-2 mb-2 vid-location text-center">
-                            <button class="btn-danger btn h-35 w-100 pb-0 pt-0 no-ph">End Call</button>
-                        </div>
+                        
                         <div style="col-md-12 padding: 5px 10px;">
                             <div id="onUserStatusChanged"></div>
                         </div>
