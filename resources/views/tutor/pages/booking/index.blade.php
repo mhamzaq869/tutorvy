@@ -102,10 +102,10 @@
                                                     <th scope="col"></th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody id="all_booking_table">
                                                @if($all)
                                                     @foreach ($all as $booking)
-                                                        <tr>
+                                                        <tr id="all_{{$booking->id}}">
                                                             <td class="pt-4">
                                                                 {{$booking->user->fullname}}
                                                             </td>
@@ -267,7 +267,7 @@
                                                         </th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody id="all_pending_table">
                                                 @if($pending)
                                                     @foreach ($pending as $booking)
                                                     <tr id="pending_{{$booking->id}}">

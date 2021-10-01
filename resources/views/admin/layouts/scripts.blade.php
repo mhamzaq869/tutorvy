@@ -236,7 +236,7 @@
         var options = {
             series: [
                 {
-                    name: 'Teacher',
+                    name: 'Tutor',
                     data: generateDayWiseTimeSeries(new Date('11 Feb 2017 GMT').getTime(), 20, {
                         min: 10,
                         max: 60
