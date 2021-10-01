@@ -18,13 +18,13 @@
                             <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
                                 href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
                                 All Classes
-                                <!-- <span class="counter-text bg-primary"> 01 </span> -->
+                                <span class="counter-text badge bg-primary"> {{count($classes)}} </span>
                             </a>
                             <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
                                 href="#nav-profile" role="tab" aria-controls="nav-profile"
                                 aria-selected="false">
                                 Delivered Classes
-                                <!-- <span class="counter-text bg-success"> 01 </span> -->
+                                <span class="counter-text badge bg-success"> {{count($delivered_classess)}} </span>
                             </a>
                         </div>
                     </nav>
@@ -49,17 +49,58 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                           <tr>
-                                                <td scope="col">Tutor</td>
-                                                <td scope="col">Student</td>
-                                                <td scope="col">Subjects</td>
-                                                <td scope="col">Topic</td>
-                                                <td scope="col">Time</td>
-                                                <td scope="col">Duration</td>
-                                                <td scope="col">Status</td>
-                                                <td scope="col">Starts In</td>
-                                                <td scope="col"></td>
-                                           </tr>
+                                            @if($classes != null && $classes != [] && $classes != "")
+                                                @foreach($classes as $class)
+                                                    <tr>
+                                                        <td class="pt-4">
+                                                            @if($class->tutor != null && $class->tutor != "")
+                                                                {{ $class->tutor->first_name }} {{ $class->tutor->last_name }}
+                                                            @else
+                                                            <span> - </span>
+                                                            @endif
+                                                        </td>
+                                                        <td class="pt-4">
+                                                            @if($class->user != null && $class->user != "")
+                                                                {{ $class->user->first_name }} {{ $class->user->last_name }}
+                                                            @else
+                                                            <span> - </span>
+                                                            @endif
+                                                        </td>
+                                                        <td class="pt-4"> {{ $class->subject->name }} </td>
+                                                        <td class="pt-4"> {{ $class->topic }} </td>
+                                                        <td class="pt-4"> {{$class->class_time}} {{date("g:i a", strtotime("$class->class_time UTC"))}} </td>
+                                                        
+                                                        <td class="pt-4"> {{ $class->duration }} Hour(s) </td>
+                                                        <td class="pt-4">
+                                                            @if($class->status == 1)
+                                                                <span class="bg-color-apporve3">
+                                                                    Payment Pending
+                                                                </span>
+                                                            @elseif($class->status == 2)
+                                                                <span class="bg-color-apporve1">
+                                                                    Approved
+                                                                </span>
+                                                            @elseif($class->status == 5)
+                                                                <span class="bg-color-apporve1">
+                                                                    Delivered
+                                                                </span>
+                                                            @elseif($class->status == 0)
+                                                                <span class="bg-color-apporve">
+                                                                    Pending
+                                                                </span>
+                                                            @endif
+                                                        </td>
+                                                        <td class="pt-4"> {{$class->class_time}} {{date("g:i a", strtotime("$class->class_time UTC"))}} </td>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @else
+                                                <tr>
+                                                    <td>
+                                                        No Class Found
+                                                    </td>
+                                                </tr>
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>
@@ -84,17 +125,52 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td scope="col">Tutor</td>
-                                                <td scope="col">Student</td>
-                                                <td scope="col">Subjects</td>
-                                                <td scope="col">Topic</td>
-                                                <td scope="col">Time</td>
-                                                <td scope="col">Duration</td>
-                                                <td scope="col">Status</td>
-                                                <td scope="col">Starts In</td>
-                                                <td scope="col"></td>
-                                           </tr>
+                                            @if($delivered_classess != null && $delivered_classess != [] && $delivered_classess != "")
+                                                @foreach($delivered_classess as $class)
+                                                    <tr>
+                                                        <td class="pt-4">
+                                                            @if($class->tutor != null && $class->tutor != "")
+                                                                {{ $class->tutor->first_name }} {{ $class->tutor->last_name }}
+                                                            @else
+                                                            <span> - </span>
+                                                            @endif
+                                                        </td>
+                                                        <td class="pt-4">
+                                                            @if($class->user != null && $class->user != "")
+                                                                {{ $class->user->first_name }} {{ $class->user->last_name }}
+                                                            @else
+                                                            <span> - </span>
+                                                            @endif
+                                                        </td>
+                                                        <td class="pt-4">
+                                                            {{ $class->subject->name }}
+                                                        </td>
+                                                        <td class="pt-4">
+                                                            {{ $class->topic }}
+                                                        </td>
+                                                        <td class="pt-4">
+                                                        {{$class->class_time}} {{date("g:i a", strtotime("$class->class_time UTC"))}}
+                                                        </td>
+                                                        
+                                                        <td class="pt-4">
+                                                            {{ $class->duration }} Hour(s)
+                                                        </td>
+                                                        <td class="pt-4">
+                                                    
+                                                            <span class="bg-color-apporve1">
+                                                                Delivered
+                                                            </span>
+                                                    
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @else
+                                                <tr>
+                                                    <td>
+                                                        No Class Found
+                                                    </td>
+                                                </tr>
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>

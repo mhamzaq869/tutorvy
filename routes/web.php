@@ -89,6 +89,7 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
 
     Route::get('/classroom',[ClassroomController::class,'index'])->name('admin.classroom');
     Route::get('/booking',[AdminBookingController::class,'index'])->name('admin.booking');
+    Route::get('/booking-details/{id}',[AdminBookingController::class,'bookingDetails'])->name('admin.bookingDetail');
 
 
 
