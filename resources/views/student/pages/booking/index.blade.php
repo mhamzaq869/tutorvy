@@ -88,7 +88,7 @@
                                                     <thead>
                                                         <tr
                                                             style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
-                                                            <th scope="col"> Teacher </th>
+                                                            <th scope="col"> Tutor </th>
                                                             <th scope="col"> Subjects </th>
                                                             <th scope="col">
                                                                 Topic
@@ -173,7 +173,7 @@
                                                     <thead>
                                                         <tr
                                                             style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
-                                                            <th scope="col">Teacher</th>
+                                                            <th scope="col">Tutor</th>
                                                             <th scope="col">Subjects</th>
                                                             <th scope="col">Topic</th>
                                                             <th scope="col">Time</th>
@@ -254,7 +254,7 @@
                                                     <thead>
                                                         <tr
                                                             style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
-                                                            <th scope="col">Teacher</th>
+                                                            <th scope="col">Tutor</th>
                                                             <th scope="col">Subjects</th>
                                                             <th scope="col">Topic</th>
                                                             <th scope="col">Time</th>
@@ -334,7 +334,7 @@
                                                 <thead>
                                                     <tr
                                                         style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
-                                                        <th scope="col">Teacher</th>
+                                                        <th scope="col">Tutor</th>
                                                         <th scope="col">Subjects</th>
                                                         <th scope="col">Topic</th>
                                                         <th scope="col">Time</th>
@@ -415,7 +415,7 @@
                                             <thead>
                                                 <tr
                                                     style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
-                                                    <th scope="col">Teacher</th>
+                                                    <th scope="col">Tutor</th>
                                                     <th scope="col">Subjects</th>
                                                     <th scope="col">Topic</th>
                                                     <th scope="col">Time</th>

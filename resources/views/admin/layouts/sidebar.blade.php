@@ -32,13 +32,13 @@
                 </li> -->
                 <li class="btn  @if(\Request::path() === 'admin/booking') active @endif w-100">
                         <a href="{{route('admin.booking')}}">
-                            <img src="{{ asset('/assets/images/ico/book-icons.png')}}" alt="class-ico" class=" mr-2">
+                            <img src="{{ asset('/admin/assets/img/sidebar/booking.svg')}}" alt="class-ico" class=" mr-2">
                             Bookings
                         </a>
                 </li>
                 <li class="btn  @if(\Request::path() === 'admin/classroom') active @endif w-100">
                     <a href="{{route('admin.classroom')}}">
-                        <img src="{{ asset('/assets/images/ico/class-ico.png')}}" alt="class-ico" class=" mr-2"> Classrooms
+                        <img src="{{ asset('/admin/assets/img/sidebar/classroom.svg')}}" alt="class-ico" class=" mr-2"> Classrooms
                     </a>
                 </li>
                 <li class="btn @if(\Request::path() === 'admin/course') active @endif w-100">

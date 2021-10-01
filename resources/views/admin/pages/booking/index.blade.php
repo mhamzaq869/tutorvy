@@ -13,23 +13,6 @@
                 </div>
             </div>
             <div class="row bg-white ml-1 mr-1">
-                    <div class="col-md-12 mb-1 ">
-                        <div class=" card  bg-toast infoCard">
-                            <div class="card-body row">
-                                <div class="col-md-1 text-center">
-                                    <i class="fa fa-info" aria-hidden="true"></i>
-                                </div>
-                                <div class="col-md-11 pl-0">
-                                    <small>
-                                        Ticket Details and all about your isuues opened for dicussion <a href="#">Learn More</a>
-                                    </small>
-                                    <a href="#" class="cross"  onclick="hideCard()"> 
-                                        <i class="fa fa-times" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-md-12 mt-3">
                         <nav>
                             <div class="nav nav-stwich" id="nav-tab" role="tablist">
@@ -77,7 +60,7 @@
                                                     <thead>
                                                         <tr
                                                             style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
-                                                            <th scope="col"> Teacher </th>
+                                                            <th scope="col"> Tutor </th>
                                                             <th scope="col"> Student </th>
                                                             <th scope="col"> Subjects </th>
                                                             <th scope="col">
@@ -111,7 +94,7 @@
                                                     <thead>
                                                         <tr
                                                             style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
-                                                            <th scope="col">Teacher</th>
+                                                            <th scope="col">Tutor</th>
                                                             <th scope="col">Student</th>
                                                             <th scope="col">Subjects</th>
                                                             <th scope="col">Topic</th>
@@ -142,7 +125,7 @@
                                                     <thead>
                                                         <tr
                                                             style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
-                                                            <th scope="col">Teacher</th>
+                                                            <th scope="col">Tutor</th>
                                                             <th scope="col">Student</th>
                                                             <th scope="col">Subjects</th>
                                                             <th scope="col">Topic</th>
@@ -173,7 +156,7 @@
                                                 <thead>
                                                     <tr
                                                         style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
-                                                        <th scope="col">Teacher</th>
+                                                        <th scope="col">Tutor</th>
                                                         <th scope="col">Student</th>
                                                         <th scope="col">Subjects</th>
                                                         <th scope="col">Topic</th>
@@ -202,7 +185,7 @@
                                             <thead>
                                                 <tr
                                                     style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
-                                                    <th scope="col">Teacher</th>
+                                                    <th scope="col">Tutor</th>
                                                     <th scope="col">Students</th>
                                                     <th scope="col">Subjects</th>
                                                     <th scope="col">Topic</th>
