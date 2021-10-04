@@ -32,6 +32,7 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <!-- Dropify CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/dropify.css') }}" />
+    <link href="{{ asset('assets/css/fontawesome.min.css') }}" rel="stylesheet">
 
     <!-- Moment Js -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -78,7 +79,12 @@
             color: red;
             border-color:red;
         }
-
+        ul{
+            padding-left:20px;
+        }
+        ul li{
+            list-style-type: none;
+        }
         ul.bs-autocomplete-menu {
             position: absolute;
             top: 0;
@@ -267,13 +273,13 @@
                                 </ul>
                             </div> -->
                             <form action="{{ url('register') }}" method="post" id="register"
-                                enctype="multipart/form-data">
+                                enctype="multipart/form-data" onsubmit="return false" autocomplete="off">
                                 @csrf
                                 <input type="hidden" name="role" value="3">
                                 <div class="tab-content mt-5">
                                     <div role="tabpanel" class="border-right tab-pane active" id="step-1">
                                         <div class="col-md-12">
-                                            <p class="heading-third mt-3">Personal information</p>
+                                            <p class="heading-third mt-3">Personal information </p>
                                             @if (Session::has('error'))
                                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-top:-12px">
@@ -334,11 +340,11 @@
                                                     <small id="passTech">
                                                             Field should have at least:
                                                             <ul>
-                                                                <li>One uppercase letter</li>
-                                                                <li>One lowercase letter</li>
-                                                                <li>One numeric value</li>
-                                                                <li>One special character</li>
-                                                                <li>8 characters</li>
+                                                                <li id="capital_letter"><i class="fa fa-times"></i> One uppercase letter</li>
+                                                                <li id="lower_letter"><i class="fa fa-times"></i> One lowercase letter</li>
+                                                                <li id="numeric"><i class="fa fa-times"></i> One numeric value</li>
+                                                                <li id="special_character"><i class="fa fa-times"></i> One special character</li>
+                                                                <li id="min_character"><i class="fa fa-times"></i> 8 characters</li>
                                                             </ul>
                                                         </small>
                                                     <span for="" id="password_error" class="invalid-feedback" role="alert">
@@ -484,7 +490,7 @@
                                         <div class="col-md-12 mb-3 mt-3">
                                             <div class="nav nav-pills text-center border" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                                 <a class="nav-link active w-50 stat" id="v-pills-General-tab"  role="tab" href="{{route('student.register')}}"  aria-selected="true">As a Student</a>
-                                                <a class="nav-link w-50 stat " id="v-pills-Security-tab" href="{{route('register')}}" role="tab" aria-selected="false">As a Teacher</a>
+                                                <a class="nav-link w-50 stat " id="v-pills-Security-tab" href="{{route('register')}}" role="tab" aria-selected="false">As a Tutor</a>
                                             </div>
                                         </div>
                                         <div class="col-md-12 text-right ">
@@ -517,11 +523,17 @@
                                                                         </a>
                                                                     </div>
                                                                     <div class="facebook">
-                                                                        <img class="mr-3" src="{{asset('assets/images/ico/facebook(1).png')}}" alt="facebook">
-                                                                        Continue with Facebook
+                                                                        <a href="{{route('social.facebook',[3])}}">
+                                                                            <i class="fa fa-facebook  fa-lg mr-2" aria-hidden="true"></i>
+
+                                                                            <!-- <img class="mr-3" src="{{asset('assets/images/ico/facebook(1).png')}}" alt="facebook"> -->
+                                                                            Continue with Facebook
+                                                                        </a>
                                                                     </div>
                                                                     <div class="Apple">
-                                                                        <img class="mr-3" src="{{asset('assets/images/ico/apple.png')}}" alt="apple">
+                                                                        <i class="fa fa-apple  fa-lg mr-2" aria-hidden="true"></i>
+
+                                                                        <!-- <img class="mr-3" src="{{asset('assets/images/ico/apple.png')}}" alt="apple"> -->
                                                                         Continue with Apple
                                                                     </div>
                                                                     <div class="Policy-text" style="display: flex;">
@@ -651,6 +663,8 @@
         </div>
         </div>
         </div>
+        
+    </section>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/intlTelInput.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -665,16 +679,19 @@
         <script src="{{ asset('assets/js/multiselect.js') }}"></script>
         <script src="{{ asset('assets/js/dropify.js') }}"></script>
         <script src="{{ asset('assets/js/jquery.validate.js') }} "></script>
+        <script></script>
         <script>
-            for (var i = 1; i <= 31; i++) {
-                $("#day").append("<option value='" + i + "'" + (i == {{ $user->day ?? 1 }} ? 'selected' : '') + ">" + i +
-                    "</option>");
-            }
 
-            $("#finish").on('click', function() {
-                $(this).attr('name', 'finish');
-            });
             $(document).ready(function() {
+
+                for (var i = 1; i <= 31; i++) {
+                    $("#day").append("<option value='" + i + "'" + (i == {{ $user->day ?? 1 }} ? 'selected' : '') + ">" + i +
+                        "</option>");
+                }
+
+                $("#finish").on('click', function() {
+                    $(this).attr('name', 'finish');
+                });
                
                 $("#year,#grad-year").yearpicker({
                     year: {{ $user->year ?? '1990' }},
@@ -683,7 +700,137 @@
                 });
                 $("#teach_error").hide();
                 $(".text-red").hide();
-            });
+
+                $("#password").keyup(function(e) {
+                    var capital_leters = new RegExp('[A-Z]');
+                    var lower_leters = new RegExp('[a-z]');
+                    var numeric = new RegExp('[0-9]');
+                    var password = $(this).val();
+
+                    if(password.match(capital_leters)) {
+                        $("#capital_letter").css('color','green');
+                        $("#capital_letter").find(".fa").removeClass("fa-times");
+                        $("#capital_letter").find(".fa").addClass("fa-check");
+                        $('#register').removeAttr('onsubmit');
+                    }else{
+                        $("#capital_letter").css('color','red');
+                        $("#capital_letter").find(".fa").removeClass("fa-check");
+                        $("#capital_letter").find(".fa").addClass("fa-times");
+                        var attr = $('#register').attr('onsubmit');
+
+                        if (typeof attr !== 'undefined' && attr !== false) {
+                            $('#register').removeAttr('onsubmit');
+                        }else{
+                            $('#register').attr('onsubmit','return false');
+                        }
+                    }
+
+                    if(password.match(lower_leters)) {
+                        $("#lower_letter").css('color','green');
+                         $("#lower_letter").find(".fa").removeClass("fa-times");
+                        $("#lower_letter").find(".fa").addClass("fa-check");
+                        $('#register').removeAttr('onsubmit');
+                    }else{
+                        $("#lower_letter").css('color','red');
+                         $("#lower_letter").find(".fa").addClass("fa-times");
+                        $("#lower_letter").find(".fa").removeClass("fa-check");
+                        var attr = $('#register').attr('onsubmit');
+
+                        if (typeof attr !== 'undefined' && attr !== false) {
+                            $('#register').removeAttr('onsubmit');
+                        }else{
+                            $('#register').attr('onsubmit','return false');
+                        }
+                    }
+
+                    if(password.match(numeric)) {
+                        $("#numeric").css('color','green');
+                         $("#numeric").find(".fa").removeClass("fa-times");
+                        $("#numeric").find(".fa").addClass("fa-check");
+                        $('#register').removeAttr('onsubmit');
+                    }else{
+                        $("#numeric").css('color','red');
+                         $("#numeric").find(".fa").addClass("fa-times");
+                        $("#numeric").find(".fa").removeClass("fa-check");
+                        var attr = $('#register').attr('onsubmit');
+
+                        if (typeof attr !== 'undefined' && attr !== false) {
+                            $('#register').removeAttr('onsubmit');
+                        }else{
+                            $('#register').attr('onsubmit','return false');
+                        }
+                    }
+
+                    if(password.length > 8) {
+                        $("#min_character").css('color','green');
+                         $("#min_character").find(".fa").removeClass("fa-times");
+                        $("#min_character").find(".fa").addClass("fa-check");
+                        $('#register').removeAttr('onsubmit');
+                    }else{
+                        $("#min_character").css('color','red');
+                         $("#min_character").find(".fa").addClass("fa-times");
+                        $("#min_character").find(".fa").removeClass("fa-check");
+                        var attr = $('#register').attr('onsubmit');
+
+                        if (typeof attr !== 'undefined' && attr !== false) {
+                            $('#register').removeAttr('onsubmit');
+                        }else{
+                            $('#register').attr('onsubmit','return false');
+                        }
+                    }
+
+                    var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+
+                    if(format.test(password)) {
+                        $("#special_character").css('color','green');
+                         $("#special_character").find(".fa").removeClass("fa-times");
+                        $("#special_character").find(".fa").addClass("fa-check");
+                        $('#register').removeAttr('onsubmit');
+                    }else{
+                        $("#special_character").css('color','red');
+                         $("#special_character").find(".fa").addClass("fa-times");
+                        $("#special_character").find(".fa").removeClass("fa-check");
+                        var attr = $('#register').attr('onsubmit');
+
+                        if (typeof attr !== 'undefined' && attr !== false) {
+                            $('#register').removeAttr('onsubmit');
+                        }else{
+                            $('#register').attr('onsubmit','return false');
+                        }
+                    }
+
+                    console.log(password , "password");
+
+                    // var decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+                    // var ter = $(this).val();
+                    // if (ter.match(decimal))
+                    // {
+                    //     console.log("password ok");
+                    //     // $("#password_error").css("display", "none");
+                    //     // $("#passTech").css("display", "block");
+                    //     // $("#password").removeClass("is-invalid");
+                    //     // $("#password").addClass("valid");
+                    //     // $('#register').removeAttr('onsubmit');
+                        
+                    // }else{
+                    //     var attr = $('#register').attr('onsubmit');
+
+                    //     if (typeof attr !== 'undefined' && attr !== false) {
+                    //         $('#register').removeAttr('onsubmit');
+                    //     }else{
+                    //         $('#register').attr('onsubmit','return false');
+                    //     }
+
+                    //     // $("#password_error").css("display", "block");
+                    //     // $("#passTech").css("display", "none");
+                    //     // $("#password").removeClass("valid");
+                    //     // $("#password").addClass("is-invalid");
+
+                    //     // $("#password_error").text("Field should have at least one lowercase letter, one uppercase letter, one numeric digit, and one special character")
+
+                    //     return false;
+                    // }
+                });
 
             $("#country_selector").countrySelect({
                 defaultCountry: "{{ $user->country_short ?? '' }}",
@@ -694,6 +841,7 @@
                 var short = $(this).countrySelect("getSelectedCountryData");
                 $("#country_short").val(short.iso2);
             });
+        });
 
             // var languages_list = {...};
             (function() {
@@ -705,7 +853,7 @@
                         '</option>';
                 }
                 // document.getElementById('languages-list').innerHTML = option;
-            })();
+            });
 
             $('.extra-fields-customer').click(function() {
                 count_field = document.querySelectorAll(".customer_records").length;
@@ -847,7 +995,7 @@
                     var x = $("#teacher").val();
                     if(x == null){
                         $("#teach_error").show();
-                        $("#teach_error").focus();
+                        // $("#teach_error").focus();
                     }
                     else{
                         $("#teach_error").hide();
@@ -865,7 +1013,7 @@
                     success: function(result) {
                         if(result == "Trust me"){
                             $("#email_error_duplicate").show();
-                            $("#email_error_duplicate").focus();
+                            // $("#email_error_duplicate").focus();
                             $("#email").addClass("is-invalid");
                             $("#email_error").hide();
 
@@ -880,7 +1028,6 @@
             });
 
         </script>
-    </section>
 </body>
 
 </html>

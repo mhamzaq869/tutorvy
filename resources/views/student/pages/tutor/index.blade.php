@@ -33,9 +33,9 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h5 class=""
+                                    <!-- <h5 class=""
                                     style="">
-                                    Advance search</h5>
+                                    Advance search</h5> -->
                                 </div>
                                 <!-- <div class="col-md-12 mt-2">
                                     <input type="search" style="width: 100%;" class="form-control input12" data-search
@@ -331,7 +331,7 @@
                     </div>
                 </div>
                 <div class="col-md-9 " >
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-md-9">
                             <div class="card">
                                 <div class="card-body">
@@ -356,8 +356,12 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        
+                    </div> -->
                     <div class="row">
+                        <div class="col-md-12" id="number-booking">
+                            <h3  class="mb-0  mt-4">  {{ sizeof($available_tutors) }}  Tutors Available</h3>
+                        </div>
                         <div class="col-md-12" id="tutors-list">
                         @if(sizeof($available_tutors) == 0 || $available_tutors == '[]' )
                         <div class="card">
@@ -377,25 +381,25 @@
                                 <div class="row">
                                     <div class="col-md-9">
                                         <div class="row">
-                                            <div class="col-md-9">
+                                            <div class="col-md-10">
                                                 <div class="row">
                                                     
-                                                    <div class="col-md-2 col-6">
+                                                    <div class="col-md-2 col-6 pr-0">
                                                         <a href="{{route('student.tutor.show',[$tutor->id])}}">
                                                             @if($tutor->picture != null)
-                                                                <img src="{{asset($tutor->picture)}}" alt="" class="round-border">
+                                                                <img src="{{asset($tutor->picture)}}" alt="" class="profile-img w-100" style="height:auto;">
                                                             @else
-                                                                <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="round-border">
+                                                                <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="profile-img w-100" style="height:auto;">
                                                             @endif                                                        
                                                         </a>
                                                        
                                                     </div>
-                                                    <div class="col-md-5 col-6">
-                                                        <h3>{{$tutor->first_name}} {{$tutor->last_name}}</h3>
+                                                    <div class="col-md-4 col-6 mt-2">
+                                                        <a href="{{route('student.tutor.show',[$tutor->id])}}" class="decoration-none"><h3 class="mb-0">{{$tutor->first_name}} {{$tutor->last_name}}</h3></a>
                                                         <p class="mb-0"><img src="../assets/images/ico/red-icon.png" alt="" class="">  {{$tutor->designation ?? '---'}}</p>
                                                         <p class="mb-0"><img src="../assets/images/ico/location-pro.png" alt="" class="">{{ $tutor->city != NULL ? $tutor->city.' , ' : '---' }} {{ $tutor->country != NULL ? $tutor->country: '---' }}</p>
                                                     </div>
-                                                    <div class="col-md-4 col-12">
+                                                    <div class="col-md-6 col-12">
                                                         <p>
                                                             @if($tutor->rating == 1)
                                                             <i class="fa fa-star text-yellow"></i>
@@ -437,10 +441,11 @@
                                                         
                                                             <small class="text-grey">(0 reviews)</small>
                                                         </p>
+                                                        <p> 3 hours tutoring in (this subject) </p>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div class="col-md-2">
                                                 @if($tutor->rank == 1)
                                                     <p class="text-right"><span class="text-green ">New</span> <span class="rank_icon"><img src="../assets/images/ico/bluebadge.png" alt=""></span> </p>
                                                 @elseif($tutor->rank == 2)
@@ -448,7 +453,7 @@
                                                 @elseif($tutor->rank == 3)
                                                     <p class="text-right"><span class="text-green ">Top Rank</span> <span class="rank_icon"><img src="../assets/images/ico/rank.png" alt=""></span> </p>
                                                 @endif
-                                                <small> <strong> 3 hours</strong> tutoring in (this subject) </small>
+                                                <!-- <small> <strong> 3 hours</strong> tutoring in (this subject) </small> -->
 
                                             </div>
                                         </div>
@@ -461,10 +466,16 @@
                                                 @endphp
                                                 <p class="mb-2">Subject</p>
                                                 <p>
-                                                @for ($i=0 ; $i < sizeof($sub); $i++)
-                                                <span class="info-1 info">{{$sub[$i]}}</span>
-                                                @endfor
-                                            </p>
+                                                    @for ($i=0 ; $i < 1; $i++)
+                                                        <span class="info-1 info">{{$sub[$i]}}</span>
+                                                        
+                                                        <small>
+                                                            <a href="#" class="text-dark decoration-none"> 
+                                                                +2 Others
+                                                            </a>
+                                                        </small>
+                                                    @endfor
+                                                </p>
                                             </div>
                                             <div class="col-md-4">
                                                 <p class="mb-2">Languages</p>
@@ -487,8 +498,10 @@
                                         <div class="row mt-2">
                                             <div class="col-md-12 find_tutor">
                                                 <p><strong> About Tutor </strong></p>
-                                                <p class="scrol-about ">
-                                                        {{$tutor->bio}}
+                                                <p>
+                                                        <?php
+                                                            echo substr($tutor->bio,200);
+                                                        ?> ...
                                                 </p>
                                             </div>
                                         </div>

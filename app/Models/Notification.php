@@ -12,7 +12,7 @@ use App\Models\User;
 class Notification extends Model
 {
 
-    protected $fillable = ['sender_id','receiver_id','slug','read_at','noti_type','noti_data','noti_title','noti_desc','noti_icon','btn_class'];
+    protected $fillable = ['sender_pic','receiver_id','slug','read_at','noti_type','noti_data','noti_title','noti_desc','noti_icon','btn_class'];
 
     public function scopeToSingleDevice($query,$token, $title, $body){
         
@@ -51,15 +51,15 @@ class Notification extends Model
         $downstreamResponse->tokensWithError();
         return ;
     }
-    public function scopeToMultiDevice($query,$user_id, $title = NULL , $body = NULL , $type = NULL ,$slug = NULL, $icon = NULL , $btn_class = NULL){
-
+    public function scopeToMultiDevice($query,$user_id,$slug = NULL, $type = NULL ,$title = NULL , $icon = NULL , $btn_class = NULL , $body = NULL ,$pic = NULL){
+                                                
         $optionBuilder = new OptionsBuilder();
         $optionBuilder->setTimeToLive(60*20);
 
         $notificationBuilder = new PayloadNotificationBuilder($title);
         $notificationBuilder->setBody($body)
-                            ->setSound('default');
-                            // ->setClickAction('home');
+                            ->setSound('default')
+                            ->setClickAction($slug);
 
         $dataBuilder = new PayloadDataBuilder();
         $dataBuilder->addData([
@@ -67,7 +67,9 @@ class Notification extends Model
             'type' => $type,
             'slug' => $slug,
             'icon' => $icon,
-            'btn_class' => $btn_class
+            'pic' => $pic,
+            'receiver_id' => $user_id,
+            'btn_class' => $btn_class,
         ]);
 
         $option = $optionBuilder->build();
@@ -89,8 +91,8 @@ class Notification extends Model
             // print_r($tokens);exit;
             $downstreamResponse = FCM::sendTo($tokens, $option, $notification, $data);
             // echo $downstreamResponse->numberSuccess();exit;
-            //$downstreamResponse->numberFailure();
-            //$downstreamResponse->numberModification();
+            // echo $downstreamResponse->numberFailure();exit();
+            // echo $downstreamResponse->numberModification();exit();
     
             // return Array - you must remove all this tokens in your database
             $exp_tkns = $downstreamResponse->tokensToDelete();

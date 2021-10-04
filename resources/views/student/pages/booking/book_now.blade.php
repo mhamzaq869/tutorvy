@@ -47,14 +47,16 @@
                                             <div class="row">
                                                 <div class="col-md-2 col-6">
                                                     @if($user->picture == "" || $user->picture == null)
-                                                        <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="round-border">
+                                                        <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="profile-img">
                                                     @else
-                                                        <img src="{{asset($user->picture)}}"  alt="" class="round-border">
+                                                        <img src="{{asset($user->picture)}}"  alt="" class="profile-img">
                                                     @endif
                                                 </div>
-                                                <div class="col-md-5 col-6">
-                                                    <h3 class="mb-0">{{$user->first_name}} </h3>
-                                                    <h3> {{$user->last_name}}</h3>
+                                                <div class="col-md-6 col-6">
+                                                    <h3 class="mb-0">{{$user->first_name}}  {{$user->last_name}}</h3>
+                                                    <p class="mb-0 "><img src="{{asset('assets/images/ico/red-icon.png')}}" alt="" class="pr-2">  {{$user->professional->last()->designation ?? '---'}}</p>
+                                                    <p class="mb-0 "><img src="{{asset('assets/images/ico/location-pro.png')}}" alt="" class="pr-2">{{ $user->city != NULL ? $user->city.' , ' : '---' }} {{ $user->country != NULL ? $user->country: '---' }}</p>
+                                                    
                                                 </div>
                                                 <div class="col-md-4 col-12">
                                                     <p>
@@ -93,31 +95,29 @@
                                         <div class="col-md-3">
                                         @if($user->rank == 0)
                                         <a class="ab_right" href="#" data-toggle="modal"
-                                            data-target="#rankModal">New <img src="/assets/images/ico/bluebadge.png" class="wd-30" alt="" widht="30">
+                                            data-target="#rankModal">New <img src="/assets/images/ico/bluebadge.png" class="wd-30" alt="" width="25">
                                         </a>
                                         @elseif($user->rank == 1)
                                         <a class="ab_right" href="#" data-toggle="modal"
-                                            data-target="#rankModal">Emerging <img src="/assets/images/ico/yellow-rank.png" class="wd-30" alt="" widht="30">
+                                            data-target="#rankModal">Emerging <img src="/assets/images/ico/yellow-rank.png" class="wd-30" alt="" width="25">
                                         </a>
                                         @elseif($user->rank == 2)
                                         <a class="ab_right" href="#" data-toggle="modal"
-                                            data-target="#rankModal">Top Rank <img src="/assets/images/ico/rank.png" class="wd-30" alt="" widht="30">
+                                            data-target="#rankModal">Top Rank <img src="/assets/images/ico/rank.png" class="wd-30" alt="" width="25">
                                         </a>
                                         @else
                                         <a class="ab_right" href="#" data-toggle="modal"
-                                            data-target="#rankModal">Upgrade badge <img src="/assets/images/ico/rank.png" class="wd-30" alt="" widht="30">
+                                            data-target="#rankModal">Upgrade badge <img src="/assets/images/ico/rank.png" class="wd-30" alt="" width="25">
                                         </a>
                                         @endif
                                         </div>
-                                        <div class="col-md-4">
-                                            <p class="mb-0 "><img src="{{asset('assets/images/ico/red-icon.png')}}" alt="" class="pr-2">  {{$user->professional->last()->designation ?? '---'}}</p>
+                                        <!-- <div class="col-md-4">
                                         </div>
                                         <div class="col-md-4">
-                                            <p class="mb-0 "><img src="{{asset('assets/images/ico/location-pro.png')}}" alt="" class="pr-2">{{ $user->city != NULL ? $user->city.' , ' : '---' }} {{ $user->country != NULL ? $user->country: '---' }}</p>
                                         </div>
                                         <div class="col-md-4">
                                             <p class="mb-0 "><img src="{{asset('assets/images/ico/language.png')}}" alt="" class="pr-2">{{ $user->lang_short != NULL ? $user->lang_short : '---' }}</p>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -140,7 +140,7 @@
                     <div class="row mt-3">
                         <div class="col-md-12">
                             <label for="" class="col-md-12 pl-0"><b>Upload any attachment if you want</b></label>
-                            <input type="file" class="form-control dropify" name="upload" id="" required>
+                            <input type="file" class="form-control dropify" name="upload" id="" >
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -157,11 +157,8 @@
                     <div class="row mt-3">
                         <div class="col-12" >
                             
-                            <button id="finish" type="submit"  
-                                class="btn-general pull-right  mb-3" is="saveBtn">
-                                &nbsp; Send Request &nbsp;
-                            </button>
-                            <button type="button" role="button" type="button" id="proBtn" disabled class="btn btn-primary pull-right mb-3" style="display:none">
+                            <button id="finish" type="submit"class="btn-general pull-right  mb-3">  Send Request </button>
+                            <button type="button" role="button" type="button" id="proBtn" disabled class="btn btn-primary pull-right mb-3 mr-2" style="width:140px; display:none">
                                 <i class="fa fa-circle-o-notch fa-spin fa-1x fa-fw"></i> <span class="sr-only">Loading...</span> Processing </button>
                         </div>
                     </div>

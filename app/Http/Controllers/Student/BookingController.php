@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\General\GeneralController;
+use App\Http\Controllers\General\NotifyController;
 use App\Models\Booking;
 use App\Models\Classroom;
 use App\Models\User;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\General\Teach;
 use App\Models\Admin\tktCat;
 use App\Models\Admin\supportTkts;
+use App\Models\Admin\Subject;
 use Illuminate\Support\Facades\URL;
 use Session;
 use Redirect;
@@ -48,15 +50,17 @@ class BookingController extends Controller
     
     public function index()
     {
+       
         $all = Booking::with(['tutor'])->where('user_id',Auth::user()->id)->get();
-        
-        $confirmed = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(2)->get();
         $pending = Booking::with('tutor')->where('user_id',Auth::user()->id)->whereIn('status',[0,1])->get();
+        $confirmed = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(2)->get();
+        
+        $completed = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(5)->get();
+        $cancelled = Booking::with('tutor')->where('user_id',Auth::user()->id)->whereIn('status',[3,4])->get();
 
-        $delivered = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(5)->get();
-        $booking = Booking::where('user_id',Auth::user()->id)->first();
-        // return $pending;
-        return view('student.pages.booking.index',compact('confirmed','pending','delivered','booking','all'));
+        $commission = DB::table("sys_settings")->first();
+        
+        return view('student.pages.booking.index',compact('confirmed','pending','completed','cancelled','all','commission'));
     }
 
     public function bookNow($t_id){
@@ -69,6 +73,19 @@ class BookingController extends Controller
 
         $booking = Booking::with(['tutor','user','subject'])->where('id',$id)->first();
         return view('student.pages.booking.booking_detail',compact('booking'));
+    }
+    public function bookingNew(Request $request){
+
+        $booking = Booking::with(['tutor','user','subject'])->where('id',$request->id)->first();
+        $commission = $commission = DB::table("sys_settings")->first();
+
+        return response()->json([
+            'status_code'=>200,
+            'success' => true,
+            'booking' => $booking,
+            'commission' => $commission,
+        ]);
+        
     }
     public function directBooking($id)
     {
@@ -103,14 +120,33 @@ class BookingController extends Controller
         
         ]);
 
-        $subject_name = DB::table("subjects")->where("id",$request->subject)->value("name");
+        $subject = Subject::where("id",$request->subject)->first();
 
         // activity logs
         $id = Auth::user()->id; 
         $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
-        $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> request for book a class of '.$subject_name ;
+        $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> request for book a class of '.$subject->name ;
         $activity_logs = new GeneralController();
         $activity_logs->save_activity_logs("Class Booking", "bookings.id", $booking->id, $action_perform, $request->header('User-Agent'), $id);
+        $reciever_ids = [];
+
+        $reciever = User::where('role',1)->first();
+        array_push($reciever_ids , $reciever->id);
+        array_push($reciever_ids , $request->tutor_id);
+        
+        for($i =0; $i < count($reciever_ids); $i++) {
+            $notification = new NotifyController();
+            $reciever_id = $reciever_ids[$i];
+            $slug = URL::to('/') . '/tutor/booking-detail/'. $booking->id  ;
+            $type = 'class_booking';
+            $title = 'Class Booking Request';
+            $icon = 'fas fa-tag';
+            $class = 'btn-success';
+            $desc = $name . ' request for book a class of '.$subject->name;
+            $pic = Auth::user()->picture;
+
+            $notification->GeneralNotifi($reciever_id ,$slug,$type,$title,$icon,$class,$desc,$pic);
+        }
 
         return response()->json([
             'status'=>200,
@@ -121,12 +157,22 @@ class BookingController extends Controller
    
     public function bookingPayment(Request $request,$id){
 
+        $total_price = 0;
         $booking = Booking::where('id',$request->id)->first();
+        $commission = DB::table("sys_settings")->first();
+                
+        if($commission) {
+            $comm = ($booking->price * $commission->commission) / 100;
+            $total_price = $booking->price + $comm;
+        }else{
+            $total_price = $booking->price;
+        }
+        
         if(!$booking){
             \Session::put('error','Unable to process booking not available.');
             return Redirect::route('student.bookings'); 
         }
-        if($booking->price == null || $booking->price == 0.00){
+        if($total_price == null || $total_price == 0.00 || $total_price == 0){
             \Session::put('error','Unable to process booking with invalid amount.');
             return Redirect::route('student.bookings'); 
         }
@@ -138,14 +184,14 @@ class BookingController extends Controller
         $item_1->setName('Online Class')
             ->setCurrency('USD')
             ->setQuantity(1)
-            ->setPrice($booking->price);
+            ->setPrice($total_price);
 
         $item_list = new ItemList();
         $item_list->setItems(array($item_1));
 
         $amount = new Amount();
         $amount->setCurrency('USD')
-            ->setTotal($booking->price);
+            ->setTotal($total_price);
 
         $transaction = new Transaction();
         $transaction->setAmount($amount)
@@ -182,7 +228,8 @@ class BookingController extends Controller
         
         Session::put('paypal_payment_id', $payment->getId());
         Session::put('booking_id', $booking->id);
-        
+
+
         if(isset($redirect_url)) {            
             return Redirect::away($redirect_url);
         }
@@ -196,8 +243,7 @@ class BookingController extends Controller
     {        
         $payment_id = Session::get('paypal_payment_id');
         $booking_id = Session::get('booking_id');
-
-
+       
         Session::forget('paypal_payment_id');
         if (empty($request->input('PayerID')) || empty($request->input('token'))) {
             \Session::put('error','Payment failed');
@@ -220,6 +266,8 @@ class BookingController extends Controller
             );
             // return $red;
             $booking = Booking::where('id',$booking_id)->first();
+            $subject = Subject::where('id',$booking->subject_id)->first();
+
             Classroom::create([
                 'booking_id' => $booking_id,
                 'classroom_id' => $classroom_id
@@ -227,9 +275,30 @@ class BookingController extends Controller
             $booking->status = 2;
             $booking->save();
 
+            $id = Auth::user()->id;
+            $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+            $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> Payment success';
+            $activity_logs = new GeneralController();
+            $activity_logs->save_activity_logs("Payment Success", "users.id", $id, $action_perform, $request->header('User-Agent'), $id);
+
+            $admin = User::where('role',1)->first();
+
+            $notification = new NotifyController();
+            $slug = URL::to('/') . '/tutor/booking-detail/' . $booking->id;
+            $type = 'booking_confirmed';
+            $title = 'Booking Confirmed';
+            $icon = 'fas fa-tag';
+            $class = 'btn-success';
+            $desc = $name . ' Paid for Class of ' . $subject->name;
+            $pic = Auth::User()->picture;
+            $notification->GeneralNotifi($booking->booked_tutor ,$slug,$type,$title,$icon,$class,$desc,$pic);
+
+            // send to admin
+            $admin_slug = URL::to('/') . '/admin/booking-detail/' . $booking->id;
+            $notification->GeneralNotifi($admin->id,$admin_slug,$type,$title,$icon,$class,$desc,$pic);
+
             return Redirect::route('student.bookings');
         }
-
         \Session::put('error','Payment failed !!');
 		return Redirect::route('student.bookings');
     }

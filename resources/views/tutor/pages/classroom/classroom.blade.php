@@ -41,7 +41,7 @@
 }
 
 #other-videos video {
-    width: 45%;
+    width: 100%;
     margin: 5px;
     border: 1px solid black;
     padding: 1px;
@@ -63,29 +63,25 @@
 #conversation-panel {
     margin-bottom: 20px;
     text-align: left;
-    max-height: 200px;
+    max-height: 365px;
     overflow: auto;
     border-top: 1px solid #E5E5E5;
-    width: 106%;
+    width: 100%;
 }
 
 #conversation-panel .message {
     border-bottom: 1px solid #E5E5E5;
     padding: 5px 10px;
+
+}
+.bg-chat-head{
+    background-color:#fefefe !important;
 }
 
 #conversation-panel .message img, #conversation-panel .message video, #conversation-panel .message iframe {
     max-width: 100%;
 }
 
-#main-video {
-    width: 100%;
-    margin-top: -9px;
-    border-bottom: 1px solid #121010;
-    display: none;
-    padding-bottom: 1px;
-    display: none;
-}
 
 hr {
     height: 1px;
@@ -125,7 +121,6 @@ hr {
 .h-500{
     height:500px !important;
 }
-<style>
    .container-police {
   display: grid;
   /* min-width: 1250px; */
@@ -244,15 +239,15 @@ hr {
 }
 
 /* Chat Box */
-.h-360{
-  height:360px;
+.h-290{
+  height:290px;
   overflow-y:auto;
 }
 .chatInput{
 height:25px;
 }
 #canvas {
-  background-image:url("../assets/images/ico/graph.png")
+  /* background-image:url("../assets/images/ico/graph.png") */
 }
 #display{
     border: none;
@@ -265,27 +260,93 @@ height:25px;
 .btnNum{
     background:#fff;
 }
-td input{
+/* td input{
     width: 163px !important;
-}
+} */
 .ck p{
     height:400px !important;
 }
 
+.w-20{
+    width:20px;
+}
+.mk,
+.vc{
+    display:none;
+}
+.tech_weck-none{
+    display:none !important;
+}
+.w-22{
+    width:22%;
+}
 
+#countdownExample{
+    font-family:'Orbitron';
+}
+.h-35{
+    height:35px;
+}
+.nav-whiteBoard-nav{
+    border-bottom:2px solid #D6DBE2;
+}
+.switch {
+    width: 50px !important;
+    height: 30px !important;
+}
+.round {
+    position: absolute;
+    top: -15px !important;
+    left: 10px;
+    bottom: 25px !important;
+}
+.bright{
+    position:absolute;
+    right:0;
+    top: 17px;
+}
+.bright input:checked+.slider {
+    background-color: #1173ff;
+}
+
+/*End Call Button */
+.endBtn{
+    padding: 2px 11px 6px 9px;
+}
+.vid-btn {
+    position: absolute !important;
+    bottom: 6px;
+    left: 0px;
+}
+.btn-outline-danger{
+    border:1px solid red;
+}
+/*End Call Button End*/
 
 </style>
 @section('content')
  <!-- top Fixed navbar End -->
  <section>
+
+ <!--  -->
+    <input type="hidden" id="class_room_id" value="{{$class->id}}">
+    <input type="hidden" id="current_user_id" value="{{Auth::user()->id}}">
+
     <div class="content-wrapper " style="overflow: hidden;">
         <div class="container-fluid">
-            <div class="row mb-5">
-                <div class="col-md-9 card"> 
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <div id="countdownExample">
+                        <!-- <div class="values"></div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="row  tech_weck tech_weck-none">
+                <div class="col-md-9 "> 
                     <div class="row">
-                        <div class="col-md-12 mt-3">
+                        <div class="col-md-12 ">
                                 <nav class="">
-                                    <div class="nav nav-stwich nav-whiteBoard-nav pb-0" id="nav-tab" role="tablist">
+                                    <div class="nav nav-stwich nav-whiteBoard-nav pb-0" id="nav-tab" role="tablist" >
                                         <a class="nav-item nav-link active" id="nav-whiteBoard-tab" data-toggle="tab" href="#nav-whiteBoard" role="tab" aria-controls="nav-whiteBoard" aria-selected="true">
                                             White Board
                                         </a>
@@ -301,162 +362,39 @@ td input{
                                         <a class="nav-item nav-link" id="nav-googleDocs-tab" data-toggle="tab" href="#nav-googleDocs" role="tab" aria-controls="nav-googleDocs" aria-selected="false">
                                             Google Docs
                                         </a>
-                                        <a class="nav-item nav-link" id="nav-fileShare-tab" data-toggle="tab" href="#nav-fileShare" role="tab" aria-controls="nav-fileShare" aria-selected="false">
+                                        <!-- <a class="nav-item nav-link" id="nav-fileShare-tab" data-toggle="tab" href="#nav-fileShare" role="tab" aria-controls="nav-fileShare" aria-selected="false">
                                             File Sharing
-                                        </a>
+                                        </a> -->
+                                        <span class="bright">
+                                            <label > Share Screen </label>   
+                                                    <label class="switch  ml-2" style="">
+                                                        <input type="checkbox" class="s_status" val_id="3" val_st="1" checked="">
+                                                        <!-- <input type="checkbox" class="s_status" val_id="3" val_st="1 "  checked -->
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                        </span>
                                     </div>
                                 </nav>
-                                <div class="tab-content" id="nav-tabContent">
-                                <div class="tab-pane tab-border-none tab-border-none-1 fade show active" id="nav-whiteBoard" role="tabpanel" aria-labelledby="nav-whiteBoard-tab">
-                                    <div class="container-fluid ">
-                                        <div class="row ">
-                                            <div class="col-md-12">
+                                <div class="tab-content mt-3" id="nav-tabContent">
+                                    <div class="tab-pane tab-border-none tab-border-none-1 fade show active" id="nav-whiteBoard" role="tabpanel" aria-labelledby="nav-whiteBoard-tab">
+                                        <div class="container-fluid ">
+                                            <div class="row ">
+                                                <div class="col-md-12">
                                                 <nav>
-                                                    <div class="nav nav-tabs board-nav" id="nav-tab" role="tablist">
-                                                        <!-- <a class="nav-item nav-link board-nav active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Board 1 <i class="pl-2 fa fa-times text-dark"></i></a> -->
-                                                        <!-- <a class="nav-item nav-link board-nav active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Board </a> -->
-                                                        <!-- <a class="nav-item nav-link board-nav" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Board 2 <i class="pl-2 fa fa-times text-dark"></i></a>
-                                                        <a class="mt-2 ml-2" href="#">Add new Board +</a> -->
+                                                    <div class="nav nav-tabs board-nav ml-0 pl-0 newTabs" id="nav-tab" role="tablist">
+                                                        <a class="nav-item nav-link board-nav active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Board 1 </a>
+                                                        <a class="mt-2 ml-2" href="#" id="addNewBoard">Add new Board +</a>
                                                     </div>
                                                 </nav>
-                                                <div class="tab-content" id="nav-tabContent">
-                                                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                                        <!-- <div class="row">
-                                                            <div class="col-md-1 mt-2 p-0">
-                                                                <ul class=" text-center pl-0">
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/pointer.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/drag.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="pen">
-                                                                            <img src="{{asset('assets/images/ico/pencil.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="eraser">
-                                                                            <img src="{{asset('assets/images/ico/eraser.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="rect">
-                                                                            <img src="{{asset('assets/images/ico/rectangle.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/ellipse.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="line">
-                                                                            <img src="{{asset('assets/images/ico/line.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/text.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/diagonal.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/fx.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="clear">
-                                                                            C
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-md-11 mt-3 p-0">
-                                                                <canvas id="canvas" width="750" height="450"></canvas>
-                                                            </div> 
-                                                        </div> -->
+                                                <div class="tab-content newWhite" id="nav-tabContent">
+                                                    <div class="tab-pane whitePane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                                         <div class="row">
-                                                            <div class="col-md-12 h-500 mt-5 mb-5">
-                                                                <div id="widget-container" style=""></div>
+                                                            <div class="col-md-12 h-500 mb-5">
+                                                                <div id="widget-container"  style=""></div>
                                                                 <video id="screen-viewer"  playsinline ></video>
+                                                                
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                                        <!-- <div class="row">
-                                                            <div class="col-md-1 mt-2 p-0">
-                                                                <ul class=" text-center pl-0">
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/pointer.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/drag.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="pen">
-                                                                            <img src="{{asset('assets/images/ico/pencil.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="eraser">
-                                                                            <img src="{{asset('assets/images/ico/eraser.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="rect">
-                                                                            <img src="{{asset('assets/images/ico/rectangle.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/ellipse.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="line">
-                                                                            <img src="{{asset('assets/images/ico/line.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/text.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/diagonal.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#">
-                                                                            <img src="{{asset('assets/images/ico/fx.png')}}" alt="">
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="p-2">
-                                                                        <a href="#" id="clear">
-                                                                            C
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-md-11 mt-3 p-0">
-                                                                <canvas id="canvas" width="750" height="500"></canvas>
-                                                            </div> 
-                                                        </div> -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -471,86 +409,86 @@ td input{
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <form action="" class="mt-5">
                                                     <table class="w-100">
-                                                            <tr>
-                                                                <input id="display" name="display" value="0" size="28" maxlength="25">
-                                                            </tr>
-                                                            <tr>
-                                                                <div class="mt-3 mb-2 ">
-                                                                    <a href="Deg" class="p-5 text-dark ">DEG</a>
-                                                                    <a href="F-E" class="p-5 text-dark ">F-E</a>
-                                                                </div>
-                                                            </tr>
-                                                            <tr >
-                                                                <div class="mt-3 mb-2 text-dark">
-                                                                    <a href="MC" class="p-5 text-dark">MC</a>
-                                                                    <a href="MR" class="p-5 text-dark">MR</a>
-                                                                    <a href="M+" class="p-5 text-dark">M+</a>
-                                                                    <a href="M-" class="p-5 text-dark">M-</a>
-                                                                    <a href="MS" class="p-5 text-dark">Ms</a>
-                                                                </div>
+                                                        <tr>
+                                                            <input id="display" name="display" value="0" size="28" maxlength="25">
+                                                        </tr>
+                                                        <tr>
+                                                            <div class="mt-3 mb-2 ">
+                                                                <a href="Deg" class="p-5 text-dark ">DEG</a>
+                                                                <a href="F-E" class="p-5 text-dark ">F-E</a>
+                                                            </div>
+                                                        </tr>
+                                                        <tr >
+                                                            <div class="mt-3 mb-2 text-dark">
+                                                                <a href="MC" class="p-5 text-dark">MC</a>
+                                                                <a href="MR" class="p-5 text-dark">MR</a>
+                                                                <a href="M+" class="p-5 text-dark">M+</a>
+                                                                <a href="M-" class="p-5 text-dark">M-</a>
+                                                                <a href="MS" class="p-5 text-dark">Ms</a>
+                                                            </div>
+                                                        
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                            <input type="button" class="btnMath" name="btnMath" value="Trignometry" onclick="addChar(this.form.display,')')">
+                                                            </td>
+                                                            <td><input type="button" class="btnMath" name="btnMath" value="f Functions " onclick="addChar(this.form.display,')')"></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="button" class="btnOpps" name="btnOpps" value="2nd" onclick="addChar(this.form.display,'3.14159265359')"></td>
+                                                            <td><input type="button" class="btnMath" name="btnMath" value="Pi" onclick="if(checkNum(this.form.display.value)) { tan(this.form) }"></td>
+                                                            <td><input type="button" class="btnMath" name="btnMath" value="e" onclick=" percent(this.form.display)"></td>
+                                                            <td><input type="button" class="btnTop" name="btnTop" value="C" onclick="this.form.display.value=  0 "></td>
+                                                            <td><input type="button" class="btnTop" name="btnTop" value="AC" onclick="deleteChar(this.form.display)"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="button" class="btnMath" name="btnMath" value="x2" onclick="addChar(this.form.display, '(')"></td>
+                                                            <td><input type="button" class="btnMath" name="btnMath" value="|x|" onclick="addChar(this.form.display,')')"></td>
+                                                            <td><input type="button" class="btnMath" name="btnMath" value="10x" onclick="if(checkNum(this.form.display.value)) { cos(this.form) }"></td>
+                                                            <td><input type="button" class="btnMath" name="btnMath" value="exp" onclick="if(checkNum(this.form.display.value)) { sin(this.form) }"></td>
+                                                            <td><input type="button" class="btnMath" name="btnMath" value="mod" onclick="if(checkNum(this.form.display.value)) { tan(this.form) }"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="button" class="btnMath" name="btnMath" value="2/x" onclick="addChar(this.form.display,')')"></td>
+                                                            <td><input type="button" class="btnMath" name="btnMath" value="(" onclick="if(checkNum(this.form.display.value)) { cos(this.form) }"></td>
+                                                            <td><input type="button" class="btnMath" name="btnMath" value=")" onclick="if(checkNum(this.form.display.value)) { sin(this.form) }"></td>
                                                             
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                <input type="button" class="btnMath" name="btnMath" value="Trignometry" onclick="addChar(this.form.display,')')">
-                                                                </td>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="f Functions " onclick="addChar(this.form.display,')')"></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><input type="button" class="btnOpps" name="btnOpps" value="2nd" onclick="addChar(this.form.display,'3.14159265359')"></td>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="Pi" onclick="if(checkNum(this.form.display.value)) { tan(this.form) }"></td>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="e" onclick=" percent(this.form.display)"></td>
-                                                                <td><input type="button" class="btnTop" name="btnTop" value="C" onclick="this.form.display.value=  0 "></td>
-                                                                <td><input type="button" class="btnTop" name="btnTop" value="AC" onclick="deleteChar(this.form.display)"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="x2" onclick="addChar(this.form.display, '(')"></td>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="|x|" onclick="addChar(this.form.display,')')"></td>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="10x" onclick="if(checkNum(this.form.display.value)) { cos(this.form) }"></td>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="exp" onclick="if(checkNum(this.form.display.value)) { sin(this.form) }"></td>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="mod" onclick="if(checkNum(this.form.display.value)) { tan(this.form) }"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="2/x" onclick="addChar(this.form.display,')')"></td>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="(" onclick="if(checkNum(this.form.display.value)) { cos(this.form) }"></td>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value=")" onclick="if(checkNum(this.form.display.value)) { sin(this.form) }"></td>
-                                                                
-                                                                <td><input type="button" class="btnOpps" name="btnOpps" value="n!" onclick="if(checkNum(this.form.display.value)) { exp(this.form) }"></td>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="/" onclick="addChar(this.form.display, '/')"></td>
-                                                            <tr>
-                                                            <td><input type="button" class="btnOpps" name="btnOpps" value="ln" onclick="if(checkNum(this.form.display.value)) { ln(this.form) }"></td>
+                                                            <td><input type="button" class="btnOpps" name="btnOpps" value="n!" onclick="if(checkNum(this.form.display.value)) { exp(this.form) }"></td>
+                                                            <td><input type="button" class="btnMath" name="btnMath" value="/" onclick="addChar(this.form.display, '/')"></td>
+                                                        <tr>
+                                                        <td><input type="button" class="btnOpps" name="btnOpps" value="ln" onclick="if(checkNum(this.form.display.value)) { ln(this.form) }"></td>
 
-                                                                <td><input type="button" class="btnNum" name="btnNum" value="7" onclick="addChar(this.form.display, '7')"></td>
-                                                                <td><input type="button" class="btnNum" name="btnNum" value="8" onclick="addChar(this.form.display, '8')"></td>
-                                                                <td><input type="button" class="btnNum" name="btnNum" value="9" onclick="addChar(this.form.display, '9')"></td>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="X" onclick="addChar(this.form.display, '*')"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><input type="button" class="btnOpps" name="btnOpps" value="Xy" onclick="if(checkNum(this.form.display.value)) { sqrt(this.form) }"></td>
-                                                                <td><input type="button" class="btnNum" name="btnNum" value="4" onclick="addChar(this.form.display, '4')"></td>
-                                                                <td><input type="button" class="btnNum" name="btnNum" value="5" onclick="addChar(this.form.display, '5')"></td>
-                                                                <td><input type="button" class="btnNum" name="btnNum" value="6" onclick="addChar(this.form.display, '6')"></td>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="-" onclick="addChar(this.form.display, '-')"></td>
-                                                            </tr>
-                                                            <tr>
-                                                            <td><input type="button" class="btnOpps" name="btnOpps" value="10x" onclick="if(checkNum(this.form.display.value)) { square(this.form) }"></td>
-                                                            <td><input type="button" class="btnNum" name="btnNum" value="1" onclick="addChar(this.form.display, '1')"></td>
-                                                                <td><input type="button" class="btnNum" name="btnNum" value="2" onclick="addChar(this.form.display, '2')"></td>
-                                                                <td><input type="button" class="btnNum" name="btnNum" value="3" onclick="addChar(this.form.display, '3')"></td>
-                                                            
-                                                            
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="+" onclick="addChar(this.form.display, '+')"></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td><input type="button" class="btnMath" name="btnMath" value="ln" onclick="addChar(this.form.display, '(')"></td>
-                                                                <td><input type="button" class="btnMath btnNum" name="btnMath" value="+/-" onclick="changeSign(this.form.display)"></td>
-                                                                <td><input type="button" class="btnNum" name="btnNum" value="0" onclick="addChar(this.form.display, '0')"></td>
-                                                                <td><input type="button" class="btnMath btnNum" name="btnMath" value="&#46;" onclick="addChar(this.form.display, '&#46;')"></td>
-                                                                <td><input type="button"  class="btnTop equal" name="btnTop" value="=" onclick="if(checkNum(this.form.display.value)) { compute(this.form) }"></td>
-                                                            </tr>
+                                                            <td><input type="button" class="btnNum" name="btnNum" value="7" onclick="addChar(this.form.display, '7')"></td>
+                                                            <td><input type="button" class="btnNum" name="btnNum" value="8" onclick="addChar(this.form.display, '8')"></td>
+                                                            <td><input type="button" class="btnNum" name="btnNum" value="9" onclick="addChar(this.form.display, '9')"></td>
+                                                            <td><input type="button" class="btnMath" name="btnMath" value="X" onclick="addChar(this.form.display, '*')"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="button" class="btnOpps" name="btnOpps" value="Xy" onclick="if(checkNum(this.form.display.value)) { sqrt(this.form) }"></td>
+                                                            <td><input type="button" class="btnNum" name="btnNum" value="4" onclick="addChar(this.form.display, '4')"></td>
+                                                            <td><input type="button" class="btnNum" name="btnNum" value="5" onclick="addChar(this.form.display, '5')"></td>
+                                                            <td><input type="button" class="btnNum" name="btnNum" value="6" onclick="addChar(this.form.display, '6')"></td>
+                                                            <td><input type="button" class="btnMath" name="btnMath" value="-" onclick="addChar(this.form.display, '-')"></td>
+                                                        </tr>
+                                                        <tr>
+                                                        <td><input type="button" class="btnOpps" name="btnOpps" value="10x" onclick="if(checkNum(this.form.display.value)) { square(this.form) }"></td>
+                                                        <td><input type="button" class="btnNum" name="btnNum" value="1" onclick="addChar(this.form.display, '1')"></td>
+                                                            <td><input type="button" class="btnNum" name="btnNum" value="2" onclick="addChar(this.form.display, '2')"></td>
+                                                            <td><input type="button" class="btnNum" name="btnNum" value="3" onclick="addChar(this.form.display, '3')"></td>
+                                                        
+                                                        
+                                                            <td><input type="button" class="btnMath" name="btnMath" value="+" onclick="addChar(this.form.display, '+')"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="button" class="btnMath" name="btnMath" value="ln" onclick="addChar(this.form.display, '(')"></td>
+                                                            <td><input type="button" class="btnMath btnNum" name="btnMath" value="+/-" onclick="changeSign(this.form.display)"></td>
+                                                            <td><input type="button" class="btnNum" name="btnNum" value="0" onclick="addChar(this.form.display, '0')"></td>
+                                                            <td><input type="button" class="btnMath btnNum" name="btnMath" value="&#46;" onclick="addChar(this.form.display, '&#46;')"></td>
+                                                            <td><input type="button"  class="btnTop equal" name="btnTop" value="=" onclick="if(checkNum(this.form.display.value)) { compute(this.form) }"></td>
+                                                        </tr>
                                                     </table>
                                                 </form>
                                             </div>
@@ -609,38 +547,86 @@ td input{
                                             </div>
                                         </div>
                                     </div>
-                                <!-- end -->
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <!-- <div class="row mt-3 mb-3">
-                    <div class="col-md-12">
-                            <video class="callNew" autoplay muted></video>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                Chat <i class="fa fa-person"></i>
+                    <div class="row mt-3 mb-3">
+                        <div class="col-md-12">
+                            <video id="main-video"  playsinline autoplay></video>
+                            <div id="other-videos"  playsinline autoplay></div>
+                            <div class="col-md-12 mt-2 mb-2 vid-location vid-btn text-left">
+                                <!-- <button class="btn-danger btn h-35 w-100 pb-0 pt-0 ">End Call</button> -->
+                                <!-- <a href="#" class="btn-outline-danger rounded-circle endBtn ">
+                                    <i class="fa fa-times"></i>
+                                </a> -->
+                                <canvas id="temp-stream-canvas" style="display: none;"></canvas>
+                                <a href="#" class="callSet  no-ph">
+                                    <img src="{{asset('assets/images/ico/no-phone.png')}}" title="End Call" alt="">
+                                </a>
                             </div>
-                            <div class="card-body h-360">
-
-                            </div>
-                            <div class="card-footer">
-                                <div class="row">
-                                <div class="col-md-12">
-                                    <input type="text" class="chatInput">
-
+                        </div>
+                        
+                        <div style="col-md-12 padding: 5px 10px;">
+                            <div id="onUserStatusChanged"></div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header bg-chat-head">
+                                    Chat <i class="fa fa-person"></i>
                                 </div>
+                                <div class="card-body h-290" id="conversation-panel">
+                                    <div class='text-center mb-3'>
+                                        <small>
+                                            Your all communications will be monitored for maintaining quality, will not share your personal information. 
+                                        </small>
+                                        <small>
+                                            <a href="#">View Privacy Policy</a>
+                                        </small>
+                                    </div>
+                                    <div id="key-press" style="text-align: right; display: none; font-size: 11px;">
+                                        <span style="vertical-align: middle;"></span>
+                                        <img src="https://www.webrtc-experiment.com/images/key-press.gif" style="height: 12px; vertical-align: middle;">
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-chat-head">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <textarea id="txt-chat-message" style="display:none;" ></textarea>
+                                            <div id="check"></div>
+                                            <a type="button" id="btn-chat-message" disabled><i class="fa fa-paper-plane-o paper" aria-hidden="true"></i></a>
+                                            <a id="btn-attach-file" type="button"><i class="fa fa-paperclip clip" aria-hidden="true"></i></a>
+                                            <!-- <img id="btn-attach-file" src="https://www.webrtc-experiment.com/images/attach-file.png" title="Attach a File"> -->
+                                            <img id="btn-share-screen" src="https://www.webrtc-experiment.com/images/share-screen.png" title="Share Your Screen">
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    </div> -->
-                    <div class="mt-5">
+                    <!-- <div class="mt-5">
                         <video id="main-video"  playsinline autoplay></video>
+                        <div class="col-md-12 mt-2 mb-2 vid-location text-center">
+                            <a href="#" class="callSet vc">
+                                <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
+                            </a>
+                            <a href="#" class="callSet no-vc">
+                                <img src="{{asset('assets/images/ico/no-vc.png')}}" title="With Video" alt="">
+                            </a>
+                            <a href="#" class="callSet mk" id="mk">
+                                <img src="{{asset('assets/images/ico/mike.png')}}" title="Without Audio" alt="">
+                            </a>
+                            <a href="#" class="callSet no-mk">
+                                <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
+                            </a>
+                            <a href="#" class="callSet no-ph">
+                                <img src="{{asset('assets/images/ico/no-phone.png')}}" title="End Call" alt="">
+                            </a>
+                            <button class="btn-danger btn h-35 w-100 pb-0 pt-0 no-ph">End Call</button>
+                        </div>
                         <div id="other-videos"></div>
                         <hr>
                         <div style="padding: 5px 10px;">
@@ -660,30 +646,174 @@ td input{
                             <img id="btn-share-screen" src="https://www.webrtc-experiment.com/images/share-screen.png" title="Share Your Screen">
                         </div>
 
-                        <canvas id="temp-stream-canvas" style="display: none;"></canvas>
-                    </div>
+                        
+                    </div> -->
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+ <!-- End Call Modal -->
+ <!-- <div class="modal fade custom_modal" id="endCall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+            <div class="modal-body bg-custom text-center p-5">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="p-2"> <img src="{{asset('assets/images/logo-footer.png')}}" alt="">
+                        </h1>
+                        <h3 class="mb-4 p-2"> Are you a</h3>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="bg-btn-light">
+                            <a type="button" id="rescue" class="btn  modal-btn animate__animated">Re-schedule</a>
+                            <a type="button" id="ending"  class="btn  modal-btn animate__animated">End Call</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+ 
+ 
+    <!-- Modal -->
+ 
+<div class="modal" id="callModal" tabindex="-1" role="dialog"
+    aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <!-- <div class="modal-header">
+                <h5 class="modal-title" id="callModalTitle">Choose Features</h5>
+                <button type="button" class="close" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div> -->
+            <div class="modal-body bg-black" >
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        @if($user->picture)
+                            <img src="{{asset($user->picture)}}" class="profile-img pg" alt="">
+                        @else
+                            <img src="{{asset('assets/images/ico/Square-white.jpg')}}" class="profile-img pg" alt="">
+                        @endif
+                    </div>
+                    <div class="col-md-12 text-center mt-3">
+
+                        <!-- <a href="#" class="callSet vc">
+                           <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
+                        </a>
+                        <a href="#" class="callSet no-vc ">
+                           <img src="{{asset('assets/images/ico/no-vc.png')}}" title="With Video" alt="">
+                        </a>
+                        <a href="#" class="callSet mk" id="mk">
+                            <img src="{{asset('assets/images/ico/mike.png')}}" title="Without Audio" alt="">
+                        </a>
+                        <a href="#" class="callSet no-mk">
+                            <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
+                        </a> -->
+                        <a type="button" role="button" id="join_now"  class="btn btn-success ml-2">
+                            Start Class
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- End Call Modal -->
+<div class="modal fade " id="endCall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Do you want to end the call?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center ">
+                    <button type="button" class="btn-general " id="endCallYes">End Call</button>
+                    <button type="button" class="btn-outline-general " data-dismiss="modal"> Not Yet </button>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
 @endsection
 @section('scripts')
 @include('js_files.whiteBoard')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.2.7/emojionearea.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
 <script>
-        ClassicEditor
-            .create( document.querySelector( '#editor' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-            function cheng(){
-                var ter = $(this).html();
-                alert(ter);
-                $('.language-html').text(ter);
-            }
-    </script>
-    <script>
+    $(document).ready(function(){
+        // $(".tech_weck").hide();
+        $(".mk").hide();
+        $(".vc").hide();
+        $("#callModal").modal("show");
+        $("#join_now").attr("disabled","disabled" );
+
+        saveClassLogs();
+
+    })
+
+    // $("#join_now").click(function(){
+    //     $(".tech_weck").show();;
+    //     $("#callModal").modal("hide");
+    //     joinClass();
+    // })
+    $(".no-mk").click(function(){
+       
+        $(".no-mk").hide();
+        $(".mk").show();
+    });
+    $(".mk").click(function(){
+       
+        $(".no-mk").show();
+        $(".mk").hide();
+    });
+    $(".no-vc").click(function(){
+       
+       $(".no-vc").hide();
+       $(".vc").show();
+   });
+   $(".vc").click(function(){
+      
+       $(".vc").hide();
+       $(".no-vc").show();
+   });
+   $(".no-ph").click(function(){
+        $("#endCall").modal("show");
+    });
+    
+</script>
+
+
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+        function cheng(){
+            var ter = $(this).html();
+            alert(ter);
+            $('.language-html').text(ter);
+        }
+</script>
+
+<script>
+
+
+var connection = new RTCMultiConnection();
+var roomid = '{{$class->classroom_id}}';
+var fullName = '{{$booking->tutor->first_name}} {{$booking->tutor->last_name}}';
+
+
 (function() {
     var params = {},
         r = /([^&=]+)=?([^&]*)/g;
@@ -697,17 +827,66 @@ td input{
     window.params = params;
 })();
 
-var connection = new RTCMultiConnection();
-var roomid = '{{$class->classroom_id}}';
-var fullName = '{{$class->booking->tutor->first_name}} {{$class->booking->tutor->last_name}}';
+//connection.socketURL = '/';
+// connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+// connection.socketURL = 'https://tutorvy.herokuapp.com:443/';
+connection.socketURL = 'https://tutorvy.herokuapp.com:443/';
 
-// connection.socketURL = '/';
-connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
 
-connection.extra.userFullName = params.userFullName;
+connection.extra.userFullName = fullName;
+connection.DetectRTC.load(function() {
+            console.log(connection.DetectRTC);
+                        if (connection.DetectRTC.hasMicrophone === true) {
+                            // enable microphone
+                            connection.mediaConstraints.audio = true;
+                            connection.session.audio = true;
+                            alert('attach true microphone')
+                            $(".no-mk").show();
+                            $("#join_now").removeAttr("disabled","disabled" );
+                                $("#join_now").click(function(){
+                                    $(".tech_weck").removeClass("tech_weck-none");
+                                    $("#callModal").modal("hide");
+                                    // joinClass();
+                                    /** Javascript Timer */
+                                    var timer = new Timer();
+                                        timer.start({countdown: true, startValues: {seconds: 30}});
 
+                                        $('#countdownExample .values').html(timer.getTimeValues().toString());
+
+                                        timer.addEventListener('secondsUpdated', function (e) {
+                                            $('#countdownExample .values').html(timer.getTimeValues().toString());
+                                        });
+
+                                        timer.addEventListener('targetAchieved', function (e) {
+                                            $('#countdownExample .values').html('Class Time has Ended!!');
+                                        });
+                                    /* Javascript Timer ENd */
+                                })
+                        }else{
+                            toastr.warning( "Audio Device is Mendatory ");
+                            $(".no-mk").hide();
+                        }
+
+                        if (connection.DetectRTC.hasWebcam === true) {
+                            // enable camera
+                            connection.mediaConstraints.video = true;
+                            connection.session.video = true;
+                            alert('attach true camera')
+                            $(".no-vc").show();
+
+
+                        }else{
+                            $(".no-vc").hide();
+
+                            alert('attach Cam')
+                        }
+
+                        if (connection.DetectRTC.hasSpeakers === false) { // checking for "false"
+                            // alert('Please attach a speaker device. You will unable to hear the incoming audios.');
+                        }
+        });
 /// make this room public
-connection.publicRoomIdentifier = params.publicRoomIdentifier;
+connection.publicRoomIdentifier = '';
 
 connection.socketMessageEvent = 'canvas-dashboard-demo';
 
@@ -715,55 +894,16 @@ connection.socketMessageEvent = 'canvas-dashboard-demo';
 connection.autoCloseEntireSession = true;
 
 // https://www.rtcmulticonnection.org/docs/maxParticipantsAllowed/
-//connection.maxParticipantsAllowed = 1000;
+// connection.maxParticipantsAllowed = 1000;
 // set value 2 for one-to-one connection
- connection.maxParticipantsAllowed = 2;
-
-
-    connection.extra.userFullName = fullName;
-
-    // if($('#chk-room-password').prop('checked') === true){
-    //   var roomPassword = $('#txt-room-password').val().toString();
-    //   if (!roomPassword || !roomPassword.replace(/ /g, '').length) {
-    //       alertBox('Please enter room password.', 'Password Box Is Empty');
-    //       return;
-    //   }
-
-    //   connection.password = roomPassword;
-    // }    
-
-    // var initialHTML = $('#btn-create-room').html();
-
-    // $('#btn-create-room').html('Please wait...').prop('disabled', true);
-
-    connection.checkPresence(roomid, function(isRoomExist) {
-      
-        if (isRoomExist === true) {
-            alert('This room-id is already taken and room is active. Please join instead.', 'Room ID In Use');
-            return;
-        }
-
-        // if ($('#chk-hidden-room').prop('checked') === true) {
-            // either make it unique!
-            // connection.publicRoomIdentifier = connection.token() + connection.token();
-
-            // or set an empty value (recommended)
-            connection.publicRoomIdentifier = '';
-        // }
-
-        connection.sessionid = roomid;
-        connection.isInitiator = true;
-        // openCanvasDesigner();
-        // $('#btn-create-room').html(initialHTML).prop('disabled', false);
-    });
-
+connection.maxParticipantsAllowed = 2;
 
 // here goes canvas designer
 var designer = new CanvasDesigner();
 
 // you can place widget.html anywhere
-designer.widgetHtmlURL = "{{ route('whiteBoard.canvas')}}";
-designer.widgetJsURL = "{{asset('assets/js/widget.min.js')}}"
+designer.widgetHtmlURL = "{{route('whiteBoard.canvas')}}";
+designer.widgetJsURL = "{{asset('assets/js/widget.min.js').'?ver='.rand()}}";
 
 designer.addSyncListener(function(data) {
     connection.send(data);
@@ -772,30 +912,31 @@ designer.addSyncListener(function(data) {
 designer.setSelected('pencil');
 
 designer.setTools({
-    pencil: true,
-    text: true,
-    image: false,
-    pdf: false,
-    eraser: true,
-    line: true,
-    arrow: false,
-    dragSingle: true,
-    dragMultiple: true,
-    arc: true,
-    rectangle: true,
-    quadratic: false,
-    bezier: false,
-    marker: false,
-    zoom: false,
-    lineWidth: false,
-    colorsPicker: false,
-    extraOptions: false,
-    code: false,
-    undo: false,
-});
+        pencil: true,
+        text: true,
+        image: false,
+        pdf: false,
+        eraser: true,
+        line: true,
+        arrow: false,
+        dragSingle: true,
+        dragMultiple: true,
+        arc: true,
+        rectangle: true,
+        quadratic: false,
+        bezier: false,
+        marker: false,
+        zoom: false,
+        lineWidth: false,
+        colorsPicker: false,
+        extraOptions: false,
+        code: false,
+        undo: true,
+    });
 
 // here goes RTCMultiConnection
-
+connection.sessionid = roomid;
+connection.isInitiator = true;
 connection.chunkSize = 16000;
 connection.enableFileSharing = true;
 
@@ -809,21 +950,21 @@ connection.sdpConstraints.mandatory = {
     OfferToReceiveVideo: true
 };
 
-connection.onUserStatusChanged = function(event) {
-    var infoBar = document.getElementById('onUserStatusChanged');
-    var names = [];
-    connection.getAllParticipants().forEach(function(pid) {
-        names.push(getFullName(pid));
-    });
+// connection.onUserStatusChanged = function(event) {
+//     var infoBar = document.getElementById('onUserStatusChanged');
+//     var names = [];
+//     connection.getAllParticipants().forEach(function(pid) {
+//         names.push(getFullName(pid));
+//     });
 
-    if (!names.length) {
-        names = ['Only You'];
-    } else {
-        names = [connection.extra.userFullName || 'You'].concat(names);
-    }
+//     if (!names.length) {
+//         names = ['Only You'];
+//     } else {
+//         names = [connection.extra.userFullName || 'You'].concat(names);
+//     }
 
-    infoBar.innerHTML = '<b>Active users:</b> ' + names.join(', ');
-};
+//     infoBar.innerHTML = '<b>Active users:</b> ' + names.join(', ');
+// };
 
 connection.onopen = function(event) {
     connection.onUserStatusChanged(event);
@@ -841,10 +982,12 @@ connection.onopen = function(event) {
 };
 
 connection.onclose = connection.onerror = connection.onleave = function(event) {
+    // toastr.success("Student has ended the call!");
     connection.onUserStatusChanged(event);
 };
 
 connection.onmessage = function(event) {
+    console.log(event)
     if(event.data.showMainVideo) {
         // $('#main-video').show();
         $('#screen-viewer').css({
@@ -871,6 +1014,10 @@ connection.onmessage = function(event) {
     if(event.data.typing === false) {
         $('#key-press').hide().find('span').html('');
         return;
+    }
+
+    if(event.data.call_ended === true){
+        toastr.success("Student has ended the call!");
     }
 
     if (event.data.chatMessage) {
@@ -935,7 +1082,39 @@ connection.onstreamended = function(event) {
         video.style.display = 'none';
     }
 };
+$(".no-vc").click(function(){
+        alert("No vc");
+        var localStream = connection.attachStreams[0];
+        localStream.mute('video');
+    })
+    $(".vc").click(function(){
+        alert("Vc");
+        var localStream = connection.attachStreams[0];
+        localStream.unmute('video'); 
+        
+    })
+    $(".no-mk").click(function(){
+        alert("No mk");
+        var localStream = connection.attachStreams[0];
+        localStream.mute('audio');
+    })
+    $(".mk").click(function(){
+        alert("mk");
+        var localStream = connection.attachStreams[0];
+        localStream.unmute('audio'); 
+        
+    })
+    $("#endCallYes").click(function(){
+        // connection.leave();
+        connection.send({
+            call_ended: true
+        });
+        $("#endCall").modal("hide");
+        toastr.success("Call has Ended Successfully");
 
+        window.location.href="{{route('tutor.classroom')}}";
+
+    })
 var conversationPanel = document.getElementById('conversation-panel');
 
 function appendChatMessage(event, checkmark_id) {
@@ -965,15 +1144,13 @@ function appendChatMessage(event, checkmark_id) {
 
 var keyPressTimer;
 var numberOfKeys = 0;
-$(document).ready(function(){
-    $('#txt-chat-message').emojioneArea({
+$('#txt-chat-message').emojioneArea({
     pickerPosition: "top",
     filtersPosition: "bottom",
     tones: false,
     autocomplete: true,
     inline: true,
     hidePickerOnBlur: true,
-    hideSource: false,
     events: {
         focus: function() {
             $('.emojionearea-category').unbind('click').bind('click', function() {
@@ -1012,8 +1189,6 @@ $(document).ready(function(){
         }
     }
 });
-})
-
 
 window.onkeyup = function(e) {
     var code = e.keyCode || e.which;
@@ -1148,9 +1323,9 @@ function updateLabel(progress, label) {
     label.innerHTML = position + '%';
 }
 
-if(!!params.password) {
-    connection.password = params.password;
-}
+// if(!!params.password) {
+//     connection.password = params.password;
+// }
 
 designer.appendTo(document.getElementById('widget-container'), function() {
     // if (params.open === true || params.open === 'true') {
@@ -1177,36 +1352,37 @@ designer.appendTo(document.getElementById('widget-container'), function() {
                 });
             });
     // } else {
-    //     connection.join(roomid, function(isRoomJoined, roomid, error) {
-    //         if (error) {
-    //             if (error === connection.errors.ROOM_NOT_AVAILABLE) {
-    //                 alert('This room does not exist. Please either create it or wait for moderator to enter in the room.');
-    //                 return;
-    //             }
-    //             if (error === connection.errors.ROOM_FULL) {
-    //                 alert('Room is full.');
-    //                 return;
-    //             }
-    //             if (error === connection.errors.INVALID_PASSWORD) {
-    //                 connection.password = prompt('Please enter room password.') || '';
-    //                 if(!connection.password.length) {
-    //                     alert('Invalid password.');
-    //                     return;
-    //                 }
-    //                 connection.join(roomid, function(isRoomJoined, roomid, error) {
-    //                     if(error) {
-    //                         alert(error);
-    //                     }
-    //                 });
-    //                 return;
-    //             }
-    //             alert(error);
-    //         }
+        // connection.join(roomid, function(isRoomJoined, roomid, error) {
+            
+        //     if (error) {
+        //         if (error === connection.errors.ROOM_NOT_AVAILABLE) {
+        //             alert('This room does not exist. Please either create it or wait for moderator to enter in the room.');
+        //             return;
+        //         }
+        //         if (error === connection.errors.ROOM_FULL) {
+        //             alert('Room is full.');
+        //             return;
+        //         }
+        //         if (error === connection.errors.INVALID_PASSWORD) {
+        //             connection.password = prompt('Please enter room password.') || '';
+        //             if(!connection.password.length) {
+        //                 alert('Invalid password.');
+        //                 return;
+        //             }
+        //             connection.join(roomid, function(isRoomJoined, roomid, error) {
+        //                 if(error) {
+        //                     alert(error);
+        //                 }
+        //             });
+        //             return;
+        //         }
+        //         alert(error);
+        //     }
 
-    //         connection.socket.on('disconnect', function() {
-    //             location.reload();
-    //         });
-    //     });
+        //     connection.socket.on('disconnect', function() {
+        //         location.reload();
+        //     });
+        // });
     // }
 });
 
@@ -1334,5 +1510,38 @@ $('#btn-share-screen').click(function() {
         alert('getDisplayMedia API is not available in this browser.');
     }
 });
+
+var count = 2;
+
+/* Add New Board Section */
+
+$("#addNewBoard").click(function(){
+    var techno = `
+        <a class="nav-item white-item nav-link board-nav active" id="nav-whiteboard-`+count+`" data-toggle="tab" href="#nav-home-`+count+`" role="tab" aria-controls="nav-profile" aria-selected="false">Board `+count+` <i class="pl-2 fa fa-times text-dark"></i></a>
+    `;
+    var tech = `
+            <div class="tab-pane fade show active whitePane" id="nav-home-`+count+`" role="tabpanel" aria-labelledby="nav-home-tab">
+                                                      
+                <div class="row">
+                    <div class="col-md-12 h-500 mb-5">
+                        <div class="" id="widget-container" style=""></div>
+                        <video id="screen-viewer"  playsinline ></video>
+                    </div>
+                </div>
+            </div>`;
+    $(".board-nav").removeClass("active");
+    $(".whitePane").removeClass("show");
+    $(".newTabs").prepend(techno);
+    $(".newWhite").append(tech);
+    alert("New Board Added");
+    count++;
+})
+
+
+
+
+/* Add New Board Section */
 </script>
+
+
 @endsection

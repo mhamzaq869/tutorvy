@@ -44,22 +44,6 @@
     opacity: 0.5;
 }
 
-.btn-general {
-    background: #1173FF;
-    color: #fff;
-    border-radius: 4px;
-    font-size: 14px;
-    padding: 5px 29px;
-    border: 1px solid #1173FF;
-    font-weight: 600;
-    transition: all 0.9s;
-}
-
-.btn-general:hover {
-    color: #1173FF;
-    background: #fff;
-}
-
 .cencel-btn {
     background-color: #fff !important;
     border: 1px solid #1173FF !important;
@@ -120,6 +104,7 @@
     font-weight: 400;
     font-family: 'Poppins';
     border-radius: 4px;
+    display: inline-block;
 }
 
 .schedule-btn:focus {
@@ -1257,7 +1242,7 @@ body {
 .switch {
     position: relative;
     display: inline-block;
-    width: 40px !important;
+    width: 40px;
     height: 20px;
 }
 
@@ -2618,6 +2603,9 @@ select#paymentMethod option[value="others"] {
     float: right;
 }
 
+
+/*Tags */
+
 .statusTag {
     font-size: 12px;
     padding: 5px 10px;
@@ -2646,6 +2634,12 @@ select#paymentMethod option[value="others"] {
     background: #E9C6C6;
 }
 
+
+/*End Tags*/
+
+
+/*Dashboard booking side */
+
 .db_img {
     width: 85px;
     height: 85px;
@@ -2673,7 +2667,8 @@ select#paymentMethod option[value="others"] {
     background-image: url("../images/ico/ad_desc.jpg");
     width: 100% !important;
     min-height: 244px !important;
-    background-size: contain;
+    background-size: cover;
+    background-position: right;
 }
 
 .w-45 {
@@ -2718,9 +2713,6 @@ select#paymentMethod option[value="others"] {
     font-size: 12px;
 }
 
-
-/*Dashboard booking side*/
-
 .decoration-none {
     text-decoration: none;
 }
@@ -2741,3 +2733,426 @@ select#paymentMethod option[value="others"] {
     -ms-flex-align: center;
     align-items: center;
 }
+
+
+/*Dashboard booking side End*/
+
+
+/*Table Counters*/
+
+.counter-text {
+    position: relative;
+    color: white;
+    padding: 3px 7px;
+    cursor: pointer !important;
+    border-radius: 70px;
+    font-size: 12px;
+}
+
+
+/*Table Counters End*/
+
+
+/* Profile Completion Bar */
+
+.progress {
+    background: none;
+}
+
+.bg-dead {
+    background: #E9ECEF;
+}
+
+.bg-levelTwo {
+    background: #88B9FF;
+}
+
+.bg-levelThree {
+    background: #65A5FF;
+}
+
+.bg-levelFour {
+    background: #418FFF;
+}
+
+.bg-levelFive {
+    background: #1173FF;
+}
+
+
+/* Profile Completion Bar End*/
+
+
+/*Call Modal */
+
+.bg-black {
+    background: #000;
+    height: 300px;
+}
+
+.g-location {
+    position: absolute;
+    bottom: 10%;
+    left: 25%;
+}
+
+.callSet {
+    border-radius: 50%;
+    margin: 5px;
+    text-decoration: none;
+    background: grey;
+}
+
+.callSet:hover {
+    background: #DF615C;
+    text-decoration: none;
+}
+
+.vc {
+    padding: 12px 9px 16px 14px;
+}
+
+.no-vc {
+    padding: 12px 9px 16px 14px;
+}
+
+.mk {
+    padding: 13px 10px 17px 14px;
+}
+
+.no-mk {
+    padding: 13px 10px 16px 14px;
+}
+
+
+/* .no-mk,
+.no-vc,
+.no-ph {
+    background: #DF615C;
+} */
+
+
+/* .no-mk:hover,
+.no-vc:hover {
+    background: #21B573;
+} */
+
+.no-mk:hover,
+.no-vc:hover,
+.no-ph:hover {
+    background: #DF615C;
+    border-color: #DF615C;
+}
+
+.pg {
+    /* width: 40%;
+    height: auto; */
+    width: auto;
+    height: 170px;
+}
+
+
+/*Call Modal End**/
+
+
+/*Call Side Buttons*/
+
+.vid-location .no-vc,
+.vid-location .vc {
+    padding: 5px 4px 11px 8px
+}
+
+.vid-location .no-vc img,
+.vid-location .vc img {
+    width: 21px;
+}
+
+
+/* .vid-location .no-ph {
+    padding: 4px 6px 10px 5px;
+} */
+
+.vid-location .no-mk,
+.vid-location .mk {
+    padding: 5px 3px 11px 8px;
+}
+
+.vid-location .no-mk img,
+.vid-location .mk img,
+.vid-location .no-ph img {
+    width: 20px;
+}
+
+.vid-location .no-ph {
+    padding: 4px 7px 8px 7px;
+}
+
+.no-mk,
+.no-vc,
+.no-ph {
+    background: transparent;
+    border: 1px solid #fff;
+}
+
+
+/*Call Side Buttons End*/
+
+
+/*Call Screens*/
+
+
+/* Call Video Student*/
+
+
+/* #other-videos video {
+        width: 100%;
+        margin: 5px 0;
+        border: 1px solid black;
+        padding: 1px;
+        border-radius: 3px;
+    } */
+
+#other-videos video {
+    width: 30%;
+    margin: 0;
+    border: none;
+    padding: 0;
+    border-radius: 3px;
+}
+
+#other-videos {
+    position: absolute;
+    top: 0;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+
+/* Call Video Student End*/
+
+
+/*Call Main Video*/
+
+#main-video {
+    width: 100%;
+    margin-top: 0;
+    /* border: 1px solid #121010; */
+    border-radius: 3px;
+    display: none;
+    padding: 1px;
+}
+
+
+/*Call main Video End*/
+
+
+/*Call Screens*/
+
+
+/* buttons General now */
+
+.btn-general {
+    background: #1173FF;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    padding: 5px 29px;
+    border: 1px solid #1173FF;
+    font-weight: 600;
+    transition: all 0.9s;
+}
+
+.btn-general:hover {
+    color: #1173FF;
+    background: #fff;
+}
+
+.btn-outline-general {
+    background: #fff;
+    color: #1173FF;
+    border-radius: 4px;
+    font-size: 14px;
+    padding: 5px 29px;
+    border: 1px solid #1173FF;
+    font-weight: 600;
+    transition: all 0.9s;
+}
+
+.btn-outline-general:hover {
+    color: #fff;
+    background: #1173FF;
+}
+
+
+/* buttons General End now */
+
+.sidebar-header {
+    background: #fbfbfb;
+    z-index: 999;
+}
+
+
+/*Attach Files*/
+
+.fileName {
+    position: absolute;
+    padding-right: 19px;
+    top: 7px;
+    font-size: 11px;
+    display: none;
+    color: #fff;
+}
+
+.downFile {
+    position: absolute;
+    top: 32px;
+    right: 74px;
+    border-radius: 50%;
+    color: green;
+    padding: 2px 7px;
+    border: 1px solid #fff;
+    display: none;
+}
+
+.downFile i {
+    color: #fff;
+    font-size: 14px;
+}
+
+.downFile:hover {
+    background: green;
+    border: 1px solid #E6E7E8;
+}
+
+.downFile:hover i {
+    color: #fff;
+}
+
+.borderOne {
+    text-align: center;
+    /* width: 100%; */
+    height: 94px;
+    background: #fbfbfb;
+    border: 1px solid #E6E7E8;
+    transition: 0.3s ease;
+}
+
+.borderOne:hover .downFile {
+    display: block;
+}
+
+.borderOne:hover .fileName,
+.borderOne:hover .overlayAttach {
+    display: block;
+}
+
+.borderOne img {
+    width: 100%;
+    height: 100%;
+}
+
+.xlIcon {
+    width: 41px;
+}
+
+.imgIcon {
+    width: 48px;
+}
+
+.overlayAttach {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    top: 0;
+    right: 15px;
+    left: 15px;
+    bottom: 0;
+    display: none;
+}
+
+.card__corner {
+    position: absolute;
+    bottom: 0;
+    right: 15px;
+    z-index: 2;
+    width: 1.5em;
+    height: 1.5em;
+    background-color: #E6E7E8;
+}
+
+.card .card__corner .card__corner-triangle {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 1.5em 1.5em 0 0;
+    border-color: #E6E7E8 #fff #fff #fff;
+}
+
+
+/*Notification*/
+
+.notification-menu a,
+.show_all_notifications a {
+    color: #00132D !important;
+    text-decoration: none;
+}
+
+.bgm:hover .row {
+    background: rgba(138, 155, 165, 0.15);
+}
+
+
+/*Attach Files Ending*/
+
+
+/*Chat Emoji*/
+
+.emojionearea.emojionearea-inline>.emojionearea-button {
+    top: 4px;
+    right: 28px;
+}
+
+.emojionearea .emojionearea-picker.emojionearea-picker-position-top {
+    margin-top: -286px;
+    right: 14px;
+}
+
+#btn-chat-message {
+    position: absolute;
+    top: 4px;
+    right: 18px;
+}
+
+#btn-chat-message .paper {
+    font-size: 17px;
+    color: #1173FF;
+}
+
+#btn-attach-file {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    right: 62px;
+}
+
+#btn-attach-file .clip {
+    font-size: 17px;
+    color: #626C7B;
+}
+
+#btn-attach-file .clip:hover {
+    color: #14233A;
+}
+
+
+/*Chat EMoji End*/
+
+
+/* Toaster Link  */
+
+.notification_link {
+    color: #1173FF !important;
+}
+
+
+/*Toaster Link ENd*/

@@ -783,6 +783,13 @@ and also iPads specifically.
     border-radius: 8px;
 }
 
+.bg-homeimage2 {
+    /* background-image: url('../img/backgrounds/home.png');
+    background-position: center; */
+    border-radius: 8px;
+    background: #0F6EF5;
+}
+
 
 /* end */
 

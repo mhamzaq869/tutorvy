@@ -5,11 +5,15 @@ namespace App\Http\Controllers\Tutor;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\General\GeneralController;
+use App\Http\Controllers\General\NotifyController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Activitylogs;
 use App\Models\Classroom;
+use App\Models\Booking;
+use App\Models\ClassroomLogs;
 use App\Models\Admin\tktCat;
 use App\Models\Admin\supportTkts;
 use App\Models\User;
@@ -82,8 +86,28 @@ class SettingController extends Controller
 
     public function start_class($class_room_id){
 
-        $class = Classroom::with('booking')->where('classroom_id',$class_room_id)->first();
-        return view('tutor.pages.classroom.classroom',compact('class'));
+        $class = Classroom::where('classroom_id',$class_room_id)->first();
+        $booking = Booking::where('id',$class->booking_id)->first();
+
+        // $class = Classroom::with('booking')->where('classroom_id',$class_room_id)->first();
+        $user = User::where('id',Auth::user()->id)->first();
+
+        return view('tutor.pages.classroom.classroom',compact('class','user','booking'));
+
+    }
+
+    public function saveClassLogs(Request $request) {
+
+        ClassroomLogs::create([
+            "class_room_id" => $request->class_room_id, 
+            "tutor_join_time" => $request->tutor_join_time,
+        ]);
+
+        return response()->json([
+            "message" => "Classroom logs saved",
+            "status_code" => 200,
+            "success" => true,
+        ]);
 
     }
 
@@ -105,6 +129,19 @@ class SettingController extends Controller
             $action_perform = '<a href="'.URL::to('/') . '/admin/tutor/profile/'. $id .'"> '.$name.' </a> Change his Password';
             $activity_logs = new GeneralController();
             $activity_logs->save_activity_logs("Change Password", "users.id", $id, $action_perform, $request->header('User-Agent'), $id);
+
+            $reciever = User::where('role',1)->first();
+            $notification = new NotifyController();
+            $sender_id = Auth::user()->id;
+            $reciever_id = $reciever->id;
+            $slug = '-' ;
+            $type = 'user_logout';
+            $data = 'data';
+            $title = 'User Logout';
+            $icon = 'fas fa-tag';
+            $class = 'btn-success';
+            $desc = $name . ' Logout from System.';
+            $notification->GeneralNotifi(Auth::user()->id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
 
             return redirect()->back()->with(['success' => 'Password Change ...' , 'key' => 'password_changed']);
         }else{
@@ -153,5 +190,4 @@ class SettingController extends Controller
         $ticket = supportTkts::where('ticket_no',$id)->with(['category','tkt_created_by'])->first();
         return view('tutor.pages.history.ticket_details',compact('ticket'));
     }
-
 }

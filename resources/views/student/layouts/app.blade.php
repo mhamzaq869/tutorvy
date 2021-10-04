@@ -27,12 +27,16 @@
 <!--Plugin CSS file with desired skin-->
 <link rel="stylesheet" href="{{ asset('assets/css/ion.rangeSlider.css')}}"/>
 <link rel="stylesheet" href="{{ asset('assets/css/emojionearea.css')}}">
-    
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Styles -->
     @include('student.layouts.css')
 </head>
 <body>
     <div class="wrapper" id="wrapper">
+        <input type="hidden" class="user_id" value={{Auth::user()->id}}>
+        <input type="hidden" class="user_role_id" value={{Auth::user()->role}}>
         <!-- side navbar -->
         @include('student.layouts.sidebar')
         <!-- seide navbar end -->
@@ -94,10 +98,10 @@
      <script src="{{ asset('assets/js/languages.js') }}"></script>
 
      <script src="{{ asset('assets/js/homePage.js') }}"></script>
-     <script src="{{ asset('assets/js/clander.js') }}"></script>
      <script src="{{ asset('assets/js/registration.js') }}"></script>
      <script src="{{ asset('assets/js/dropify.js')}}"></script>
      <script src="{{ asset('assets/js/multiselect.js')}}"></script>
+     <script src="https://cdn.jsdelivr.net/npm/easytimer@1.1.1/dist/easytimer.min.js"></script>
      <script src="{{ asset('assets/js/jquery.validate.js')}}"></script>
      <script src="{{ asset('assets/js/countrySelect.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -105,6 +109,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.2.7/emojionearea.min.js"></script>
 
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-storage.js"></script>
+    <script src="{{asset('assets/firebase/index.js').'?ver='.rand()}}"></script>
 
     </script>
         <!--Plugin JavaScript file-->
@@ -120,6 +132,11 @@
         });
       
     $(document).ready(function(){
+
+        get_all_notifications();
+        
+        $(".mk").hide();
+        $(".vc").hide();
         $(".dropify").dropify();
         $('.js-multiSelect').select2();
         $('.accSelect2').select2();
@@ -129,7 +146,7 @@
         //         startYear: 1950,
         //         endYear: 2050,
         //     });
-            $(".js-range-slider").ionRangeSlider({
+        $(".js-range-slider").ionRangeSlider({
             type: "double",
             min: 0,
             max: 1000,
@@ -171,6 +188,7 @@
 
             
             /* Table Sorting */
+    
     })
     $("#country_selector").countrySelect({
                 defaultCountry: "{{ $user->country_short ?? '' }}",
@@ -183,11 +201,6 @@
             });
 
 
-
-for(var i=1; i<=31; i++){
-   $("#day").append("<option value='"+i+"'"+ (i=={{$user->day ?? 1}} ? 'selected' : '')+">"+i+"</option>");
-}
-
 $("#country_selector").countrySelect({
    defaultCountry: "{{$user->country_short ?? ''}}",
    preferredCountries: ['ca', 'gb', 'us', 'pk']
@@ -199,16 +212,14 @@ $("#country_selector").on('change', function(){
 });
 
 
-// var languages_list = {...};
-(function () {
+// var languages_list = '';
+
    var user_language_code = "{{ $user->language ?? 'en-US'}}";
    var option = '<option value=""> Select Language</option>';
    for (var language_code in languages_list) {
-    //    var selected = (language_code == user_language_code) ? ' selected' : '';
        option += '<option value="' + language_code + '">' + languages_list[language_code] + '</option>';
    }
    document.getElementById('languages-list').innerHTML = option;
-})();
 
 $("#register").validate({
    rules: {
@@ -253,6 +264,64 @@ function hideCard(){
     // alert();
     $(".infoCard").hide('slow');
 };
+
+function get_all_notifications() {
+        $.ajax({
+            url: "{{route('getNotification')}}",
+            type:"GET",
+            dataType:'json',
+            success:function(response){
+                var obj = response.data;
+                // console.log(obj , "asd");
+                if(response.status_code == 200 && response.success == true) {
+                    var notification = ``;
+                    if(obj.length == 0){
+                        $('.show_notification_counts').text(0);
+                    }else{
+                        $('.show_notification_counts').text(obj.length);
+                        for(var i =0; i < obj.length; i++) {
+                            let img = '';
+
+                            if(obj[i].sender_pic != null){
+                                img = `<img class="profile-img w-100 p-0 mt-2" src="{{asset('`+obj[i].sender_pic+`')}}" alt="layer">`;
+                            }
+                            else{
+                                img = `<img class="profile-img w-100 p-0 mt-2" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
+                            }
+                            notification +=`
+                            <li>
+                                <a href="`+obj[i].slug+`" class="bgm">
+                                    <div class="row">
+                                        <div class="col-md-2 text-center pr-0">
+                                        `+img+`
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div class="head-1-noti">
+                                                <span class="notification-text6">
+                                                    <strong>` +obj[i].noti_title+ ` </strong> 
+                                                    `+obj[i].noti_desc+`
+                                                </span>
+                                            </div>
+                                            <span class="notification-time">
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a>    
+                            </li>`;
+                            }
+                            $(".show_all_notifications").html(notification);
+                    }
+
+                }else{
+                    notification +=`<span> No Notification </span>`;
+                }
+            },
+            error:function(e) {
+                console.log(e)
+            }
+        });
+    }
+
 </script>
 
 </body>

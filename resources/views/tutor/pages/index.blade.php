@@ -12,6 +12,8 @@
                         Dashboard
                     </p>
                 </div>
+
+                
                
                 <div class="col-md-8">
 
@@ -32,21 +34,34 @@
                             </div>
                         </div>
                     </div>
+
+
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <div class="card mt-0">
                                 <div class="card-body">
-                                    <p class="mb-2 ">Profile Strength: <strong class="text-info">
-                                        Intermediate
-                                    </strong></p>
+                                    <p class="mb-2 ">Profile Strength: 
+                                        <strong class="text-info">
+                                            @php 
+                                                $default = 10;
+                                                $default = Auth::user()->profile_completed == 1 ? ($default + 20) : $default;
+                                                $default = Auth::user()->picture != null ? ($default + 10) : $default;
+                                                $default = $education_percentage > 0 ? ($default + 20) : $default;
+                                                $default = $professional_percentage > 0 ? ($default + 20) : $default;
+                                                $default = Auth::user()->status == 2 ? ($default + 20) : $default;
+                                                echo $default.'%';
+                                            @endphp                                              
+                                        </strong>
+                                        <small class="pull-right"><a href="{{route('tutor.profile')}}"> View Profile </a></small>
+
+                                    </p>
                                     <div class="progress">
                                         <div class="bg-dead bg-levelTwo" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                                        <div class="bg-dead bg-levelThree ml-1" role="progressbar" style="width: 15%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                        <div class="bg-dead bg-levelThree ml-1" role="progressbar" style="width: 15%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                        <div class="bg-dead bg-levelFour ml-1" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                                        <div class="bg-dead bg-levelFour ml-1" role="progressbar" style="width: 15%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                        <div class="bg-dead  bg-levelFive ml-1" role="progressbar" style="width: 15%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                        <div class="bg-dead bg-levelFive ml-1" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="bg-dead {{$default > 10 ? 'bg-levelThree' : ''}} ml-1" role="progressbar" style="width: 15%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="bg-dead {{$default >= 30 ? 'bg-levelFour' : '' }} ml-1" role="progressbar" style="width: 15%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="bg-dead {{$default >= 50 ? 'bg-levelFive' : ''}} ml-1" role="progressbar" style="width: 15%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="bg-dead {{$default >= 70 ? 'bg-levelFive' : ''}} ml-1" role="progressbar" style="width: 15%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="bg-dead {{$default >= 90 ? 'bg-levelFive' : '' }} ml-1" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                     <p class="text-mute mt-1 mb-0"> <i class="fa fa-check text-success"></i> Tutors with complete profile tends to have more students than the other tutors.</p>
                                     <p class="text-mute mb-0"> <i class="fa fa-check text-success"></i> Tutors with complete profile get verified sooner than others.</p>
@@ -55,31 +70,63 @@
                             </div>
                         </div>
                     </div>
-                    <div class="bg-homeimage1">
-                        <div class="row">
-                            <div class="col-md-7 text-white pl-4">
-                                <div class="text mt-5 ml-2">
-                                    <p class="res-textup">
-                                        We have upgraded the classroom.
-                                    </p>
-                                    <p class="res-textup1">
-                                        Register yourself on Tutorvy and learn or teach anything from
-                                        anywhere.
-                                    </p>
-                                    <a href=""class="text-white res-textup">
-                                        Learn More
-                                    </a>
+
+                    @if($default > 90) 
+                        <div class="bg-homeimage2 ">
+                            <div class="row">
+                                <div class="col-md-7 text-white pl-4">
+                                    <div class="text mt-5 ml-2 ">
+                                        <h2 class="text-white ">
+                                            We have upgraded the classroom.
+                                        </h2>
+                                        <p >
+                                            Register yourself on Tutorvy and learn or teach anything from
+                                            anywhere.
+                                        </p>
+                                        <a href=""class="text-white ">
+                                            Learn More
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-5  ">
+                                    <div class="home-image">
+                                        <img src="{{asset('assets/images/backgrounds/home.svg')}}" alt="home-image"
+                                            style="width: 100%;">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-5  ">
-                                <div class="home-image">
-                                    <img src="{{asset('assets/images/backgrounds/home-main.png')}}" alt="home-image"
-                                        style="width: 100%;">
+                            
+                        </div>
+                    @else
+                        <div class="bg-homeimage1">
+                            <div class="row">
+                                <div class="col-md-7 text-white pl-4">
+                                    <div class="text mt-5 ml-2">
+                                        <p class="res-textup">
+                                            Welcome to Tutorvy
+                                        </p>
+                                        <p class="res-textup1">
+                                        Register yourself on Tutorvy and learn or teach anything
+                                        from anywhere.
+                                        </p>
+                                        <a href=""class="text-white res-textup">
+                                            Learn More
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-5  ">
+                                    <div class="home-image">
+                                        <img src="{{asset('assets/images/backgrounds/home-main.png')}}" alt="home-image"
+                                            style="width: 100%;">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        
-                    </div>
+                    @endif
+
+
+
+                
                     <div class="row">
                         <div class="col-md-12">
                             <p class="heading-third mt-4 mb-0">
@@ -202,7 +249,7 @@
                                                         </th>
                                                         
                                                         <th scope="col"></th>
-                                                        <th scope="col"></th>
+                                                        <!-- <th scope="col"></th> -->
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -227,12 +274,12 @@
                                                                 </a>
                                                                 
                                                             </td>
-                                                            <td>
+                                                            <!-- <td>
                                                                 <button type="button" class="schedule-btn"
                                                                     style="float: right;width: 100px;">
                                                                     Accept
                                                                 </button>
-                                                            </td>
+                                                            </td> -->
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -309,7 +356,7 @@
                                                         <p class="chemistry-tex2 pt-2 pb-2 mb-0">
                                                             {{ \Illuminate\Support\Str::limit($booking->brief, $limit = 50, $end = '...') }}
                                                         </p>
-                                                        <p class="time-chemistry">
+                                                        <p class="time-chemistry mb-0">
                                                             <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class=" "> 
                                                             <span class="pt-1 pl-1">  {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }} </span>
                                                         </p>
@@ -359,7 +406,7 @@
                                                         <p class="chemistry-tex2 pt-2 pb-2 mb-0">
                                                             {{ \Illuminate\Support\Str::limit($booking->brief, $limit = 50, $end = '...') }}
                                                         </p>
-                                                        <p class="time-chemistry">
+                                                        <p class="time-chemistry mb-0">
                                                             <img src="{{asset('assets/images/ico/watch-icon.png') }}" alt="watch" class=" "> 
                                                             <span class="pt-1 pl-1">  {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }} </span>
                                                         </p>
@@ -409,5 +456,4 @@
     </section>
     <div class="line"></div>
 </div>
-
 @endsection

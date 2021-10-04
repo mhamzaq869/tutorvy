@@ -2,6 +2,11 @@
 
     $(document).ready(function() {
 
+        $("#phone").on('keyup', function(){
+            var ter=$(this).val();
+            console.log(ter , "phone");
+        });
+
         $("#selection").on('change', function(){
         var ter=$(this).val();
             if(ter == 3){
@@ -85,8 +90,12 @@
                 cache: false,
                 contentType: false,
                 processData: false,
+                beforeSend:function(data) {
+                    $("#education_btn").hide();
+                    $("#education_loading").show();
+                },
                 success:function(response){
-                    console.log(response.path);
+                    // console.log(response.path);
                     if(response.status_code == 200 && response.success == true) {
                         toastr.success(response.message,{
                             position: 'top-end',
@@ -94,9 +103,9 @@
                             showConfirmButton: false,
                             timer: 2500
                         });
-                        console.log(response.path);
-                        var origin   = window.location.origin
-                        $('.profile-img2').attr('src',origin + '/'+ response.path);
+                        // console.log(response.path);
+                        // var origin   = window.location.origin
+                        // $('.profile-img2').attr('src',origin + '/'+ response.path);
                     }else{
                         toastr.error(response.message,{
                             position: 'top-end',
@@ -106,8 +115,20 @@
                         });
                     }
                 },
+                complete:function(data) {
+                    $("#education_btn").show();
+                    $("#education_loading").hide();
+                },
                 error:function(e) {
-                    console.log(e)
+                    $("#education_btn").show();
+                    $("#education_loading").hide();
+                    console.log(e);
+                    toastr.error('Something Went Wrong',{
+                        position: 'top-end',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
                 }
             });
 
@@ -162,7 +183,11 @@
             data:form,
             cache: false,
             contentType: false,
-            processData: false,
+            processData: true,
+            beforeSend:function(data) {
+                $("#general_btn").hide();
+                $("#general_loading").show();
+            },
             success:function(response){
                 if(response.status_code == 200 && response.success == true) {
                     toastr.success(response.message,{
@@ -171,6 +196,8 @@
                         showConfirmButton: false,
                         timer: 2500
                     });
+                    var origin   = window.location.origin
+                    $('.profile-img').attr('src',origin + '/'+ response.path);
                 }else{
                     toastr.error(response.message,{
                         position: 'top-end',
@@ -180,8 +207,20 @@
                     });
                 }
             },
+            complete:function(data) {
+                $("#general_btn").show();
+                $("#general_loading").hide();
+            },
             error:function(e) {
-                console.log(e)
+                console.log(e);
+                $("#general_btn").show();
+                $("#general_loading").hide();
+                toastr.error('Something Went Wrong',{
+                    position: 'top-end',
+                    icon: 'error',
+                    showConfirmButton: false,
+                    timer: 2500
+                });
             }
         });
     }

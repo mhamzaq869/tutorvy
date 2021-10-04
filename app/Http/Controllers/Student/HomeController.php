@@ -5,12 +5,13 @@ namespace App\Http\Controllers\Student;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\tktCat;
-use DB;
 use App\Models\Activitylogs;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Booking;
 use App\Models\General\Teach;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -47,8 +48,14 @@ class HomeController extends Controller
         // }
         $user = User::where('id',Auth::user()->id)->first();
         // return ($today_bookings);
-
-        return view('student.pages.index',compact('upcoming_bookings','today_bookings','new_bookings','delivered_count','upcoming_count','pending_count','subject_count','user','categories','favorite_tutors'));
+        
+        $education_profile = User::where('id',Auth::user()->id)
+            ->where('experty_level', '!=', NULL)
+            ->where('std_subj' , '!=', NULL)
+            ->where('std_learn' , '!=', NULL)
+            ->count();
+        
+        return view('student.pages.index',compact('upcoming_bookings','today_bookings','new_bookings','delivered_count','upcoming_count','pending_count','subject_count','user','categories','favorite_tutors','education_profile'));
     }
 
 

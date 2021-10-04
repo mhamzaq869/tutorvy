@@ -1,7 +1,7 @@
 
     <!-- jquery  -->
-    <script src="{{ asset('/admin/assets/js/jquery.js ')}}"></script>
-    <script src="{{ asset('/admin/assets/js/jquery-ui.js')}}"></script>
+    <script src="{{asset('/admin/assets/js/jquery.js')}}" ></script>
+    <script src="{{asset('/admin/assets/js/jquery-ui.js')}}"></script>
       <!-- bootstrap 4 javascript -->
     <script src="{{ asset('/admin/assets/js/popper.min.js')}}"></script>
     <script src="{{ asset('/admin/assets/js/bootstrap.min.js')}}"></script>
@@ -18,153 +18,225 @@
     <!-- <script src="{{ asset('assets/js/course.js')}}"></script> -->
     <!-- <script src="{{ asset('/admin/assets/js/pages/subjects.js')}}"></script> -->
 
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-storage.js"></script>
+    <script src="{{asset('assets/firebase/index.js').'?ver='.rand()}}"></script>
+
     <script src="{{ asset('assets/js/dropify.js')}}"></script>
 
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOIfEfDtYJRmL9ALc-bcfJPukqy_8OCwQ&libraries=places&callback=initAutocomplete"></script> -->
     <script type="text/javascript">
     $(document).ready(function(){
-        $(".dropify").dropify();
-
-        get_all_notifications();
-    })
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
 
-        function get_all_notifications() {
+        $(".dropify").dropify();
+
+        $('#availability-id').change(function () {
             $.ajax({
-                url: "{{route('general.get.notification')}}",
-                type:"GET",
-                dataType:'json',
-                success:function(response){
-                    var obj = response.notification;
-                    if(response.status_code == 200 && response.success == true) {
-                        var notification = ``;
-                        $('.notification_counter').text(obj.length);
-                        for(var i =0; i < obj.length; i++) {
+                url: "/assets/js/ticket-id.json",
+                type: "GET",
+                data: {
+                    id: $("#home-ticket-1").val(),
+                    location: $("#search-location").val(),
+                    student: $("#TypeFeed").val(),
+                    rate: $("#rate-number").val(),
 
-                            notification +=`
-                                <div class="row">
-                                    <div class="col-md-1">
-                                        <img class="avatar mt-2" src="{{ asset('/admin/assets/img/notifiaction/layer.png')}}"
-                                            alt="layer">
-                                    </div>
-                                    <div class="col-md-9">
-                                        <div class="head-1-noti">
-                                            <span class="notification-text6">
-                                                <strong>`+obj[i].noti_title+` </strong> <br>
-                                                `+obj[i].noti_desc+`
-                                            </span>
-                                        </div>
-                                        <span class="notification-time">
-                                        </span>
-                                    </div>
-                                    <div class="col-md-1">
-                                        <img class="dot-image" src="{{ asset('/admin/assets/img/ico/3dot.png')}}"
-                                            alt="dot-ico">
-                                    </div>
-                                </div>`;
-                        }
-
-                        $(".show_all_notifications").html(notification);
-
-
-                    }else{
-                       
-                    }
                 },
-                error:function(e) {
-                    console.log(e)
-                }
+                // how can I get selected value here
+                beforeSend: function () {
+                    // alert("Send data ...")
+                },
+                success: function (data) {
+                    $('#datas').html("");
+                    $.each(data.employees, function (i, data) {
+                        var div_datae = '<tr> <td class="pt-3 alex-name-2"> <div class="container"> <div class="row"> <div class="col-md-5 m-0 p-0"> <span class="alex-name"> <img class="img-whih-table" src=' + data.img + ' alt="std-icon"/> </span> </div><div class="col-md-7 m-0 p-0 alex-21 mt-2"> <span class="alex-name ml-3" id="name">' + data.name + '</span> </div></div></div></td><td class="pt-4">123456789</td><td class="pt-4"> <span href="#" data-toggle="tooltip" title="harramlaraib127@gmail.com">' + data.email + '</span> </td><td class="pt-4">' + data.subject + '</td><td class="pt-4">' + data.location + '</td><td class="pt-4">Advance</td><td class="pt-4" id="avalibility">' + data.avaiblilty + '</td><td class="pt-4">' + data.rate + '</td>   <td class="pt-3 float-right"> <a href=' + data.button + ' class="cencel-btn btn"> View </a> </td><td class="pt-3 float-right"> <button class="schedule-btn" data-toggle="modal" data-target="#exampleModalCenter">Assign</button> </td></tr>';
+                        $('#datas').append(div_datae);
+                    });
+
+                },
             });
-        }
-    </script>
-    <script>
-    // var socketId = Echo.socketId();
-    // console.log(socketId)
-    // Echo.join(`admin_dash`)
-    // .here( users => {
-    //     console.log(users)
-    //     console.log('User is here')
-    // })
-    // .joining( user => {
-    //     console.log('User is Joining')
-    // })
-    // .leaving( user => {
-    //     console.log('User is leave')
-    // })
-    // .listen('NewNotification', (e) => {
-    //         // console.log(e.message);
-    // });
-    // Echo.join(`admin_dash`).listen('NewNotification', (e) => {
-    //     console.log(e.message);
-        
-    // });
-   
+        });
 
-    // let permission = Notification.permission;
-    // if(permission === "granted") {
-    // showNotification();
-    // } else if(permission === "default"){
-    // requestAndShowPermission();
-    // } else {
-    // alert("Use normal alert");
-    // }
-    // function showNotification() {
-    // if(document.visibilityState === "visible") {
-    //     return;
-    // }
-    // var title = "JavaScript Jeep";
-    // icon = "image-url"
-    // var body = "Message to be displayed";
-    // var notification = new Notification('Title', { body, icon });
-    // notification.onclick = () => { 
-    //         notification.close();
-    //         window.parent.focus();
-    // }
-    // }
-    // function requestAndShowPermission() {
-    // Notification.requestPermission(function (permission) {
-    //     if (permission === "granted") {
-    //         showNotification();
-    //     }
-    // });
-    // }
+        $('#TypeFeed').change(function () {
 
-    </script>    
+            $.ajax({
+                url: "/assets/js/ticket-id.json",
 
-    <script>
-        // Replace Math.random() with a pseudo-random number generator to get reproducible results in e2e tests
-        // Based on https://gist.github.com/blixt/f17b47c62508be59987b
+                // url: $('#TypeFeed').val() + '.html',
+                type: "GET",
+                data: {
+                    id: $("#home-ticket-1").val(),
+                    location: $("#search-location").val(),
+                    avaiblilty: $("#availability-id").val(),
+                    rate: $("#rate-number").val(),
+
+                },
+                // how can I get selected value here
+                beforeSend: function () {
+                    // alert("Send data ...")
+
+                },
+                success: function (data) {
+                    $('#datas').html("");
+                    $.each(data.employees, function (i, data) {
+                        var div_datae = '<tr> <td class="pt-3 alex-name-2"> <div class="container"> <div class="row"> <div class="col-md-5 m-0 p-0"> <span class="alex-name"> <img class="img-whih-table" src=' + data.img + ' alt="std-icon"/> </span> </div><div class="col-md-7 m-0 p-0 alex-21 mt-2"> <span class="alex-name ml-3" id="name">' + data.name + '</span> </div></div></div></td><td class="pt-4">123456789</td><td class="pt-4"> <span href="#" data-toggle="tooltip" title="harramlaraib127@gmail.com">' + data.email + '</span> </td><td class="pt-4">' + data.subject + '</td><td class="pt-4">' + data.location + '</td><td class="pt-4">Advance</td><td class="pt-4" id="avalibility">' + data.avaiblilty + '</td><td class="pt-4">' + data.rate + '</td>   <td class="pt-3 float-right"> <a href=' + data.button + ' class="cencel-btn btn"> View </a> </td><td class="pt-3 float-right"> <button class="schedule-btn" data-toggle="modal" data-target="#exampleModalCenter">Assign</button> </td></tr>';
+                        $('#datas').append(div_datae);
+                        window.history.pushState("object or string", "", "/new-url") = data;
+                        // window.pushState = data;
+                        // window.location.replace("your_url")
+                        // var url = $(this).val();
+                        // if (url) {
+                        //     window.location = url;
+                        // }
+                        // return false;
+
+                    });
+
+                },
+
+            });
+        });
+
+        $('#rate-number').change(function () {
+            $.ajax({
+                url: "/assets/js/ticket-id.json",
+                type: "GET",
+                data: {
+                    id: $("#home-ticket-1").val(),
+                    location: $("#search-location").val(),
+                    student: $("#TypeFeed").val(),
+                    avaiblilty: $("#availability-id").val(),
+
+                },
+                // how can I get selected value here
+                beforeSend: function () {
+                    // alert("Send data ...")
+                },
+                success: function (data) {
+                    $('#datas').html("");
+                    $.each(data.employees, function (i, data) {
+                        var div_datae = '<tr> <td class="pt-3 alex-name-2"> <div class="container"> <div class="row"> <div class="col-md-5 m-0 p-0"> <span class="alex-name"> <img class="img-whih-table" src=' + data.img + ' alt="std-icon"/> </span> </div><div class="col-md-7 m-0 p-0 alex-21 mt-2"> <span class="alex-name ml-3" id="name">' + data.name + '</span> </div></div></div></td><td class="pt-4">123456789</td><td class="pt-4"> <span href="#" data-toggle="tooltip" title="harramlaraib127@gmail.com">' + data.email + '</span> </td><td class="pt-4">' + data.subject + '</td><td class="pt-4">' + data.location + '</td><td class="pt-4">Advance</td><td class="pt-4" id="avalibility">' + data.avaiblilty + '</td><td class="pt-4">' + data.rate + '</td>   <td class="pt-3 float-right"> <a href=' + data.button + ' class="cencel-btn btn"> View </a> </td><td class="pt-3 float-right"> <button class="schedule-btn" data-toggle="modal" data-target="#exampleModalCenter">Assign</button> </td></tr>';
+                        $('#datas').append(div_datae);
+                    });
+
+                },
+            });
+        });
+
+        $('#sort-by-home').change(function () {
+            $.ajax({
+                url: "/assets/js/ticket-id.json",
+                type: "GET",
+                data: {
+                    id: "1",
+                },
+                // how can I get selected value here
+                beforeSend: function () {
+                    // alert("Send data ...")
+                },
+                success: function (data) {
+                    $('#datas').html("");
+                    $.each(data.employees, function (i, data) {
+                        var div_datae = '<tr> <td class="pt-3 alex-name-2"> <div class="container"> <div class="row"> <div class="col-md-5 m-0 p-0"> <span class="alex-name"> <img class="img-whih-table" src=' + data.img + ' alt="std-icon"/> </span> </div><div class="col-md-7 m-0 p-0 alex-21 mt-2"> <span class="alex-name ml-3" id="name">' + data.name + '</span> </div></div></div></td><td class="pt-4">123456789</td><td class="pt-4"> <span href="#" data-toggle="tooltip" title="harramlaraib127@gmail.com">' + data.email + '</span> </td><td class="pt-4">' + data.subject + '</td><td class="pt-4">' + data.location + '</td><td class="pt-4">Advance</td><td class="pt-4" id="avalibility">' + data.avaiblilty + '</td><td class="pt-4">' + data.rate + '</td>   <td class="pt-3 float-right"> <a href=' + data.button + ' class="cencel-btn btn"> View </a> </td><td class="pt-3 float-right"> <button class="schedule-btn" data-toggle="modal" data-target="#exampleModalCenter">Assign</button> </td></tr>';
+                        $('#datas').append(div_datae);
+                    });
+                },
+            });
+        });
+
+        $('#home-category').change(function () {
+                // var url = $(this).val();
+            $.ajax({
+                url: "/assets/js/ticket-id.json",
+                type: "GET",
+                data: {
+
+                    ticketNo: $("#home-ticket").val(),
+                    userName: $("#home-user").val(),
+                    status: $("#home-status").val(),
+
+                },
+                // how can I get selected value here
+                beforeSend: function () {
+                    // alert("Send data ...")
+                },
+                success: function (data) {
+                    $('#datashow').html("");
+                    $.each(data.employees, function (i, data) {
+                        var div_datae = ' <tr> <td class="pt-4"> <span>' + data.ticket + '</span> </td><td class="pt-4">' + data.user + '</td><td class="pt-4">' + data.ticketSubject + '</td><td class="pt-4">' + data.category + '</td><td class="pt-4">' + data.date + '</td><td class="pt-4">' + data.answerby + '</td><td class="pt-4"> <span class="pending-text">' + data.pending + '</span> </td><td class="pt-3 float-right"> <a href=' + data.button + ' class="schedule-btn btn">View</a> </td></tr>';
+                        $('#datashow').append(div_datae);
+                        window.location = url; // redirect
+                    });
+                },
+            });
+        });
+
+        $('#home-status').change(function () {
+            $.ajax({
+                url: "/assets/js/ticket-id.json",
+                type: "GET",
+                data: {
+
+                    ticketNo: $("#home-ticket").val(),
+                    userName: $("#home-user").val(),
+                    status: $("#home-category").val(),
+
+                },
+                // how can I get selected value here
+                beforeSend: function () {
+                    // alert("Send data ...")
+                },
+                success: function (data) {
+                    $('#datashow').html("");
+                    $.each(data.employees, function (i, data) {
+                        var div_datae = ' <tr> <td class="pt-4"> <span>' + data.ticket + '</span> </td><td class="pt-4">' + data.user + '</td><td class="pt-4">' + data.ticketSubject + '</td><td class="pt-4">' + data.category + '</td><td class="pt-4">' + data.date + '</td><td class="pt-4">' + data.answerby + '</td><td class="pt-4"> <span class="pending-text">' + data.pending + '</span> </td><td class="pt-3 float-right"> <a href=' + data.button + ' class="schedule-btn btn">View</a> </td></tr>';
+                        $('#datashow').append(div_datae);
+                    });
+                },
+            });
+        });
+
+        $('#sort-by-home-1').change(function () {
+            $.ajax({
+                url: "/assets/js/ticket-id.json",
+                type: "GET",
+                data: {
+                    id: "2",
+                },
+                // how can I get selected value here
+                beforeSend: function () {
+                    // alert("Send data ...")
+                },
+                success: function (data) {
+                    $('#datas').html("");
+                    $.each(data.employees, function (i, data) {
+                        var div_datae = ' <tr> <td class="pt-4"> <span>' + data.ticket + '</span> </td><td class="pt-4">' + data.user + '</td><td class="pt-4">' + data.ticketSubject + '</td><td class="pt-4">' + data.category + '</td><td class="pt-4">' + data.date + '</td><td class="pt-4">' + data.answerby + '</td><td class="pt-4"> <span class="pending-text">' + data.pending + '</span> </td><td class="pt-3 float-right"> <a href=' + data.button + ' class="schedule-btn btn">View</a> </td></tr>';
+                        $('#datashow').append(div_datae);
+                    });
+                },
+            });
+        });
+
         var _seed = 42;
         Math.random = function () {
             _seed = _seed * 16807 % 2147483647;
             return (_seed - 1) / 2147483646;
         };
-    </script>
 
-    <script>
-        var generateDayWiseTimeSeries = function (baseval, count, yrange) {
-            var i = 0;
-            var series = [];
-            while (i < count) {
-                var x = baseval;
-                var y = Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
 
-                series.push([x, y]);
-                baseval += 86400000;
-                i++;
-            }
-            return series;
-        }
-    </script>
-    <script>
         var options = {
             series: [
                 {
-                    name: 'Teacher',
+                    name: 'Tutor',
                     data: generateDayWiseTimeSeries(new Date('11 Feb 2017 GMT').getTime(), 20, {
                         min: 10,
                         max: 60
@@ -222,90 +294,6 @@
         var chart = new ApexCharts(document.querySelector("#chart"), options);
         chart.render();
 
-    </script>
-    <!-- <script>
-        // serach location
-        var input = document.getElementById('search-location');
-        var options = {
-            types: ['(cities)']
-        };
-
-        var autocomplete = new google.maps.places.Autocomplete(input, options);
-
-        $(input).on('input', function () {
-            var str = input.value;
-            var prefix = '';
-            if (str.indexOf(prefix) == 0) {
-                console.log(input.value);
-            } else {
-                if (prefix.indexOf(str) >= 0) {
-                    input.value = prefix;
-                } else {
-                    input.value = prefix + str;
-                }
-            }
-
-        });
-
-        google.maps.event.addListener(autocomplete, 'place_changed', function () {
-            var place = autocomplete.getPlace();
-            // var lat = place.geometry.location.lat();
-            // var long = place.geometry.location.lng();
-            // alert(lat + ", " + long);
-            var location = place.name;
-            $("#search-location").val(location);
-            $.ajax({
-                url: "/assets/js/ticket-id.json'",
-                type: "GET",
-                data: {
-                    id: $("#home-ticket-1").val(),
-                    location: $("#search-location").val(),
-                    avaiblilty: $("#availability-id").val(),
-                    rate: $("#rate-number").val(),
-
-                },
-                // how can I get selected value here
-                beforeSend: function () {
-                    // alert("Send data ...")
-                },
-                success: function (data) {
-                    $('#datas').html("");
-                    $.each(data.employees, function (i, data) {
-                        var div_datae = '<tr> <td class="pt-3 alex-name-2"> <div class="container"> <div class="row"> <div class="col-md-5 m-0 p-0"> <span class="alex-name"> <img class="img-whih-table" src=' + data.img + ' alt="std-icon"/> </span> </div><div class="col-md-7 m-0 p-0 alex-21 mt-2"> <span class="alex-name ml-3" id="name">' + data.name + '</span> </div></div></div></td><td class="pt-4">123456789</td><td class="pt-4"> <span href="#" data-toggle="tooltip" title="harramlaraib127@gmail.com">' + data.email + '</span> </td><td class="pt-4">' + data.subject + '</td><td class="pt-4">' + data.location + '</td><td class="pt-4">Advance</td><td class="pt-4" id="avalibility">' + data.avaiblilty + '</td><td class="pt-4">' + data.rate + '</td>   <td class="pt-3 float-right"> <a href=' + data.button + ' class="cencel-btn btn"> View </a> </td><td class="pt-3 float-right"> <button class="schedule-btn" data-toggle="modal" data-target="#exampleModalCenter">Assign</button> </td></tr>';
-                        $('#datas').append(div_datae);
-                    });
-                },
-            });
-        });
-
-        // end serach location
-        //  tutor serach
-        // $(document).ready(function () {
-        //     $("#home-ticket-1").autocomplete({
-        //         source: "/assets/js/test1.json",
-        //         minLength: 3,
-        //         select: function (event, ui) {
-        //             $.ajax({
-        //                 method: "get",
-        //                 url: "assets/js/ticket-id.json",
-        //                 data: { bookTitle: ui.item.value }
-        //             })
-        //                 .done(function (data) {
-        //                     $('#datas').html("");
-        //                     $.each(data.employees, function (i, data) {
-        //                         var div_datae = '<tr> <td class="pt-3 alex-name-2"> <div class="container"> <div class="row"> <div class="col-md-5 m-0 p-0"> <span class="alex-name"> <img class="img-whih-table" src=' + data.img + ' alt="std-icon"/> </span> </div><div class="col-md-7 m-0 p-0 alex-21 mt-2"> <span class="alex-name ml-3" id="name">' + data.name + '</span> </div></div></div></td><td class="pt-4">123456789</td><td class="pt-4"> <span href="#" data-toggle="tooltip" title="harramlaraib127@gmail.com">' + data.email + '</span> </td><td class="pt-4">' + data.subject + '</td><td class="pt-4">' + data.location + '</td><td class="pt-4">Advance</td><td class="pt-4" id="avalibility">' + data.avaiblilty + '</td><td class="pt-4">' + data.rate + '</td>   <td class="pt-3 float-right"> <a href=' + data.button + ' class="cencel-btn btn"> View </a> </td><td class="pt-3 float-right"> <button class="schedule-btn" data-toggle="modal" data-target="#exampleModalCenter">Assign</button> </td></tr>';
-        //                         $('#datas').append(div_datae);
-        //                     });
-        //                 })
-        //         }
-        //     });
-        // });
-        // home-ticket
-
-
-    </script> -->
-    <!-- graph js -->
-    <script>
         var options = {
             series: [{
                 name: 'Inflation',
@@ -392,250 +380,95 @@
         // get input field and add 'keyup' event listener
         let searchInput = document.querySelector('.search-input');
         searchInput.addEventListener('keyup', search);
-    </script>
-    <!-- end graph js -->
-    <script>
-        $(document).ready(function ($) {
-           
-            $('#TypeFeed').change(function () {
 
-                $.ajax({
-                    url: "/assets/js/ticket-id.json",
+        if(document.getElementById("defaultOpen")){
+            document.getElementById("defaultOpen").click();
+        }
 
-                    // url: $('#TypeFeed').val() + '.html',
-                    type: "GET",
-                    data: {
-                        id: $("#home-ticket-1").val(),
-                        location: $("#search-location").val(),
-                        avaiblilty: $("#availability-id").val(),
-                        rate: $("#rate-number").val(),
+        get_all_notifications();
+    });
 
-                    },
-                    // how can I get selected value here
-                    beforeSend: function () {
-                        // alert("Send data ...")
 
-                    },
-                    success: function (data) {
-                        $('#datas').html("");
-                        $.each(data.employees, function (i, data) {
-                            var div_datae = '<tr> <td class="pt-3 alex-name-2"> <div class="container"> <div class="row"> <div class="col-md-5 m-0 p-0"> <span class="alex-name"> <img class="img-whih-table" src=' + data.img + ' alt="std-icon"/> </span> </div><div class="col-md-7 m-0 p-0 alex-21 mt-2"> <span class="alex-name ml-3" id="name">' + data.name + '</span> </div></div></div></td><td class="pt-4">123456789</td><td class="pt-4"> <span href="#" data-toggle="tooltip" title="harramlaraib127@gmail.com">' + data.email + '</span> </td><td class="pt-4">' + data.subject + '</td><td class="pt-4">' + data.location + '</td><td class="pt-4">Advance</td><td class="pt-4" id="avalibility">' + data.avaiblilty + '</td><td class="pt-4">' + data.rate + '</td>   <td class="pt-3 float-right"> <a href=' + data.button + ' class="cencel-btn btn"> View </a> </td><td class="pt-3 float-right"> <button class="schedule-btn" data-toggle="modal" data-target="#exampleModalCenter">Assign</button> </td></tr>';
-                            $('#datas').append(div_datae);
-                            window.history.pushState("object or string", "", "/new-url") = data;
-                            // window.pushState = data;
-                            // window.location.replace("your_url")
-                            // var url = $(this).val();
-                            // if (url) {
-                            //     window.location = url;
-                            // }
-                            // return false;
+    function get_all_notifications() {
+        $.ajax({
+            url: "{{route('getNotification')}}",
+            type:"GET",
+            dataType:'json',
+            success:function(response){
+                var obj = response.data;
+                if(response.status_code == 200 && response.success == true) {
+                    var notification = ``;
+                    if(obj.length == 0){
+                        $('.notification_counter').text(0);
+                    }else{
+                        $('.notification_counter').text(obj.length);
+                        for(var i =0; i < obj.length; i++) {
+                            let img = '';
 
-                        });
-
-                    },
-
-                });
-            });
-            //
-            // $('#home-ticket-1').keydown(function () {
-            //     $.ajax({
-            //         url: "/assets/js/ticket-id.json",
-            //         type: "GET",
-            //         data: {
-            //             id: $("#home-ticket-1").val(),
-            //             location: $("#search-location").val(),
-            //             avaiblilty: $("#availability-id").val(),
-            //             rate: $("#rate-number").val(),
-
-            //         },
-            //         // how can I get selected value here
-            //         beforeSend: function () {
-            //             // alert("Send data ...")
-            //         },
-            //         success: function (data) {
-            //             $('#datas').html("");
-            //             $.each(data.employees, function (i, data) {
-            //                 var div_datae = '<tr> <td class="pt-3 alex-name-2"> <div class="container"> <div class="row"> <div class="col-md-5 m-0 p-0"> <span class="alex-name"> <img class="img-whih-table" src=' + data.img + ' alt="std-icon"/> </span> </div><div class="col-md-7 m-0 p-0 alex-21 mt-2"> <span class="alex-name ml-3" id="name">' + data.name + '</span> </div></div></div></td><td class="pt-4">123456789</td><td class="pt-4"> <span href="#" data-toggle="tooltip" title="harramlaraib127@gmail.com">' + data.email + '</span> </td><td class="pt-4">' + data.subject + '</td><td class="pt-4">' + data.location + '</td><td class="pt-4">Advance</td><td class="pt-4" id="avalibility">' + data.avaiblilty + '</td><td class="pt-4">' + data.rate + '</td>   <td class="pt-3 float-right"> <a href=' + data.button + ' class="cencel-btn btn"> View </a> </td><td class="pt-3 float-right"> <button class="schedule-btn" data-toggle="modal" data-target="#exampleModalCenter">Assign</button> </td></tr>';
-            //                 $('#datas').append(div_datae);
-            //             });
-            //         },
-            //     });
-            // });
-            $('#availability-id').change(function () {
-                $.ajax({
-                    url: "/assets/js/ticket-id.json",
-                    type: "GET",
-                    data: {
-                        id: $("#home-ticket-1").val(),
-                        location: $("#search-location").val(),
-                        student: $("#TypeFeed").val(),
-                        rate: $("#rate-number").val(),
-
-                    },
-                    // how can I get selected value here
-                    beforeSend: function () {
-                        // alert("Send data ...")
-                    },
-                    success: function (data) {
-                        $('#datas').html("");
-                        $.each(data.employees, function (i, data) {
-                            var div_datae = '<tr> <td class="pt-3 alex-name-2"> <div class="container"> <div class="row"> <div class="col-md-5 m-0 p-0"> <span class="alex-name"> <img class="img-whih-table" src=' + data.img + ' alt="std-icon"/> </span> </div><div class="col-md-7 m-0 p-0 alex-21 mt-2"> <span class="alex-name ml-3" id="name">' + data.name + '</span> </div></div></div></td><td class="pt-4">123456789</td><td class="pt-4"> <span href="#" data-toggle="tooltip" title="harramlaraib127@gmail.com">' + data.email + '</span> </td><td class="pt-4">' + data.subject + '</td><td class="pt-4">' + data.location + '</td><td class="pt-4">Advance</td><td class="pt-4" id="avalibility">' + data.avaiblilty + '</td><td class="pt-4">' + data.rate + '</td>   <td class="pt-3 float-right"> <a href=' + data.button + ' class="cencel-btn btn"> View </a> </td><td class="pt-3 float-right"> <button class="schedule-btn" data-toggle="modal" data-target="#exampleModalCenter">Assign</button> </td></tr>';
-                            $('#datas').append(div_datae);
-                        });
-
-                    },
-                });
-            });
+                            if(obj[i].sender_pic != null){
+                                img = `<img class="profile-img w-100 p-0 mt-2" src="{{asset('`+obj[i].sender_pic+`')}}" alt="layer">`;
+                            }
+                            else{
+                                img = `<img class="profile-img w-100 p-0 mt-2" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
+                            }
+                        notification +=`
+                        <li >
+                            <a href="`+obj[i].slug+`" class="bgm">
+                                <div class="row">
+                                    <div class="col-md-2 pr-0 text-center">
+                                    `+img+`
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="head-1-noti">
+                                            <span class="notification-text6">
+                                                <strong>` +obj[i].noti_title+ ` </strong> 
+                                                `+obj[i].noti_desc+`
+                                            </span>
+                                        </div>
+                                        <span class="notification-time">
+                                        </span>
+                                    </div>
+                                </div>
+                            </a>    
+                        </li>`;
+                        }
+                        $(".show_all_notifications").html(notification);
+                    }
+                }else{
+                    
+                }
+            },
+            error:function(e) {
+                console.log(e)
+            }
         });
-        $(document).ready(function ($) {
-            $('#rate-number').change(function () {
-                $.ajax({
-                    url: "/assets/js/ticket-id.json",
-                    type: "GET",
-                    data: {
-                        id: $("#home-ticket-1").val(),
-                        location: $("#search-location").val(),
-                        student: $("#TypeFeed").val(),
-                        avaiblilty: $("#availability-id").val(),
+    }
 
-                    },
-                    // how can I get selected value here
-                    beforeSend: function () {
-                        // alert("Send data ...")
-                    },
-                    success: function (data) {
-                        $('#datas').html("");
-                        $.each(data.employees, function (i, data) {
-                            var div_datae = '<tr> <td class="pt-3 alex-name-2"> <div class="container"> <div class="row"> <div class="col-md-5 m-0 p-0"> <span class="alex-name"> <img class="img-whih-table" src=' + data.img + ' alt="std-icon"/> </span> </div><div class="col-md-7 m-0 p-0 alex-21 mt-2"> <span class="alex-name ml-3" id="name">' + data.name + '</span> </div></div></div></td><td class="pt-4">123456789</td><td class="pt-4"> <span href="#" data-toggle="tooltip" title="harramlaraib127@gmail.com">' + data.email + '</span> </td><td class="pt-4">' + data.subject + '</td><td class="pt-4">' + data.location + '</td><td class="pt-4">Advance</td><td class="pt-4" id="avalibility">' + data.avaiblilty + '</td><td class="pt-4">' + data.rate + '</td>   <td class="pt-3 float-right"> <a href=' + data.button + ' class="cencel-btn btn"> View </a> </td><td class="pt-3 float-right"> <button class="schedule-btn" data-toggle="modal" data-target="#exampleModalCenter">Assign</button> </td></tr>';
-                            $('#datas').append(div_datae);
-                        });
+    var generateDayWiseTimeSeries = function (baseval, count, yrange) {
+        var i = 0;
+        var series = [];
+        while (i < count) {
+            var x = baseval;
+            var y = Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
 
-                    },
-                });
-            })
-        });
-        $(document).ready(function ($) {
-            $('#sort-by-home').change(function () {
-                $.ajax({
-                    url: "/assets/js/ticket-id.json",
-                    type: "GET",
-                    data: {
-                        id: "1",
-                    },
-                    // how can I get selected value here
-                    beforeSend: function () {
-                        // alert("Send data ...")
-                    },
-                    success: function (data) {
-                        $('#datas').html("");
-                        $.each(data.employees, function (i, data) {
-                            var div_datae = '<tr> <td class="pt-3 alex-name-2"> <div class="container"> <div class="row"> <div class="col-md-5 m-0 p-0"> <span class="alex-name"> <img class="img-whih-table" src=' + data.img + ' alt="std-icon"/> </span> </div><div class="col-md-7 m-0 p-0 alex-21 mt-2"> <span class="alex-name ml-3" id="name">' + data.name + '</span> </div></div></div></td><td class="pt-4">123456789</td><td class="pt-4"> <span href="#" data-toggle="tooltip" title="harramlaraib127@gmail.com">' + data.email + '</span> </td><td class="pt-4">' + data.subject + '</td><td class="pt-4">' + data.location + '</td><td class="pt-4">Advance</td><td class="pt-4" id="avalibility">' + data.avaiblilty + '</td><td class="pt-4">' + data.rate + '</td>   <td class="pt-3 float-right"> <a href=' + data.button + ' class="cencel-btn btn"> View </a> </td><td class="pt-3 float-right"> <button class="schedule-btn" data-toggle="modal" data-target="#exampleModalCenter">Assign</button> </td></tr>';
-                            $('#datas').append(div_datae);
-                        });
-                    },
-                });
-            })
-        });
+            series.push([x, y]);
+            baseval += 86400000;
+            i++;
+        }
+        return series;
+    }
 
-    </script>
-    <!--  -->
-
-    <script>
-        $(document).ready(function ($) {
-            $('#home-category').change(function () {
-                // var url = $(this).val();
-                $.ajax({
-                    url: "/assets/js/ticket-id.json",
-                    type: "GET",
-                    data: {
-
-                        ticketNo: $("#home-ticket").val(),
-                        userName: $("#home-user").val(),
-                        status: $("#home-status").val(),
-
-                    },
-                    // how can I get selected value here
-                    beforeSend: function () {
-                        // alert("Send data ...")
-                    },
-                    success: function (data) {
-                        $('#datashow').html("");
-                        $.each(data.employees, function (i, data) {
-                            var div_datae = ' <tr> <td class="pt-4"> <span>' + data.ticket + '</span> </td><td class="pt-4">' + data.user + '</td><td class="pt-4">' + data.ticketSubject + '</td><td class="pt-4">' + data.category + '</td><td class="pt-4">' + data.date + '</td><td class="pt-4">' + data.answerby + '</td><td class="pt-4"> <span class="pending-text">' + data.pending + '</span> </td><td class="pt-3 float-right"> <a href=' + data.button + ' class="schedule-btn btn">View</a> </td></tr>';
-                            $('#datashow').append(div_datae);
-                            window.location = url; // redirect
-                        });
-                    },
-                });
-            });
-
-            //
-
-            $('#home-status').change(function () {
-                $.ajax({
-                    url: "/assets/js/ticket-id.json",
-                    type: "GET",
-                    data: {
-
-                        ticketNo: $("#home-ticket").val(),
-                        userName: $("#home-user").val(),
-                        status: $("#home-category").val(),
-
-                    },
-                    // how can I get selected value here
-                    beforeSend: function () {
-                        // alert("Send data ...")
-                    },
-                    success: function (data) {
-                        $('#datashow').html("");
-                        $.each(data.employees, function (i, data) {
-                            var div_datae = ' <tr> <td class="pt-4"> <span>' + data.ticket + '</span> </td><td class="pt-4">' + data.user + '</td><td class="pt-4">' + data.ticketSubject + '</td><td class="pt-4">' + data.category + '</td><td class="pt-4">' + data.date + '</td><td class="pt-4">' + data.answerby + '</td><td class="pt-4"> <span class="pending-text">' + data.pending + '</span> </td><td class="pt-3 float-right"> <a href=' + data.button + ' class="schedule-btn btn">View</a> </td></tr>';
-                            $('#datashow').append(div_datae);
-                        });
-                    },
-                });
-            });
-            $(document).ready(function ($) {
-                $('#sort-by-home-1').change(function () {
-                    $.ajax({
-                        url: "/assets/js/ticket-id.json",
-                        type: "GET",
-                        data: {
-                            id: "2",
-                        },
-                        // how can I get selected value here
-                        beforeSend: function () {
-                            // alert("Send data ...")
-                        },
-                        success: function (data) {
-                            $('#datas').html("");
-                            $.each(data.employees, function (i, data) {
-                                var div_datae = ' <tr> <td class="pt-4"> <span>' + data.ticket + '</span> </td><td class="pt-4">' + data.user + '</td><td class="pt-4">' + data.ticketSubject + '</td><td class="pt-4">' + data.category + '</td><td class="pt-4">' + data.date + '</td><td class="pt-4">' + data.answerby + '</td><td class="pt-4"> <span class="pending-text">' + data.pending + '</span> </td><td class="pt-3 float-right"> <a href=' + data.button + ' class="schedule-btn btn">View</a> </td></tr>';
-                                $('#datashow').append(div_datae);
-                            });
-                        },
-                    });
-                })
-            });
-        });
-        
-// /* setting */
-
-function openCity(evt, cityName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
-if(document.getElementById("defaultOpen")){
-    document.getElementById("defaultOpen").click();
-}
-
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
     </script>

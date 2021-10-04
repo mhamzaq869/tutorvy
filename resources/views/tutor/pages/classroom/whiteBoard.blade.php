@@ -134,7 +134,7 @@
 height:25px;
 }
 #canvas {
-  background-image:url("../assets/images/ico/graph.png")
+  /* background-image:url("../assets/images/ico/graph.png") */
 }
 #display{
     border: none;
@@ -147,9 +147,9 @@ height:25px;
 .btnNum{
     background:#fff;
 }
-td input{
+/* td input{
     width: 163px !important;
-}
+} */
 .ck p{
     height:400px !important;
 }

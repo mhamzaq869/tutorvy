@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\TutorController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\ClassroomController;
+use App\Http\Controllers\Admin\AdminBookingController;
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\WebsiteController;
@@ -40,6 +42,7 @@ use App\Http\Controllers\Student\SettingController as StudentSettingController;
 use App\Http\Controllers\Tutor\ChatController;
 use App\Http\Controllers\Student\ChatController as StdChatController;
 use App\Http\Controllers\General\GenChatController;
+use App\Http\Controllers\General\NotifyController;
 use App\Http\Controllers\Frontend\TutorController as FrontTutorController;
 
 
@@ -84,6 +87,12 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
     Route::post('student/change-student-status',[StudentController::class,'studentStatus'])->name('admin.studentStatus');
     Route::post('student/delete-student',[StudentController::class,'deleteStudent'])->name('admin.deleteStudent');
 
+    Route::get('/classroom',[ClassroomController::class,'index'])->name('admin.classroom');
+    Route::get('/booking',[AdminBookingController::class,'index'])->name('admin.booking');
+    Route::get('/booking-details/{id}',[AdminBookingController::class,'bookingDetails'])->name('admin.bookingDetail');
+
+
+
 
     Route::get('/course',[CourseController::class,'index'])->name('admin.course');
     Route::get('/course-request/{id}',[CourseController::class,'courseRequest'])->name('admin.course-request');
@@ -110,6 +119,9 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
     Route::get('/staff',[StaffController::class,'index'])->name('admin.staff');
     Route::post('/staff/insert',[StaffController::class,'insertStaff'])->name('admin.insertStaff');
     Route::get('/staff/profile/{id}',[StaffController::class,'staffProfile'])->name('admin.staffProfile');
+
+    Route::get('/role-permission/{id}',[StaffController::class,'rolePermission'])->name('admin.role.permission');
+    Route::post('/role-permission-store',[StaffController::class,'saveRolePermission'])->name('admin.save.permission');
 
     Route::get('/role',[StaffController::class,'role'])->name('admin.role');
     Route::post('/role/insert-role',[StaffController::class,'insertRole'])->name('admin.insertRole');
@@ -153,10 +165,16 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
 */
 Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function () {
 
+    // remove
+    Route::post('/testing',[TutorSettingController::class,'testing'])->name('tutor.testing');
+
     Route::get('/dashboard',[TutorHomeController::class,'index'])->name('tutor.dashboard');
     Route::get('/booking',[BookingController::class,'index'])->name('tutor.booking');
     Route::get('/booking-detail/{id}',[BookingController::class,'bookingDetail'])->name('tutor.booking.detail');
     Route::get('/booking-accept/{id}',[BookingController::class,'acceptBooking'])->name('tutor.booking.accept');
+    //
+    Route::post('/get-booking',[BookingController::class,'getBookingDetail'])->name('tutor.getBookingDetail');
+
 
     Route::get('/chat',[ChatController::class,'index'])->name('tutor.chat');
     Route::get('/classroom',[ClassController::class,'index'])->name('tutor.classroom');
@@ -190,6 +208,7 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
 
     Route::get('/call',[TutorSettingController::class,'call'])->name('tutor.call');
     Route::get('/class/{class_room_id}',[TutorSettingController::class,'start_class'])->name('tutor.start_class');
+    Route::post('/save-class-logs',[TutorSettingController::class,'saveClassLogs'])->name('tutor.class.logs');
 
     Route::get('/whiteBoard',[TutorSettingController::class,'whiteBoard'])->name('tutor.whiteBoard');
 
@@ -213,8 +232,8 @@ Route::group(['prefix' => '/general','middleware' => ['auth']],function () {
     Route::post('call/signal',[GenChatController::class,'sendSignal'])->name('tutor.sendsignal');
     Route::get('chat/user/talk/{id}',[GenChatController::class,'messages_between'])->name('user.chat');
 
-    Route::post('/save-token',[GenChatController::class,'saveToken'])->name('general.save.token');
-    Route::get('/get-notifications',[GenChatController::class,'getAllNotification'])->name('general.get.notification');
+    Route::post('/save-token',[NotifyController::class,'saveToken'])->name('general.save.token');
+    Route::get('/get-notifications',[NotifyController::class,'getAllNotification'])->name('getNotification');
 
 });
 
@@ -227,10 +246,12 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     Route::get('/bookings',[StudentBookingController::class,'index'])->name('student.bookings');
 
     Route::get('/book-now/{id}',[StudentBookingController::class,'bookNow'])->name('student.book-now');
+    Route::post('/bookNew',[StudentBookingController::class,'bookingNew'])->name('student.book-new');
     Route::post('/tutor-plan',[StudentBookingController::class,'tutorPlans'])->name('student.tutor.plans');
 
     Route::get('/booking-detail/{id}',[StudentBookingController::class,'bookingDetail'])->name('student.booking-detail');
     Route::get('/booking/{id}/tutor',[StudentBookingController::class,'directBooking'])->name('student.direct.booking');
+
     Route::get('/booking/payment/{id}',[StudentBookingController::class,'bookingPayment'])->name('student.booking.payment');
 
     Route::get('/booking/paymentstatus',[StudentBookingController::class,'getPaymentStatus'])->name('student.paymentstatus');
@@ -240,6 +261,9 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
 
     Route::get('/classroom',[StudentClassController::class,'index'])->name('student.classroom');
     Route::get('/wallet',[StudentClassController::class,'payment'])->name('student.wallet');
+
+    Route::post('/save-review',[StudentClassController::class,'saveReview'])->name('student.save.review');
+
     Route::get('/calendar',[CalendarController::class,'calendarStudent'])->name('student.calendar');
     // Route::get('/history',[HistoryController::class,'index'])->name('tutor.history');
     // Route::get('/payment',[PaymentController::class,'index'])->name('tutor.payment');
@@ -284,7 +308,8 @@ Auth::routes(['verify' => true]);
 //Google
 Route::get('/google/redirect/{c_id?}', [LoginController::class,'redirectGoogle'])->name('social.google');
 Route::get('/login/google/callback', [LoginController::class,'handleGoogleCallback']);
-//Facebook
+// Facebook
+
 Route::get('/facebook/redirect/{c_id?}', [LoginController::class,'redirectFacebook'])->name('social.facebook');
 Route::get('/login/facebook/callback', [LoginController::class,'handleFacebookCallback']);
 
@@ -300,8 +325,11 @@ Route::post('/resendOtp',[ResetPasswordController::class,'resendOtp'])->name('re
 
 
 Route::view('/','welcome');
+
+// Route::get('/',[GeneralController::class,'home']);
+
 Route::get('/widget',[FrontTutorController::class,'widgetTech'])->name('whiteBoard.canvas');
-Route::get('/widget',[FrontTutorController::class,'widgetTech'])->name('whiteBoard.canvas');
+// Route::get('/widget',[FrontTutorController::class,'widgetTech'])->name('whiteBoard.canvas');
 Route::view('/role','role');
 Route::get('/register_role',[GeneralController  ::class,'loginOnRole'])->name('register.role');
 Route::view('/tutor','frontend.tutor');

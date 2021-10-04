@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\FavTutors;
+use App\Models\Booking;
 use App\Models\Activitylogs;
 use App\Models\Classroom;
 use App\Models\Admin\tktCat;
@@ -76,9 +77,10 @@ class SettingController extends Controller
     }
 
     public function join_class($class_room_id){
-        $class = Classroom::with('booking')->where('classroom_id',$class_room_id)->first();
+        $class = Classroom::where('classroom_id',$class_room_id)->first();
+        $booking = Booking::where('id',$class->booking_id)->first();
         $user = User::where('id',\Auth::user()->id)->first();
-        return view('student.pages.classroom.classroom',compact('class','user'));
+        return view('student.pages.classroom.classroom',compact('class','user','booking'));
     }
 
     public function change_password(Request $request) {
@@ -152,6 +154,13 @@ class SettingController extends Controller
 
     function favouriteTutor(Request $request) {
 
+        $tutor = User::where('id',$request->id)->first();
+        $tutor_name = $tutor->first_name . ' ' . $tutor->last_name;
+
+        // activity logs
+        $id = Auth::user()->id;
+        $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+
         if($request->status == "fav") {
             
             FavTutors::create([
@@ -161,13 +170,24 @@ class SettingController extends Controller
 
             $message = 'Tutor Added in Favourite List';
 
+            $title = 'Favourite Tutor';
+            $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> Mark <a href="'.URL::to('/') . '/admin/tutor/profile/'. $id .'"> '.$tutor_name.' </a> Favourite ';
+
+
         }else{
 
             FavTutors::where("tutor_id",$request->id)->where("user_id",Auth::user()->id)->delete();
 
+            $title = 'un-Favourite Tutor';
+            $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> Mark <a href="'.URL::to('/') . '/admin/tutor/profile/'. $id .'"> '.$tutor_name.' </a> Profile Un-Favourite ';
+
             $message = 'Tutor Removed form Favourite List';
 
         }
+
+        // activity logs
+        $activity_logs = new GeneralController();
+        $activity_logs->save_activity_logs($title, "users.id", $request->id, $action_perform, $request->header('User-Agent'), $id);
 
         return response()->json([
             "status_code" => 200, 

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Activitylogs;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 use App\Models\Classroom;
 use App\Models\Booking;
 

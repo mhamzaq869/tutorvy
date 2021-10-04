@@ -12,17 +12,8 @@
     <!-- <link href="../css/style.css" rel="stylesheet"> -->
 
     <!-- bootstrap start -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
     <!-- bootstrap end -->
     <!-- fontawsome -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
@@ -70,8 +61,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div id="preCheck" >
-                                            <input type="text" class="form-control mt-2" name="preElementary_rate" placeholder="Rate per hour in USD ($)">
-                                       
+                                        <input type="text" class="form-control mt-2"  id="preElementary_rate" name="preElementary_rate" placeholder="Rate per hour in USD ($)">
                                     </div>
                                 </div>
                                 <div class="pt-3 col-md-6">
@@ -82,7 +72,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div id="eleCheck">
-                                        <input type="text" class="form-control mt-2" name="elementary_rate" placeholder="Rate per hour in USD ($)">
+                                        <input type="text" class="form-control mt-2" id="elementary_rate" name="elementary_rate" placeholder="Rate per hour in USD ($)">
                                     </div>
                                 </div>
                                 <div class="pt-3 col-md-6">
@@ -93,7 +83,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div id="secCheck">
-                                        <input type="text" class="form-control mt-2" name="secondary_rate" placeholder="Rate per hour in USD ($)">
+                                        <input type="text" class="form-control mt-2" id="secondary_rate" name="secondary_rate" placeholder="Rate per hour in USD ($)">
                                     </div>
                                 </div>
                                 <div class="pt-3 col-md-6">
@@ -104,7 +94,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div id="highCheck">
-                                        <input type="text" class="form-control mt-2" name="highSchool_rate" placeholder="Rate per hour in USD ($)">
+                                        <input type="text" class="form-control mt-2" id="highSchool_rate" name="highSchool_rate" placeholder="Rate per hour in USD ($)">
                                     </div>
                                 </div>
                                 <div class="pt-3 col-md-6">
@@ -115,7 +105,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div id="postCheck">
-                                        <input type="text" class="form-control mt-2" name="postSec_rate" placeholder="Rate per hour in USD ($)">
+                                        <input type="text" class="form-control mt-2" id="postSec_rate" name="postSec_rate" placeholder="Rate per hour in USD ($)">
                                     </div>
                                 </div>
 
@@ -298,9 +288,74 @@
                 
                 var level_check = $( "input:checked" ).length;
                 if(level_check == 0) {
-                    alert('Please Select atleast One Level');
+                    toastr.error('Please Select atleast One Subject Level',{
+                        position: 'top-end',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
                 }else{
-                    
+
+                    if( $("#preElementary").prop('checked') ) {
+                        if($("#preElementary_rate").val().length == 0) {
+                            toastr.error('Pre Elementary Subject Rate is Required',{
+                                position: 'top-end',
+                                icon: 'error',
+                                showConfirmButton: false,
+                                timer: 2500
+                            });
+                        return false;    
+                        }
+                    }
+
+                    if( $("#elementary").prop('checked') ) {
+                        if($("#elementary_rate").val().length == 0) {
+                            toastr.error('Elementary Subject Rate is Required',{
+                                position: 'top-end',
+                                icon: 'error',
+                                showConfirmButton: false,
+                                timer: 2500
+                            });
+                        return false;    
+                        }
+                    }
+
+                    if( $("#secondary").prop('checked') ) {
+                        if($("#secondary_rate").val().length == 0) {
+                            toastr.error('Secondary Subject Rate is Required',{
+                                position: 'top-end',
+                                icon: 'error',
+                                showConfirmButton: false,
+                                timer: 2500
+                            });
+                        return false;    
+                        }
+                    }
+
+                    if( $("#highSchool").prop('checked') ) {
+                        if($("#highSchool_rate").val().length == 0) {
+                            toastr.error('High School Subject Rate is Required',{
+                                position: 'top-end',
+                                icon: 'error',
+                                showConfirmButton: false,
+                                timer: 2500
+                            });
+                        return false;    
+                        }
+                    }
+
+                    if( $("#postSec").prop('checked') ) {
+                        if($("#postSec_rate").val().length == 0) {
+                            toastr.error('Post Secondary Subject Rate is Required',{
+                                position: 'top-end',
+                                icon: 'error',
+                                showConfirmButton: false,
+                                timer: 2500
+                            });
+                        return false;    
+                        }
+                    }
+
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

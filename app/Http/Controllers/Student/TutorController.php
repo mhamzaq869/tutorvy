@@ -113,19 +113,19 @@ class TutorController extends Controller
             
         });
 
-        $query->where(function($query7) use ($price)
-        {
-            if($price != null && $price != ''){
-                $min_prc =  '';
-                $max_prc =  '';
-                $price = explode(';',$price);
-                $min_prc = $price[0];
-                $max_prc = $price[1];
+        // $query->where(function($query7) use ($price)
+        // {
+        //     if($price != null && $price != ''){
+        //         $min_prc =  '';
+        //         $max_prc =  '';
+        //         $price = explode(';',$price);
+        //         $min_prc = $price[0];
+        //         $max_prc = $price[1];
                 
-                $query7->where('users.hourly_rate','>=', $min_prc)->where('users.hourly_rate','<=', $max_prc);
-            }
+        //         $query7->where('users.hourly_rate','>=', $min_prc)->where('users.hourly_rate','<=', $max_prc);
+        //     }
             
-        });
+        // });
 
         $available_tutors = $query->orderByRaw('rating DESC')->groupByRaw('users.id')->get();
 

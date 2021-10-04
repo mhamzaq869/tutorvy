@@ -3,27 +3,23 @@
 // are not available in the service worker.
 importScripts('https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/8.2.5/firebase-messaging.js');
-
 // Initialize the Firebase app in the service worker by passing in
 // your app's Firebase config object.
 // https://firebase.google.com/docs/web/setup#config-object
 const firebaseConfig = {
-    apiKey: "AIzaSyBXaJPa95dTLBz36lmoDgVnR80_EQVVwVA",
-    authDomain: "live-tech-cms.firebaseapp.com",
-    databaseURL: "https://live-tech-cms-default-rtdb.firebaseio.com",
-    projectId: "live-tech-cms",
-    storageBucket: "live-tech-cms.appspot.com",
-    messagingSenderId: "16545791116",
-    appId: "1:16545791116:web:e55cbea48308f9b1828fa9",
-    measurementId: "G-H3C052Z2LH"
+    apiKey: "AIzaSyCIoIw5TgIOYXirhqBlsYsYJOMMNStK_KA",
+    authDomain: "tutorvy-ad64f.firebaseapp.com",
+    projectId: "tutorvy-ad64f",
+    storageBucket: "tutorvy-ad64f.appspot.com",
+    messagingSenderId: "30326081925",
+    appId: "1:30326081925:web:342e89a81d7d7f396ddcec",
+    measurementId: "G-DXS0PNV01R"
 };
-
 firebase.initializeApp(firebaseConfig);
 // firebase.analytics();
 // Retrieve an instance of Firebase Messaging so that it can handle background
 // messages.
 const messaging = firebase.messaging();
-
 messaging.onBackgroundMessage((payload) => {
     console.log('[firebase-messaging-sw.js] Received background message ', payload);
     // Customize notification here
@@ -32,7 +28,6 @@ messaging.onBackgroundMessage((payload) => {
       body: 'Background Message body.',
       icon: '/firebase-logo.png'
     };
-  
     // self.registration.showNotification(notificationTitle,
     //   notificationOptions);
   });

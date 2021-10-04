@@ -211,6 +211,7 @@ class LoginController extends Controller
         }
     }
 
+
      /*
     *  Register User if not exist in db and if exist will login
     *  and redirect to dashboard

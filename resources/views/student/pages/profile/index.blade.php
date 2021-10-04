@@ -400,8 +400,8 @@
                                     role="tab" aria-controls="v-pills-General" aria-selected="true">General</a>
                                 <a class="nav-link" id="v-pills-Education-tab" data-toggle="pill" href="#v-pills-Education"
                                     role="tab" aria-controls="v-pills-Education" aria-selected="false">Education</a>
-                                    <a class="nav-link" id="v-pills-Verification-tab" data-toggle="pill" href="#v-pills-Verification"
-                                    role="tab" aria-controls="v-pills-Verification" aria-selected="false">Verification</a>
+                                    <!-- <a class="nav-link" id="v-pills-Verification-tab" data-toggle="pill" href="#v-pills-Verification"
+                                    role="tab" aria-controls="v-pills-Verification" aria-selected="false">Verification</a> -->
                               
                             </div>
                         </div>
@@ -458,9 +458,11 @@
                                                         <label for="imageUpload"></label>
                                                     </div>
                                                     <div class="avatar-preview">
-                                                        <div id="imagePreview"
-                                                            style="background-image: url({{ asset(Auth::user()->picture ?? 'assets/images/ico/porfile-main.png') }});">
-                                                        </div>
+                                                        @if(Auth::user()->picture != null)
+                                                            <div id="imagePreview" style="background-image: url('{{asset(Auth::user()->picture)}}');"> </div>
+                                                        @else
+                                                        <div id="imagePreview" style="background-image: url({{asset('assets/images/ico/porfile-main.png')}});"> </div>
+                                                        @endif
                                                     </div>
                                                 </div>
 
@@ -470,7 +472,7 @@
                                                     <label for="exampleName">First Name</label>
                                                     <input type="text" name="first_name" class="form-control"
                                                         value="{{ Auth::user()->first_name }}" id="exampleName"
-                                                        aria-describedby="emailHelp">
+                                                        aria-describedby="emailHelp" required="required">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -478,7 +480,7 @@
                                                     <label for="exampleName">Last Name</label>
                                                     <input type="text" name="last_name" class="form-control"
                                                         value="{{ Auth::user()->last_name }}" id="exampleName"
-                                                        aria-describedby="emailHelp">
+                                                        aria-describedby="emailHelp" required="required">
                                                 </div>
                                             </div>
 
@@ -489,12 +491,16 @@
 
                                             <!-- date of birth dropdown -->
                                             <div class="col-md-4">
-                                                <select class="form-select form-select-lg w-100" id="day" name="day"></select>
+                                                <select class="form-select form-select-lg w-100" id="day" name="day" required="required">
+                                                    @for($i = 0 ; $i <= 31 ; $i++)
+                                                        <option value="{{$i}}" @if (Auth::user()->day == $i) selected @endif >{{$i}}</option>
+                                                    @endfor
+                                                </select>
                                             </div>
                                             <!--  -->
                                             <div class="col-md-4">
                                                 <select class="form-select form-select-lg w-100" name="month"
-                                                    aria-label=".form-select-lg example">
+                                                    aria-label=".form-select-lg example" required="required">
                                                     <option value="Jan" @if (Auth::user()->month == 'Jan') selected @endif>January</option>
                                                     <option value="Feb" @if (Auth::user()->month == 'Feb') selected @endif>February</option>
                                                     <option value="Mar" @if (Auth::user()->month == 'Mar') selected @endif>March</option>
@@ -511,14 +517,14 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <input type="" name="year" class=" yearpicker form-control" placeholder="Year"
-                                                    id="year">
+                                                    id="year" required="required">
                                             </div>
 
 
 
                                             <div class="col-md-12 my-3">
                                                 <input id="phone" name="phone" type="tel"
-                                                    value="{{ Auth::user()->phone ?? '' }}">
+                                                    value="{{ Auth::user()->phone ?? '' }}" required="required">
 
                                             </div>
 
@@ -528,12 +534,12 @@
                                             <div class="input-text col-md-6">
 
                                                 <input id="myInput" type="" name="city" placeholder="City"
-                                                    value="{{ Auth::user()->city ?? '' }}">
+                                                    value="{{ Auth::user()->city ?? '' }}" required="required">
 
                                             </div>
                                             <div class="input-text col-md-6 w-100">
 
-                                                <input id="country_selector" name="country" onchange="university()" type="">
+                                                <input id="country_selector" name="country" onchange="university()" type="" required="required">
                                                 <input id="country_short" value="{{ Auth::user()->country_short }}"
                                                     name="country_short" type="" hidden>
                                                 <label for="country_selector" style="display:none;">Select a country
@@ -546,13 +552,13 @@
                                                     <div class="col-md-6">
                                                         <input type="" name="language" id="lang" hidden>
                                                         <select class="form-select form-select-lg mb-3 w-100" id="languages-list"
-                                                            name="lang_short" onchange="langshort(this)">
+                                                            name="lang_short" onchange="langshort(this)" required="required">
                                                         </select>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <select class="form-select form-select-lg mb-3 w-100"
-                                                            aria-label=".form-select-lg example" name="gender">
-                                                            <option selected disabled>Gender</option>
+                                                            aria-label=".form-select-lg example" name="gender" required="required">
+                                                            <option value="" selected disabled>Gender</option>
                                                             <option value="male" @if (Auth::user()->gender == 'male') selected @endif>Male</option>
                                                             <option value="female" @if (Auth::user()->gender == 'female') selected @endif>Female</option>
                                                             <option value="other" @if (Auth::user()->gender == 'other') selected @endif>Other</option>
@@ -567,11 +573,14 @@
                                                     <label for="exampleText">About</label>
                                                     <textarea class="form-control" name="bio" id="exampleFormControlTextarea1"
                                                         rows="5"
-                                                        placeholder="Write about yourself...">{{ Auth::user()->bio ?? '' }}</textarea>
+                                                        placeholder="Write about yourself..." required="required">{{ Auth::user()->bio ?? '' }}</textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
-                                                <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit">Save Changes</button>
+                                                <button class="schedule-btn" id="general_btn" style="width: 180px;float:right;font-size: 14px;" type="submit">Save Changes</button>
+                                                <button type="button" role="button" type="button" id="general_loading" disabled class="btn btn-primary mb-4 mr-2" 
+                                                        style="width: 180px;float:right;display:none">
+                                                        <i class="fa fa-circle-o-notch fa-spin fa-1x fa-fw"></i> <span class="sr-only">Loading...</span> Processing </button>
                                             </div>
 
                                         </div>
@@ -665,11 +674,11 @@
                                                     <select name="student_level"
                                                         class="form-select form-select-lg mb-3 w-100" >
                                                         <option value="" disabled selected>Which grade you are in?</option>
-                                                            <option value="1" {{Auth::user()->student_level == 1 ? 'selected' : ''}}>Pre Elementary School</option>
-                                                            <option value="2" {{Auth::user()->student_level == 2 ? 'selected' : ''}}>Elementary School</option>
-                                                            <option value="3" {{Auth::user()->student_level == 3 ? 'selected' : ''}}>Secondary School</option>
-                                                            <option value="4" {{Auth::user()->student_level == 4 ? 'selected' : ''}}>High School</option>
-                                                            <option value="5" {{Auth::user()->student_level == 5 ? 'selected' : ''}}> Post Secondary</option>
+                                                            <option value="1" {{Auth::user()->experty_level == 1 ? 'selected' : ''}}>Pre Elementary School</option>
+                                                            <option value="2" {{Auth::user()->experty_level == 2 ? 'selected' : ''}}>Elementary School</option>
+                                                            <option value="3" {{Auth::user()->experty_level == 3 ? 'selected' : ''}}>Secondary School</option>
+                                                            <option value="4" {{Auth::user()->experty_level == 4 ? 'selected' : ''}}>High School</option>
+                                                            <option value="5" {{Auth::user()->experty_level == 5 ? 'selected' : ''}}> Post Secondary</option>
                                                     
                                                     </select>
                                                 </div>
@@ -716,13 +725,16 @@
                                         </div> -->
                                         <div class="row mt-3">
                                             <div class="col-md-12">
-                                                <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit" name="personal">Save Changes</button>
+                                                <button class="schedule-btn" id="education_btn" style="width: 180px;float:right;font-size: 14px;" type="submit" name="personal">Save Changes</button>
+                                                <button type="button" role="button" type="button" id="education_loading" disabled class="btn btn-primary mb-4 mr-2" 
+                                                        style="width: 180px;float:right;display:none">
+                                                        <i class="fa fa-circle-o-notch fa-spin fa-1x fa-fw"></i> <span class="sr-only">Loading...</span> Processing </button>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
                                 
-                                <div class="tab-pane fade chee" id="v-pills-Verification" role="tabpanel"
+                                <!-- <div class="tab-pane fade chee" id="v-pills-Verification" role="tabpanel"
                                     aria-labelledby="v-pills-Verification-tab">
 
                                     @if($user_files != [])
@@ -782,7 +794,7 @@
                                                 </div>
                                             </div>
 
-                                            <!-- <div class=" row ">
+                                            <div class=" row ">
                                                 <div class="col-md-6">
                                                     <input id="" type="text" class="form-control" placeholder="Add Driving License Number">
                                                 </div>
@@ -817,7 +829,7 @@
                                                         <strong>Kindly upload Passport photo with white Background</strong>
                                                     </p>
                                                 </div>
-                                            </div> -->
+                                            </div> 
                                             <div class="row mt-3">
                                                 <div class="col-md-12">
                                                     <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit" name="personal">Save Changes</button>
@@ -826,7 +838,7 @@
                                         </form>
                                     @endif
 
-                                </div>
+                                </div> -->
                                 
                             </div>
                         </div>
@@ -847,13 +859,7 @@
     <script src="{{ asset('assets/js/countrySelect.js') }}"></script>
     @include('js_files.student.profileJs')
     <script>
-        
-        for (var i = 1; i <= 31; i++) {
-            $("#day").append("<option value='" + i + "'" + (i == {{ Auth::user()->day ?? 1 }} ? 'selected' : '') + ">" +
-                i + "</option>");
-        }
-
-
+    
         $(document).ready(function() {
             $("#year").yearpicker({
                 year: {{ Auth::user()->year ?? '1990' }},

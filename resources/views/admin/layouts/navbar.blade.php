@@ -29,6 +29,7 @@
                             <img src="{{ asset('/admin/assets/img/sidebar/students.svg')}}" alt="user-icon" class=" mr-2"> Student
                         </a>
                     </li>
+
                     <li class="btn w-100">
                         <a href="manage-institute/institute.html" class="btn-manage">
                             <img src="{{ asset('/admin/assets/img/sidebar/institues.svg')}}" alt="user-icon" class=" mr-2"> Institute
@@ -275,28 +276,31 @@
                         <div class="col-xs-2 pull-right">
                             <div class="notification mr-4">
                                 <img src="{{ asset('/admin/assets/img/ico/Notification.svg')}}" alt="notification-ico">
-                                <span class="notification-text notification_counter"> </span>
+                                <span class="notification-text show_notification_counts"> 0 </span>
                                 <ul class="notification-menu navbarNav-1 mt-1">
-                                    <li class="container-fluid">
+                                    <li class="container-fluid mb-0 pb-0">
                                         <div class="row nav-row">
                                             <span class="col-md-6">
                                                 <a href="notification/notification.html"
-                                                    class="notification-text1">
+                                                    class="notification-text1 decoration-none">
                                                     Notifications
                                                 </a>
                                             </span>
-                                            <span class="col-md-6">
+                                            <span class="col-md-6 text-right">
                                                 <a href="" class="view-bookings">
                                                     Mark all read
                                                 </a>
                                             </span>
                                         </div>
-                                        <p class="mt-2 notification-text3 mt-2">
+                                        <p class="mt-2 notification-text3 mt-2 ">
                                             Recent
                                         </p>
                                     </li>
-                                    <li class="show_all_notifications">
-                                        <!-- <div class="row">
+                                    <span  class="show_all_notifications">
+                                        
+                                    </span>
+                                    <!-- <li class="show_all_notifications">
+                                        <div class="row">
                                             <div class="col-md-1">
                                                 <img class="avatar mt-2" src="{{ asset('/admin/assets/img/notifiaction/layer.png')}}"
                                                     alt="layer">
@@ -318,8 +322,8 @@
                                                 <img class="dot-image" src="{{ asset('/admin/assets/img/ico/3dot.png')}}"
                                                     alt="dot-ico">
                                             </div>
-                                        </div> -->
-                                    </li>
+                                        </div>
+                                    </li> -->
                                 </ul>
                             </div>
                         </div>

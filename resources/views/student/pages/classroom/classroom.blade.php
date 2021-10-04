@@ -21,6 +21,7 @@
   <script src="https://rtcmulticonnection.herokuapp.com/node_modules/canvas-designer/canvas-designer-widget.js"></script>
   <!-- <script src="https://raw.githubusercontent.com/muaz-khan/RTCMultiConnection/master/demos/js/emojionearea.min.js"></script> -->
 
+<link href="{{ asset('assets/css/modal.css') }}" rel="stylesheet">
   
   <!-- <script src="/node_modules/multistreamsmixer/MultiStreamsMixer.js"></script> -->
   <style>
@@ -36,17 +37,15 @@
   text-shadow: 1px 1px white;
 }
 
-#other-videos {
-    margin-top: 5px;
-}
 
-#other-videos video {
+
+/* #other-videos video {
     width: 45%;
     margin: 5px;
     border: 1px solid black;
     padding: 1px;
     border-radius: 3px;
-}
+} */
 
 #txt-chat-message {
     width: 100%;
@@ -63,30 +62,25 @@
 #conversation-panel {
     margin-bottom: 20px;
     text-align: left;
-    max-height: 200px;
+    max-height: 365px;
     overflow: auto;
     border-top: 1px solid #E5E5E5;
-    width: 106%;
+    width: 100%;
 }
 
 #conversation-panel .message {
     border-bottom: 1px solid #E5E5E5;
     padding: 5px 10px;
+    margin-right: 15px;
 }
 
 #conversation-panel .message img, #conversation-panel .message video, #conversation-panel .message iframe {
     max-width: 100%;
 }
 
-#main-video {
-    width: 100%;
-    margin-top: -9px;
-    border-bottom: 1px solid #121010;
-    display: none;
-    padding-bottom: 1px;
-    display: none;
+.bg-chat-head{
+    background-color:#fefefe !important;
 }
-
 hr {
     height: 1px;
     border: 0;
@@ -125,7 +119,6 @@ hr {
 .h-500{
     height:500px !important;
 }
-<style>
    .container-police {
   display: grid;
   /* min-width: 1250px; */
@@ -244,8 +237,8 @@ hr {
 }
 
 /* Chat Box */
-.h-360{
-  height:360px;
+.h-290{
+  height:290px;
   overflow-y:auto;
 }
 .chatInput{
@@ -265,9 +258,9 @@ height:25px;
 .btnNum{
     background:#fff;
 }
-td input{
+/* td input{
     width: 163px !important;
-}
+} */
 .ck p{
     height:400px !important;
 }
@@ -276,14 +269,73 @@ td input{
     padding-top: 16%; 
     border-radius:4px;
 }
+#countdownExample{
+    font-family:'Orbitron';
+}
+.w-20{
+    width:20px;
+}
+.mk,
+.vc{
+    display:none;
+}
+.tech_weck-none{
+    display:none !important;
+}
+.w-22{
+    width:22%;
+}
+/*Whiteboard nav Border */
+.nav .nav-item {
+    text-align: left !important;
+    color: #00132D;
+    font-size: 16px;
+    opacity: 0.51;
+    font-weight: 600;
+}
+.nav-whiteBoard-nav{
+    border-bottom:2px solid #D6DBE2;
+}
+
+/**Nav Border */
+/**Switch */
+.switch {
+    width: 50px !important;
+    height: 30px !important;
+}
+.round {
+    position: absolute;
+    top: -15px !important;
+    left: 10px;
+    bottom: 25px !important;
+}
+.bright{
+    position:absolute;
+    right:0;
+    top: 17px;
+}
+.bright input:checked+.slider {
+    background-color: #1173ff;
+}
+
+/*Switch End */
 </style>
 @section('content')
  <!-- top Fixed navbar End -->
  <section>
+     <input type="hidden" id="sbooking_id" value="{{$class->booking_id}}">
+
     <div class="content-wrapper " style="overflow: hidden;">
         <div class="container-fluid">
-            <div class="row mb-5 tech_weck">
-                <div class="col-md-9 card"> 
+            <!-- <div class="row">
+                <div class="col-md-12 text-right">
+                    <div id="countdownExample">
+                        <div class="values"></div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="row  tech_weck tech_weck-none">
+                <div class="col-md-9 "> 
                     <div class="row">
                         <div class="col-md-12 mt-3">
                                 <nav class="">
@@ -303,9 +355,17 @@ td input{
                                         <a class="nav-item nav-link" id="nav-googleDocs-tab" data-toggle="tab" href="#nav-googleDocs" role="tab" aria-controls="nav-googleDocs" aria-selected="false">
                                             Google Docs
                                         </a>
-                                        <a class="nav-item nav-link" id="nav-fileShare-tab" data-toggle="tab" href="#nav-fileShare" role="tab" aria-controls="nav-fileShare" aria-selected="false">
+                                        <!-- <a class="nav-item nav-link" id="nav-fileShare-tab" data-toggle="tab" href="#nav-fileShare" role="tab" aria-controls="nav-fileShare" aria-selected="false">
                                             File Sharing
-                                        </a>
+                                        </a> -->
+                                        <span class="bright">
+                                            <label > Share Screen </label>   
+                                                    <label class="switch  ml-2" style="">
+                                                        <input type="checkbox" class="s_status" val_id="3" val_st="1" checked="">
+                                                        <!-- <input type="checkbox" class="s_status" val_id="3" val_st="1 "  checked -->
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                        </span>
                                     </div>
                                 </nav>
                                 <div class="tab-content" id="nav-tabContent">
@@ -314,150 +374,19 @@ td input{
                                             <div class="row mt-2">
                                                 <div class="col-md-12">
                                                     <nav>
-                                                        <div class="nav nav-tabs board-nav" id="nav-tab" role="tablist">
-                                                            <!-- <a class="nav-item nav-link board-nav active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Board 1 <i class="pl-2 fa fa-times text-dark"></i></a>
-                                                            <a class="nav-item nav-link board-nav" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Board 2 <i class="pl-2 fa fa-times text-dark"></i></a>
-                                                            <a class="mt-2 ml-2" href="#">Add new Board +</a> -->
+                                                        <div class="nav nav-tabs board-nav ml-0 pl-0 newTabs" id="nav-tab" role="tablist">
+                                                            <a class="nav-item nav-link board-nav active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Board 1 </a>
+                                                            <a class="mt-2 ml-2" href="#" id="addNewBoard">Add new Board +</a>
                                                         </div>
                                                     </nav>
-                                                    <div class="tab-content" id="nav-tabContent">
-                                                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                                            <!-- <div class="row">
-                                                                <div class="col-md-1 mt-2 p-0">
-                                                                    <ul class=" text-center pl-0">
-                                                                        <li class="p-2">
-                                                                            <a href="#">
-                                                                                <img src="{{asset('assets/images/ico/pointer.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#">
-                                                                                <img src="{{asset('assets/images/ico/drag.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#" id="pen">
-                                                                                <img src="{{asset('assets/images/ico/pencil.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#" id="eraser">
-                                                                                <img src="{{asset('assets/images/ico/eraser.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#" id="rect">
-                                                                                <img src="{{asset('assets/images/ico/rectangle.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#">
-                                                                                <img src="{{asset('assets/images/ico/ellipse.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#" id="line">
-                                                                                <img src="{{asset('assets/images/ico/line.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#">
-                                                                                <img src="{{asset('assets/images/ico/text.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#">
-                                                                                <img src="{{asset('assets/images/ico/diagonal.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#">
-                                                                                <img src="{{asset('assets/images/ico/fx.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#" id="clear">
-                                                                                C
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="col-md-11 mt-3 p-0">
-                                                                    <canvas id="canvas" width="750" height="450"></canvas>
-                                                                </div> 
-                                                            </div> -->
+                                                    <div class="tab-content newWhite" id="nav-tabContent">
+                                                        <div class="tab-pane whitePane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                                             <div class="row">
-                                                                <div class="col-md-12 h-500 mt-5 mb-5">
+                                                                <div class="col-md-12 h-500 mb-5">
                                                                     <div id="widget-container" style=""></div>
-                                                                    <video id="screen-viewer" controls playsinline autoplay></video>
+                                                                    <video id="screen-viewer"  playsinline ></video>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                                            <!-- <div class="row">
-                                                                <div class="col-md-1 mt-2 p-0">
-                                                                    <ul class=" text-center pl-0">
-                                                                        <li class="p-2">
-                                                                            <a href="#">
-                                                                                <img src="{{asset('assets/images/ico/pointer.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#">
-                                                                                <img src="{{asset('assets/images/ico/drag.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#" id="pen">
-                                                                                <img src="{{asset('assets/images/ico/pencil.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#" id="eraser">
-                                                                                <img src="{{asset('assets/images/ico/eraser.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#" id="rect">
-                                                                                <img src="{{asset('assets/images/ico/rectangle.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#">
-                                                                                <img src="{{asset('assets/images/ico/ellipse.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#" id="line">
-                                                                                <img src="{{asset('assets/images/ico/line.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#">
-                                                                                <img src="{{asset('assets/images/ico/text.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#">
-                                                                                <img src="{{asset('assets/images/ico/diagonal.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#">
-                                                                                <img src="{{asset('assets/images/ico/fx.png')}}" alt="">
-                                                                            </a>
-                                                                        </li>
-                                                                        <li class="p-2">
-                                                                            <a href="#" id="clear">
-                                                                                C
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="col-md-11 mt-3 p-0">
-                                                                    <canvas id="canvas" width="750" height="500"></canvas>
-                                                                </div> 
-                                                            </div> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -641,24 +570,89 @@ td input{
                         </div>
                     </div>
                     </div> -->
-                    <div class="mt-4">
+                    <div class="row mt-3 mb-3">
+                        <div class="col-md-12">
+                            <video id="main-video"  playsinline autoplay></video>
+                            <div id="other-videos"  playsinline autoplay></div>
+                            <canvas id="temp-stream-canvas" style="display: none;"></canvas>
+                            
+                            <div class="col-md-12 mt-2 vid-location">
+                                <a  class="callSet vc">
+                                    <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
+                                </a>
+                                <a  class="callSet no-vc">
+                                    <img src="{{asset('assets/images/ico/no-vc.png')}}" title="With Video" alt="">
+                                </a>
+                                <a  class="callSet mk" id="mk">
+                                    <img src="{{asset('assets/images/ico/mike.png')}}" title="Without Audio" alt="">
+                                </a>
+                                <a  class="callSet no-mk">
+                                    <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
+                                </a>
+                                <a  class="callSet no-ph">
+                                    <img src="{{asset('assets/images/ico/no-phone.png')}}" title="End Call" alt="">
+                                </a>
+                            </div>
+                        </div>
+                       
+                        <div style="col-md-12 padding: 5px 10px;">
+                            <div id="onUserStatusChanged"></div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header bg-chat-head">
+                                    Chat <i class="fa fa-person"></i>
+                                </div>
+                                <div class="card-body h-290" id="conversation-panel">
+                                    <div class='text-center mb-3'>
+                                        <small>
+                                            Your all communications will be monitored for maintaining quality, will not share your personal information. 
+                                        </small>
+                                        <small>
+                                            <a href="#">View Privacy Policy</a>
+                                        </small>
+                                    </div>
+                                    <div id="key-press" style="text-align: right; display: none; font-size: 11px;">
+                                        <span style="vertical-align: middle;"></span>
+                                        <img src="https://www.webrtc-experiment.com/images/key-press.gif" style="height: 12px; vertical-align: middle;">
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-chat-head">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <textarea id="txt-chat-message" style="display:none;" ></textarea>
+                                            <div id="check"></div>
+                                            <a type="button" id="btn-chat-message" disabled><i class="fa fa-paper-plane-o paper" aria-hidden="true"></i></a>
+                                            <a id="btn-attach-file" type="button"><i class="fa fa-paperclip clip" aria-hidden="true"></i></a>
+                                            <!-- <img id="btn-attach-file" src="https://www.webrtc-experiment.com/images/attach-file.png" title="Attach a File"> -->
+                                            <img id="btn-share-screen" src="https://www.webrtc-experiment.com/images/share-screen.png" title="Share Your Screen">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="mt-4">
                         <div class="bg-dark w-100 cust_vid text-center">
                                 <img src="{{asset('assets/images/logo-footer.png')}}" alt="">
                         </div>
-                        <video id="main-video"  playsinline autoplay></video>
+                        <video id="main-video" class="w-100 m-0" playsinline autoplay></video>
                         <div id="other-videos" class="w-100 m-0"></div>
-                        <div class="col-md-12 mt-1 vid-location">
-                            <a href="#" class="callSet vc">
+                        <div class="col-md-12 mt-2 vid-location text-center">
+                            <a  class="callSet vc">
                                 <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
                             </a>
-                            <a href="#" class="callSet no-vc">
+                            <a  class="callSet no-vc">
                                 <img src="{{asset('assets/images/ico/no-vc.png')}}" title="With Video" alt="">
                             </a>
-                            <a href="#" class="callSet mk" id="mk">
+                            <a  class="callSet mk" id="mk">
                                 <img src="{{asset('assets/images/ico/mike.png')}}" title="Without Audio" alt="">
                             </a>
-                            <a href="#" class="callSet no-mk">
+                            <a  class="callSet no-mk">
                                 <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
+                            </a>
+                            <a  class="callSet no-ph">
+                                <img src="{{asset('assets/images/ico/no-phone.png')}}" title="End Call" alt="">
                             </a>
                         </div>
                         <hr>
@@ -674,62 +668,142 @@ td input{
                             </div>
                             <textarea id="txt-chat-message" style="display:none;" ></textarea>
                             <div id="check"></div>
+                            <a type="button" id="btn-chat-message" disabled><i class="fa fa-paper-plane-o paper" aria-hidden="true"></i></a>
+                            <a id="btn-attach-file" type="button"><i class="fa fa-paperclip clip" aria-hidden="true"></i></a>
                             <button class="btn btn-primary" id="btn-chat-message" disabled>Send</button>
                             <img id="btn-attach-file" src="https://www.webrtc-experiment.com/images/attach-file.png" title="Attach a File">
                             <img id="btn-share-screen" src="https://www.webrtc-experiment.com/images/share-screen.png" title="Share Your Screen">
                         </div>
 
-                        <canvas id="temp-stream-canvas" style="display: none;"></canvas>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
     </div>
 </section>
- <!-- Modal -->
- <div class="modal" id="callModal" tabindex="-1" role="dialog"
-    aria-hidden="true" data-backdrop="static">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <!-- <div class="modal-header">
-                <h5 class="modal-title" id="callModalTitle">Choose Features</h5>
-                <button type="button" class="close" data-dismiss="modal"
-                    aria-label="Close">
+<!-- End Call Modal -->
+    <div class="modal fade " id="endCall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Do you want to end the call?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                </button>
-            </div> -->
-            <div class="modal-body bg-black" >
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <img src="{{asset($user->picture)}}" class="profile-img pg" alt="">
-                    </div>
-                    <div class="col-md-12 g-location">
+                    </button>
+                </div>
+                <div class="modal-body text-center ">
+                    <button type="button" class="btn-general " id="endCallYes">End Call</button>
+                    <button type="button" class="btn-outline-general " data-dismiss="modal"> Not Yet </button>
+                </div>
+                <!-- <div class="modal-footer">
+                </div> -->
+            </div>
+        </div>
+    </div>
+ 
+ 
+<!--Call Modal -->
+<div class="modal fade " id="callModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" >
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body bg-black" >
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <img src="{{asset($user->picture)}}" class="profile-img pg" alt="">
+                        </div>
+                        <div class="col-md-12 text-center mt-3 ">
 
-                        <a href="#" class="callSet vc">
-                           <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
-                        </a>
-                        <a href="#" class="callSet no-vc">
-                           <img src="{{asset('assets/images/ico/no-vc.png')}}" title="With Video" alt="">
-                        </a>
-                        <a href="#" class="callSet mk" id="mk">
-                            <img src="{{asset('assets/images/ico/mike.png')}}" title="Without Audio" alt="">
-                        </a>
-                        <a href="#" class="callSet no-mk">
-                            <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
-                        </a>
-                        <a href="#" id="join_now"  class="btn btn-success ml-2">
-                            Join Class
-                        </a>
+                            <a  class="callSet vc">
+                            <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
+                            </a>
+                            <a  class="callSet no-vc">
+                            <img src="{{asset('assets/images/ico/no-vc.png')}}" title="With Video" alt="">
+                            </a>
+                            <a  class="callSet mk" >
+                                <img src="{{asset('assets/images/ico/mike.png')}}" title="Without Audio" alt="">
+                            </a>
+                            <a  class="callSet no-mk">
+                                <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
+                            </a>
+                            <a type="button" role="button" id="join_now"  class="btn btn-success ml-2">
+                                Join Class
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+
+<!--Review Modal -->
+    <div class="modal fade " id="reviewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center ">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="iconss" style="text-align: center;">
+                                <img src="{{asset('assets/images/ico/submit-test.png')}}" width="60px">
+                                <p
+                                    style="font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 500;margin-top: 10px;">
+                                    Review Class</p>
+                                <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;"
+                                    class="ml-4 mr-4">
+                                    Send review for class with a short note about why are you reviewing this to this
+                                    class
+                                </p>
+                            </div>
+                            <div class="ml-4 mr-4">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-12 text-center">
+                                            <input type="hidden" id="star_rating" value="5">
+                                            <p class="star-review" id='stars'>
+                                                <div class='rating-stars text-center '>
+                                                    <ul id='stars'>
+                                                        <li class='star selected' title='Poor' data-value='1'>
+                                                            <i class="fa fa-star "></i>
+                                                        </li>
+                                                        <li class='star selected' title='Poor' data-value='2'>
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li class='star selected' title='Poor' data-value='3'>
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li class='star selected' title='Poor' data-value='4'>
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li class='star selected' title='Poor' data-value='5'>
+                                                            <i class="fa fa-star "></i>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <textarea class="form-control mt-3" rows="6" cols="50"
+                                        placeholder="Write reason"></textarea>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-12 p-0 text-right">
+                        <button type="button" class="cencel-btn mr-2" id="reviewLater"
+                            style="width: 130px;">Review Later</button>
+                            <button type="button" class="schedule-btn" id="send_review"
+                            style="width: 130px;margin-right: 40px;">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
 @endsection
 @section('scripts')
 @include('js_files.whiteBoard')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.2.7/emojionearea.min.js"></script>
+
 <script>
         ClassicEditor
             .create( document.querySelector( '#editor' ) )
@@ -745,19 +819,16 @@ td input{
 
 
 <script>
-$(document).ready(function(){
-    $(".tech_weck").hide();
-    $(".mk").hide();
-    $(".vc").hide();
-    $(".no-vc").show();
-    $("#callModal").modal("show");
-})
-$("#join_now").click(function(){
-    $(".tech_weck").show();;
-    $("#callModal").modal("hide");
-})
+    // var timerInstance = new easytimer.Timer();
+
+    $(document).ready(function(){
+        
+        // $(".tech_weck").hide();
+     
+        $("#callModal").modal("show");
+        $("#join_now").attr("disabled","disabled" );
+        });
     $(".no-mk").click(function(){
-       
         $(".no-mk").hide();
         $(".mk").show();
     });
@@ -776,18 +847,155 @@ $("#join_now").click(function(){
        $(".vc").hide();
        $(".no-vc").show();
    });
+   $(".no-ph").click(function(){
+        $("#endCall").modal("show");
+    });
+    $("#reviewLater").click(function(){
+        window.location.href="{{route('student.classroom')}}";
+    });
+
+    $('#stars li').on('click', function(){
+        var onStar = parseInt($(this).data('value'), 10);
+        var stars = $(this).parent().children('li.star');
+        
+        for (i = 0; i < stars.length; i++) {
+            $(stars[i]).removeClass('selected');
+        }
+        
+        for (i = 0; i < onStar; i++) {
+            $(stars[i]).addClass('selected');
+        }
+        
+        var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+        $("#star_rating").val(ratingValue);
+        
+    });
+
+    $("#send_review").click(function() {
+        var star_rating = $("#star_rating").val();
+        var review = $("#std_review").val();
+        var booking_id = $("#sbooking_id").val();
+
+        var form_data = {
+            review:review, 
+            star_rating:star_rating,
+            booking_id:booking_id,
+        }
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{route('student.save.review')}}",
+            type: "POST",
+            data: form_data, 
+            dataType: 'json',
+            success:function(response){
+                console.log(response , "data");
+                if(response.status_code == 200 && response.success == true) {
+                    toastr.success(response.message,{
+                        position: 'top-end',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
+                    $("#reviewModal").modal('hide');
+                    window.location.href = "{{route('student.classroom')}}";
+                }else{
+                    toastr.error(response.message,{
+                        position: 'top-end',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
+                }
+            },
+            error:function(e) {
+                console.log(e)
+            }
+        });
+
+    });
+   
 </script>
-
-
 
 <script>
 
 var connection = new RTCMultiConnection();
 var roomid = '{{$class->classroom_id}}';
-var fullName = '{{$class->booking->user->first_name}} {{$class->booking->user->last_name}}';
+var fullName = '{{$user->first_name}} {{$user->last_name}}';
 
-// connection.socketURL = '/';
-connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+
+(function() {
+    var params = {},
+        r = /([^&=]+)=?([^&]*)/g;
+
+    function d(s) {
+        return decodeURIComponent(s.replace(/\+/g, ' '));
+    }
+    var match, search = window.location.search;
+    while (match = r.exec(search.substring(1)))
+        params[d(match[1])] = d(match[2]);
+    window.params = params;
+})();
+
+
+//connection.socketURL = '/';
+// connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+connection.socketURL = 'https://tutorvy.herokuapp.com:443/';
+
+connection.extra.userFullName = fullName;
+connection.DetectRTC.load(function() {
+    console.log(connection.DetectRTC);
+    if (connection.DetectRTC.hasMicrophone === true) {
+        // enable microphone
+        connection.mediaConstraints.audio = true;
+        connection.session.audio = true;
+        alert('attach true microphone')
+        $(".no-mk").show();
+        $("#join_now").removeAttr("disabled","disabled" );
+            $("#join_now").click(function(){
+                $(".tech_weck").removeClass("tech_weck-none");
+                $("#callModal").modal("hide");
+                // joinClass();
+                /** Javascript Timer */
+                var timer = new Timer();
+                    timer.start({countdown: true, startValues: {seconds: 30}});
+
+                    $('#countdownExample .values').html(timer.getTimeValues().toString());
+
+                    timer.addEventListener('secondsUpdated', function (e) {
+                        $('#countdownExample .values').html(timer.getTimeValues().toString());
+                    });
+
+                    timer.addEventListener('targetAchieved', function (e) {
+                        $('#countdownExample .values').html('Class Time has Ended!!');
+                    });
+                /* Javascript Timer ENd */
+            })
+    }else{
+        toastr.warning( "Audio Device is Mendatory ");
+        $(".no-mk").hide();
+    }
+
+    if (connection.DetectRTC.hasWebcam === true) {
+        // enable camera
+        connection.mediaConstraints.video = true;
+        connection.session.video = true;
+        alert('attach true camera')
+        $(".no-vc").show();
+
+    }else{
+        $(".no-vc").hide();
+
+        alert('attach Cam')
+    }
+
+    if (connection.DetectRTC.hasSpeakers === false) { // checking for "false"
+        // alert('Please attach a speaker device. You will unable to hear the incoming audios.');
+    }
+});
+/// make this room public
+connection.publicRoomIdentifier = '';
 
 connection.socketMessageEvent = 'canvas-dashboard-demo';
 
@@ -798,23 +1006,14 @@ connection.autoCloseEntireSession = true;
 // connection.maxParticipantsAllowed = 1000;
 // set value 2 for one-to-one connection
 connection.maxParticipantsAllowed = 2;
-connection.extra.userFullName = fullName;
-
-connection.checkPresence(roomid, function(isRoomExist) {
-      
-    connection.publicRoomIdentifier = '';
-    connection.sessionid = roomid;
-    connection.isInitiator = true;
-        // openCanvasDesigner();
-        // $('#btn-create-room').html(initialHTML).prop('disabled', false);
-});
+connection.autoCloseEntireSession = true;
 
 // here goes canvas designer
 var designer = new CanvasDesigner();
 
 // you can place widget.html anywhere
 designer.widgetHtmlURL = "{{ route('whiteBoard.canvas')}}";
-designer.widgetJsURL = "{{asset('assets/js/widget.min.js')}}"
+designer.widgetJsURL = "{{asset('assets/js/widget.min.js').'?ver='.rand()}}";
 
 designer.addSyncListener(function(data) {
     connection.send(data);
@@ -823,27 +1022,27 @@ designer.addSyncListener(function(data) {
 designer.setSelected('pencil');
 
 designer.setTools({
-    pencil: true,
-    text: true,
-    image: false,
-    pdf: false,
-    eraser: true,
-    line: true,
-    arrow: false,
-    dragSingle: true,
-    dragMultiple: true,
-    arc: true,
-    rectangle: true,
-    quadratic: false,
-    bezier: false,
-    marker: false,
-    zoom: false,
-    lineWidth: false,
-    colorsPicker: false,
-    extraOptions: false,
-    code: false,
-    undo: false,
-});
+        pencil: true,
+        text: true,
+        image: false,
+        pdf: false,
+        eraser: true,
+        line: true,
+        arrow: false,
+        dragSingle: true,
+        dragMultiple: true,
+        arc: true,
+        rectangle: true,
+        quadratic: false,
+        bezier: false,
+        marker: false,
+        zoom: false,
+        lineWidth: false,
+        colorsPicker: false,
+        extraOptions: false,
+        code: false,
+        undo: true,
+    });
 
 // here goes RTCMultiConnection
 
@@ -873,7 +1072,7 @@ connection.onUserStatusChanged = function(event) {
         names = [connection.extra.userFullName || 'You'].concat(names);
     }
 
-    infoBar.innerHTML = '<b>Active users:</b> ' + names.join(', ');
+    // infoBar.innerHTML = '<b>Active users:</b> ' + names.join(', ');
 };
 
 connection.onopen = function(event) {
@@ -892,10 +1091,15 @@ connection.onopen = function(event) {
 };
 
 connection.onclose = connection.onerror = connection.onleave = function(event) {
+
     connection.onUserStatusChanged(event);
+    $("#reviewModal").modal("show");
+
 };
 
 connection.onmessage = function(event) {
+    console.log(event)
+
     if(event.data.showMainVideo) {
         // $('#main-video').show();
         $('#screen-viewer').css({
@@ -923,6 +1127,9 @@ connection.onmessage = function(event) {
         $('#key-press').hide().find('span').html('');
         return;
     }
+    if(event.data.call_ended === true){
+        toastr.success("Tutor has ended the call!");
+    }
 
     if (event.data.chatMessage) {
         appendChatMessage(event);
@@ -943,6 +1150,7 @@ connection.onmessage = function(event) {
     }
 
     designer.syncData(event.data);
+
 };
 
 // extra code
@@ -986,7 +1194,40 @@ connection.onstreamended = function(event) {
         video.style.display = 'none';
     }
 };
+$(".no-vc").click(function(){
+        alert("No vc");
+        var localStream = connection.attachStreams[0];
+        localStream.mute('video');
+    })
+    $(".vc").click(function(){
+        alert("Vc");
+        var localStream = connection.attachStreams[0];
+        localStream.unmute('video'); 
+        
+    })
+    $(".no-mk").click(function(){
+        alert("No mk");
+        var localStream = connection.attachStreams[0];
+        localStream.mute('audio');
+    })
+    $(".mk").click(function(){
+        alert("mk");
+        var localStream = connection.attachStreams[0];
+        localStream.unmute('audio'); 
+        connection.streamEvents.selectFirst('local').mediaElement.muted=true;
+        connection.streamEvents.selectFirst('local').mediaElement.volume=0;
+        
+    })
+    $("#endCallYes").click(function(){
+        connection.send({
+            call_ended: true
+        });
+        toastr.success("Call has Ended Successfully");
+        $("#reviewModal").modal("show");
+        $("#endCall").modal("hide");
+        
 
+    })
 var conversationPanel = document.getElementById('conversation-panel');
 
 function appendChatMessage(event, checkmark_id) {
@@ -1016,7 +1257,6 @@ function appendChatMessage(event, checkmark_id) {
 
 var keyPressTimer;
 var numberOfKeys = 0;
-$(document).ready(function(){
 $('#txt-chat-message').emojioneArea({
     pickerPosition: "top",
     filtersPosition: "bottom",
@@ -1024,7 +1264,6 @@ $('#txt-chat-message').emojioneArea({
     autocomplete: true,
     inline: true,
     hidePickerOnBlur: true,
-    hideSource: false,
     events: {
         focus: function() {
             $('.emojionearea-category').unbind('click').bind('click', function() {
@@ -1063,8 +1302,6 @@ $('#txt-chat-message').emojioneArea({
         }
     }
 });
-})
-
 
 window.onkeyup = function(e) {
     var code = e.keyCode || e.which;
@@ -1199,33 +1436,37 @@ function updateLabel(progress, label) {
     label.innerHTML = position + '%';
 }
 
+// if(!!params.password) {
+//     connection.password = params.password;
+// }
 
 designer.appendTo(document.getElementById('widget-container'), function() {
     // if (params.open === true || params.open === 'true') {
-            // var tempStreamCanvas = document.getElementById('temp-stream-canvas');
-            // var tempStream = tempStreamCanvas.captureStream();
-            // tempStream.isScreen = true;
-            // tempStream.streamid = tempStream.id;
-            // tempStream.type = 'local';
-            // connection.attachStreams.push(tempStream);
-            // window.tempStream = tempStream;
+    //         var tempStreamCanvas = document.getElementById('temp-stream-canvas');
+    //         var tempStream = tempStreamCanvas.captureStream();
+    //         tempStream.isScreen = true;
+    //         tempStream.streamid = tempStream.id;
+    //         tempStream.type = 'local';
+    //         connection.attachStreams.push(tempStream);
+    //         window.tempStream = tempStream;
 
-            // connection.extra.roomOwner = true;
-            // connection.open(roomid, function(isRoomOpened, roomid, error) {
-            //     if (error) {
-            //         if (error === connection.errors.ROOM_NOT_AVAILABLE) {
-            //             alert('Someone already created this room. Please either join or create a separate room.');
-            //             return;
-            //         }
-            //         alert(error);
-            //     }
+    //         connection.extra.roomOwner = true;
+    //         connection.open(params.sessionid, function(isRoomOpened, roomid, error) {
+    //             if (error) {
+    //                 if (error === connection.errors.ROOM_NOT_AVAILABLE) {
+    //                     alert('Someone already created this room. Please either join or create a separate room.');
+    //                     return;
+    //                 }
+    //                 alert(error);
+    //             }
 
-            //     connection.socket.on('disconnect', function() {
-            //         location.reload();
-            //     });
-            // });
+    //             connection.socket.on('disconnect', function() {
+    //                 location.reload();
+    //             });
+    //         });
     // } else {
         connection.join(roomid, function(isRoomJoined, roomid, error) {
+            
             if (error) {
                 if (error === connection.errors.ROOM_NOT_AVAILABLE) {
                     alert('This room does not exist. Please either create it or wait for moderator to enter in the room.');
@@ -1233,7 +1474,6 @@ designer.appendTo(document.getElementById('widget-container'), function() {
                 }
                 if (error === connection.errors.ROOM_FULL) {
                     alert('Room is full.');
-                    window.location.href = "{{route('student.classroom')}}";
                     return;
                 }
                 if (error === connection.errors.INVALID_PASSWORD) {
@@ -1383,5 +1623,7 @@ $('#btn-share-screen').click(function() {
         alert('getDisplayMedia API is not available in this browser.');
     }
 });
+
+
 </script>
 @endsection

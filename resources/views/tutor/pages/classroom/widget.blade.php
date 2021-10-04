@@ -525,7 +525,7 @@
       
 #main-canvas{
     /* background-image: url('../assets/images/ico/graph.png'); */
-    border:1px solid grey;
+    /* border:1px solid grey; */
     background:#fff;
     
 }
@@ -536,19 +536,22 @@
 .mb-1{
     margin-bottom:1rem;
 }
-
+.design-surface {
+    background-color: transparent;
+    margin-left: 65px;
+}
     </style>
 </head>
 
 <body>
     <section class="design-surface">
-        <canvas id="temp-canvas"></canvas>
-        <canvas id="main-canvas"></canvas>
+        <canvas id="temp-canvas" ></canvas>
+        <canvas id="main-canvas" ></canvas>
     </section>
 
     <!-- toolbox -->
 
-    <section id="tool-box" class="tool-box">
+    <section id="tool-box" class="tool-box" style="height:100% !important;">
         <canvas class="mb-1" id="pencil-icon" width="40" height="40" title="Panchil">
         </canvas>
         <canvas class="mb-1" id="eraser-icon" width="40" height="40" title="Erase drawings"></canvas>

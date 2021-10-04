@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\General\NotifyController;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Course;
@@ -11,7 +12,9 @@ use App\Models\Assessment;
 use App\Models\General\Teach;
 use App\Models\Admin\Subject;
 use App\Models\Booking;
-use DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 
 class TutorController extends Controller
 {
@@ -119,6 +122,8 @@ class TutorController extends Controller
 
         $assessment->save();
 
+        $subject = Subject::where('id',$assessment->subject_id)->first();
+
         $message = '';
         if($request->status == 1){
 
@@ -131,10 +136,24 @@ class TutorController extends Controller
                 'verified_by' => \Auth::user()->id
             ]);
 
-            $message = 'Assessment Verified.';
+            $message = 'Assessment is Verified.';
+            $notify_msg = 'Your Assessment of ' . $subject->name . ' is Verified';
         }else{
-            $message = 'Assessment Rejected.';
+            $message = 'Assessment is Rejected.';
+            $notify_msg = 'Your Assessment of ' . $subject->name . ' is Rejected';
         }
+
+        $notification = new NotifyController();
+        $sender_id = Auth::user()->id;
+        $reciever_id = $request->id;
+        $slug = '-' ;
+        $type = 'tutor_assessment';
+        $data = 'data';
+        $title = 'Assessment Verfication';
+        $icon = 'fas fa-tag';
+        $class = 'btn-success';
+        $desc = $notify_msg;
+        $notification->GeneralNotifi($sender_id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
 
         return response()->json([
             'status'=>'200',
@@ -184,13 +203,39 @@ class TutorController extends Controller
         $tutor->save();
 
         $message = '';
+        $notify_msg = '';
         if($request->status == 2){
             $message = 'Tutor Verified Successfully.';
+            $notify_msg = 'Your Profile is Approved';
         }elseif($request->status == 3){
             $message = 'Tutor Verfication Rejected.';
+            $notify_msg = 'Your Profile is Rejected';
         }elseif($request->status == 0){
             $message = 'Tutor Status Disabled.';
+            $notify_msg = 'Your Profile is Disabled';
         }
+        
+        // $notification = new NotifyController();
+        // $sender_id = Auth::user()->id;
+        // $reciever_id = $request->id;
+        // $slug = '-' ;
+        // $type = 'tutor_profile_verfication';
+        // $data = 'data';
+        // $title = 'Profile Verfication';
+        // $icon = 'fas fa-tag';
+        // $class = 'btn-success';
+        // $desc = $notify_msg;
+        // $notification->GeneralNotifi($sender_id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
+
+        $notification = new NotifyController();
+        $slug = URL::to('/') . '/tutor/profile#v-pills-Verification';
+        $type = 'tutor_profile_verfication';
+        $title = 'Profile Verfication';
+        $icon = 'fas fa-tag';
+        $class = 'btn-success';
+        $desc = $notify_msg;
+        $pic = Auth::user()->picture;
+        $notification->GeneralNotifi($request->id,$slug,$type,$title,$icon,$class,$desc,$pic);
 
         return response()->json([
             'status'=>'200',

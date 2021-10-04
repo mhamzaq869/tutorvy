@@ -12,6 +12,11 @@ ul {
 }
 
 .bg-homeimage1 {
+    background: #1DAB6C;
+    border-radius: 8px;
+}
+
+.bg-homeimage2 {
     /* background-image: url('../img/backgrounds/home.png');
     background-position: center; */
     border-radius: 8px;
@@ -772,13 +777,14 @@ This query will take effect for any screen smaller than 760px
 and also iPads specifically.
 */
 
-.bg-homeimage {
+
+/* .bg-homeimage {
     background-image: url('../images/backgrounds/back-covers.png') !important;
     background-position: center;
     border-radius: 8px;
     height: 198px;
     background-repeat: no-repeat;
-}
+} */
 
 
 /* end */
@@ -952,14 +958,14 @@ and also iPads specifically.
 }
 
 @media(max-width:700px) {
-    .bg-homeimage {
+    .bg-homeimage2 {
         background: #1173FF !important;
         height: 400px !important;
     }
 }
 
 @media(max-width:1310px) {
-    .bg-homeimage {
+    .bg-homeimage2 {
         /* background: #1173FF !important; */
         height: 197px;
     }

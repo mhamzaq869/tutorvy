@@ -428,7 +428,7 @@
                                         <div class="row">
                                             <div class="col-md-2 col-6">
                                                 <a href="{{route('profile.tutor',[$tutor->id])}}">
-                                                    <img src="../assets/images/logo/boy.jpg" alt="" class="round-border">
+                                                    <img src="../assets/images/ico/Square-white.jpg" alt="" class="round-border">
                                                 </a>
                                             </div>
                                             <div class="col-md-5 col-6">

@@ -2,6 +2,26 @@
 
 @section('content')
  <!-- top Fixed navbar End -->
+ <style>
+     .rating-stars ul {
+  list-style-type:none;
+  padding:0;
+  
+  -moz-user-select:none;
+  -webkit-user-select:none;
+}
+.rating-stars ul > li.star {
+  display:inline-block;  
+}
+.rating-stars ul > li.star > i.fa {
+  font-size:2.5em; /* Change the size of the stars */
+  color:#ccc; /* Color on idle state */
+}
+.rating-stars ul > li.star.selected > i.fa {
+  color:#FF912C;
+}
+
+ </style>
 <div class="content-wrapper " style="overflow: hidden;">
     <section id="classroomsection" style="display: flex;">
         <div class="container-fluid m-0 p-0">
@@ -10,7 +30,7 @@
                     <!-- <p id="sidenav-toggles" class="heading-first  mr-3 mb-2 ml-2">
                         Bookings
                     </p> -->
-                    <p class="heading-first ml-3 mr-3">Classroom</p>
+                    <p class="heading-first ml-3 mr-3">Classroom   </p>
                 </div>
             </div>
             <!-- <div class="row">
@@ -38,7 +58,7 @@
                                 </div>
                                 <div class="modal-body ">
                                     <div class="d-flex std-name">
-                                        <img src="../assets/images/logo/boy.jpg" alt="boy" style="width: 30px;">
+                                        <img src="../assets/images/ico/Square-white.jpg" alt="boy" style="width: 30px;">
                                         <p class="heading-fifth ml-2">Harram Laraib</p>
                                         <p class="std-student">Student</p>
                                         <img src="../assets/images/ico/3dot.png" alt="dots"
@@ -90,13 +110,13 @@
                             <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
                                 href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
                                 All Classes
-                                <span class="counter-text bg-primary">9</span>
+                                <span class="counter-text bg-primary"> {{count($classes)}} </span>
                             </a>
                             <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
                                 href="#nav-profile" role="tab" aria-controls="nav-profile"
                                 aria-selected="false">
-                                Upcomming Classes
-                                <span class="counter-text bg-success">9</span>
+                                Delivered Classes
+                                <span class="counter-text bg-success"> {{count($booked_classes )}} </span>
                             </a>
                         </div>
                     </nav>
@@ -109,65 +129,80 @@
                                         <thead>
                                             <tr
                                                 style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
-                                                <th scope="col">Teacher</th>
+                                                <th scope="col">Tutor</th>
                                                 <th scope="col">Subjects</th>
                                                 <th scope="col">Topic</th>
                                                 <th scope="col">Time</th>
                                                 <th scope="col">Duration</th>
                                                 <th scope="col">Status</th>
+                                                <th scope="col">Starts In</th>
                                                 <th scope="col"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @if($classes != null && $classes != [] && $classes != "")
                                                 @foreach($classes as $class)
-                                                    @if($class->booking != null)
                                                         <tr>
                                                             <td class="pt-3">
-                                                                {{ $class->booking->user->first_name }} {{ $class->booking->user->last_name }}
+                                                                {{ $class->tutor->first_name }} {{ $class->tutor->last_name }}
                                                             </td>
                                                             <td class="pt-3">
-                                                            {{ $class->booking != null ? $class->booking->subject->name : '---' }}
+                                                            {{ $class != null ? $class->subject->name : '---' }}
                                                             </td>
                                                             <td class="pt-3">
-                                                                {{ $class->booking != null ? $class->booking->topic : '---' }}
+                                                                {{ $class != null ? $class->topic : '---' }}
                                                             </td>
                                                             <td class="pt-3">
-                                                                {{$class->booking->class_time}} {{date("g:i a", strtotime("$class->booking->class_time UTC"))}}
+                                                                {{$class->class_time}} {{date("g:i a", strtotime("$class->class_time UTC"))}}
                                                             </td>
                                                             
                                                             <td class="pt-3">
-                                                                {{ $class->booking->duration }} Hour(s)
+                                                                {{ $class->duration }} Hour(s)
                                                             </td>
                                                             <td class="pt-3">
                                                                 
-                                                                    @if($class->booking->status == 1)
+                                                                    @if($class->status == 1)
                                                                         <span class="bg-color-apporve3">
                                                                             Payment Pending
                                                                         </span>
-                                                                    @elseif($class->booking->status == 2)
+                                                                    @elseif($class->status == 2)
                                                                         <span class="bg-color-apporve1">
                                                                             Approved
                                                                         </span>
-                                                                    @elseif($class->booking->status == 0)
+                                                                    @elseif($class->status == 0)
                                                                         <span class="bg-color-apporve">
                                                                             Pending
                                                                         </span>
                                                                     @endif
                                                             </td>
 
-                                                            
+                                                            <td>
+                                                                @if($class->classroom != null)
+                                                                <span data-id="{{$class->id}}" data-room="{{$class->classroom != null ? $class->classroom->classroom_id : ''}}" data-duration="{{$class->duration}}" data-time="{{$class->class_time}}"
+                                                                    id="class_time_{{$class->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success mt-2">{{$class->class_date}} {{$class->class_time}} </span>     
+                                                                <div id="join_class_{{$class->id}}"></div>
+                                                                @endif
+                                                            </td>
                                                             <td style="text-align: center;padding-top:14px;">
-                                                                <!--<a type="button" data-target="#callModal" class="schedule-btn"  data-toggle="modal">
-                                                                    Join Class
-                                                                </a>-->
-                                                                 <a href="{{route('student.join_class',[$class->classroom_id])}}"  class="schedule-btn">
-                                                                    Join Class
-                                                                </a>  
+                                                                @if($class->status == 5 && $class->student_review != null )
+                                                                    <a type="button" onclick="showReviewModal('{{$class->id}}')" class="cencel-btn">
+                                                                        Review
+                                                                    </a>
+                                                                @endif
+                                                                @if($class->classroom != null)
+                                                                <span data-id="{{$class->id}}" data-room="{{$class->classroom != null ? $class->classroom->classroom_id : ''}}" data-duration="{{$class->duration}}" data-time="{{$class->class_time}}"
+                                                                    id="class_time_{{$class->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success">{{$class->class_date}} {{$class->class_time}} </span>     
+                                                                <div id="join_class_{{$class->id}}"></div>
+                                                                @endif
                                                             </td> 
                                                         </tr>
-                                                        @endif
                                                 @endforeach
+                                            @else
+                                            <tr>
+                                                <td>
+                                                    No Class Found
+                                                </td>
+                                            </tr>
                                             @endif
                                         </tbody>
                                     </table>
@@ -182,7 +217,7 @@
                                         <thead>
                                             <tr
                                                 style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
-                                                <th scope="col">Teacher</th>
+                                                <th scope="col">Tutor</th>
                                                 <th scope="col">Subjects</th>
                                                 <th scope="col">Topic</th>
                                                 <th scope="col">Time</th>
@@ -192,35 +227,46 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td class="pt-3">
-                                                    Hellow
-                                                </td>
-                                                <td class="pt-3">
-                                                    I'm done
-                                                </td>
-                                                <td class="pt-3">
-                                                    Hellow
-                                                </td>
-                                                <td class="pt-3">
-                                                    I'm done
-                                                </td>
-                                                <td class="pt-3">
-                                                    Hellow
-                                                </td>
-                                                <td class="pt-3">
-                                                    <span class="bg-color-apporve">
-                                                        Rejected
-                                                    </span>
+                                        @if($booked_classes != null && $booked_classes != [] && $booked_classes != "")
+                                            @foreach($booked_classes as $class)
+                                                <tr>
+                                                    <td class="pt-3">
+                                                        {{ $class->tutor->first_name }} {{ $class->tutor->last_name }}
+                                                    </td>
+                                                    <td class="pt-3">
+                                                    {{ $class != null ? $class->subject->name : '---' }}
+                                                    </td>
+                                                    <td class="pt-3">
+                                                        {{ $class != null ? $class->topic : '---' }}
+                                                    </td>
+                                                    <td class="pt-3">
+                                                        {{$class->class_time}} {{date("g:i a", strtotime("$class->class_time UTC"))}}
+                                                    </td>
                                                     
-                                                </td>
+                                                    <td class="pt-3">
+                                                        {{ $class->duration }} Hour(s)
+                                                    </td>
+                                                    <td class="pt-3">
+                                                        @if($class->status == 5)
+                                                            <span class="bg-color-apporve3"> Delivered </span>
+                                                        @endif
+                                                    </td>
 
-                                                <td style="text-align: center; padding-top: 14px;">
-                                                    <button class="schedule-btn" type="button">
-                                                        Class Details
-                                                    </button>
-                                                </td>
-                                            </tr>
+                                                
+                                                    <td style="text-align: center;padding-top:14px;">
+                                                            <a type="button" onclick="showReviewModal('{{$class->id}}')" class="cencel-btn">
+                                                                Review
+                                                            </a>
+                                                    </td> 
+                                                </tr>
+                                                @endforeach
+                                        @else
+                                        <tr>
+                                            <td>
+                                                No Class Found
+                                            </td>
+                                        </tr>
+                                        @endif
                                         </tbody>
                                     </table>
                                 </div>
@@ -232,35 +278,193 @@
         </div>
     </section>
 </div>
+  <!--Review Modal -->
+    <div class="modal " id="reviewModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content pt-4 pb-4">
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <input type="hidden" id="booking_id">
+                            <div class="col-md-12">
+                                <div class="iconss" style="text-align: center;">
+                                    <img src="../assets/images/ico/submit-test.png" width="60px">
+                                    <p
+                                        style="font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 500;margin-top: 10px;">
+                                        Review Class</p>
+                                    <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;"
+                                        class="ml-4 mr-4">
+                                        Send review for class with a short note about why are you reviewing this to this
+                                        class
+                                    </p>
+                                </div>
+                                <div class="ml-4 mr-4">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-12 text-center">
+                                                <input type="hidden" id="star_rating" value="5">
+                                                <p class="star-review" id='stars'>
+                                                    <div class='rating-stars text-center'>
+                                                        <ul id='stars'>
+                                                            <li class='star selected' title='Poor' data-value='1'>
+                                                                <i class="fa fa-star "></i>
+                                                            </li>
+                                                            <li class='star selected' title='Poor' data-value='2'>
+                                                                <i class="fa fa-star"></i>
+                                                            </li>
+                                                            <li class='star selected' title='Poor' data-value='3'>
+                                                                <i class="fa fa-star"></i>
+                                                            </li>
+                                                            <li class='star selected' title='Poor' data-value='4'>
+                                                                <i class="fa fa-star"></i>
+                                                            </li>
+                                                            <li class='star selected' title='Poor' data-value='5'>
+                                                                <i class="fa fa-star "></i>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <textarea class="form-control mt-3" rows="6" cols="50"
+                                            placeholder="Write reason" id="std_review" required="required"></textarea>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 mb-2" style="text-align: right;">
+                        <button type="button" class="schedule-btn" id="send_review"
+                            style="width: 130px;margin-right: 40px;">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
 
-@endsection
-@section('scripts')
-@include('js_files.room')
-<!-- <script>
-$(document).ready(function(){
-    $(".mk").hide();
-    $(".vc").hide();
-    $(".no-vc").show();
-})
-    $(".no-mk").click(function(){
-       
-        $(".no-mk").hide();
-        $(".mk").show();
+<script src="{{asset('/admin/assets/js/jquery.js')}}"></script>
+<script src="{{asset('/admin/assets/js/jquery-ui.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script>
+    $(document).ready(function(){
+
+        $('#stars li').on('click', function(){
+            var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+            var stars = $(this).parent().children('li.star');
+            
+            for (i = 0; i < stars.length; i++) {
+                $(stars[i]).removeClass('selected');
+            }
+            
+            for (i = 0; i < onStar; i++) {
+                $(stars[i]).addClass('selected');
+            }
+            
+            var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+            $("#star_rating").val(ratingValue);
+            
+        });
+
+        $("#send_review").click(function() {
+            var star_rating = $("#star_rating").val();
+            var review = $("#std_review").val();
+            var booking_id = $("#booking_id").val();
+
+            var form_data = {
+                review:review, 
+                star_rating:star_rating,
+                booking_id:booking_id,
+            }
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "{{route('student.save.review')}}",
+                type: "POST",
+                data: form_data, 
+                dataType: 'json',
+                success:function(response){
+                    console.log(response , "data");
+                    if(response.status_code == 200 && response.success == true) {
+                        toastr.success(response.message,{
+                            position: 'top-end',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 2500
+                        });
+                        $("#reviewModal").modal('hide');
+                    }else{
+                        toastr.error(response.message,{
+                            position: 'top-end',
+                            icon: 'error',
+                            showConfirmButton: false,
+                            timer: 2500
+                        });
+                    }
+                },
+                error:function(e) {
+                    console.log(e)
+                }
+            });
+ 
+        });
+
+
+
+        $( ".current_time" ).each(function() {
+
+            var booking_time = $( this ).text();
+            var attr_id = $(this).data('id');
+            var duration = $(this).data('duration');
+            var room_id = $(this).data('room');
+            var time = $(this).data('time');
+
+            let split_time = time.split(':');
+            let create_time = parseInt(split_time[0]) + parseInt(duration);
+
+            let actual_time  = create_time + ':' + split_time[1];
+
+            var time = moment(booking_time).format('MMM D, YYYY h:mm:ss a');
+
+            var countDownDate = new Date(time).getTime();
+            var x = setInterval(function() {
+
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                var total_time = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+                
+                $("#class_time_"+attr_id).html(total_time);
+
+                if (distance < 0) {
+                    clearInterval(x);
+
+                    let join_btn = `<a href="{{url('student/class')}}/`+room_id+`"  class="schedule-btn"> Join Class </a>`;
+                    
+                    if(time > actual_time) {
+                        
+                        $("#join_class_"+attr_id).html(join_btn);
+                        $("#class_time_"+attr_id).text("");
+
+                    }else{
+                        $("#class_time_"+attr_id).text("Class Expired");
+                    }
+                    
+                }
+            }, 1000);
+
+        }); 
     });
-    $(".mk").click(function(){
-       
-        $(".no-mk").show();
-        $(".mk").hide();
-    });
-    $(".no-vc").click(function(){
-       
-       $(".no-vc").hide();
-       $(".vc").show();
-   });
-   $(".vc").click(function(){
-      
-       $(".vc").hide();
-       $(".no-vc").show();
-   });
-</script> -->
-@endsection
+
+    function showReviewModal(id) {
+
+        $("#booking_id").val(id);
+        $("#reviewModal").modal('show');
+    }
+</script>

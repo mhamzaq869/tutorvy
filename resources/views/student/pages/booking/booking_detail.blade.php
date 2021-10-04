@@ -26,32 +26,39 @@
                                     style="margin-top: 10px; text-align: left;color: #00132D;font-size: 22px;font-family: Poppins;font-weight: 500;">
                                     {{$booking->subject->name}} Class</p>
                                 <p style="text-align: right;" class="col-md-6 col-xs-12 class-btn-center">
+                                    
                                     <button type="button" data-toggle="modal" data-target="#exampleModalCenter"
                                         class="cencel-btn mr-2" style="font-size: 12px;width: 150px;"> Cancel
                                         Bookings</button>
                                     <button type="button" data-toggle="modal" data-target="#exampleModalCente"
-                                        class="schedule-btn" style="font-size: 12px;width: 150px;"> Re-schedule
+                                        class="schedule-btn mr-2" style="font-size: 12px;width: 150px;"> Re-schedule
                                         class</button>
+                                        @if($booking->status == 1)
+                                        <button type="button" onclick="pay_now({{$booking->id}})"
+                                        class="schedule-btn" style="font-size: 12px;width: 150px;"> Pay Now 
+                                        </button>
+                                        @endif
                                 </p>
                             </div>
-                            <card class="body">
-                                <div class="container">
+                            <div class="card-body">
+                                <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-md-9">
-                                            <div class="row image1 mt-3 ml-1">
+                                            <div class="row image1 mt-3 ">
                                                 
-                                                <p> 
-                                                @if ($booking->user->picture)
-                                                <img src="{{asset($booking->user->picture)}}" alt="profile-image"  class="w-50 profile-image" >
-                                                @else
-                                                <img src="{{asset ('assets/images/ico/Square-white.jpg')}}"  alt="profile-image" class="w-50 profile-image" >
-                                                @endif
-                                                <p style="color: #00132D; font-family: Poppins;font-size: 14px;font-weight: 500;"
-                                                    class="ml-2 mt-2"> {{$booking->user->full_name}} </p>
-                                                <p
-                                                    style="position: relative;left: -100px;top: 27px;font-size: 12px;">
-                                                    Student</p>
-                                                </p>
+                                                <div class="col-md-1">
+                                                     @if ($booking->user->picture)
+                                                        <img src="{{asset($booking->user->picture)}}" alt="profile-image"  class="profile-img" >
+                                                    @else
+                                                        <img src="{{asset ('assets/images/ico/Square-white.jpg')}}"  alt="profile-image" class=" profile-img" >
+                                                    @endif
+                                                </div>
+                                                <div class="col-md-10">
+                                                        <p style="color: #00132D; font-family: Poppins;font-size: 14px;font-weight: 500;"
+                                                            class=" mt-1 mb-0"> {{$booking->user->full_name}} </p>
+                                                        <p style="font-size: 12px;">
+                                                        Student</p>
+                                                </div>
 
                                             </div>
                                             <div class="text1"
@@ -88,16 +95,15 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                           
                                         </div>
                                         <div class="col-md-3"></div>
                                         <div class="container-fluid" style="">
                                             <div class="col-md-12 mt-3">
                                                 <p
                                                     style="color: #00132D;font-size: 16px;font-family: Poppins;font-weight: 500;">
-                                                    2 attachments</p>
+                                                    Attachments</p>
                                                 <div class="row">
-                                                    <div class="col-md-3 col-sm-12 card bg-light mb-3"
+                                                    <!-- <div class="col-md-3 col-sm-12 card bg-light mb-3"
                                                         style="">
                                                         <div class="container-fluid m-0 p-0">
                                                         <div class="text-home mt-3" style="display: flex;">
@@ -143,7 +149,24 @@
                                                                     style="width: 30px;position: absolute;top: 10px;right: 10px;">
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
+                                                    @if($booking->attachments)
+                                                        <div class="col-md-2 mt-1 mb-3">
+                                                            <div class="card__corner">
+                                                                <div class="card__corner-triangle"></div>
+                                                            </div>
+                                                            <div class="borderOne">
+                                                                <span class="overlayAttach"></span>
+                                                                <img src="{{ asset($booking->attachments) }}" alt="">
+                                                                <!-- <span class="fileName">FileNameProplus.png</span> -->
+                                                                <a href="{{asset($booking->attachments)}}" class="downFile"><i class="fa fa-download"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    @else
+                                                        <div class="col-md-12">
+                                                            <p>No attachments found</p>
+                                                        </div>
+                                                    @endif
                                             </div>
                                         </div>
                                     </div>
@@ -227,9 +250,144 @@
                     </div>
                 </div>
             </div>
+              <!--Pay Now Class Modal -->
+        <div class="modal " id="payModel" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content pt-4 pb-4">
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="iconss" style="text-align: center;">
+                                            
+                                                <img src="{{asset ('admin/assets/img/ico/doollarss.png')}}" width="60px">
+                                                <p
+                                                    style="font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 500;margin-top: 10px;">
+                                                    Note</p>
+                                                <!-- <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;"
+                                                    class="ml-4 mr-4">
+                                                    Send approved time for class.
+                                                </p> -->
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <h3>Class Details</h3>
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 ">
+                                            <p class="mb-0">Schedule Date: </p> 
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 text-right" >                                            
+                                            <strong id="scdule_date"></strong>
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6">
+                                            <p class="mb-0">Schedule Time: </p> 
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 text-right" >
+                                            <strong id="class_time"></strong>
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6">
+                                             <p class="">Schedule Duration: </p> 
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 text-right" >    
+                                            <strong id="duration"></strong>                                     
+                                        </div>
+                                        <div class="col-md-12">
+                                            <h3>Payment Details</h3>
+                                         </div>
+                                    
+                                        <div class="col-md-6 col-6 col-sm-6">
+                                            <p class="mb-0">Tutor Fee: </p> 
+                                        </div>
+                                        
+                                        <div class="col-md-6 col-6 col-sm-6 text-right" >
+                                            <strong id="price"></strong>
+                                        </div>
+
+                                        <div class="col-md-6 col-6 col-sm-6">
+                                            <p class="mb-0">Service Fee: <span id="total_commision"></span>
+                                            </p> 
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 text-right"> 
+                                            <strong id="commission"></strong>
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6">
+                                            <p class="mb-0">Total Fee: </p> 
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 text-right"> 
+                                            <strong id="total_price"></strong>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <hr>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <h3>Payment Method</h3>
+                                         </div>
+                                        <div class="col-md-6">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="text-center">
+                                                        <img src="{{asset ('assets/images/payment-icon/paypal2.png')}}" class="w-50" alt="">
+                                                        <!-- <span class="payment-menu dropdown d-flex"> 
+                                                            <a class=" d-flex" href="#" data-toggle="dropdown" aria-expanded="true">
+                                                                <img src="{{asset ('assets/images/payment-icon/menu_dots.png')}}" alt="">
+                                                            </a>
+                                                            <ul class="dropdown-menu  " >
+                                                                <li>
+                                                                    <a tabindex="-1" class="" href="">
+                                                                        Delete
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </span> -->
+                                                        <span class="round">
+                                                            <input type="checkbox" id="checkbox1" checked />
+                                                            <label for="checkbox1"></label>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="text-center">
+                                                        <img src="{{asset ('assets/images/payment-icon/skrill.png')}}" class="w-50" alt="">
+                                                        <!-- <span class="payment-menu dropdown d-flex"> 
+                                                            <a class=" d-flex" href="#" data-toggle="dropdown" aria-expanded="true">
+                                                                <img src="{{asset ('assets/images/payment-icon/menu_dots.png')}}" alt="">
+                                                            </a>
+                                                            <ul class="dropdown-menu  " >
+                                                                <li>
+                                                                    <a tabindex="-1" class="" href="">
+                                                                        Delete
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </span> -->
+                                                        <span class="round">
+                                                            <input type="checkbox" id="checkbox2" disabled/>
+                                                            <label for="checkbox2"></label>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 text-right mt-3" id="show_pay_btn">
+                                        </div>
+                                    
+                            </div>
+                        </div>
+                        <div class="mt-4 mb-2" style="text-align: right;">
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 </div>
- <section>
-    
-</section>
+@endsection
+
+@section('scripts')
+    @include('js_files.student.bookingJs')
 @endsection

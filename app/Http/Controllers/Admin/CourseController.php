@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Course;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\General\ClassTable;
 
 
@@ -197,11 +199,21 @@ class CourseController extends Controller
         $message = '';
         if($request->status == 2){
             $message = 'Course Status Enabled.';
+            $action_perform = 'Admin Change Course Status to Enabled';
         }elseif($request->status == 3){
             $message = 'Course Rejected.';
+            $action_perform = 'Admin Reject the Course';
         }elseif($request->status == 0){
             $message = 'Course Status Disabled.';
+            $action_perform = 'Admin Change Course Status to Disbaled';
         }
+
+        // activity logs
+        $id = Auth::user()->id;
+        $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+        $action_perform = 'You (admin)  ';
+        $activity_logs = new GeneralController();
+        $activity_logs->save_activity_logs($message, "courses.id",$request->id, $action_perform, $request->header('User-Agent'), $id);
 
         return response()->json([
             'status'=>'200',

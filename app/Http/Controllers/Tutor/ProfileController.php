@@ -74,7 +74,12 @@ class ProfileController extends Controller
         $action_perform = '<a href="'.URL::to('/') . '/admin/tutor/profile/'. $id .'"> '.$name.' </a> Update his Profile';
         $activity_logs = new GeneralController();
         $activity_logs->save_activity_logs("Profile Updated", "users.id", $id, $action_perform, $request->header('User-Agent'), $id);
-       
+
+        $user_general_profile = User::where('id',Auth::user()->id)->first();
+        if($user_general_profile->profile_completed == 0) {
+            User::where('id',Auth::user()->id)->update(["profile_completed" => 1]);
+        }
+
         return response()->json([
             "status_code" => 200,
             "success" => true,
@@ -202,21 +207,19 @@ class ProfileController extends Controller
             ]); 
         }
 
-        // $sender,$receiver,$slug,$type,$data,$title,$icon,$class,$desc
         $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
 
         $reciever = User::where('role',1)->first();
+
         $notification = new NotifyController();
-        $sender_id = Auth::user()->id;
-        $reciever_id = $reciever->id;
-        $slug = '-' ;
-        $type = 'User Verification';
-        $data = 'data';
-        $title = 'User Verfication';
+        $slug = URL::to('/') . '/admin/tutor/request/'. Auth::user()->id;
+        $type = 'doc_verification';
+        $title = 'Document Verfication';
         $icon = 'fas fa-tag';
         $class = 'btn-success';
-        $desc = $name . ' Submiited documents for verification.';
-        $notification->GeneralNotifi(Auth::user()->id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
+        $desc = $name . ' Submit Documents for Verfication';
+        $pic = $reciever->picture;
+        $notification->GeneralNotifi($reciever->id ,$slug,$type,$title,$icon,$class,$desc,$pic);
 
 
         // activity logs

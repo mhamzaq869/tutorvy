@@ -464,9 +464,11 @@
                                                         <label for="imageUpload"></label>
                                                     </div>
                                                     <div class="avatar-preview">
-                                                        <div id="imagePreview"
-                                                            style="background-image: url({{ asset(Auth::user()->picture ?? 'assets/images/ico/porfile-main.png') }});">
-                                                        </div>
+                                                        @if(Auth::user()->picture != null)
+                                                            <div id="imagePreview" style="background-image: url('{{asset(Auth::user()->picture)}}');"> </div>
+                                                        @else
+                                                        <div id="imagePreview" style="background-image: url({{asset('assets/images/ico/porfile-main.png')}});"> </div>
+                                                        @endif
                                                     </div>
                                                 </div>
 
@@ -476,7 +478,7 @@
                                                     <label for="exampleName">First Name</label>
                                                     <input type="text" name="first_name" class="form-control"
                                                         value="{{ Auth::user()->first_name }}" id="exampleName"
-                                                        aria-describedby="emailHelp">
+                                                        aria-describedby="emailHelp" required="required">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -484,7 +486,7 @@
                                                     <label for="exampleName">Last Name</label>
                                                     <input type="text" name="last_name" class="form-control"
                                                         value="{{ Auth::user()->last_name }}" id="exampleName"
-                                                        aria-describedby="emailHelp">
+                                                        aria-describedby="emailHelp" required="required">
                                                 </div>
                                             </div>
 
@@ -495,12 +497,16 @@
 
                                             <!-- date of birth dropdown -->
                                             <div class="col-md-4">
-                                                <select class="form-select form-select-lg" id="day" name="day"></select>
+                                                <select class="form-select form-select-lg" id="day" name="day" requried>
+                                                    @for($i = 0 ; $i <= 31 ; $i++)
+                                                        <option value="{{$i}}" @if (Auth::user()->day == $i) selected @endif >{{$i}}</option>
+                                                    @endfor
+                                                </select>
                                             </div>
                                             <!--  -->
                                             <div class="col-md-4">
                                                 <select class="form-select form-select-lg" name="month"
-                                                    aria-label=".form-select-lg example">
+                                                    aria-label=".form-select-lg example" required="required">
                                                     <option value="Jan" @if (Auth::user()->month == 'Jan') selected @endif>January</option>
                                                     <option value="Feb" @if (Auth::user()->month == 'Feb') selected @endif>February</option>
                                                     <option value="Mar" @if (Auth::user()->month == 'Mar') selected @endif>March</option>
@@ -517,14 +523,14 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <input type="" name="year" class=" yearpicker form-control" placeholder="Year"
-                                                    id="year">
+                                                    id="year" required="required">
                                             </div>
 
 
 
                                             <div class="col-md-12 my-3">
                                                 <input id="phone" name="phone" type="tel"
-                                                    value="{{ Auth::user()->phone ?? '' }}">
+                                                    value="{{ Auth::user()->phone ?? '' }}" required="required">
 
                                             </div>
 
@@ -534,12 +540,12 @@
                                             <div class="input-text col-md-6">
 
                                                 <input id="myInput" type="" name="city" placeholder="City"
-                                                    value="{{ Auth::user()->city ?? '' }}">
+                                                    value="{{ Auth::user()->city ?? '' }}" required="required">
 
                                             </div>
                                             <div class="input-text col-md-6 w-100">
 
-                                                <input id="country_selector" name="country" onchange="university()" type="">
+                                                <input id="country_selector" name="country" onchange="university()" type="" required="required">
                                                 <input id="country_short" value="{{ Auth::user()->country_short }}"
                                                     name="country_short" type="" hidden>
                                                 <label for="country_selector" style="display:none;">Select a country
@@ -567,13 +573,13 @@
                                                     <div class="col-md-6">
                                                         <input type="" name="language" id="lang" hidden>
                                                         <select class="form-select form-select-lg mb-3" id="languages-list"
-                                                            name="lang_short" onchange="langshort(this)">
+                                                            name="lang_short" onchange="langshort(this)" required="required">
                                                         </select>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <select class="form-select form-select-lg mb-3"
-                                                            aria-label=".form-select-lg example" name="gender">
-                                                            <option selected disabled>Gender</option>
+                                                            aria-label=".form-select-lg example" name="gender" required="required">
+                                                            <option value="" selected disabled>Gender</option>
                                                             <option value="male" @if (Auth::user()->gender == 'male') selected @endif>Male</option>
                                                             <option value="female" @if (Auth::user()->gender == 'female') selected @endif>Female</option>
                                                             <option value="other" @if (Auth::user()->gender == 'other') selected @endif>Other</option>
@@ -588,14 +594,14 @@
                                                     <label for="exampleText">About</label>
                                                     <textarea class="form-control" name="bio" id="exampleFormControlTextarea1"
                                                         rows="5"
-                                                        placeholder="Write about yourself...">{{ Auth::user()->bio ?? '' }}</textarea>
+                                                        placeholder="Write about yourself..." required="required">{{ Auth::user()->bio ?? '' }}</textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
-                                                <button class="schedule-btn" id="saveBtn" style="width:180px;font-size: 14px;" type="submit"
+                                                <button class="schedule-btn" id="general_save" style="width:180px;float:right;font-size: 14px;" type="submit"
                                                     name="personal">Save Changes</button>
-                                                <button type="button" role="button" type="button" id="proBtn" disabled class="btn btn-primary mb-4 mt-4 mr-2" 
-                                                style="width: 180px; display:none" >
+                                                <button type="button" role="button" type="button" id="general_loading" disabled class="btn btn-primary mb-4 mr-2" 
+                                                style="width: 180px;float:right; display:none">
                                                 <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i> <span class="sr-only">Loading...</span> Processing </button>
                                             </div>
 
@@ -741,8 +747,11 @@
                                     @endif
 
                                         <div class="col-md-12 mt-3">
-                                            <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit"
+                                            <button class="schedule-btn" id="educational_save" style="width: 180px;float:right;font-size: 14px;" type="submit"
                                                 id="edu2">Save Changes</button>
+                                            <button type="button" role="button" type="button" id="educational_loading" disabled class="btn btn-primary mb-4 mr-2" 
+                                                style="width: 180px;float:right; display:none">
+                                                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i> <span class="sr-only">Loading...</span> Processing </button>
                                         </div>
                                     </form>
                                 </div>
@@ -837,8 +846,11 @@
                                             
                                         <div class="row mt-1">
                                             <div class="col-md-12">
-                                                <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit"
+                                                <button class="schedule-btn" id="professinal_btn" style="width: 180px;float:right;font-size: 14px;" type="submit"
                                                     name="profession">Save Changes</button>
+                                                <button type="button" role="button" type="button" id="professinal_loading" disabled class="btn btn-primary mb-4 mr-2" 
+                                                style="width: 180px;float:right; display:none">
+                                                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i> <span class="sr-only">Loading...</span> Processing </button>
                                             </div>
                                         </div>
                                     </form>
@@ -924,7 +936,10 @@
 
                                             <div class="row mt-3">
                                                 <div class="col-md-12">
-                                                    <button class="schedule-btn" style="width: 180px;font-size: 14px;" type="submit" name="personal">Save Changes</button>
+                                                    <button class="schedule-btn" id="verfication_btn" style="width: 180px;float:right;font-size: 14px;" type="submit" name="personal">Save Changes</button>
+                                                    <button type="button" role="button" type="button" id="verfication_loading" disabled class="btn btn-primary mb-4 mr-2" 
+                                                        style="width: 180px;float:right; display:none">
+                                                        <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i> <span class="sr-only">Loading...</span> Processing </button>
                                                 </div>
                                             </div>
                                         </form>
@@ -949,13 +964,16 @@
     <script src="{{ asset('assets/js/countrySelect.js') }}"></script>
     @include('js_files.tutor.profileJs')
     <script>
-        for (var i = 1; i <= 31; i++) {
-            $("#day").append("<option value='" + i + "'" + (i == {{ Auth::user()->day ?? 1 }} ? 'selected' : '') + ">" +
-                i + "</option>");
-        }
+      
 
 
         $(document).ready(function() {
+            var url = window.location.href;
+            var text = "#v-pills-Verification";
+            if(url.indexOf(text) != -1){
+                $("#v-pills-Verification-tab").click();
+            }
+
             $("#year").yearpicker({
                 year: {{ Auth::user()->year ?? '1990' }},
                 startYear: 1950,

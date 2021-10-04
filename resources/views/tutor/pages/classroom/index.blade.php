@@ -24,7 +24,7 @@
                             </div>
                             <div class="col-md-11 pl-0">
                                <small>
-                                   Every Details about your classes will be published here <br>along with schedules for meetings <a href="#">Learn More</a>
+                                   Every Details about your classes will be published here along with schedules for meetings <a href="#">Learn More</a>
 
                                </small> 
                                <a href="#" class="cross"  onclick="hideCard()"> 
@@ -40,13 +40,13 @@
                             <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
                                 href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
                                 All Classes
-                                <span class="counter-text bg-primary">9</span>
+                                <span class="counter-text bg-primary"> {{count($classes)}} </span>
                             </a>
                             <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
                                 href="#nav-profile" role="tab" aria-controls="nav-profile"
                                 aria-selected="false">
                                 Delivered Classes
-                                <span class="counter-text bg-success">9</span>
+                                <span class="counter-text bg-success"> {{$delivered_classess}} </span>
 
                             </a>
                         </div>
@@ -61,72 +61,81 @@
                                                 <thead>
                                                     <tr
                                                         style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
+                                                        <th scope="col">Student</th>
                                                         <th scope="col">Subject</th>
                                                         <th scope="col">Topic</th>
                                                         <th scope="col">Time</th>
-                                                        <th scope="col">Student</th>
                                                         <th scope="col">Duration</th>
                                                         <th scope="col">Status</th>
+                                                        <th scope="col">Starts In</th>
                                                         <th scope="col"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                   @foreach($classes as $class)
+                                                @if($classes != null && $classes != [] && $classes != "")
+                                                    @foreach($classes as $class)
                                                         @if($class != null && $class != "")
                                                             <tr>
                                                                 <td class="pt-4">
-                                                                    {{ $class->booking->subject->name }}
-                                                                </td>
-                                                                <td class="pt-4">
-                                                                    {{ $class->booking->topic }}
-                                                                </td>
-                                                                <td class="pt-4">
-                                                                {{$class->booking->class_time}} {{date("g:i a", strtotime("$class->booking->class_time UTC"))}}
-                                                                </td>
-                                                                <td class="pt-4">
-                                                                    @if($class->booking->user != null && $class->booking->user != "")
-                                                                        {{ $class->booking->user->first_name }} {{ $class->booking->user->last_name }}
+                                                                    @if($class->user != null && $class->user != "")
+                                                                        {{ $class->user->first_name }} {{ $class->user->last_name }}
                                                                     @else
                                                                     <span> - </span>
                                                                     @endif
                                                                 </td>
                                                                 <td class="pt-4">
-                                                                    {{ $class->booking->duration }} Hour(s)
+                                                                    {{ $class->subject->name }}
                                                                 </td>
                                                                 <td class="pt-4">
-                                                                @if($class->booking->status == 1)
+                                                                    {{ $class->topic }}
+                                                                </td>
+                                                                <td class="pt-4">
+                                                                {{$class->class_time}} {{date("g:i a", strtotime("$class->class_time UTC"))}}
+                                                                </td>
+                                                               
+                                                                <td class="pt-4">
+                                                                    {{ $class->duration }} Hour(s)
+                                                                </td>
+                                                                <td class="pt-4">
+                                                                @if($class->status == 1)
                                                                     <span class="bg-color-apporve3">
                                                                         Payment Pending
                                                                     </span>
-                                                                @elseif($class->booking->status == 2)
+                                                                @elseif($class->status == 2)
                                                                     <span class="bg-color-apporve1">
                                                                         Approved
                                                                     </span>
-                                                                @elseif($class->booking->status == 5)
+                                                                @elseif($class->status == 5)
                                                                     <span class="bg-color-apporve1">
                                                                         Delivered
                                                                     </span>
-                                                                @elseif($class->booking->status == 0)
+                                                                @elseif($class->status == 0)
                                                                     <span class="bg-color-apporve">
                                                                         Pending
                                                                     </span>
                                                                 @endif
                                                                 </td>
-
                                                                 <td style="text-align: center;">
-                                                                    
-                                                                    <button class="cencel-btn" type="button">
-                                                                        View details
-                                                                    </button>
-                                                                    @if($class->booking->status == 2)
-                                                                    <a href="{{route('tutor.start_class',[$class->classroom_id])}}"  class="schedule-btn">
-                                                                        Start Call
-                                                                    </a>
+                                                                    @if($class->classroom != null)
+                                                                    <span data-id="{{$class->id}}" data-room="{{$class->classroom != null ? $class->classroom->classroom_id : ''}}" data-duration="{{$class->duration}}" data-time="{{$class->class_time}}"
+                                                                        id="class_time_{{$class->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success mt-3">{{$class->class_date}} {{$class->class_time}} </span>     
+                                                                    <div id="join_class_{{$class->id}}" class="text-center">
                                                                     @endif
+                                                                </td>
+                                                                <td style="text-align: center;">
+                                                                    <button class="cencel-btn" type="button"> View details </button>
+                                                                </div>                                                                    
                                                                 </td>
                                                             </tr>
                                                         @endif
                                                     @endforeach
+                                                @else
+                                                    <tr>
+                                                        <td>
+                                                            No Class Found
+                                                        </td>
+                                                    </tr>
+                                                @endif
                                                 </tbody>
                                             </table>
                                         </div>
@@ -143,38 +152,41 @@
                                                 <thead>
                                                     <tr
                                                         style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
+                                                        <th scope="col">Student</th>
                                                         <th scope="col">Subjects</th>
                                                         <th scope="col">Topic</th>
                                                         <th scope="col">Time</th>
-                                                        <th scope="col">Student</th>
                                                         <th scope="col">Duration</th>
                                                         <th scope="col">Payment</th>
                                                         <th scope="col"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                @if($classes != null && $classes != [] && $classes != "")
+
                                                     @foreach($classes as $class)
                                                         @if($class != null && $class != "" )
-                                                            @if($class->booking->status == 5)
+                                                            @if($class->status == 5)
                                                                 <tr>
                                                                     <td class="pt-4">
-                                                                        {{ $class->booking->subject->name }}
-                                                                    </td>
-                                                                    <td class="pt-4">
-                                                                        {{ $class->booking->topic }}
-                                                                    </td>
-                                                                    <td class="pt-4">
-                                                                    {{$class->booking->class_time}} {{date("g:i a", strtotime("$class->booking->class_time UTC"))}}
-                                                                    </td>
-                                                                    <td class="pt-4">
-                                                                        @if($class->booking->user != null && $class->booking->user != "")
-                                                                            {{ $class->booking->user->first_name }} {{ $class->booking->user->last_name }}
+                                                                        @if($class->user != null && $class->user != "")
+                                                                            {{ $class->user->first_name }} {{ $class->user->last_name }}
                                                                         @else
                                                                         <span> - </span>
                                                                         @endif
                                                                     </td>
                                                                     <td class="pt-4">
-                                                                        {{ $class->booking->duration }} Hour(s)
+                                                                        {{ $class->subject->name }}
+                                                                    </td>
+                                                                    <td class="pt-4">
+                                                                        {{ $class->topic }}
+                                                                    </td>
+                                                                    <td class="pt-4">
+                                                                    {{$class->class_time}} {{date("g:i a", strtotime("$class->class_time UTC"))}}
+                                                                    </td>
+                                                                    
+                                                                    <td class="pt-4">
+                                                                        {{ $class->duration }} Hour(s)
                                                                     </td>
                                                                     <td class="pt-4">
                                                                    
@@ -185,16 +197,19 @@
                                                                     </td>
 
                                                                     <td style="text-align: center;">
-                                                                        
-                                                                        <button class="cencel-btn" type="button">
-                                                                            View details
-                                                                        </button>
-                                                                        
+                                                                        <button class="cencel-btn" type="button"> View details </button>
                                                                     </td>
                                                                 </tr>
                                                             @endif
                                                         @endif
                                                     @endforeach
+                                                @else
+                                                    <tr>
+                                                        <td>
+                                                            No Class Found
+                                                        </td>
+                                                    </tr>
+                                            @endif
                                                 </tbody>
                                             </table>
                                         </div>
@@ -209,4 +224,61 @@
         <div class="line"></div>
     </div>
 </section>
+
+<script src="{{asset('/admin/assets/js/jquery.js')}}"></script>
+<script src="{{asset('/admin/assets/js/jquery-ui.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        
+        $( ".current_time" ).each(function() {
+
+            var booking_time = $( this ).text();
+            var attr_id = $(this).data('id');
+            var duration = $(this).data('duration');
+            var time = $(this).data('time');
+            var room_id = $(this).data('room');
+
+            let split_time = time.split(':');
+            let create_time = parseInt(split_time[0]) + parseInt(duration);
+
+            let actual_time  = create_time + ':' + split_time[1];
+
+            var time = moment(booking_time).format('MMM D, YYYY h:mm:ss a');
+
+            var countDownDate = new Date(time).getTime();
+            var x = setInterval(function() {
+
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                var total_time = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+                
+                $("#class_time_"+attr_id).html(total_time);
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    let join_btn = `<a href="{{url('tutor/class')}}/`+room_id+`"  class="schedule-btn"> Start Call </a>`;
+                    // if(time > actual_time) {
+                    //     $("#class_time_"+attr_id).text("Class Expired");
+                    // }else{
+                    //     $("#join_class_"+attr_id).html(join_btn);
+                    // }
+                    $("#class_time_"+attr_id).text("");
+                    $("#join_class_"+attr_id).html(join_btn);
+                }
+            }, 1000);
+            
+
+        });
+
+
+    });
+</script>
 @endsection

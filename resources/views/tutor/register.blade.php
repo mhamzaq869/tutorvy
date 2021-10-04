@@ -32,6 +32,7 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <!-- Dropify CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/dropify.css') }}" />
+    <link href="{{ asset('assets/css/fontawesome.min.css') }}" rel="stylesheet">
 
     <!-- Moment Js -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -78,7 +79,12 @@
             color: red;
             border-color:red;
         }
-
+        ul{
+            padding-left:20px;
+        }
+        ul li{
+            list-style-type: none;
+        }
         ul.bs-autocomplete-menu {
             position: absolute;
             top: 0;
@@ -293,7 +299,7 @@
                                 </ul>
                             </div> -->
                             <form action="{{ url('register') }}" method="post" id="register"
-                                enctype="multipart/form-data">
+                                enctype="multipart/form-data" onsubmit="return false">
                                 @csrf
                                 <input type="hidden" name="role" value="2">
                                 <div class="tab-content mt-5">
@@ -358,29 +364,28 @@
                                                     @enderror
                                                 </div>
 
-                                                <div class="input-text col-md-12 m-0  mt-3 mb-2 d-block">
-                                                    <input type="password" name="password"
-                                                        class="form-control  @error('password') is-invalid @enderror"
-                                                        placeholder="Password" id="password"> 
-                                                        <small id="passTech">
+                                                <div class="input-text col-md-12 m-0  mt-3  d-block">
+                                                    <input type="password" name="password" class="form-control "
+                                                    placeholder="Password" id="password">
+                                                    <!-- <label for="" id="password_error" class="text-red"><strong> This field is required </strong>  </label> -->
+                                                    <small id="passTech">
                                                             Field should have at least:
                                                             <ul>
-                                                                <li>One uppercase letter</li>
-                                                                <li>One lowercase letter</li>
-                                                                <li>One numeric value</li>
-                                                                <li>One special character</li>
-                                                                <li>8 characters</li>
+                                                                <li id="capital_letter"><i class="fa fa-times"></i> One uppercase letter</li>
+                                                                <li id="lower_letter"><i class="fa fa-times"></i> One lowercase letter</li>
+                                                                <li id="numeric"><i class="fa fa-times"></i> One numeric value</li>
+                                                                <li id="special_character"><i class="fa fa-times"></i> One special character</li>
+                                                                <li id="min_character"><i class="fa fa-times"></i> 8 characters</li>
                                                             </ul>
                                                         </small>
-                                                        <span for="" id="password_error" class="invalid-feedback" role="alert">
-                                                            <strong> This field is required </strong>  
-                                                        </span>
-                                                        <!-- <label for="" id="password_error" class="text-red"><strong> This field is required </strong>  </label> -->
-                                                    <!-- @error('password')
+                                                    <span for="" id="password_error" class="invalid-feedback" role="alert">
+                                                        <strong> This field is required </strong>  
+                                                    </span>
+                                                    @error('password')
                                                         <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
+                                                            <strong>{{$message}}</strong>
                                                         </span>
-                                                    @enderror -->
+                                                    @enderror
                                                 </div>
                                                 <div class="col-md-12 mb-3 mt-3">
                                                     <div class="nav nav-pills text-center border" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -406,11 +411,16 @@
                                                                 </a>
                                                             </div>
                                                             <div class="facebook">
-                                                                <img class="mr-3" src="{{asset('assets/images/ico/facebook(1).png')}}" alt="facebook">
-                                                                Continue with Facebook
+                                                                <a href="{{route('social.facebook',[2])}}">
+                                                                    <!-- <img class="mr-3" src="{{asset('assets/images/ico/facebook(1).png')}}" alt="facebook"> -->
+                                                                     <i class="fa fa-facebook fa-lg mr-2" aria-hidden="true"></i>
+
+                                                                    Continue with Facebook
+                                                                </a>
                                                             </div>
                                                             <div class="Apple">
-                                                                <img class="mr-3" src="{{asset('assets/images/ico/apple.png')}}" alt="apple">
+                                                                <!-- <img class="mr-3" src="{{asset('assets/images/ico/apple.png')}}" alt="apple"> -->
+                                                                <i class="fa fa-apple  fa-lg mr-2" aria-hidden="true"></i>
                                                                 Continue with Apple
                                                             </div>
                                                             <div class="Policy-text" style="display: flex;">
@@ -1244,6 +1254,141 @@
                 $(".dropify").dropify();
                 $(".form-select").select2();
                 $(".text-red").hide();
+                 /* Password STrength */
+
+
+           $("#password").keyup(function(e) {
+                    var capital_leters = new RegExp('[A-Z]');
+                    var lower_leters = new RegExp('[a-z]');
+                    var numeric = new RegExp('[0-9]');
+                    var special = /[_~\-!@#\$%\^&\*\(\)]+$/;
+                    var password = $(this).val();
+
+                    if(password.match(capital_leters)) {
+                        $("#capital_letter").css('color','green');
+                        $("#capital_letter").find(".fa").removeClass("fa-times");
+                        $("#capital_letter").find(".fa").addClass("fa-check");
+                        $('#register').removeAttr('onsubmit');
+                    }else{
+                        $("#capital_letter").css('color','red');
+                        $("#capital_letter").find(".fa").removeClass("fa-check");
+                        $("#capital_letter").find(".fa").addClass("fa-times");
+                        var attr = $('#register').attr('onsubmit');
+
+                        if (typeof attr !== 'undefined' && attr !== false) {
+                            $('#register').removeAttr('onsubmit');
+                        }else{
+                            $('#register').attr('onsubmit','return false');
+                        }
+                    }
+
+                    if(password.match(lower_leters)) {
+                        $("#lower_letter").css('color','green');
+                         $("#lower_letter").find(".fa").removeClass("fa-times");
+                        $("#lower_letter").find(".fa").addClass("fa-check");
+                        $('#register').removeAttr('onsubmit');
+                    }else{
+                        $("#lower_letter").css('color','red');
+                         $("#lower_letter").find(".fa").addClass("fa-times");
+                        $("#lower_letter").find(".fa").removeClass("fa-check");
+                        var attr = $('#register').attr('onsubmit');
+
+                        if (typeof attr !== 'undefined' && attr !== false) {
+                            $('#register').removeAttr('onsubmit');
+                        }else{
+                            $('#register').attr('onsubmit','return false');
+                        }
+                    }
+
+                    if(password.match(numeric)) {
+                        $("#numeric").css('color','green');
+                         $("#numeric").find(".fa").removeClass("fa-times");
+                        $("#numeric").find(".fa").addClass("fa-check");
+                        $('#register').removeAttr('onsubmit');
+                    }else{
+                        $("#numeric").css('color','red');
+                         $("#numeric").find(".fa").addClass("fa-times");
+                        $("#numeric").find(".fa").removeClass("fa-check");
+                        var attr = $('#register').attr('onsubmit');
+
+                        if (typeof attr !== 'undefined' && attr !== false) {
+                            $('#register').removeAttr('onsubmit');
+                        }else{
+                            $('#register').attr('onsubmit','return false');
+                        }
+                    }
+
+                    if(password.length > 8) {
+                        $("#min_character").css('color','green');
+                         $("#min_character").find(".fa").removeClass("fa-times");
+                        $("#min_character").find(".fa").addClass("fa-check");
+                        $('#register').removeAttr('onsubmit');
+                    }else{
+                        $("#min_character").css('color','red');
+                         $("#min_character").find(".fa").addClass("fa-times");
+                        $("#min_character").find(".fa").removeClass("fa-check");
+                        var attr = $('#register').attr('onsubmit');
+
+                        if (typeof attr !== 'undefined' && attr !== false) {
+                            $('#register').removeAttr('onsubmit');
+                        }else{
+                            $('#register').attr('onsubmit','return false');
+                        }
+                    }
+
+                    var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+
+                    if(format.test(password)) {
+                        $("#special_character").css('color','green');
+                         $("#special_character").find(".fa").removeClass("fa-times");
+                        $("#special_character").find(".fa").addClass("fa-check");
+                        $('#register').removeAttr('onsubmit');
+                    }else{
+                        $("#special_character").css('color','red');
+                         $("#special_character").find(".fa").addClass("fa-times");
+                        $("#special_character").find(".fa").removeClass("fa-check");
+                        var attr = $('#register').attr('onsubmit');
+
+                        if (typeof attr !== 'undefined' && attr !== false) {
+                            $('#register').removeAttr('onsubmit');
+                        }else{
+                            $('#register').attr('onsubmit','return false');
+                        }
+                    }
+
+                    console.log(password , "password");
+
+                    // var decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+                    // var ter = $(this).val();
+                    // if (ter.match(decimal))
+                    // {
+                    //     console.log("password ok");
+                    //     // $("#password_error").css("display", "none");
+                    //     // $("#passTech").css("display", "block");
+                    //     // $("#password").removeClass("is-invalid");
+                    //     // $("#password").addClass("valid");
+                    //     // $('#register').removeAttr('onsubmit');
+                        
+                    // }else{
+                    //     var attr = $('#register').attr('onsubmit');
+
+                    //     if (typeof attr !== 'undefined' && attr !== false) {
+                    //         $('#register').removeAttr('onsubmit');
+                    //     }else{
+                    //         $('#register').attr('onsubmit','return false');
+                    //     }
+
+                    //     // $("#password_error").css("display", "block");
+                    //     // $("#passTech").css("display", "none");
+                    //     // $("#password").removeClass("valid");
+                    //     // $("#password").addClass("is-invalid");
+
+                    //     // $("#password_error").text("Field should have at least one lowercase letter, one uppercase letter, one numeric digit, and one special character")
+
+                    //     return false;
+                    // }
+                });
+/* Password Strength End  */
             });
 
             function university() {
@@ -1384,7 +1529,7 @@
                 });  
                   
             });
-           
+          
         </script>
     </section>
 </body>

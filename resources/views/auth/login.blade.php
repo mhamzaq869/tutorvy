@@ -28,7 +28,8 @@
     <style>
         .toggle-password{
             position: absolute;
-    right: 43px;
+            right: 12px;
+            top: 43px;
         }
 
 .Google {
@@ -56,6 +57,39 @@
 
 .Google:hover a {
     color: #C94131;
+}
+.facebook{
+    border:1px solid #1173FF;
+}
+.facebook a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.facebook:hover {
+    background-color: #fff;
+}
+
+.facebook:hover a {
+    color: #1173FF;
+}
+.Apple {
+    border: 1px solid #000000;
+}
+
+.Apple a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.Apple:hover {
+    background-color: #fff;
+    color: #000000;
+
+}
+
+.Apple:hover a {
+    color: #000000;
 }
 
     </style>
@@ -95,9 +129,11 @@
                             <div class="row">
                                 @isset($user)
                                 <p class="ml-3 mt-3 mt-5">
-                                    @if($user->profile)
+                                    @if($user->picture)
+                                        <img src="{{asset($user->picture)}}" alt="boy" class="profile-img" style="width: 40px;">
+
                                     @else
-                                    <img src="../assets/images/logo/boy.jpg" alt="boy" style="width: 40px;">
+                                        <img src="../assets/images/ico/Square-white.jpg" alt="boy" style="width: 40px;">
                                     @endif
                                 </p>
                                 <p class="ml-3 mt-5 Welcome-text"> {{$user->first_name ?? ''}} {{$user->last_name ?? ''}}</p>
@@ -150,6 +186,7 @@
                                                 <input type="text" name="role" value="{{$user->role}}" hidden/>
                                                 <input type="password" name="password" id="pswd" placeholder="Enter your password"
                                                 class="@isset($error) is-invalid @endisset">
+                                                <span toggle="#password-field" id="togglepass" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                                 @isset($error)
                                                         <span class="invalid-feedback d-block" role="alert">
                                                             <strong>{{$error}}</strong>
@@ -159,7 +196,7 @@
                                             <input type="submit" class="submit schedule-btn w-25 mt-3 float-right" value="Submit">
                                     </div>
                                     @if(isset($user))
-                                    <span toggle="#password-field" id="togglepass" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+
                                     <p class="checkboxs d-inline-block w-100 mt-4">
                                         <input style="width: 15px;" type="checkbox" class="checkbox">
                                         <span style="position: absolute;left: 55px;font-size: 16px;font-family: Poppins;">
@@ -185,13 +222,16 @@
                                 </a>
                             </div>
                             <div class="facebook">
-                                <a href="{{route('social.facebook',[0])}}" class="text-white text-decoration-none">
-                                    <img class="mr-3" src="../assets/images/ico/facebook(1).png" alt="facebook">
-                                    Continue with Facebook
+                                <a href="{{route('social.facebook',[0])}}">
+
+                                <!-- <img class="mr-3" src="../assets/images/ico/facebook(1).png" alt="facebook"> -->
+                                <i class="fa fa-facebook fa-lg mr-2" aria-hidden="true"></i>
+                                Continue with Facebook
                                 </a>
                             </div>
                             <div class="Apple">
-                                <img class="mr-3" src="../assets/images/ico/apple.png" alt="apple">
+                                <!-- <img class="mr-3" src="../assets/images/ico/apple.png" alt="apple"> -->
+                                <i class="fa fa-apple fa-lg mr-2" aria-hidden="true"></i>
                                 Continue with Apple
                             </div>
                             <div class="Policy-text" style="display: flex;">

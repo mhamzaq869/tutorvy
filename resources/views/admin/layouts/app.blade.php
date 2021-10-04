@@ -29,22 +29,16 @@
     <link rel="stylesheet" href="{{ asset('assets/css/home.css')}}" />
     <link rel="stylesheet" href="{{ asset('assets/css/dropify.css')}}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-messaging.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-analytics.js"></script>
-
-    <script  src="{{asset('assets/firebase/index.js')}}"></script>
-
-
-
 
 </head>
-<body>
-
+<!-- <body>
+    <input type="hidden" id="role" class="role" value="{{Auth::user()->role}}"> -->
     <!-- side navbar -->
     @include('admin.layouts.sidebar')
 
     <section id="contents">
+    <input type="hidden" class="user_id" value={{Auth::user()->id}}>
+    <input type="hidden" class="user_role_id" value={{Auth::user()->role}}>
         <!-- navbar-->
         @include('admin.layouts.navbar')
         <!-- navbar end -->
