@@ -30,7 +30,7 @@
             position: absolute;
     right: 43px;
         }
-        
+
 .Google {
     margin-top: 30px;
     width: 100%;
@@ -74,7 +74,7 @@
                         </div>
                         <div class="text">
                             <p class="learn">
-                                Learn from the best tutors 
+                                Learn from the best tutors
                             </p>
                             <p class="time">
                                 Anytime, Anywhere
@@ -185,8 +185,10 @@
                                 </a>
                             </div>
                             <div class="facebook">
-                                <img class="mr-3" src="../assets/images/ico/facebook(1).png" alt="facebook">
-                                Continue with Facebook
+                                <a href="{{route('social.facebook',[0])}}" class="text-white text-decoration-none">
+                                    <img class="mr-3" src="../assets/images/ico/facebook(1).png" alt="facebook">
+                                    Continue with Facebook
+                                </a>
                             </div>
                             <div class="Apple">
                                 <img class="mr-3" src="../assets/images/ico/apple.png" alt="apple">

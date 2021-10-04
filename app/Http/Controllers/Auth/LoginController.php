@@ -68,9 +68,9 @@ class LoginController extends Controller
         if($request->filled('valid_email','password','role')){
             if(Auth::attempt(['email' => $request->valid_email, 'password' => $request->password,'role'=>$request->role ])){
                 if($request->role == 2){
-                    
+
                     // activity logs
-                    $id = Auth::user()->id; 
+                    $id = Auth::user()->id;
                     $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
                     $action_perform = '<a href="'.URL::to('/') . '/admin/tutor/profile/'. $id .'"> '.$name.' </a> Logged into system';
                     $activity_logs = new GeneralController();
@@ -82,7 +82,7 @@ class LoginController extends Controller
                 if($request->role == 3){
 
                     // activity logs
-                    $id = Auth::user()->id; 
+                    $id = Auth::user()->id;
                     $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
                     $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> Logged into system';
                     $activity_logs = new GeneralController();
@@ -92,12 +92,12 @@ class LoginController extends Controller
                     if(isset($_COOKIE['t_id'])){
                         $value = $_COOKIE['t_id'];
                         \Cookie::queue(\Cookie::forget('t_id'));
-                       
+
                     }
                     if($value != ''){
                         return redirect()->route('student.book-now',[$value]);
                     }
-                    
+
                     return redirect()->route('student.dashboard');
                 }
                 Session::put('user',$request->valid_email);
@@ -109,7 +109,7 @@ class LoginController extends Controller
             }
         }
 
-        
+
 
         return redirect()->back()->with('error','Wrong! Email Address');
 
@@ -133,14 +133,15 @@ class LoginController extends Controller
     public function handleGoogleCallback()
     {
         $c_id = Session::get('c_id');
-        
+
         $user = Socialite::driver('google')->user();
+
         $user->user['provider'] = 'google';
-        
+
         $data = $this->_registerOrLogin($user->user,$c_id);
-        
+
         if($data == false || $data == ''){
-            
+
             if($c_id == 2) {
                 return redirect()->route('tutor.register')->with('error','Unable to login with this email.');
             }else if($c_id == 3) {
@@ -167,13 +168,56 @@ class LoginController extends Controller
         }
     }
 
+    public function redirectFacebook($id)
+    {
+        Session::put('c_id',$id);
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function handleFacebookCallback()
+    {
+        $c_id = Session::get('c_id');
+
+        $user = Socialite::driver('facebook')->user();
+        $user->user['provider'] = 'facebook';
+
+        $data = $this->_registerOrLogin($user->user,$c_id);
+
+        if($data == false || $data == ''){
+
+            if($c_id == 2) {
+                return redirect()->route('tutor.register')->with('error','Unable to login with this email.');
+            }else if($c_id == 3) {
+                return redirect()->route('student.register')->with('error','Unable to login with this email.');
+            }else if($c_id == 0) {
+                return redirect()->route('login')->with('error','Facebook account is not attached with any account.');
+            }else{
+                return redirect()->to('/');
+            }
+            // return redirect()->back()->with('error','Unable to login with this email.');
+        }
+        Auth::login($data);
+
+        if($data->role == 2){
+            return redirect()->route('tutor.dashboard');
+        }
+
+        if($data->role == 3){
+            return redirect()->route('student.dashboard');
+        }
+
+        if(!$data->role){
+            return redirect('role');
+        }
+    }
+
      /*
     *  Register User if not exist in db and if exist will login
     *  and redirect to dashboard
     */
     private function _registerOrLogin($data,$r)
     {
-        
+        dd($data);
         try{
             $user = User::where('email', $data['email'])->where('provider',$data['provider'])->first();
             if(!$user && $r == 0){

@@ -120,7 +120,7 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
 
     Route::get('/knowledge',[KnowledgeController::class,'index'])->name('admin.knowledge');
     Route::get('/support',[SupportController::class,'index'])->name('admin.support');
-    
+
     Route::get('/ticket/{id}',[SupportController::class,'ticket'])->name('admin.ticket');
 
     Route::get('/ticket-reply',[SupportController::class,'ticketReply'])->name('admin.ticketReply');
@@ -178,7 +178,7 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
 
     //Profile Routes
     Route::get('/profile',[ProfileController::class,'index'])->name('tutor.profile');
-    
+
     Route::post('/updateprofile/{id}',[ProfileController::class,'profileUpdate'])->name('tutor.profile.update');
 
     Route::post('/updateedu/{id}',[ProfileController::class,'updateProfileEdu'])->name('tutor.profile.edu');
@@ -198,7 +198,7 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::get('/get-categories',[TutorSettingController::class,'getAllCategories'])->name('tutor.categories');
     Route::post('/save-ticket',[TutorSettingController::class,'saveTicket'])->name('tutor.save.ticket');
 
-    Route::get('/ticket/{id}',[TutorSettingController::class,'ticket'])->name('tutor.ticket');    
+    Route::get('/ticket/{id}',[TutorSettingController::class,'ticket'])->name('tutor.ticket');
 });
 
 /*
@@ -225,7 +225,7 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
 
     //Bookings
     Route::get('/bookings',[StudentBookingController::class,'index'])->name('student.bookings');
-    
+
     Route::get('/book-now/{id}',[StudentBookingController::class,'bookNow'])->name('student.book-now');
     Route::post('/tutor-plan',[StudentBookingController::class,'tutorPlans'])->name('student.tutor.plans');
 
@@ -264,8 +264,8 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
 
     Route::get('/get-categories',[StudentSettingController::class,'getAllCategories'])->name('student.categories');
     Route::post('/save-ticket',[StudentSettingController::class,'saveTicket'])->name('student.save.ticket');
-    
-    
+
+
     Route::get('/support-tickets',[StudentBookingController::class,'history'])->name('student.history');
 
     Route::post('/fav-tutor',[StudentSettingController::class,'favouriteTutor'])->name('student.fav.tutor');
@@ -284,6 +284,9 @@ Auth::routes(['verify' => true]);
 //Google
 Route::get('/google/redirect/{c_id?}', [LoginController::class,'redirectGoogle'])->name('social.google');
 Route::get('/login/google/callback', [LoginController::class,'handleGoogleCallback']);
+//Facebook
+Route::get('/facebook/redirect/{c_id?}', [LoginController::class,'redirectFacebook'])->name('social.facebook');
+Route::get('/login/facebook/callback', [LoginController::class,'handleFacebookCallback']);
 
 Route::get('/student/register',[RegisterController::class,'showStudentRegistrationForm'])->name('student.register')->middleware('guest');
 Route::post('/register',[RegisterController::class,'register'])->name('tutor.register')->middleware('guest');
