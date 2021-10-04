@@ -851,7 +851,10 @@ var fullName = '{{$booking->tutor->first_name}} {{$booking->tutor->last_name}}';
 })();
 
 //connection.socketURL = '/';
-connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+// connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+// connection.socketURL = 'https://tutorvy.herokuapp.com:443/';
+connection.socketURL = 'https://tutorvy.herokuapp.com:443/';
+
 
 connection.extra.userFullName = fullName;
 connection.DetectRTC.load(function() {
@@ -1002,11 +1005,12 @@ connection.onopen = function(event) {
 };
 
 connection.onclose = connection.onerror = connection.onleave = function(event) {
-    toastr.success("Student has ended the call!");
+    // toastr.success("Student has ended the call!");
     connection.onUserStatusChanged(event);
 };
 
 connection.onmessage = function(event) {
+    console.log(event)
     if(event.data.showMainVideo) {
         // $('#main-video').show();
         $('#screen-viewer').css({
@@ -1033,6 +1037,11 @@ connection.onmessage = function(event) {
     if(event.data.typing === false) {
         $('#key-press').hide().find('span').html('');
         return;
+    }
+
+    if(event.data.call_ended === true){
+        toastr.success("Class has Ended.");
+        window.location.href="{{route('tutor.classroom')}}";
     }
 
     if (event.data.chatMessage) {
@@ -1098,37 +1107,38 @@ connection.onstreamended = function(event) {
     }
 };
 $(".no-vc").click(function(){
-        alert("No vc");
-        var localStream = connection.attachStreams[0];
-        localStream.mute('video');
-    })
-    $(".vc").click(function(){
-        alert("Vc");
-        var localStream = connection.attachStreams[0];
-        localStream.unmute('video'); 
-        
-    })
-    $(".no-mk").click(function(){
-        alert("No mk");
-        var localStream = connection.attachStreams[0];
-        localStream.mute('audio');
-    })
-    $(".mk").click(function(){
-        alert("mk");
-        var localStream = connection.attachStreams[0];
-        localStream.unmute('audio'); 
-        
-    })
-    $("#endCallYes").click(function(){
-        connection.leave();
-        $("#endCall").modal("hide");
-        toastr.success("Call has Ended Successfully");
+    alert("No vc");
+    var localStream = connection.attachStreams[0];
+    localStream.mute('video');
+})
+$(".vc").click(function(){
+    alert("Vc");
+    var localStream = connection.attachStreams[0];
+    localStream.unmute('video'); 
+    
+})
+$(".no-mk").click(function(){
+    alert("No mk");
+    var localStream = connection.attachStreams[0];
+    localStream.mute('audio');
+})
+$(".mk").click(function(){
+    alert("mk");
+    var localStream = connection.attachStreams[0];
+    localStream.unmute('audio'); 
+    
+})
+$("#endCallYes").click(function(){
+    // connection.leave();
+    connection.send({
+        call_ended: true
+    });
+    $("#endCall").modal("hide");
+    toastr.success("Class has Ended.");
 
-        window.location.href="{{route('tutor.classroom')}}";
-        
-        
+    window.location.href="{{route('tutor.classroom')}}";
 
-    })
+})
 var conversationPanel = document.getElementById('conversation-panel');
 
 function appendChatMessage(event, checkmark_id) {

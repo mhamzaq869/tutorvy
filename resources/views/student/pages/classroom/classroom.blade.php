@@ -975,60 +975,60 @@ var fullName = '{{$user->first_name}} {{$user->last_name}}';
 
 
 //connection.socketURL = '/';
-connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+// connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+connection.socketURL = 'https://tutorvy.herokuapp.com:443/';
 
 connection.extra.userFullName = fullName;
 connection.DetectRTC.load(function() {
-            console.log(connection.DetectRTC);
-                        if (connection.DetectRTC.hasMicrophone === true) {
-                            // enable microphone
-                            connection.mediaConstraints.audio = true;
-                            connection.session.audio = true;
-                            alert('attach true microphone')
-                            $(".no-mk").show();
-                            $("#join_now").removeAttr("disabled","disabled" );
-                                $("#join_now").click(function(){
-                                    $(".tech_weck").removeClass("tech_weck-none");
-                                    $("#callModal").modal("hide");
-                                    // joinClass();
-                                    /** Javascript Timer */
-                                    var timer = new Timer();
-                                        timer.start({countdown: true, startValues: {seconds: 30}});
+    console.log(connection.DetectRTC);
+    if (connection.DetectRTC.hasMicrophone === true) {
+        // enable microphone
+        connection.mediaConstraints.audio = true;
+        connection.session.audio = true;
+        alert('attach true microphone')
+        $(".no-mk").show();
+        $("#join_now").removeAttr("disabled","disabled" );
+            $("#join_now").click(function(){
+                $(".tech_weck").removeClass("tech_weck-none");
+                $("#callModal").modal("hide");
+                // joinClass();
+                /** Javascript Timer */
+                var timer = new Timer();
+                    timer.start({countdown: true, startValues: {seconds: 30}});
 
-                                        $('#countdownExample .values').html(timer.getTimeValues().toString());
+                    $('#countdownExample .values').html(timer.getTimeValues().toString());
 
-                                        timer.addEventListener('secondsUpdated', function (e) {
-                                            $('#countdownExample .values').html(timer.getTimeValues().toString());
-                                        });
+                    timer.addEventListener('secondsUpdated', function (e) {
+                        $('#countdownExample .values').html(timer.getTimeValues().toString());
+                    });
 
-                                        timer.addEventListener('targetAchieved', function (e) {
-                                            $('#countdownExample .values').html('Class Time has Ended!!');
-                                        });
-                                    /* Javascript Timer ENd */
-                                })
-                        }else{
-                            toastr.warning( "Audio Device is Mendatory ");
-                            $(".no-mk").hide();
-                        }
+                    timer.addEventListener('targetAchieved', function (e) {
+                        $('#countdownExample .values').html('Class Time has Ended!!');
+                    });
+                /* Javascript Timer ENd */
+            })
+    }else{
+        toastr.warning( "Audio Device is Mendatory ");
+        $(".no-mk").hide();
+    }
 
-                        if (connection.DetectRTC.hasWebcam === true) {
-                            // enable camera
-                            connection.mediaConstraints.video = true;
-                            connection.session.video = true;
-                            alert('attach true camera')
-                            $(".no-vc").show();
+    if (connection.DetectRTC.hasWebcam === true) {
+        // enable camera
+        connection.mediaConstraints.video = true;
+        connection.session.video = true;
+        alert('attach true camera')
+        $(".no-vc").show();
 
+    }else{
+        $(".no-vc").hide();
 
-                        }else{
-                            $(".no-vc").hide();
+        alert('attach Cam')
+    }
 
-                            alert('attach Cam')
-                        }
-
-                        if (connection.DetectRTC.hasSpeakers === false) { // checking for "false"
-                            // alert('Please attach a speaker device. You will unable to hear the incoming audios.');
-                        }
-        });
+    if (connection.DetectRTC.hasSpeakers === false) { // checking for "false"
+        // alert('Please attach a speaker device. You will unable to hear the incoming audios.');
+    }
+});
 /// make this room public
 connection.publicRoomIdentifier = '';
 
@@ -1126,15 +1126,14 @@ connection.onopen = function(event) {
 };
 
 connection.onclose = connection.onerror = connection.onleave = function(event) {
-    toastr.success("Tutor has ended the call!");
 
     connection.onUserStatusChanged(event);
-    $("#reviewModal").modal("show");
-
 
 };
 
 connection.onmessage = function(event) {
+    console.log(event)
+
     if(event.data.showMainVideo) {
         // $('#main-video').show();
         $('#screen-viewer').css({
@@ -1162,6 +1161,10 @@ connection.onmessage = function(event) {
         $('#key-press').hide().find('span').html('');
         return;
     }
+    if(event.data.call_ended === true){
+        toastr.success("Tutor ended the class.");
+        $("#reviewModal").modal("show");
+    }
 
     if (event.data.chatMessage) {
         appendChatMessage(event);
@@ -1182,6 +1185,7 @@ connection.onmessage = function(event) {
     }
 
     designer.syncData(event.data);
+
 };
 
 // extra code
@@ -1226,36 +1230,38 @@ connection.onstreamended = function(event) {
     }
 };
 $(".no-vc").click(function(){
-        alert("No vc");
-        var localStream = connection.attachStreams[0];
-        localStream.mute('video');
-    })
-    $(".vc").click(function(){
-        alert("Vc");
-        var localStream = connection.attachStreams[0];
-        localStream.unmute('video'); 
-        
-    })
-    $(".no-mk").click(function(){
-        alert("No mk");
-        var localStream = connection.attachStreams[0];
-        localStream.mute('audio');
-    })
-    $(".mk").click(function(){
-        alert("mk");
-        var localStream = connection.attachStreams[0];
-        localStream.unmute('audio'); 
-        connection.streamEvents.selectFirst('local').mediaElement.muted=true;
-        connection.streamEvents.selectFirst('local').mediaElement.volume=0;
-        
-    })
-    $("#endCallYes").click(function(){
-        toastr.success("Call has Ended Successfully");
-        $("#reviewModal").modal("show");
-        $("#endCall").modal("hide");
-        
-
-    })
+    alert("No vc");
+    var localStream = connection.attachStreams[0];
+    localStream.mute('video');
+})
+$(".vc").click(function(){
+    alert("Vc");
+    var localStream = connection.attachStreams[0];
+    localStream.unmute('video'); 
+    
+})
+$(".no-mk").click(function(){
+    alert("No mk");
+    var localStream = connection.attachStreams[0];
+    localStream.mute('audio');
+})
+$(".mk").click(function(){
+    alert("mk");
+    var localStream = connection.attachStreams[0];
+    localStream.unmute('audio'); 
+    connection.streamEvents.selectFirst('local').mediaElement.muted=true;
+    connection.streamEvents.selectFirst('local').mediaElement.volume=0;
+    
+})
+$("#endCallYes").click(function(){
+    connection.send({
+        call_ended: true
+    });
+    toastr.success("Class has Ended.");
+    $("#endCall").modal("hide");
+    $("#reviewModal").modal("show");
+    
+})
 var conversationPanel = document.getElementById('conversation-panel');
 
 function appendChatMessage(event, checkmark_id) {
