@@ -40,6 +40,7 @@ class StudentClassController extends Controller
         Booking::where('id',$request->booking_id)->update([
             "student_review" => $request->review,
             "rating" => $request->star_rating,
+            "is_reviewed" => 1,
         ]);
 
         return response()->json([

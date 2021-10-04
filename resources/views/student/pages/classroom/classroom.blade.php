@@ -317,6 +317,13 @@ height:25px;
 .bright input:checked+.slider {
     background-color: #1173ff;
 }
+.rating-stars ul > li{
+    cursor: pointer;
+}
+.rating-stars ul > li.star.selected > i.fa {
+  color:#FF912C;
+}
+
 
 /*Switch End */
 </style>
@@ -763,30 +770,30 @@ height:25px;
                                                 <div class='rating-stars text-center '>
                                                     <ul id='stars-ul'>
                                                         
-                                                        <li class='star star-review ' title='Poor' data-value='1'>
-                                                            <a href="#" class="ml-0">
-                                                                <i class="fa fa-star bigStar text-yellow "></i>
-                                                            </a>
+                                                        <li class='star star-review selected' title='Poor' data-value='1'>
+                                                            <!-- <a href="#" class="ml-0"> -->
+                                                                <i class="fa fa-star bigStar "></i>
+                                                            <!-- </a> -->
                                                         </li>
-                                                        <li class='star star-review ' title='Poor' data-value='2'>
-                                                            <a href="#">
-                                                                <i class="fa fa-star bigStar text-yellow "></i>
-                                                            </a>
+                                                        <li class='star star-review selected' title='Poor' data-value='2'>
+                                                            <!-- <a href="#"> -->
+                                                                <i class="fa fa-star bigStar "></i>
+                                                            <!-- </a> -->
                                                         </li>
-                                                        <li class='star star-review ' title='Poor' data-value='3'>
-                                                             <a href="#">
-                                                                <i class="fa fa-star bigStar  "></i>
-                                                            </a>
+                                                        <li class='star star-review selected' title='Poor' data-value='3'>
+                                                             <!-- <a href="#"> -->
+                                                                <i class="fa fa-star bigStar "></i>
+                                                            <!-- </a> -->
                                                         </li>
-                                                        <li class='star star-review ' title='Poor' data-value='4'>
-                                                             <a href="#">
-                                                                <i class="fa fa-star bigStar  "></i>
-                                                            </a>
+                                                        <li class='star star-review selected' title='Poor' data-value='4'>
+                                                             <!-- <a href="#"> -->
+                                                                <i class="fa fa-star bigStar "></i>
+                                                            <!-- </a> -->
                                                         </li>
-                                                        <li class='star star-review ' title='Poor' data-value='5'>
-                                                            <a href="#">
-                                                                <i class="fa fa-star bigStar  "></i>
-                                                            </a>
+                                                        <li class='star star-review selected' title='Poor' data-value='5'>
+                                                            <!-- <a href="#"> -->
+                                                                <i class="fa fa-star bigStar"></i>
+                                                            <!-- </a> -->
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -794,7 +801,7 @@ height:25px;
                                         </div>
                                     </div>
                                     <textarea class="form-control mt-3" rows="6" cols="50"
-                                        placeholder="Write reason"></textarea>
+                                        id="std_review" placeholder="Write reason"></textarea>
                                 </form>
                             </div>
                         </div>
@@ -865,7 +872,7 @@ height:25px;
         window.location.href="{{route('student.classroom')}}";
     });
 
-    $('#stars li').on('click', function(){
+    $('#stars-ul li').on('click', function(){
         var onStar = parseInt($(this).data('value'), 10);
         var stars = $(this).parent().children('li.star');
         
@@ -877,7 +884,7 @@ height:25px;
             $(stars[i]).addClass('selected');
         }
         
-        var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+        var ratingValue = parseInt($('#stars-ul li.selected').last().data('value'), 10);
         $("#star_rating").val(ratingValue);
         
     });
@@ -892,6 +899,7 @@ height:25px;
             star_rating:star_rating,
             booking_id:booking_id,
         }
+        
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
