@@ -1017,7 +1017,8 @@ connection.onmessage = function(event) {
     }
 
     if(event.data.call_ended === true){
-        toastr.success("Student has ended the call!");
+        toastr.success("Class has Ended.");
+        window.location.href="{{route('tutor.classroom')}}";
     }
 
     if (event.data.chatMessage) {
@@ -1083,38 +1084,38 @@ connection.onstreamended = function(event) {
     }
 };
 $(".no-vc").click(function(){
-        alert("No vc");
-        var localStream = connection.attachStreams[0];
-        localStream.mute('video');
-    })
-    $(".vc").click(function(){
-        alert("Vc");
-        var localStream = connection.attachStreams[0];
-        localStream.unmute('video'); 
-        
-    })
-    $(".no-mk").click(function(){
-        alert("No mk");
-        var localStream = connection.attachStreams[0];
-        localStream.mute('audio');
-    })
-    $(".mk").click(function(){
-        alert("mk");
-        var localStream = connection.attachStreams[0];
-        localStream.unmute('audio'); 
-        
-    })
-    $("#endCallYes").click(function(){
-        // connection.leave();
-        connection.send({
-            call_ended: true
-        });
-        $("#endCall").modal("hide");
-        toastr.success("Call has Ended Successfully");
+    alert("No vc");
+    var localStream = connection.attachStreams[0];
+    localStream.mute('video');
+})
+$(".vc").click(function(){
+    alert("Vc");
+    var localStream = connection.attachStreams[0];
+    localStream.unmute('video'); 
+    
+})
+$(".no-mk").click(function(){
+    alert("No mk");
+    var localStream = connection.attachStreams[0];
+    localStream.mute('audio');
+})
+$(".mk").click(function(){
+    alert("mk");
+    var localStream = connection.attachStreams[0];
+    localStream.unmute('audio'); 
+    
+})
+$("#endCallYes").click(function(){
+    // connection.leave();
+    connection.send({
+        call_ended: true
+    });
+    $("#endCall").modal("hide");
+    toastr.success("Class has Ended.");
 
-        window.location.href="{{route('tutor.classroom')}}";
+    window.location.href="{{route('tutor.classroom')}}";
 
-    })
+})
 var conversationPanel = document.getElementById('conversation-panel');
 
 function appendChatMessage(event, checkmark_id) {

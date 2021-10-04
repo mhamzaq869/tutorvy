@@ -1104,7 +1104,6 @@ connection.onopen = function(event) {
 connection.onclose = connection.onerror = connection.onleave = function(event) {
 
     connection.onUserStatusChanged(event);
-    $("#reviewModal").modal("show");
 
 };
 
@@ -1139,7 +1138,8 @@ connection.onmessage = function(event) {
         return;
     }
     if(event.data.call_ended === true){
-        toastr.success("Tutor has ended the call!");
+        toastr.success("Tutor ended the class.");
+        $("#reviewModal").modal("show");
     }
 
     if (event.data.chatMessage) {
@@ -1206,39 +1206,38 @@ connection.onstreamended = function(event) {
     }
 };
 $(".no-vc").click(function(){
-        alert("No vc");
-        var localStream = connection.attachStreams[0];
-        localStream.mute('video');
-    })
-    $(".vc").click(function(){
-        alert("Vc");
-        var localStream = connection.attachStreams[0];
-        localStream.unmute('video'); 
-        
-    })
-    $(".no-mk").click(function(){
-        alert("No mk");
-        var localStream = connection.attachStreams[0];
-        localStream.mute('audio');
-    })
-    $(".mk").click(function(){
-        alert("mk");
-        var localStream = connection.attachStreams[0];
-        localStream.unmute('audio'); 
-        connection.streamEvents.selectFirst('local').mediaElement.muted=true;
-        connection.streamEvents.selectFirst('local').mediaElement.volume=0;
-        
-    })
-    $("#endCallYes").click(function(){
-        connection.send({
-            call_ended: true
-        });
-        toastr.success("Call has Ended Successfully");
-        $("#reviewModal").modal("show");
-        $("#endCall").modal("hide");
-        
-
-    })
+    alert("No vc");
+    var localStream = connection.attachStreams[0];
+    localStream.mute('video');
+})
+$(".vc").click(function(){
+    alert("Vc");
+    var localStream = connection.attachStreams[0];
+    localStream.unmute('video'); 
+    
+})
+$(".no-mk").click(function(){
+    alert("No mk");
+    var localStream = connection.attachStreams[0];
+    localStream.mute('audio');
+})
+$(".mk").click(function(){
+    alert("mk");
+    var localStream = connection.attachStreams[0];
+    localStream.unmute('audio'); 
+    connection.streamEvents.selectFirst('local').mediaElement.muted=true;
+    connection.streamEvents.selectFirst('local').mediaElement.volume=0;
+    
+})
+$("#endCallYes").click(function(){
+    connection.send({
+        call_ended: true
+    });
+    toastr.success("Class has Ended.");
+    $("#endCall").modal("hide");
+    $("#reviewModal").modal("show");
+    
+})
 var conversationPanel = document.getElementById('conversation-panel');
 
 function appendChatMessage(event, checkmark_id) {
