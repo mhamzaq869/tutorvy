@@ -1414,6 +1414,7 @@
     
     .star-review a {
         text-decoration: none;
+        margin-left: 5px;
     }
     
     .star-review a:hover {
@@ -1430,6 +1431,14 @@
     .text-yellow {
         color: #FAAF3A;
     }
+    
+    #stars-ul {
+        display: inline-flex;
+    }
+    /*     
+    #stars-ul li {
+        margin-left: 5px;
+    } */
     /*Review Stars End*/
     /* buttons General now */
     
