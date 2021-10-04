@@ -350,7 +350,11 @@
                                                 <img src="{{asset('admin/assets/img/ico/green-icon.svg')}}" alt="image" />
                                         </div>
                                         <div class="col-md-8">
+                                            @if($tutor->hourly_rate)
                                             <h3 class="mb-0">${{$tutor->hourly_rate}}</h3>
+                                            @else
+                                            <h5 class="mb-0">No rates defined yet</h3>
+                                            @endif
                                             <p class="mb-0">Per hour rate</p>
                                         </div>
                                     </div>

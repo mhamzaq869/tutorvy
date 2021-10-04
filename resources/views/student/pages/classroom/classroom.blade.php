@@ -801,7 +801,11 @@ height:25px;
                 <div class="modal-body bg-black" >
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <img src="{{asset($user->picture)}}" class="profile-img pg" alt="">
+                            @if($user->picture)
+                                <img src="{{asset($user->picture)}}" class="profile-img pg" alt="">
+                            @else
+                                <img src="{{asset('assets/images/ico/Square-white.jpg')}}" class="profile-img pg" alt="">
+                            @endif
                         </div>
                         <div class="col-md-12 text-center mt-3 ">
 
