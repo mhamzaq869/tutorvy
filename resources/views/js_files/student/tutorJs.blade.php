@@ -147,15 +147,16 @@ function list_tutors(){
                     sub_html +=` <span class="info-1 info">`+sub[s]+`</span>`;     
                 }
             }
-                let tutBio;
+                let tutBio = '';
                 let tut = tutors[i].bio;
                 let poli = tut.length;
+
                 if(poli > 200){
                     tutBio +=`<p> `+tut.substr(0, 200)+`..... <a href="`+url2+`"> Read more </a></p>`
-                    }
+                }
                 else{
                     tutBio +=`<p>`+tutors[i].bio+`</p>`
-                    }
+                }
 
             
          
