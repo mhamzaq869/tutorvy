@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\TutorController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\ClassroomController;
+use App\Http\Controllers\Admin\AdminBookingController;
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\WebsiteController;
@@ -84,6 +86,12 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
     Route::get('/student/profile/{id}',[StudentController::class,'profile'])->name('admin.studentProfile');
     Route::post('student/change-student-status',[StudentController::class,'studentStatus'])->name('admin.studentStatus');
     Route::post('student/delete-student',[StudentController::class,'deleteStudent'])->name('admin.deleteStudent');
+
+    Route::get('/classroom',[ClassroomController::class,'index'])->name('admin.classroom');
+    Route::get('/booking',[AdminBookingController::class,'index'])->name('admin.booking');
+    Route::get('/booking-details/{id}',[AdminBookingController::class,'bookingDetails'])->name('admin.bookingDetail');
+
+
 
 
     Route::get('/course',[CourseController::class,'index'])->name('admin.course');
@@ -164,6 +172,9 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::get('/booking',[BookingController::class,'index'])->name('tutor.booking');
     Route::get('/booking-detail/{id}',[BookingController::class,'bookingDetail'])->name('tutor.booking.detail');
     Route::get('/booking-accept/{id}',[BookingController::class,'acceptBooking'])->name('tutor.booking.accept');
+    // 
+    Route::post('/get-booking',[BookingController::class,'getBookingDetail'])->name('tutor.getBookingDetail');
+
 
     Route::get('/chat',[ChatController::class,'index'])->name('tutor.chat');
     Route::get('/classroom',[ClassController::class,'index'])->name('tutor.classroom');

@@ -94,7 +94,7 @@
                             <table  id="tblCustomers" class="table table-bordered" style="width: 100%;">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Teacher</th>
+                                        <th scope="col">Tutor</th>
                                         <th scope="col">Subject</th>
                                         <th scope="col">Topic</th>
                                         <th scope="col">Time</th>

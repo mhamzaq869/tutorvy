@@ -151,7 +151,6 @@ messaging.onMessage((payload) => {
                                 <td class="pt-4"> ` + subject + ` </td>
                                 <td class="pt-4">  ` + topic + ` </td>
                                 <td class="pt-4"> ` + pending_booking[i].class_time + ` </td>
-                            
                                 <td class="pt-4"> ` + duration + ` </td>
                                 <td class="pt-4">  ` + price + ` </td>
                                 <td class="pt-4">
@@ -206,6 +205,21 @@ messaging.onMessage((payload) => {
                 showConfirmButton: false,
                 timer: notification_time,
             });
+
+            var url = window.location.href;
+            var text = "/tutor/booking";
+
+            if (url.indexOf(text) != -1) {
+
+                var url = slug.replace(/[^0-9]/gi, '');
+                var booking_id = parseInt(url, 10);
+
+                get_booking_detail(booking_id,slug);
+            }
+
+            
+           
+
         }
 
         let img = '';
@@ -237,8 +251,6 @@ messaging.onMessage((payload) => {
         </li>`;
 
         $('.show_all_notifications').prepend(html);
-
-
     }
 
     if (user_id == current_user_id && user_role_id == 3) {
@@ -328,6 +340,84 @@ function saveFcmToken(token) {
         dataType: 'json',
         success: function(response) {
             // console.log(response, "token")
+        },
+        error: function(e) {
+            console.log(e)
+        }
+    });
+}
+
+function get_booking_detail(id, slug) {
+    var origin = window.location.origin;
+
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: origin + "/tutor/get-booking",
+        type: "POST",
+        data: { id: id },
+        dataType: 'json',
+        success: function(response) {
+            console.log(response, "response");
+            let first_name = '';
+            let last_name = '';
+            let subject = '';
+            var obj = response.booking;
+            if(obj != null && obj != "" && obj != []) {
+
+                if (obj.user != null && obj.user != [] && obj.user != "") {
+                    first_name = obj.user.first_name != null ? obj.user.first_name : '-';
+                    first_name = obj.user.last_name != null ? obj.user.last_name : '-';
+                } else {
+                    username = '-';
+                }
+                if (obj.subject != null && obj.subject != [] && obj.subject != "") {
+                    subject = obj.subject.name != null ? obj.subject.name : '-';
+                } else {
+                    subject = '-';
+                }
+
+            }
+
+            var topic = obj.topic != null ? obj.topic : '-';
+            var duration = obj.duration != null ? obj.duration + ' Hour(s)' : '-';
+            var price = obj.price != null ? '$' + obj.price : '-';
+
+            var html = `
+                <tr>
+                    <td class="pt-4"> ` + first_name + ' ' + last_name + ` </td>
+                    <td class="pt-4"> ` + subject + ` </td>
+                    <td class="pt-4">  ` + topic + ` </td>
+                    <td class="pt-4"> ` + obj.class_time + ` </td>
+                    <td class="pt-4"> ` + duration + ` </td>
+                    <td class="pt-4">  ` + price + ` </td>
+                    <td class="pt-4">
+                        <span class="bg-color-apporve1"> Approved </span>
+                    </td>        
+                    <td style="text-align: center;">
+                        <a href="` + slug + `">
+                            <button class="schedule-btn" type="button"> View details </button>
+                        </a>
+                    </td>
+                </tr>
+            `;
+
+            let all_counts = $('.all_counts').text();
+            let pending_counts = $('.pending_counts').text();
+
+            if(all_counts == 0) {
+                $('#all_counts').text(1);
+            }else{
+                $('#all_counts').text(parseInt(all_counts) + 1);
+            }
+
+            $('#pending_counts').text(parseInt(pending_counts) + 1);
+
+            $("#all_pending_table").append(html);
+            $("#all_booking_table").append(html);
+
+
         },
         error: function(e) {
             console.log(e)

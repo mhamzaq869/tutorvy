@@ -1275,6 +1275,7 @@
     
     .vc {
         padding: 12px 9px 16px 14px;
+        cursor: pointer;
     }
     
     .no-vc {
@@ -1283,18 +1284,30 @@
     
     .mk {
         padding: 13px 10px 17px 14px;
+        cursor: pointer;
+    }
+    
+    .no-ph {
+        cursor: pointer;
     }
     
     .no-mk {
         padding: 13px 10px 16px 14px;
     }
+    /* .no-mk,
+    .no-vc,
+    .no-ph {
+        background: #DF615C;
+    } */
     
     .no-mk,
     .no-vc,
     .no-ph {
-        background: #DF615C;
+        background: transparent;
+        border: 1px solid #fff;
+        cursor: pointer;
     }
-    
+    /*     
     .no-mk:hover,
     .no-vc:hover {
         background: #21B573;
@@ -1302,37 +1315,53 @@
     
     .no-ph:hover {
         background: grey;
+    } */
+    
+    .no-mk:hover,
+    .no-vc:hover,
+    .no-ph:hover {
+        background: #DF615C;
+        border-color: #DF615C;
     }
     
     .pg {
-        width: 40%;
-        height: auto;
+        /* width: 40%;
+        height: auto; */
+        width: auto;
+        height: 170px;
     }
     /*Call Modal End*/
     /*Call Side*/
     
     .vid-location .no-vc,
     .vid-location .vc {
-        padding: 5px 4px 11px 8px
+        padding: 4px 4px 8px 8px;
     }
     
     .vid-location .no-vc img,
     .vid-location .vc img {
-        width: 21px;
+        width: 16px;
     }
     
     .vid-location .no-mk img,
-    .vid-location .mk img {
-        width: 21px;
+    .vid-location .mk img,
+    .vid-location .no-ph img {
+        width: 16px;
     }
     
     .vid-location .no-ph {
-        padding: 4px 6px 10px 5px;
+        padding: 4px 7px 8px 7px;
     }
     
     .vid-location .no-mk,
     .vid-location .mk {
-        padding: 5px 3px 11px 8px;
+        padding: 4px 3px 8px 8px;
+    }
+    
+    .vid-location {
+        position: absolute;
+        bottom: 16px;
+        left: 0;
     }
     /*Call Side End*/
     /*Call Main Video*/

@@ -2824,24 +2824,31 @@ select#paymentMethod option[value="others"] {
     padding: 13px 10px 16px 14px;
 }
 
-.no-mk,
+
+/* .no-mk,
 .no-vc,
 .no-ph {
     background: #DF615C;
-}
+} */
 
-.no-mk:hover,
+
+/* .no-mk:hover,
 .no-vc:hover {
     background: #21B573;
-}
+} */
 
+.no-mk:hover,
+.no-vc:hover,
 .no-ph:hover {
-    background: grey;
+    background: #DF615C;
+    border-color: #DF615C;
 }
 
 .pg {
-    width: 40%;
-    height: auto;
+    /* width: 40%;
+    height: auto; */
+    width: auto;
+    height: 170px;
 }
 
 
@@ -2860,9 +2867,10 @@ select#paymentMethod option[value="others"] {
     width: 21px;
 }
 
-.vid-location .no-ph {
+
+/* .vid-location .no-ph {
     padding: 4px 6px 10px 5px;
-}
+} */
 
 .vid-location .no-mk,
 .vid-location .mk {
@@ -2870,8 +2878,20 @@ select#paymentMethod option[value="others"] {
 }
 
 .vid-location .no-mk img,
-.vid-location .mk img {
-    width: 21px;
+.vid-location .mk img,
+.vid-location .no-ph img {
+    width: 20px;
+}
+
+.vid-location .no-ph {
+    padding: 4px 7px 8px 7px;
+}
+
+.no-mk,
+.no-vc,
+.no-ph {
+    background: transparent;
+    border: 1px solid #fff;
 }
 
 

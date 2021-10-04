@@ -490,7 +490,7 @@
                                         <div class="col-md-12 mb-3 mt-3">
                                             <div class="nav nav-pills text-center border" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                                 <a class="nav-link active w-50 stat" id="v-pills-General-tab"  role="tab" href="{{route('student.register')}}"  aria-selected="true">As a Student</a>
-                                                <a class="nav-link w-50 stat " id="v-pills-Security-tab" href="{{route('register')}}" role="tab" aria-selected="false">As a Teacher</a>
+                                                <a class="nav-link w-50 stat " id="v-pills-Security-tab" href="{{route('register')}}" role="tab" aria-selected="false">As a Tutor</a>
                                             </div>
                                         </div>
                                         <div class="col-md-12 text-right ">

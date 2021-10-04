@@ -65,7 +65,7 @@
     max-height: 365px;
     overflow: auto;
     border-top: 1px solid #E5E5E5;
-    width: 106%;
+    width: 100%;
 }
 
 #conversation-panel .message {
@@ -237,8 +237,8 @@ hr {
 }
 
 /* Chat Box */
-.h-460{
-  height:460px;
+.h-290{
+  height:290px;
   overflow-y:auto;
 }
 .chatInput{
@@ -258,9 +258,9 @@ height:25px;
 .btnNum{
     background:#fff;
 }
-td input{
+/* td input{
     width: 163px !important;
-}
+} */
 .ck p{
     height:400px !important;
 }
@@ -323,7 +323,7 @@ td input{
 @section('content')
  <!-- top Fixed navbar End -->
  <section>
-     <input type="text" id="sbooking_id" value="{{$class->booking_id}}">
+     <input type="hidden" id="sbooking_id" value="{{$class->booking_id}}">
 
     <div class="content-wrapper " style="overflow: hidden;">
         <div class="container-fluid">
@@ -334,7 +334,7 @@ td input{
                     </div>
                 </div>
             </div> -->
-            <div class="row mb-5 tech_weck tech_weck-none">
+            <div class="row  tech_weck tech_weck-none">
                 <div class="col-md-9 "> 
                     <div class="row">
                         <div class="col-md-12 mt-3">
@@ -574,24 +574,27 @@ td input{
                         <div class="col-md-12">
                             <video id="main-video"  playsinline autoplay></video>
                             <div id="other-videos"  playsinline autoplay></div>
+                            <canvas id="temp-stream-canvas" style="display: none;"></canvas>
+                            
+                            <div class="col-md-12 mt-2 vid-location">
+                                <a  class="callSet vc">
+                                    <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
+                                </a>
+                                <a  class="callSet no-vc">
+                                    <img src="{{asset('assets/images/ico/no-vc.png')}}" title="With Video" alt="">
+                                </a>
+                                <a  class="callSet mk" id="mk">
+                                    <img src="{{asset('assets/images/ico/mike.png')}}" title="Without Audio" alt="">
+                                </a>
+                                <a  class="callSet no-mk">
+                                    <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
+                                </a>
+                                <a  class="callSet no-ph">
+                                    <img src="{{asset('assets/images/ico/no-phone.png')}}" title="End Call" alt="">
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-md-12 mt-2 vid-location text-center">
-                            <a  class="callSet vc">
-                                <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
-                            </a>
-                            <a  class="callSet no-vc">
-                                <img src="{{asset('assets/images/ico/no-vc.png')}}" title="With Video" alt="">
-                            </a>
-                            <a  class="callSet mk" id="mk">
-                                <img src="{{asset('assets/images/ico/mike.png')}}" title="Without Audio" alt="">
-                            </a>
-                            <a  class="callSet no-mk">
-                                <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
-                            </a>
-                            <a  class="callSet no-ph">
-                                <img src="{{asset('assets/images/ico/no-phone.png')}}" title="End Call" alt="">
-                            </a>
-                        </div>
+                       
                         <div style="col-md-12 padding: 5px 10px;">
                             <div id="onUserStatusChanged"></div>
                         </div>
@@ -600,7 +603,7 @@ td input{
                                 <div class="card-header bg-chat-head">
                                     Chat <i class="fa fa-person"></i>
                                 </div>
-                                <div class="card-body h-460" id="conversation-panel">
+                                <div class="card-body h-290" id="conversation-panel">
                                     <div class='text-center mb-3'>
                                         <small>
                                             Your all communications will be monitored for maintaining quality, will not share your personal information. 
@@ -629,13 +632,13 @@ td input{
                             </div>
                         </div>
                     </div>
-                    <div class="mt-4">
-                        <!-- <div class="bg-dark w-100 cust_vid text-center">
+                    <!-- <div class="mt-4">
+                        <div class="bg-dark w-100 cust_vid text-center">
                                 <img src="{{asset('assets/images/logo-footer.png')}}" alt="">
-                        </div> -->
-                        <!-- <video id="main-video" class="w-100 m-0" playsinline autoplay></video> -->
-                        <!-- <div id="other-videos" class="w-100 m-0"></div> -->
-                        <!-- <div class="col-md-12 mt-2 vid-location text-center">
+                        </div>
+                        <video id="main-video" class="w-100 m-0" playsinline autoplay></video>
+                        <div id="other-videos" class="w-100 m-0"></div>
+                        <div class="col-md-12 mt-2 vid-location text-center">
                             <a  class="callSet vc">
                                 <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
                             </a>
@@ -651,8 +654,8 @@ td input{
                             <a  class="callSet no-ph">
                                 <img src="{{asset('assets/images/ico/no-phone.png')}}" title="End Call" alt="">
                             </a>
-                        </div> -->
-                        <!-- <hr>
+                        </div>
+                        <hr>
                         <div style="padding: 5px 10px;">
                             <div id="onUserStatusChanged"></div>
                         </div>
@@ -666,14 +669,13 @@ td input{
                             <textarea id="txt-chat-message" style="display:none;" ></textarea>
                             <div id="check"></div>
                             <a type="button" id="btn-chat-message" disabled><i class="fa fa-paper-plane-o paper" aria-hidden="true"></i></a>
-                            <a id="btn-attach-file" type="button"><i class="fa fa-paperclip clip" aria-hidden="true"></i></a> -->
-                            <!-- <button class="btn btn-primary" id="btn-chat-message" disabled>Send</button>
-                            <img id="btn-attach-file" src="https://www.webrtc-experiment.com/images/attach-file.png" title="Attach a File"> -->
-                            <!-- <img id="btn-share-screen" src="https://www.webrtc-experiment.com/images/share-screen.png" title="Share Your Screen">
-                        </div> -->
+                            <a id="btn-attach-file" type="button"><i class="fa fa-paperclip clip" aria-hidden="true"></i></a>
+                            <button class="btn btn-primary" id="btn-chat-message" disabled>Send</button>
+                            <img id="btn-attach-file" src="https://www.webrtc-experiment.com/images/attach-file.png" title="Attach a File">
+                            <img id="btn-share-screen" src="https://www.webrtc-experiment.com/images/share-screen.png" title="Share Your Screen">
+                        </div>
 
-                        <canvas id="temp-stream-canvas" style="display: none;"></canvas>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -1039,7 +1041,7 @@ designer.setTools({
         colorsPicker: false,
         extraOptions: false,
         code: false,
-        undo: false,
+        undo: true,
     });
 
 // here goes RTCMultiConnection
@@ -1621,5 +1623,7 @@ $('#btn-share-screen').click(function() {
         alert('getDisplayMedia API is not available in this browser.');
     }
 });
+
+
 </script>
 @endsection
