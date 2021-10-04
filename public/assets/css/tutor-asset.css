@@ -2840,8 +2840,10 @@ select#paymentMethod option[value="others"] {
 }
 
 .pg {
-    width: 40%;
-    height: auto;
+    /* width: 40%;
+    height: auto; */
+    width: auto;
+    height: 170px;
 }
 
 

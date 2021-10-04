@@ -65,7 +65,7 @@
     max-height: 365px;
     overflow: auto;
     border-top: 1px solid #E5E5E5;
-    width: 106%;
+    width: 100%;
 }
 
 #conversation-panel .message {
@@ -258,9 +258,9 @@ height:25px;
 .btnNum{
     background:#fff;
 }
-td input{
+/* td input{
     width: 163px !important;
-}
+} */
 .ck p{
     height:400px !important;
 }

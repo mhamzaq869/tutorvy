@@ -1305,8 +1305,10 @@
     }
     
     .pg {
-        width: 40%;
-        height: auto;
+        /* width: 40%;
+        height: auto; */
+        width: auto;
+        height: 170px;
     }
     /*Call Modal End*/
     /*Call Side*/
