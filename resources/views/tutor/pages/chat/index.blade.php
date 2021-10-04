@@ -121,8 +121,8 @@
             background: gray !important;
         }
         .emojionearea.emojionearea-inline > .emojionearea-button {
-    left: 3px !important;
-}
+            left: 3px !important;
+        }
 .emojionearea.emojionearea-inline > .emojionearea-editor {
     height: 32px;
     min-height: 20px;
