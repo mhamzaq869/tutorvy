@@ -319,6 +319,13 @@ height:25px;
 }
 
 /*Switch End */
+/**Code Editor style */
+    #editor2 { 
+        height:500px;
+        width:100%;
+    }
+/**Code Editor style */
+
 </style>
 @section('content')
  <!-- top Fixed navbar End -->
@@ -326,7 +333,7 @@ height:25px;
      <input type="hidden" id="sbooking_id" value="{{$class->booking_id}}">
 
     <div class="content-wrapper " style="overflow: hidden;">
-        <div class="container-fluid">
+        <div class="container-fluidd">
             <!-- <div class="row">
                 <div class="col-md-12 text-right">
                     <div id="countdownExample">
@@ -507,12 +514,9 @@ height:25px;
                                             <div class="container-fluid ">
 
                                                 <div class="row">
-                                                    <div class="col-md-12 col-sm-12 col-xs-12">
-                                                        <pre><code class="language-html">
-                                                            
-                                                        </code></pre>
-                                                        <textarea name="" id="check" cols="30" rows="10" onkeypress="cheng()"></textarea>
-
+                                                    <div class="col-md-12 col-sm-12 col-xs-12 mt-5">
+                                                        <div id="editor2">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -522,9 +526,27 @@ height:25px;
 
                                         <div class="container-fluid ">
 
-                                            <div class="row">
-                                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                                    
+                                            <div class="row mt-5">
+                                                <div class="col-md-4 col-sm-12 col-xs-12 text-center  ">
+                                                    <img class="mt-2 w-50" src="{{asset('assets/images/ico/docs.png')}}" alt="" >
+                                                    <p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi tenetur amet molestiae.</p>
+                                                    <button class="mt-2 schedule-btn">
+                                                        Launch Google Docs <i class="fa fa-arrow-right"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12 col-xs-12 text-center  ">
+                                                    <img class="mt-2 w-50" src="{{asset('assets/images/ico/sheets.png')}}" alt="" >
+                                                    <p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi tenetur amet molestiae.</p>
+                                                    <button class="mt-2 schedule-btn">
+                                                        Launch Google Sheets <i class="fa fa-arrow-right"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12 col-xs-12 text-center  ">
+                                                    <img class="mt-2 w-50" src="{{asset('assets/images/ico/slides.png')}}" alt="" >
+                                                    <p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi tenetur amet molestiae.</p>
+                                                    <button class="mt-2 schedule-btn">
+                                                        Launch Google Slides <i class="fa fa-arrow-right"></i>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -831,7 +853,9 @@ height:25px;
 
 <script>
     // var timerInstance = new easytimer.Timer();
-
+    var editor2 = ace.edit("editor2");
+    editor2.setTheme("ace/theme/monokai");
+    editor2.session.setMode("ace/mode/javascript");
     $(document).ready(function(){
         
         // $(".tech_weck").hide();
