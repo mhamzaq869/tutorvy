@@ -761,21 +761,32 @@ height:25px;
                                             <input type="hidden" id="star_rating" value="5">
                                             <p class="star-review" id='stars'>
                                                 <div class='rating-stars text-center '>
-                                                    <ul id='stars'>
-                                                        <li class='star selected' title='Poor' data-value='1'>
-                                                            <i class="fa fa-star "></i>
+                                                    <ul id='stars-ul'>
+                                                        
+                                                        <li class='star star-review ' title='Poor' data-value='1'>
+                                                            <a href="#" class="ml-0">
+                                                                <i class="fa fa-star bigStar text-yellow "></i>
+                                                            </a>
                                                         </li>
-                                                        <li class='star selected' title='Poor' data-value='2'>
-                                                            <i class="fa fa-star"></i>
+                                                        <li class='star star-review ' title='Poor' data-value='2'>
+                                                            <a href="#">
+                                                                <i class="fa fa-star bigStar text-yellow "></i>
+                                                            </a>
                                                         </li>
-                                                        <li class='star selected' title='Poor' data-value='3'>
-                                                            <i class="fa fa-star"></i>
+                                                        <li class='star star-review ' title='Poor' data-value='3'>
+                                                             <a href="#">
+                                                                <i class="fa fa-star bigStar  "></i>
+                                                            </a>
                                                         </li>
-                                                        <li class='star selected' title='Poor' data-value='4'>
-                                                            <i class="fa fa-star"></i>
+                                                        <li class='star star-review ' title='Poor' data-value='4'>
+                                                             <a href="#">
+                                                                <i class="fa fa-star bigStar  "></i>
+                                                            </a>
                                                         </li>
-                                                        <li class='star selected' title='Poor' data-value='5'>
-                                                            <i class="fa fa-star "></i>
+                                                        <li class='star star-review ' title='Poor' data-value='5'>
+                                                            <a href="#">
+                                                                <i class="fa fa-star bigStar  "></i>
+                                                            </a>
                                                         </li>
                                                     </ul>
                                                 </div>
