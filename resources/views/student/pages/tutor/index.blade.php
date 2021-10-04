@@ -499,9 +499,7 @@
                                             <div class="col-md-12 find_tutor">
                                                 <p><strong> About Tutor </strong></p>
                                                 <p>
-                                                        <?php
-                                                            echo substr($tutor->bio,200);
-                                                        ?> ...
+                                                    {{Str::limit($tutor->bio, 200, $end='...')}}
                                                 </p>
                                             </div>
                                         </div>
