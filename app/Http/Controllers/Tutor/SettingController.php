@@ -132,16 +132,17 @@ class SettingController extends Controller
 
             $reciever = User::where('role',1)->first();
             $notification = new NotifyController();
-            $sender_id = Auth::user()->id;
             $reciever_id = $reciever->id;
-            $slug = '-' ;
+            $slug = '-';
             $type = 'user_logout';
             $data = 'data';
             $title = 'User Logout';
             $icon = 'fas fa-tag';
             $class = 'btn-success';
             $desc = $name . ' Logout from System.';
-            $notification->GeneralNotifi(Auth::user()->id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
+            $pic = Auth::user()->picture;
+    
+            $notification->GeneralNotifi( $reciever_id , $slug ,  $type , $title , $icon , $class ,$desc,$pic);
 
             return redirect()->back()->with(['success' => 'Password Change ...' , 'key' => 'password_changed']);
         }else{
