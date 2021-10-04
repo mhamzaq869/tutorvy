@@ -32,7 +32,10 @@ class Booking extends Model
         'duration',
         'cancel_note',
         'reschedule_note',
-        'price'
+        'price',
+        'student_review',
+        'rating',
+        'is_reviewed',
     ];
 
 

@@ -777,7 +777,7 @@ height:25px;
         $("#callModal").modal("show");
         $("#join_now").attr("disabled","disabled" );
 
-        saveClassLogs();
+        // saveClassLogs();
 
     })
 // var timerInstance = new easytimer.Timer();
