@@ -545,6 +545,7 @@
     </section>
 
     <!-- toolbox -->
+   
 
     <section id="tool-box" class="tool-box" style="height:100% !important;">
         <canvas class="mb-1" id="pencil-icon" width="40" height="40" title="Panchil">

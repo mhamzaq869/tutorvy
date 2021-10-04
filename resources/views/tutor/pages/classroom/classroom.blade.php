@@ -239,8 +239,8 @@ hr {
 }
 
 /* Chat Box */
-.h-460{
-  height:460px;
+.h-290{
+  height:290px;
   overflow-y:auto;
 }
 .chatInput{
@@ -313,10 +313,10 @@ height:25px;
 .endBtn{
     padding: 2px 11px 6px 9px;
 }
-.vid-btn{
+.vid-btn {
     position: absolute !important;
-    bottom: 2px;
-    left: 6px;
+    bottom: 6px;
+    left: 0px;
 }
 .btn-outline-danger{
     border:1px solid red;
@@ -337,11 +337,11 @@ height:25px;
             <div class="row">
                 <div class="col-md-12 text-right">
                     <div id="countdownExample">
-                        <div class="values"></div>
+                        <!-- <div class="values"></div> -->
                     </div>
                 </div>
             </div>
-            <div class="row mb-5 tech_weck tech_weck-none">
+            <div class="row  tech_weck tech_weck-none">
                 <div class="col-md-9 "> 
                     <div class="row">
                         <div class="col-md-12 ">
@@ -390,8 +390,9 @@ height:25px;
                                                     <div class="tab-pane whitePane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                                         <div class="row">
                                                             <div class="col-md-12 h-500 mb-5">
-                                                                <div id="widget-container" style=""></div>
+                                                                <div id="widget-container"  style=""></div>
                                                                 <video id="screen-viewer"  playsinline ></video>
+                                                                
                                                             </div>
                                                         </div>
                                                     </div>
@@ -558,8 +559,12 @@ height:25px;
                             <div id="other-videos"  playsinline autoplay></div>
                             <div class="col-md-12 mt-2 mb-2 vid-location vid-btn text-left">
                                 <!-- <button class="btn-danger btn h-35 w-100 pb-0 pt-0 ">End Call</button> -->
-                                <a href="#" class="btn-outline-danger rounded-circle endBtn ">
+                                <!-- <a href="#" class="btn-outline-danger rounded-circle endBtn ">
                                     <i class="fa fa-times"></i>
+                                </a> -->
+                                <canvas id="temp-stream-canvas" style="display: none;"></canvas>
+                                <a href="#" class="callSet  no-ph">
+                                    <img src="{{asset('assets/images/ico/no-phone.png')}}" title="End Call" alt="">
                                 </a>
                             </div>
                         </div>
@@ -572,7 +577,7 @@ height:25px;
                                 <div class="card-header bg-chat-head">
                                     Chat <i class="fa fa-person"></i>
                                 </div>
-                                <div class="card-body h-460" id="conversation-panel">
+                                <div class="card-body h-290" id="conversation-panel">
                                     <div class='text-center mb-3'>
                                         <small>
                                             Your all communications will be monitored for maintaining quality, will not share your personal information. 
@@ -602,9 +607,9 @@ height:25px;
                             </div>
                         </div>
                     </div>
-                    <div class="mt-5">
-                        <!-- <video id="main-video"  playsinline autoplay></video> -->
-                        <!-- <div class="col-md-12 mt-2 mb-2 vid-location text-center">
+                    <!-- <div class="mt-5">
+                        <video id="main-video"  playsinline autoplay></video>
+                        <div class="col-md-12 mt-2 mb-2 vid-location text-center">
                             <a href="#" class="callSet vc">
                                 <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
                             </a>
@@ -621,28 +626,28 @@ height:25px;
                                 <img src="{{asset('assets/images/ico/no-phone.png')}}" title="End Call" alt="">
                             </a>
                             <button class="btn-danger btn h-35 w-100 pb-0 pt-0 no-ph">End Call</button>
-                        </div> -->
-                        <!-- <div id="other-videos"></div>
-                        <hr> -->
-                        <!-- <div style="padding: 5px 10px;">
+                        </div>
+                        <div id="other-videos"></div>
+                        <hr>
+                        <div style="padding: 5px 10px;">
                             <div id="onUserStatusChanged"></div>
-                        </div> -->
+                        </div>
 
                         <div style="margin-top: 20px;bottom: 0;background: white; padding-bottom: 20px; width: 100%">
-                            <!-- <div id="conversation-panel"></div>
+                            <div id="conversation-panel"></div>
                             <div id="key-press" style="text-align: right; display: none; font-size: 11px;">
                                 <span style="vertical-align: middle;"></span>
                                 <img src="https://www.webrtc-experiment.com/images/key-press.gif" style="height: 12px; vertical-align: middle;">
-                            </div> -->
-                            <!-- <textarea id="txt-chat-message" style="display:none;" ></textarea>
+                            </div>
+                            <textarea id="txt-chat-message" style="display:none;" ></textarea>
                             <div id="check"></div>
                             <button class="btn btn-primary" id="btn-chat-message" disabled>Send</button>
                             <img id="btn-attach-file" src="https://www.webrtc-experiment.com/images/attach-file.png" title="Attach a File">
-                            <img id="btn-share-screen" src="https://www.webrtc-experiment.com/images/share-screen.png" title="Share Your Screen"> -->
+                            <img id="btn-share-screen" src="https://www.webrtc-experiment.com/images/share-screen.png" title="Share Your Screen">
                         </div>
 
-                        <canvas id="temp-stream-canvas" style="display: none;"></canvas>
-                    </div>
+                        
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -923,7 +928,7 @@ designer.setTools({
         colorsPicker: false,
         extraOptions: false,
         code: false,
-        undo: false,
+        undo: true,
     });
 
 // here goes RTCMultiConnection
@@ -1502,7 +1507,6 @@ var count = 2;
 /* Add New Board Section */
 
 $("#addNewBoard").click(function(){
-   
     var techno = `
         <a class="nav-item white-item nav-link board-nav active" id="nav-whiteboard-`+count+`" data-toggle="tab" href="#nav-home-`+count+`" role="tab" aria-controls="nav-profile" aria-selected="false">Board `+count+` <i class="pl-2 fa fa-times text-dark"></i></a>
     `;
