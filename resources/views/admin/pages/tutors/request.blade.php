@@ -287,12 +287,14 @@
                             </th>
                             <td class="paragraph-text">---</td>
                         </tr>
+                        @if( $tutor->hourly_rate )
                         <tr>
                             <th scope="row">
                                 <p class="heading-fifth">Rate per hour</p>
                             </th>
-                            <td class="paragraph-text">{{$tutor->hourly_rate}}$</td>
+                            <td class="paragraph-text">${{$tutor->hourly_rate}}</td>
                         </tr>
+                        @endif
                         <tr>
                             <th scope="row">
                                 <p class="heading-fifth">Policies</p>

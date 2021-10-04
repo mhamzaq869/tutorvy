@@ -184,17 +184,9 @@
                                                                 @endif
                                                             </td>
                                                             <td style="text-align: center;padding-top:14px;">
-                                                                @if($class->status == 5 && $class->student_review != null )
-                                                                    <a type="button" onclick="showReviewModal('{{$class->id}}')" class="cencel-btn">
-                                                                        Review
-                                                                    </a>
-                                                                @endif
-                                                                @if($class->classroom != null)
-                                                                <span data-id="{{$class->id}}" data-room="{{$class->classroom != null ? $class->classroom->classroom_id : ''}}" data-duration="{{$class->duration}}" data-time="{{$class->class_time}}"
-                                                                    id="class_time_{{$class->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success">{{$class->class_date}} {{$class->class_time}} </span>     
-                                                                <div id="join_class_{{$class->id}}"></div>
-                                                                @endif
+                                                                <button class="cencel-btn" type="button"> View details </button>
                                                             </td> 
+
                                                         </tr>
                                                 @endforeach
                                             @else
