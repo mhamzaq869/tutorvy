@@ -804,7 +804,10 @@ var fullName = '{{$booking->tutor->first_name}} {{$booking->tutor->last_name}}';
 })();
 
 //connection.socketURL = '/';
-connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+// connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+// connection.socketURL = 'https://tutorvy.herokuapp.com:443/';
+connection.socketURL = 'https://tutorvy.herokuapp.com:443/';
+
 
 connection.extra.userFullName = fullName;
 connection.DetectRTC.load(function() {
@@ -955,11 +958,12 @@ connection.onopen = function(event) {
 };
 
 connection.onclose = connection.onerror = connection.onleave = function(event) {
-    toastr.success("Student has ended the call!");
+    // toastr.success("Student has ended the call!");
     connection.onUserStatusChanged(event);
 };
 
 connection.onmessage = function(event) {
+    console.log(event)
     if(event.data.showMainVideo) {
         // $('#main-video').show();
         $('#screen-viewer').css({
@@ -986,6 +990,10 @@ connection.onmessage = function(event) {
     if(event.data.typing === false) {
         $('#key-press').hide().find('span').html('');
         return;
+    }
+
+    if(event.data.call_ended === true){
+        toastr.success("Student has ended the call!");
     }
 
     if (event.data.chatMessage) {
@@ -1073,13 +1081,14 @@ $(".no-vc").click(function(){
         
     })
     $("#endCallYes").click(function(){
-        connection.leave();
+        // connection.leave();
+        connection.send({
+            call_ended: true
+        });
         $("#endCall").modal("hide");
         toastr.success("Call has Ended Successfully");
 
         window.location.href="{{route('tutor.classroom')}}";
-        
-        
 
     })
 var conversationPanel = document.getElementById('conversation-panel');
