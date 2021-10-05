@@ -41,6 +41,7 @@ class StudentClassController extends Controller
             "student_review" => $request->review,
             "rating" => $request->star_rating,
             "is_reviewed" => 1,
+            "status" => 5,
         ]);
 
         return response()->json([
