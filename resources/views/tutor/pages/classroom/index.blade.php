@@ -244,6 +244,9 @@
             var CurrentDate = new Date();
             class_date = new Date(class_date);
 
+            console.log(class_date , "class_date");
+            console.log(CurrentDate , "CurrentDate");
+
             let split_time = time.split(':');
             let create_time = parseInt(split_time[0]) + parseInt(duration);
 
@@ -275,15 +278,9 @@
                     // }else{
                     //     $("#join_class_"+attr_id).html(join_btn);
                     // }
-                    if(class_date > CurrentDate){
-                        $("#class_time_"+attr_id).text("");
-                        $("#join_class_"+attr_id).html(join_btn);
-                    }else{
-                        $("#class_time_"+attr_id).text("Class Time Over");
-                        $("#join_class_"+attr_id).html(" ");
-                    }
                     
-
+                    $("#class_time_"+attr_id).text("");
+                    $("#join_class_"+attr_id).html(join_btn);
                 }
             }, 1000);
             
