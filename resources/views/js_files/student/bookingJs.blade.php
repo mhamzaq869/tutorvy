@@ -1,6 +1,10 @@
 <script type="text/javascript">
 /* Booking Insert */
-
+$.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 $( '#book_tutor_form' ).on( 'submit', function(e) {
     event.preventDefault();
 
