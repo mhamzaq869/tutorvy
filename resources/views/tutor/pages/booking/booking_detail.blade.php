@@ -44,17 +44,19 @@
                                     <div class="row">
                                         <div class="col-md-9">
                                             <div class="row image1 mt-3 ml-1">
-                                                <p>
+                                                <div class="col-md-1">
                                                     @if($booking->user->picture)
-                                                    <img src="{{asset($booking->user->picture)}}" alt="boy" class="profile-img" >
+                                                        <img src="{{asset($booking->user->picture)}}" alt="boy" class="profile-img" >
                                                     @else
-                                                    <img src="{{asset('assets/images/ico/Square-white.jpg')}}" alt="boy" class="profile-img" >
+                                                        <img src="{{asset('assets/images/ico/Square-white.jpg')}}" alt="boy" class="profile-img" >
                                                     @endif
-                                                <p style="color: #00132D; font-family: Poppins;font-size: 14px;font-weight: 500;"
-                                                    class="ml-2 "> {{$booking->user->full_name}}</p>
-                                                <p style="position: relative;left: -100px;top: 18px;font-size: 12px;">
-                                                    Student</p>
-                                                </p>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <p style="color: #00132D; font-family: Poppins;font-size: 14px;font-weight: 500;"
+                                                            class=" mt-1 mb-0"> {{$booking->user->full_name}} </p>
+                                                        <p style="font-size: 12px;">
+                                                        Tutor</p>
+                                                </div>
 
                                             </div>
                                             <div class="text1"
