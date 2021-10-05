@@ -52,7 +52,7 @@
                                 <!-- <a class="nav-link  {{session()->has('key') ? '' : 'active show'}}" id="v-pills-General-tab" data-toggle="pill" href="#v-pills-General"
                                     role="tab" aria-controls="v-pills-General" aria-selected="true">General</a> -->
                                 <a class="nav-link  {{session()->has('key') ? '' : 'active show'}}" id="v-pills-Security-tab" data-toggle="pill" href="#v-pills-Security"
-                                    role="tab" aria-controls="v-pills-Security" aria-selected="false">Secutiy</a>
+                                    role="tab" aria-controls="v-pills-Security" aria-selected="false">Security</a>
                                 <a class="nav-link" id="v-pills-Payment-tab" data-toggle="pill"
                                     href="#v-pills-Payment" role="tab" aria-controls="v-pills-Payment"
                                     aria-selected="false">Payment</a>
@@ -161,7 +161,7 @@
                                         <div class="col-sm-6">
                                             <form action="{{url('/student/change-password')}}" method="POST">
                                                 @csrf
-                                                <small>Password</small>
+                                                <small>Current Password</small>
                                                 <div class="form-group pass_show">
                                                     <input type="text" name="current_password" class="form-control @error('current_password') is-invalid @enderror"
                                                         placeholder=" ***********" >
@@ -239,21 +239,21 @@
                                             <small >Credit Card holder name</small>
                                             <div class="form-group pass_show">
                                                 <input type="text" value="" class="form-control"
-                                                    placeholder="Name Mean">
+                                                    placeholder="Full Name">
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <small >Exp. Month</small>
                                                     <div class="form-group pass_show">
                                                         <input type="text" value="" class="form-control"
-                                                            placeholder="August">
+                                                            placeholder="Month">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <small >Exp. Year</small>
                                                     <div class="form-group pass_show">
                                                         <input type="text" value="" class="form-control"
-                                                            placeholder="2021">
+                                                            placeholder="Year">
                                                     </div>
                                                 </div>
                                             </div>
