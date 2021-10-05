@@ -403,7 +403,7 @@ height:25px;
 @section('content')
  <!-- top Fixed navbar End -->
  <section>
-     <input type="hidden" id="class_room_id" value="{{$class->id}}">
+     <input type="text" id="class_room_id" value="{{$class->id}}">
 
      <input type="hidden" id="sbooking_id" value="{{$class->booking_id}}">
 
@@ -1794,7 +1794,7 @@ function saveClassLogs() {
     var class_room_id = $("#class_room_id").val();
 
     var form_data = {
-        tutor_join_time : current_date_time, 
+        std_join_time : current_date_time, 
         class_room_id : class_room_id,
     }
 

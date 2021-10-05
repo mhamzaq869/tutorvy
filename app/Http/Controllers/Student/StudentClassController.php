@@ -50,4 +50,23 @@ class StudentClassController extends Controller
         ]);
 
     }
+
+
+    public function saveClassLogs(Request $request) {
+
+        $classRoomLogs = ClassroomLogs::where('class_room_id',$request->class_room_id)->first();
+
+        if($classRoomLogs) {
+            ClassroomLogs::where('class_room_id',$request->class_room_id)->update([
+                "student_join_time" => $request->std_join_time
+            ]);
+        }
+
+        return response()->json([
+            "message" => "Classroom Logs Saved",
+            "status_code" => 200,
+            "success" => true,
+        ]);
+
+    }
 }

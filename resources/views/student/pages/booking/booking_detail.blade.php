@@ -30,7 +30,7 @@
                                     
                                     <button type="button" data-toggle="modal" data-target="#exampleModalCenter"
                                         class="cencel-btn mr-2" style="font-size: 12px;width: 150px;"> Cancel
-                                        Bookings</button>
+                                        Booking</button>
                                     <button type="button" data-toggle="modal" data-target="#exampleModalCente"
                                         class="schedule-btn mr-2" style="font-size: 12px;width: 150px;"> Re-schedule
                                         class</button>
