@@ -925,6 +925,8 @@
                     $('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
                     $('#imagePreview').hide();
                     $('#imagePreview').fadeIn(650);
+
+                    $('.profile-img').attr('src',e.target.result);
                 }
                 reader.readAsDataURL(input.files[0]);
             }

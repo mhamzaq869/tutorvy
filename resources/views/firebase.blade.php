@@ -1,4 +1,5 @@
-const firebaseConfig = {
+<script>
+    const firebaseConfig = {
     apiKey: "AIzaSyCIoIw5TgIOYXirhqBlsYsYJOMMNStK_KA",
     authDomain: "tutorvy-ad64f.firebaseapp.com",
     projectId: "tutorvy-ad64f",
@@ -108,13 +109,11 @@ messaging.onMessage((payload) => {
 
 
         let img = '';
-        var current_url = window.location.pathname;
-        var img_url = current_url + '/assets/images/ico/Square-white.jpg';
 
         if (pic != null) {
-            img = `<img class="profile-img mt-2 p-0 w-100" src="` + current_url + '/' + pic + `" alt="layer">`;
+            img = `<img class="profile-img mt-2 p-0 w-100" src="{{asset('`+pic+`')}}" alt="layer">`;
         } else {
-            img = `<img class="profile-img mt-2 p-0 w-100" src="` + img_url + `" alt="layer">`;
+            img = `<img class="profile-img mt-2 p-0 w-100" src="{{asset('assets/images/ico/Square-white.jpg')}}" alt="layer">`;
         }
         var html = ` <li>
             <a href="` + slug + `" class="bgm">
@@ -166,45 +165,47 @@ messaging.onMessage((payload) => {
                 var url = slug.replace(/[^0-9]/gi, '');
                 var booking_id = parseInt(url, 10);
                 var html = ``;
-                for (var i = 0; i < pending_booking.length; i++) {
-                    if (booking_id == pending_booking[i].id) {
-                        let first_name = '';
-                        let last_name = '';
-                        let subject = '';
-                        if (pending_booking[i].user != null && pending_booking[i].user != [] && pending_booking[i].user != "") {
-                            first_name = pending_booking[i].user.first_name != null ? pending_booking[i].user.first_name : '-';
-                            first_name = pending_booking[i].user.last_name != null ? pending_booking[i].user.last_name : '-';
-                        } else {
-                            username = '-';
-                        }
-                        if (pending_booking[i].subject != null && pending_booking[i].subject != [] && pending_booking[i].subject != "") {
-                            subject = pending_booking[i].subject.name != null ? pending_booking[i].subject.name : '-';
-                        } else {
-                            subject = '-';
-                        }
+                if(pending_booking != null && pending_booking != "" && pending_booking != []) {
+                    for (var i = 0; i < pending_booking.length; i++) {
+                        if (booking_id == pending_booking[i].id) {
+                            let first_name = '';
+                            let last_name = '';
+                            let subject = '';
+                            if (pending_booking[i].user != null && pending_booking[i].user != [] && pending_booking[i].user != "") {
+                                first_name = pending_booking[i].user.first_name != null ? pending_booking[i].user.first_name : '-';
+                                first_name = pending_booking[i].user.last_name != null ? pending_booking[i].user.last_name : '-';
+                            } else {
+                                username = '-';
+                            }
+                            if (pending_booking[i].subject != null && pending_booking[i].subject != [] && pending_booking[i].subject != "") {
+                                subject = pending_booking[i].subject.name != null ? pending_booking[i].subject.name : '-';
+                            } else {
+                                subject = '-';
+                            }
 
-                        var topic = pending_booking[i].topic != null ? pending_booking[i].topic : '-';
-                        var duration = pending_booking[i].duration != null ? pending_booking[i].duration + ' Hour(s)' : '-';
-                        var price = pending_booking[i].price != null ? '$' + pending_booking[i].price : '-';
+                            var topic = pending_booking[i].topic != null ? pending_booking[i].topic : '-';
+                            var duration = pending_booking[i].duration != null ? pending_booking[i].duration + ' Hour(s)' : '-';
+                            var price = pending_booking[i].price != null ? '$' + pending_booking[i].price : '-';
 
-                        html += `
-                            <tr>
-                                <td class="pt-4"> ` + first_name + ' ' + last_name + ` </td>
-                                <td class="pt-4"> ` + subject + ` </td>
-                                <td class="pt-4">  ` + topic + ` </td>
-                                <td class="pt-4"> ` + pending_booking[i].class_time + ` </td>
-                                <td class="pt-4"> ` + duration + ` </td>
-                                <td class="pt-4">  ` + price + ` </td>
-                                <td class="pt-4">
-                                    <span class="bg-color-apporve1"> Approved </span>
-                                </td>        
-                                <td style="text-align: center;">
-                                    <a href="` + slug + `">
-                                        <button class="schedule-btn" type="button"> View details </button>
-                                    </a>
-                                </td>
-                            </tr>
-                        `;
+                            html += `
+                                <tr>
+                                    <td class="pt-4"> ` + first_name + ' ' + last_name + ` </td>
+                                    <td class="pt-4"> ` + subject + ` </td>
+                                    <td class="pt-4">  ` + topic + ` </td>
+                                    <td class="pt-4"> ` + pending_booking[i].class_time + ` </td>
+                                    <td class="pt-4"> ` + duration + ` </td>
+                                    <td class="pt-4">  ` + price + ` </td>
+                                    <td class="pt-4">
+                                        <span class="bg-color-apporve1"> Approved </span>
+                                    </td>        
+                                    <td style="text-align: center;">
+                                        <a href="` + slug + `">
+                                            <button class="schedule-btn" type="button"> View details </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                            `;
+                        }
                     }
                 }
 
@@ -240,25 +241,28 @@ messaging.onMessage((payload) => {
             });
 
             var url = window.location.href;
+            var origin = window.location.origin
+            
+            var custom_url = origin + '/tutor/booking';
             var text = "/tutor/booking";
 
-            if (url.indexOf(text) != -1) {
-
-                var url = slug.replace(/[^0-9]/gi, '');
-                var booking_id = parseInt(url, 10);
-
-                get_booking_detail(booking_id, slug);
+            if(url == custom_url) {
+                if (url.indexOf(text) != -1) {
+                    var url = slug.replace(/[^0-9]/gi, '');
+                    var booking_id = parseInt(url, 10);
+                    get_booking_detail(booking_id, slug);
+                }
             }
+
+
         }
 
         let img = '';
-        var current_url = window.location.pathname;
-        var img_url = current_url + '/assets/images/ico/Square-white.jpg';
 
         if (pic != null) {
-            img = `<img class="profile-img mt-2 p-0 w-100" src="` + current_url + '/' + pic + `" alt="layer">`;
+            img = `<img class="profile-img mt-2 p-0 w-100" src="{{asset('`+pic+`')}}" alt="layer">`;
         } else {
-            img = `<img class="profile-img mt-2 p-0 w-100" src="` + img_url + `" alt="layer">`;
+            img = `<img class="profile-img mt-2 p-0 w-100" src="{{asset('assets/images/ico/Square-white.jpg')}}" alt="layer">`;
         }
         var html = `
          <li>
@@ -322,13 +326,11 @@ messaging.onMessage((payload) => {
 
 
         let img = '';
-        var current_url = window.location.pathname;
-        var img_url = current_url + '/assets/images/ico/Square-white.jpg';
 
         if (pic != null) {
-            img = `<img class="profile-img mt-2 p-0 w-100" src="` + current_url + '/' + pic + `" alt="layer">`;
+            img = `<img class="profile-img mt-2 p-0 w-100" src="{{asset('`+pic+`')}}" alt="layer">`;
         } else {
-            img = `<img class="profile-img mt-2 p-0 w-100" src="` + img_url + `" alt="layer">`;
+            img = `<img class="profile-img mt-2 p-0 w-100" src="{{asset('assets/images/ico/Square-white.jpg')}}" alt="layer">`;
         }
         var html = ` <li>
             <a href="` + slug + `" class="bgm">
@@ -468,8 +470,9 @@ function get_assessment_detail() {
         type: "GET",
         dataType: 'json',
         success: function(response) {
-            console.log(response);
+            
             var obj = response.tutor_assessment;
+            console.log(obj , "assessment");
 
             var html = ``;
 
@@ -515,3 +518,4 @@ function get_assessment_detail() {
         }
     });
 }
+</script>

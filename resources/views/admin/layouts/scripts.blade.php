@@ -25,7 +25,9 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-storage.js"></script>
-    <script src="{{asset('assets/firebase/index.js').'?ver='.rand()}}"></script>
+    <!-- <script src="{{asset('assets/firebase/index.js').'?ver='.rand()}}"></script> -->
+
+    @include('firebase');
 
     <script src="{{ asset('assets/js/dropify.js')}}"></script>
 
@@ -411,7 +413,7 @@
                                 img = `<img class="profile-img w-100 p-0 mt-2" src="{{asset('`+obj[i].sender_pic+`')}}" alt="layer">`;
                             }
                             else{
-                                img = `<img class="profile-img w-100 p-0 mt-2" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
+                                img = `<img class="profile-img w-100 p-0 mt-2" src="{{asset('assets/images/ico/Square-white.jpg')}}" alt="layer">`;
                             }
                         notification +=`
                         <li >
