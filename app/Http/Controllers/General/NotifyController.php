@@ -31,8 +31,9 @@ class NotifyController extends Controller
     }
 
     function getAllNotification(Request $request) {
-      $notifications = Notification::orderBy('id','desc')->where('receiver_id',\Auth::user()->id)->where('read_at',NULL)->get();
       
+      $notifications = Notification::orderBy('id','desc')->where('receiver_id',\Auth::user()->id)->where('read_at',NULL)->get();
+     
       $response['message'] = 'Notification List';
       $response['status_code'] = 200;
       $response['success'] = true;

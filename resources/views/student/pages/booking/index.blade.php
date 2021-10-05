@@ -307,10 +307,13 @@
                                                                     @endif
                                                                 </td>
                                                                 <td class="pt-3 pb-3 action_button" style="text-align: center; " >
-                                                                    @if($booking->status == 1 )
-                                                                        <button  onclick="pay_now({{$booking->id}})" type="button" role="button" class="cencel-btn mr-2"> Pay Now </button>
-                                                                    @endif
-                                                                    <a href="{{route('student.booking-detail',[$booking->id])}}"  class="schedule-btn"> View details </a>
+                                                                    <div class="d-flex justify-content-center">
+                                                                        @if($booking->status == 1 )
+                                                                            <button  onclick="pay_now({{$booking->id}})" id="pay_now_btn_{{$booking->id}}" type="button" role="button" class="cencel-btn mr-2"> Pay Now </button>
+                                                                            <button type="button" id="pay_now_loader_{{$booking->id}}" style="display:none" disabled role="button" class="btn btn-primary btn-sm"> Processing </button>
+                                                                        @endif
+                                                                        <a href="{{route('student.booking-detail',[$booking->id])}}"  class="schedule-btn"> View details </a>
+                                                                    </div>
                                                                 </td>
                                                             </tr>
                                                         @endforeach
@@ -493,7 +496,7 @@
         </div>
 
         <!--Pay Now Class Modal -->
-        <div class="modal " id="payModel" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="payModel" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content pt-4 pb-4">
                     <div class="modal-body">

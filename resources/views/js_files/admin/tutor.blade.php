@@ -1,4 +1,11 @@
 <script type="text/javascript">
+$(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+});
   
   function verifyAssessment(id,status){
     let reason = null;
@@ -6,12 +13,16 @@
         reason = $('#assess_reject_reason').val();
     }
     $.ajax({
-        url: "/admin/tutor/verify-assessment",
+        url: "{{route('admin.verifyAssessment')}}",
         type:"POST",
         data:{
           id:id,
           status:status,
           reason
+        },
+        beforeSend:function(data) {
+          $('.save_btn').hide();
+          $('#verfication_loading').show();
         },
         success:function(response){
           // console.log(response);
@@ -30,6 +41,20 @@
             }, 1500);
           }
         },
+        complete:function(data){
+          $('.save_btn').show();
+          $('#verfication_loading').hide();
+        },
+        error:function(e) {
+          $('.save_btn').show();
+          $('#verfication_loading').hide();
+          toastr.error('Something Went Wrong',{
+                position: 'top-end',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 2500
+            })
+        }
     });
 
   }
@@ -62,7 +87,7 @@
           reason:reason,
         },
         beforeSend:function(data) {
-          $("#save_btn").hide();
+          $(".save_btn").hide();
           $("#verfication_loading").show();
         },
         success:function(response){
@@ -101,11 +126,11 @@
           }
         },
         complete:function(data) {
-          $("#save_btn").show();
+          $(".save_btn").show();
           $("#verfication_loading").hide();
         },
         error:function(e) {
-          $("#save_btn").show();
+          $(".save_btn").show();
           $("#verfication_loading").hide();
           toastr.error( 'Something Went Wrong',{
                 position: 'top-end',

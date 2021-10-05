@@ -1,4 +1,13 @@
 <script>
+
+$(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+});
+
 $('#add_subject_form').on('submit', function(e) {
     // alert('asd');
     e.preventDefault();
@@ -27,6 +36,14 @@ $('#add_subject_form').on('submit', function(e) {
                 location.reload();
             }
         },
+        error:function(e) {
+            toastr.error('Something went wrong',{
+                position: 'top-end',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 2500
+            });
+          }
     });
 });
 
@@ -69,6 +86,14 @@ $("#edit_subject_form").submit(function(e) {
                 location.reload();
             }
         },
+        error:function(e) {
+            toastr.error('Something went wrong',{
+                position: 'top-end',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 2500
+            });
+          }
     });
 })
 
@@ -81,9 +106,7 @@ function delSubject(id) {
         $.ajax({
             url: "/admin/subject/delete-subject",
             type: "POST",
-            data: {
-                id: id
-            },
+            data: {  id: id },
             success: function(response) {
                 // console.log(response);
                 if (response.status == 200) {
@@ -98,6 +121,14 @@ function delSubject(id) {
                     location.reload();
                 }
             },
+            error:function(e) {
+            toastr.error('Something went wrong',{
+                position: 'top-end',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 2500
+            });
+          }
         });
     })
 }

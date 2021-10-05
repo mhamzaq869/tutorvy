@@ -141,22 +141,22 @@ class BookingController extends Controller
         $reciever_ids = [];
 
         $reciever = User::where('role',1)->first();
-        array_push($reciever_ids , $reciever->id);
-        array_push($reciever_ids , $request->tutor_id);
 
-        for($i =0; $i < count($reciever_ids); $i++) {
-            $notification = new NotifyController();
-            $reciever_id = $reciever_ids[$i];
-            $slug = URL::to('/') . '/tutor/booking-detail/'. $booking->id  ;
-            $type = 'class_booking';
-            $title = 'Class Booking Request';
-            $icon = 'fas fa-tag';
-            $class = 'btn-success';
-            $desc = $name . ' request for book a class of '.$subject->name;
-            $pic = Auth::user()->picture;
+        $notification = new NotifyController();
+        $slug = URL::to('/') . '/tutor/booking-detail/'. $booking->id  ;
+        $type = 'class_booking';
+        $title = 'Class Booking Request';
+        $icon = 'fas fa-tag';
+        $class = 'btn-success';
+        $desc = $name . ' request for book a class of '.$subject->name;
+        $pic = Auth::user()->picture;
 
-            $notification->GeneralNotifi($reciever_id ,$slug,$type,$title,$icon,$class,$desc,$pic);
-        }
+        // tutor notification
+        $notification->GeneralNotifi($request->tutor_id ,$slug,$type,$title,$icon,$class,$desc,$pic);
+
+        // admin notification
+        $notification->GeneralNotifi($reciever->id ,$slug,$type,$title,$icon,$class,$desc,$pic);
+
 
         return response()->json([
             'status'=>200,

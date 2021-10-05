@@ -1,6 +1,11 @@
 <script>
 
     $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
         $("#phone").on('keyup', function(){
             var ter=$(this).val();
@@ -169,7 +174,13 @@
                     }
                 },
                 error:function(e) {
-                    console.log(e)
+                    console.log(e);
+                    toastr.error('Something went wrong',{
+                        position: 'top-end',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
                 }
             });
         });

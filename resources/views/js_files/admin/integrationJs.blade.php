@@ -2,6 +2,11 @@
 
 
     $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
         // open paypal modal
         $("#payment_setting").click(function(){
@@ -109,7 +114,7 @@
                             timer: 2500
                         });
                     }else{
-                        toastr.success(response.message,{
+                        toastr.error(response.message,{
                             position: 'top-end',
                             icon: 'error',
                             showConfirmButton: false,
@@ -119,6 +124,12 @@
                 },
                 error:function(e) {
                     console.log(e);
+                    toastr.error(response.message,{
+                        position: 'top-end',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
                 }
             });
         });
@@ -204,6 +215,12 @@
             },
             error:function(e) {
                 console.log(e);
+                toastr.error(response.message,{
+                    position: 'top-end',
+                    icon: 'error',
+                    showConfirmButton: false,
+                    timer: 2500
+                });
             }
         });
     }
@@ -228,6 +245,12 @@
             },
             failure: function(errMsg) {
                 console.log(errMsg);
+                toastr.error(response.message,{
+                    position: 'top-end',
+                    icon: 'error',
+                    showConfirmButton: false,
+                    timer: 2500
+                });
             }
         });
     }

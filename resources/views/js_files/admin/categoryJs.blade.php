@@ -1,5 +1,11 @@
 <script>
     $(document).ready(function(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         $("#addNew").hide();
 
         // save category
@@ -13,9 +19,6 @@
 
             if( title != "" ) {
                 $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
                     url: action,
                     type:method,
                     data:form,
@@ -57,7 +60,13 @@
                         $(".title_error").text("");
                     },
                     error:function(e) {
-                        console.log(e)
+                        console.log(e);
+                        toastr.error('Something Went wrong',{
+                            position: 'top-end',
+                            icon: 'error',
+                            showConfirmButton: false,
+                            timer: 2500
+                        });
                     }
                 });
             }else{
@@ -117,9 +126,6 @@
         var id = $("#del_id").val();
 
         $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
             url: "{{route('admin.delete.category')}}",
             type:"POST",
             data:{id:id},
