@@ -102,12 +102,11 @@ $(document).ready(function() {
 
 
 function pay_now(id) {
-    let checkbox = $("#radio-1").val()
-    console.log(checkbox)
+
     $.ajax({
         url: "{{route('student.book-new')}}",
         type:"post",
-        data: {id:id},
+        data: {_token:"{{csrf_token()}}",id:id},
         dataType:'json',
         success:function(response){
             var obj = response.booking;
