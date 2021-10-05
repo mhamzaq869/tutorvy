@@ -1,11 +1,7 @@
 @extends('student.layouts.app')
 <link href="{{ asset('assets/css/registration.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/css/booknow.css') }}" rel="stylesheet">
-<style>
-    .round {
-    left: 20px !important;
-}
-</style>
+
 @section('content')
  <!-- top Fixed navbar End -->
  <div class="content-wrapper " style="overflow: hidden;">
