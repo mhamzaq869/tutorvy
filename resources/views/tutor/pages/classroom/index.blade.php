@@ -240,6 +240,8 @@
             var time = $(this).data('time');
             var room_id = $(this).data('room');
 
+            console.log(time , "time");
+
             let split_time = time.split(':');
             let create_time = parseInt(split_time[0]) + parseInt(duration);
 
@@ -248,6 +250,8 @@
             var time = moment(booking_time).format('MMM D, YYYY h:mm:ss a');
 
             var countDownDate = new Date(time).getTime();
+
+            console.log(countDownDate, "countDownDate");
             var x = setInterval(function() {
 
                 var now = new Date().getTime();
