@@ -1,4 +1,5 @@
-const firebaseConfig = {
+<script>
+    const firebaseConfig = {
     apiKey: "AIzaSyCIoIw5TgIOYXirhqBlsYsYJOMMNStK_KA",
     authDomain: "tutorvy-ad64f.firebaseapp.com",
     projectId: "tutorvy-ad64f",
@@ -108,13 +109,11 @@ messaging.onMessage((payload) => {
 
 
         let img = '';
-        var current_url = window.location.pathname;
-        var img_url = current_url + '/assets/images/ico/Square-white.jpg';
 
         if (pic != null) {
-            img = `<img class="profile-img mt-2 p-0 w-100" src="` + current_url + '/' + pic + `" alt="layer">`;
+            img = `<img class="profile-img mt-2 p-0 w-100" src="{{asset('`+pic+`')}}" alt="layer">`;
         } else {
-            img = `<img class="profile-img mt-2 p-0 w-100" src="` + img_url + `" alt="layer">`;
+            img = `<img class="profile-img mt-2 p-0 w-100" src="{{asset('assets/images/ico/Square-white.jpg')}}" alt="layer">`;
         }
         var html = ` <li>
             <a href="` + slug + `" class="bgm">
@@ -252,13 +251,11 @@ messaging.onMessage((payload) => {
         }
 
         let img = '';
-        var current_url = window.location.pathname;
-        var img_url = current_url + '/assets/images/ico/Square-white.jpg';
 
         if (pic != null) {
-            img = `<img class="profile-img mt-2 p-0 w-100" src="` + current_url + '/' + pic + `" alt="layer">`;
+            img = `<img class="profile-img mt-2 p-0 w-100" src="{{asset('`+pic+`')}}" alt="layer">`;
         } else {
-            img = `<img class="profile-img mt-2 p-0 w-100" src="` + img_url + `" alt="layer">`;
+            img = `<img class="profile-img mt-2 p-0 w-100" src="{{asset('assets/images/ico/Square-white.jpg')}}" alt="layer">`;
         }
         var html = `
          <li>
@@ -322,13 +319,11 @@ messaging.onMessage((payload) => {
 
 
         let img = '';
-        var current_url = window.location.pathname;
-        var img_url = current_url + '/assets/images/ico/Square-white.jpg';
 
         if (pic != null) {
-            img = `<img class="profile-img mt-2 p-0 w-100" src="` + current_url + '/' + pic + `" alt="layer">`;
+            img = `<img class="profile-img mt-2 p-0 w-100" src="{{asset('`+pic+`')}}" alt="layer">`;
         } else {
-            img = `<img class="profile-img mt-2 p-0 w-100" src="` + img_url + `" alt="layer">`;
+            img = `<img class="profile-img mt-2 p-0 w-100" src="{{asset('assets/images/ico/Square-white.jpg')}}" alt="layer">`;
         }
         var html = ` <li>
             <a href="` + slug + `" class="bgm">
@@ -515,3 +510,4 @@ function get_assessment_detail() {
         }
     });
 }
+</script>
