@@ -1208,7 +1208,7 @@ connection.onopen = function(event) {
 
     document.getElementById('btn-chat-message').disabled = false;
     document.getElementById('btn-attach-file').style.display = 'inline-block';
-    document.getElementById('btn-share-screen').style.display = 'inline-block';
+    // document.getElementById('btn-share-screen').style.display = 'inline-block';
 };
 
 connection.onclose = connection.onerror = connection.onleave = function(event) {
@@ -1636,9 +1636,12 @@ designer.appendTo(document.getElementById('widget-container'), function() {
             if (error) {
                 if (error === connection.errors.ROOM_NOT_AVAILABLE) {
                     alert('This room does not exist. Please either create it or wait for moderator to enter in the room.');
+                    window.location.href="{{route('student.classroom')}}";
+                    
                     return;
                 }
                 if (error === connection.errors.ROOM_FULL) {
+                    window.location.href="{{route('student.classroom')}}";
                     alert('Room is full.');
                     return;
                 }
@@ -1650,6 +1653,7 @@ designer.appendTo(document.getElementById('widget-container'), function() {
                     }
                     connection.join(roomid, function(isRoomJoined, roomid, error) {
                         if(error) {
+                            window.location.href="{{route('student.classroom')}}";
                             alert(error);
                         }
                     });
