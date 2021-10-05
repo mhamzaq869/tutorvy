@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Srmklive\PayPal\Providers\PayPalServiceProvider::class,
+        Obydul\LaraSkrill\LaraSkrillServiceProvider::class,
         /*
          * Package Service Providers...
          */

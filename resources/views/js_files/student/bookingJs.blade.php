@@ -63,7 +63,7 @@ $( '#book_tutor_form' ).on( 'submit', function(e) {
 
 });
 
-// 
+//
 $(document).ready(function() {
 
 
@@ -84,9 +84,9 @@ $(document).ready(function() {
                     var options = ``;
 
                     for(var i = 0; i< data.tutor_plans.length; i++) {
-                        options += `<option value="`+data.tutor_plans[i].rate+`"> 
+                        options += `<option value="`+data.tutor_plans[i].rate+`">
                                 <div class="d-flex justify-content-between">
-                                    <span> `+data.tutor_plans[i].experty_title+` </span> -- 
+                                    <span> `+data.tutor_plans[i].experty_title+` </span> --
                                     <span> ($`+data.tutor_plans[i].rate+`) </span>
                                 </div>
                             </option>`;
@@ -102,6 +102,8 @@ $(document).ready(function() {
 
 
 function pay_now(id) {
+    let checkbox = $("#radio-1").val()
+    console.log(checkbox)
     $.ajax({
         url: "{{route('student.book-new')}}",
         type:"post",
@@ -118,7 +120,7 @@ function pay_now(id) {
                 let class_time = obj.class_time != null ? obj.class_time : '' ;
                 let duration = obj.duration != null ? obj.duration : '' ;
                 let price = obj.price != null ? obj.price : '' ;
-                
+
                 let commission = comm.commission != null ? comm.commission : '0' ;
                 if(commission == '0' || commission == null ){
                     price_calcualtion = price;
@@ -138,13 +140,15 @@ function pay_now(id) {
 
                 var origin   = window.location.origin;
                 var url = origin + '/student/booking/payment/'+ obj.id;
-                let btn = ` <a href="`+url+`" class="schedule-btn btn w-30"> Pay Now </a>`;
-                $("#show_pay_btn").html(btn);
+
+                $("#payment").attr("action",url)
+                let btn = `<input type="submit" class="schedule-btn btn w-30" value="Pay Now" />`;
+                $("#show_pay_btn #payment span").html(btn);
 
                 $("#payModel").modal('show');
 
-                
-               
+
+
             }else{
 
             }
@@ -154,11 +158,16 @@ function pay_now(id) {
         error:function(e){
             console.log(e);
         }
-    });    
+    });
 }
 
 function openPayNow() {
     alert("cliadf");
 }
 
+
+function paymentMethod(value){
+    let input = "<input type='hidden' name='paymentMethod' value='"+value+"' />"
+    $("#payment #paytype").html(input)
+}
 </script>
