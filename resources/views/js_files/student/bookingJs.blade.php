@@ -1,6 +1,14 @@
 <script type="text/javascript">
 /* Booking Insert */
 
+$(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+})
+
 $( '#book_tutor_form' ).on( 'submit', function(e) {
     event.preventDefault();
 
@@ -10,9 +18,6 @@ $( '#book_tutor_form' ).on( 'submit', function(e) {
 
     if(tutor_subjects != "Select Subject") {
         $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
             url: "{{route('student.booked.tutor')}}",
             type:"POST",
             data:new FormData( this ),
@@ -76,9 +81,6 @@ $(document).ready(function() {
 
         if(subject_id != 'Select Subject') {
             $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
                 url: "{{route('student.tutor.plans')}}",
                 type:"POST",
                 data:{
@@ -111,9 +113,6 @@ function pay_now(id) {
     let checkbox = $("#radio-1").val()
     console.log(checkbox)
     $.ajax({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
         url: "{{route('student.book-new')}}",
         type:"post",
         data: {id:id},
@@ -134,9 +133,19 @@ function pay_now(id) {
                 let duration = obj.duration != null ? obj.duration : '' ;
                 let price = obj.price != null ? obj.price : '' ;
 
-                let commission = comm.commission != null ? comm.commission : '0' ;
+                var commission = '0';
+
+                if(comm != null && comm != "" && comm != []) {
+
+                    commission = comm.commission != null ? comm.commission : '0' ;
+
+                }else{
+                    commission = '0';
+                }
+
+                // let commission = comm.commission != null ? comm.commission : '0' ;
                 if(commission == '0' || commission == null ){
-                    price_calcualtion = price;
+                    price_calcualtion = '0';
                 }
                 else{
                     price_calcualtion = (price * commission) / 100;

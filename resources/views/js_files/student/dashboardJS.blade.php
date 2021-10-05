@@ -1,5 +1,11 @@
 <script>
-   
+$(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+})
 
 
 function favourite_tutor(id,type) {
@@ -14,9 +20,6 @@ if($("#favorite_start_"+id).hasClass("fa fa-star text-yellow")) {
 }
 
 $.ajax({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
     url: "{{ route('student.fav.tutor') }}",
     type: "POST",
     data: {id:id,status:status},
@@ -41,7 +44,13 @@ $.ajax({
         }
     },
     error:function(e){
-        console.log(e)
+        console.log(e);
+        toastr.error('Something went wrong',{
+            position: 'top-end',
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 2500
+        });
     }
 });
 }

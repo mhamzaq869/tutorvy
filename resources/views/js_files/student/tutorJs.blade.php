@@ -1,8 +1,14 @@
 <script>
 
+$(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+});
+
 let tutors = '';
-
-
 
 $('#subjects-list').on("change", function(e) {
 
@@ -99,6 +105,15 @@ function search_tutors(price,subject,lang,rating,location, gender){
                 list_tutors();
             }
         },
+        error:function(e) {
+            console.log(e);
+            toastr.error('Something went wrong',{
+                position: 'top-end',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 2500
+            });
+        }
     });
 
 }
@@ -379,7 +394,13 @@ function favourite_tutor(id,type) {
             }
         },
         error:function(e){
-            console.log(e)
+            console.log(e);
+            toastr.error('Something went wrong',{
+                position: 'top-end',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 2500
+            });
         }
     });
 }

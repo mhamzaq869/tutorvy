@@ -1,4 +1,14 @@
 <script>
+
+  $(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+
+  });
 // Admin Course Script Blade 
 $(".c_status").click(function(){
   var id = $(this).attr("val_id");
@@ -44,6 +54,14 @@ $(".c_status").click(function(){
               
             }
           },
+          error:function(e) {
+            toastr.error('Something went wrong',{
+                position: 'top-end',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 2500
+            });
+          }
       });
 
     }
@@ -82,6 +100,14 @@ $(".c_status").click(function(){
               
             }
           },
+          error:function(e) {
+            toastr.error('Something went wrong',{
+                position: 'top-end',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 2500
+            });
+          }
       });
 
     }
@@ -116,6 +142,14 @@ function deleteCourse(id){
 
             }
           },
+          error:function(e) {
+            toastr.error('Something went wrong',{
+                position: 'top-end',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 2500
+            });
+          }
       });
 
   });

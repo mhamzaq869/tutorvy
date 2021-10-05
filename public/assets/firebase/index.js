@@ -47,15 +47,13 @@ messaging.onMessage((payload) => {
         var text = "admin/tutor";
 
         if (url.indexOf(text) != -1) {
-            console.log("in page");
+
             var url = slug.replace(/[^0-9]/gi, '');
             var booking_id = parseInt(url, 10);
             console.log(booking_id);
 
             get_assessment_detail();
 
-        } else {
-            console.log("out of page");
         }
 
 
@@ -466,9 +464,48 @@ function get_assessment_detail() {
         success: function(response) {
             console.log(response);
             var obj = response.tutor_assessment;
+
+            var html = ``;
+
+            for (var i = 0; i < obj.length; i++) {
+
+                var assessment_submit = `<span class="statusTag doc_sub_status">  Assessment Sumitted </span>`;
+                var doc_not_submit = ` <span class="statusTag doc_not_sub_status">  Document not Submitted </span>`;
+                var doc_submit = `<span class="statusTag doc_sub_status">  Document Sumitted </span>`;
+                var assessment_id = obj[i].assessment_id != null ? obj[i].assessment_id : '';
+
+                var status = (obj[i].assessment_status == 0 && obj[i].status == 2) ? assessment_submit : (obj[i].status == 0) ? doc_not_submit : doc_submit;
+
+                html += `
+                <tr>
+                    <td class="pt-4">` + obj[i].first_name + ` ` + obj[i].last_name + ` </td>
+                    <td class="pt-4"> ` + obj[i].email + ` </td>
+                    <td class="pt-4"> ` + obj[i].subject_name + ` </td>
+                    <td class="pt-4"> ` + obj[i].country + ` </td>                                                            
+                    <td class="pt-4">---</td>
+                    <td class="pt-4"> ` + obj[i].hourly_rate + ` </td>
+                    <td class="pt-4"> ` + status + ` </td>
+                    <td class="pt-3 text-right">
+                        <a href="` + origin + `/admin/tutor/request/` + obj[i].id + `/` + assessment_id + `` + `" class="cencel-btn btn"> View </a>
+                    </td>
+                    <td class="pt-3 text-right">
+                        <button class="schedule-btn"  data-toggle="modal"
+                            data-target="#exampleModalCenter">Assign</button>
+                    </td>
+                </tr>  `;
+            }
+
+            $("#tutor_assessment_table").html(html);
+
         },
         error: function(e) {
-            console.log(e)
+            console.log(e);
+            toastr.error('Something went wrong', {
+                position: 'top-end',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 2000,
+            });
         }
     });
 }
