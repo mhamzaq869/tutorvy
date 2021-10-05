@@ -318,7 +318,7 @@
                                                 <div class="input-text col-md-6 d-block">
                                                     <input type="" class="form-control csd" name="first_name"
                                                         placeholder="First Name"
-                                                        value="{{ $user->first_name ?? '' }}" id="fname">
+                                                        value="{{ $user->first_name ?? '' }}" id="fname" style="text-transform: capitalize;">
                                                         <span for="" id="fname_error" class="invalid-feedback" role="alert">
                                                             <strong> This field is required </strong>  
                                                         </span>
@@ -334,7 +334,7 @@
                                                     <input type=""
                                                         class="form-control @error('last_name') is-invalid @enderror"
                                                         name="last_name" placeholder="Last Name"
-                                                        value="{{ $user->last_name ?? '' }}" id="lname">
+                                                        value="{{ $user->last_name ?? '' }}" id="lname" style="text-transform: capitalize;">
                                                         <span for="" id="lname_error" class="invalid-feedback" role="alert">
                                                             <strong> This field is required </strong>  
                                                         </span>

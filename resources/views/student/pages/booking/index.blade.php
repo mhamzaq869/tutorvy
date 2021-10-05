@@ -583,7 +583,7 @@
                                                         </span> -->
                                                         <span class="round">
                                                             <input id="radio-1" name="paytype" onclick="paymentMethod(this.value)" class="radio-custom" value="0" type="radio" >
-                                                            <label for="radio-1" class="radio-custom-label"></label>
+                                                            
                                                         </span>
                                                     </div>
                                                 </div>
@@ -608,7 +608,7 @@
                                                         </span> -->
                                                         <span class="round">
                                                             <input name="paytype" onclick="paymentMethod(this.value)" class="radio-custom" value="1" type="radio">
-                                                            <label for="radio-1" class="radio-custom-label"></label>
+                                                            
                                                         </span>
                                                     </div>
                                                 </div>
@@ -617,7 +617,7 @@
 
 
                                         <div class="col-md-12 text-right mt-3" id="show_pay_btn">
-                                            <form action="{{url("/student/booking/payment")}}" id="payment" method="post">
+                                            <form action="{{url('/student/booking/payment')}}" id="payment" method="post">
                                                 @csrf
                                                 <div id="paytype"></div>
                                                 <span></span>

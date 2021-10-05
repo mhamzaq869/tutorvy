@@ -434,7 +434,7 @@
                 var total_time = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
                 
                 $("#class_time_"+attr_id).html(total_time);
-
+                
                 if (distance < 0) {
                     clearInterval(x);
 
@@ -462,7 +462,7 @@
         var fullName = '---';
         connection.socketURL = 'https://tutorvy.herokuapp.com:443/';
 
-        connection.checkPresence('room-id', function(isRoomExist, roomid, error) {
+        connection.checkPresence(roomid, function(isRoomExist, roomid, error) {
             if (isRoomExist === true) {
                 window.location.href=`{{url('student/class')}}/`+id ;
             } else {
