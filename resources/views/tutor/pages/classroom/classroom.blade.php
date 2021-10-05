@@ -1070,7 +1070,7 @@ connection.onopen = function(event) {
 
     document.getElementById('btn-chat-message').disabled = false;
     document.getElementById('btn-attach-file').style.display = 'inline-block';
-    document.getElementById('btn-share-screen').style.display = 'inline-block';
+    // document.getElementById('btn-share-screen').style.display = 'inline-block';
 };
 
 connection.onclose = connection.onerror = connection.onleave = function(event) {
