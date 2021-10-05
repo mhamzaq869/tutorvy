@@ -3,7 +3,7 @@
 @section('content')
  <!-- top Fixed navbar End -->
 
- 
+
  <div class="content-wrapper " style="overflow: hidden;">
     <section id="bookingSection" >
         <div class="container-fluid m-0 p-0">
@@ -34,7 +34,7 @@
                                     <small>
                                         Ticket Details and all about your isuues opened for dicussion <a href="#">Learn More</a>
                                     </small>
-                                    <a href="#" class="cross"  onclick="hideCard()"> 
+                                    <a href="#" class="cross"  onclick="hideCard()">
                                         <i class="fa fa-times" aria-hidden="true"></i>
                                     </a>
                                 </div>
@@ -46,13 +46,13 @@
                             <div class="nav nav-stwich" id="nav-tab" role="tablist">
                                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
                                     href="#nav-home " role="tab" aria-controls="nav-home" aria-selected="true">
-                                    All 
+                                    All
                                     <span class="counter-text bg-primary"> {{count($all)}} </span>
                                 </a>
                                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
                                     href="#nav-contact" role="tab" aria-controls="nav-contact"
                                     aria-selected="false">
-                                    Pending 
+                                    Pending
                                     <span class="counter-text bg-warning"> {{count($pending)}} </span>
 
                                 </a>
@@ -63,7 +63,7 @@
                                     <span class="counter-text bg-success"> {{count($confirmed)}} </span>
 
                                 </a>
-                                
+
                                 <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about"
                                     role="tab" aria-controls="nav-about" aria-selected="false">
                                     Completed
@@ -95,9 +95,9 @@
                                                             </th>
                                                             <th scope="col">Time
                                                             </th>
-                                                            
+
                                                             <th scope="col">Duration
-                                                            </th>
+                                                                </th>
                                                             <th scope="col">Payment
                                                             </th>
                                                             <th scope="col">Status
@@ -121,7 +121,7 @@
                                                                 <td class="pt-4">
                                                                     {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
                                                                 </td>
-                                                                
+
                                                                 <td class="pt-4">
                                                                     &nbsp;{{$booking->duration}} Hour(s)
                                                                 </td>
@@ -142,7 +142,7 @@
                                                                             Pending
                                                                         </span>
                                                                     @endif
-                                                                </td> 
+                                                                </td>
 
                                                                 <td style="text-align: center;">
                                                                     <a href="{{route('student.booking-detail',[$booking->id])}}">
@@ -203,7 +203,7 @@
                                                                     <td class="pt-4">
                                                                         {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
                                                                     </td>
-                                                                
+
                                                                     <td class="pt-4">
                                                                         &nbsp;{{$booking->duration}} Hour(s)
                                                                     </td>
@@ -224,17 +224,17 @@
                                                                                 Pending
                                                                             </span>
                                                                         @endif
-                                                                    </td> 
+                                                                    </td>
                                                                     <td class="pt-3 pb-3" style="text-align: center; " >
-                                                                        
+
                                                                         <a href="{{route('student.booking-detail',[$booking->id])}}"  class="schedule-btn">
-                                                                            
+
                                                                                 View details
                                                                         </a>
                                                                     </td>
                                                                 </tr>
                                                             @endforeach
-                                                        @else 
+                                                        @else
                                                         <tr>
                                                             <td>No Booking Found</td>
                                                         </tr>
@@ -284,7 +284,7 @@
                                                                 <td class="pt-4">
                                                                     {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
                                                                 </td>
-                                                                
+
                                                                 <td class="pt-4">
                                                                     &nbsp;{{$booking->duration}} Hour(s)
                                                                 </td>
@@ -305,7 +305,7 @@
                                                                             Pending
                                                                         </span>
                                                                     @endif
-                                                                </td> 
+                                                                </td>
                                                                 <td class="pt-3 pb-3 action_button" style="text-align: center; " >
                                                                     @if($booking->status == 1 )
                                                                         <button  onclick="pay_now({{$booking->id}})" type="button" role="button" class="cencel-btn mr-2"> Pay Now </button>
@@ -314,7 +314,7 @@
                                                                 </td>
                                                             </tr>
                                                         @endforeach
-                                                    @else 
+                                                    @else
                                                         <tr>
                                                             <td>No Booking Found</td>
                                                         </tr>
@@ -364,7 +364,7 @@
                                                                 <td class="pt-4">
                                                                     {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
                                                                 </td>
-                                                                
+
                                                                 <td class="pt-4">
                                                                     &nbsp;{{$booking->duration}} Hour(s)
                                                                 </td>
@@ -385,19 +385,19 @@
                                                                             Pending
                                                                         </span>
                                                                     @endif
-                                                                </td> 
+                                                                </td>
                                                                 <td class="pt-3 pb-3" style="text-align: center; " >
                                                                     <a class="cencel-btn mr-2" data-toggle="modal" data-target="#payModel" >
                                                                         Pay Now
                                                                     </a>
                                                                     <a href="{{route('student.booking-detail',[$booking->id])}}"  class="schedule-btn">
-                                                                        
+
                                                                             View details
                                                                     </a>
                                                                 </td>
                                                             </tr>
                                                         @endforeach
-                                                    @else 
+                                                    @else
                                                         <tr>
                                                             <td>No Booking Found</td>
                                                         </tr>
@@ -445,7 +445,7 @@
                                                             <td class="pt-4">
                                                                 {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
                                                             </td>
-                                                            
+
                                                             <td class="pt-4">
                                                                 &nbsp;{{$booking->duration}} Hour(s)
                                                             </td>
@@ -466,19 +466,19 @@
                                                                         Pending
                                                                     </span>
                                                                 @endif
-                                                            </td> 
+                                                            </td>
                                                             <td class="pt-3 pb-3" style="text-align: center; " >
                                                                 <a class="cencel-btn mr-2" onclick >
                                                                     Pay Now
                                                                 </a>
                                                                 <a href="{{route('student.booking-detail',[$booking->id])}}"  class="schedule-btn">
-                                                                    
+
                                                                         View details
                                                                 </a>
                                                             </td>
                                                         </tr>
                                                     @endforeach
-                                                @else 
+                                                @else
                                                     <tr>
                                                         <td>No Booking Found</td>
                                                     </tr>
@@ -501,7 +501,7 @@
                             <div class="row">
                                         <div class="col-md-12">
                                             <div class="iconss" style="text-align: center;">
-                                            
+
                                                 <img src="{{asset ('admin/assets/img/ico/doollarss.png')}}" width="60px">
                                                 <p
                                                     style="font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 500;margin-top: 10px;">
@@ -516,46 +516,46 @@
                                             <h3>Class Details</h3>
                                         </div>
                                         <div class="col-md-6 col-6 col-sm-6 ">
-                                            <p class="mb-0">Schedule Date: </p> 
+                                            <p class="mb-0">Schedule Date: </p>
                                         </div>
-                                        <div class="col-md-6 col-6 col-sm-6 text-right" >                                            
+                                        <div class="col-md-6 col-6 col-sm-6 text-right" >
                                             <strong id="scdule_date"></strong>
                                         </div>
                                         <div class="col-md-6 col-6 col-sm-6">
-                                            <p class="mb-0">Schedule Time: </p> 
+                                            <p class="mb-0">Schedule Time: </p>
                                         </div>
                                         <div class="col-md-6 col-6 col-sm-6 text-right" >
                                             <strong id="class_time"></strong>
                                         </div>
                                         <div class="col-md-6 col-6 col-sm-6">
-                                             <p class="">Schedule Duration: </p> 
+                                             <p class="">Schedule Duration: </p>
                                         </div>
-                                        <div class="col-md-6 col-6 col-sm-6 text-right" >    
-                                            <strong id="duration"></strong>                                     
+                                        <div class="col-md-6 col-6 col-sm-6 text-right" >
+                                            <strong id="duration"></strong>
                                         </div>
                                         <div class="col-md-12">
                                             <h3>Payment Details</h3>
                                          </div>
-                                    
+
                                         <div class="col-md-6 col-6 col-sm-6">
-                                            <p class="mb-0">Tutor Fee: </p> 
+                                            <p class="mb-0">Tutor Fee: </p>
                                         </div>
-                                        
+
                                         <div class="col-md-6 col-6 col-sm-6 text-right" >
                                             <strong id="price"></strong>
                                         </div>
 
                                         <div class="col-md-6 col-6 col-sm-6">
                                             <p class="mb-0">Service Fee: <span id="total_commision"></span>
-                                            </p> 
+                                            </p>
                                         </div>
-                                        <div class="col-md-6 col-6 col-sm-6 text-right"> 
+                                        <div class="col-md-6 col-6 col-sm-6 text-right">
                                             <strong id="commission"></strong>
                                         </div>
                                         <div class="col-md-6 col-6 col-sm-6">
-                                            <p class="mb-0">Total Fee: </p> 
+                                            <p class="mb-0">Total Fee: </p>
                                         </div>
-                                        <div class="col-md-6 col-6 col-sm-6 text-right"> 
+                                        <div class="col-md-6 col-6 col-sm-6 text-right">
                                             <strong id="total_price"></strong>
                                         </div>
                                         <div class="col-md-12">
@@ -569,7 +569,7 @@
                                                 <div class="card-body">
                                                     <div class="text-center">
                                                         <img src="{{asset ('assets/images/payment-icon/paypal2.png')}}" class="w-50" alt="">
-                                                        <!-- <span class="payment-menu dropdown d-flex"> 
+                                                        <!-- <span class="payment-menu dropdown d-flex">
                                                             <a class=" d-flex" href="#" data-toggle="dropdown" aria-expanded="true">
                                                                 <img src="{{asset ('assets/images/payment-icon/menu_dots.png')}}" alt="">
                                                             </a>
@@ -582,8 +582,8 @@
                                                             </ul>
                                                         </span> -->
                                                         <span class="round">
-                                                            <input type="checkbox" id="checkbox1" checked />
-                                                            <label for="checkbox1"></label>
+                                                            <input id="radio-1" name="paytype" onclick="paymentMethod(this.value)" class="radio-custom" value="0" type="radio" >
+                                                            <label for="radio-1" class="radio-custom-label"></label>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -594,7 +594,7 @@
                                                 <div class="card-body">
                                                     <div class="text-center">
                                                         <img src="{{asset ('assets/images/payment-icon/skrill.png')}}" class="w-50" alt="">
-                                                        <!-- <span class="payment-menu dropdown d-flex"> 
+                                                        <!-- <span class="payment-menu dropdown d-flex">
                                                             <a class=" d-flex" href="#" data-toggle="dropdown" aria-expanded="true">
                                                                 <img src="{{asset ('assets/images/payment-icon/menu_dots.png')}}" alt="">
                                                             </a>
@@ -607,20 +607,28 @@
                                                             </ul>
                                                         </span> -->
                                                         <span class="round">
-                                                            <input type="checkbox" id="checkbox2" disabled/>
-                                                            <label for="checkbox2"></label>
+                                                            <input name="paytype" onclick="paymentMethod(this.value)" class="radio-custom" value="1" type="radio">
+                                                            <label for="radio-1" class="radio-custom-label"></label>
                                                         </span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
+
                                         <div class="col-md-12 text-right mt-3" id="show_pay_btn">
+                                            <form action="{{url("/student/booking/payment")}}" id="payment" method="post">
+                                                @csrf
+                                                <div id="paytype"></div>
+                                                <span></span>
+                                            </form>
                                         </div>
-                                    
+
+
                             </div>
                         </div>
                         <div class="mt-4 mb-2" style="text-align: right;">
-                        
+
                         </div>
                     </div>
                 </div>

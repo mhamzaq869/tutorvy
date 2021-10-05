@@ -31,7 +31,7 @@
             right: 12px;
             top: 43px;
         }
-        
+
 .Google {
     margin-top: 30px;
     width: 100%;
@@ -108,7 +108,7 @@
                         </div>
                         <div class="text">
                             <p class="learn">
-                                Learn from the best tutors 
+                                Learn from the best tutors
                             </p>
                             <p class="time">
                                 Anytime, Anywhere
@@ -196,7 +196,7 @@
                                             <input type="submit" class="submit schedule-btn w-25 mt-3 float-right" value="Submit">
                                     </div>
                                     @if(isset($user))
-                                    
+
                                     <p class="checkboxs d-inline-block w-100 mt-4">
                                         <input style="width: 15px;" type="checkbox" class="checkbox">
                                         <span style="position: absolute;left: 55px;font-size: 16px;font-family: Poppins;">
@@ -223,7 +223,7 @@
                             </div>
                             <div class="facebook">
                                 <a href="{{route('social.facebook',[0])}}">
-                            
+
                                 <!-- <img class="mr-3" src="../assets/images/ico/facebook(1).png" alt="facebook"> -->
                                 <i class="fa fa-facebook fa-lg mr-2" aria-hidden="true"></i>
                                 Continue with Facebook
