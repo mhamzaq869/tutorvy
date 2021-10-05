@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- <script src="{{ asset('js/app.js') }}" ></script> -->
+    <!-- <script src="{{ asset('js/app.js') }}"></script> -->
 
     <!-- Scripts -->
     <!--favicon --->
@@ -17,26 +18,28 @@
     <!-- fonawsome -->
     <link href="{{ asset('assets/css/fontawesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/calender.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets/css/countrySelect.css')}}">
-    <link rel="stylesheet" href="{{ asset('assets/css/dropify.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/countrySelect.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dropify.css') }}" />
     <link href="{{ asset('assets/css/chat.css') }}" rel="stylesheet">
 
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-<!--Plugin CSS file with desired skin-->
-<link rel="stylesheet" href="{{ asset('assets/css/ion.rangeSlider.css')}}"/>
-<link rel="stylesheet" href="{{ asset('assets/css/emojionearea.css')}}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!--Plugin CSS file with desired skin-->
+    <link rel="stylesheet" href="{{ asset('assets/css/ion.rangeSlider.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/emojionearea.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Styles -->
     @include('student.layouts.css')
 </head>
+
 <body>
     <div class="wrapper" id="wrapper">
-        <input type="hidden" class="user_id" value={{Auth::user()->id}}>
-        <input type="hidden" class="user_role_id" value={{Auth::user()->role}}>
+        <input type="hidden" class="user_id" value={{ Auth::user()->id }}>
+        <input type="hidden" class="user_role_id" value={{ Auth::user()->role }}>
         <!-- side navbar -->
         @include('student.layouts.sidebar')
         <!-- seide navbar end -->
@@ -49,31 +52,36 @@
                     <div class="modal-content pb-3">
                         <div class="modal-body">
                             <div class="container">
-                                <form action="{{route('student.save.ticket')}}" class="supportForm" method="POST">
+                                <form action="{{ route('student.save.ticket') }}" class="supportForm" method="POST">
                                     <div class="row">
                                         <div class="col-md-12 pt-4">
                                             <div class="iconss" style="text-align: center;">
-                                                <img src="{{asset('assets/images/ico/support.png')}}" alt="support" class="mb-2" width="80px">
+                                                <img src="{{ asset('assets/images/ico/support.png') }}" alt="support"
+                                                    class="mb-2" width="80px">
                                                 <p
                                                     style=" font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 600;margin-top: 10px;">
                                                     Support</p>
                                                 <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;line-height: 1.4;"
-                                                    class="ml-5 mr-5">We are here to listen you, please write if you have any problem</p>
+                                                    class="ml-5 mr-5">We are here to listen you, please write if
+                                                    you have any problem</p>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <label for="subject">Subject</label>
-                                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
+                                            <input type="text" class="form-control" name="subject" id="subject"
+                                                placeholder="Subject">
                                         </div>
                                         <div class="col-md-12 mt-2">
                                             <select name="category" class="form-select support_category" id="category">
                                             </select>
                                         </div>
                                         <div class="col-md-12 mt-2">
-                                            <textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Enter your query here"></textarea>
+                                            <textarea name="message" id="message" cols="30" rows="10"
+                                                class="form-control" placeholder="Enter your query here"></textarea>
                                         </div>
                                         <div class="col-md-12 mt-2 text-right">
-                                            <button type="submit" class="schedule-btn" style="width: 130px;">Send</button>
+                                            <button type="submit" class="schedule-btn"
+                                                style="width: 130px;">Send</button>
                                         </div>
                                     </div>
                                 </form>
@@ -86,7 +94,7 @@
 
     </div>
      <!-- custom js -->
-     
+
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
@@ -122,7 +130,7 @@
     </script>
         <!--Plugin JavaScript file-->
         <script src="{{ asset('assets/js/ion.rangeSlider.js')}}"></script>
-            
+
      @yield('scripts')
      @include('js_files.student.supportJs')
      <script>
@@ -131,11 +139,11 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-      
+
     $(document).ready(function(){
 
         get_all_notifications();
-        
+
         $(".mk").hide();
         $(".vc").hide();
         $(".dropify").dropify();
@@ -169,13 +177,13 @@
                 saveEmojisAs:"shortname"
             });
           /* Table Sorting */
-          
+
           $("th").append('<i class="ml-1 fa fa-sort"></i>');
             $("th:last-child").css("color",'white');
 
             const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
 
-            const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
+            const comparer = (idx, asc) => (a, b) => ((v1, v2) =>
                 v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
                 )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
 
@@ -187,9 +195,9 @@
                     .forEach(tr => table.appendChild(tr) );
             })));
 
-            
+
             /* Table Sorting */
-           
+
     })
     $("#country_selector").countrySelect({
                 defaultCountry: "{{ $user->country_short ?? '' }}",
@@ -289,41 +297,95 @@ function get_all_notifications() {
                             else{
                                 img = `<img class="profile-img w-100 p-0 mt-2" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
                             }
-                            notification +=`
+                        },
+                        password: {
+                            required: true,
+                        },
+                        first_name: {
+                            required: true
+                        },
+                        last_name: {
+                            required: true
+                        },
+
+                    },
+                    messages: {
+                        email: {
+                            required: "We need your email address to contact you",
+                            email: "Your email address must be in the format of name@domain.com"
+                        }
+                    }
+                });
+
+                function langshort(opt) {
+                    var val = opt.options[opt.selectedIndex].innerHTML;
+                    $("#lang").val(val)
+                }
+
+                function hideCard() {
+                    // alert();
+                    $(".infoCard").hide('slow');
+                };
+
+                function get_all_notifications() {
+                    $.ajax({
+                        url: "{{ route('getNotification') }}",
+                        type: "GET",
+                        dataType: 'json',
+                        success: function(response) {
+                            var obj = response.data;
+                            // console.log(obj , "asd");
+                            if (response.status_code == 200 && response.success == true) {
+                                var notification = ``;
+                                if (obj.length == 0) {
+                                    $('.show_notification_counts').text(0);
+                                } else {
+                                    $('.show_notification_counts').text(obj.length);
+                                    for (var i = 0; i < obj.length; i++) {
+                                        let img = '';
+
+                                        if (obj[i].sender_pic != null) {
+                                            img =
+                                                `<img class="profile-img w-100 p-0 mt-2" src="{{ asset('`+obj[i].sender_pic+`') }}" alt="layer">`;
+                                        } else {
+                                            img =
+                                                `<img class="profile-img w-100 p-0 mt-2" src="{{ asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
+                                        }
+                                        notification += `
                             <li>
-                                <a href="`+obj[i].slug+`" class="bgm">
+                                <a href="` + obj[i].slug + `" class="bgm">
                                     <div class="row">
                                         <div class="col-md-2 text-center pr-0">
-                                        `+img+`
+                                        ` + img + `
                                         </div>
                                         <div class="col-md-10">
                                             <div class="head-1-noti">
                                                 <span class="notification-text6">
-                                                    <strong>` +obj[i].noti_title+ ` </strong> 
-                                                    `+obj[i].noti_desc+`
+                                                    <strong>` + obj[i].noti_title + ` </strong>
+                                                    ` + obj[i].noti_desc + `
                                                 </span>
                                             </div>
                                             <span class="notification-time">
                                             </span>
                                         </div>
                                     </div>
-                                </a>    
+                                </a>
                             </li>`;
+                                    }
+                                    $(".show_all_notifications").html(notification);
+                                }
+
+                            } else {
+                                notification += `<span> No Notification </span>`;
                             }
-                            $(".show_all_notifications").html(notification);
-                    }
-
-                }else{
-                    notification +=`<span> No Notification </span>`;
+                        },
+                        error: function(e) {
+                            console.log(e)
+                        }
+                    });
                 }
-            },
-            error:function(e) {
-                console.log(e)
-            }
-        });
-    }
-
-</script>
+            </script>
 
 </body>
+
 </html>

@@ -403,6 +403,8 @@ height:25px;
 @section('content')
  <!-- top Fixed navbar End -->
  <section>
+     <input type="hidden" id="class_room_id" value="{{$class->id}}">
+
      <input type="hidden" id="sbooking_id" value="{{$class->booking_id}}">
 
     <div class="content-wrapper " style="overflow: hidden;">
@@ -1653,7 +1655,7 @@ designer.appendTo(document.getElementById('widget-container'), function() {
                 }
                 alert(error);
             }
-
+            saveClassLogs();
             connection.socket.on('disconnect', function() {
                 location.reload();
             });
@@ -1785,6 +1787,33 @@ $('#btn-share-screen').click(function() {
         alert('getDisplayMedia API is not available in this browser.');
     }
 });
+
+function saveClassLogs() {
+
+    var current_date_time = moment(new Date()).format('YYYY-MM-DD h:m:s');
+    var class_room_id = $("#class_room_id").val();
+
+    var form_data = {
+        tutor_join_time : current_date_time, 
+        class_room_id : class_room_id,
+    }
+
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: "{{route('student.classlogs')}}",
+        type: "POST",
+        data:form_data,
+        success:function(response){
+            console.log(response);
+        },
+        error:function(e) {
+            console.log(e)
+        }
+    });
+
+}
 
 
 </script>

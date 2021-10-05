@@ -96,20 +96,7 @@ class SettingController extends Controller
 
     }
 
-    public function saveClassLogs(Request $request) {
-
-        ClassroomLogs::create([
-            "class_room_id" => $request->class_room_id, 
-            "tutor_join_time" => $request->tutor_join_time,
-        ]);
-
-        return response()->json([
-            "message" => "Classroom logs saved",
-            "status_code" => 200,
-            "success" => true,
-        ]);
-
-    }
+   
 
     public function change_password(Request $request) {
 

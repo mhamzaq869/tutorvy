@@ -16,6 +16,7 @@ use App\Models\General\Teach;
 use App\Models\Admin\tktCat;
 use App\Models\Admin\supportTkts;
 use App\Models\Admin\Subject;
+use App\Models\Payments;
 use Illuminate\Support\Facades\URL;
 use Session;
 use Redirect;
@@ -33,33 +34,42 @@ use PayPal\Api\RedirectUrls;
 use PayPal\Api\ExecutePayment;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\Transaction;
+use Obydul\LaraSkrill\SkrillClient;
+use Obydul\LaraSkrill\SkrillRequest;
 
 class BookingController extends Controller
 {
 
-    private $_api_context;
-    
+    private $_api_context, $skrilRequest;
+
     public function __construct()
     {
-            
+
         $paypal_configuration = \Config::get('paypal');
         $this->_api_context = new ApiContext(new OAuthTokenCredential($paypal_configuration['sandbox']['client_id'], $paypal_configuration['sandbox']['client_secret']));
         $this->_api_context->setConfig($paypal_configuration);
-        
+
+        // Skrill Integeration
+        $this->skrilRequest = new SkrillRequest();
+        $this->skrilRequest->pay_to_email = 'skrill_user_test2@smart2pay.com';
+        $this->skrilRequest->return_url = 'https://webs.dev/student/bookings';
+        $this->skrilRequest->logo_url = 'https://tutorvydev.naumanyasin.com/assets/images/logo/logo.png';
+
+
     }
-    
+
     public function index()
     {
-       
+
         $all = Booking::with(['tutor'])->where('user_id',Auth::user()->id)->get();
         $pending = Booking::with('tutor')->where('user_id',Auth::user()->id)->whereIn('status',[0,1])->get();
         $confirmed = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(2)->get();
-        
+
         $completed = Booking::with('tutor')->where('user_id',Auth::user()->id)->status(5)->get();
         $cancelled = Booking::with('tutor')->where('user_id',Auth::user()->id)->whereIn('status',[3,4])->get();
 
         $commission = DB::table("sys_settings")->first();
-        
+
         return view('student.pages.booking.index',compact('confirmed','pending','completed','cancelled','all','commission'));
     }
 
@@ -85,7 +95,7 @@ class BookingController extends Controller
             'booking' => $booking,
             'commission' => $commission,
         ]);
-        
+
     }
     public function directBooking($id)
     {
@@ -117,13 +127,13 @@ class BookingController extends Controller
             'class_time' => $request->time,
             'duration' => $request->duration,
             'price' => $price,
-        
+
         ]);
 
         $subject = Subject::where("id",$request->subject)->first();
 
         // activity logs
-        $id = Auth::user()->id; 
+        $id = Auth::user()->id;
         $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
         $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> request for book a class of '.$subject->name ;
         $activity_logs = new GeneralController();
@@ -133,7 +143,7 @@ class BookingController extends Controller
         $reciever = User::where('role',1)->first();
         array_push($reciever_ids , $reciever->id);
         array_push($reciever_ids , $request->tutor_id);
-        
+
         for($i =0; $i < count($reciever_ids); $i++) {
             $notification = new NotifyController();
             $reciever_id = $reciever_ids[$i];
@@ -154,107 +164,153 @@ class BookingController extends Controller
         ]);
     }
 
-   
+
     public function bookingPayment(Request $request,$id){
+
 
         $total_price = 0;
         $booking = Booking::where('id',$request->id)->first();
         $commission = DB::table("sys_settings")->first();
-                
+
         if($commission) {
             $comm = ($booking->price * $commission->commission) / 100;
             $total_price = $booking->price + $comm;
         }else{
             $total_price = $booking->price;
         }
-        
+
         if(!$booking){
             \Session::put('error','Unable to process booking not available.');
-            return Redirect::route('student.bookings'); 
+            return Redirect::route('student.bookings');
         }
         if($total_price == null || $total_price == 0.00 || $total_price == 0){
             \Session::put('error','Unable to process booking with invalid amount.');
-            return Redirect::route('student.bookings'); 
+            return Redirect::route('student.bookings');
         }
-        $payer = new Payer();
-        $payer->setPaymentMethod('paypal');
 
-    	$item_1 = new Item();
+        if($request->paymentMethod == 1){
+            //Payment Through Paypal
+            $this->skrilRequest->transaction_id = 'SKRL-'.rand();
+            $this->skrilRequest->amount = $total_price;
+            $this->skrilRequest->currency = 'USD';
+            $this->skrilRequest->language = 'EN';
+            $this->skrilRequest->prepare_only = '1';
+            $this->skrilRequest->merchant_fields = 'Tutorvy,'.Auth::user()->email;
+            $this->skrilRequest->site_name = 'Tutorvy.com';
+            $this->skrilRequest->customer_email = Auth::user()->email;
+            $this->skrilRequest->detail1_description = 'Booking ID:';
+            $this->skrilRequest->detail1_text = $booking->id;
+            $this->skrilRequest->detail2_description = 'Tutor Fee:';
+            $this->skrilRequest->detail2_text = '$'.$booking->price;
+            $this->skrilRequest->detail3_description = 'Service Fee:'.$commission->commission.'%';
+            $this->skrilRequest->detail3_text = '$'.$comm;
 
-        $item_1->setName('Online Class')
-            ->setCurrency('USD')
-            ->setQuantity(1)
-            ->setPrice($total_price);
+            // create object instance of SkrillClient
+            $client = new SkrillClient($this->skrilRequest);
+            $sid = $client->generateSID(); //return SESSION ID
 
-        $item_list = new ItemList();
-        $item_list->setItems(array($item_1));
+            // handle error
+            $jsonSID = json_decode($sid);
+            if ($jsonSID != null && $jsonSID->code == "BAD_REQUEST")
+                return $jsonSID->message;
+            // do the payment
+            $redirectUrl = $client->paymentRedirectUrl($sid); //return redirect url
 
-        $amount = new Amount();
-        $amount->setCurrency('USD')
-            ->setTotal($total_price);
+            $booking->status = 2;
+            $booking->save();
 
-        $transaction = new Transaction();
-        $transaction->setAmount($amount)
-            ->setItemList($item_list)
-            ->setDescription('Enter Your transaction description');
+            Payments::create([
+                'booking_id' => $booking->id,
+                'transaction_id' =>  $this->skrilRequest->transaction_id,
+                'amount'  => $total_price,
+                'method'  => 'skrill'
+            ]);
 
-        $redirect_urls = new RedirectUrls();
-        $redirect_urls->setReturnUrl(URL::route('student.paymentstatus'))
-            ->setCancelUrl(URL::route('student.paymentstatus'));
+            return \Redirect::to($redirectUrl);
 
-        $payment = new Payment();
-        $payment->setIntent('Sale')
-            ->setPayer($payer)
-            ->setRedirectUrls($redirect_urls)
-            ->setTransactions(array($transaction));            
-        try {
-            $payment->create($this->_api_context);
-        } catch (\PayPal\Exception\PPConnectionException $ex) {
-            if (\Config::get('app.debug')) {
-                \Session::put('error','Connection timeout');
-                return Redirect::route('student.bookings');                
-            } else {
-                \Session::put('error','Some error occur, sorry for inconvenient');
-                return Redirect::route('student.bookings');                
+        }else{
+            //Payment Through Paypal
+            $payer = new Payer();
+            $payer->setPaymentMethod('paypal');
+
+            $item_1 = new Item();
+
+            $item_1->setName('Online Class')
+                ->setCurrency('USD')
+                ->setQuantity(1)
+                ->setPrice($total_price);
+
+            $item_list = new ItemList();
+            $item_list->setItems(array($item_1));
+
+            $amount = new Amount();
+            $amount->setCurrency('USD')
+                ->setTotal($total_price);
+
+            $transaction = new Transaction();
+            $transaction->setAmount($amount)
+                ->setItemList($item_list)
+                ->setDescription('Enter Your transaction description');
+
+            $redirect_urls = new RedirectUrls();
+            $redirect_urls->setReturnUrl(URL::route('student.paymentstatus'))
+                ->setCancelUrl(URL::route('student.paymentstatus'));
+
+            $payment = new Payment();
+            $payment->setIntent('Sale')
+                ->setPayer($payer)
+                ->setRedirectUrls($redirect_urls)
+                ->setTransactions(array($transaction));
+            try {
+                $payment->create($this->_api_context);
+            } catch (\PayPal\Exception\PPConnectionException $ex) {
+                if (\Config::get('app.debug')) {
+                    \Session::put('error','Connection timeout');
+                    return Redirect::route('student.bookings');
+                } else {
+                    \Session::put('error','Some error occur, sorry for inconvenient');
+                    return Redirect::route('student.bookings');
+                }
             }
-        }
 
-        foreach($payment->getLinks() as $link) {
-            if($link->getRel() == 'approval_url') {
-                $redirect_url = $link->getHref();
-                break;
+            foreach($payment->getLinks() as $link) {
+                if($link->getRel() == 'approval_url') {
+                    $redirect_url = $link->getHref();
+                    break;
+                }
             }
+
+            Session::put('payment_id', $payment->getId());
+
+            if(isset($redirect_url)) {
+                return Redirect::away($redirect_url);
+            }
+            \Session::put('error','Unknown error occurred');
+
         }
-        
-        Session::put('paypal_payment_id', $payment->getId());
         Session::put('booking_id', $booking->id);
 
-
-        if(isset($redirect_url)) {            
-            return Redirect::away($redirect_url);
-        }
-
-        \Session::put('error','Unknown error occurred');
     	return Redirect::route('student.bookings');
 
     }
 
     public function getPaymentStatus(Request $request)
-    {        
-        $payment_id = Session::get('paypal_payment_id');
+    {
+        $payment_id = Session::get('payment_id');
         $booking_id = Session::get('booking_id');
-       
-        Session::forget('paypal_payment_id');
+
+        Session::forget('payment_id');
         if (empty($request->input('PayerID')) || empty($request->input('token'))) {
             \Session::put('error','Payment failed');
             return Redirect::route('student.bookings');
         }
-        $payment = Payment::get($payment_id, $this->_api_context);        
+        $payment = Payment::get($payment_id, $this->_api_context);
         $execution = new PaymentExecution();
-        $execution->setPayerId($request->input('PayerID'));        
+        $execution->setPayerId($request->input('PayerID'));
         $result = $payment->execute($execution, $this->_api_context);
-        
-        if ($result->getState() == 'approved') {         
+
+
+        if ($result->getState() == 'approved') {
             \Session::put('success','Payment success');
 
             $classroom_id = sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
@@ -267,6 +323,13 @@ class BookingController extends Controller
             // return $red;
             $booking = Booking::where('id',$booking_id)->first();
             $subject = Subject::where('id',$booking->subject_id)->first();
+
+            Payments::create([
+                'booking_id' => $booking->id,
+                'transaction_id' => $result->id,
+                'amount'  => $result->transactions[0]->amount->total,
+                'method'  => 'paypal'
+            ]);
 
             Classroom::create([
                 'booking_id' => $booking_id,
@@ -297,18 +360,22 @@ class BookingController extends Controller
             $admin_slug = URL::to('/') . '/admin/booking-detail/' . $booking->id;
             $notification->GeneralNotifi($admin->id,$admin_slug,$type,$title,$icon,$class,$desc,$pic);
 
+
+
             return Redirect::route('student.bookings');
         }
         \Session::put('error','Payment failed !!');
 		return Redirect::route('student.bookings');
     }
+
+
     public function history()
     {
         $tickets = supportTkts::where('user_id',Auth::user()->id)->with(['category','tkt_created_by'])->get();
-        
+
         return view('student.pages.history.index',compact('tickets'));
     }
-    
+
 
     public function tutorPlans(Request $request) {
         $plans = subjectPlans::where("user_id", $request->user_id)->where("subject_id",$request->subject_id)->get();

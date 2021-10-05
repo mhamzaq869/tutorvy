@@ -64,7 +64,7 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
     Route::get('/tutor/profile/{id}',[TutorController::class,'profile'])->name('admin.tutorProfile');
     Route::get('/tutor/{id}/subjects/',[TutorController::class,'subjects'])->name('admin.tutorSubjects');
 
-    Route::post('/tutor-plans/',[TutorController::class,'showTutorPlans'])->name('admin.tutor.plans');
+    Route::post('/tutor-plans',[TutorController::class,'showTutorPlans'])->name('admin.tutor.plans');
 
     Route::get('tutor/request/{id}/{assess_id?}',[TutorController::class,'tutorRequest'])->name('admin.tutorRequest');
     Route::get('tutor/assessment/{assessment_id}',[TutorController::class,'tutorAssessment'])->name('admin.tutotAssessment');
@@ -132,7 +132,7 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
 
     Route::get('/knowledge',[KnowledgeController::class,'index'])->name('admin.knowledge');
     Route::get('/support',[SupportController::class,'index'])->name('admin.support');
-    
+
     Route::get('/ticket/{id}',[SupportController::class,'ticket'])->name('admin.ticket');
 
     Route::get('/ticket-reply',[SupportController::class,'ticketReply'])->name('admin.ticketReply');
@@ -172,7 +172,7 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::get('/booking',[BookingController::class,'index'])->name('tutor.booking');
     Route::get('/booking-detail/{id}',[BookingController::class,'bookingDetail'])->name('tutor.booking.detail');
     Route::get('/booking-accept/{id}',[BookingController::class,'acceptBooking'])->name('tutor.booking.accept');
-    // 
+    //
     Route::post('/get-booking',[BookingController::class,'getBookingDetail'])->name('tutor.getBookingDetail');
 
 
@@ -196,7 +196,7 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
 
     //Profile Routes
     Route::get('/profile',[ProfileController::class,'index'])->name('tutor.profile');
-    
+
     Route::post('/updateprofile/{id}',[ProfileController::class,'profileUpdate'])->name('tutor.profile.update');
 
     Route::post('/updateedu/{id}',[ProfileController::class,'updateProfileEdu'])->name('tutor.profile.edu');
@@ -208,7 +208,7 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
 
     Route::get('/call',[TutorSettingController::class,'call'])->name('tutor.call');
     Route::get('/class/{class_room_id}',[TutorSettingController::class,'start_class'])->name('tutor.start_class');
-    Route::post('/save-class-logs',[TutorSettingController::class,'saveClassLogs'])->name('tutor.class.logs');
+    Route::post('/save-class-logs',[ClassController::class,'saveClassLogs'])->name('tutor.class.logs');
 
     Route::get('/whiteBoard',[TutorSettingController::class,'whiteBoard'])->name('tutor.whiteBoard');
 
@@ -217,7 +217,7 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::get('/get-categories',[TutorSettingController::class,'getAllCategories'])->name('tutor.categories');
     Route::post('/save-ticket',[TutorSettingController::class,'saveTicket'])->name('tutor.save.ticket');
 
-    Route::get('/ticket/{id}',[TutorSettingController::class,'ticket'])->name('tutor.ticket');    
+    Route::get('/ticket/{id}',[TutorSettingController::class,'ticket'])->name('tutor.ticket');
 });
 
 /*
@@ -244,15 +244,15 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
 
     //Bookings
     Route::get('/bookings',[StudentBookingController::class,'index'])->name('student.bookings');
-    
+
     Route::get('/book-now/{id}',[StudentBookingController::class,'bookNow'])->name('student.book-now');
     Route::post('/bookNew',[StudentBookingController::class,'bookingNew'])->name('student.book-new');
     Route::post('/tutor-plan',[StudentBookingController::class,'tutorPlans'])->name('student.tutor.plans');
 
     Route::get('/booking-detail/{id}',[StudentBookingController::class,'bookingDetail'])->name('student.booking-detail');
     Route::get('/booking/{id}/tutor',[StudentBookingController::class,'directBooking'])->name('student.direct.booking');
-    
-    Route::get('/booking/payment/{id}',[StudentBookingController::class,'bookingPayment'])->name('student.booking.payment');
+
+    Route::post('/booking/payment/{id}',[StudentBookingController::class,'bookingPayment'])->name('student.booking.payment');
 
     Route::get('/booking/paymentstatus',[StudentBookingController::class,'getPaymentStatus'])->name('student.paymentstatus');
 
@@ -261,7 +261,7 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
 
     Route::get('/classroom',[StudentClassController::class,'index'])->name('student.classroom');
     Route::get('/wallet',[StudentClassController::class,'payment'])->name('student.wallet');
-    
+
     Route::post('/save-review',[StudentClassController::class,'saveReview'])->name('student.save.review');
 
     Route::get('/calendar',[CalendarController::class,'calendarStudent'])->name('student.calendar');
@@ -288,8 +288,8 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
 
     Route::get('/get-categories',[StudentSettingController::class,'getAllCategories'])->name('student.categories');
     Route::post('/save-ticket',[StudentSettingController::class,'saveTicket'])->name('student.save.ticket');
-    
-    
+
+
     Route::get('/support-tickets',[StudentBookingController::class,'history'])->name('student.history');
 
     Route::post('/fav-tutor',[StudentSettingController::class,'favouriteTutor'])->name('student.fav.tutor');

@@ -11,6 +11,8 @@ use App\Models\Activitylogs;
 use App\Models\Classroom;
 use App\Models\Booking;
 use App\Models\User;
+use App\Models\ClassroomLogs;
+
 class ClassController extends Controller
 {
       /**
@@ -29,5 +31,20 @@ class ClassController extends Controller
         ->count();
 
         return view('tutor.pages.classroom.index',compact('classes','user','delivered_classess'));
+    }
+
+    public function saveClassLogs(Request $request) {
+
+        ClassroomLogs::create([
+            "class_room_id" => $request->class_room_id, 
+            "tutor_join_time" => $request->tutor_join_time,
+        ]);
+
+        return response()->json([
+            "message" => "Classroom logs saved",
+            "status_code" => 200,
+            "success" => true,
+        ]);
+
     }
 }
