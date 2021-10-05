@@ -472,7 +472,7 @@
                                                     <label for="exampleName">First Name</label>
                                                     <input type="text" name="first_name" class="form-control"
                                                         value="{{ Auth::user()->first_name }}" id="exampleName"
-                                                        aria-describedby="emailHelp" required="required">
+                                                        aria-describedby="emailHelp" required="required" placeholder="First Name" style="text-transform: capitalize;">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -480,7 +480,7 @@
                                                     <label for="exampleName">Last Name</label>
                                                     <input type="text" name="last_name" class="form-control"
                                                         value="{{ Auth::user()->last_name }}" id="exampleName"
-                                                        aria-describedby="emailHelp" required="required">
+                                                        aria-describedby="emailHelp" required="required" placeholder="Last Name" style="text-transform: capitalize;">
                                                 </div>
                                             </div>
 
@@ -524,7 +524,7 @@
 
                                             <div class="col-md-12 my-3">
                                                 <input id="phone" name="phone" type="tel"
-                                                    value="{{ Auth::user()->phone ?? '' }}" required="required">
+                                                    value="{{ Auth::user()->phone ?? '' }}" required="required" placeholder="+1425632****">
 
                                             </div>
 
@@ -887,6 +887,7 @@
         (function() {
             var user_language_code = "{{ Auth::user()->language ?? 'en-US' }}";
             var option = '';
+            option += '<option value="" selected disabled>Select Language</option>';
             for (var language_code in languages_list) {
                 var selected = (language_code == user_language_code) ? ' selected' : '';
                 option += '<option value="' + language_code + '"' + selected + '>' + languages_list[language_code] +
