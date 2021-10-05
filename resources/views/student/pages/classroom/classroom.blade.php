@@ -1636,9 +1636,12 @@ designer.appendTo(document.getElementById('widget-container'), function() {
             if (error) {
                 if (error === connection.errors.ROOM_NOT_AVAILABLE) {
                     alert('This room does not exist. Please either create it or wait for moderator to enter in the room.');
+                    window.location.href="{{route('student.classroom')}}";
+                    
                     return;
                 }
                 if (error === connection.errors.ROOM_FULL) {
+                    window.location.href="{{route('student.classroom')}}";
                     alert('Room is full.');
                     return;
                 }
@@ -1650,6 +1653,7 @@ designer.appendTo(document.getElementById('widget-container'), function() {
                     }
                     connection.join(roomid, function(isRoomJoined, roomid, error) {
                         if(error) {
+                            window.location.href="{{route('student.classroom')}}";
                             alert(error);
                         }
                     });
