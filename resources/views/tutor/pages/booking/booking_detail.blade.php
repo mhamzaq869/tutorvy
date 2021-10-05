@@ -46,9 +46,9 @@
                                             <div class="row image1 mt-3 ml-1">
                                                 <p>
                                                     @if($booking->user->picture)
-                                                    <img src="{{asset($booking->user->picture)}}" alt="boy" style="width: 35px;border-radius: 30px;">
+                                                    <img src="{{asset($booking->user->picture)}}" alt="boy" class="profile-img" >
                                                     @else
-                                                    <img src="{{asset('assets/images/ico/Square-white.jpg')}}" alt="boy" style="width: 35px;border-radius: 30px;">
+                                                    <img src="{{asset('assets/images/ico/Square-white.jpg')}}" alt="boy" class="profile-img" >
                                                     @endif
                                                 <p style="color: #00132D; font-family: Poppins;font-size: 14px;font-weight: 500;"
                                                     class="ml-2 "> {{$booking->user->full_name}}</p>
