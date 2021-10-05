@@ -263,7 +263,7 @@
                                         </div>
                                 </div>
 
-                                <div class="row mb-3">
+                                <!-- <div class="row mb-3">
                                         <div class="col-md-12">
                                             <hr>
                                         </div>
@@ -343,7 +343,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
