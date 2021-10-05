@@ -1,6 +1,11 @@
 @extends('student.layouts.app')
 <link href="{{ asset('assets/css/registration.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/css/booknow.css') }}" rel="stylesheet">
+<style>
+    .round {
+    left: 20px !important;
+}
+</style>
 @section('content')
  <!-- top Fixed navbar End -->
  <div class="content-wrapper " style="overflow: hidden;">
@@ -327,21 +332,9 @@
                                                 <div class="card-body">
                                                     <div class="text-center">
                                                         <img src="{{asset ('assets/images/payment-icon/paypal2.png')}}" class="w-50" alt="">
-                                                        <!-- <span class="payment-menu dropdown d-flex"> 
-                                                            <a class=" d-flex" href="#" data-toggle="dropdown" aria-expanded="true">
-                                                                <img src="{{asset ('assets/images/payment-icon/menu_dots.png')}}" alt="">
-                                                            </a>
-                                                            <ul class="dropdown-menu  " >
-                                                                <li>
-                                                                    <a tabindex="-1" class="" href="">
-                                                                        Delete
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </span> -->
                                                         <span class="round">
-                                                            <input type="checkbox" id="checkbox1" checked />
-                                                            <label for="checkbox1"></label>
+                                                            <input type="radio" id="checkbox1" name="paymentRadio" checked />
+                                                            
                                                         </span>
                                                     </div>
                                                 </div>
@@ -352,21 +345,9 @@
                                                 <div class="card-body">
                                                     <div class="text-center">
                                                         <img src="{{asset ('assets/images/payment-icon/skrill.png')}}" class="w-50" alt="">
-                                                        <!-- <span class="payment-menu dropdown d-flex"> 
-                                                            <a class=" d-flex" href="#" data-toggle="dropdown" aria-expanded="true">
-                                                                <img src="{{asset ('assets/images/payment-icon/menu_dots.png')}}" alt="">
-                                                            </a>
-                                                            <ul class="dropdown-menu  " >
-                                                                <li>
-                                                                    <a tabindex="-1" class="" href="">
-                                                                        Delete
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </span> -->
                                                         <span class="round">
-                                                            <input type="checkbox" id="checkbox2" disabled/>
-                                                            <label for="checkbox2"></label>
+                                                            <input type="radio" id="checkbox2" name="paymentRadio" />
+                                                            
                                                         </span>
                                                     </div>
                                                 </div>

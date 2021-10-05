@@ -60,19 +60,20 @@
     margin: 5px;
 }
 
+
 #conversation-panel {
     margin-bottom: 20px;
     text-align: left;
     max-height: 365px;
-    overflow: auto;
-    border-top: 1px solid #E5E5E5;
-    width: 100%;
+    /* overflow: auto; */
+    /* border-top: 1px solid #E5E5E5; */
+    /* width: 100%; */
 }
 
 #conversation-panel .message {
-    border-bottom: 1px solid #E5E5E5;
-    padding: 5px 10px;
-
+    /* border-bottom: 1px solid #E5E5E5; */
+    /* padding: 5px 10px; */
+    /* margin-right: 15px; */
 }
 .bg-chat-head{
     background-color:#fefefe !important;
@@ -328,6 +329,72 @@ height:25px;
         width:100%;
     }
 /**Code Editor style */
+/* Chat Box */
+.sender{
+            float:right;
+            max-width: 75%;
+        }
+        .reciever {
+            max-width: 75%;
+
+        }
+        .reciever p,
+        .sender p {
+            min-width: 100px;
+            border: 1px solid #6EAAFF;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        .sender p{
+            border: 1px solid #D3D8DF;
+
+        }
+        .reciever p:hover,
+        .sender p:hover {
+            cursor: pointer;
+        }
+        .recDull{
+            position: absolute;
+            left: 34%;
+            color: #BCC0C7;
+        }
+        .dull {
+            /* position: absolute;
+            right: 2%; */
+            color: #BCC0C7;
+        }
+        .chatTime {
+            float: right;
+            font-size: 12px;
+        }
+        .line-box2 {
+            border-bottom: 1px solid #D6DBE2;
+            margin-bottom: 10px;
+        }
+        .textMenu2 {
+            color: #00132D;
+            position: absolute;
+            top: 28%;
+            left: 45%;
+            display: none;
+        }
+        .textMenu {
+            color: #00132D;
+            position: absolute;
+            top: 40%;
+            right: 53%;
+        }
+        .textMenu2 i,
+        .textMenu i {
+            font-size: 22px;
+        }
+        /* Textarea */
+        .emojionearea .emojionearea-editor{
+            margin-right:51px !important;
+        }
+        /* Textarea End*/
+
+        /*Chat Box End */
 </style>
 @section('content')
  <!-- top Fixed navbar End -->
@@ -597,18 +664,21 @@ height:25px;
                                 <div class="card-header bg-chat-head">
                                     Chat <i class="fa fa-person"></i>
                                 </div>
-                                <div class="card-body h-290" id="conversation-panel">
-                                    <div class='text-center mb-3'>
-                                        <small>
-                                            Your all communications will be monitored for maintaining quality, will not share your personal information. 
-                                        </small>
-                                        <small>
-                                            <a href="#">View Privacy Policy</a>
-                                        </small>
-                                    </div>
-                                    <div id="key-press" style="text-align: right; display: none; font-size: 11px;">
-                                        <span style="vertical-align: middle;"></span>
-                                        <img src="https://www.webrtc-experiment.com/images/key-press.gif" style="height: 12px; vertical-align: middle;">
+                                <div class="card-body" >
+
+                                    <div class="row  h-290" id="conversation-panel">
+                                        <div class='text-center col-md-12 mb-3'>
+                                            <small>
+                                                Your all communications will be monitored for maintaining quality, will not share your personal information. 
+                                            </small>
+                                            <small>
+                                                <a href="#">View Privacy Policy</a>
+                                            </small>
+                                        </div>
+                                        <div id="key-press" class="col-md-12" style="text-align: right; display: none; font-size: 11px;">
+                                            <span style="vertical-align: middle;"></span>
+                                            <img src="https://www.webrtc-experiment.com/images/key-press.gif" style="height: 12px; vertical-align: middle;">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="card-footer bg-chat-head">
@@ -618,8 +688,8 @@ height:25px;
                                             <div id="check"></div>
                                             <a type="button" id="btn-chat-message" disabled><i class="fa fa-paper-plane-o paper" aria-hidden="true"></i></a>
                                             <a id="btn-attach-file" type="button"><i class="fa fa-paperclip clip" aria-hidden="true"></i></a>
-                                            <!-- <img id="btn-attach-file" src="https://www.webrtc-experiment.com/images/attach-file.png" title="Attach a File"> -->
-                                            <img id="btn-share-screen" src="https://www.webrtc-experiment.com/images/share-screen.png" title="Share Your Screen">
+                                            <!-- <img id="btn-attach-file" src="https://www.webrtc-experiment.com/images/attach-file.png" title="Attach a File">
+                                            <img id="btn-share-screen" src="https://www.webrtc-experiment.com/images/share-screen.png" title="Share Your Screen"> -->
 
                                         </div>
                                     </div>
@@ -1144,11 +1214,15 @@ var conversationPanel = document.getElementById('conversation-panel');
 function appendChatMessage(event, checkmark_id) {
     var div = document.createElement('div');
 
-    div.className = 'message';
+    div.className = 'message col-md-12';
 
     if (event.data) {
-        div.innerHTML = '<b>' + (event.extra.userFullName || event.userid) + ':</b><br>' + event.data.chatMessage;
-
+        // div.innerHTML = '<b>' + (event.extra.userFullName || event.userid) + ':</b><br>' + event.data.chatMessage;
+        div.innerHTML = `<div class="reciever pull-left">
+                            <small>From `+ (event.extra.userFullName || event.userid) +`</small>
+                            <p class="senderText mb-0">`+event.data.chatMessage+`</p>
+                            <small class="dull">1min ago</small>
+                        </div>`
         if (event.data.checkmark_id) {
             connection.send({
                 checkmark: 'received',
@@ -1156,8 +1230,13 @@ function appendChatMessage(event, checkmark_id) {
             });
         }
     } else {
-        div.innerHTML = '<b>You:</b> <img class="checkmark" id="' + checkmark_id + '" title="Received" src="https://www.webrtc-experiment.com/images/checkmark.png"><br>' + event;
-        div.style.background = '#cbffcb';
+        // div.innerHTML = '<b>You:</b> <img class="checkmark" id="' + checkmark_id + '" title="Received" src="https://www.webrtc-experiment.com/images/checkmark.png"><br>' + event;
+        // div.style.background = '#cbffcb';
+        div.innerHTML =    `<div class="sender">
+                                            <small>From Me <img class="checkmark" id="' + checkmark_id + '" title="Received" src="https://www.webrtc-experiment.com/images/checkmark.png"></small>
+                                            <p class="senderText mb-0">`+ event+` </p>
+                                            <small class="dull">1min ago</small>
+                                        </div>`
     }
 
     conversationPanel.appendChild(div);
@@ -1256,13 +1335,18 @@ document.getElementById('btn-attach-file').onclick = function() {
 
 function getFileHTML(file) {
     var url = file.url || URL.createObjectURL(file);
-    var attachment = '<a href="' + url + '" target="_blank" download="' + file.name + '">Download: <b>' + file.name + '</b></a>';
+    var attachName= '<a href="' + url + '" target="_blank" download="' + file.name + '" style="color:inherit;"><small>' + file.name + '</small></a>';
+    var attachment = '';
+
     if (file.name.match(/\.jpg|\.png|\.jpeg|\.gif/gi)) {
-        attachment += '<br><img crossOrigin="anonymous" src="' + url + '">';
+        attachment += `<img crossOrigin="anonymous" src="` + url + `">
+        `+attachName+` `;
     } else if (file.name.match(/\.wav|\.mp3/gi)) {
-        attachment += '<br><audio src="' + url + '" controls></audio>';
+        attachment += `<audio src="` + url + `" controls></audio>
+        `+attachName+``;
     } else if (file.name.match(/\.pdf|\.js|\.txt|\.sh/gi)) {
-        attachment += '<iframe class="inline-iframe" src="' + url + '"></iframe></a>';
+        attachment += `<iframe class="inline-iframe" src="` + url + `"></iframe></a>
+        `+attachName+``;
     }
     return attachment;
 }
@@ -1280,8 +1364,15 @@ connection.onFileEnd = function(file) {
     var div = progressHelper[file.uuid].div;
 
     if (file.userid === connection.userid) {
-        div.innerHTML = '<b>You:</b><br>' + html;
-        div.style.background = '#cbffcb';
+        // div.innerHTML = '<b>You:</b><br>' + html;
+        // div.style.background = '#cbffcb';
+        div.innerHTML =   `<div class="sender">
+                            <small>From me</small>
+                            <p class="senderText mb-0 text-center">
+                                `+html+`
+                            </p>
+                            <small class="dull">1min ago</small>
+                        </div>`;
 
         if(recentFile) {
             recentFile.userIndex++;
@@ -1297,7 +1388,14 @@ connection.onFileEnd = function(file) {
             recentFile = null;
         }
     } else {
-        div.innerHTML = '<b>' + getFullName(file.userid) + ':</b><br>' + html;
+        // div.innerHTML = '<b>' + getFullName(file.userid) + ':</b><br>' + html;
+        div.innerHTML =   `<div class="reciever pull-left">
+                            <small>From `+getFullName(file.userid) + `</small>
+                            <p class="senderText mb-0 text-center">
+                                `+html+`
+                            </p>
+                            <small class="dull">1min ago</small>
+                        </div>`;
     }
 };
 
@@ -1314,7 +1412,7 @@ connection.onFileProgress = function(chunk, uuid) {
 
 connection.onFileStart = function(file) {
     var div = document.createElement('div');
-    div.className = 'message';
+    div.className = 'message col-md-12';
 
     if (file.userid === connection.userid) {
         var userFullName = file.remoteUserId;
@@ -1322,10 +1420,24 @@ connection.onFileStart = function(file) {
             userFullName = connection.peersBackup[file.remoteUserId].extra.userFullName;
         }
 
-        div.innerHTML = '<b>You (to: ' + userFullName + '):</b><br><label>0%</label> <progress></progress>';
-        div.style.background = '#cbffcb';
+        // div.innerHTML = '<b>You (to: ' + userFullName + '):</b><br><label>0%</label> <progress></progress>';
+        // div.style.background = '#cbffcb';
+        div.innerHTML = `<div class="sender">
+                            <small>From me</small>
+                            <p class="senderText mb-0">
+                                <label>0%</label> <progress></progress>
+                            </p>
+                            <small class="dull">3min ago</small>
+                        </div>`;
     } else {
-        div.innerHTML = '<b>' + getFullName(file.userid) + ':</b><br><label>0%</label> <progress></progress>';
+        // div.innerHTML = '<b>' + getFullName(file.userid) + ':</b><br><label>0%</label> <progress></progress>';
+        div.innerHTML = `<div class="reciever pull-left">
+                            <small>`+getFullName(file.userid) +`</small>
+                            <p class="senderText mb-0">
+                                <label>0%</label> <progress></progress>
+                            </p>
+                            <small class="dull">3min ago</small>
+                        </div>`
     }
 
     div.title = file.name;

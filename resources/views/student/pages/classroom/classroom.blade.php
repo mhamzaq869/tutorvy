@@ -391,6 +391,13 @@ height:25px;
         .textMenu i {
             font-size: 22px;
         }
+
+        /* Textarea */
+        .emojionearea .emojionearea-editor{
+            margin-right:51px !important;
+        }
+        /* Textarea End*/
+
         /*Chat Box End */
 </style>
 @section('content')
@@ -691,9 +698,9 @@ height:25px;
                                 <div class="card-header bg-chat-head">
                                     Chat <i class="fa fa-person"></i>
                                 </div>
-                                <div class="card-body h-290" >
+                                <div class="card-body" >
                                     
-                                    <div class="row" id="conversation-panel">
+                                    <div class="row  h-290" id="conversation-panel">
                                         <div class='text-center col-md-12 mb-3'>
                                             <small>
                                                 Your all communications will be monitored for maintaining quality, will not share your personal information. 
@@ -930,6 +937,7 @@ height:25px;
     var editor2 = ace.edit("editor2");
     editor2.setTheme("ace/theme/monokai");
     editor2.session.setMode("ace/mode/javascript");
+
     $(document).ready(function(){
         
         // $(".tech_weck").hide();
@@ -1364,16 +1372,16 @@ function appendChatMessage(event, checkmark_id) {
         // div.innerHTML = '<b>From me:</b> <br> <span>' + event+ '</span>';
         // div.style.background = '#cbffcb';
         div.innerHTML =    `<div class="sender">
-                                            <small>From Me</small>
+                                            <small>From Me <img class="checkmark" id="' + checkmark_id + '" title="Received" src="https://www.webrtc-experiment.com/images/checkmark.png"></small>
                                             <p class="senderText mb-0">`+ event+` </p>
                                             <small class="dull">1min ago</small>
                                         </div>`
     }
 
     conversationPanel.appendChild(div);
-
-    conversationPanel.scrollTop = conversationPanel.clientHeight;
-    conversationPanel.scrollTop = conversationPanel.scrollHeight - conversationPanel.scrollTop;
+    // conversationPanel.scrollTop('300');
+    conversationPanel.scrollTop = conversationPanel.scrollHeight;
+    // conversationPanel.scrollTop = conversationPanel.scrollHeight - conversationPanel.scrollTop;
 }
 
 var keyPressTimer;
@@ -1466,13 +1474,18 @@ document.getElementById('btn-attach-file').onclick = function() {
 
 function getFileHTML(file) {
     var url = file.url || URL.createObjectURL(file);
-    var attachment = '<a href="' + url + '" target="_blank" download="' + file.name + '">Download: <b>' + file.name + '</b></a>';
+    var attachName= '<a href="' + url + '" target="_blank" download="' + file.name + '" style="color:inherit;"><small>' + file.name + '</small></a>';
+    var attachment = '';
+
     if (file.name.match(/\.jpg|\.png|\.jpeg|\.gif/gi)) {
-        attachment += '<br><img crossOrigin="anonymous" src="' + url + '">';
+        attachment += `<img crossOrigin="anonymous" src="` + url + `">
+        `+attachName+` `;
     } else if (file.name.match(/\.wav|\.mp3/gi)) {
-        attachment += '<br><audio src="' + url + '" controls></audio>';
+        attachment += `<audio src="` + url + `" controls></audio>
+        `+attachName+``;
     } else if (file.name.match(/\.pdf|\.js|\.txt|\.sh/gi)) {
-        attachment += '<iframe class="inline-iframe" src="' + url + '"></iframe></a>';
+        attachment += `<iframe class="inline-iframe" src="` + url + `"></iframe></a>
+        `+attachName+``;
     }
     return attachment;
 }
@@ -1493,7 +1506,7 @@ connection.onFileEnd = function(file) {
         // div.innerHTML = '<b>You:</b><br>' + html;
         div.innerHTML =   `<div class="sender">
                             <small>From me</small>
-                            <p class="senderText mb-0">
+                            <p class="senderText mb-0 text-center">
                                 `+html+`
                             </p>
                             <small class="dull">1min ago</small>
@@ -1517,7 +1530,7 @@ connection.onFileEnd = function(file) {
         // div.innerHTML = '<b>' + getFullName(file.userid) + ':</b><br>' + html;
         div.innerHTML =   `<div class="reciever pull-left">
                             <small>From `+getFullName(file.userid) + `</small>
-                            <p class="senderText mb-0">
+                            <p class="senderText mb-0 text-center">
                                 `+html+`
                             </p>
                             <small class="dull">1min ago</small>

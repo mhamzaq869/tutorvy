@@ -2434,7 +2434,7 @@ select#paymentMethod option[value="others"] {
 .round {
     position: absolute;
     top: 10px;
-    left: 10px;
+    left: 0px;
 }
 
 .round label {
@@ -2474,6 +2474,11 @@ select#paymentMethod option[value="others"] {
 
 .round input[type="checkbox"]:checked+label:after {
     opacity: 1;
+}
+
+.round input[type="radio"] {
+    width: 20px !important;
+    height: 20px;
 }
 
 .payment-menu {

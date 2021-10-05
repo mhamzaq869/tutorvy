@@ -569,21 +569,9 @@
                                                 <div class="card-body">
                                                     <div class="text-center">
                                                         <img src="{{asset ('assets/images/payment-icon/paypal2.png')}}" class="w-50" alt="">
-                                                        <!-- <span class="payment-menu dropdown d-flex"> 
-                                                            <a class=" d-flex" href="#" data-toggle="dropdown" aria-expanded="true">
-                                                                <img src="{{asset ('assets/images/payment-icon/menu_dots.png')}}" alt="">
-                                                            </a>
-                                                            <ul class="dropdown-menu  " >
-                                                                <li>
-                                                                    <a tabindex="-1" class="" href="">
-                                                                        Delete
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </span> -->
-                                                        <span class="round">
-                                                            <input type="checkbox" id="checkbox1" checked />
-                                                            <label for="checkbox1"></label>
+                                                        <span class="round form-check">
+                                                            <input type="radio" name="paymentRadio" id="checkbox1" checked />
+                                                            <!-- <label for="checkbox1"></label> -->
                                                         </span>
                                                     </div>
                                                 </div>
@@ -594,21 +582,9 @@
                                                 <div class="card-body">
                                                     <div class="text-center">
                                                         <img src="{{asset ('assets/images/payment-icon/skrill.png')}}" class="w-50" alt="">
-                                                        <!-- <span class="payment-menu dropdown d-flex"> 
-                                                            <a class=" d-flex" href="#" data-toggle="dropdown" aria-expanded="true">
-                                                                <img src="{{asset ('assets/images/payment-icon/menu_dots.png')}}" alt="">
-                                                            </a>
-                                                            <ul class="dropdown-menu  " >
-                                                                <li>
-                                                                    <a tabindex="-1" class="" href="">
-                                                                        Delete
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </span> -->
-                                                        <span class="round">
-                                                            <input type="checkbox" id="checkbox2" disabled/>
-                                                            <label for="checkbox2"></label>
+                                                        <span class="round form-check">
+                                                            <input type="radio" name="paymentRadio" id="checkbox2" />
+                                                            <!-- <label for="checkbox2"></label> -->
                                                         </span>
                                                     </div>
                                                 </div>
