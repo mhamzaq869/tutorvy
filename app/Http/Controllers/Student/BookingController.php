@@ -279,6 +279,7 @@ class BookingController extends Controller
                     break;
                 }
             }
+            Session::put('booking_id', $booking->id);
 
             Session::put('payment_id', $payment->getId());
 
@@ -288,7 +289,8 @@ class BookingController extends Controller
             \Session::put('error','Unknown error occurred');
 
         }
-        Session::put('booking_id', $booking->id);
+        // Session::put('booking_id', $booking->id);
+
 
     	return Redirect::route('student.bookings');
 
