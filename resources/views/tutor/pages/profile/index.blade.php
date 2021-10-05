@@ -834,7 +834,7 @@
                                             @endforeach
                                         @endif
                                         <div class="buttons mb-5">
-                                            <a href="#" class="moreExperience cust_link">+ Add more experience</a>
+                                            <a href="javascript:void(0)" class="moreExperience cust_link">+ Add more experience</a>
                                         </div>
                                         <div class="results"></div>
                                         <div class="row mt-1">
