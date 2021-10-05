@@ -100,9 +100,7 @@
                             <div class="col-xs-2 pull-right">
                                 <div class="notification">
                                     <img src="{{ asset('/admin/assets/img/ico/Notification.png')}}" alt="notification-ico">
-                                    <span class="notification-text">
-                                        4
-                                    </span>
+                                    <span class="notification-text show_notification_counts"> 0 </span>
                                     <ul class="notification-menu navbarNav-1 mt-1">
                                         <li class="container-fluid">
                                             <div class="row nav-row">

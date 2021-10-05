@@ -322,7 +322,12 @@ height:25px;
     border:1px solid red;
 }
 /*End Call Button End*/
-
+/**Code Editor style */
+#editor2 { 
+        height:500px;
+        width:100%;
+    }
+/**Code Editor style */
 </style>
 @section('content')
  <!-- top Fixed navbar End -->
@@ -333,7 +338,7 @@ height:25px;
     <input type="hidden" id="current_user_id" value="{{Auth::user()->id}}">
 
     <div class="content-wrapper " style="overflow: hidden;">
-        <div class="container-fluid">
+        <div class="container-fluidd">
             <div class="row">
                 <div class="col-md-12 text-right">
                     <div id="countdownExample">
@@ -515,12 +520,9 @@ height:25px;
                                         <div class="container-fluid ">
 
                                             <div class="row">
-                                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                                    <pre><code class="language-html">
-                                                        
-                                                    </code></pre>
-                                                    <textarea name="" id="check" cols="30" rows="10" onkeypress="cheng()"></textarea>
-
+                                                <div class="col-md-12 col-sm-12 col-xs-12 mt-5" >
+                                                    <div id="editor2">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -530,9 +532,27 @@ height:25px;
 
                                     <div class="container-fluid ">
 
-                                        <div class="row">
-                                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                                
+                                        <div class="row mt-5">
+                                            <div class="col-md-4 col-sm-12 col-xs-12 text-center  ">
+                                                <img class="mt-2 w-50" src="{{asset('assets/images/ico/docs.png')}}" alt="" >
+                                                <p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi tenetur amet molestiae.</p>
+                                                <button class="mt-2 schedule-btn">
+                                                    Launch Google Docs <i class="fa fa-arrow-right"></i>
+                                                </button>
+                                            </div>
+                                            <div class="col-md-4 col-sm-12 col-xs-12 text-center  ">
+                                                <img class="mt-2 w-50" src="{{asset('assets/images/ico/sheets.png')}}" alt="" >
+                                                <p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi tenetur amet molestiae.</p>
+                                                <button class="mt-2 schedule-btn">
+                                                    Launch Google Sheets <i class="fa fa-arrow-right"></i>
+                                                </button>
+                                            </div>
+                                            <div class="col-md-4 col-sm-12 col-xs-12 text-center  ">
+                                                <img class="mt-2 w-50" src="{{asset('assets/images/ico/slides.png')}}" alt="" >
+                                                <p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi tenetur amet molestiae.</p>
+                                                <button class="mt-2 schedule-btn">
+                                                    Launch Google Slides <i class="fa fa-arrow-right"></i>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -757,10 +777,13 @@ height:25px;
         $("#callModal").modal("show");
         $("#join_now").attr("disabled","disabled" );
 
-        saveClassLogs();
+        // saveClassLogs();
 
     })
-
+// var timerInstance = new easytimer.Timer();
+var editor2 = ace.edit("editor2");
+    editor2.setTheme("ace/theme/monokai");
+    editor2.session.setMode("ace/mode/javascript");
     // $("#join_now").click(function(){
     //     $(".tech_weck").show();;
     //     $("#callModal").modal("hide");
@@ -1017,7 +1040,8 @@ connection.onmessage = function(event) {
     }
 
     if(event.data.call_ended === true){
-        toastr.success("Student has ended the call!");
+        toastr.success("Class has Ended.");
+        window.location.href="{{route('tutor.classroom')}}";
     }
 
     if (event.data.chatMessage) {
@@ -1083,38 +1107,38 @@ connection.onstreamended = function(event) {
     }
 };
 $(".no-vc").click(function(){
-        alert("No vc");
-        var localStream = connection.attachStreams[0];
-        localStream.mute('video');
-    })
-    $(".vc").click(function(){
-        alert("Vc");
-        var localStream = connection.attachStreams[0];
-        localStream.unmute('video'); 
-        
-    })
-    $(".no-mk").click(function(){
-        alert("No mk");
-        var localStream = connection.attachStreams[0];
-        localStream.mute('audio');
-    })
-    $(".mk").click(function(){
-        alert("mk");
-        var localStream = connection.attachStreams[0];
-        localStream.unmute('audio'); 
-        
-    })
-    $("#endCallYes").click(function(){
-        // connection.leave();
-        connection.send({
-            call_ended: true
-        });
-        $("#endCall").modal("hide");
-        toastr.success("Call has Ended Successfully");
+    alert("No vc");
+    var localStream = connection.attachStreams[0];
+    localStream.mute('video');
+})
+$(".vc").click(function(){
+    alert("Vc");
+    var localStream = connection.attachStreams[0];
+    localStream.unmute('video'); 
+    
+})
+$(".no-mk").click(function(){
+    alert("No mk");
+    var localStream = connection.attachStreams[0];
+    localStream.mute('audio');
+})
+$(".mk").click(function(){
+    alert("mk");
+    var localStream = connection.attachStreams[0];
+    localStream.unmute('audio'); 
+    
+})
+$("#endCallYes").click(function(){
+    // connection.leave();
+    connection.send({
+        call_ended: true
+    });
+    $("#endCall").modal("hide");
+    toastr.success("Class has Ended.");
 
-        window.location.href="{{route('tutor.classroom')}}";
+    window.location.href="{{route('tutor.classroom')}}";
 
-    })
+})
 var conversationPanel = document.getElementById('conversation-panel');
 
 function appendChatMessage(event, checkmark_id) {

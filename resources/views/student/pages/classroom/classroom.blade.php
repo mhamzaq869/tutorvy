@@ -63,15 +63,15 @@
     margin-bottom: 20px;
     text-align: left;
     max-height: 365px;
-    overflow: auto;
-    border-top: 1px solid #E5E5E5;
-    width: 100%;
+    /* overflow: auto; */
+    /* border-top: 1px solid #E5E5E5; */
+    /* width: 100%; */
 }
 
 #conversation-panel .message {
-    border-bottom: 1px solid #E5E5E5;
-    padding: 5px 10px;
-    margin-right: 15px;
+    /* border-bottom: 1px solid #E5E5E5; */
+    /* padding: 5px 10px; */
+    /* margin-right: 15px; */
 }
 
 #conversation-panel .message img, #conversation-panel .message video, #conversation-panel .message iframe {
@@ -317,8 +317,81 @@ height:25px;
 .bright input:checked+.slider {
     background-color: #1173ff;
 }
+.rating-stars ul > li{
+    cursor: pointer;
+}
+.rating-stars ul > li.star.selected > i.fa {
+  color:#FF912C;
+}
+
 
 /*Switch End */
+/**Code Editor style */
+    #editor2 { 
+        height:500px;
+        width:100%;
+    }
+/**Code Editor style */
+/* Chat Box */
+        .sender{
+            float:right;
+            max-width: 75%;
+        }
+        .reciever {
+            max-width: 75%;
+
+        }
+        .reciever p,
+        .sender p {
+            min-width: 100px;
+            border: 1px solid #6EAAFF;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        .sender p{
+            border: 1px solid #D3D8DF;
+
+        }
+        .reciever p:hover,
+        .sender p:hover {
+            cursor: pointer;
+        }
+        .recDull{
+            position: absolute;
+            left: 34%;
+            color: #BCC0C7;
+        }
+        .dull {
+            /* position: absolute;
+            right: 2%; */
+            color: #BCC0C7;
+        }
+        .chatTime {
+            float: right;
+            font-size: 12px;
+        }
+        .line-box2 {
+            border-bottom: 1px solid #D6DBE2;
+            margin-bottom: 10px;
+        }
+        .textMenu2 {
+            color: #00132D;
+            position: absolute;
+            top: 28%;
+            left: 45%;
+            display: none;
+        }
+        .textMenu {
+            color: #00132D;
+            position: absolute;
+            top: 40%;
+            right: 53%;
+        }
+        .textMenu2 i,
+        .textMenu i {
+            font-size: 22px;
+        }
+        /*Chat Box End */
 </style>
 @section('content')
  <!-- top Fixed navbar End -->
@@ -326,7 +399,7 @@ height:25px;
      <input type="hidden" id="sbooking_id" value="{{$class->booking_id}}">
 
     <div class="content-wrapper " style="overflow: hidden;">
-        <div class="container-fluid">
+        <div class="container-fluidd">
             <!-- <div class="row">
                 <div class="col-md-12 text-right">
                     <div id="countdownExample">
@@ -507,12 +580,9 @@ height:25px;
                                             <div class="container-fluid ">
 
                                                 <div class="row">
-                                                    <div class="col-md-12 col-sm-12 col-xs-12">
-                                                        <pre><code class="language-html">
-                                                            
-                                                        </code></pre>
-                                                        <textarea name="" id="check" cols="30" rows="10" onkeypress="cheng()"></textarea>
-
+                                                    <div class="col-md-12 col-sm-12 col-xs-12 mt-5">
+                                                        <div id="editor2">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -522,9 +592,27 @@ height:25px;
 
                                         <div class="container-fluid ">
 
-                                            <div class="row">
-                                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                                    
+                                            <div class="row mt-5">
+                                                <div class="col-md-4 col-sm-12 col-xs-12 text-center  ">
+                                                    <img class="mt-2 w-50" src="{{asset('assets/images/ico/docs.png')}}" alt="" >
+                                                    <p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi tenetur amet molestiae.</p>
+                                                    <button class="mt-2 schedule-btn">
+                                                        Launch Google Docs <i class="fa fa-arrow-right"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12 col-xs-12 text-center  ">
+                                                    <img class="mt-2 w-50" src="{{asset('assets/images/ico/sheets.png')}}" alt="" >
+                                                    <p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi tenetur amet molestiae.</p>
+                                                    <button class="mt-2 schedule-btn">
+                                                        Launch Google Sheets <i class="fa fa-arrow-right"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12 col-xs-12 text-center  ">
+                                                    <img class="mt-2 w-50" src="{{asset('assets/images/ico/slides.png')}}" alt="" >
+                                                    <p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi tenetur amet molestiae.</p>
+                                                    <button class="mt-2 schedule-btn">
+                                                        Launch Google Slides <i class="fa fa-arrow-right"></i>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -603,19 +691,23 @@ height:25px;
                                 <div class="card-header bg-chat-head">
                                     Chat <i class="fa fa-person"></i>
                                 </div>
-                                <div class="card-body h-290" id="conversation-panel">
-                                    <div class='text-center mb-3'>
-                                        <small>
-                                            Your all communications will be monitored for maintaining quality, will not share your personal information. 
-                                        </small>
-                                        <small>
-                                            <a href="#">View Privacy Policy</a>
-                                        </small>
+                                <div class="card-body h-290" >
+                                    
+                                    <div class="row" id="conversation-panel">
+                                        <div class='text-center col-md-12 mb-3'>
+                                            <small>
+                                                Your all communications will be monitored for maintaining quality, will not share your personal information. 
+                                            </small>
+                                            <small>
+                                                <a href="#">View Privacy Policy</a>
+                                            </small>
+                                        </div>
+                                        <div id="key-press" class="col-md-12" style="text-align: right; display: none; font-size: 11px;">
+                                            <span style="vertical-align: middle;"></span>
+                                            <img src="https://www.webrtc-experiment.com/images/key-press.gif" style="height: 12px; vertical-align: middle;">
+                                        </div>
                                     </div>
-                                    <div id="key-press" style="text-align: right; display: none; font-size: 11px;">
-                                        <span style="vertical-align: middle;"></span>
-                                        <img src="https://www.webrtc-experiment.com/images/key-press.gif" style="height: 12px; vertical-align: middle;">
-                                    </div>
+                                    
                                 </div>
                                 <div class="card-footer bg-chat-head">
                                     <div class="row">
@@ -625,7 +717,7 @@ height:25px;
                                             <a type="button" id="btn-chat-message" disabled><i class="fa fa-paper-plane-o paper" aria-hidden="true"></i></a>
                                             <a id="btn-attach-file" type="button"><i class="fa fa-paperclip clip" aria-hidden="true"></i></a>
                                             <!-- <img id="btn-attach-file" src="https://www.webrtc-experiment.com/images/attach-file.png" title="Attach a File"> -->
-                                            <img id="btn-share-screen" src="https://www.webrtc-experiment.com/images/share-screen.png" title="Share Your Screen">
+                                            <!-- <img id="btn-share-screen" src="https://www.webrtc-experiment.com/images/share-screen.png" title="Share Your Screen"> -->
                                         </div>
                                     </div>
                                 </div>
@@ -709,7 +801,11 @@ height:25px;
                 <div class="modal-body bg-black" >
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <img src="{{asset($user->picture)}}" class="profile-img pg" alt="">
+                            @if($user->picture)
+                                <img src="{{asset($user->picture)}}" class="profile-img pg" alt="">
+                            @else
+                                <img src="{{asset('assets/images/ico/Square-white.jpg')}}" class="profile-img pg" alt="">
+                            @endif
                         </div>
                         <div class="col-md-12 text-center mt-3 ">
 
@@ -763,30 +859,30 @@ height:25px;
                                                 <div class='rating-stars text-center '>
                                                     <ul id='stars-ul'>
                                                         
-                                                        <li class='star star-review ' title='Poor' data-value='1'>
-                                                            <a href="#" class="ml-0">
-                                                                <i class="fa fa-star bigStar text-yellow "></i>
-                                                            </a>
+                                                        <li class='star star-review selected' title='Poor' data-value='1'>
+                                                            <!-- <a href="#" class="ml-0"> -->
+                                                                <i class="fa fa-star bigStar "></i>
+                                                            <!-- </a> -->
                                                         </li>
-                                                        <li class='star star-review ' title='Poor' data-value='2'>
-                                                            <a href="#">
-                                                                <i class="fa fa-star bigStar text-yellow "></i>
-                                                            </a>
+                                                        <li class='star star-review selected' title='Poor' data-value='2'>
+                                                            <!-- <a href="#"> -->
+                                                                <i class="fa fa-star bigStar "></i>
+                                                            <!-- </a> -->
                                                         </li>
-                                                        <li class='star star-review ' title='Poor' data-value='3'>
-                                                             <a href="#">
-                                                                <i class="fa fa-star bigStar  "></i>
-                                                            </a>
+                                                        <li class='star star-review selected' title='Poor' data-value='3'>
+                                                             <!-- <a href="#"> -->
+                                                                <i class="fa fa-star bigStar "></i>
+                                                            <!-- </a> -->
                                                         </li>
-                                                        <li class='star star-review ' title='Poor' data-value='4'>
-                                                             <a href="#">
-                                                                <i class="fa fa-star bigStar  "></i>
-                                                            </a>
+                                                        <li class='star star-review selected' title='Poor' data-value='4'>
+                                                             <!-- <a href="#"> -->
+                                                                <i class="fa fa-star bigStar "></i>
+                                                            <!-- </a> -->
                                                         </li>
-                                                        <li class='star star-review ' title='Poor' data-value='5'>
-                                                            <a href="#">
-                                                                <i class="fa fa-star bigStar  "></i>
-                                                            </a>
+                                                        <li class='star star-review selected' title='Poor' data-value='5'>
+                                                            <!-- <a href="#"> -->
+                                                                <i class="fa fa-star bigStar"></i>
+                                                            <!-- </a> -->
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -794,7 +890,7 @@ height:25px;
                                         </div>
                                     </div>
                                     <textarea class="form-control mt-3" rows="6" cols="50"
-                                        placeholder="Write reason"></textarea>
+                                        id="std_review" placeholder="Write reason"></textarea>
                                 </form>
                             </div>
                         </div>
@@ -831,7 +927,9 @@ height:25px;
 
 <script>
     // var timerInstance = new easytimer.Timer();
-
+    var editor2 = ace.edit("editor2");
+    editor2.setTheme("ace/theme/monokai");
+    editor2.session.setMode("ace/mode/javascript");
     $(document).ready(function(){
         
         // $(".tech_weck").hide();
@@ -865,7 +963,7 @@ height:25px;
         window.location.href="{{route('student.classroom')}}";
     });
 
-    $('#stars li').on('click', function(){
+    $('#stars-ul li').on('click', function(){
         var onStar = parseInt($(this).data('value'), 10);
         var stars = $(this).parent().children('li.star');
         
@@ -877,7 +975,7 @@ height:25px;
             $(stars[i]).addClass('selected');
         }
         
-        var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+        var ratingValue = parseInt($('#stars-ul li.selected').last().data('value'), 10);
         $("#star_rating").val(ratingValue);
         
     });
@@ -892,6 +990,7 @@ height:25px;
             star_rating:star_rating,
             booking_id:booking_id,
         }
+        
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1104,7 +1203,6 @@ connection.onopen = function(event) {
 connection.onclose = connection.onerror = connection.onleave = function(event) {
 
     connection.onUserStatusChanged(event);
-    $("#reviewModal").modal("show");
 
 };
 
@@ -1139,7 +1237,8 @@ connection.onmessage = function(event) {
         return;
     }
     if(event.data.call_ended === true){
-        toastr.success("Tutor has ended the call!");
+        toastr.success("Tutor ended the class.");
+        $("#reviewModal").modal("show");
     }
 
     if (event.data.chatMessage) {
@@ -1206,48 +1305,53 @@ connection.onstreamended = function(event) {
     }
 };
 $(".no-vc").click(function(){
-        alert("No vc");
-        var localStream = connection.attachStreams[0];
-        localStream.mute('video');
-    })
-    $(".vc").click(function(){
-        alert("Vc");
-        var localStream = connection.attachStreams[0];
-        localStream.unmute('video'); 
-        
-    })
-    $(".no-mk").click(function(){
-        alert("No mk");
-        var localStream = connection.attachStreams[0];
-        localStream.mute('audio');
-    })
-    $(".mk").click(function(){
-        alert("mk");
-        var localStream = connection.attachStreams[0];
-        localStream.unmute('audio'); 
-        connection.streamEvents.selectFirst('local').mediaElement.muted=true;
-        connection.streamEvents.selectFirst('local').mediaElement.volume=0;
-        
-    })
-    $("#endCallYes").click(function(){
-        connection.send({
-            call_ended: true
-        });
-        toastr.success("Call has Ended Successfully");
-        $("#reviewModal").modal("show");
-        $("#endCall").modal("hide");
-        
-
-    })
+    alert("No vc");
+    var localStream = connection.attachStreams[0];
+    localStream.mute('video');
+})
+$(".vc").click(function(){
+    alert("Vc");
+    var localStream = connection.attachStreams[0];
+    localStream.unmute('video'); 
+    
+})
+$(".no-mk").click(function(){
+    alert("No mk");
+    var localStream = connection.attachStreams[0];
+    localStream.mute('audio');
+})
+$(".mk").click(function(){
+    alert("mk");
+    var localStream = connection.attachStreams[0];
+    localStream.unmute('audio'); 
+    connection.streamEvents.selectFirst('local').mediaElement.muted=true;
+    connection.streamEvents.selectFirst('local').mediaElement.volume=0;
+    
+})
+$("#endCallYes").click(function(){
+    connection.send({
+        call_ended: true
+    });
+    toastr.success("Class has Ended.");
+    $("#endCall").modal("hide");
+    $("#reviewModal").modal("show");
+    
+})
 var conversationPanel = document.getElementById('conversation-panel');
 
 function appendChatMessage(event, checkmark_id) {
     var div = document.createElement('div');
 
-    div.className = 'message';
+    div.className = 'message col-md-12';
 
     if (event.data) {
-        div.innerHTML = '<b>' + (event.extra.userFullName || event.userid) + ':</b><br>' + event.data.chatMessage;
+        // div.innerHTML = '<b>' + (event.extra.userFullName || event.userid) + ':</b><br>' + event.data.chatMessage;
+        
+        div.innerHTML = `<div class="reciever pull-left">
+                            <small>From `+ (event.extra.userFullName || event.userid) +`</small>
+                            <p class="senderText mb-0">`+event.data.chatMessage+`</p>
+                            <small class="dull">1min ago</small>
+                        </div>`
 
         if (event.data.checkmark_id) {
             connection.send({
@@ -1256,8 +1360,14 @@ function appendChatMessage(event, checkmark_id) {
             });
         }
     } else {
-        div.innerHTML = '<b>You:</b> <img class="checkmark" id="' + checkmark_id + '" title="Received" src="https://www.webrtc-experiment.com/images/checkmark.png"><br>' + event;
-        div.style.background = '#cbffcb';
+        // div.innerHTML = '<b>You:</b> <img class="checkmark" id="' + checkmark_id + '" title="Received" src="https://www.webrtc-experiment.com/images/checkmark.png"><br>' + event;
+        // div.innerHTML = '<b>From me:</b> <br> <span>' + event+ '</span>';
+        // div.style.background = '#cbffcb';
+        div.innerHTML =    `<div class="sender">
+                                            <small>From Me</small>
+                                            <p class="senderText mb-0">`+ event+` </p>
+                                            <small class="dull">1min ago</small>
+                                        </div>`
     }
 
     conversationPanel.appendChild(div);
@@ -1380,8 +1490,15 @@ connection.onFileEnd = function(file) {
     var div = progressHelper[file.uuid].div;
 
     if (file.userid === connection.userid) {
-        div.innerHTML = '<b>You:</b><br>' + html;
-        div.style.background = '#cbffcb';
+        // div.innerHTML = '<b>You:</b><br>' + html;
+        div.innerHTML =   `<div class="sender">
+                            <small>From me</small>
+                            <p class="senderText mb-0">
+                                `+html+`
+                            </p>
+                            <small class="dull">1min ago</small>
+                        </div>`;
+        // div.style.background = '#cbffcb';
 
         if(recentFile) {
             recentFile.userIndex++;
@@ -1397,7 +1514,14 @@ connection.onFileEnd = function(file) {
             recentFile = null;
         }
     } else {
-        div.innerHTML = '<b>' + getFullName(file.userid) + ':</b><br>' + html;
+        // div.innerHTML = '<b>' + getFullName(file.userid) + ':</b><br>' + html;
+        div.innerHTML =   `<div class="reciever pull-left">
+                            <small>From `+getFullName(file.userid) + `</small>
+                            <p class="senderText mb-0">
+                                `+html+`
+                            </p>
+                            <small class="dull">1min ago</small>
+                        </div>`;
     }
 };
 
@@ -1414,7 +1538,7 @@ connection.onFileProgress = function(chunk, uuid) {
 
 connection.onFileStart = function(file) {
     var div = document.createElement('div');
-    div.className = 'message';
+    div.className = 'message col-md-12';
 
     if (file.userid === connection.userid) {
         var userFullName = file.remoteUserId;
@@ -1422,10 +1546,24 @@ connection.onFileStart = function(file) {
             userFullName = connection.peersBackup[file.remoteUserId].extra.userFullName;
         }
 
-        div.innerHTML = '<b>You (to: ' + userFullName + '):</b><br><label>0%</label> <progress></progress>';
-        div.style.background = '#cbffcb';
+        // div.innerHTML = '<b>You (to: ' + userFullName + '):</b><br><label>0%</label> <progress></progress>';
+        div.innerHTML = `<div class="sender">
+                            <small>From me</small>
+                            <p class="senderText mb-0">
+                                <label>0%</label> <progress></progress>
+                            </p>
+                            <small class="dull">3min ago</small>
+                        </div>`;
+        // div.style.border = '1px solid #cbffcb';
     } else {
-        div.innerHTML = '<b>' + getFullName(file.userid) + ':</b><br><label>0%</label> <progress></progress>';
+        // div.innerHTML = '<b>' + getFullName(file.userid) + ':</b><br><label>0%</label> <progress></progress>';
+        div.innerHTML = `<div class="reciever pull-left">
+                            <small>`+getFullName(file.userid) +`</small>
+                            <p class="senderText mb-0">
+                                <label>0%</label> <progress></progress>
+                            </p>
+                            <small class="dull">3min ago</small>
+                        </div>`
     }
 
     div.title = file.name;
@@ -1584,7 +1722,7 @@ function replaceScreenTrack(stream) {
 
         // $('#main-video').hide();
         $('#screen-viewer').hide();
-        $('#btn-share-screen').show();
+        $('#btn-share-screen').hide();
         replaceTrack(tempStream.getTracks()[0], screenTrackId);
     });
 

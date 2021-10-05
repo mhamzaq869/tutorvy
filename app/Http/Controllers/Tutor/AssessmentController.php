@@ -86,18 +86,34 @@ class AssessmentController extends Controller
         $subject = Subject::where('id',$request->subject)->first();
 
         $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
-        $user = User::where('role',1)->first();
+        // $user = User::where('role',1)->first();
+        // $notification = new NotifyController();
+        // $sender_id = Auth::user()->id;
+        // $reciever_id = $user->id;
+        // $slug = '-' ;
+        // $type = 'tutor_submit_assessment';
+        // $data = 'data';
+        // $title = 'Assessment Verification';
+        // $icon = 'fas fa-tag';
+        // $class = 'btn-success';
+        // $desc =  $name . 'Submitted Assessment of ' . $subject->name . ' for Verfication';
+        // $notification->GeneralNotifi($sender_id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
+
+        $admin = User::where('role',1)->first();
+
         $notification = new NotifyController();
-        $sender_id = Auth::user()->id;
-        $reciever_id = $user->id;
-        $slug = '-' ;
+        $reciever_id = $admin->id;
+        $slug = '-';
+
         $type = 'tutor_submit_assessment';
         $data = 'data';
         $title = 'Assessment Verification';
         $icon = 'fas fa-tag';
         $class = 'btn-success';
-        $desc =  $name . 'Submitted Assessment of ' . $subject->name . ' for Verfication';
-        $notification->GeneralNotifi($sender_id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
+        $desc = $name . 'Submitted Assessment of ' . $subject->name . ' for Verfication';
+        $pic = Auth::user()->picture;
+
+        $notification->GeneralNotifi( $reciever_id , $slug ,  $type , $title , $icon , $class ,$desc,$pic);
 
         return response()->json([
             "status_code" => 200,

@@ -214,11 +214,11 @@ messaging.onMessage((payload) => {
                 var url = slug.replace(/[^0-9]/gi, '');
                 var booking_id = parseInt(url, 10);
 
-                get_booking_detail(booking_id,slug);
+                get_booking_detail(booking_id, slug);
             }
 
-            
-           
+
+
 
         }
 
@@ -364,7 +364,7 @@ function get_booking_detail(id, slug) {
             let last_name = '';
             let subject = '';
             var obj = response.booking;
-            if(obj != null && obj != "" && obj != []) {
+            if (obj != null && obj != "" && obj != []) {
 
                 if (obj.user != null && obj.user != [] && obj.user != "") {
                     first_name = obj.user.first_name != null ? obj.user.first_name : '-';
@@ -406,9 +406,9 @@ function get_booking_detail(id, slug) {
             let all_counts = $('.all_counts').text();
             let pending_counts = $('.pending_counts').text();
 
-            if(all_counts == 0) {
+            if (all_counts == 0) {
                 $('#all_counts').text(1);
-            }else{
+            } else {
                 $('#all_counts').text(parseInt(all_counts) + 1);
             }
 

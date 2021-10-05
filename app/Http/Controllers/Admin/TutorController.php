@@ -121,6 +121,7 @@ class TutorController extends Controller
         $assessment->verified_by = \Auth::user()->id;
 
         $assessment->save();
+        // abc
 
         $subject = Subject::where('id',$assessment->subject_id)->first();
 
@@ -144,16 +145,17 @@ class TutorController extends Controller
         }
 
         $notification = new NotifyController();
-        $sender_id = Auth::user()->id;
-        $reciever_id = $request->id;
-        $slug = '-' ;
+        $reciever_id = $assessment->user_id;
+        $slug = '-';
         $type = 'tutor_assessment';
         $data = 'data';
         $title = 'Assessment Verfication';
         $icon = 'fas fa-tag';
         $class = 'btn-success';
-        $desc = $notify_msg;
-        $notification->GeneralNotifi($sender_id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
+        $desc = $notify_msg ;
+        $pic = Auth::user()->picture;
+
+        $notification->GeneralNotifi( $reciever_id , $slug ,  $type , $title , $icon , $class ,$desc,$pic);
 
         return response()->json([
             'status'=>'200',
@@ -214,18 +216,6 @@ class TutorController extends Controller
             $message = 'Tutor Status Disabled.';
             $notify_msg = 'Your Profile is Disabled';
         }
-        
-        // $notification = new NotifyController();
-        // $sender_id = Auth::user()->id;
-        // $reciever_id = $request->id;
-        // $slug = '-' ;
-        // $type = 'tutor_profile_verfication';
-        // $data = 'data';
-        // $title = 'Profile Verfication';
-        // $icon = 'fas fa-tag';
-        // $class = 'btn-success';
-        // $desc = $notify_msg;
-        // $notification->GeneralNotifi($sender_id, $reciever_id , $slug ,  $type , $data , $title , $icon , $class ,$desc);
 
         $notification = new NotifyController();
         $slug = URL::to('/') . '/tutor/profile#v-pills-Verification';
