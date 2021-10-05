@@ -52,7 +52,7 @@ class BookingController extends Controller
         // Skrill Integeration
         $this->skrilRequest = new SkrillRequest();
         $this->skrilRequest->pay_to_email = 'skrill_user_test2@smart2pay.com';
-        $this->skrilRequest->return_url = 'https://webs.dev/student/bookings';
+        $this->skrilRequest->return_url = 'https://tutorvydev.naumanyasin.com/student/bookings';
         $this->skrilRequest->logo_url = 'https://tutorvydev.naumanyasin.com/assets/images/logo/logo.png';
 
 
