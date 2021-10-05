@@ -582,8 +582,8 @@
                                                             </ul>
                                                         </span> -->
                                                         <span class="round">
-                                                            <input id="radio-1" name="paytype" onclick="paymentMethod(this.value)" class="radio-custom" value="0" type="radio" >
-                                                            
+                                                            <input id="checkbox1" name="paytype" onclick="paymentMethod(this.value)" class="radio-custom" value="0" type="radio" >
+
                                                         </span>
                                                     </div>
                                                 </div>
@@ -607,8 +607,7 @@
                                                             </ul>
                                                         </span> -->
                                                         <span class="round">
-                                                            <input name="paytype" onclick="paymentMethod(this.value)" class="radio-custom" value="1" type="radio">
-                                                            
+                                                            <input id="checkbox2" name="paytype" onclick="paymentMethod(this.value)"  value="1" type="radio">
                                                         </span>
                                                     </div>
                                                 </div>

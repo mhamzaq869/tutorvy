@@ -31,7 +31,7 @@
                                     style="margin-top: 10px; text-align: left;color: #00132D;font-size: 22px;font-family: Poppins;font-weight: 500;">
                                     {{$booking->subject->name}} Class</p>
                                 <p style="text-align: right;" class="col-md-6 col-xs-12 class-btn-center">
-                                    
+
                                     <button type="button" data-toggle="modal" data-target="#exampleModalCenter"
                                         class="cencel-btn mr-2" style="font-size: 12px;width: 150px;"> Cancel
                                         Bookings</button>
@@ -40,7 +40,7 @@
                                         class</button>
                                         @if($booking->status == 1)
                                         <button type="button" onclick="pay_now({{$booking->id}})"
-                                        class="schedule-btn" style="font-size: 12px;width: 150px;"> Pay Now 
+                                        class="schedule-btn" style="font-size: 12px;width: 150px;"> Pay Now
                                         </button>
                                         @endif
                                 </p>
@@ -50,7 +50,7 @@
                                     <div class="row">
                                         <div class="col-md-9">
                                             <div class="row image1 mt-3 ">
-                                                
+
                                                 <div class="col-md-1">
                                                      @if ($booking->user->picture)
                                                         <img src="{{asset($booking->user->picture)}}" alt="profile-image"  class="profile-img" >
@@ -78,7 +78,7 @@
                                                 <div class="text3" style="display: flex;">
                                                     <span>
                                                         <img class="book-details"
-                                                        
+
                                                             src="{{ asset('assets/images/ico/Group 4689.png') }}" alt="gros">
                                                         <span class="schedule">
                                                             Schedule Date:
@@ -264,7 +264,7 @@
                             <div class="row">
                                         <div class="col-md-12">
                                             <div class="iconss" style="text-align: center;">
-                                            
+
                                                 <img src="{{asset ('admin/assets/img/ico/doollarss.png')}}" width="60px">
                                                 <p
                                                     style="font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 500;margin-top: 10px;">
@@ -279,46 +279,46 @@
                                             <h3>Class Details</h3>
                                         </div>
                                         <div class="col-md-6 col-6 col-sm-6 ">
-                                            <p class="mb-0">Schedule Date: </p> 
+                                            <p class="mb-0">Schedule Date: </p>
                                         </div>
-                                        <div class="col-md-6 col-6 col-sm-6 text-right" >                                            
+                                        <div class="col-md-6 col-6 col-sm-6 text-right" >
                                             <strong id="scdule_date"></strong>
                                         </div>
                                         <div class="col-md-6 col-6 col-sm-6">
-                                            <p class="mb-0">Schedule Time: </p> 
+                                            <p class="mb-0">Schedule Time: </p>
                                         </div>
                                         <div class="col-md-6 col-6 col-sm-6 text-right" >
                                             <strong id="class_time"></strong>
                                         </div>
                                         <div class="col-md-6 col-6 col-sm-6">
-                                             <p class="">Schedule Duration: </p> 
+                                             <p class="">Schedule Duration: </p>
                                         </div>
-                                        <div class="col-md-6 col-6 col-sm-6 text-right" >    
-                                            <strong id="duration"></strong>                                     
+                                        <div class="col-md-6 col-6 col-sm-6 text-right" >
+                                            <strong id="duration"></strong>
                                         </div>
                                         <div class="col-md-12">
                                             <h3>Payment Details</h3>
                                          </div>
-                                    
+
                                         <div class="col-md-6 col-6 col-sm-6">
-                                            <p class="mb-0">Tutor Fee: </p> 
+                                            <p class="mb-0">Tutor Fee: </p>
                                         </div>
-                                        
+
                                         <div class="col-md-6 col-6 col-sm-6 text-right" >
                                             <strong id="price"></strong>
                                         </div>
 
                                         <div class="col-md-6 col-6 col-sm-6">
                                             <p class="mb-0">Service Fee: <span id="total_commision"></span>
-                                            </p> 
+                                            </p>
                                         </div>
-                                        <div class="col-md-6 col-6 col-sm-6 text-right"> 
+                                        <div class="col-md-6 col-6 col-sm-6 text-right">
                                             <strong id="commission"></strong>
                                         </div>
                                         <div class="col-md-6 col-6 col-sm-6">
-                                            <p class="mb-0">Total Fee: </p> 
+                                            <p class="mb-0">Total Fee: </p>
                                         </div>
-                                        <div class="col-md-6 col-6 col-sm-6 text-right"> 
+                                        <div class="col-md-6 col-6 col-sm-6 text-right">
                                             <strong id="total_price"></strong>
                                         </div>
                                         <div class="col-md-12">
@@ -334,7 +334,6 @@
                                                         <img src="{{asset ('assets/images/payment-icon/paypal2.png')}}" class="w-50" alt="">
                                                         <span class="round">
                                                             <input type="radio" id="checkbox1" name="paymentRadio" checked />
-                                                            
                                                         </span>
                                                     </div>
                                                 </div>
@@ -347,7 +346,7 @@
                                                         <img src="{{asset ('assets/images/payment-icon/skrill.png')}}" class="w-50" alt="">
                                                         <span class="round">
                                                             <input type="radio" id="checkbox2" name="paymentRadio" />
-                                                            
+
                                                         </span>
                                                     </div>
                                                 </div>
@@ -355,11 +354,11 @@
                                         </div>
                                         <div class="col-md-12 text-right mt-3" id="show_pay_btn">
                                         </div>
-                                    
+
                             </div>
                         </div>
                         <div class="mt-4 mb-2" style="text-align: right;">
-                        
+
                         </div>
                     </div>
                 </div>

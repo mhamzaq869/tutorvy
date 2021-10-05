@@ -2434,7 +2434,7 @@ select#paymentMethod option[value="others"] {
 .round {
     position: absolute;
     top: 10px;
-    left: 0px;
+    left: 10px;
 }
 
 .round label {
@@ -2469,9 +2469,7 @@ select#paymentMethod option[value="others"] {
     width: 12px;
 }
 
-.round input[type="radio"] {
-    visibility: hidden;
-}
+
 
 .round input[type="radio"]:checked+label {
     background-color: #1173FF;
