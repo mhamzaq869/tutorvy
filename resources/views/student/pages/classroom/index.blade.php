@@ -434,7 +434,7 @@
                 var total_time = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
                 
                 $("#class_time_"+attr_id).html(total_time);
-
+                
                 if (distance < 0) {
                     clearInterval(x);
 
