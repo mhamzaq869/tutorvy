@@ -218,7 +218,7 @@ class LoginController extends Controller
     */
     private function _registerOrLogin($data,$r)
     {
-        dd($data);
+
         try{
             $user = User::where('email', $data['email'])->where('provider',$data['provider'])->first();
             if(!$user && $r == 0){

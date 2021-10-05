@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Classroom;
-
+use App\Models\Payments;
 class Booking extends Model
 {
     use HasFactory;
@@ -54,11 +54,16 @@ class Booking extends Model
         return $this->hasOne(Classroom::class,'booking_id','id');
     }
 
+    public function Payments()
+    {
+        return $this->belongsTo(Payments::class);
+    }
+
     // Scopes for Filteration
     public function scopeToday($query)
     {
         return $query->where(DB::raw('CAST(created_at as date)'),date('Y-m-d'));
-        
+
     }
     public function scopeTomorrow($query)
     {
