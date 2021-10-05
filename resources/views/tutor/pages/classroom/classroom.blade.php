@@ -893,7 +893,7 @@ var editor2 = ace.edit("editor2");
         } );
         function cheng(){
             var ter = $(this).html();
-            alert(ter);
+            // alert(ter);
             $('.language-html').text(ter);
         }
 </script>
@@ -932,7 +932,7 @@ connection.DetectRTC.load(function() {
                             // enable microphone
                             connection.mediaConstraints.audio = true;
                             connection.session.audio = true;
-                            alert('attach true microphone')
+                            // alert('attach true microphone')
                             $(".no-mk").show();
                             $("#join_now").removeAttr("disabled","disabled" );
                                 $("#join_now").click(function(){
@@ -963,14 +963,14 @@ connection.DetectRTC.load(function() {
                             // enable camera
                             connection.mediaConstraints.video = true;
                             connection.session.video = true;
-                            alert('attach true camera')
+                            // alert('attach true camera')
                             $(".no-vc").show();
 
 
                         }else{
                             $(".no-vc").hide();
 
-                            alert('attach Cam')
+                            // alert('attach Cam')
                         }
 
                         if (connection.DetectRTC.hasSpeakers === false) { // checking for "false"
@@ -1176,23 +1176,23 @@ connection.onstreamended = function(event) {
     }
 };
 $(".no-vc").click(function(){
-    alert("No vc");
+    // alert("No vc");
     var localStream = connection.attachStreams[0];
     localStream.mute('video');
 })
 $(".vc").click(function(){
-    alert("Vc");
+    // alert("Vc");
     var localStream = connection.attachStreams[0];
     localStream.unmute('video'); 
     
 })
 $(".no-mk").click(function(){
-    alert("No mk");
+    // alert("No mk");
     var localStream = connection.attachStreams[0];
     localStream.mute('audio');
 })
 $(".mk").click(function(){
-    alert("mk");
+    // alert("mk");
     var localStream = connection.attachStreams[0];
     localStream.unmute('audio'); 
     
