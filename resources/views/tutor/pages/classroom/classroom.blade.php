@@ -335,7 +335,6 @@ height:25px;
 
  <!--  -->
     <input type="hidden" id="class_room_id" value="{{$class->id}}">
-    <input type="hidden" id="current_user_id" value="{{Auth::user()->id}}">
 
     <div class="content-wrapper " style="overflow: hidden;">
         <div class="container-fluidd">
@@ -1370,7 +1369,7 @@ designer.appendTo(document.getElementById('widget-container'), function() {
                     }
                     alert(error);
                 }
-
+                saveClassLogs();
                 connection.socket.on('disconnect', function() {
                     location.reload();
                 });
@@ -1561,7 +1560,32 @@ $("#addNewBoard").click(function(){
     count++;
 })
 
+function saveClassLogs() {
 
+    var current_date_time = moment(new Date()).format('YYYY-MM-DD h:m:s');
+    var class_room_id = $("#class_room_id").val();
+
+    var form_data = {
+        tutor_join_time : current_date_time, 
+        class_room_id : class_room_id,
+    }
+
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: "{{route('tutor.class.logs')}}",
+        type: "POST",
+        data:form_data,
+        success:function(response){
+            console.log(response);
+        },
+        error:function(e) {
+            console.log(e)
+        }
+    });
+
+}
 
 
 /* Add New Board Section */
