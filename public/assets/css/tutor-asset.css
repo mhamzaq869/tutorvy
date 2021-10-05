@@ -2449,8 +2449,7 @@ select#paymentMethod option[value="others"] {
     width: 25px;
 }
 
-
-.round .radio-custom-label:checked{
+.round .radio-custom-label:checked {
     content: "\f00c";
     font-family: 'FontAwesome';
     color: #bbb;
@@ -2470,10 +2469,6 @@ select#paymentMethod option[value="others"] {
     width: 12px;
 }
 
-.round input[type="radio"] {
-    visibility: hidden;
-}
-
 .round input[type="radio"]:checked+label {
     background-color: #1173FF;
     border-color: #1173FF;
@@ -2483,7 +2478,10 @@ select#paymentMethod option[value="others"] {
     opacity: 1;
 }
 
-
+.round input[type="radio"] {
+    width: 20px !important;
+    height: 20px;
+}
 
 .payment-menu {
     position: absolute;

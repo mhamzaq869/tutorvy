@@ -223,12 +223,12 @@ $("#country_selector").on('change', function(){
 
 // var languages_list = '';
 
-   var user_language_code = "{{ $user->language ?? 'en-US'}}";
-   var option = '<option value=""> Select Language</option>';
-   for (var language_code in languages_list) {
-       option += '<option value="' + language_code + '">' + languages_list[language_code] + '</option>';
-   }
-   document.getElementById('languages-list').innerHTML = option;
+//    var user_language_code = "{{ $user->language ?? 'en-US'}}";
+//    var option = '<option value=""> Select Language</option>';
+//    for (var language_code in languages_list) {
+//        option += '<option value="' + language_code + '">' + languages_list[language_code] + '</option>';
+//    }
+//    document.getElementById('languages-list').innerHTML = option;
 
 $("#register").validate({
    rules: {
@@ -273,64 +273,75 @@ function hideCard(){
     // alert();
     $(".infoCard").hide('slow');
 };
-
 function get_all_notifications() {
     $.ajax({
-        url: "{{route('getNotification')}}",
-        type:"GET",
-        dataType:'json',
-        success:function(response){
+        url: "{{ route('getNotification') }}",
+        type: "GET",
+        dataType: 'json',
+        success: function(response) {
             var obj = response.data;
             // console.log(obj , "asd");
-            if(response.status_code == 200 && response.success == true) {
+            if (response.status_code == 200 && response.success == true) {
                 var notification = ``;
-                if(obj.length == 0){
+                if (obj.length == 0) {
                     $('.show_notification_counts').text(0);
-                }else{
+                } else {
                     $('.show_notification_counts').text(obj.length);
-                    for(var i =0; i < obj.length; i++) {
+                    for (var i = 0; i < obj.length; i++) {
                         let img = '';
 
-                        if(obj[i].sender_pic != null){
-                            img = `<img class="profile-img w-100 p-0 mt-2" src="{{asset('`+obj[i].sender_pic+`')}}" alt="layer">`;
+                        if (obj[i].sender_pic != null) {
+                            img =
+                                `<img class="profile-img w-100 p-0 mt-2" src="{{ asset('`+obj[i].sender_pic+`') }}" alt="layer">`;
+                        } else {
+                            img =
+                                `<img class="profile-img w-100 p-0 mt-2" src="{{ asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
                         }
-                        else{
-                            img = `<img class="profile-img w-100 p-0 mt-2" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
-                        }
-                        notification +=`
-                        <li>
-                            <a href="`+obj[i].slug+`" class="bgm">
-                                <div class="row">
-                                    <div class="col-md-2 text-center pr-0">
-                                    `+img+`
-                                    </div>
-                                    <div class="col-md-10">
-                                        <div class="head-1-noti">
-                                            <span class="notification-text6">
-                                                <strong>` +obj[i].noti_title+ ` </strong> 
-                                                `+obj[i].noti_desc+`
-                                            </span>
-                                        </div>
-                                        <span class="notification-time">
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>    
-                        </li>`;
-                        }
-                        $(".show_all_notifications").html(notification);
+                        notification += `
+            <li>
+                <a href="` + obj[i].slug + `" class="bgm">
+                    <div class="row">
+                        <div class="col-md-2 text-center pr-0">
+                        ` + img + `
+                        </div>
+                        <div class="col-md-10">
+                            <div class="head-1-noti">
+                                <span class="notification-text6">
+                                    <strong>` + obj[i].noti_title + ` </strong>
+                                    ` + obj[i].noti_desc + `
+                                </span>
+                            </div>
+                            <span class="notification-time">
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </li>`;
+                    }
+                    $(".show_all_notifications").html(notification);
                 }
 
-            }else{
-                notification +=`<span> No Notification </span>`;
+            } else {
+                notification += `<span> No Notification </span>`;
             }
         },
-        error:function(e) {
+        error: function(e) {
             console.log(e)
         }
     });
 }
 
+function langshort(opt) {
+    var val = opt.options[opt.selectedIndex].innerHTML;
+    $("#lang").val(val)
+}
+
+function hideCard() {
+    // alert();
+    $(".infoCard").hide('slow');
+};
+
+               
 </script>
 
 </body>

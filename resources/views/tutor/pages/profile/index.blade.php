@@ -478,7 +478,7 @@
                                                     <label for="exampleName">First Name</label>
                                                     <input type="text" name="first_name" class="form-control"
                                                         value="{{ Auth::user()->first_name }}" id="exampleName"
-                                                        aria-describedby="emailHelp" required="required">
+                                                        aria-describedby="emailHelp" required="required" placeholder="First Name" style="text-transform: capitalize;">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -486,7 +486,7 @@
                                                     <label for="exampleName">Last Name</label>
                                                     <input type="text" name="last_name" class="form-control"
                                                         value="{{ Auth::user()->last_name }}" id="exampleName"
-                                                        aria-describedby="emailHelp" required="required">
+                                                        aria-describedby="emailHelp" required="required"  placeholder="Last Name" style="text-transform: capitalize;" >
                                                 </div>
                                             </div>
 
@@ -530,7 +530,7 @@
 
                                             <div class="col-md-12 my-3">
                                                 <input id="phone" name="phone" type="tel"
-                                                    value="{{ Auth::user()->phone ?? '' }}" required="required">
+                                                    value="{{ Auth::user()->phone ?? '' }}" required="required" placeholder="+92*******" >
 
                                             </div>
 
@@ -540,14 +540,14 @@
                                             <div class="input-text col-md-6">
 
                                                 <input id="myInput" type="" name="city" placeholder="City"
-                                                    value="{{ Auth::user()->city ?? '' }}" required="required">
+                                                    value="{{ Auth::user()->city ?? '' }}" required="required" >
 
                                             </div>
                                             <div class="input-text col-md-6 w-100">
 
-                                                <input id="country_selector" name="country" onchange="university()" type="" required="required">
+                                                <input id="country_selector" name="country" onchange="university()" type="" required="required" placeholder="Country" >
                                                 <input id="country_short" value="{{ Auth::user()->country_short }}"
-                                                    name="country_short" type="" hidden>
+                                                    name="country_short" type="" hidden >
                                                 <label for="country_selector" style="display:none;">Select a country
                                                     here...</label>
 
@@ -618,6 +618,9 @@
                                             </div>
                                         </div>
 
+                                        
+                                    @if( count(Auth::user()->education) == 0)
+
                                         <div class="row mt-3">
                                             <div class="input-text col-md-6">
                                                 <select name="degree[]" onchange="checkLevel(this)"
@@ -639,17 +642,6 @@
                                                 </select>
 
                                             </div>
-                                            <!-- <div class="input-text col-md-4">
-                                                <select name="student_grade"
-                                                    class="form-select form-select-lg mb-3" id="levels" required>
-                                                    <option value="" disabled selected>School</option>
-                                                    <option value="1">Pre Elementary School</option>
-                                                    <option value="2">Elementary School</option>
-                                                    <option value="3">Secondary School</option>
-                                                    <option value="4">High School</option>
-                                                    <option value="5"> Post Secondary</option>
-                                                </select>
-                                            </div> -->
                                         </div>
 
                                         <div class="row mt-3">
@@ -674,14 +666,9 @@
                                             </div>
                                         </div>
 
-                                        <div class="row mt-3">
-                                            <div class="col-md-12">
-                                                <a class="extra-fields-customer cust_link" href="javascript::void(0)">+ Add more degrees </a>
-                                                <div class="customer_records_dynamic mt-5"></div>
-                                            </div>
-                                        </div>
+                                        
 
-                                    @if( count(Auth::user()->education) > 0)
+                                    @elseif( count(Auth::user()->education) > 0)
 
                                         @foreach(Auth::user()->education as $edu)
 
@@ -745,6 +732,12 @@
                                         @endforeach
 
                                     @endif
+                                        <div class="row mt-3">
+                                            <div class="col-md-12">
+                                                <a class="extra-fields-customer cust_link" href="javascript::void(0)">+ Add more degrees </a>
+                                                <div class="customer_records_dynamic mt-5"></div>
+                                            </div>
+                                        </div>
 
                                         <div class="col-md-12 mt-3">
                                             <button class="schedule-btn" id="educational_save" style="width: 180px;float:right;font-size: 14px;" type="submit"
@@ -764,7 +757,7 @@
                                                 <h1>Professional</h1>
                                             </div>
                                         </div>
-
+                                        @if(count(Auth::user()->professional) == 0)
                                         <div class="row mt-3">
                                             <div class="col-md-12">
                                                 <div class="element">
@@ -799,12 +792,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="buttons mb-5">
-                                            <a href="#" class="moreExperience cust_link">+ Add more experience</a>
-                                        </div>
-                                        <div class="results"></div>
+                                      
 
-                                        @if(count(Auth::user()->professional) > 0)
+                                        @elseif(count(Auth::user()->professional) > 0)
                                             @foreach (Auth::user()->professional as $profession)
                                                 <div class="row">
                                                     <div class="col-md-12">
@@ -843,7 +833,10 @@
                                                 <hr>
                                             @endforeach
                                         @endif
-                                            
+                                        <div class="buttons mb-5">
+                                            <a href="#" class="moreExperience cust_link">+ Add more experience</a>
+                                        </div>
+                                        <div class="results"></div>
                                         <div class="row mt-1">
                                             <div class="col-md-12">
                                                 <button class="schedule-btn" id="professinal_btn" style="width: 180px;float:right;font-size: 14px;" type="submit"
@@ -968,6 +961,9 @@
 
 
         $(document).ready(function() {
+            alert();
+            $("#institutes_list").select2();
+
             var url = window.location.href;
             var text = "#v-pills-Verification";
             if(url.indexOf(text) != -1){
@@ -999,6 +995,7 @@
         (function() {
             var user_language_code = "{{ Auth::user()->language ?? 'en-US' }}";
             var option = '';
+            option += '<option disabled selected>Select Language</option>'; 
             for (var language_code in languages_list) {
                 var selected = (language_code == user_language_code) ? ' selected' : '';
                 option += '<option value="' + language_code + '"' + selected + '>' + languages_list[language_code] +
@@ -1101,7 +1098,7 @@
                 </div>`;
                 $('.customer_records_dynamic').append(html);
                 $('.dropify').dropify();
-                // $(".form-select").select2();
+                $(".form-select").select2();
                 (function() {
                     "use strict";
                     var cities = @json($institutes);

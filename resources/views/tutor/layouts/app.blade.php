@@ -141,6 +141,7 @@
     @include('js_files.tutor.supportJs')
     @yield('js')
 <script>
+    
 
     $(document).ready(function(){
         // $('.table').DataTable();
