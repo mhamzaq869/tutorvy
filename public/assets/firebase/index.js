@@ -43,6 +43,22 @@ messaging.onMessage((payload) => {
     if (user_id == current_user_id && user_role_id == 1) {
         $('.show_notification_counts').text(unread_count);
 
+        var url = window.location.href;
+        var text = "admin/tutor";
+
+        if (url.indexOf(text) != -1) {
+            console.log("in page");
+            var url = slug.replace(/[^0-9]/gi, '');
+            var booking_id = parseInt(url, 10);
+            console.log(booking_id);
+
+            get_assessment_detail();
+
+        } else {
+            console.log("out of page");
+        }
+
+
         // doc verification
         if (type == "doc_verification") {
             let redirect = body + '<br> ' + `<a href="` + slug + `" class="notification_link"> click here to view.</a>`;
@@ -64,6 +80,35 @@ messaging.onMessage((payload) => {
             });
         }
 
+        if (type == "class_booking_approved") {
+            let redirect = body + '<br> ' + `<a href="` + slug + `" class="notification_link"> click here to view.</a>`;
+            toastr.success(title + '<br>' + redirect, {
+                position: 'top-end',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: notification_time,
+            });
+        }
+
+        if (type == "class_booking") {
+            toastr.success(title + '<br>' + body, {
+                position: 'top-end',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: notification_time,
+            });
+        }
+
+        if (type == "tutor_submit_assessment") {
+            toastr.success(title + '<br>' + body, {
+                position: 'top-end',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: notification_time,
+            });
+        }
+
+
         let img = '';
 
         if (pic != null) {
@@ -71,25 +116,22 @@ messaging.onMessage((payload) => {
         } else {
             img = `<img class="profile-img mt-2 p-0 w-100" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
         }
-        var html = `
-         <li>
-         <a href="` + slug + `" class="bgm">
-            <div class="row">
-              <div class="col-md-2 text-center">
-                  ` + img + `
-              </div>
-              <div class="col-md-10">
-                  <div class="head-1-noti">
-                      <span class="notification-text6">
-                          <strong>` + title + ` </strong> 
-                          ` + body + `
-                      </span>
-                  </div>
-                  <span class="notification-time">
-                   </span>
-              </div>
-          </div>
-          </a>
+        var html = ` <li>
+            <a href="` + slug + `" class="bgm">
+                <div class="row">
+                    <div class="col-md-2 text-center"> ` + img + ` </div>
+                    <div class="col-md-10">
+                        <div class="head-1-noti">
+                            <span class="notification-text6">
+                                <strong>` + title + ` </strong> 
+                                ` + body + `
+                            </span>
+                        </div>
+                        <span class="notification-time">
+                        </span>
+                    </div>
+                </div>
+            </a>
         </li>`;
 
         $('.show_all_notifications').prepend(html);
@@ -188,15 +230,6 @@ messaging.onMessage((payload) => {
             });
         }
 
-        if (type == "tutor_submit_assessment") {
-            toastr.success(title + '<br>' + body, {
-                position: 'top-end',
-                icon: 'success',
-                showConfirmButton: false,
-                timer: notification_time,
-            });
-        }
-
         if (type == "class_booking") {
             let redirect = body + '<br> ' + `<a href="` + slug + `" class="notification_link"> click here to view.</a>`;
             toastr.success(title + '<br>' + redirect, {
@@ -216,10 +249,6 @@ messaging.onMessage((payload) => {
 
                 get_booking_detail(booking_id, slug);
             }
-
-
-
-
         }
 
         let img = '';
@@ -278,9 +307,8 @@ messaging.onMessage((payload) => {
                 $('.action_button').html(pay_now_btn);
                 $("#nav-contact-tab").click();
             }
-
-
         }
+
         if (type == "class_booking") {
             toastr.success(title + '<br>' + body, {
                 position: 'top-end',
@@ -298,25 +326,24 @@ messaging.onMessage((payload) => {
         } else {
             img = `<img class="profile-img mt-2 p-0 w-100" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
         }
-        var html = `
-         <li>
-         <a href="` + slug + `" class="bgm">
-            <div class="row">
-              <div class="col-md-2 text-center">
-                  ` + img + `
-              </div>
-              <div class="col-md-10">
-                  <div class="head-1-noti">
-                      <span class="notification-text6">
-                          <strong>` + title + ` </strong> 
-                          ` + body + `
-                      </span>
-                  </div>
-                  <span class="notification-time">
-                   </span>
-              </div>
-          </div>
-          </a>
+        var html = ` <li>
+            <a href="` + slug + `" class="bgm">
+                <div class="row">
+                <div class="col-md-2 text-center">
+                    ` + img + `
+                </div>
+                <div class="col-md-10">
+                    <div class="head-1-noti">
+                        <span class="notification-text6">
+                            <strong>` + title + ` </strong> 
+                            ` + body + `
+                        </span>
+                    </div>
+                    <span class="notification-time">
+                    </span>
+                </div>
+            </div>
+            </a>
         </li>`;
 
         $('.show_all_notifications').prepend(html);
@@ -418,6 +445,27 @@ function get_booking_detail(id, slug) {
             $("#all_booking_table").append(html);
 
 
+        },
+        error: function(e) {
+            console.log(e)
+        }
+    });
+}
+
+
+function get_assessment_detail() {
+    var origin = window.location.origin;
+
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: origin + "/admin/tutor/get-assessment",
+        type: "GET",
+        dataType: 'json',
+        success: function(response) {
+            console.log(response);
+            var obj = response.tutor_assessment;
         },
         error: function(e) {
             console.log(e)

@@ -14,6 +14,9 @@ if($("#favorite_start_"+id).hasClass("fa fa-star text-yellow")) {
 }
 
 $.ajax({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
     url: "{{ route('student.fav.tutor') }}",
     type: "POST",
     data: {id:id,status:status},

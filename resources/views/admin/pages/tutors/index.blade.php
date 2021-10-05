@@ -121,7 +121,7 @@
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="tutor_assessment_table">
                                     @foreach($new_requests as $request)
                                         @if($request->status == 2 && $request->assessment_id != '' && $request->assessment_id != null && $request->assessment_status == 0)
                                         <tr>

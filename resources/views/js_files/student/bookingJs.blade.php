@@ -10,6 +10,9 @@ $( '#book_tutor_form' ).on( 'submit', function(e) {
 
     if(tutor_subjects != "Select Subject") {
         $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             url: "{{route('student.booked.tutor')}}",
             type:"POST",
             data:new FormData( this ),
@@ -73,6 +76,9 @@ $(document).ready(function() {
 
         if(subject_id != 'Select Subject') {
             $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                 url: "{{route('student.tutor.plans')}}",
                 type:"POST",
                 data:{
@@ -103,10 +109,17 @@ $(document).ready(function() {
 
 function pay_now(id) {
     $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         url: "{{route('student.book-new')}}",
         type:"post",
         data: {id:id},
         dataType:'json',
+        beforeSend:function(data) {
+            $('#pay_now_btn_'+id).hide();
+            $('#pay_now_loader_'+id).show();
+        },
         success:function(response){
             var obj = response.booking;
             var comm = response.commission;
@@ -148,17 +161,22 @@ function pay_now(id) {
             }else{
 
             }
-
-
+        },
+        complete:function(data) {
+            $('#pay_now_btn_'+id).show();
+            $('#pay_now_loader_'+id).hide();
         },
         error:function(e){
             console.log(e);
+            $('#pay_now_btn_'+id).show();
+            $('#pay_now_loader_'+id).hide();
+            toastr.error('Something went wrong',{
+                position: 'top-end',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 2500
+            });
         }
     });    
 }
-
-function openPayNow() {
-    alert("cliadf");
-}
-
 </script>

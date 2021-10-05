@@ -38,6 +38,8 @@
             }
         });
 
+        get_all_notifications();
+
         $(".dropify").dropify();
 
         $('#availability-id').change(function () {
@@ -385,7 +387,7 @@
             document.getElementById("defaultOpen").click();
         }
 
-        get_all_notifications();
+       
     });
 
 
@@ -399,9 +401,9 @@
                 if(response.status_code == 200 && response.success == true) {
                     var notification = ``;
                     if(obj.length == 0){
-                        $('.notification_counter').text(0);
+                        $('.show_notification_counts').text(0);
                     }else{
-                        $('.notification_counter').text(obj.length);
+                        $('.show_notification_counts').text(obj.length);
                         for(var i =0; i < obj.length; i++) {
                             let img = '';
 
