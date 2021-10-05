@@ -49,7 +49,7 @@
                                     role="tab" aria-controls="v-pills-General" aria-selected="true">General</a> -->
                                
                                 <a class="nav-link {{session()->has('key') ? '' : 'active'}}" id="v-pills-Security-tab" data-toggle="pill" href="#v-pills-Security"
-                                    role="tab" aria-controls="v-pills-Security" aria-selected="true">Secutiy</a>
+                                    role="tab" aria-controls="v-pills-Security" aria-selected="true">Security</a>
                                 
                                 <a class="nav-link" id="v-pills-Payment-tab" data-toggle="pill"
                                     href="#v-pills-Payment" role="tab" aria-controls="v-pills-Payment"
@@ -161,7 +161,7 @@
                                         <div class="col-sm-6">
                                             <form action="{{route('tutor.change.password')}}" method="POST">
                                                 @csrf
-                                                <small>Password</small>
+                                                <small>Current Password</small>
                                                 <div class="form-group pass_show">
                                                     <input type="password" name="current_password" class="form-control @error('current_password') is-invalid @enderror"
                                                         placeholder=" ***********" >
