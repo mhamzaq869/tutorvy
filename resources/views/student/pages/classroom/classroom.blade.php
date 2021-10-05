@@ -919,6 +919,7 @@ height:25px;
 @section('scripts')
 @include('js_files.whiteBoard')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.2.7/emojionearea.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
 <script>
         ClassicEditor
@@ -1070,7 +1071,7 @@ connection.DetectRTC.load(function() {
         // enable microphone
         connection.mediaConstraints.audio = true;
         connection.session.audio = true;
-        alert('attach true microphone')
+        // alert('attach true microphone')
         $(".no-mk").show();
         $("#join_now").removeAttr("disabled","disabled" );
             $("#join_now").click(function(){
@@ -1101,13 +1102,13 @@ connection.DetectRTC.load(function() {
         // enable camera
         connection.mediaConstraints.video = true;
         connection.session.video = true;
-        alert('attach true camera')
+        // alert('attach true camera')
         $(".no-vc").show();
 
     }else{
         $(".no-vc").hide();
 
-        alert('attach Cam')
+        alert('attach Cam First');
     }
 
     if (connection.DetectRTC.hasSpeakers === false) { // checking for "false"
@@ -1207,7 +1208,7 @@ connection.onopen = function(event) {
 
     document.getElementById('btn-chat-message').disabled = false;
     document.getElementById('btn-attach-file').style.display = 'inline-block';
-    document.getElementById('btn-share-screen').style.display = 'inline-block';
+    // document.getElementById('btn-share-screen').style.display = 'inline-block';
 };
 
 connection.onclose = connection.onerror = connection.onleave = function(event) {
@@ -1315,23 +1316,24 @@ connection.onstreamended = function(event) {
     }
 };
 $(".no-vc").click(function(){
-    alert("No vc");
+    // alert("No vc");
     var localStream = connection.attachStreams[0];
+    
     localStream.mute('video');
 })
 $(".vc").click(function(){
-    alert("Vc");
+    // alert("Vc");
     var localStream = connection.attachStreams[0];
     localStream.unmute('video'); 
     
 })
 $(".no-mk").click(function(){
-    alert("No mk");
+    // alert("No mk");
     var localStream = connection.attachStreams[0];
     localStream.mute('audio');
 })
 $(".mk").click(function(){
-    alert("mk");
+    // alert("mk");
     var localStream = connection.attachStreams[0];
     localStream.unmute('audio'); 
     connection.streamEvents.selectFirst('local').mediaElement.muted=true;
@@ -1634,9 +1636,12 @@ designer.appendTo(document.getElementById('widget-container'), function() {
             if (error) {
                 if (error === connection.errors.ROOM_NOT_AVAILABLE) {
                     alert('This room does not exist. Please either create it or wait for moderator to enter in the room.');
+                    window.location.href="{{route('student.classroom')}}";
+                    
                     return;
                 }
                 if (error === connection.errors.ROOM_FULL) {
+                    window.location.href="{{route('student.classroom')}}";
                     alert('Room is full.');
                     return;
                 }
@@ -1648,6 +1653,7 @@ designer.appendTo(document.getElementById('widget-container'), function() {
                     }
                     connection.join(roomid, function(isRoomJoined, roomid, error) {
                         if(error) {
+                            window.location.href="{{route('student.classroom')}}";
                             alert(error);
                         }
                     });
@@ -1794,7 +1800,7 @@ function saveClassLogs() {
     var class_room_id = $("#class_room_id").val();
 
     var form_data = {
-        tutor_join_time : current_date_time, 
+        std_join_time : current_date_time, 
         class_room_id : class_room_id,
     }
 

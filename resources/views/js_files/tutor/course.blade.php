@@ -1,4 +1,11 @@
 <script>
+$(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+});
 
 $(function() {
     $("#basic_days,#standard_days,#advance_days").multiselect({

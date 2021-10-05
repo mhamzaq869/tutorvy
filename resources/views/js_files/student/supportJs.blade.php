@@ -1,5 +1,10 @@
 <script>
     $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
         get_all_categories();
 
@@ -12,9 +17,6 @@
             var method = $(this).attr('method');
             var form = new FormData(this);
             $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
                 url: action,
                 type:method,
                 data:form,
@@ -43,7 +45,13 @@
                     }
                 },
                 error:function(e) {
-                    console.log(e)
+                    console.log(e);
+                    toastr.error('Something went wrong',{
+                        position: 'top-end',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
                 }
             });
 

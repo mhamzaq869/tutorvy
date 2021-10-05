@@ -179,7 +179,7 @@
 
                                                             <td>
                                                                 @if($class->classroom != null)
-                                                                <span data-id="{{$class->id}}" data-room="{{$class->classroom != null ? $class->classroom->classroom_id : ''}}" data-duration="{{$class->duration}}" data-time="{{$class->class_time}}"
+                                                                <span data-id="{{$class->id}}" data-review="{{$class->is_reviewed}}" data-date="{{$class->class_date}}" data-room="{{$class->classroom != null ? $class->classroom->classroom_id : ''}}" data-duration="{{$class->duration}}" data-time="{{$class->class_time}}"
                                                                     id="class_time_{{$class->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success mt-2">{{$class->class_date}} {{$class->class_time}} </span>     
                                                                 <div id="join_class_{{$class->id}}"></div>
                                                                 @endif
@@ -412,6 +412,11 @@
             var duration = $(this).data('duration');
             var room_id = $(this).data('room');
             var time = $(this).data('time');
+            var class_date = $(this).data('date');
+            var review = $(this).data('review');
+
+            var CurrentDate = new Date();
+            class_date = new Date(class_date);
 
             let split_time = time.split(':');
             let create_time = parseInt(split_time[0]) + parseInt(duration);
@@ -442,8 +447,12 @@
                     let join_btn = `<a onclick="joinClass('`+room_id+`')" class="schedule-btn"> Join Class </a>`;
                     
                     if(time > actual_time) {
+                        if(review == 0 ) {
+                            $("#join_class_"+attr_id).html(join_btn);
+                        }else{
+                            $("#join_class_"+attr_id).html("");
+                        }
                         
-                        $("#join_class_"+attr_id).html(join_btn);
                         $("#class_time_"+attr_id).text("");
 
                     }else{

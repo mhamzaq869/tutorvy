@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Classroom;
 use App\Models\Activitylogs;
+use App\Models\ClassroomLogs;
 use App\Models\Booking;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -41,11 +42,31 @@ class StudentClassController extends Controller
             "student_review" => $request->review,
             "rating" => $request->star_rating,
             "is_reviewed" => 1,
+            "status" => 5,
         ]);
 
         return response()->json([
             "message" => "Rating Saved Successfully",
             "status_code" => 200, 
+            "success" => true,
+        ]);
+
+    }
+
+
+    public function saveClassLogs(Request $request) {
+
+        $classRoomLogs = ClassroomLogs::where('class_room_id',$request->class_room_id)->first();
+
+        if($classRoomLogs) {
+            ClassroomLogs::where('class_room_id',$request->class_room_id)->update([
+                "student_join_time" => $request->std_join_time
+            ]);
+        }
+
+        return response()->json([
+            "message" => "Classroom Logs Saved",
+            "status_code" => 200,
             "success" => true,
         ]);
 

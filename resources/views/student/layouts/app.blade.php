@@ -124,7 +124,8 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-storage.js"></script>
-    <script src="{{asset('assets/firebase/index.js').'?ver='.rand()}}"></script>
+    <!-- <script src="{{asset('assets/firebase/index.js').'?ver='.rand()}}"></script> -->
+    @include('firebase');
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.5/ace.js" type="text/javascript" charset="utf-8"></script>
 
     </script>
@@ -223,12 +224,12 @@ $("#country_selector").on('change', function(){
 
 // var languages_list = '';
 
-   var user_language_code = "{{ $user->language ?? 'en-US'}}";
-   var option = '<option value=""> Select Language</option>';
-   for (var language_code in languages_list) {
-       option += '<option value="' + language_code + '">' + languages_list[language_code] + '</option>';
-   }
-   document.getElementById('languages-list').innerHTML = option;
+//    var user_language_code = "{{ $user->language ?? 'en-US'}}";
+//    var option = '<option value=""> Select Language</option>';
+//    for (var language_code in languages_list) {
+//        option += '<option value="' + language_code + '">' + languages_list[language_code] + '</option>';
+//    }
+//    document.getElementById('languages-list').innerHTML = option;
 
 $("#register").validate({
    rules: {
@@ -273,118 +274,76 @@ function hideCard(){
     // alert();
     $(".infoCard").hide('slow');
 };
-
 function get_all_notifications() {
-        $.ajax({
-            url: "{{route('getNotification')}}",
-            type:"GET",
-            dataType:'json',
-            success:function(response){
-                var obj = response.data;
-                // console.log(obj , "asd");
-                if(response.status_code == 200 && response.success == true) {
-                    var notification = ``;
-                    if(obj.length == 0){
-                        $('.show_notification_counts').text(0);
-                    }else{
-                        $('.show_notification_counts').text(obj.length);
-                        for(var i =0; i < obj.length; i++) {
-                            let img = '';
+    $.ajax({
+        url: "{{ route('getNotification') }}",
+        type: "GET",
+        dataType: 'json',
+        success: function(response) {
+            var obj = response.data;
+            // console.log(obj , "asd");
+            if (response.status_code == 200 && response.success == true) {
+                var notification = ``;
+                if (obj.length == 0) {
+                    $('.show_notification_counts').text(0);
+                } else {
+                    $('.show_notification_counts').text(obj.length);
+                    for (var i = 0; i < obj.length; i++) {
+                        let img = '';
 
-                            if(obj[i].sender_pic != null){
-                                img = `<img class="profile-img w-100 p-0 mt-2" src="{{asset('`+obj[i].sender_pic+`')}}" alt="layer">`;
-                            }
-                            else{
-                                img = `<img class="profile-img w-100 p-0 mt-2" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
-                            }
-                        },
-                        password: {
-                            required: true,
-                        },
-                        first_name: {
-                            required: true
-                        },
-                        last_name: {
-                            required: true
-                        },
-
-                    },
-                    messages: {
-                        email: {
-                            required: "We need your email address to contact you",
-                            email: "Your email address must be in the format of name@domain.com"
+                        if (obj[i].sender_pic != null) {
+                            img =
+                                `<img class="profile-img w-100 p-0 mt-2" src="{{ asset('`+obj[i].sender_pic+`') }}" alt="layer">`;
+                        } else {
+                            img =
+                                `<img class="profile-img w-100 p-0 mt-2" src="{{ asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
                         }
+                        notification += `
+            <li>
+                <a href="` + obj[i].slug + `" class="bgm">
+                    <div class="row">
+                        <div class="col-md-2 text-center pr-0">
+                        ` + img + `
+                        </div>
+                        <div class="col-md-10">
+                            <div class="head-1-noti">
+                                <span class="notification-text6">
+                                    <strong>` + obj[i].noti_title + ` </strong>
+                                    ` + obj[i].noti_desc + `
+                                </span>
+                            </div>
+                            <span class="notification-time">
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </li>`;
                     }
-                });
-
-                function langshort(opt) {
-                    var val = opt.options[opt.selectedIndex].innerHTML;
-                    $("#lang").val(val)
+                    $(".show_all_notifications").html(notification);
                 }
 
-                function hideCard() {
-                    // alert();
-                    $(".infoCard").hide('slow');
-                };
+            } else {
+                notification += `<span> No Notification </span>`;
+            }
+        },
+        error: function(e) {
+            console.log(e)
+        }
+    });
+}
 
-                function get_all_notifications() {
-                    $.ajax({
-                        url: "{{ route('getNotification') }}",
-                        type: "GET",
-                        dataType: 'json',
-                        success: function(response) {
-                            var obj = response.data;
-                            // console.log(obj , "asd");
-                            if (response.status_code == 200 && response.success == true) {
-                                var notification = ``;
-                                if (obj.length == 0) {
-                                    $('.show_notification_counts').text(0);
-                                } else {
-                                    $('.show_notification_counts').text(obj.length);
-                                    for (var i = 0; i < obj.length; i++) {
-                                        let img = '';
+function langshort(opt) {
+    var val = opt.options[opt.selectedIndex].innerHTML;
+    $("#lang").val(val)
+}
 
-                                        if (obj[i].sender_pic != null) {
-                                            img =
-                                                `<img class="profile-img w-100 p-0 mt-2" src="{{ asset('`+obj[i].sender_pic+`') }}" alt="layer">`;
-                                        } else {
-                                            img =
-                                                `<img class="profile-img w-100 p-0 mt-2" src="{{ asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
-                                        }
-                                        notification += `
-                            <li>
-                                <a href="` + obj[i].slug + `" class="bgm">
-                                    <div class="row">
-                                        <div class="col-md-2 text-center pr-0">
-                                        ` + img + `
-                                        </div>
-                                        <div class="col-md-10">
-                                            <div class="head-1-noti">
-                                                <span class="notification-text6">
-                                                    <strong>` + obj[i].noti_title + ` </strong>
-                                                    ` + obj[i].noti_desc + `
-                                                </span>
-                                            </div>
-                                            <span class="notification-time">
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>`;
-                                    }
-                                    $(".show_all_notifications").html(notification);
-                                }
+function hideCard() {
+    // alert();
+    $(".infoCard").hide('slow');
+};
 
-                            } else {
-                                notification += `<span> No Notification </span>`;
-                            }
-                        },
-                        error: function(e) {
-                            console.log(e)
-                        }
-                    });
-                }
-            </script>
+               
+</script>
 
 </body>
 

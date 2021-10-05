@@ -1,8 +1,14 @@
 <script>
 
+$(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+});
+
 let tutors = '';
-
-
 
 $('#subjects-list').on("change", function(e) {
 
@@ -99,6 +105,15 @@ function search_tutors(price,subject,lang,rating,location, gender){
                 list_tutors();
             }
         },
+        error:function(e) {
+            console.log(e);
+            toastr.error('Something went wrong',{
+                position: 'top-end',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 2500
+            });
+        }
     });
 
 }
@@ -129,12 +144,16 @@ function list_tutors(){
                     int_html +=` <span class="info-1 info edu">`+inst[ins]+`</span>`;
                 }
             }
+            // console.log(tutors[i].subject_names);
+
             if(tutors[i].subject_names !=null ){
                 sub = tutors[i].subject_names.split(",");
                 var ter = sub.length;
                 var one = 1;
                 var eq = ter - one;
-                if(sub.length>1)
+                if(sub.length>1){
+                // console.log(sub);
+
                     for(var s=0 ; s < 1; s++){ 
                         sub_html +=` <span class="info-1 info">`+sub[s]+`</span> 
                         <small>
@@ -143,8 +162,10 @@ function list_tutors(){
                             </a>
                         </small>`;
                     }
-                else{
-                    sub_html +=` <span class="info-1 info">`+sub[s]+`</span>`;     
+                }
+                else if(sub.length==1){
+                    for(var s=0 ; s < 1; s++){
+                    sub_html +=` <span class="info-1 info">`+sub[s]+`</span>`;   }  
                 }
             }
                 let tutBio = '';
@@ -379,7 +400,13 @@ function favourite_tutor(id,type) {
             }
         },
         error:function(e){
-            console.log(e)
+            console.log(e);
+            toastr.error('Something went wrong',{
+                position: 'top-end',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 2500
+            });
         }
     });
 }

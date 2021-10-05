@@ -1,11 +1,7 @@
 @extends('student.layouts.app')
 <link href="{{ asset('assets/css/registration.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/css/booknow.css') }}" rel="stylesheet">
-<style>
-    .round {
-    left: 20px !important;
-}
-</style>
+
 @section('content')
  <!-- top Fixed navbar End -->
  <div class="content-wrapper " style="overflow: hidden;">
@@ -34,7 +30,7 @@
 
                                     <button type="button" data-toggle="modal" data-target="#exampleModalCenter"
                                         class="cencel-btn mr-2" style="font-size: 12px;width: 150px;"> Cancel
-                                        Bookings</button>
+                                        Booking</button>
                                     <button type="button" data-toggle="modal" data-target="#exampleModalCente"
                                         class="schedule-btn mr-2" style="font-size: 12px;width: 150px;"> Re-schedule
                                         class</button>
@@ -352,7 +348,15 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-12 text-right mt-3" id="show_pay_btn">
+                                        <!-- <div class="col-md-12 text-right mt-3" id="show_pay_btn">
+                                        </div> -->
+                                        <div class="col-md-9"></div>
+                                        <div class="col-md-3 text-right mt-3" id="show_pay_btn">
+                                            <form action="{{url('/student/booking/payment')}}" id="payment" method="post">
+                                                @csrf
+                                                <div id="paytype"></div>
+                                                <span></span>
+                                            </form>
                                         </div>
 
                             </div>

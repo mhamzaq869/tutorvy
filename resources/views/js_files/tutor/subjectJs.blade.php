@@ -1,10 +1,5 @@
 <script>
 
-    $(document).ready(function() {
-        
-
-
-    });
 
     function showMessage() {
         var message = 'Your Profile is under verfication process...';

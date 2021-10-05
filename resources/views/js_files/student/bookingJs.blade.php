@@ -1,6 +1,14 @@
 <script type="text/javascript">
 /* Booking Insert */
 
+$(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+})
+
 $( '#book_tutor_form' ).on( 'submit', function(e) {
     event.preventDefault();
 
@@ -102,12 +110,15 @@ $(document).ready(function() {
 
 
 function pay_now(id) {
-
     $.ajax({
         url: "{{route('student.book-new')}}",
         type:"post",
         data: {_token:"{{csrf_token()}}",id:id},
         dataType:'json',
+        beforeSend:function(data) {
+            $('#pay_now_btn_'+id).hide();
+            $('#pay_now_loader_'+id).show();
+        },
         success:function(response){
             var obj = response.booking;
             var comm = response.commission;
@@ -120,9 +131,19 @@ function pay_now(id) {
                 let duration = obj.duration != null ? obj.duration : '' ;
                 let price = obj.price != null ? obj.price : '' ;
 
-                let commission = comm.commission != null ? comm.commission : '0' ;
+                var commission = '0';
+
+                if(comm != null && comm != "" && comm != []) {
+
+                    commission = comm.commission != null ? comm.commission : '0' ;
+
+                }else{
+                    commission = '0';
+                }
+
+                // let commission = comm.commission != null ? comm.commission : '0' ;
                 if(commission == '0' || commission == null ){
-                    price_calcualtion = price;
+                    price_calcualtion = '0';
                 }
                 else{
                     price_calcualtion = (price * commission) / 100;
@@ -151,11 +172,21 @@ function pay_now(id) {
             }else{
 
             }
-
-
+        },
+        complete:function(data) {
+            $('#pay_now_btn_'+id).show();
+            $('#pay_now_loader_'+id).hide();
         },
         error:function(e){
             console.log(e);
+            $('#pay_now_btn_'+id).show();
+            $('#pay_now_loader_'+id).hide();
+            toastr.error('Something went wrong',{
+                position: 'top-end',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 2500
+            });
         }
     });
 }

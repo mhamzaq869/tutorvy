@@ -25,7 +25,9 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-storage.js"></script>
-    <script src="{{asset('assets/firebase/index.js').'?ver='.rand()}}"></script>
+    <!-- <script src="{{asset('assets/firebase/index.js').'?ver='.rand()}}"></script> -->
+
+    @include('firebase');
 
     <script src="{{ asset('assets/js/dropify.js')}}"></script>
 
@@ -37,6 +39,8 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        get_all_notifications();
 
         $(".dropify").dropify();
 
@@ -385,7 +389,7 @@
             document.getElementById("defaultOpen").click();
         }
 
-        get_all_notifications();
+       
     });
 
 
@@ -399,9 +403,9 @@
                 if(response.status_code == 200 && response.success == true) {
                     var notification = ``;
                     if(obj.length == 0){
-                        $('.notification_counter').text(0);
+                        $('.show_notification_counts').text(0);
                     }else{
-                        $('.notification_counter').text(obj.length);
+                        $('.show_notification_counts').text(obj.length);
                         for(var i =0; i < obj.length; i++) {
                             let img = '';
 
@@ -409,7 +413,7 @@
                                 img = `<img class="profile-img w-100 p-0 mt-2" src="{{asset('`+obj[i].sender_pic+`')}}" alt="layer">`;
                             }
                             else{
-                                img = `<img class="profile-img w-100 p-0 mt-2" src="{{asset('assets/images/ico/Square-white.jpg') }}" alt="layer">`;
+                                img = `<img class="profile-img w-100 p-0 mt-2" src="{{asset('assets/images/ico/Square-white.jpg')}}" alt="layer">`;
                             }
                         notification +=`
                         <li >
