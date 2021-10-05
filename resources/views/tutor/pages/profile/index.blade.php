@@ -961,7 +961,7 @@
 
 
         $(document).ready(function() {
-            alert();
+         
             $("#institutes_list").select2();
 
             var url = window.location.href;
