@@ -207,8 +207,14 @@
                         showConfirmButton: false,
                         timer: 2500
                     });
+                    let img_path = response.path;
                     var origin   = window.location.origin
-                    $('.profile-img').attr('src',origin + '/'+ response.path);
+
+                    if(img_path != null && img_path != "" ){
+                        $('.profile-img').attr('src',origin + '/'+ img_path );
+                    }else{
+                        $('.profile-img').attr('src', origin + '/assets/images/ico/Square-white.jpg');
+                    }
                 }else{
                     toastr.error(response.message,{
                         position: 'top-end',
