@@ -335,7 +335,6 @@ height:25px;
 
  <!--  -->
     <input type="hidden" id="class_room_id" value="{{$class->id}}">
-    <input type="hidden" id="current_user_id" value="{{Auth::user()->id}}">
 
     <div class="content-wrapper " style="overflow: hidden;">
         <div class="container-fluidd">

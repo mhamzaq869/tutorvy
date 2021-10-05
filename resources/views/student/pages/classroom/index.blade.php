@@ -462,7 +462,7 @@
         var fullName = '---';
         connection.socketURL = 'https://tutorvy.herokuapp.com:443/';
 
-        connection.checkPresence('room-id', function(isRoomExist, roomid, error) {
+        connection.checkPresence(roomid, function(isRoomExist, roomid, error) {
             if (isRoomExist === true) {
                 window.location.href=`{{url('student/class')}}/`+id ;
             } else {
