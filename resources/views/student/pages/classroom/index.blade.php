@@ -1,5 +1,6 @@
 @extends('student.layouts.app')
-
+<script src="https://rtcmulticonnection.herokuapp.com/dist/RTCMultiConnection.min.js"></script>
+  <script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script>
 @section('content')
  <!-- top Fixed navbar End -->
  <style>
@@ -437,7 +438,8 @@
                 if (distance < 0) {
                     clearInterval(x);
 
-                    let join_btn = `<a href="{{url('student/class')}}/`+room_id+`"  class="schedule-btn"> Join Class </a>`;
+                    // let join_btn = `<a href="{{url('student/class')}}/`+room_id+`"  class="schedule-btn"> Join Class </a>`;
+                    let join_btn = `<a onclick="joinClass('`+room_id+`')" class="schedule-btn"> Join Class </a>`;
                     
                     if(time > actual_time) {
                         
@@ -453,6 +455,26 @@
 
         }); 
     });
+
+    function joinClass(id){
+        var connection = new RTCMultiConnection();
+        var roomid = id;
+        var fullName = '---';
+        connection.socketURL = 'https://tutorvy.herokuapp.com:443/';
+
+        connection.checkPresence('room-id', function(isRoomExist, roomid, error) {
+            if (isRoomExist === true) {
+                window.location.href=`{{url('student/class')}}/`+id ;
+            } else {
+                toastr.warning('Tutor not joined yet.',{
+                    position: 'top-end',
+                    icon: 'warning',
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            }
+        });
+    }
 
     function showReviewModal(id) {
 
