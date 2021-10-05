@@ -1,4 +1,13 @@
 <script type="text/javascript">
+
+$(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+});
+
 /* Staff Insert */
 
 $( '#add_staff_form' ).on( 'submit', function(e) {
@@ -34,6 +43,14 @@ $( '#add_staff_form' ).on( 'submit', function(e) {
             $("#add_staff_form")[0].reset();
         }
       },
+      error:function(e) {
+            toastr.error('Something went wrong',{
+                position: 'top-end',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 2500
+            });
+        }
      });
 });
 
@@ -66,6 +83,14 @@ $('#add_role_form').on('submit', function(e) {
                 location.reload();
             }
         },
+        error:function(e) {
+            toastr.error('Something went wrong',{
+                position: 'top-end',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 2500
+            });
+        }
     });
 });
 
@@ -94,6 +119,14 @@ function delRole(id) {
                     location.reload();
                 }
             },
+            error:function(e) {
+                toastr.error('Something went wrong',{
+                    position: 'top-end',
+                    icon: 'error',
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            }
         });
     })
 }
@@ -132,6 +165,14 @@ $("#edit_role_form").submit(function(e) {
                 location.reload();
             }
         },
+        error:function(e) {
+            toastr.error('Something went wrong',{
+                position: 'top-end',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 2500
+            });
+        }
     });
 })
 </script>

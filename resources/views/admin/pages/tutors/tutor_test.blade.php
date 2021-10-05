@@ -61,11 +61,14 @@
 
                         </div>
                         <div class="btn-test  col-md-8  mt-3 pb-5" style="text-align: right;">
-                            <button class="cencel-btn" data-toggle="modal"
-                                data-target="#exampleModalCenterss">Reject</button>
-                            <a class="btn schedule-btn" onclick="verifyAssessment(`{{$test->id}}`,1)">
-                                Verfiy
-                            </a>
+                            
+                            <button class="cencel-btn" data-toggle="modal" data-target="#exampleModalCenterss">Reject</button>
+
+                            <a class="btn schedule-btn save_btn" onclick="verifyAssessment(`{{$test->id}}`,1)">  Verfiy </a>
+
+                            <button type="button" role="button" type="button" id="verfication_loading" disabled class="btn btn-primary" 
+                            style="width: 110px;display:none"> Processing </button>
+
                         </div>
                     </div>
       

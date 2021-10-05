@@ -259,4 +259,24 @@ class TutorController extends Controller
             "success" => true,
         ]);
     }
+
+
+
+    public function getTutorAssessment(Request $request) {
+
+        $assessment = DB::table('users')
+        ->select('users.*','assessments.id as assessment_id','assessments.status as assessment_status','subjects.name as subject_name')
+        ->leftJoin('assessments', 'users.id', '=', 'assessments.user_id')
+        ->leftJoin('subjects', 'subjects.id', '=', 'assessments.subject_id')    
+        // ->where('assessments.status','!=',1)
+        ->where('users.role',2)
+        ->whereIn('users.status', [0, 1, 2])
+        ->get();
+
+        return response()->json([
+            "tutor_assessment" => $assessment,
+            "status_code" => 200,
+            "success" => true,
+        ]);
+    }
 }

@@ -102,18 +102,16 @@ class AssessmentController extends Controller
         $admin = User::where('role',1)->first();
 
         $notification = new NotifyController();
-        $reciever_id = $admin->id;
         $slug = '-';
-
         $type = 'tutor_submit_assessment';
         $data = 'data';
         $title = 'Assessment Verification';
         $icon = 'fas fa-tag';
         $class = 'btn-success';
-        $desc = $name . 'Submitted Assessment of ' . $subject->name . ' for Verfication';
+        $desc = $name . ' Submitted Assessment of ' . $subject->name . ' for Verfication';
         $pic = Auth::user()->picture;
 
-        $notification->GeneralNotifi( $reciever_id , $slug ,  $type , $title , $icon , $class ,$desc,$pic);
+        $notification->GeneralNotifi( $admin->id , $slug ,  $type , $title , $icon , $class ,$desc,$pic);
 
         return response()->json([
             "status_code" => 200,
