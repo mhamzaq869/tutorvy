@@ -475,7 +475,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleName">First Name</label>
+                                                    <label for="exampleName" class="heading-fifth mb-0">First Name</label>
                                                     <input type="text" name="first_name" class="form-control"
                                                         value="{{ Auth::user()->first_name }}" id="exampleName"
                                                         aria-describedby="emailHelp" required="required" placeholder="First Name" style="text-transform: capitalize;">
@@ -483,7 +483,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleName">Last Name</label>
+                                                    <label for="exampleName" class="heading-fifth mb-0">Last Name</label>
                                                     <input type="text" name="last_name" class="form-control"
                                                         value="{{ Auth::user()->last_name }}" id="exampleName"
                                                         aria-describedby="emailHelp" required="required"  placeholder="Last Name" style="text-transform: capitalize;" >
@@ -492,7 +492,7 @@
 
 
                                             <div class="col-md-12">
-                                                <p class="heading-fifth">Date of Birth</p>
+                                                <p class="heading-fifth mb-0">Date of Birth</p>
                                             </div>
 
                                             <!-- date of birth dropdown -->
@@ -529,6 +529,8 @@
 
 
                                             <div class="col-md-12 my-3">
+                                                <label for="exampleName" class="heading-fifth mb-0">Phone Number</label>
+
                                                 <input id="phone" name="phone" type="tel"
                                                     value="{{ Auth::user()->phone ?? '' }}" required="required" placeholder="+92*******" >
 
@@ -537,13 +539,15 @@
 
                                             <!-- city dropdwon -->
 
-                                            <div class="input-text col-md-6">
+                                            <div class=" col-md-6">
+                                                <label for="exampleName" class="heading-fifth mb-0">City</label>
 
                                                 <input id="myInput" type="" name="city" placeholder="City"
                                                     value="{{ Auth::user()->city ?? '' }}" required="required" >
 
                                             </div>
-                                            <div class="input-text col-md-6 w-100">
+                                            <div class=" col-md-6 w-100">
+                                                <label for="exampleName" class="heading-fifth mb-0">Country</label>
 
                                                 <input id="country_selector" name="country" onchange="university()" type="" required="required" placeholder="Country" >
                                                 <input id="country_short" value="{{ Auth::user()->country_short }}"
@@ -571,12 +575,16 @@
                                             <div class="container mt-3">
                                                 <div class="row">
                                                     <div class="col-md-6">
+                                                        <label for="exampleName" class="heading-fifth mb-0">Language</label>
+
                                                         <input type="" name="language" id="lang" hidden>
                                                         <select class="form-select form-select-lg mb-3" id="languages-list"
                                                             name="lang_short" onchange="langshort(this)" required="required">
                                                         </select>
                                                     </div>
                                                     <div class="col-md-6">
+                                                        <label for="exampleName" class="heading-fifth mb-0">Gender</label>
+
                                                         <select class="form-select form-select-lg mb-3"
                                                             aria-label=".form-select-lg example" name="gender" required="required">
                                                             <option value="" selected disabled>Gender</option>
@@ -591,7 +599,7 @@
                                             <div class="container form-group mt-3"></div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label for="exampleText">About</label>
+                                                    <label for="exampleText" class="heading-fifth mb-0">About</label>
                                                     <textarea class="form-control" name="bio" id="exampleFormControlTextarea1"
                                                         rows="5"
                                                         placeholder="Write about yourself..." required="required">{{ Auth::user()->bio ?? '' }}</textarea>
@@ -622,7 +630,9 @@
                                     @if( count(Auth::user()->education) == 0)
 
                                         <div class="row mt-3">
-                                            <div class="input-text col-md-6">
+                                            <div class="col-md-6">
+                                                <label for="exampleText" class="m-0 heading-fifth">Degree</label>
+
                                                 <select name="degree[]" onchange="checkLevel(this)"
                                                     class="form-select form-select-lg mb-3" required>
                                                     <option value="Degree"> Degree</option>
@@ -632,7 +642,8 @@
                                                 </select>
                                             </div>
 
-                                            <div class="input-text col-md-6">
+                                            <div class="col-md-6">
+                                                <label for="exampleText" class="m-0 heading-fifth">Major Subject</label>
                                                 <select name="major[]" class="form-select form-select-lg mb-3" required>
                                                     <option value="">Majors</option>
                                                     @foreach ($subjects as $subject)
@@ -645,7 +656,8 @@
                                         </div>
 
                                         <div class="row mt-3">
-                                            <div class="input-text col-md-6">
+                                            <div class="col-md-6">
+                                                <label for="exampleText" class="m-0 heading-fifth">Institute</label>
                                                 <select name="institute[]" id="institutes_list" class="form-select form-select-lg mb-3"
                                                     aria-label=".form-select-lg example" required>
                                                     <option value="Institute">Institute</option>
@@ -655,7 +667,8 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            <div class="input-text col-md-6">
+                                            <div class="col-md-6">
+                                                <label for="exampleText" class="m-0 heading-fifth">Graduation Year</label>
                                                 <input type="date" name="graduate_year[]" class=" yearpicker form-control">
                                             </div>
                                         </div>
@@ -673,7 +686,8 @@
                                         @foreach(Auth::user()->education as $edu)
 
                                             <div class="row mt-3">
-                                                <div class="input-text col-md-4">
+                                                <div class=" col-md-4">
+                                                    <label for="exampleText" class="mb-0 heading-fifth">Degree</label>
                                                     <select name="degree[]" onchange="checkLevel(this)"
                                                         class="form-select form-select-lg mb-3">
                                                         <option value="Degree"> Degree</option>
@@ -683,7 +697,8 @@
                                                     </select>
                                                 </div>
 
-                                                <div class="input-text col-md-4">
+                                                <div class=" col-md-4">
+                                                    <label for="exampleText" class="mb-0 heading-fifth">Major Subject</label>
                                                     <select name="major[]" class="form-select form-select-lg mb-3">
                                                         <option value="">Majors</option>
                                                         @foreach ($subjects as $subject)
@@ -693,7 +708,8 @@
                                                     </select>
 
                                                 </div>
-                                                <div class="input-text col-md-4">
+                                                <div class=" col-md-4">
+                                                    <label for="exampleText" class="mb-0 heading-fifth">Sudent Grade</label>
                                                     <select name="student_grade"
                                                         class="form-select form-select-lg mb-3" id="levels">
                                                         <option value="" disabled selected>School</option>
@@ -707,7 +723,8 @@
                                             </div>
 
                                             <div class="row mt-3">
-                                                <div class="input-text col-md-6">
+                                                <div class=" col-md-6">
+                                                    <label for="exampleText" class="mb-0 heading-fifth">Institute</label>
                                                     <select name="institute[]" id="institutes_list" class="form-select form-select-lg mb-3"
                                                         aria-label=".form-select-lg example">
                                                         <option value="Institute">Institute</option>
@@ -717,7 +734,8 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                <div class="input-text col-md-6">
+                                                <div class=" col-md-6">
+                                                    <label for="exampleText" class="mb-0 heading-fifth">Graduation Date</label>
                                                     <input type="date" name="graduate_year[]" class=" yearpicker form-control" value="{{$edu->year}}">
                                                 </div>
                                             </div>
@@ -762,13 +780,15 @@
                                             <div class="col-md-12">
                                                 <div class="element">
                                                     <div class="row">
-                                                        <div class="input-text col-md-6">
+                                                        <div class="col-md-6">
+                                                            <label for="exampleText" class="mb-0 heading-fifth">Designation</label>
                                                             <input name="designation[]" class="form-control"
                                                                 value=""
                                                                 title="Designation: Senior Developer at Google"
                                                                 placeholder="Designation" required>
                                                         </div>
-                                                        <div class="input-text col-md-6">
+                                                        <div class="col-md-6">
+                                                            <label for="exampleText" class="mb-0 heading-fifth">Organization</label>
                                                             <input name="organization[]"
                                                                 value=""
                                                                 class="form-control" title="Organization Like Google"
@@ -776,13 +796,15 @@
                                                         </div>
                                                     </div>
                                                     <div class="row my-3">
-                                                        <div class="input-text col-md-6">
+                                                        <div class="col-md-6">
+                                                            <label for="exampleText" class="mb-0 heading-fifth">Starting Date</label>
                                                             <input type="date"
                                                                 value=""
                                                                 class="form-control" name="degree_start[]"
                                                                 placeholder="Starting date" value="" required>
                                                         </div>
-                                                        <div class="input-text col-md-6">
+                                                        <div class="col-md-6">
+                                                            <label for="exampleText" class="mb-0 heading-fifth">Ending Date</label>
                                                             <input type="date" value=""
                                                                 class="form-control" name="degree_end[]"
                                                                 placeholder="Ending Date" value="" required>
@@ -800,13 +822,15 @@
                                                     <div class="col-md-12">
                                                         <div class="element">
                                                             <div class="row">
-                                                                <div class="input-text col-md-6">
+                                                                <div class=" col-md-6">
+                                                                    <label for="exampleText" class="mb-0 heading-fifth">Designation</label>
                                                                     <input name="designation[]" class="form-control"
                                                                         value="{{ $profession->designation }}"
                                                                         title="Designation: Senior Developer at Google"
                                                                         placeholder="Designation">
                                                                 </div>
-                                                                <div class="input-text col-md-6">
+                                                                <div class=" col-md-6">
+                                                                    <label for="exampleText" class="mb-0 heading-fifth">Organization</label>
                                                                     <input name="organization[]"
                                                                         value="{{ $profession->organization }}"
                                                                         class="form-control" title="Organization Like Google"
@@ -814,13 +838,15 @@
                                                                 </div>
                                                             </div>
                                                             <div class="row my-3">
-                                                                <div class="input-text col-md-6">
+                                                                <div class=" col-md-6">
+                                                                    <label for="exampleText" class="mb-0 heading-fifth">Starting Date</label>
                                                                     <input type="date"
                                                                         value="{{ $profession->start_date ?? '' }}"
                                                                         class="form-control" name="degree_start[]"
                                                                         placeholder="Starting date" value="">
                                                                 </div>
-                                                                <div class="input-text col-md-6">
+                                                                <div class=" col-md-6">
+                                                                    <label for="exampleText" class="mb-0 heading-fifth">Ending Date</label>
                                                                     <input type="date" value="{{ $profession->end_date ?? '' }}"
                                                                         class="form-control" name="degree_end[]"
                                                                         placeholder="Ending Date" value="">
@@ -893,15 +919,18 @@
                                             </div>
                                             <div class=" row mt-3">
                                                 <div class="col-md-6">
+                                                    <label for="exampleText" class="mb-0 heading-fifth">Document Type</label>
                                                     <select id="selection" name="security" 
                                                         class="form-select form-select-lg mb-3 w-100"
                                                         aria-label=".form-select-lg example" required>
                                                         <option value="1" selected>National Identity Card</option>
                                                         <option value="2">Driving License</option>
                                                         <option value="3">Passport</option>
+                                                        <option value="4">Police Certification</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-6">
+                                                    <label for="exampleText" class="mb-0 heading-fifth">Document Number</label>
                                                     <input id="textbox" type="text" name="document_no" placeholder="Document No" required>
                                                 </div>
                                                 <div class="col-md-6 mt-2 passport" >
