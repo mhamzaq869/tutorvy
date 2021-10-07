@@ -1283,7 +1283,7 @@
     }
     
     .mk {
-        padding: 13px 10px 17px 14px;
+        padding: 13px 14px 17px 14px;
         cursor: pointer;
     }
     
@@ -1292,7 +1292,7 @@
     }
     
     .no-mk {
-        padding: 13px 10px 16px 14px;
+        padding: 13px 14px 16px 14px;
     }
     /* .no-mk,
     .no-vc,
@@ -1364,52 +1364,6 @@
         left: 0;
     }
     /*Call Side End*/
-    /*Call Main Video*/
-    
-    #main-video {
-        width: 100%;
-        margin-top: -9px;
-        /* border: 1px solid #121010; */
-        border-radius: 3px;
-        display: none;
-        padding: 1px;
-    }
-    /*Call main Video End*/
-    /* Call Video Student*/
-    /* #other-videos video {
-        width: 100%;
-        margin: 5px 0;
-        border: 1px solid black;
-        padding: 1px;
-        border-radius: 3px;
-    } */
-    
-    #other-videos video {
-        width: 30%;
-        margin: 0;
-        border: none;
-        padding: 0;
-        border-radius: 3px;
-    }
-    
-    #other-videos {
-        position: absolute;
-        top: 0;
-        margin-top: 5px;
-        margin-left: 5px;
-    }
-    /* Call Video Student End*/
-    /*Call Main Video*/
-    
-    #main-video {
-        width: 100%;
-        margin-top: 0;
-        /* border: 1px solid #121010; */
-        border-radius: 3px;
-        display: none;
-        padding: 0;
-    }
-    /*Call main Video End*/
     /*Review Stars*/
     
     .star-review a {

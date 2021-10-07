@@ -35,18 +35,47 @@
   font-size: 24px;
   text-shadow: 1px 1px white;
 }
+/**Video Adjustment */
+
+
+/* Call Video Student*/
 
 #other-videos {
-    margin-top: 5px;
+    position: relative;
 }
 
 #other-videos video {
     width: 100%;
-    margin: 5px;
-    border: 1px solid black;
-    padding: 1px;
+    margin: 0;
+    border: none;
+    padding: 0;
     border-radius: 3px;
 }
+
+
+/* Call Video Student End*/
+
+
+/*Call Main Video*/
+
+#main-video {
+    position: absolute;
+    z-index: 9;
+    width: 30%;
+    margin-top: 0;
+    /* border: 1px solid #121010; */
+    border-radius: 3px;
+    margin: 5px;
+    display: none;
+    padding: 1px;
+}
+
+
+/*Call main Video End*/
+
+
+/**Video Adjustment */
+
 
 #txt-chat-message {
     width: 100%;
@@ -64,7 +93,7 @@
 #conversation-panel {
     margin-bottom: 20px;
     text-align: left;
-    max-height: 365px;
+    max-height: 230px;
     /* overflow: auto; */
     /* border-top: 1px solid #E5E5E5; */
     /* width: 100%; */
@@ -121,6 +150,10 @@ hr {
 }
 .h-500{
     height:500px !important;
+}
+.h-200{
+    max-height:200px !important;
+    min-height: 65px !important;
 }
    .container-police {
   display: grid;
@@ -412,6 +445,38 @@ height:25px;
                     </div>
                 </div>
             </div>
+            <div class="row callDiv " >
+                <div class="col-md-8 text-center rounded bg-dark p-5">
+                    @if($user->picture)
+                        @if(file_exists( public_path(). $user->picture))
+                            <img src="{{asset($user->picture)}}" class="profile-img pg" alt="">
+                        @else
+                            <img src="{{asset('assets/images/ico/Square-white.jpg')}}"  class="profile-img pg" alt="">
+                        @endif
+                    @else
+                        <img src="{{asset('assets/images/ico/Square-white.jpg')}}" class="profile-img pg" alt="">
+                    @endif
+                </div>
+                <div class="col-md-4  mt-3">
+                    <div class="m-2">
+                        <p class="heading-fifth">Ideal Criterias: </p>
+                        <ul style="list-style: disc;">
+                            <li>Allow Notifications.</li>
+                            <li>Audio device should be working properly.</li>
+                            <li>Tutor Camera's compulsory for conducting a class.</li>
+                            <li>If not working correctly, try icognito mode or deactivate any third party extension.</li>
+                        </ul>
+                        <div class="text-center">
+                            <button type="button" role="button" id="join_now"  class="schedule-btn ">
+                                Start Class
+                            </button>
+                            <button type="button" role="button" id=""  class="cencel-btn ">
+                                <i class="fa fa-clone" aria-hidden="true"></i> Copy Class Link
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row  tech_weck tech_weck-none">
                 <div class="col-md-9 "> 
                     <div class="row">
@@ -439,7 +504,7 @@ height:25px;
                                         <span class="bright">
                                             <label > Share Screen </label>   
                                                     <label class="switch  ml-2" style="">
-                                                        <input type="checkbox" class="s_status" val_id="3" val_st="1" checked="">
+                                                        <input type="checkbox" class="s_status" val_id="3" val_st="1">
                                                         <!-- <input type="checkbox" class="s_status" val_id="3" val_st="1 "  checked -->
                                                         <span class="slider round"></span>
                                                     </label>
@@ -573,9 +638,7 @@ height:25px;
 
                                             <div class="row mt-5">
                                                 <div class="col-md-12 col-sm-12 col-xs-12">
-                                                    <textarea name="content" id="editor" placeholder="">
-                                                    &lt;p&gt;Add your text here&lt;/p&gt;
-                                                    </textarea>
+                                                    <textarea name="content" id="editor" placeholder="Add your Text Here......."></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -640,9 +703,9 @@ height:25px;
                 </div>
                 <div class="col-md-3">
                     <div class="row mt-3 mb-3">
-                        <div class="col-md-12">
-                            <video id="main-video"  playsinline autoplay></video>
-                            <div id="other-videos"  playsinline autoplay></div>
+                        <div class="col-md-12 h-200">
+                            <video id="main-video" class="rounded" playsinline autoplay></video>
+                            <div id="other-videos" class="rounded" playsinline autoplay></div>
                             <div class="col-md-12 mt-2 mb-2 vid-location vid-btn text-left">
                                 <!-- <button class="btn-danger btn h-35 w-100 pb-0 pt-0 ">End Call</button> -->
                                 <!-- <a href="#" class="btn-outline-danger rounded-circle endBtn ">
@@ -843,7 +906,7 @@ height:25px;
         // $(".tech_weck").hide();
         $(".mk").hide();
         $(".vc").hide();
-        $("#callModal").modal("show");
+        // $("#callModal").modal("show");
         $("#join_now").attr("disabled","disabled" );
 
         // saveClassLogs();
@@ -902,6 +965,7 @@ var editor2 = ace.edit("editor2");
 
 
 var connection = new RTCMultiConnection();
+console.log(connection , "connection");
 var roomid = '{{$class->classroom_id}}';
 var fullName = '{{$booking->tutor->first_name}} {{$booking->tutor->last_name}}';
 
@@ -937,7 +1001,7 @@ connection.DetectRTC.load(function() {
                             $("#join_now").removeAttr("disabled","disabled" );
                                 $("#join_now").click(function(){
                                     $(".tech_weck").removeClass("tech_weck-none");
-                                    $("#callModal").modal("hide");
+                                    $(".callDiv").hide();
                                     // joinClass();
                                     /** Javascript Timer */
                                     var timer = new Timer();
@@ -977,6 +1041,23 @@ connection.DetectRTC.load(function() {
                             // alert('Please attach a speaker device. You will unable to hear the incoming audios.');
                         }
         });
+// On mute Screen
+connection.onmute = function (e) {
+    if (e && e.mediaElement)
+        if ("both" === e.muteType || "video" === e.muteType) {
+            e.mediaElement.src = null;
+            var paused = e.mediaElement.pause();
+            "undefined" != typeof paused
+                ? paused.then(function () {
+                      e.mediaElement.poster = e.snapshot || "{{asset('assets/images/ico/Mute-video.jpg')}}";
+                  })
+                : (e.mediaElement.poster = e.snapshot || "{{asset('assets/images/ico/Mute-video.jpg')}}");
+        } else "audio" === e.muteType && (e.mediaElement.muted = !0);
+};
+
+
+// On mute Screen End
+
 /// make this room public
 connection.publicRoomIdentifier = '';
 
@@ -1148,6 +1229,7 @@ connection.onstream = function(event) {
         if(event.type === 'local') {
             video.muted = true;
             video.volume = 0;
+            
         }
         video.srcObject = event.stream;
         $('#main-video').show();
@@ -1175,28 +1257,28 @@ connection.onstreamended = function(event) {
         video.style.display = 'none';
     }
 };
-$(".no-vc").click(function(){
-    // alert("No vc");
-    var localStream = connection.attachStreams[0];
-    localStream.mute('video');
-})
-$(".vc").click(function(){
-    // alert("Vc");
-    var localStream = connection.attachStreams[0];
-    localStream.unmute('video'); 
+// $(".no-vc").click(function(){
+//     // alert("No vc");
+//     var localStream = connection.attachStreams[0];
+//     localStream.mute('video');
+// })
+// $(".vc").click(function(){
+//     // alert("Vc");
+//     var localStream = connection.attachStreams[0];
+//     localStream.unmute('video'); 
     
-})
-$(".no-mk").click(function(){
-    // alert("No mk");
-    var localStream = connection.attachStreams[0];
-    localStream.mute('audio');
-})
-$(".mk").click(function(){
-    // alert("mk");
-    var localStream = connection.attachStreams[0];
-    localStream.unmute('audio'); 
+// })
+// $(".no-mk").click(function(){
+//     // alert("No mk");
+//     var localStream = connection.attachStreams[0];
+//     localStream.mute('audio');
+// })
+// $(".mk").click(function(){
+//     // alert("mk");
+//     var localStream = connection.attachStreams[0];
+//     localStream.unmute('audio'); 
     
-})
+// })
 $("#endCallYes").click(function(){
     // connection.leave();
     connection.send({
@@ -1530,6 +1612,7 @@ function addStreamStopListener(stream, callback) {
     stream.addEventListener('inactive', function() {
         callback();
         callback = function() {};
+        
     }, false);
 
     stream.getTracks().forEach(function(track) {

@@ -822,12 +822,11 @@
                                                     <div class="col-md-12">
                                                         <div class="element">
                                                             <div class="row">
-                                                                <div class=" col-md-6">
-                                                                    <label for="exampleText" class="mb-0 heading-fifth">Designation</label>
-                                                                    <input name="designation[]" class="form-control"
-                                                                        value="{{ $profession->designation }}"
-                                                                        title="Designation: Senior Developer at Google"
-                                                                        placeholder="Designation">
+                                                                <div class="col-md-8 mt-2 mb-3">
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input" name="working" id="working">
+                                                                        <label class="custom-control-label" for="working">Currently Working? </label>
+                                                                    </div>
                                                                 </div>
                                                                 <div class=" col-md-6">
                                                                     <label for="exampleText" class="mb-0 heading-fifth">Organization</label>
@@ -836,6 +835,15 @@
                                                                         class="form-control" title="Organization Like Google"
                                                                         placeholder="Organization">
                                                                 </div>
+
+                                                                <div class=" col-md-6">
+                                                                    <label for="exampleText" class="mb-0 heading-fifth">Designation</label>
+                                                                    <input name="designation[]" class="form-control"
+                                                                        value="{{ $profession->designation }}"
+                                                                        title="Designation: Senior Developer at Google"
+                                                                        placeholder="Designation">
+                                                                </div>
+                                                               
                                                             </div>
                                                             <div class="row my-3">
                                                                 <div class=" col-md-6">
@@ -849,7 +857,7 @@
                                                                     <label for="exampleText" class="mb-0 heading-fifth">Ending Date</label>
                                                                     <input type="date" value="{{ $profession->end_date ?? '' }}"
                                                                         class="form-control" name="degree_end[]"
-                                                                        placeholder="Ending Date" value="">
+                                                                        placeholder="Ending Date" value="" id="kinEnd">
                                                                 </div>
                                                             </div>
 
@@ -887,6 +895,24 @@
                                                 <div class="col-md-10">
                                                     Your Documents are approved from Administrator.
                                                 </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <p class="heading-fifth">
+                                                            Approved Documents
+                                                        </p> 
+                                                    </div>
+                                                    @foreach($user_files as $files)
+                                                        <div class="col-md-6 mt-2 " >
+                                                            <img src="{{asset($files->files)}}" alt="" class="w-100">
+                                                        </div>
+                                                    @endforeach
+
+                                                </div>
                                             </div>
                                         </div>
                                     @elseif(Auth::user()->status == 1)
@@ -898,6 +924,11 @@
                                                 <div class="col-md-10">
                                                     Your Documents are under process. Please wait for Administrator approval
                                                 </div>
+                                                @foreach($user_files as $files)
+                                                    <div class="col-md-6 mt-2 " >
+                                                            <input type="file" default-data="{{asset($files->files)}}" class="dropify">
+                                                    </div>
+                                                @endforeach
                                             </div>
                                         </div>
                                     @else
@@ -992,7 +1023,6 @@
         $(document).ready(function() {
          
             $("#institutes_list").select2();
-
             var url = window.location.href;
             var text = "#v-pills-Verification";
             if(url.indexOf(text) != -1){
@@ -1005,7 +1035,21 @@
                 endYear: 2050,
             });
         });
+        $("#working").change(function(){
+            var checkBox = document.getElementById("working");
+            if(checkBox.checked == true){
+                $("#kinEnd").attr("type","text");
+                $("#kinEnd").val("Currently Working");
+                $("#kinEnd").attr("disabled","disabled");
+            }
+            else{
+                $("#kinEnd").attr("type","date");
+                $("#kinEnd").removeAttr("disabled","disabled");
+                $("#kinEnd").val("Currently Working");
 
+
+            }
+        })
         $("#country_selector").countrySelect({
             defaultCountry: "{{ Auth::user()->country_short ?? '' }}",
             preferredCountries: ['ca', 'gb', 'us', 'pk']

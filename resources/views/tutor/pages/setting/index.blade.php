@@ -54,6 +54,10 @@
                                 <a class="nav-link" id="v-pills-Payment-tab" data-toggle="pill"
                                     href="#v-pills-Payment" role="tab" aria-controls="v-pills-Payment"
                                     aria-selected="false">Payment</a>
+
+                                <a class="nav-link" id="v-pills-Notifications-tab" data-toggle="pill"
+                                    href="#v-pills-Notifications" role="tab" aria-controls="v-pills-Notifications"
+                                    aria-selected="false">Notifications</a>
                             </div>
                         </div>
                     </div>
@@ -192,7 +196,7 @@
                                                 </div>
                                             </form>
                                         </div>
-                                </div>
+                                    </div>
                                 </div>
 
                                 <div class="tab-pane fade chee" id="v-pills-Payment" role="tabpanel"
@@ -262,8 +266,8 @@
                                                 <button class="schedule-btn">Save changes</button>
                                             </div>
                                         </div>
-                                </div>
-                                <div class="row mb-3">
+                                    </div>
+                                    <div class="row mb-3">
                                         <div class="col-md-12">
                                             <hr>
                                         </div>
@@ -341,6 +345,66 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade chee" id="v-pills-Notifications" role="tabpanel"
+                                    aria-labelledby="v-pills-Notification-tab">
+                                    <div class="row">
+                                        <div class="col-md-12 mb-4">
+                                            <h3>Notification</h3>
+                                        </div>
+                                        <div class="col-6">
+                                            @if(session()->has('error'))
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                {{session('error')}}
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            @elseif(session()->has('success'))
+                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                {{session('success')}}
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            @endif
+                                        </div>
+
+                                        <div class="col-md-12 font-light">
+                                                Manage Notifications
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <form action="{{route('tutor.change.password')}}" method="POST">
+                                                @csrf
+                                                <div class="row mt-3">
+                                                    <div class="col-md-12 mt-1">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" name="booking" id="booking">
+                                                            <label class="custom-control-label" for="booking">Get Booking Notification on your Email Address</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 mt-1">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" name="verification" id="verification">
+                                                            <label class="custom-control-label" for="verification">Get Verification Notification on your Email Address</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 mt-1">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" name="assessment" id="assessment">
+                                                            <label class="custom-control-label" for="assessment">Get Assessment Notification on your Email Address</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 mt-3 text-right">
+                                                        <button type="submit" class="schedule-btn">Save changes</button>
+                                                    </div>
+                                                </div>
+                                                
+                                                
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

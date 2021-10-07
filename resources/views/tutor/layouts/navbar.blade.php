@@ -474,7 +474,12 @@
                     
                     @auth
                         @if(Auth::user()->picture)
-                        <img class="profile-img" src="{{asset(Auth::user()->picture) }}" data-toggle="dropdown" alt="profile">
+
+                            @if(file_exists( public_path(). Auth::user()->picture))
+                                <img class="profile-img " src="{{asset(Auth::user()->picture) }}" data-toggle="dropdown" alt="profile">
+                            @else
+                                <img src="{{asset('assets/images/ico/Square-white.jpg')}}"  class="profile-img" alt="">
+                            @endif
                         @else
                         <img class="profile-img" src="{{asset('assets/images/ico/Square-white.jpg') }}" data-toggle="dropdown" alt="profile">
                         @endif

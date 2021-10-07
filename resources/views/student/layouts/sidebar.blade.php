@@ -120,7 +120,7 @@
              <li class="btn @if(\Request::path() === 'tutor/history') active @endif w-100">
                  <a href="{{route('student.history')}}">
                      <img src="{{asset('assets/images/ico/history-ico.png')}}" alt="history-ico" class=" mr-2">
-                     Support Tickets
+                     Support
                  </a>
              </li>
              <li class="btn  w-100">
