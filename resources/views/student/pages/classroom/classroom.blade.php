@@ -488,9 +488,11 @@ height:25px;
                             <button type="button" role="button" id="join_now"  class="schedule-btn ">
                                 Join Class Now
                             </button>
-                            <button type="button" role="button" id=""  class="cencel-btn ">
+                            <p class="hide" id="p1">{{$class->classroom_id}}</p>
+                            <button type="button" role="button" id="" onclick="copyToClipboard('p1')" class="cencel-btn ">
                                 <i class="fa fa-clone" aria-hidden="true"></i> Copy Class Link
                             </button>
+                            <input type="hidden" id="" placeholder="Paste here for test" />
                         </div>
                     </div>
                 </div>
@@ -522,7 +524,7 @@ height:25px;
                                         <span class="bright">
                                             <label > Share Screen </label>   
                                                     <label class="switch  ml-2" style="">
-                                                        <input type="checkbox" class="s_status" val_id="3" val_st="1" checked="">
+                                                        <input type="checkbox" class="s_status" val_id="3" val_st="1">
                                                         <!-- <input type="checkbox" class="s_status" val_id="3" val_st="1 "  checked -->
                                                         <span class="slider round"></span>
                                                     </label>
@@ -1902,6 +1904,28 @@ function saveClassLogs() {
 
 }
 
+function copyToClipboard(elementId) {
 
+// Create a "hidden" input
+var aux = document.createElement("input");
+
+// Assign it the value of the specified element
+aux.setAttribute("value", document.getElementById(elementId).innerHTML);
+
+// Append it to the body
+document.body.appendChild(aux);
+
+// Highlight its content
+aux.select();
+
+// Copy the highlighted text
+document.execCommand("copy");
+
+// Remove it from the body
+document.body.removeChild(aux);
+
+toastr.success("Link Copied Successfully");
+
+}
 </script>
 @endsection

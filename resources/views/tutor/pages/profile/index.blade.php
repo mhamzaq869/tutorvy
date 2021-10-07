@@ -112,6 +112,9 @@
 .license{
     display:none;
 }
+.policeCert{
+    display:none;
+}
 </style>
 
 <link rel="stylesheet" href="{{ asset('assets/css/yearpicker.css') }}" />
@@ -689,7 +692,7 @@
                                                 <div class=" col-md-4">
                                                     <label for="exampleText" class="mb-0 heading-fifth">Degree</label>
                                                     <select name="degree[]" onchange="checkLevel(this)"
-                                                        class="form-select form-select-lg mb-3">
+                                                        class="form-select form-select-lg mb-3" id="degreee">
                                                         <option value="Degree"> Degree</option>
                                                         @foreach ($degrees as $degree)
                                                             <option value="{{ $degree->id }}" {{$edu->degree_id == $degree->id ? 'selected' : '' }}> {{ $degree->name }} </option>
@@ -723,7 +726,7 @@
                                             </div>
 
                                             <div class="row mt-3">
-                                                <div class=" col-md-6">
+                                                <div class="instituteList col-md-6">
                                                     <label for="exampleText" class="mb-0 heading-fifth">Institute</label>
                                                     <select name="institute[]" id="institutes_list" class="form-select form-select-lg mb-3"
                                                         aria-label=".form-select-lg example">
@@ -734,7 +737,11 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                <div class=" col-md-6">
+                                                <div class="schoolList col-md-6">
+                                                    <label for="exampleText" class="mb-0 heading-fifth">School Name</label>
+                                                    <input type="text" class="form-control " name="institute[]">
+                                                </div>
+                                                 <div class=" col-md-6">
                                                     <label for="exampleText" class="mb-0 heading-fifth">Graduation Date</label>
                                                     <input type="date" name="graduate_year[]" class=" yearpicker form-control" value="{{$edu->year}}">
                                                 </div>
@@ -967,6 +974,9 @@
                                                 <div class="col-md-6 mt-2 passport" >
                                                     <input type="file" name="passport_pic" class="dropify">
                                                 </div>
+                                                <div class="col-md-6 mt-2 policeCert" >
+                                                    <input type="file" name="policeCert_pic" class="dropify">
+                                                </div>
                                                     
                                                 <div class="col-md-6 mt-2 id">
                                                     <input type="file" name="id_card_pic" class="dropify">
@@ -1023,6 +1033,7 @@
         $(document).ready(function() {
          
             $("#institutes_list").select2();
+            $(".schoolList").hide();
             var url = window.location.href;
             var text = "#v-pills-Verification";
             if(url.indexOf(text) != -1){
@@ -1059,6 +1070,17 @@
             var short = $(this).countrySelect("getSelectedCountryData");
             $("#country_short").val(short.iso2);
         });
+        $("#degreee").change(function(){
+            var ter = $(this).val();
+            if(ter == 10){
+                $(".schoolList").show();
+                $(".instituteList").hide();
+            }
+            else{
+                $(".schoolList").hide();
+                $(".instituteList").show();
+            }
+        })
 
         var input = document.getElementById("phone");
         window.intlTelInput(input, {
@@ -1242,19 +1264,31 @@
                     $(".passport").css("display","block");
                     $(".id").css("display","none");
                     $(".license").css("display","none");
+                     $(".policeCert").css("display","none");
+
                 }
                 else if(ter == 1){
                     $(".passport").css("display","none");
                     $(".id").css("display","block");
                     $(".license").css("display","none");
+                    $(".policeCert").css("display","none");
 
                     }
-                    else if(ter == 2){
-                    $(".passport").css("display","none");
-                    $(".id").css("display","none");
-                    $(".license").css("display","block");
+                else if(ter == 2){
+                $(".passport").css("display","none");
+                $(".id").css("display","none");
+                $(".license").css("display","block");
+                $(".policeCert").css("display","none");
 
-                    }
+
+                }
+                else if(ter == 4){
+                $(".passport").css("display","none");
+                $(".id").css("display","none");
+                $(".license").css("display","none");
+                $(".policeCert").css("display","block");
+
+                }
                 });
     </script>
 @endsection
