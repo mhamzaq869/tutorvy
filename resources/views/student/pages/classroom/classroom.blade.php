@@ -523,11 +523,11 @@ height:25px;
                                         </a> -->
                                         <span class="bright">
                                             <label > Share Screen </label>   
-                                                    <label class="switch  ml-2" style="">
-                                                        <input type="checkbox" class="s_status" val_id="3" val_st="1">
-                                                        <!-- <input type="checkbox" class="s_status" val_id="3" val_st="1 "  checked -->
-                                                        <span class="slider round"></span>
-                                                    </label>
+                                            <label class="switch  ml-2" style="">
+                                                <input type="checkbox" class="s_status" val_id="3" val_st="1">
+                                                <!-- <input type="checkbox" class="s_status" val_id="3" val_st="1 "  checked -->
+                                                <span class="slider round"></span>
+                                            </label>
                                         </span>
                                     </div>
                                 </nav>
