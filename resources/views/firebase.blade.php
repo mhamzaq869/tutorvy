@@ -44,20 +44,6 @@ messaging.onMessage((payload) => {
     if (user_id == current_user_id && user_role_id == 1) {
         $('.show_notification_counts').text(unread_count);
 
-        var url = window.location.href;
-        var text = "admin/tutor";
-
-        if (url.indexOf(text) != -1) {
-
-            var url = slug.replace(/[^0-9]/gi, '');
-            var booking_id = parseInt(url, 10);
-            console.log(booking_id);
-
-            get_assessment_detail();
-
-        }
-
-
         // doc verification
         if (type == "doc_verification") {
             let redirect = body + '<br> ' + `<a href="` + slug + `" class="notification_link"> click here to view.</a>`;
@@ -98,13 +84,25 @@ messaging.onMessage((payload) => {
             });
         }
 
+
+        var url = window.location.href;
+        var origin = window.location.origin
+        var custom_url = origin + '/admin/tutor';
+
         if (type == "tutor_submit_assessment") {
+            
             toastr.success(title + '<br>' + body, {
                 position: 'top-end',
                 icon: 'success',
                 showConfirmButton: false,
                 timer: notification_time,
             });
+
+            if(url == custom_url) {
+                var url = slug.replace(/[^0-9]/gi, '');
+                var booking_id = parseInt(url, 10);
+                get_assessment_detail();
+            }
         }
 
 
@@ -157,11 +155,12 @@ messaging.onMessage((payload) => {
                 showConfirmButton: false,
                 timer: notification_time,
             });
+
             var url = window.location.href;
-            var text = "tutor/booking";
+            var origin = window.location.origin
+            var custom_url = origin + '/tutor/booking';
 
-            if (url.indexOf(text) != -1) {
-
+            if(url == custom_url){
                 var url = slug.replace(/[^0-9]/gi, '');
                 var booking_id = parseInt(url, 10);
                 var html = ``;
@@ -218,8 +217,9 @@ messaging.onMessage((payload) => {
                 $("#pending_" + booking_id).remove();
                 $("#confirm_booking_table").append(html);
                 $("#nav-profile-tab").click();
-
             }
+
+
         }
 
         if (type == "tutor_assessment") {
@@ -242,16 +242,13 @@ messaging.onMessage((payload) => {
 
             var url = window.location.href;
             var origin = window.location.origin
-            
             var custom_url = origin + '/tutor/booking';
             var text = "/tutor/booking";
 
             if(url == custom_url) {
-                if (url.indexOf(text) != -1) {
-                    var url = slug.replace(/[^0-9]/gi, '');
-                    var booking_id = parseInt(url, 10);
-                    get_booking_detail(booking_id, slug);
-                }
+                var url = slug.replace(/[^0-9]/gi, '');
+                var booking_id = parseInt(url, 10);
+                get_booking_detail(booking_id, slug);
             }
 
 
@@ -303,8 +300,10 @@ messaging.onMessage((payload) => {
             var url = window.location.href;
             var text = "/student/bookings";
 
-            if (url.indexOf(text) != -1) {
+            var origin = window.location.origin
+            var custom_url = origin + '/student/bookings';
 
+            if(url == custom_url) {
                 var url = slug.replace(/[^0-9]/gi, '');
                 var getid = parseInt(url, 10);
                 var pay_now_btn = `
@@ -313,6 +312,7 @@ messaging.onMessage((payload) => {
                 $('.action_button').html(pay_now_btn);
                 $("#nav-contact-tab").click();
             }
+
         }
 
         if (type == "class_booking") {
