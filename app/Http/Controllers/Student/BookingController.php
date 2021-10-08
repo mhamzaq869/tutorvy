@@ -30,6 +30,7 @@ use PayPal\Api\Details;
 use PayPal\Api\Item;
 use PayPal\Api\ItemList;
 use PayPal\Api\Payer;
+use PayPal\Api\PayerInfo;
 use PayPal\Api\Payment;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\ExecutePayment;
@@ -41,7 +42,7 @@ use Obydul\LaraSkrill\SkrillRequest;
 class BookingController extends Controller
 {
 
-    private $_api_context, $skrilRequest;
+    private $_api_context, $skrilRequest,$pay_from_email;
 
     public function __construct()
     {
@@ -56,6 +57,8 @@ class BookingController extends Controller
         $this->skrilRequest->return_url = 'https://webs.dev/student/skrlpayment-complete';
         $this->skrilRequest->cancel_url = 'https://webs.dev/student/bookings';
         $this->skrilRequest->logo_url = 'https://tutorvydev.naumanyasin.com/assets/images/logo/logo.png';
+        $this->skrilRequest->pay_from_email = 'skrill_user_test2@smart2pay.com';
+
 
 
     }
@@ -71,8 +74,9 @@ class BookingController extends Controller
         $cancelled = Booking::with('tutor')->where('user_id',Auth::user()->id)->whereIn('status',[3,4])->get();
 
         $commission = DB::table("sys_settings")->first();
+        $defaultPay = DB::table('payment_methods')->where('user_id',Auth::user()->id)->where('default',1)->first();
 
-        return view('student.pages.booking.index',compact('confirmed','pending','completed','cancelled','all','commission'));
+        return view('student.pages.booking.index',compact('confirmed','pending','completed','cancelled','all','commission','defaultPay'));
     }
 
     public function bookNow($t_id){
@@ -181,6 +185,9 @@ class BookingController extends Controller
             $total_price = $booking->price;
         }
 
+
+        \Session::put('service_fee',$comm);
+
         if(!$booking){
             \Session::put('error','Unable to process booking not available.');
             return Redirect::route('student.bookings');
@@ -190,8 +197,13 @@ class BookingController extends Controller
             return Redirect::route('student.bookings');
         }
 
-        if($request->paymentMethod == 1){
+        if($request->paymentMethod == 'skrill'){
+            $payerEmail = DB::table('payment_methods')
+                                ->where('user_id',Auth::user()->id)
+                                ->where('method','skrill')
+                                ->first();
             //Payment Through Skrill
+            $this->skrilRequest->pay_from_email = $payerEmail->email;
             $this->skrilRequest->transaction_id = 'SKRL-'.rand();
             $this->skrilRequest->amount = $total_price;
             $this->skrilRequest->currency = 'USD';
@@ -227,8 +239,18 @@ class BookingController extends Controller
 
         }else{
             //Payment Through Paypal
+            $payerEmail = DB::table('payment_methods')
+                                ->where('user_id',Auth::user()->id)
+                                ->where('method','paypal')
+                                ->first();
+
             $payer = new Payer();
             $payer->setPaymentMethod('paypal');
+
+            $payerInfo = new PayerInfo();
+            $payerInfo->setEmail($payerEmail->email);
+
+            $payer->setPayerInfo($payerInfo);
 
             $item_1 = new Item();
 
@@ -327,6 +349,7 @@ class BookingController extends Controller
                 'booking_id' => $booking->id,
                 'transaction_id' => $result->id,
                 'amount'  => $result->transactions[0]->amount->total,
+                'service_fee' => \Session::get('service_fee'),
                 'method'  => 'paypal'
             ]);
 
@@ -417,6 +440,7 @@ class BookingController extends Controller
             'booking_id' => $booking->id,
             'transaction_id' =>  $transaction_id,
             'amount'  => $total_price,
+            'service_fee'  => \Session::get('service_fee'),
             'method'  => 'skrill'
         ]);
 

@@ -17,7 +17,7 @@ use App\Models\Admin\tktCat;
 use App\Models\Admin\supportTkts;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Carbon;
 class SettingController extends Controller
 {
     /**
@@ -27,7 +27,39 @@ class SettingController extends Controller
     public function index(){
 
         $user = User::where('id',\Auth::user()->id)->first();
-        return view('student.pages.setting.index',compact('user'));
+        $setting = DB::table('payment_methods')->where('user_id',Auth::user()->id)->get();
+        return view('student.pages.setting.index',compact('user','setting'));
+    }
+
+
+    public function paymentMethod(Request $request)
+    {
+        DB::table('payment_methods')->insert([
+            'user_id' => Auth::user()->id,
+            'email' => $request->email,
+            'method' => $request->payment_type,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function setDefaultPayment(Request $request)
+    {
+        $payments = DB::table('payment_methods')
+                    ->where('user_id',Auth::user()->id)
+                    ->where('method','!=',$request->method)->update([
+                        'default' => 0
+                    ]);
+
+        $payments = DB::table('payment_methods')
+                    ->where('user_id',Auth::user()->id)
+                    ->where('method',$request->method)->update([
+                        'default' => 1
+                    ]);
+
+        return response()->json('success');
     }
 
     protected function validator(array $request)
@@ -42,13 +74,13 @@ class SettingController extends Controller
     public function changePassword(Request $request){
 
         $data = $request->all();
-        
+
         $request->validate([
             'current_password'     => 'required',
             'new_password'     => 'required|min:6',
             'new_confirm_password' => 'required|same:new_password',
         ]);
- 
+
         $user = User::find(auth()->user()->id);
 
         if(!\Hash::check($data['current_password'], $user->password)){
@@ -94,9 +126,9 @@ class SettingController extends Controller
         if(Hash::check($request->current_password, \Auth::user()->password)) {
 
             User::find(\Auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
-        
+
             // activity logs
-            $id = Auth::user()->id; 
+            $id = Auth::user()->id;
             $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
             $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> Update his Password';
             $activity_logs = new GeneralController();
@@ -110,12 +142,12 @@ class SettingController extends Controller
         }
     }
 
-    
+
     public function getAllCategories() {
         $data = tktCat::all();
-        
+
         return response()->json([
-            "status_code" => 200, 
+            "status_code" => 200,
             "categories" => $data,
         ]);
 
@@ -138,14 +170,14 @@ class SettingController extends Controller
         ]);
 
         // activity logs
-        $id = Auth::user()->id; 
+        $id = Auth::user()->id;
         $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
         $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> Create a New Ticket';
         $activity_logs = new GeneralController();
         $activity_logs->save_activity_logs("Ticket Created", "support_tkts.id", $ticket->id, $action_perform, $request->header('User-Agent'), $id);
 
         return response()->json([
-            "status_code" => 200, 
+            "status_code" => 200,
             "message" => "Ticket Created .. Our Staff will contact us soon.",
             "success" => true,
         ]);
@@ -162,7 +194,7 @@ class SettingController extends Controller
         $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
 
         if($request->status == "fav") {
-            
+
             FavTutors::create([
                 "user_id" => Auth::user()->id,
                 "tutor_id" => $request->id,
@@ -190,14 +222,14 @@ class SettingController extends Controller
         $activity_logs->save_activity_logs($title, "users.id", $request->id, $action_perform, $request->header('User-Agent'), $id);
 
         return response()->json([
-            "status_code" => 200, 
+            "status_code" => 200,
             "message" => $message,
             "success" => true,
         ]);
 
     }
 
-    public function tickets($id) {        
+    public function tickets($id) {
         $ticket = supportTkts::where('ticket_no',$id)->with(['category','tkt_created_by'])->first();
         return view('student.pages.history.ticket_details',compact('ticket'));
     }

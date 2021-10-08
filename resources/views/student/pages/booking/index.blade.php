@@ -585,7 +585,7 @@
                                                             </ul>
                                                         </span> -->
                                                         <span class="round">
-                                                            <input id="checkbox1" name="paytype" onclick="paymentMethod(this.value)" class="radio-custom" value="0" type="radio" >
+                                                            <input id="checkbox1" name="paytype" onclick="paymentMethod(this.value)" {{($defaultPay->method == 'paypal') ? 'checked' :''}} class="radio-custom" value="paypal" type="radio" >
                                                         </span>
                                                     </div>
                                                 </div>
@@ -609,7 +609,7 @@
                                                             </ul>
                                                         </span> -->
                                                         <span class="round">
-                                                            <input id="checkbox2" name="paytype" onclick="paymentMethod(this.value)"  value="1" type="radio">
+                                                            <input id="checkbox2" name="paytype" onclick="paymentMethod(this.value)"  {{($defaultPay->method == 'skrill') ? 'checked' :''}} value="skrill" type="radio">
                                                         </span>
                                                     </div>
                                                 </div>

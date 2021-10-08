@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIntegration extends Migration
+class CreatePaymentMethodsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateIntegration extends Migration
      */
     public function up()
     {
-        Schema::create('integration', function (Blueprint $table) {
+        Schema::create('payment_methods', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->string('name',200)->nullable();
-            $table->text('key')->nullable();
-            $table->integer('key_type')->comment('1 for live , 2 for sandbox')->nullable();
-            $table->integer('status')->comment('0 for disactive, 1 for active')->nullable();
+            $table->string('email');
+            $table->string('method');
+            $table->integer('default')->default('0')->comment('0-false,1-true');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateIntegration extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('integration');
+        Schema::dropIfExists('payment_methods');
     }
 }

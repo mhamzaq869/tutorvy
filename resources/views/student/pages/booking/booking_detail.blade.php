@@ -236,7 +236,7 @@
                                                 Cancel Booking</p>
                                             <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;line-height: 1.4;"
                                                 class="ml-5 mr-5">Are you sure you want to cancel booking ? it will cost
-                                                10$ for cancelling</p>
+                                                ${{$booking->payment->first()->service_fee ?? 10}} for cancelling</p>
                                         </div>
                                     </div>
                                 </div>

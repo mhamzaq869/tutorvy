@@ -276,7 +276,8 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     Route::get('/viewtutor/{id}',[StudentTutorController::class,'show'])->name('student.tutor.show');
     Route::post('/tutorfilter',[StudentTutorController::class,'filterTutor'])->name('student.tutor.filter');
     Route::get('/settings',[StudentSettingController::class,'index'])->name('student.settings');
-
+    Route::post('student-paymentmethod',[StudentSettingController::class,'paymentMethod'])->name('student.paymentmethod');
+    Route::post('setDefaltPayment', [StudentSettingController::class,'setDefaultPayment']);
     Route::post('/change-password',[StudentSettingController::class,'change_password']);
 
     Route::get('/profile',[StudentProfileController::class,'index'])->name('student.profile');
@@ -294,11 +295,9 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     Route::get('/get-categories',[StudentSettingController::class,'getAllCategories'])->name('student.categories');
     Route::post('/save-ticket',[StudentSettingController::class,'saveTicket'])->name('student.save.ticket');
 
-
     Route::get('/support-tickets',[StudentBookingController::class,'history'])->name('student.history');
 
     Route::post('/fav-tutor',[StudentSettingController::class,'favouriteTutor'])->name('student.fav.tutor');
-
     Route::get('/ticket/{id}',[StudentSettingController::class,'tickets'])->name('student.ticket');
 
 });

@@ -12,7 +12,7 @@ use App\Models\General\ClassTable;
 class AdminBookingController extends Controller
 {
     public function index()
-    {  
+    {
 
         $all = Booking::orderBy('id','desc')->get();
 

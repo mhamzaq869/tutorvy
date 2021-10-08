@@ -10,10 +10,10 @@ class Payments extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['booking_id','transaction_id','amount','method'];
+    protected $fillable = ['booking_id','transaction_id','amount','service_fee','method'];
 
     public function booking()
     {
-        return $this->hasMany(Bookin::class);
+        return $this->belongsTo(Booking::class);
     }
 }
