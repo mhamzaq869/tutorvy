@@ -14,14 +14,14 @@ width:22px;
         <div class="row">
             <div class="col-md-3">
                 <div class="container-fluid pb-3 profile-header card">
-                    <div class="img-profile text-center pt-3">
-                        <span style="position: absolute;right: 25px;">
-                            <img src="{{asset('assets/images/ico/yellow-rank.png')}}" alt="yellow">
+                    <div class=" text-center pt-3">
+                        <span style="position: absolute;right: 0;top:10px;">
+                            <img src="{{asset('assets/images/ico/yellow-rank.png')}}" alt="yellow" class="w-50">
                         </span>
                         @if ($tutor->picture)
-                        <img src="{{asset($tutor->picture)}}" alt="profile-image" class="w-50 profile-image" >
+                        <img src="{{asset($tutor->picture)}}" alt="profile-image" class="profile-card-img" >
                         @else
-                        <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="profile-image" class="w-50 profile-image" >
+                        <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="profile-image" class="profile-card-img" >
                         @endif
                         <p class="heading-third mt-3">
                            {{$tutor->full_name}}

@@ -185,6 +185,7 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::get('/support-ticket',[HistoryController::class,'index'])->name('tutor.history');
     Route::get('/payment',[PaymentController::class,'index'])->name('tutor.payment');
     Route::get('/subjects',[TutorSubjectController::class,'index'])->name('tutor.subject');
+    Route::get('/reviews',[TutorSubjectController::class,'review'])->name('tutor.reviews');
     Route::get('/removesubjects/{id}',[TutorSubjectController::class,'destroy'])->name('tutor.remove.subject');
     Route::view('/skip','tutor.skip')->name('skip');
     Route::get('/assessment/{id}',[AssessmentController::class,'index'])->name('tutor.test');

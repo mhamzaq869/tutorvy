@@ -198,7 +198,9 @@
 
 
             /* Table Sorting */
-
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+                })
     })
     $("#country_selector").countrySelect({
                 defaultCountry: "{{ $user->country_short ?? '' }}",

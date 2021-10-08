@@ -180,25 +180,27 @@
                             </div>
                         </div>
                     </div>
-                    <div class="container-fluid mt-3 pt-3 pb-3 mb-3" style="background-color: white;border-radius: 8px;">
-                        <p class="heading-forth">Education</p>
-                        <div style="border-bottom: 1px solid #D6DBE2;"></div>
-                        @if($student->experty_level === 1)
-                            <p class="paragraph-text3 mt-3 "> Pre Elementary School </p>
-                        @elseif($student->experty_level === 2)
-                            <p class="paragraph-text3 mt-3 "> Elementary School </p>
-                        @elseif($student->experty_level === 3)
-                            <p class="paragraph-text3 mt-3 "> Secondary School </p>
-                        @elseif($student->experty_level === 4)
-                            <p class="paragraph-text3 mt-3 "> High School </p>
-                        @elseif($student->experty_level === 5)
-                            <p class="paragraph-text3 mt-3 "> Post Secondary School </p>
-                        @endif
-
+                    <div class="card" >
+                        <div class="card-body">
+                            <p class="heading-forth">Education</p>
+                            <div style="border-bottom: 1px solid #D6DBE2;"></div>
+                            @if($student->experty_level === 1)
+                                <p class="paragraph-text3 mt-3 "> Pre Elementary School </p>
+                            @elseif($student->experty_level === 2)
+                                <p class="paragraph-text3 mt-3 "> Elementary School </p>
+                            @elseif($student->experty_level === 3)
+                                <p class="paragraph-text3 mt-3 "> Secondary School </p>
+                            @elseif($student->experty_level === 4)
+                                <p class="paragraph-text3 mt-3 "> High School </p>
+                            @elseif($student->experty_level === 5)
+                                <p class="paragraph-text3 mt-3 "> Post Secondary School </p>
+                            @endif
+                        </div>
                         <!-- <p class="paragraph-text2 pt-0" style="line-height: 0;">University of Punjab Lahore</p> -->
                     </div>
                 </div>
                 <div class="col-md-9">
+                    
                     <div class="card " style="background-image: url('{{asset('assets/images/ico/bg-prfile1.png')}}');background-position: center;border-radius: 8px;">
                         <div class="card-body">
                             <div class="row">
@@ -207,7 +209,7 @@
                                         <p class="res-textup" style="font-family: 'Poppins'font;font-size: 20px;font-weight: 600;line-height: 0.4;">
                                             Congratulations</p>
                                         <p style=" font-size: 12px;font-weight: 400;font-family: Poppins;color: #FFFFFF;opacity: 0.71;">
-                                            Congratulation Alexa, you have completed your 3 classes we have a gift for you.
+                                            Congratulation {{$student->first_name}} , you have completed your 3 classes we have a gift for you.
                                         </p>
                                         <p style="font-family: Poppins;font-size: 14px;opacity: 0.9;">Open gift box
                                         </p>
@@ -222,6 +224,41 @@
                             </div>
                         </div>
                         
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card ">
+                                <div class="card-body text-center text-white">
+                                    <img src="{{asset('assets/images/ico/doollarss.png')}}" alt="">
+                                    <p class="heading-fifth mb-0">
+                                        Total Spent
+                                    </p>
+                                    <h2>00</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card ">
+                                <div class="card-body text-center text-white">
+                                    <img src="{{asset('assets/images/ico/red-clock.png')}}" alt="">
+                                    <p class="heading-fifth mb-0">
+                                        Hours Spent
+                                    </p>
+                                    <h2>00</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card ">
+                                <div class="card-body text-center text-white">
+                                    <img src="{{asset('assets/images/ico/blue-icos.png')}}" alt="">
+                                    <p class="heading-fifth mb-0">
+                                        Reviews Sent
+                                    </p>
+                                    <h2>00</h2>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card">
                         <div class="card-body">
@@ -312,27 +349,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
-            <div class="container-fluid">
-                <p class="heading-first ml-3 mr-3"></p>
-                <div class="row">
-                   
-                    <div class="col-md-9">
-
-                      
-                        <div class="container-fluid mt-3" style="background-color: white;border-radius: 8px;">
-                            
-                        </div>
-
-                    </div>
-                </div>
-            </div>
     </div>
 </section>
 

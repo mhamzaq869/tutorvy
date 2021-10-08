@@ -109,8 +109,8 @@
                      Subjects
                  </a>
              </li>
-             <li class="btn  @if(\Request::path() === 'tutor/subjects') active @endif w-100">
-                 <a href="{{route('tutor.subject')}}">
+             <li class="btn  @if(\Request::path() === 'tutor/reviews') active @endif w-100">
+                 <a href="{{route('tutor.reviews')}}">
                      <img src="{{asset('assets/images/ico/subject-ico.png') }}" alt="subject-ico" class=" mr-2">
                      Reviews
                  </a>
