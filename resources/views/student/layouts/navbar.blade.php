@@ -204,11 +204,8 @@
                     </a>
                     @auth
                         @if(Auth::user()->picture)
-                            @if(file_exists( public_path(). Auth::user()->picture))
                                 <img class="profile-img profile-img2" src="{{asset(Auth::user()->picture) }}" data-toggle="dropdown" alt="profile">
-                            @else
-                                <img src="{{asset('assets/images/ico/Square-white.jpg')}}"  class="profile-img profile-img2" alt="">
-                            @endif
+                            
                         @else
                             <img class="profile-img profile-img2" src="{{asset('assets/images/ico/Square-white.jpg') }}" data-toggle="dropdown" alt="profile">
                         @endif
@@ -217,7 +214,7 @@
                     @endauth
                     <ul class="dropdown-menu classdrop classdrop1 ">
                         <li>
-                            <a tabindex="-1" class="" href="{{route('student.profile')}}">
+                            <a tabindex="-1" class="" href="{{route('student.profileView',[Auth::user()->id])}}">
                                 Profile
                             </a>
                         </li>

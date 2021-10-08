@@ -289,4 +289,21 @@ class ProfileController extends Controller
 
     }
 
+    public function profile($id)
+    {
+
+        $tutor = User::with(['education','professional','teach','course'])->find($id);
+        // dd($favorite_tutors);
+        return view('tutor.pages.profile.profile',compact('tutor'));
+    }
+
+    public function show($id)
+    {
+        $student = User::with(['education','professional','teach','course'])->find($id);
+        $subjects = Subject::where('id',$student->std_subj)->first();
+
+        // dd($favorite_tutors);
+        return view('tutor.pages.student.index',compact('student','subjects'));
+    }
+
 }

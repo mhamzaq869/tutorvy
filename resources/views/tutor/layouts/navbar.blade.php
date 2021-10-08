@@ -474,12 +474,7 @@
                     
                     @auth
                         @if(Auth::user()->picture)
-
-                            @if(file_exists( public_path(). Auth::user()->picture))
                                 <img class="profile-img " src="{{asset(Auth::user()->picture) }}" data-toggle="dropdown" alt="profile">
-                            @else
-                                <img src="{{asset('assets/images/ico/Square-white.jpg')}}"  class="profile-img" alt="">
-                            @endif
                         @else
                         <img class="profile-img" src="{{asset('assets/images/ico/Square-white.jpg') }}" data-toggle="dropdown" alt="profile">
                         @endif
@@ -489,7 +484,7 @@
 
                     <ul class="dropdown-menu classdrop classdrop1 ">
                         <li>
-                            <a tabindex="-1" class="" href="{{route('tutor.profile')}}">
+                            <a tabindex="-1" class="" href="{{route('tutor.profileView',[Auth::user()->id])}}">
                                 Profile
                             </a>
                         </li>

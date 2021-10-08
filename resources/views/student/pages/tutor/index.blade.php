@@ -387,9 +387,9 @@
                                                     <div class="col-md-2 col-6 pr-0">
                                                         <a href="{{route('student.tutor.show',[$tutor->id])}}">
                                                             @if($tutor->picture != null)
-                                                                <img src="{{asset($tutor->picture)}}" alt="" class="profile-img w-100" style="height:auto;">
+                                                                <img src="{{asset($tutor->picture)}}" alt="" class="profile-img w-100" style="height:70px;">
                                                             @else
-                                                                <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="profile-img w-100" style="height:auto;">
+                                                                <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="profile-img w-100" style="height:70px;">
                                                             @endif                                                        
                                                         </a>
                                                        
@@ -462,6 +462,7 @@
                                                 @php
 
                                                     $sub = explode(',',$tutor->subject_names);
+                                                    $ter = sizeof($sub);
                                                     
                                                 @endphp
                                                 <p class="mb-2">Subject</p>
@@ -507,7 +508,7 @@
                                                 <p >
                                                     {{Str::limit($tutor->bio, 240, $end='')}}
                                                     @if(strlen($tutor->bio) > 240)
-                                                        <a href="">Read more...</a>
+                                                        <a href="{{route('student.tutor.show',[$tutor->id])}}">Read more...</a>
                                                     @endif
 
                                                 </p>

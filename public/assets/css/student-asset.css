@@ -682,6 +682,14 @@
         display: flex !important;
         float: right !important;
     }
+    
+    .profile-card-img {
+        width: 125px;
+        height: 125px;
+        cursor: pointer;
+        border: 2px solid #1173FF;
+        border-radius: 50%;
+    }
     /* border right */
     
     .scroll-nav .active,

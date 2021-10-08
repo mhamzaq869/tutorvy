@@ -170,5 +170,24 @@ class ProfileController extends Controller
         ]);  
     }
 
+    
+    public function profile($id)
+    {
+        $favorite_tutors = DB::table('users')
+        ->select('view_tutors_data.*')
+        ->leftJoin('teachs', 'users.id', '=', 'teachs.user_id')
+        ->leftJoin('view_tutors_data', 'view_tutors_data.id', '=', 'users.id')
+        ->leftJoin('fav_tutors','fav_tutors.tutor_id','=','users.id')
+        ->where('fav_tutors.user_id',$id)
+        ->where('users.role',2)
+        ->where('users.status',2)
+        ->groupByRaw('users.id')
+        ->get();
 
+        $student = User::with(['education','professional','teach','course'])->find($id);
+        $subjects = Subject::where('id',$student->std_subj)->first();
+
+        // dd($favorite_tutors);
+        return view('student.pages.profile.profile',compact('student','subjects','favorite_tutors'));
+    }
 }

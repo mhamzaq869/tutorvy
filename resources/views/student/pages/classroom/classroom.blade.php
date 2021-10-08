@@ -488,7 +488,7 @@ height:25px;
                             <button type="button" role="button" id="join_now"  class="schedule-btn ">
                                 Join Class Now
                             </button>
-                            <p class="hide" id="p1">{{$class->classroom_id}}</p>
+                            <p class="hide" id="p1">/tutor/class/{{$class->classroom_id}}</p>
                             <button type="button" role="button" id="" onclick="copyToClipboard('p1')" class="cencel-btn ">
                                 <i class="fa fa-clone" aria-hidden="true"></i> Copy Class Link
                             </button>
