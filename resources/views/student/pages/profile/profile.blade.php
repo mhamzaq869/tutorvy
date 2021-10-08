@@ -200,7 +200,7 @@
                     </div>
                 </div>
                 <div class="col-md-9">
-                    
+                    @if($classes === 3)
                     <div class="card " style="background-image: url('{{asset('assets/images/ico/bg-prfile1.png')}}');background-position: center;border-radius: 8px;">
                         <div class="card-body">
                             <div class="row">
@@ -225,6 +225,7 @@
                         </div>
                         
                     </div>
+                    @endif
                     <div class="row">
                         <div class="col-md-4">
                             <div class="card ">
@@ -233,7 +234,7 @@
                                     <p class="heading-fifth mb-0">
                                         Total Spent
                                     </p>
-                                    <h2>00</h2>
+                                    <h2>${{$price}}.00</h2>
                                 </div>
                             </div>
                         </div>
@@ -242,9 +243,13 @@
                                 <div class="card-body text-center text-white">
                                     <img src="{{asset('assets/images/ico/red-clock.png')}}" alt="">
                                     <p class="heading-fifth mb-0">
-                                        Hours Spent
+                                        Total Classes
                                     </p>
-                                    <h2>00</h2>
+                                    @if($classes < 10)
+                                        <h2>0{{$classes}}</h2>
+                                    @else
+                                        <h2>{{$classes}}</h2>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -255,7 +260,11 @@
                                     <p class="heading-fifth mb-0">
                                         Reviews Sent
                                     </p>
-                                    <h2>00</h2>
+                                    @if($reviews < 10)
+                                        <h2>0{{$reviews}}</h2>
+                                    @else
+                                        <h2>{{$reviews}}</h2>
+                                    @endif
                                 </div>
                             </div>
                         </div>

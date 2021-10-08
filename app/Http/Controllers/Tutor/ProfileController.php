@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\General\Education;
 use App\Models\General\Professional;
 use App\Models\Userdetail;
+use App\Models\Booking;
+
 use Illuminate\Support\Facades\URL;
 
 class ProfileController extends Controller
@@ -259,18 +261,7 @@ class ProfileController extends Controller
             ],['user_id']);
         }
     }
-
-
-
     public function professionUpdate(Request $request) {
-        // return $request;
-
-        // if(Auth::user()->professional){
-        //     Auth::user()->professional->each(function($record) {
-        //         $record->delete(); // <-- direct deletion
-        //      });
-        // }
-
         if($request->filled('designation')){
             for($i=0; $i<count($request->designation); $i++){
                 Professional::updateOrCreate(['user_id' => Auth::user()->id],[
@@ -279,12 +270,8 @@ class ProfileController extends Controller
                     'start_date' => $request->degree_start[$i],
                     'end_date' => $request->degree_end[$i],
                 ]);
-
-            
             }
         }
-
-        
         return redirect()->back()->with('message','Your Profession has been successfully updated');
 
     }
@@ -301,9 +288,11 @@ class ProfileController extends Controller
     {
         $student = User::with(['education','professional','teach','course'])->find($id);
         $subjects = Subject::where('id',$student->std_subj)->first();
-
-        // dd($favorite_tutors);
-        return view('tutor.pages.student.index',compact('student','subjects'));
+        $classes = Booking::where('user_id',$student->id)->where('status',5)->count();
+        $reviews = Booking::where('user_id',$student->id)->where('student_review','!=',NULL)->count();
+        $price = Booking::where('user_id',$student->id)->where('status',2)->sum('price');
+        // dd($reviews);
+        return view('tutor.pages.student.index',compact('student','subjects','classes','price','reviews'));
     }
 
 }

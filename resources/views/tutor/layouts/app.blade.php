@@ -173,7 +173,9 @@
                 .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
                 .forEach(tr => table.appendChild(tr) );
         })));
-            
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
     })
     $("#country_selector").countrySelect({
         defaultCountry: "{{ $user->country_short ?? '' }}",

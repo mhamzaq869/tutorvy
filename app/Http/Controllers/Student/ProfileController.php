@@ -14,6 +14,7 @@ use App\Models\User;
 use App\Models\General\Institute;
 use App\Models\Admin\SubjectCategory;
 use Illuminate\Support\Facades\URL;
+use App\Models\Booking;
 
 
 class ProfileController extends Controller
@@ -186,8 +187,10 @@ class ProfileController extends Controller
 
         $student = User::with(['education','professional','teach','course'])->find($id);
         $subjects = Subject::where('id',$student->std_subj)->first();
-
+        $classes = Booking::where('user_id',$student->id)->where('status',5)->count();
+        $reviews = Booking::where('user_id',$student->id)->where('student_review','!=',NULL)->count();
+        $price = Booking::where('user_id',$student->id)->where('status',2)->sum('price');
         // dd($favorite_tutors);
-        return view('student.pages.profile.profile',compact('student','subjects','favorite_tutors'));
+        return view('student.pages.profile.profile',compact('student','subjects','favorite_tutors','classes','reviews','price'));
     }
 }

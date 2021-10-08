@@ -670,6 +670,10 @@
                                                     @endforeach
                                                 </select>
                                             </div>
+                                            <div class="schoolList col-md-6">
+                                                <label for="exampleText" class="mb-0 heading-fifth">School Name</label>
+                                                <input type="text" class="form-control " name="institute[]">
+                                            </div>
                                             <div class="col-md-6">
                                                 <label for="exampleText" class="m-0 heading-fifth">Graduation Year</label>
                                                 <input type="date" name="graduate_year[]" class=" yearpicker form-control">
@@ -787,12 +791,11 @@
                                             <div class="col-md-12">
                                                 <div class="element">
                                                     <div class="row">
-                                                        <div class="col-md-6">
-                                                            <label for="exampleText" class="mb-0 heading-fifth">Designation</label>
-                                                            <input name="designation[]" class="form-control"
-                                                                value=""
-                                                                title="Designation: Senior Developer at Google"
-                                                                placeholder="Designation" required>
+                                                        <div class="col-md-8 mt-2 mb-3">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" name="working" id="working">
+                                                                <label class="custom-control-label" for="working">Currently Working? </label>
+                                                            </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <label for="exampleText" class="mb-0 heading-fifth">Organization</label>
@@ -800,6 +803,13 @@
                                                                 value=""
                                                                 class="form-control" title="Organization Like Google"
                                                                 placeholder="Organization" required>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label for="exampleText" class="mb-0 heading-fifth">Designation</label>
+                                                            <input name="designation[]" class="form-control"
+                                                                value=""
+                                                                title="Designation: Senior Developer at Google"
+                                                                placeholder="Designation" required>
                                                         </div>
                                                     </div>
                                                     <div class="row my-3">
@@ -814,7 +824,7 @@
                                                             <label for="exampleText" class="mb-0 heading-fifth">Ending Date</label>
                                                             <input type="date" value=""
                                                                 class="form-control" name="degree_end[]"
-                                                                placeholder="Ending Date" value="" required>
+                                                                placeholder="Ending Date" value="" required id="kinEnd">
                                                         </div>
                                                     </div>
 
@@ -1072,6 +1082,7 @@
         });
         $("#degreee").change(function(){
             var ter = $(this).val();
+            alert(ter);
             if(ter == 10){
                 $(".schoolList").show();
                 $(".instituteList").hide();
