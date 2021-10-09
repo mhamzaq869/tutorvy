@@ -53,7 +53,7 @@
                                 
                                 <a class="nav-link" id="v-pills-Payment-tab" data-toggle="pill"
                                     href="#v-pills-Payment" role="tab" aria-controls="v-pills-Payment"
-                                    aria-selected="false">Payment</a>
+                                    aria-selected="false">Payments</a>
 
                                 <a class="nav-link" id="v-pills-Notifications-tab" data-toggle="pill"
                                     href="#v-pills-Notifications" role="tab" aria-controls="v-pills-Notifications"
@@ -203,10 +203,10 @@
                                     aria-labelledby="v-pills-Payment-tab">
                                     <div class="row">
                                     <div class="col-md-12 mb-4">
-                                        <h3>Payment</h3>
+                                        <h3>Payments</h3>
                                     </div>
                                     <div class="col-sm-6">
-                                            <small>Payment Method</small>
+                                            <small>Payment Methods</small>
                                             <div class="form-group  mt-1">
                                                 <select name="" id="paymentMethod" class="form-control" id="">
                                                     <option value="Paypal"> <p> <i class="fa fa-plus"></i> Paypal  </p></option>

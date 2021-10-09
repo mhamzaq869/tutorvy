@@ -109,12 +109,12 @@
                      Subjects
                  </a>
              </li>
-             <li class="btn  @if(\Request::path() === 'tutor/reviews') active @endif w-100">
+             <!-- <li class="btn  @if(\Request::path() === 'tutor/reviews') active @endif w-100">
                  <a href="{{route('tutor.reviews')}}">
                      <img src="{{asset('assets/images/ico/subject-ico.png') }}" alt="subject-ico" class=" mr-2">
                      Reviews
                  </a>
-             </li>
+             </li> -->
              <li class="btn @if(\Request::path() === 'tutor/calendar') active @endif w-100">
                  <a href="{{route('tutor.calendar')}}">
                      <img src="{{asset('assets/images/ico/calender-ico.png') }}" alt="calender-ico" class=" mr-2">

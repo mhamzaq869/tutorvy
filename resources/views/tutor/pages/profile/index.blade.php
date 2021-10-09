@@ -746,7 +746,7 @@
                                                     <input type="text" class="form-control " name="institute[]">
                                                 </div>
                                                  <div class=" col-md-6">
-                                                    <label for="exampleText" class="mb-0 heading-fifth">Graduation Date</label>
+                                                    <label for="exampleText" class="mb-0 heading-fifth">Completion Date</label>
                                                     <input type="date" name="graduate_year[]" class=" yearpicker form-control" value="{{$edu->year}}">
                                                 </div>
                                             </div>

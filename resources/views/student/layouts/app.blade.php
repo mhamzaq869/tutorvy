@@ -202,6 +202,9 @@
                 $('[data-toggle="tooltip"]').tooltip()
                 })
     })
+    $(".content-wrapper").click(function(){
+            $(".notification-menu ").hide();
+    });
     $("#country_selector").countrySelect({
                 defaultCountry: "{{ $user->country_short ?? '' }}",
                 preferredCountries: ['ca', 'gb', 'us', 'pk']

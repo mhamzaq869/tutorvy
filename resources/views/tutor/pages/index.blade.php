@@ -365,9 +365,9 @@
                                             </a>
                                         @endforeach
                                     @else
-                                    <div class="text-center m-3">
-                                        <img src="{{asset('assets/images/clock.png')}}" alt=""> 
-                                        <p> No Bookings for Today</p>
+                                    <div class="text-center" style="min-height:113px;">
+                                        <img src="{{asset('assets/images/ico/clander.png')}}" alt="" style="width:33%;"> 
+                                        <p class="mb-5"> No Bookings for Today</p>
 
                                     </div>
                                     @endif
@@ -415,9 +415,9 @@
                                             </a>
                                         @endforeach
                                     @else
-                                    <div class="text-center m-3">
-                                        <img src="{{asset('assets/images/learning.png')}}" alt=""> 
-                                        <p> No Upcoming Bookings Registered</p>
+                                    <div class="text-center " style="min-height:113px;">
+                                        <img src="{{asset('assets/images/ico/clander.png')}}" alt="" style="width:33%;"> 
+                                        <p class="mb-5"> No Upcoming Bookings found</p>
 
                                     </div>
                                     @endif
