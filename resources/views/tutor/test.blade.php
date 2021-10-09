@@ -69,8 +69,7 @@
                                 <div class="pt-3 col-md-6">
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" name="preElementary" id="preElementary">
-                                        <label class="custom-control-label" for="preElementary">Pre-Elementary School <i class="fa fa-question-circle"  data-toggle="tooltip" data-placement="top" title="It is composed of the preparatory levels such as nursery, pre-kinder and kinder school" aria-hidden="true"></i>
- </label>
+                                        <label class="custom-control-label" for="preElementary">Pre-Elementary School <i class="fa fa-question-circle"  data-toggle="tooltip" data-placement="top" title="It is composed of the preparatory levels such as nursery, pre-kinder and kinder school" aria-hidden="true"></i></label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -80,9 +79,7 @@
                                                     <span class="input-group-text">$</span>
                                                 </div>
                                                 <input type="text" class="form-control" id="preElementary_rate" name="preElementary_rate" placeholder="Rate per hour in USD ($)">
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text">.00</span>
-                                                </div>
+                                               
                                             </div>
                                     </div>
                                 </div>
@@ -100,9 +97,7 @@
                                                     <span class="input-group-text">$</span>
                                                 </div>
                                                 <input type="text" class="form-control" id="elementary_rate" name="elementary_rate" placeholder="Rate per hour in USD ($)">
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text">.00</span>
-                                                </div>
+                                               
                                             </div>
                                         <!-- <input type="text" class="form-control mt-2" id="elementary_rate" name="elementary_rate" placeholder="Rate per hour in USD ($)"> -->
                                     </div>
@@ -121,9 +116,7 @@
                                                     <span class="input-group-text">$</span>
                                                 </div>
                                                 <input type="text" class="form-control" id="secondary_rate" name="secondary_rate" placeholder="Rate per hour in USD ($)">
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text">.00</span>
-                                                </div>
+                                                
                                             </div>
                                         <!-- <input type="text" class="form-control mt-2" id="secondary_rate" name="secondary_rate" placeholder="Rate per hour in USD ($)"> -->
                                     </div>
@@ -142,9 +135,7 @@
                                                     <span class="input-group-text">$</span>
                                                 </div>
                                                 <input type="text" class="form-control" id="highSchool_rate" name="highSchool_rate" placeholder="Rate per hour in USD ($)">
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text">.00</span>
-                                                </div>
+                                               
                                             </div>
                                         <!-- <input type="text" class="form-control mt-2" id="highSchool_rate" name="highSchool_rate" placeholder="Rate per hour in USD ($)"> -->
                                     </div>
@@ -163,9 +154,7 @@
                                                     <span class="input-group-text">$</span>
                                                 </div>
                                                 <input type="text" class="form-control" id="postSec_rate" name="postSec_rate" placeholder="Rate per hour in USD ($)">
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text">.00</span>
-                                                </div>
+                                               
                                             </div>
                                         <!-- <input type="text" class="form-control mt-2" id="postSec_rate" name="postSec_rate" placeholder="Rate per hour in USD ($)"> -->
                                     </div>
