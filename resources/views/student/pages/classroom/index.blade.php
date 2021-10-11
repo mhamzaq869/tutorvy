@@ -143,6 +143,13 @@
                                         <tbody>
                                             @if($classes != null && $classes != [] && $classes != "")
                                                 @foreach($classes as $class)
+                                                        @php
+
+                                                        $tz = get_local_time();
+                                                        $dt = new DateTime($class->class_time, new DateTimeZone($tz)); //first argument "must" be a string
+                                                        $time = $dt->format('g:i a');
+
+                                                        @endphp
                                                         <tr>
                                                             <td class="pt-3">
                                                                 {{ $class->tutor->first_name }} {{ $class->tutor->last_name }}
@@ -154,7 +161,7 @@
                                                                 {{ $class != null ? $class->topic : '---' }}
                                                             </td>
                                                             <td class="pt-3">
-                                                                {{$class->class_time}} {{date("g:i a", strtotime("$class->class_time UTC"))}}
+                                                                {{$time}}
                                                             </td>
                                                             
                                                             <td class="pt-3">
@@ -179,9 +186,9 @@
 
                                                             <td>
                                                                 @if($class->classroom != null)
-                                                                <span data-id="{{$class->id}}" data-review="{{$class->is_reviewed}}" data-date="{{$class->class_date}}" data-room="{{$class->classroom != null ? $class->classroom->classroom_id : ''}}" data-duration="{{$class->duration}}" data-time="{{$class->class_time}}"
-                                                                    id="class_time_{{$class->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success mt-2">{{$class->class_date}} {{$class->class_time}} </span>     
-                                                                <div id="join_class_{{$class->id}}"></div>
+                                                                <span data-id="{{$class->id}}"  data-review="{{$class->is_reviewed}}" data-date="{{$class->class_date}}" data-room="{{$class->classroom != null ? $class->classroom->classroom_id : ''}}" data-duration="{{$class->duration}}" data-time="{{$class->class_time}}"
+                                                                        id="class_time_{{$class->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success mt-3">{{$class->class_date}} {{$class->class_time}} </span>     
+                                                                    <div class="join_class_{{$class->id}}" class="text-center">
                                                                 @endif
                                                             </td>
                                                             <td style="text-align: center;padding-top:14px;">
@@ -423,44 +430,59 @@
 
             let actual_time  = create_time + ':' + split_time[1];
 
-            var time = moment(booking_time).format('MMM D, YYYY h:mm:ss a');
+            console.log(attr_id , "ai");
 
-            var countDownDate = new Date(time).getTime();
-            var x = setInterval(function() {
-
-                var now = new Date().getTime();
-                var distance = countDownDate - now;
-
-                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                var total_time = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-                
-                $("#class_time_"+attr_id).html(total_time);
-                
-                if (distance < 0) {
-                    clearInterval(x);
-
-                    // let join_btn = `<a href="{{url('student/class')}}/`+room_id+`"  class="schedule-btn"> Join Class </a>`;
-                    let join_btn = `<a onclick="joinClass('`+room_id+`')" class="schedule-btn"> Join Class </a>`;
+            let join_btn = `<a onclick="joinClass('`+room_id+`')" class="schedule-btn"> Join Class </a>`;
                     
-                    if(time > actual_time) {
-                        if(review == 0 ) {
-                            $("#join_class_"+attr_id).html(join_btn);
-                        }else{
-                            $("#join_class_"+attr_id).html("");
-                        }
+            $(".join_class_"+attr_id).html(join_btn);
+            $("#class_time_"+attr_id).html("");
+ 
+            return false;
+           
+            // console.log(booking_time,"booking_time");
+            // var time = moment(booking_time).format('MMMM Do YYYY, h:mm:ss a');
+
+            // console.log(time , "asd");
+
+            // var countDownDate = new Date(time).getTime();
+            // var x = setInterval(function() {
+
+            //     var now = new Date().getTime();
+            //     var distance = countDownDate - now;
+
+            //     var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            //     var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            //     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            //     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            //     var total_time = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+                
+            //     $("#class_time_"+attr_id).html(total_time);
+                
+            //     if (distance < 0) {
+            //         clearInterval(x);
+
+            //         // let join_btn = `<a href="{{url('student/class')}}/`+room_id+`"  class="schedule-btn"> Join Class </a>`;
+            //         let join_btn = `<a onclick="joinClass('`+room_id+`')" class="schedule-btn"> Join Class </a>`;
+                    
+            //         $("#join_class_"+attr_id).html(join_btn);
+            //         $("#join_class_"+attr_id).html("");
+
+            //         // if(time > actual_time) {
+            //         //     if(review == 0 ) {
+            //         //         $("#join_class_"+attr_id).html(join_btn);
+            //         //     }else{
+            //         //         $("#join_class_"+attr_id).html("");
+            //         //     }
                         
-                        $("#class_time_"+attr_id).text("");
+            //         //     $("#class_time_"+attr_id).text("");
 
-                    }else{
-                        $("#class_time_"+attr_id).text("Class Expired");
-                    }
+            //         // }else{
+            //         //     $("#class_time_"+attr_id).text("Class Expired");
+            //         // }
                     
-                }
-            }, 1000);
+            //     }
+            // }, 1000);
 
         }); 
     });
