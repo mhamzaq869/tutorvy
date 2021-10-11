@@ -311,7 +311,7 @@
                                                 <span class="progress-bar"></span>
                                             </span>
                                             <div class="progress-value">
-                                                <span>5</span>
+                                                <span>{{$course->seats}}</span>
 
                                             </div>
                                         </div>

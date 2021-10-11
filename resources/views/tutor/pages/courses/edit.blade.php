@@ -56,24 +56,24 @@
                     </div>
                     <div class="col-md-5 mt-5">
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="mt-3">
-                            <div class="mb-3">
-                                <label class="form-label heading-forth">Starting Date</label>
-                                <input type="text" name="start_date" class="form-control texteara-s mt-2 pt-2 mb-2" required="" value="{{$course->start_date}}" onfocus="(this.type='date')">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mt-3">
+                                    <div class="mb-3">
+                                        <label class="form-label heading-forth">Starting Date</label>
+                                        <input type="text" name="start_date" class="form-control texteara-s mt-2 pt-2 mb-2" required="" value="{{date('m/d/Y',strtotime($course->start_date))}}" onfocus="(this.type='date')">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mt-3">
+                                    <div class="mb-3">
+                                        <label class="form-label heading-forth">Available Seats</label>
+                                        <input type="text" name="seats" class="form-control texteara-s mt-2 pt-2 mb-2" required value="{{$course->seats}}" placeholder="Seats" onfocus="(this.type='number')">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mt-3">
-                            <div class="mb-3">
-                                <label class="form-label heading-forth">Available Seats</label>
-                                <input type="text" name="seats" class="form-control texteara-s mt-2 pt-2 mb-2" required value="{{$course->seats}}" placeholder="Seats" onfocus="(this.type='number')">
-                            </div>
-                        </div>
-                    </div>
-                </div>
                         <div class="mt-4">
                             <div style="padding-top:11px;">
                                     <!-- <label for="" class="pt-2 ">Intro Video</label>
@@ -184,19 +184,17 @@
                                 </div>
 
                                 <h3 class="mt-3 pb-2">
-                                    Timing
+                                    Schedule
                                 </h3>
-                                <div class="input-options mt-2">
-                                    <select name="basic_days" id="basic_days" multiple role="multiselect">
-                                        @php $basic_days = json_decode($course->basic_days) ?? 0; @endphp
-                                        <option disabled selected required>Select days</option>
-                                        <option value="monday">Monday</option>
-                                        <option value="tuesday">Tuesday</option>
-                                        <option value="wednesday">Wednesday</option>
-                                        <option value="thursday">Thursday</option>
-                                        <option value="Friday">Friday</option>
-                                        <option value="Saturday">Saturday</option>
-                                        <option value="Sunday">Sunday</option>
+                                <div class="input-options">
+                                    <select class="js-multiSelect" id="basic_day" name="basic_days[]" multiple="multiple">
+                                        <option value="1" >Monday</option>
+                                        <option value="2">Tuesday</option>
+                                        <option value="3">Wednesday</option>
+                                        <option value="4">Thursday</option>
+                                        <option value="5">Friday</option>
+                                        <option value="6">Saturday</option>
+                                        <option value="7">Sunday</option>
                                     </select>
                                 </div>
                                 <div class="input-options mt-2">

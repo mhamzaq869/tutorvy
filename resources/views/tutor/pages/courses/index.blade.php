@@ -251,15 +251,15 @@
         <div class="container-fluid ">
             <div class="row">
                 <div class="col-md-12">
-                        <p class="mr-3 heading-first"> 
-                                Courses 
+                        <p class="mr-3 heading-first">
+                                Courses
                         </p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 mb-1 ">
                         <div class=" card  bg-toast infoCard">
-                            
+
 
                             <div class="card-body row">
                                 <div class="col-md-1 text-center">
@@ -270,7 +270,7 @@
                                     Check the status of your applied courses also update the details of the courses here <a href="#">Learn More</a>
 
                                     </small>
-                                    <a href="#" class="cross"  onclick="hideCard()"> 
+                                    <a href="#" class="cross"  onclick="hideCard()">
                                         <i class="fa fa-times" aria-hidden="true"></i>
                                     </a>
                                 </div>
@@ -392,7 +392,7 @@
                                             </span>
                                             <div class="progress-value">
                                                 <span>5</span>
-                                                
+
                                             </div>
                                         </div>
                                         <span class="leftSeat text-center">
@@ -446,7 +446,7 @@
                                         <hr>
                                     </div>
                                     <div class="col-md-8">
-                                    <p class="mt-2">Next batch is starting from {{date('d M, Y', strtotime($course->basic_start_time))}}</p>
+                                    <p class="mt-2">Next batch is starting from {{date('d M, Y', strtotime($course->start_date))}}</p>
                                     </div>
                                     <div class="col-md-4 text-center">
                                         <div class="progress blue">
@@ -457,8 +457,8 @@
                                                 <span class="progress-bar"></span>
                                             </span>
                                             <div class="progress-value">
-                                                <span>5</span>
-                                                
+                                                <span>{{$course->seats}}</span>
+
                                             </div>
                                         </div>
                                         <span class="leftSeat text-center">

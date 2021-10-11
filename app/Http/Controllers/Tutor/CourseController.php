@@ -163,6 +163,7 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         if($request->hasFile('video')){
             $video_path = "storage/course/video/".$request->video->getClientOriginalName();
             $request->video->storeAs('course/video/',$request->video->getClientOriginalName(),'public');
@@ -170,7 +171,7 @@ class CourseController extends Controller
 
         if($request->hasFile('thumbnail')){
             $thumbnail_path = "storage/course/thumbnail/".$request->thumbnail->getClientOriginalName();
-            $request->video->storeAs('course/thumbnail/',$request->thumbnail->getClientOriginalName(),'public');
+            $request->thumbnail->storeAs('course/thumbnail/',$request->thumbnail->getClientOriginalName(),'public');
         }
 
 
@@ -191,8 +192,8 @@ class CourseController extends Controller
         $courselevel->basic_note         = $request->basic_note ?? $courselevel->basic_note;
         $courselevel->basic_duration     = $request->basic_duration ?? $courselevel->basic_duration;
         $courselevel->basic_days         = json_encode($request->basic_days) ?? $courselevel->basic_days;
-        $courselevel->basic_start_time   = $request->basic_start_time ?? $courselevel->basic_start_time;
-        $courselevel->basic_end_time     = $request->basic_end_time ?? $courselevel->basic_end_time;
+        $courselevel->basic_class_start_time   = $request->basic_start_time ?? $courselevel->basic_start_time;
+        $courselevel->basic_class_end_time     = $request->basic_end_time ?? $courselevel->basic_end_time;
         $courselevel->basic_price        = $request->basic_price ?? $courselevel->basic_price;
         $courselevel->standard_home_work = $request->standard_home_work ?? $courselevel->standard_home_work;
         $courselevel->standard_quiz      = $request->standard_quiz ?? $courselevel->standard_quiz;
@@ -201,8 +202,8 @@ class CourseController extends Controller
         $courselevel->standard_note      = $request->standard_note ?? $courselevel->standard_note;
         $courselevel->standard_duration  = $request->standard_duration ?? $courselevel->standard_duration;
         $courselevel->standard_days      = json_encode($request->standard_days) ?? $courselevel->standard_days;
-        $courselevel->standard_start_time= $request->start_time ??  $courselevel->standard_start_time;
-        $courselevel->standard_end_time  = $request->end_time ?? $courselevel->standard_end_time;
+        $courselevel->standard_class_start_time= $request->start_time ??  $courselevel->standard_start_time;
+        $courselevel->standard_class_end_time  = $request->end_time ?? $courselevel->standard_end_time;
         $courselevel->standard_price     = $request->price ?? $courselevel->standard_price;
         $courselevel->advance_home_work  = $request->advance_home_work ?? $courselevel->advance_home_work;
         $courselevel->advance_quiz       = $request->advance_quiz ?? $courselevel->advance_quiz;
@@ -211,8 +212,8 @@ class CourseController extends Controller
         $courselevel->advance_note       = $request->advance_note ?? $courselevel->advance_note;
         $courselevel->advance_duration   = $request->advance_duration ?? $courselevel->advance_duration;
         $courselevel->advance_days       = json_encode($request->advance_days) ?? $courselevel->advance_days;
-        $courselevel->advance_start_time = $request->advance_start_time ?? $courselevel->advance_start_time;
-        $courselevel->advance_end_time   = $request->advance_end_time ?? $courselevel->advance_end_time;
+        $courselevel->advance_class_start_time = $request->advance_start_time ?? $courselevel->advance_start_time;
+        $courselevel->advance_class_end_time   = $request->advance_end_time ?? $courselevel->advance_end_time;
         $courselevel->advance_price      = $request->advance_price ?? $courselevel->advance_price;
 
         $courselevel->save();
