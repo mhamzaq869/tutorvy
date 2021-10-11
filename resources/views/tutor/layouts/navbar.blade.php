@@ -471,7 +471,6 @@
                             <p class="text-mute mb-0">User Id# {{Auth::user()->account_id}}</p>
                         @endif
                     </a>
-                    
                     @auth
                         @if(Auth::user()->picture)
                                 <img class="profile-img " src="{{asset(Auth::user()->picture) }}" data-toggle="dropdown" alt="profile">

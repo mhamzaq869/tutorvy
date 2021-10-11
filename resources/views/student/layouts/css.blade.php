@@ -5,7 +5,6 @@
 @else
 <link href="{{ asset('assets/css/student-home.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/css/home.css') }}" rel="stylesheet">
-
 <link href="{{ asset('assets/css/booknow.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/css/tutor-asset.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/css/student-asset.css') }}" rel="stylesheet">
