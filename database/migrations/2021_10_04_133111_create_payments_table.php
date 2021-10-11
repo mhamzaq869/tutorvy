@@ -18,6 +18,7 @@ class CreatePaymentsTable extends Migration
             $table->string('booking_id');
             $table->string('transaction_id');
             $table->string('amount');
+            $table->string('service_fee')->nullable();
             $table->string('method');
             $table->timestamps();
         });

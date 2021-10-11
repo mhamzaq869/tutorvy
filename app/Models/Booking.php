@@ -57,9 +57,9 @@ class Booking extends Model
         return $this->hasOne(Classroom::class,'booking_id','id');
     }
 
-    public function Payments()
+    public function payment()
     {
-        return $this->belongsTo(Payments::class);
+        return $this->hasMany(Payments::class);
     }
 
     // Scopes for Filteration

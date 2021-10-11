@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Mail\SendOtpMail;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ResetsPasswords;
@@ -11,8 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use phpDocumentor\Reflection\DocBlock\Tags\See;
-use Illuminate\Support\Facades\Mail;
-
+use App\Jobs\SendOtp;
+use Illuminate\Support\Carbon;
 class ResetPasswordController extends Controller
 {
     /*
@@ -47,7 +46,9 @@ class ResetPasswordController extends Controller
         if($user){
             Session::put('changepass',$user->id);
             Session::put('otp',rand(1000,9999));
-            Mail::to($request->email)->send(new SendOtpMail);
+            $sendOtp = (new SendOtp($request->email))->delay(Carbon::now()->addSeconds(3));
+            dispatch($sendOtp);
+
             return view('auth.otp');
         }
 
@@ -84,7 +85,8 @@ class ResetPasswordController extends Controller
         Session::put('otp',rand(1000,9999));
 
         $email = User::find(Session::get('changepass'))->email;
-        Mail::to($email)->send(new SendOtpMail);
+        $sendOtp = (new SendOtp($email))->delay(now()->addSeconds(3));
+        dispatch($sendOtp);
 
         return response("New otp has been sended",200);
     }

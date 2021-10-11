@@ -37,7 +37,7 @@
                                     </select>
                                 </div>
                             </div>
-                            
+
                         </div>
                         <div class="col-md-6 d-block">
                             <div class="card mt-0">
@@ -56,7 +56,7 @@
                                                     <h3 class="mb-0">{{$user->first_name}}  {{$user->last_name}}</h3>
                                                     <p class="mb-0 "><img src="{{asset('assets/images/ico/red-icon.png')}}" alt="" class="pr-2">  {{$user->professional->last()->designation ?? '---'}}</p>
                                                     <p class="mb-0 "><img src="{{asset('assets/images/ico/location-pro.png')}}" alt="" class="pr-2">{{ $user->city != NULL ? $user->city.' , ' : '---' }} {{ $user->country != NULL ? $user->country: '---' }}</p>
-                                                    
+
                                                 </div>
                                                 <div class="col-md-4 col-12">
                                                     <p>
@@ -86,7 +86,7 @@
                                                         <i class="fa fa-star "></i>
                                                         <i class="fa fa-star "></i>  0.0
                                                         @endif
-                                                    
+
                                                         <small class="text-grey">(0 reviews)</small>
                                                     </p>
                                                 </div>
@@ -148,7 +148,7 @@
                             <input type="" class="form-control" name="date"  onfocus="(this.type='date')" placeholder="Class Date" required>
                         </div>
                         <div class="input-text col-md-4">
-                            <input type="" class="form-control" name="time" onfocus="(this.type='time')" placeholder="Class Time" required>
+                            <input type="" class="form-control" name="time" onfocus="(this.type='time')"  placeholder="Class Time" required>
                         </div>
                         <div class="input-text col-md-4">
                             <input type="number" min="1" max="24" class="form-control" name="duration" placeholder="Class Duration (in hours)" required>
@@ -156,7 +156,7 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-12" >
-                            
+
                             <button id="finish" type="submit"class="btn-general pull-right  mb-3">  Send Request </button>
                             <button type="button" role="button" type="button" id="proBtn" disabled class="btn btn-primary pull-right mb-3 mr-2" style="width:140px; display:none">
                                 <i class="fa fa-circle-o-notch fa-spin fa-1x fa-fw"></i> <span class="sr-only">Loading...</span> Processing </button>

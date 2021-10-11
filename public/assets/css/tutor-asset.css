@@ -2477,6 +2477,8 @@ select#paymentMethod option[value="others"] {
     width: 12px;
 }
 
+
+
 .round input[type="radio"]:checked+label {
     background-color: #1173FF;
     border-color: #1173FF;
