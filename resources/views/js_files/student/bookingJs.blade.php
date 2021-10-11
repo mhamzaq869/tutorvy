@@ -208,6 +208,12 @@ function tConvert (time) {
   return time.join (''); // return adjusted time or original string
 }
 
+let val = $('input[name="paytype"]:checked').val();
+
+if(val){
+    let input = "<input type='hidden' name='paymentMethod' value='"+val+"' />"
+    $("#payment #paytype").html(input)
+}
 
 function paymentMethod(value){
     let input = "<input type='hidden' name='paymentMethod' value='"+value+"' />"
