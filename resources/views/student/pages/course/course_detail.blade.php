@@ -48,10 +48,11 @@
         <div class="container-fluid m-0 p-0">
             <div class="row">
                 <div class="col-md-12">
-                    <a href="{{route('student.courses')}}" class="decoration-none">
-                        <h1 class="heading-first mr-3 ml-3">
-                            < Course </h1>
-                    </a>
+                    <!-- <a href="{{route('student.courses')}}" class="decoration-none"> -->
+                        <p class="heading-first mr-3 ml-3"> 
+                                Course Detail     
+                        </p>
+                    <!-- </a> -->
                 </div>
               
             </div>

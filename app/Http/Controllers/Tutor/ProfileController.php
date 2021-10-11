@@ -44,6 +44,7 @@ class ProfileController extends Controller
         $data =array(
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
+            'tagline' => $request->tagline,
             'dob' => $date_of_birth,
             'phone' => $request->phone,
             'city' => $request->city,

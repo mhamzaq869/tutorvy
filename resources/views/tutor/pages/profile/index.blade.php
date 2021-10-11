@@ -493,6 +493,15 @@
                                                 </div>
                                             </div>
 
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label for="exampleName" class="heading-fifth mb-0">Tutor Tagline</label>
+                                                    <input type="text" name="tagline" class="form-control"
+                                                        value="{{ Auth::user()->tagline }}" id="exampleName"
+                                                        aria-describedby="emailHelp" required="required"  placeholder="Last Name" style="text-transform: capitalize;" >
+                                                </div>
+                                            </div>
+
 
                                             <div class="col-md-12">
                                                 <p class="heading-fifth mb-0">Date of Birth</p>
