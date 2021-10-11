@@ -992,57 +992,86 @@ connection.socketURL = 'https://tutorvy.herokuapp.com:443/';
 
 
 connection.extra.userFullName = fullName;
+if (connection.DetectRTC.isWebRTCSupported === false) {
+    alert('Please try a WebRTC compatible web browser e.g. Chrome, Firefox or Opera.');
+}
 connection.DetectRTC.load(function() {
-            console.log(connection.DetectRTC);
-                        if (connection.DetectRTC.hasMicrophone === true) {
-                            // enable microphone
-                            connection.mediaConstraints.audio = true;
-                            connection.session.audio = true;
-                            // alert('attach true microphone')
-                            $(".no-mk").show();
-                            $("#join_now").removeAttr("disabled","disabled" );
-                                $("#join_now").click(function(){
-                                    $(".tech_weck").removeClass("tech_weck-none");
-                                    $(".callDiv").hide();
-                                    // joinClass();
-                                    /** Javascript Timer */
-                                    var timer = new Timer();
-                                        timer.start({countdown: true, startValues: {seconds: 30}});
 
-                                        $('#countdownExample .values').html(timer.getTimeValues().toString());
+    console.log(connection.DetectRTC);
+    if (connection.DetectRTC.hasMicrophone === true) {
+        // enable microphone
+        connection.mediaConstraints.audio = true;
+        connection.session.audio = true;
+        // alert('attach true microphone')
+        // $(".no-mk").show();
+        $("#join_now").removeAttr("disabled","disabled" );
+            $("#join_now").click(function(){
+                $(".tech_weck").removeClass("tech_weck-none");
+                $(".callDiv").hide();
+                // joinClass();
+                /** Javascript Timer */
+                var timer = new Timer();
+                    timer.start({countdown: true, startValues: {seconds: 30}});
 
-                                        timer.addEventListener('secondsUpdated', function (e) {
-                                            $('#countdownExample .values').html(timer.getTimeValues().toString());
-                                        });
+                    $('#countdownExample .values').html(timer.getTimeValues().toString());
 
-                                        timer.addEventListener('targetAchieved', function (e) {
-                                            $('#countdownExample .values').html('Class Time has Ended!!');
-                                        });
-                                    /* Javascript Timer ENd */
-                                })
-                        }else{
-                            toastr.warning( "Audio Device is Mendatory ");
-                            $(".no-mk").hide();
-                        }
+                    timer.addEventListener('secondsUpdated', function (e) {
+                        $('#countdownExample .values').html(timer.getTimeValues().toString());
+                    });
 
-                        if (connection.DetectRTC.hasWebcam === true) {
-                            // enable camera
-                            connection.mediaConstraints.video = true;
-                            connection.session.video = true;
-                            // alert('attach true camera')
-                            $(".no-vc").show();
+                    timer.addEventListener('targetAchieved', function (e) {
+                        $('#countdownExample .values').html('Class Time has Ended!!');
+                    });
+                /* Javascript Timer ENd */
+            })
+    }else{
+        toastr.warning( "Audio Device is Mendatory ");
+        $(".no-mk").hide();
+    }
+
+    if (connection.DetectRTC.hasWebcam === true) {
+        // enable camera
+        if(connection.DetectRTC.videoInputDevices.length > 0){
+            var varr = connection.DetectRTC.videoInputDevices;
+            for(var v = 0 ; v < varr.length ; v++){
+                if(varr[v].deviceId != undefined){
+                    console.log(connection.DetectRTC)
+                    connection.mediaConstraints.video = true;
+                    connection.session.video = true;
+                    alert('attach true camera')
+                }else{
+                    console.log(connection.DetectRTC)
+                    connection.dontCaptureUserMedia = true;
+
+                    // connection.mediaConstraints.video = true;
+                    // connection.session.video = true;
+                    alert('no camera')
+                }
+            }
+        }else{
+
+        }
+        
+        $(".no-vc").show();
 
 
-                        }else{
-                            $(".no-vc").hide();
+    }else{
+        $(".no-vc").hide();
 
-                            // alert('attach Cam')
-                        }
+        // alert('attach Cam')
+    }
 
-                        if (connection.DetectRTC.hasSpeakers === false) { // checking for "false"
-                            // alert('Please attach a speaker device. You will unable to hear the incoming audios.');
-                        }
-        });
+    if (connection.DetectRTC.hasMicrophone === false &&
+        connection.DetectRTC.hasWebcam === false) {
+        // he do not have microphone or camera
+        // so, ignore capturing his devices
+        connection.dontCaptureUserMedia = true;
+    }
+
+    if (connection.DetectRTC.hasSpeakers === false) { // checking for "false"
+        // alert('Please attach a speaker device. You will unable to hear the incoming audios.');
+    }
+});
 // On mute Screen
 connection.onmute = function (e) {
     if (e && e.mediaElement)
@@ -1115,14 +1144,14 @@ connection.isInitiator = true;
 connection.chunkSize = 16000;
 connection.enableFileSharing = true;
 
-connection.session = {
-    audio: true,
-    video: true,
-    data: true
-};
+// connection.session = {
+//     audio: true,
+//     video: true,
+//     data: true
+// };
 connection.sdpConstraints.mandatory = {
     OfferToReceiveAudio: true,
-    OfferToReceiveVideo: true
+    OfferToReceiveVideo: false
 };
 
 // connection.onUserStatusChanged = function(event) {
