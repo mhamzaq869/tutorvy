@@ -464,7 +464,7 @@ height:25px;
                             <li>Allow Notifications.</li>
                             <li>Audio device should be working properly.</li>
                             <li>Tutor Camera's compulsory for conducting a class.</li>
-                            <li>If not working correctly, try icognito mode or deactivate any third party extension.</li>
+                            <li>If not working correctly, try incognito mode or deactivate any third party extension.</li>
                         </ul>
                         <div class="text-center">
                             <button type="button" role="button" id="join_now"  class="schedule-btn ">
