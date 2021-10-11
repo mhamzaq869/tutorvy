@@ -146,7 +146,7 @@ class TutorController extends Controller
 
         $notification = new NotifyController();
         $reciever_id = $assessment->user_id;
-        $slug = '-';
+        $slug = URL::to('/') . '/tutor/subjects';
         $type = 'tutor_assessment';
         $data = 'data';
         $title = 'Assessment Verfication';
