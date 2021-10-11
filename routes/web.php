@@ -23,7 +23,6 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\General\GeneralController;
 use App\Http\Controllers\Tutor\HomeController as TutorHomeController;
 use App\Http\Controllers\Tutor\BookingController;
-use App\Http\Controllers\Student\BookingController as StudentBookingController;
 use App\Http\Controllers\Tutor\CalendarController;
 use App\Http\Controllers\Tutor\ClassController;
 use App\Http\Controllers\Tutor\SubjectController as TutorSubjectController;
@@ -33,14 +32,16 @@ use App\Http\Controllers\Tutor\PaymentController;
 use App\Http\Controllers\Tutor\SettingController as TutorSettingController;
 use App\Http\Controllers\Tutor\AssessmentController;
 use App\Http\Controllers\Tutor\ProfileController;
+use App\Http\Controllers\Tutor\ChatController;
+use App\Http\Controllers\Student\BookingController as StudentBookingController;
 use App\Http\Controllers\Student\HomeController as StudentHomeController;
 use App\Http\Controllers\Student\ProfileController as StudentProfileController;
 use App\Http\Controllers\Student\TutorController as StudentTutorController;
 use App\Http\Controllers\Student\StudentClassController as StudentClassController;
 use App\Http\Controllers\Student\SettingController as StudentSettingController;
-
-use App\Http\Controllers\Tutor\ChatController;
 use App\Http\Controllers\Student\ChatController as StdChatController;
+use App\Http\Controllers\Student\WalletController;
+
 use App\Http\Controllers\General\GenChatController;
 use App\Http\Controllers\General\NotifyController;
 use App\Http\Controllers\Frontend\TutorController as FrontTutorController;
@@ -263,7 +264,11 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     Route::post('/booked',[StudentBookingController::class,'booked'])->name('student.booked.tutor');
 
     Route::get('/classroom',[StudentClassController::class,'index'])->name('student.classroom');
-    Route::get('/wallet',[StudentClassController::class,'payment'])->name('student.wallet');
+
+    Route::get('/wallet',[WalletController::class,'index'])->name('student.wallet');
+    Route::post('/deposit-money',[WalletController::class,'depositMoney'])->name('student.deposit');
+    Route::get('/deposit-money-status',[WalletController::class,'getPaymentStatus'])->name('deposit.status');
+    Route::get('/getskrillstatus',[WalletController::class,'getSkrillStatus']);
 
     Route::post('/save-review',[StudentClassController::class,'saveReview'])->name('student.save.review');
 

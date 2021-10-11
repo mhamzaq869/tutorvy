@@ -615,6 +615,19 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-md-6">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="text-center">
+                                                        <img src="{{asset ('assets/images/icons8-wallet-64.png')}}" class="w-50" alt="">
+
+                                                        <span class="round">
+                                                            <input id="checkbox3" name="paytype" onclick="paymentMethod(this.value)"  {{($defaultPay->method == 'wallet') ? 'checked' :''}} value="wallet" type="radio">
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
 
                                         <div class="col-md-12 text-right mt-3" id="show_pay_btn">

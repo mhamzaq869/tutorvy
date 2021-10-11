@@ -18,7 +18,7 @@ use App\Models\Admin\supportTkts;
 use App\Models\Admin\Subject;
 use App\Models\Payments;
 use Illuminate\Support\Facades\URL;
-use Session;
+use Illuminate\Support\Facades\Session;
 use Redirect;
 use Input;
 use App\Models\subjectPlans;
@@ -38,7 +38,7 @@ use PayPal\Api\PaymentExecution;
 use PayPal\Api\Transaction;
 use Obydul\LaraSkrill\SkrillClient;
 use Obydul\LaraSkrill\SkrillRequest;
-
+use App\Models\Wallet;
 class BookingController extends Controller
 {
 
@@ -50,15 +50,6 @@ class BookingController extends Controller
         $paypal_configuration = \Config::get('paypal');
         $this->_api_context = new ApiContext(new OAuthTokenCredential($paypal_configuration['sandbox']['client_id'], $paypal_configuration['sandbox']['client_secret']));
         $this->_api_context->setConfig($paypal_configuration);
-
-        // Skrill Integeration
-        $this->skrilRequest = new SkrillRequest();
-        $this->skrilRequest->pay_to_email = 'skrill_user_test2@smart2pay.com';
-        $this->skrilRequest->return_url = 'https://webs.dev/student/skrlpayment-complete';
-        $this->skrilRequest->cancel_url = 'https://webs.dev/student/bookings';
-        $this->skrilRequest->logo_url = 'https://tutorvydev.naumanyasin.com/assets/images/logo/logo.png';
-        $this->skrilRequest->pay_from_email = 'skrill_user_test2@smart2pay.com';
-
 
 
     }
@@ -171,9 +162,8 @@ class BookingController extends Controller
     }
 
 
-    public function bookingPayment(Request $request,$id){
-
-
+    public function bookingPayment(Request $request,$id)
+    {
         $total_price = 0;
         $booking = Booking::where('id',$request->id)->first();
         $commission = DB::table("sys_settings")->first();
@@ -186,60 +176,113 @@ class BookingController extends Controller
         }
 
 
-        \Session::put('service_fee',$comm);
+        Session::put('service_fee',$comm);
 
         if(!$booking){
-            \Session::put('error','Unable to process booking not available.');
-            return Redirect::route('student.bookings');
+            Session::put('error','Unable to process booking not available.');
+            return redirect()->route('student.bookings');
         }
         if($total_price == null || $total_price == 0.00 || $total_price == 0){
-            \Session::put('error','Unable to process booking with invalid amount.');
-            return Redirect::route('student.bookings');
+            Session::put('error','Unable to process booking with invalid amount.');
+            return redirect()->route('student.bookings');
         }
 
+        //skrill payment method
         if($request->paymentMethod == 'skrill'){
-            $payerEmail = DB::table('payment_methods')
-                                ->where('user_id',Auth::user()->id)
-                                ->where('method','skrill')
-                                ->first();
-            //Payment Through Skrill
-            $this->skrilRequest->pay_from_email = $payerEmail->email;
-            $this->skrilRequest->transaction_id = 'SKRL-'.rand();
-            $this->skrilRequest->amount = $total_price;
-            $this->skrilRequest->currency = 'USD';
-            $this->skrilRequest->language = 'EN';
-            $this->skrilRequest->prepare_only = '1';
-            $this->skrilRequest->merchant_fields = 'Tutorvy,'.Auth::user()->email;
-            $this->skrilRequest->site_name = 'Tutorvy.com';
-            $this->skrilRequest->customer_email = Auth::user()->email;
-            $this->skrilRequest->detail1_description = 'Booking ID:';
-            $this->skrilRequest->detail1_text = $booking->id;
-            $this->skrilRequest->detail2_description = 'Tutor Fee:';
-            $this->skrilRequest->detail2_text = '$'.$booking->price;
-            $this->skrilRequest->detail3_description = 'Service Fee:'.$commission->commission.'%';
-            $this->skrilRequest->detail3_text = '$'.$comm;
+            $redirectUrl = $this->skrillPayment($total_price,$commission,$comm,$booking,$request->id);
+            return redirect()->to($redirectUrl);
 
-            \Session::put('bookingId',$request->id);
-            \Session::put('transaction_id',$this->skrilRequest->transaction_id);
-            \Session::put('amount',$total_price);
+        }elseif($request->paymentMethod == 'wallet'){
 
-            // create object instance of SkrillClient
-            $client = new SkrillClient($this->skrilRequest);
-            $sid = $client->generateSID(); //return SESSION ID
+            $walletIn  = Wallet::where('user_id',Auth::user()->id)->where('type','in')->sum('amount');
+            $walletOut = Wallet::where('user_id',Auth::user()->id)->where('type','out')->sum('amount');
+            $balance   = $walletIn-$walletOut;
 
-            // handle error
-            $jsonSID = json_decode($sid);
+            if($balance >= $total_price){
 
-            if ($jsonSID != null && $jsonSID->code == "BAD_REQUEST")
-                return $jsonSID->message;
-            // do the payment
-            $redirectUrl= $client->paymentRedirectUrl($sid); //return redirect url
+                $booking_id = Session::get('bookingId');
+                $booking = Booking::where('id',$booking_id)->first();
 
-            return Redirect::to($redirectUrl);
+                $classroom_id = sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+                    mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ),
+                    mt_rand( 0, 0xffff ),
+                    mt_rand( 0, 0x0C2f ) | 0x4000,
+                    mt_rand( 0, 0x3fff ) | 0x8000,
+                    mt_rand( 0, 0x2Aff ), mt_rand( 0, 0xffD3 ), mt_rand( 0, 0xff4B )
+                );
 
+                $subject = Subject::where('id',$booking->subject_id)->first();
+                $booking->status = 2;
+                $booking->save();
+
+                Classroom::create([
+                    'booking_id' => $booking_id,
+                    'classroom_id' => $classroom_id
+                ]);
+
+                $id = Auth::user()->id;
+                $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+                $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> Payment success';
+                $activity_logs = new GeneralController();
+                $activity_logs->save_activity_logs("Payment Success", "users.id", $id, $action_perform, $request->header('User-Agent'), $id);
+
+                $admin = User::where('role',1)->first();
+
+                $notification = new NotifyController();
+                $slug = URL::to('/') . '/tutor/booking-detail/' . $booking->id;
+                $type = 'booking_confirmed';
+                $title = 'Booking Confirmed';
+                $icon = 'fas fa-tag';
+                $class = 'btn-success';
+                $desc = $name . ' Paid for Class of ' . $subject->name;
+                $pic = Auth::User()->picture;
+                $notification->GeneralNotifi($booking->booked_tutor ,$slug,$type,$title,$icon,$class,$desc,$pic);
+
+                // send to admin
+                $admin_slug = URL::to('/') . '/admin/booking-detail/' . $booking->id;
+                $notification->GeneralNotifi($admin->id,$admin_slug,$type,$title,$icon,$class,$desc,$pic);
+
+
+                $transaction_id = Session::get('transaction_id');
+                $total_price = Session::get('amount');
+
+                Payments::create([
+                    'user_id' => Auth::user()->id,
+                    'type' => 'Booked Class',
+                    'transaction_id' =>  $transaction_id,
+                    'amount'  => $total_price,
+                    'service_fee'  => Session::get('service_fee'),
+                    'method'  => 'wallet'
+                ]);
+
+                Wallet::create([
+                    'user_id' => Auth::user()->id,
+                    'amount' => $total_price,
+                    'type' => 'out',
+                ]);
+
+            }
+            Session::flash('error','You have sufficient balance');
+            return redirect()->back();
         }else{
             //Payment Through Paypal
-            $payerEmail = DB::table('payment_methods')
+            $redirect_url = $this->paypalPayment($total_price,$booking);
+
+            if(isset($redirect_url)) {
+                return redirect()->away($redirect_url);
+            }
+
+            Session::put('error','Unknown error occurred');
+
+        }
+
+    	return redirect()->route('student.bookings');
+
+    }
+
+    private function paypalPayment($total_price,$booking)
+    {
+        $payerEmail = DB::table('payment_methods')
                                 ->where('user_id',Auth::user()->id)
                                 ->where('method','paypal')
                                 ->first();
@@ -284,11 +327,11 @@ class BookingController extends Controller
                 $payment->create($this->_api_context);
             } catch (\PayPal\Exception\PPConnectionException $ex) {
                 if (\Config::get('app.debug')) {
-                    \Session::put('error','Connection timeout');
-                    return Redirect::route('student.bookings');
+                    Session::flash('error','Connection timeout');
+                    return redirect()->route('student.bookings');
                 } else {
-                    \Session::put('error','Some error occur, sorry for inconvenient');
-                    return Redirect::route('student.bookings');
+                    Session::flash('error','Some error occur, sorry for inconvenient');
+                    return redirect()->route('student.bookings');
                 }
             }
 
@@ -299,20 +342,9 @@ class BookingController extends Controller
                 }
             }
             Session::put('booking_id', $booking->id);
-
             Session::put('payment_id', $payment->getId());
 
-            if(isset($redirect_url)) {
-                return Redirect::away($redirect_url);
-            }
-            \Session::put('error','Unknown error occurred');
-
-        }
-        // Session::put('booking_id', $booking->id);
-
-
-    	return Redirect::route('student.bookings');
-
+            return $redirect_url;
     }
 
     public function getPaymentStatus(Request $request)
@@ -346,7 +378,8 @@ class BookingController extends Controller
             $subject = Subject::where('id',$booking->subject_id)->first();
 
             Payments::create([
-                'booking_id' => $booking->id,
+                'user_id' => Auth::user()->id,
+                'type' => 'Booked Class',
                 'transaction_id' => $result->id,
                 'amount'  => $result->transactions[0]->amount->total,
                 'service_fee' => \Session::get('service_fee'),
@@ -390,7 +423,7 @@ class BookingController extends Controller
 
     public function skrillPaymentComplete()
     {
-        $booking_id = \Session::get('bookingId');
+        $booking_id = Session::get('bookingId');
         $booking = Booking::where('id',$booking_id)->first();
 
         $classroom_id = sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
@@ -464,5 +497,62 @@ class BookingController extends Controller
             "success" => true,
         ]);
     }
+
+
+
+    /**
+     *  @param $total_price,$commission,$comm.$booking,$bookingID
+     *  @return $redirectURL
+     *
+     *  Skrill Payment Method Integeration and redirect
+     */
+    private function skrillPayment($total_price,$commission,$comm,$booking,$bkid)
+    {
+
+        $payerEmail = DB::table('payment_methods')
+        ->where('user_id',Auth::user()->id)
+        ->where('method','skrill')
+        ->first();
+
+        $this->skrilRequest = new SkrillRequest();
+        $this->skrilRequest->pay_to_email = 'skrill_user_test2@smart2pay.com';
+        $this->skrilRequest->return_url = 'https://webs.dev/student/skrlpayment-complete';
+        $this->skrilRequest->cancel_url = 'https://webs.dev/student/bookings';
+        $this->skrilRequest->logo_url = 'https://tutorvydev.naumanyasin.com/assets/images/logo/logo.png';
+        $this->skrilRequest->pay_from_email = $payerEmail->email;
+        $this->skrilRequest->transaction_id = 'SKRL-'.rand();
+        $this->skrilRequest->amount = $total_price;
+        $this->skrilRequest->currency = 'USD';
+        $this->skrilRequest->language = 'EN';
+        $this->skrilRequest->prepare_only = '1';
+        $this->skrilRequest->merchant_fields = 'Tutorvy,'.Auth::user()->email;
+        $this->skrilRequest->site_name = 'Tutorvy.com';
+        $this->skrilRequest->customer_email = Auth::user()->email;
+        $this->skrilRequest->detail1_description = 'Booking ID:';
+        $this->skrilRequest->detail1_text = $booking->id;
+        $this->skrilRequest->detail2_description = 'Tutor Fee:';
+        $this->skrilRequest->detail2_text = '$'.$booking->price;
+        $this->skrilRequest->detail3_description = 'Service Fee:'.$commission->commission.'%';
+        $this->skrilRequest->detail3_text = '$'.$comm;
+
+        \Session::put('bookingId',$bkid);
+        \Session::put('transaction_id',$this->skrilRequest->transaction_id);
+        \Session::put('amount',$total_price);
+
+        // create object instance of SkrillClient
+        $client = new SkrillClient($this->skrilRequest);
+        $sid = $client->generateSID(); //return SESSION ID
+
+        // handle error
+        $jsonSID = json_decode($sid);
+
+        if ($jsonSID != null && $jsonSID->code == "BAD_REQUEST")
+        return $jsonSID->message;
+        // do the payment
+        $redirectUrl= $client->paymentRedirectUrl($sid); //return redirect url
+
+        return $redirectUrl;
+    }
+
 }
 
