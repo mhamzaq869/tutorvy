@@ -66,7 +66,7 @@
     /* border: 1px solid #121010; */
     border-radius: 3px;
     margin: 5px;
-    display: none;
+    display: block;
     padding: 1px;
 }
 
@@ -471,7 +471,7 @@ height:25px;
         </div>
         <div class="col-md-12">
             <button class="schedule-btn"> Allow Access </button>
-            <button class="cencel-btn"> Continue without Camera </button>
+            <button class="cencel-btn" id="conCam"> Continue without Camera </button>
         </div>
     </div>
 
@@ -950,7 +950,7 @@ height:25px;
         $(".vc").hide();
         // $("#callModal").modal("show");
         $("#join_now").attr("disabled","disabled" );
-
+        $("#main-video").attr("poster","{{asset('assets/images/ico/Mute-video.png')}}");
         // saveClassLogs();
 
     })
@@ -986,7 +986,9 @@ var editor2 = ace.edit("editor2");
    $(".no-ph").click(function(){
         $("#endCall").modal("show");
     });
-    
+    $("#conCam").click(function(){
+        $(".overlayCam").css("display","none");
+    })
 </script>
 
 
@@ -1229,6 +1231,7 @@ connection.onopen = function(event) {
 
 connection.onclose = connection.onerror = connection.onleave = function(event) {
     // toastr.success("Student has ended the call!");
+    $("#main-video").css("width","85%")
     connection.onUserStatusChanged(event);
 };
 

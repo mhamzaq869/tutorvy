@@ -421,7 +421,7 @@ height:25px;
         margin-top: 0;
         /* border: 1px solid #121010; */
         border-radius: 3px;
-        display: none;
+        display: block;
         padding: 0;
     }
     /*Call main Video End*/
@@ -1068,6 +1068,7 @@ height:25px;
      
         // $("#callModal").modal("show");
         $("#join_now").attr("disabled","disabled" );
+        $("#main-video").attr("poster","{{asset('assets/images/ico/Mute-video.png')}}");
         });
     $(".no-mk").click(function(){
         $(".no-mk").hide();
