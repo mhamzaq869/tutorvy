@@ -902,7 +902,7 @@ height:25px;
 @include('js_files.whiteBoard')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.2.7/emojionearea.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-
+<script src="https://www.webrtc-experiment.com/DetectRTC.js"></script>
 <script>
     $(document).ready(function(){
         // $(".tech_weck").hide();
@@ -1041,10 +1041,10 @@ connection.DetectRTC.load(function() {
                     alert('attach true camera')
                 }else{
                     console.log(connection.DetectRTC)
-                    connection.dontCaptureUserMedia = true;
-
-                    // connection.mediaConstraints.video = true;
-                    // connection.session.video = true;
+                    // connection.dontCaptureUserMedia = true;
+                    // connection.DetectRTC.isWebsiteHasWebcamPermissions
+                    connection.mediaConstraints.video = false;
+                    connection.session.video = false;
                     alert('no camera')
                 }
             }
@@ -1144,31 +1144,31 @@ connection.isInitiator = true;
 connection.chunkSize = 16000;
 connection.enableFileSharing = true;
 
-// connection.session = {
-//     audio: true,
-//     video: true,
-//     data: true
-// };
+connection.session = {
+    audio: true,
+    video: false,
+    data: true
+};
 connection.sdpConstraints.mandatory = {
     OfferToReceiveAudio: true,
     OfferToReceiveVideo: false
 };
 
-// connection.onUserStatusChanged = function(event) {
-//     var infoBar = document.getElementById('onUserStatusChanged');
-//     var names = [];
-//     connection.getAllParticipants().forEach(function(pid) {
-//         names.push(getFullName(pid));
-//     });
+connection.onUserStatusChanged = function(event) {
+    var infoBar = document.getElementById('onUserStatusChanged');
+    var names = [];
+    connection.getAllParticipants().forEach(function(pid) {
+        names.push(getFullName(pid));
+    });
 
-//     if (!names.length) {
-//         names = ['Only You'];
-//     } else {
-//         names = [connection.extra.userFullName || 'You'].concat(names);
-//     }
+    if (!names.length) {
+        names = ['Only You'];
+    } else {
+        names = [connection.extra.userFullName || 'You'].concat(names);
+    }
 
-//     infoBar.innerHTML = '<b>Active users:</b> ' + names.join(', ');
-// };
+    infoBar.innerHTML = '<b>Active users:</b> ' + names.join(', ');
+};
 
 connection.onopen = function(event) {
     connection.onUserStatusChanged(event);
