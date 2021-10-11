@@ -157,7 +157,7 @@
                                 </div>
                                 <div class="col-md-9 m-0 p-0">
                                     <p class="paragraph-text1">Interested subjects</p>
-                                    @if($subjects->name != "[]")
+                                    @if($subjects != "[]" && $subjects != null && $subjects != "")
                                         <p class="paragraph-text3" style="line-height: 0;">{{$subjects->name}}</p>
                                     @else
                                         <p class="paragraph-text3" style="line-height: 0;">No subject Selected</p>
