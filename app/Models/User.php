@@ -14,6 +14,7 @@ use App\Models\General\Professional;
 use App\Models\General\Teach;
 use App\Models\General\Message;
 use App\Models\Review;
+use App\Models\Student\Wallet;
 use PhpParser\Node\Expr\Empty_;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -93,7 +94,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @return userdetail class
      */
-    
+
     public function userdetailIp()
     {
         return $this->hasOne(Userdetail::class,'ip','ip');
@@ -108,7 +109,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Subject::class);
     }
-    
+
     public function teach()
     {
         return $this->hasMany(Teach::class);
@@ -133,6 +134,10 @@ class User extends Authenticatable implements MustVerifyEmail
     }
     public function bookedTutor(){
         return $this->hasMany(Booking::class,'booked_tutor','id');
+    }
+    public function wallet()
+    {
+        return $this->hasMany(Wallet::class);
     }
 
     public function scopeCanJoinRoom($room_id)
@@ -226,7 +231,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $query->where('status',2);
     }
-    
+
     // public function scopeVerified($query)
     // {
     //     return $query->where('verify',1);

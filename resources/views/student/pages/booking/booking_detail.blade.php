@@ -18,6 +18,13 @@
                 </div>
             </a>
             <div class="container-fluid">
+            @php
+
+            $tz = get_local_time();
+            $dt = new DateTime($booking->class_time, new DateTimeZone($tz)); //first argument "must" be a string
+            $time = $dt->format('g:i a');
+
+            @endphp
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
@@ -91,7 +98,7 @@
                                                             Schedule Time:
                                                         </span>
                                                         <span class="time-details">
-                                                            {{$booking->class_time}}
+                                                            {{$time}}
                                                         </span>
                                                     </span>
                                                 </div>

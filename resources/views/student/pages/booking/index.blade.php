@@ -108,6 +108,13 @@
                                                     <tbody>
                                                         @if($all != "[]")
                                                             @foreach ($all as $booking)
+                                                                @php
+
+                                                                $tz = get_local_time();
+                                                                $dt = new DateTime($booking->class_time, new DateTimeZone($tz)); //first argument "must" be a string
+                                                                $time = $dt->format('g:i a');
+
+                                                                @endphp
                                                             <tr>
                                                                 <td class="pt-4">
                                                                     {{$booking->tutor->first_name}} {{$booking->tutor->last_name}}
@@ -119,7 +126,7 @@
                                                                     {{$booking->topic}}
                                                                 </td>
                                                                 <td class="pt-4">
-                                                                    {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
+                                                                    {{$time}} - {{$booking->class_date }}
                                                                 </td>
 
                                                                 <td class="pt-4">
@@ -190,6 +197,13 @@
                                                     <tbody>
                                                         @if($confirmed != "[]")
                                                             @foreach ($confirmed as $booking)
+                                                                @php
+
+                                                                $tz = get_local_time();
+                                                                $dt = new DateTime($booking->class_time, new DateTimeZone($tz)); //first argument "must" be a string
+                                                                $time = $dt->format('g:i a');
+
+                                                                @endphp
                                                                 <tr>
                                                                     <td class="pt-4">
                                                                     {{$booking->tutor->first_name}} {{$booking->tutor->last_name}}
@@ -201,7 +215,7 @@
                                                                         {{$booking->topic}}
                                                                     </td>
                                                                     <td class="pt-4">
-                                                                        {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
+                                                                        {{$time}} - {{$booking->class_date }}
                                                                     </td>
 
                                                                     <td class="pt-4">
@@ -271,6 +285,13 @@
                                                     <tbody>
                                                     @if($pending !="[]")
                                                         @foreach ($pending as $booking)
+                                                            @php
+
+                                                            $tz = get_local_time();
+                                                            $dt = new DateTime($booking->class_time, new DateTimeZone($tz)); //first argument "must" be a string
+                                                            $time = $dt->format('g:i a');
+
+                                                            @endphp
                                                             <tr>
                                                                 <td class="pt-4">
                                                                 {{$booking->tutor->first_name}} {{$booking->tutor->last_name}}
@@ -282,7 +303,7 @@
                                                                     {{$booking->topic}}
                                                                 </td>
                                                                 <td class="pt-4">
-                                                                    {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
+                                                                    {{$time}} - {{$booking->class_date }}
                                                                 </td>
 
                                                                 <td class="pt-4">
@@ -354,6 +375,13 @@
                                                 <tbody>
                                                     @if($completed !="[]")
                                                         @foreach ($completed as $booking)
+                                                            @php
+
+                                                            $tz = get_local_time();
+                                                            $dt = new DateTime($booking->class_time, new DateTimeZone($tz)); //first argument "must" be a string
+                                                            $time = $dt->format('g:i a');
+
+                                                            @endphp
                                                             <tr>
                                                                 <td class="pt-4">
                                                                 {{$booking->tutor->first_name}} {{$booking->tutor->last_name}}
@@ -365,7 +393,7 @@
                                                                     {{$booking->topic}}
                                                                 </td>
                                                                 <td class="pt-4">
-                                                                    {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
+                                                                    {{$time}} - {{$booking->class_date }}
                                                                 </td>
 
                                                                 <td class="pt-4">
@@ -435,6 +463,13 @@
                                             <tbody>
                                                 @if($cancelled !="[]")
                                                     @foreach ($cancelled as $booking)
+                                                        @php
+
+                                                        $tz = get_local_time();
+                                                        $dt = new DateTime($booking->class_time, new DateTimeZone($tz)); //first argument "must" be a string
+                                                        $time = $dt->format('g:i a');
+
+                                                        @endphp
                                                         <tr>
                                                             <td class="pt-4">
                                                             {{$booking->tutor->first_name}} {{$booking->tutor->last_name}}
@@ -446,7 +481,7 @@
                                                                 {{$booking->topic}}
                                                             </td>
                                                             <td class="pt-4">
-                                                                {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
+                                                                {{$time}} - {{$booking->class_date }}
                                                             </td>
 
                                                             <td class="pt-4">
@@ -610,6 +645,19 @@
                                                         </span> -->
                                                         <span class="round">
                                                             <input id="checkbox2" name="paytype" onclick="paymentMethod(this.value)"  {{($defaultPay->method == 'skrill') ? 'checked' :''}} value="skrill" type="radio">
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="text-center">
+                                                        <img src="{{asset ('assets/images/icons8-wallet-64.png')}}" class="w-50" alt="">
+
+                                                        <span class="round">
+                                                            <input id="checkbox3" name="paytype" onclick="paymentMethod(this.value)"  {{($defaultPay->method == 'wallet') ? 'checked' :''}} value="wallet" type="radio">
                                                         </span>
                                                     </div>
                                                 </div>

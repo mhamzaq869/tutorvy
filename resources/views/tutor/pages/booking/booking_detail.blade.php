@@ -1,7 +1,13 @@
 @extends('tutor.layouts.app')
 @section('content')
 
-   
+@php
+
+$tz = get_local_time();
+$dt = new DateTime($booking->class_time, new DateTimeZone($tz)); //first argument "must" be a string
+$time = $dt->format('g:i a');
+
+@endphp
     <section>
 
 
@@ -88,7 +94,7 @@
                                                             Schedule Time:
                                                         </span>
                                                         <span class="time-details">
-                                                            {{$booking->class_time}}
+                                                            {{$time}}
                                                         </span>
                                                     </span>
                                                 </div>
@@ -244,6 +250,7 @@
                                             </p>
                                         </div>
                                     </div>
+                                    
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="col-md-6 col-6 col-sm-6 ">
@@ -256,7 +263,7 @@
                                                 <p>Schedule Time: </p> 
                                             </div>
                                             <div class="col-md-6 col-6 col-sm-6 text-right"> 
-                                                <p><strong> {{date("g:i a", strtotime("$booking->class_time UTC"))}} </strong></p> 
+                                                <p><strong> {{$time}} </strong></p> 
                                             </div>
                                             <div class="col-md-6 col-6 col-sm-6">
                                                 <p>Schedule Duration: </p> 
