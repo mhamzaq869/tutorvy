@@ -146,7 +146,7 @@
                                 <img src="{{asset($student->picture)}}" class="profile-card-img" class="w-50">
                                 <p class="heading-third mt-3">{{$student->first_name}} {{$student->last_name}}</p>
                                 <p class="paragraph-text1 mt-0" style="line-height: 0;">Student</p>
-                                <a href="{{route('student.profile')}}" class="schedule-btn w-100 mt-3">Edit Profile</a>
+                                <a href="{{route('student.profile')}}" class="schedule-btn w-100 mt-3 decoration-none">Edit Profile</a>
                             </div>
                             <div class="col-md-12">
                                 <hr>

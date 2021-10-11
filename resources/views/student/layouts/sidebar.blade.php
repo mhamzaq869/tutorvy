@@ -105,6 +105,12 @@
                      Classroom
                  </a>
              </li>
+             <li class="btn @if(\Request::path() === 'student/courses') active @endif w-100">
+                 <a href="{{route('student.courses')}}">
+                     <img src="{{asset('assets/images/ico/class-ico.png')}}" alt="class-ico" class=" mr-2">
+                     Courses
+                 </a>
+             </li>
              <li class="btn @if(\Request::path() === 'student/tutor') active @endif w-100">
                 <a href="{{route('student.tutor')}}">
                     <img src="{{asset('assets/images/ico/find-ico.png')}}" alt="tutor" class=" mr-2">
