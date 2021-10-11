@@ -1,4 +1,7 @@
 @extends('student.layouts.app')
+<link href="{{ asset('admin/assets/css/tutor.css') }}" rel="stylesheet">
+<link href="{{ asset('admin/assets/css/home.css') }}" rel="stylesheet">
+<link href="{{ asset('admin/assets/css/course.css') }}" rel="stylesheet">
 <style>
      .circlechart {
             float: left;

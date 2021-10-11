@@ -1,4 +1,7 @@
 @extends('student.layouts.app')
+<link href="{{ asset('admin/assets/css/tutor.css') }}" rel="stylesheet">
+<link href="{{ asset('admin/assets/css/home.css') }}" rel="stylesheet">
+<link href="{{ asset('admin/assets/css/course.css') }}" rel="stylesheet">
 
 @section('content')
 <div class="content-wrapper " style="overflow: hidden;">
@@ -22,25 +25,41 @@
             @endif
             <div class="row ml-2 mr-2">
                 <div class="col-md-12">
-                    <table>
+                    <table class="table">
                         <thead>
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
+                            <tr
+                                style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
+                                <th scope="col">Sr#</th>
+                                <th scope="col">Tutor</th>
+                                <th scope="col">Course</th>
+                                <th scope="col">Duration</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>
+                                    <?php
+                                        $id = 1;
+                                    ?>
+                                    <a class="cencel-btn w-auto decoration-none mr-2" href="{{route('student.course-details',[$id])}}">
+                                        View Details
+                                    </a>
+                                    <button class="schedule-btn w-auto">
+                                        Start Course
+                                    </button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+
             </div>
         </div>
     </section>
