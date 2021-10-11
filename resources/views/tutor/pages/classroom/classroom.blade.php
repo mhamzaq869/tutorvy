@@ -445,7 +445,7 @@ height:25px;
                     </div>
                 </div>
             </div>
-            <div class="row callDiv " >
+            <div class="row callDiv ml-2 mr-2 mt-4" >
                 <div class="col-md-8 text-center rounded bg-dark p-5">
                     @if($user->picture)
                         @if(file_exists( public_path(). $user->picture))
