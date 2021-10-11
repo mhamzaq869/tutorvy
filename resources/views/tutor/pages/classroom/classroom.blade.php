@@ -428,6 +428,21 @@ height:25px;
         /* Textarea End*/
 
         /*Chat Box End */
+
+        /* No Cam Overlay */
+.overlayCam{
+    display:none;
+    background-color:#00132D;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index: 9999999999999999999999999999999999999999999999;
+    
+}
+
+        /* No Cam Overlay End */
 </style>
 @section('content')
  <!-- top Fixed navbar End -->
@@ -435,7 +450,32 @@ height:25px;
 
  <!--  -->
     <input type="hidden" id="class_room_id" value="{{$class->id}}">
+<div class="overlayCam container-fluid">
+    <div class="row text-center text-white">
+        <div class="col-md-12">
+            <img src="{{asset('assets/images/ico/noCam.svg')}}" class="w-50" alt="">
+        </div>
+        <div class="col-md-12 ">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-6 text-left">
+                    <h3 class="text-white">Your Camera is Blocked</h3>
+                    <h5>Tutorvy needs access to your camera. To get 100% result,</h5>
+                    <ul style="list-style-type:disc;">
+                        <li>Click the camera blocked icon <img src="https://www.gstatic.com/meet/ic_blocked_camera_7ca83311f629f64699401950ceaed61e.svg" alt="">  in your browser's address bar</li>
+                        <li>Allow access and then refresh the page</li>
+                    </ul>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <button class="schedule-btn"> Allow Access </button>
+            <button class="cencel-btn"> Continue without Camera </button>
+        </div>
+    </div>
 
+</div>
     <div class="content-wrapper " style="overflow: hidden;">
         <div class="container-fluidd">
             <div class="row">
@@ -1038,14 +1078,16 @@ connection.DetectRTC.load(function() {
                     console.log(connection.DetectRTC)
                     connection.mediaConstraints.video = true;
                     connection.session.video = true;
-                    alert('attach true camera')
+                    $(".overlayCam").css("display","none");
+                    alert('attach true camera');
                 }else{
                     console.log(connection.DetectRTC)
                     connection.dontCaptureUserMedia = true;
 
                     // connection.mediaConstraints.video = true;
                     // connection.session.video = true;
-                    alert('no camera')
+                    $(".overlayCam").css("display","block");
+                    alert('no camera');
                 }
             }
         }else{
@@ -1080,9 +1122,9 @@ connection.onmute = function (e) {
             var paused = e.mediaElement.pause();
             "undefined" != typeof paused
                 ? paused.then(function () {
-                      e.mediaElement.poster = e.snapshot || "{{asset('assets/images/ico/Mute-video.jpg')}}";
+                      e.mediaElement.poster = e.snapshot || "{{asset('assets/images/ico/Mute-video.png')}}";
                   })
-                : (e.mediaElement.poster = e.snapshot || "{{asset('assets/images/ico/Mute-video.jpg')}}");
+                : (e.mediaElement.poster = e.snapshot || "{{asset('assets/images/ico/Mute-video.png')}}");
         } else "audio" === e.muteType && (e.mediaElement.muted = !0);
 };
 
