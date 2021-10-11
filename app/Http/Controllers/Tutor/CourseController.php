@@ -180,6 +180,8 @@ class CourseController extends Controller
         $courselevel->title              = $request->course_title ?? $courselevel->title;
         $courselevel->subject_id         = $request->subject ?? $courselevel->subject_id;
         $courselevel->about              = $request->about ?? $courselevel->about;
+        $courselevel->start_date         = $request->start_date ?? $courselevel->start_date;
+        $courselevel->seats              = $request->seats ?? $courselevel->seats;
         $courselevel->video              = $video_path ?? $courselevel->video;
         $courselevel->thumbnail          = $thumbnail_path ?? $courselevel->thumbnail;
         $courselevel->basic_home_work    = $request->basic_home_work ?? $courselevel->basic_home_work;
