@@ -306,6 +306,13 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     Route::post('/fav-tutor',[StudentSettingController::class,'favouriteTutor'])->name('student.fav.tutor');
     Route::get('/ticket/{id}',[StudentSettingController::class,'tickets'])->name('student.ticket');
 
+
+    /*Course */
+    Route::get('/course-details/{id}',[StudentSettingController::class,'courseDetails'])->name('student.course-details');
+    Route::get('/courses',[StudentSettingController::class,'courses'])->name('student.courses');
+
+
+    /*Course  End*/
 });
 /*
 |--------------------------------------------------------------------------
