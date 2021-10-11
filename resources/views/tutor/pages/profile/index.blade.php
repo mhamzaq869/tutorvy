@@ -800,12 +800,7 @@
                                             <div class="col-md-12">
                                                 <div class="element">
                                                     <div class="row">
-                                                        <div class="col-md-8 mt-2 mb-3">
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input" name="working" id="working">
-                                                                <label class="custom-control-label" for="working">Currently Working? </label>
-                                                            </div>
-                                                        </div>
+                                                        
                                                         <div class="col-md-6">
                                                             <label for="exampleText" class="mb-0 heading-fifth">Organization</label>
                                                             <input name="organization[]"
@@ -834,6 +829,12 @@
                                                             <input type="date" value=""
                                                                 class="form-control" name="degree_end[]"
                                                                 placeholder="Ending Date" value="" required id="kinEnd">
+                                                        </div>
+                                                        <div class="col-md-8 mt-2 mb-3">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" name="working" id="working">
+                                                                <label class="custom-control-label" for="working">Currently Working? </label>
+                                                            </div>
                                                         </div>
                                                     </div>
 
