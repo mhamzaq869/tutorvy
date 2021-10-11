@@ -61,7 +61,7 @@
 #main-video {
     position: absolute;
     z-index: 9;
-    width: 30%;
+    width: 85%;
     margin-top: 0;
     /* border: 1px solid #121010; */
     border-radius: 3px;
@@ -152,7 +152,7 @@ hr {
     height:500px !important;
 }
 .h-200{
-    max-height:200px !important;
+    height:200px !important;
     min-height: 65px !important;
 }
    .container-police {
@@ -470,7 +470,7 @@ height:25px;
                             <button type="button" role="button" id="join_now"  class="schedule-btn ">
                                 Start Class
                             </button>
-                            <p class="hide" id="p1">{{$class->classroom_id}}</p>
+                            <p class="hide" id="p1">/student/class/{{$class->classroom_id}}</p>
                             <button type="button" role="button" id="" onclick="copyToClipboard('p1')" class="cencel-btn ">
                                 <i class="fa fa-clone" aria-hidden="true"></i> Copy Class Link
                             </button>
@@ -1223,20 +1223,22 @@ connection.onstream = function(event) {
     if (event.stream.isScreen && !event.stream.canvasStream) {
         $('#screen-viewer').get(0).srcObject = event.stream;
         $('#screen-viewer').hide();
+        
     }
     else if (event.extra.roomOwner === true) {
         var video = document.getElementById('main-video');
         video.setAttribute('data-streamid', event.streamid);
+        
         // video.style.display = 'none';
         if(event.type === 'local') {
             video.muted = true;
             video.volume = 0;
-            
         }
         video.srcObject = event.stream;
         $('#main-video').show();
     } else {
         event.mediaElement.controls = false;
+        $("#main-video").css("width","30%");
 
         var otherVideos = document.querySelector('#other-videos');
         otherVideos.appendChild(event.mediaElement);
@@ -1793,7 +1795,7 @@ function copyToClipboard(elementId) {
 
     // Append it to the body
     document.body.appendChild(aux);
-
+   
     // Highlight its content
     aux.select();
 

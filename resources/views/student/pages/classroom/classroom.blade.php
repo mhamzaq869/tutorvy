@@ -443,7 +443,7 @@ height:25px;
                     </div>
                 </div>
             </div> -->
-            <div class="row callDiv mt-4 ml-2 mr-2" >
+            <div class="row callDiv mt-4 mr-2 ml-2" >
                 <div class="col-md-8 text-center rounded bg-dark p-5">
                     <div class="row">
                         <div class="col-md-12">
