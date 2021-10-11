@@ -31,7 +31,20 @@
         box-shadow: 0 16px 16px -22px #777;
         border: #00000005;border-radius: 8px;
     }
+    /* tooltip */
 
+    .tooltip-inner {
+        max-width: 236px !important;
+        font-size: 12px;
+        background: #00132D !important;
+        border: 1px solid #00132D !important;
+        color: white;
+        border: 1px solid #737373;
+        text-align: left;
+    }
+
+
+    /*  */
 </style>
 </head>
 
@@ -56,56 +69,94 @@
                                 <div class="pt-3 col-md-6">
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" name="preElementary" id="preElementary">
-                                        <label class="custom-control-label" for="preElementary">Pre-Elementary School</label>
+                                        <label class="custom-control-label" for="preElementary">Pre-Elementary School <i class="fa fa-question-circle"  data-toggle="tooltip" data-placement="top" title="It is composed of the preparatory levels such as nursery, pre-kinder and kinder school" aria-hidden="true"></i></label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div id="preCheck" >
-                                        <input type="text" class="form-control mt-2"  id="preElementary_rate" name="preElementary_rate" placeholder="Rate per hour in USD ($)">
+                                            <div class="input-group mt-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">$</span>
+                                                </div>
+                                                <input type="text" class="form-control" id="preElementary_rate" name="preElementary_rate" placeholder="Rate per hour in USD ($)">
+                                               
+                                            </div>
                                     </div>
                                 </div>
                                 <div class="pt-3 col-md-6">
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" name="elementary" id="elementary">
-                                        <label class="custom-control-label" for="elementary">Elementary School</label>
+                                        <label class="custom-control-label" for="elementary">Elementary School <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="Elementary education is often preceded  for children age 3 to 5 or 6"  aria-hidden="true"></i>
+</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div id="eleCheck">
-                                        <input type="text" class="form-control mt-2" id="elementary_rate" name="elementary_rate" placeholder="Rate per hour in USD ($)">
+                                            <div class="input-group mt-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">$</span>
+                                                </div>
+                                                <input type="text" class="form-control" id="elementary_rate" name="elementary_rate" placeholder="Rate per hour in USD ($)">
+                                               
+                                            </div>
+                                        <!-- <input type="text" class="form-control mt-2" id="elementary_rate" name="elementary_rate" placeholder="Rate per hour in USD ($)"> -->
                                     </div>
                                 </div>
                                 <div class="pt-3 col-md-6">
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" name="secondary" id="secondary">
-                                        <label class="custom-control-label" for="secondary">Secondary School</label>
+                                        <label class="custom-control-label" for="secondary">Secondary School <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="A school intermediate between elementary school and college"  aria-hidden="true"></i>
+</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div id="secCheck">
-                                        <input type="text" class="form-control mt-2" id="secondary_rate" name="secondary_rate" placeholder="Rate per hour in USD ($)">
+                                            <div class="input-group mt-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">$</span>
+                                                </div>
+                                                <input type="text" class="form-control" id="secondary_rate" name="secondary_rate" placeholder="Rate per hour in USD ($)">
+                                                
+                                            </div>
+                                        <!-- <input type="text" class="form-control mt-2" id="secondary_rate" name="secondary_rate" placeholder="Rate per hour in USD ($)"> -->
                                     </div>
                                 </div>
                                 <div class="pt-3 col-md-6">
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" name="highSchool"  id="highSchool">
-                                        <label class="custom-control-label" for="highSchool">High School</label>
+                                        <label class="custom-control-label" for="highSchool">High School <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="Serving students approximately 13 (or 14 or 15) through 18 years of age"  aria-hidden="true"></i>
+</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div id="highCheck">
-                                        <input type="text" class="form-control mt-2" id="highSchool_rate" name="highSchool_rate" placeholder="Rate per hour in USD ($)">
+                                            <div class="input-group mt-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">$</span>
+                                                </div>
+                                                <input type="text" class="form-control" id="highSchool_rate" name="highSchool_rate" placeholder="Rate per hour in USD ($)">
+                                               
+                                            </div>
+                                        <!-- <input type="text" class="form-control mt-2" id="highSchool_rate" name="highSchool_rate" placeholder="Rate per hour in USD ($)"> -->
                                     </div>
                                 </div>
                                 <div class="pt-3 col-md-6">
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" name="postSec"  id="postSec">
-                                        <label class="custom-control-label" for="postSec">Post Secondary School</label>
+                                        <label class="custom-control-label" for="postSec">Post Secondary School <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="Post secondary education includes universities and colleges, as well as trade and vocational schools"  aria-hidden="true"></i>
+</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div id="postCheck">
-                                        <input type="text" class="form-control mt-2" id="postSec_rate" name="postSec_rate" placeholder="Rate per hour in USD ($)">
+                                            <div class="input-group mt-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">$</span>
+                                                </div>
+                                                <input type="text" class="form-control" id="postSec_rate" name="postSec_rate" placeholder="Rate per hour in USD ($)">
+                                               
+                                            </div>
+                                        <!-- <input type="text" class="form-control mt-2" id="postSec_rate" name="postSec_rate" placeholder="Rate per hour in USD ($)"> -->
                                     </div>
                                 </div>
 
@@ -244,7 +295,7 @@
                                 <div class="testsubmit-image text-center">
                                     <img class="mt-4" src="{{asset('assets/images/ico/submit-test.png')}}">
                                     <p class="text-center heading-third mt-5" style="line-height: 0.5;">
-                                        Thanks for submitting
+                                            Your Questionnaire Submitted Successfully
 
                                     </p>
                                     <p class="text-center paragraph-line">
@@ -273,6 +324,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
         $(document).ready(function(){
+            $(function () {
+                    $('[data-toggle="tooltip"]').tooltip()
+                    })
             $("#preCheck").hide('slow');
             $("#eleCheck").hide('slow');
             $("#secCheck").hide('slow');

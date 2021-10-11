@@ -78,7 +78,10 @@
                                                             <tr>
                                                                 <td class="pt-4">
                                                                     @if($class->user != null && $class->user != "")
-                                                                        {{ $class->user->first_name }} {{ $class->user->last_name }}
+                                                                        <a href="{{route('tutor.student',[$class->user->id])}}">
+                                                                            {{ $class->user->first_name }} {{ $class->user->last_name }}
+                                                                        </a>
+                                                                        
                                                                     @else
                                                                     <span> - </span>
                                                                     @endif
@@ -170,7 +173,9 @@
                                                                 <tr>
                                                                     <td class="pt-4">
                                                                         @if($class->user != null && $class->user != "")
-                                                                            {{ $class->user->first_name }} {{ $class->user->last_name }}
+                                                                            <a href="{{route('tutor.student',[$class->user->id])}}">
+                                                                                {{ $class->user->first_name }} {{ $class->user->last_name }}
+                                                                            </a>
                                                                         @else
                                                                         <span> - </span>
                                                                         @endif

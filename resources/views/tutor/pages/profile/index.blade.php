@@ -112,6 +112,9 @@
 .license{
     display:none;
 }
+.policeCert{
+    display:none;
+}
 </style>
 
 <link rel="stylesheet" href="{{ asset('assets/css/yearpicker.css') }}" />
@@ -475,7 +478,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleName">First Name</label>
+                                                    <label for="exampleName" class="heading-fifth mb-0">First Name</label>
                                                     <input type="text" name="first_name" class="form-control"
                                                         value="{{ Auth::user()->first_name }}" id="exampleName"
                                                         aria-describedby="emailHelp" required="required" placeholder="First Name" style="text-transform: capitalize;">
@@ -483,7 +486,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleName">Last Name</label>
+                                                    <label for="exampleName" class="heading-fifth mb-0">Last Name</label>
                                                     <input type="text" name="last_name" class="form-control"
                                                         value="{{ Auth::user()->last_name }}" id="exampleName"
                                                         aria-describedby="emailHelp" required="required"  placeholder="Last Name" style="text-transform: capitalize;" >
@@ -492,7 +495,7 @@
 
 
                                             <div class="col-md-12">
-                                                <p class="heading-fifth">Date of Birth</p>
+                                                <p class="heading-fifth mb-0">Date of Birth</p>
                                             </div>
 
                                             <!-- date of birth dropdown -->
@@ -529,6 +532,8 @@
 
 
                                             <div class="col-md-12 my-3">
+                                                <label for="exampleName" class="heading-fifth mb-0">Phone Number</label>
+
                                                 <input id="phone" name="phone" type="tel"
                                                     value="{{ Auth::user()->phone ?? '' }}" required="required" placeholder="+92*******" >
 
@@ -537,13 +542,15 @@
 
                                             <!-- city dropdwon -->
 
-                                            <div class="input-text col-md-6">
+                                            <div class=" col-md-6">
+                                                <label for="exampleName" class="heading-fifth mb-0">City</label>
 
                                                 <input id="myInput" type="" name="city" placeholder="City"
                                                     value="{{ Auth::user()->city ?? '' }}" required="required" >
 
                                             </div>
-                                            <div class="input-text col-md-6 w-100">
+                                            <div class=" col-md-6 w-100">
+                                                <label for="exampleName" class="heading-fifth mb-0">Country</label>
 
                                                 <input id="country_selector" name="country" onchange="university()" type="" required="required" placeholder="Country" >
                                                 <input id="country_short" value="{{ Auth::user()->country_short }}"
@@ -571,12 +578,16 @@
                                             <div class="container mt-3">
                                                 <div class="row">
                                                     <div class="col-md-6">
+                                                        <label for="exampleName" class="heading-fifth mb-0">Language</label>
+
                                                         <input type="" name="language" id="lang" hidden>
                                                         <select class="form-select form-select-lg mb-3" id="languages-list"
                                                             name="lang_short" onchange="langshort(this)" required="required">
                                                         </select>
                                                     </div>
                                                     <div class="col-md-6">
+                                                        <label for="exampleName" class="heading-fifth mb-0">Gender</label>
+
                                                         <select class="form-select form-select-lg mb-3"
                                                             aria-label=".form-select-lg example" name="gender" required="required">
                                                             <option value="" selected disabled>Gender</option>
@@ -591,7 +602,7 @@
                                             <div class="container form-group mt-3"></div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label for="exampleText">About</label>
+                                                    <label for="exampleText" class="heading-fifth mb-0">About</label>
                                                     <textarea class="form-control" name="bio" id="exampleFormControlTextarea1"
                                                         rows="5"
                                                         placeholder="Write about yourself..." required="required">{{ Auth::user()->bio ?? '' }}</textarea>
@@ -622,7 +633,9 @@
                                     @if( count(Auth::user()->education) == 0)
 
                                         <div class="row mt-3">
-                                            <div class="input-text col-md-6">
+                                            <div class="col-md-6">
+                                                <label for="exampleText" class="m-0 heading-fifth">Degree</label>
+
                                                 <select name="degree[]" onchange="checkLevel(this)"
                                                     class="form-select form-select-lg mb-3" required>
                                                     <option value="Degree"> Degree</option>
@@ -632,7 +645,8 @@
                                                 </select>
                                             </div>
 
-                                            <div class="input-text col-md-6">
+                                            <div class="col-md-6">
+                                                <label for="exampleText" class="m-0 heading-fifth">Major Subject</label>
                                                 <select name="major[]" class="form-select form-select-lg mb-3" required>
                                                     <option value="">Majors</option>
                                                     @foreach ($subjects as $subject)
@@ -645,7 +659,8 @@
                                         </div>
 
                                         <div class="row mt-3">
-                                            <div class="input-text col-md-6">
+                                            <div class="col-md-6">
+                                                <label for="exampleText" class="m-0 heading-fifth">Institute</label>
                                                 <select name="institute[]" id="institutes_list" class="form-select form-select-lg mb-3"
                                                     aria-label=".form-select-lg example" required>
                                                     <option value="Institute">Institute</option>
@@ -655,7 +670,12 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            <div class="input-text col-md-6">
+                                            <div class="schoolList col-md-6">
+                                                <label for="exampleText" class="mb-0 heading-fifth">School Name</label>
+                                                <input type="text" class="form-control " name="institute[]">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="exampleText" class="m-0 heading-fifth">Graduation Year</label>
                                                 <input type="date" name="graduate_year[]" class=" yearpicker form-control">
                                             </div>
                                         </div>
@@ -673,9 +693,10 @@
                                         @foreach(Auth::user()->education as $edu)
 
                                             <div class="row mt-3">
-                                                <div class="input-text col-md-4">
+                                                <div class=" col-md-4">
+                                                    <label for="exampleText" class="mb-0 heading-fifth">Degree</label>
                                                     <select name="degree[]" onchange="checkLevel(this)"
-                                                        class="form-select form-select-lg mb-3">
+                                                        class="form-select form-select-lg mb-3" id="degreee">
                                                         <option value="Degree"> Degree</option>
                                                         @foreach ($degrees as $degree)
                                                             <option value="{{ $degree->id }}" {{$edu->degree_id == $degree->id ? 'selected' : '' }}> {{ $degree->name }} </option>
@@ -683,7 +704,8 @@
                                                     </select>
                                                 </div>
 
-                                                <div class="input-text col-md-4">
+                                                <div class=" col-md-4">
+                                                    <label for="exampleText" class="mb-0 heading-fifth">Major Subject</label>
                                                     <select name="major[]" class="form-select form-select-lg mb-3">
                                                         <option value="">Majors</option>
                                                         @foreach ($subjects as $subject)
@@ -693,7 +715,8 @@
                                                     </select>
 
                                                 </div>
-                                                <div class="input-text col-md-4">
+                                                <div class=" col-md-4">
+                                                    <label for="exampleText" class="mb-0 heading-fifth">Sudent Grade</label>
                                                     <select name="student_grade"
                                                         class="form-select form-select-lg mb-3" id="levels">
                                                         <option value="" disabled selected>School</option>
@@ -707,7 +730,8 @@
                                             </div>
 
                                             <div class="row mt-3">
-                                                <div class="input-text col-md-6">
+                                                <div class="instituteList col-md-6">
+                                                    <label for="exampleText" class="mb-0 heading-fifth">Institute</label>
                                                     <select name="institute[]" id="institutes_list" class="form-select form-select-lg mb-3"
                                                         aria-label=".form-select-lg example">
                                                         <option value="Institute">Institute</option>
@@ -717,7 +741,12 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                <div class="input-text col-md-6">
+                                                <div class="schoolList col-md-6">
+                                                    <label for="exampleText" class="mb-0 heading-fifth">School Name</label>
+                                                    <input type="text" class="form-control " name="institute[]">
+                                                </div>
+                                                 <div class=" col-md-6">
+                                                    <label for="exampleText" class="mb-0 heading-fifth">Completion Date</label>
                                                     <input type="date" name="graduate_year[]" class=" yearpicker form-control" value="{{$edu->year}}">
                                                 </div>
                                             </div>
@@ -762,30 +791,40 @@
                                             <div class="col-md-12">
                                                 <div class="element">
                                                     <div class="row">
-                                                        <div class="input-text col-md-6">
-                                                            <input name="designation[]" class="form-control"
-                                                                value=""
-                                                                title="Designation: Senior Developer at Google"
-                                                                placeholder="Designation" required>
+                                                        <div class="col-md-8 mt-2 mb-3">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" name="working" id="working">
+                                                                <label class="custom-control-label" for="working">Currently Working? </label>
+                                                            </div>
                                                         </div>
-                                                        <div class="input-text col-md-6">
+                                                        <div class="col-md-6">
+                                                            <label for="exampleText" class="mb-0 heading-fifth">Organization</label>
                                                             <input name="organization[]"
                                                                 value=""
                                                                 class="form-control" title="Organization Like Google"
                                                                 placeholder="Organization" required>
                                                         </div>
+                                                        <div class="col-md-6">
+                                                            <label for="exampleText" class="mb-0 heading-fifth">Designation</label>
+                                                            <input name="designation[]" class="form-control"
+                                                                value=""
+                                                                title="Designation: Senior Developer at Google"
+                                                                placeholder="Designation" required>
+                                                        </div>
                                                     </div>
                                                     <div class="row my-3">
-                                                        <div class="input-text col-md-6">
+                                                        <div class="col-md-6">
+                                                            <label for="exampleText" class="mb-0 heading-fifth">Starting Date</label>
                                                             <input type="date"
                                                                 value=""
                                                                 class="form-control" name="degree_start[]"
                                                                 placeholder="Starting date" value="" required>
                                                         </div>
-                                                        <div class="input-text col-md-6">
+                                                        <div class="col-md-6">
+                                                            <label for="exampleText" class="mb-0 heading-fifth">Ending Date</label>
                                                             <input type="date" value=""
                                                                 class="form-control" name="degree_end[]"
-                                                                placeholder="Ending Date" value="" required>
+                                                                placeholder="Ending Date" value="" required id="kinEnd">
                                                         </div>
                                                     </div>
 
@@ -800,30 +839,42 @@
                                                     <div class="col-md-12">
                                                         <div class="element">
                                                             <div class="row">
-                                                                <div class="input-text col-md-6">
-                                                                    <input name="designation[]" class="form-control"
-                                                                        value="{{ $profession->designation }}"
-                                                                        title="Designation: Senior Developer at Google"
-                                                                        placeholder="Designation">
+                                                                <div class="col-md-8 mt-2 mb-3">
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input" name="working" id="working">
+                                                                        <label class="custom-control-label" for="working">Currently Working? </label>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="input-text col-md-6">
+                                                                <div class=" col-md-6">
+                                                                    <label for="exampleText" class="mb-0 heading-fifth">Organization</label>
                                                                     <input name="organization[]"
                                                                         value="{{ $profession->organization }}"
                                                                         class="form-control" title="Organization Like Google"
                                                                         placeholder="Organization">
                                                                 </div>
+
+                                                                <div class=" col-md-6">
+                                                                    <label for="exampleText" class="mb-0 heading-fifth">Designation</label>
+                                                                    <input name="designation[]" class="form-control"
+                                                                        value="{{ $profession->designation }}"
+                                                                        title="Designation: Senior Developer at Google"
+                                                                        placeholder="Designation">
+                                                                </div>
+                                                               
                                                             </div>
                                                             <div class="row my-3">
-                                                                <div class="input-text col-md-6">
+                                                                <div class=" col-md-6">
+                                                                    <label for="exampleText" class="mb-0 heading-fifth">Starting Date</label>
                                                                     <input type="date"
                                                                         value="{{ $profession->start_date ?? '' }}"
                                                                         class="form-control" name="degree_start[]"
                                                                         placeholder="Starting date" value="">
                                                                 </div>
-                                                                <div class="input-text col-md-6">
+                                                                <div class=" col-md-6">
+                                                                    <label for="exampleText" class="mb-0 heading-fifth">Ending Date</label>
                                                                     <input type="date" value="{{ $profession->end_date ?? '' }}"
                                                                         class="form-control" name="degree_end[]"
-                                                                        placeholder="Ending Date" value="">
+                                                                        placeholder="Ending Date" value="" id="kinEnd">
                                                                 </div>
                                                             </div>
 
@@ -834,7 +885,7 @@
                                             @endforeach
                                         @endif
                                         <div class="buttons mb-5">
-                                            <a href="#" class="moreExperience cust_link">+ Add more experience</a>
+                                            <a href="javascript:void(0)" class="moreExperience cust_link">+ Add more experience</a>
                                         </div>
                                         <div class="results"></div>
                                         <div class="row mt-1">
@@ -861,6 +912,24 @@
                                                 <div class="col-md-10">
                                                     Your Documents are approved from Administrator.
                                                 </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <p class="heading-fifth">
+                                                            Approved Documents
+                                                        </p> 
+                                                    </div>
+                                                    @foreach($user_files as $files)
+                                                        <div class="col-md-6 mt-2 " >
+                                                            <img src="{{asset($files->files)}}" alt="" class="w-100">
+                                                        </div>
+                                                    @endforeach
+
+                                                </div>
                                             </div>
                                         </div>
                                     @elseif(Auth::user()->status == 1)
@@ -872,6 +941,11 @@
                                                 <div class="col-md-10">
                                                     Your Documents are under process. Please wait for Administrator approval
                                                 </div>
+                                                @foreach($user_files as $files)
+                                                    <div class="col-md-6 mt-2 " >
+                                                            <input type="file" default-data="{{asset($files->files)}}" class="dropify">
+                                                    </div>
+                                                @endforeach
                                             </div>
                                         </div>
                                     @else
@@ -893,19 +967,25 @@
                                             </div>
                                             <div class=" row mt-3">
                                                 <div class="col-md-6">
+                                                    <label for="exampleText" class="mb-0 heading-fifth">Document Type</label>
                                                     <select id="selection" name="security" 
                                                         class="form-select form-select-lg mb-3 w-100"
                                                         aria-label=".form-select-lg example" required>
                                                         <option value="1" selected>National Identity Card</option>
                                                         <option value="2">Driving License</option>
                                                         <option value="3">Passport</option>
+                                                        <option value="4">Police Certification</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-6">
+                                                    <label for="exampleText" class="mb-0 heading-fifth">Document Number</label>
                                                     <input id="textbox" type="text" name="document_no" placeholder="Document No" required>
                                                 </div>
                                                 <div class="col-md-6 mt-2 passport" >
                                                     <input type="file" name="passport_pic" class="dropify">
+                                                </div>
+                                                <div class="col-md-6 mt-2 policeCert" >
+                                                    <input type="file" name="policeCert_pic" class="dropify">
                                                 </div>
                                                     
                                                 <div class="col-md-6 mt-2 id">
@@ -963,7 +1043,7 @@
         $(document).ready(function() {
          
             $("#institutes_list").select2();
-
+            $(".schoolList").hide();
             var url = window.location.href;
             var text = "#v-pills-Verification";
             if(url.indexOf(text) != -1){
@@ -976,7 +1056,21 @@
                 endYear: 2050,
             });
         });
+        $("#working").change(function(){
+            var checkBox = document.getElementById("working");
+            if(checkBox.checked == true){
+                $("#kinEnd").attr("type","text");
+                $("#kinEnd").val("Currently Working");
+                $("#kinEnd").attr("disabled","disabled");
+            }
+            else{
+                $("#kinEnd").attr("type","date");
+                $("#kinEnd").removeAttr("disabled","disabled");
+                $("#kinEnd").val("Currently Working");
 
+
+            }
+        })
         $("#country_selector").countrySelect({
             defaultCountry: "{{ Auth::user()->country_short ?? '' }}",
             preferredCountries: ['ca', 'gb', 'us', 'pk']
@@ -986,6 +1080,18 @@
             var short = $(this).countrySelect("getSelectedCountryData");
             $("#country_short").val(short.iso2);
         });
+        $("#degreee").change(function(){
+            var ter = $(this).val();
+            alert(ter);
+            if(ter == 10){
+                $(".schoolList").show();
+                $(".instituteList").hide();
+            }
+            else{
+                $(".schoolList").hide();
+                $(".instituteList").show();
+            }
+        })
 
         var input = document.getElementById("phone");
         window.intlTelInput(input, {
@@ -1169,19 +1275,31 @@
                     $(".passport").css("display","block");
                     $(".id").css("display","none");
                     $(".license").css("display","none");
+                     $(".policeCert").css("display","none");
+
                 }
                 else if(ter == 1){
                     $(".passport").css("display","none");
                     $(".id").css("display","block");
                     $(".license").css("display","none");
+                    $(".policeCert").css("display","none");
 
                     }
-                    else if(ter == 2){
-                    $(".passport").css("display","none");
-                    $(".id").css("display","none");
-                    $(".license").css("display","block");
+                else if(ter == 2){
+                $(".passport").css("display","none");
+                $(".id").css("display","none");
+                $(".license").css("display","block");
+                $(".policeCert").css("display","none");
 
-                    }
+
+                }
+                else if(ter == 4){
+                $(".passport").css("display","none");
+                $(".id").css("display","none");
+                $(".license").css("display","none");
+                $(".policeCert").css("display","block");
+
+                }
                 });
     </script>
 @endsection

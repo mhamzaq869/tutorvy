@@ -1607,7 +1607,7 @@ $('.moreExperience').click(function() {
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <a href="#" class="removeFields" onclick="removeFields2(` + count_field_2 + `)"> Remove Fields</a>
+                        <a href="javascript:void(0)" class="removeFields" onclick="removeFields2(` + count_field_2 + `)"> Remove Fields</a>
                     </div>
                 </div>
 
@@ -1621,11 +1621,11 @@ $('.moreExperience').click(function() {
 });
 
 function removeFields(id) {
-    $('#record_' + id + '').empty();
+    $('#record_' + id + '').remove();
 }
 
 function removeFields2(id) {
-    $('#record2_' + id + '').empty();
+    $('#record2_' + id + '').remove();
 }
 // $("#password").focusout(function() {
 //     var decimal = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,150}$/;

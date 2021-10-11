@@ -204,16 +204,17 @@
                     </a>
                     @auth
                         @if(Auth::user()->picture)
-                        <img class="profile-img profile-img2" src="{{asset(Auth::user()->picture) }}" data-toggle="dropdown" alt="profile">
+                                <img class="profile-img profile-img2" src="{{asset(Auth::user()->picture) }}" data-toggle="dropdown" alt="profile">
+                            
                         @else
-                        <img class="profile-img profile-img2" src="{{asset('assets/images/ico/Square-white.jpg') }}" data-toggle="dropdown" alt="profile">
+                            <img class="profile-img profile-img2" src="{{asset('assets/images/ico/Square-white.jpg') }}" data-toggle="dropdown" alt="profile">
                         @endif
                     @else
                     <img class="profile-img profile-img2" src="{{asset('assets/images/ico/Square-white.jpg') }}" data-toggle="dropdown" alt="profile">
                     @endauth
                     <ul class="dropdown-menu classdrop classdrop1 ">
                         <li>
-                            <a tabindex="-1" class="" href="{{route('student.profile')}}">
+                            <a tabindex="-1" class="" href="{{route('student.profileView',[Auth::user()->id])}}">
                                 Profile
                             </a>
                         </li>

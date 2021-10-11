@@ -186,6 +186,7 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::get('/support-ticket',[HistoryController::class,'index'])->name('tutor.history');
     Route::get('/payment',[PaymentController::class,'index'])->name('tutor.payment');
     Route::get('/subjects',[TutorSubjectController::class,'index'])->name('tutor.subject');
+    Route::get('/reviews',[TutorSubjectController::class,'review'])->name('tutor.reviews');
     Route::get('/removesubjects/{id}',[TutorSubjectController::class,'destroy'])->name('tutor.remove.subject');
     Route::view('/skip','tutor.skip')->name('skip');
     Route::get('/assessment/{id}',[AssessmentController::class,'index'])->name('tutor.test');
@@ -200,6 +201,10 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
 
     //Profile Routes
     Route::get('/profile',[ProfileController::class,'index'])->name('tutor.profile');
+    Route::get('/profile-view/{id}',[ProfileController::class,'profile'])->name('tutor.profileView');
+
+
+    Route::get('/viewstudent/{id}',[ProfileController::class,'show'])->name('tutor.student');
 
     Route::post('/updateprofile/{id}',[ProfileController::class,'profileUpdate'])->name('tutor.profile.update');
 
@@ -286,6 +291,7 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     Route::post('/change-password',[StudentSettingController::class,'change_password']);
 
     Route::get('/profile',[StudentProfileController::class,'index'])->name('student.profile');
+    Route::get('/profile-view/{id}',[StudentProfileController::class,'profile'])->name('student.profileView');
 
     Route::get('/call',[StudentSettingController::class,'call'])->name('student.call');
     Route::get('/class/{class_room_id}',[StudentSettingController::class,'join_class'])->name('student.join_class');
@@ -305,6 +311,13 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     Route::post('/fav-tutor',[StudentSettingController::class,'favouriteTutor'])->name('student.fav.tutor');
     Route::get('/ticket/{id}',[StudentSettingController::class,'tickets'])->name('student.ticket');
 
+
+    /*Course */
+    Route::get('/course-details/{id}',[StudentSettingController::class,'courseDetails'])->name('student.course-details');
+    Route::get('/courses',[StudentSettingController::class,'courses'])->name('student.courses');
+
+
+    /*Course  End*/
 });
 /*
 |--------------------------------------------------------------------------

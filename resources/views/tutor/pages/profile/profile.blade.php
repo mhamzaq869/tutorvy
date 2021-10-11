@@ -1,4 +1,4 @@
-@extends('student.layouts.app')
+@extends('tutor.layouts.app')
 
 @section('content')
 <style>
@@ -19,9 +19,9 @@ width:22px;
                             <img src="{{asset('assets/images/ico/yellow-rank.png')}}" alt="yellow" class="w-50">
                         </span>
                         @if ($tutor->picture)
-                        <img src="{{asset($tutor->picture)}}" alt="profile-image" class="profile-card-img" >
+                            <img src="{{asset($tutor->picture)}}" alt="profile-image" class="profile-card-img" >
                         @else
-                        <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="profile-image" class="profile-card-img" >
+                            <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="profile-image" class="profile-card-img" >
                         @endif
                         <p class="heading-third mt-3">
                            {{$tutor->full_name}}
@@ -31,12 +31,6 @@ width:22px;
                         <p class="profile-tutor mt-0" style="line-height: 0;">
                             Tutor
                         </p>
-                        <button class="schedule-btn w-100 mt-3" onclick="location.href = '{{route('student.book-now',[$tutor->id])}}';">
-                            Book class
-                        </button>
-                        <button class="cencel-btn w-100 mt-3">
-                            Send massage
-                        </button>
                         <div class="star-icos">
                             @if($tutor->rating == 1)
                                 <p class="name-text1 paragraph-text1 mb-0">
@@ -94,18 +88,22 @@ width:22px;
                                 </p>
                                 @endif
                         </div>
+                            <a class="schedule-btn w-100 mt-3 text-center" href="{{route('tutor.profile')}}">
+                                Edit Profile
+                            </a>
+                       
                     </div>
                 </div>
                 <div class="card">
-                <div class="container-fluid mt-3 pt-3 pb-3 mb-3 profile-header">
+                    <div class="card-body  profile-header">
                         <div class="row mt-3">
                             <div class="col-md-3">
                                 <img src="{{asset('assets/images/ico/red-icons.png')}}" alt="blue-ico">
                             </div>
                             <div class="col-md-9">
-                                <p class="profile-tutor">
+                                <small class="profile-tutor">
                                     Subjects
-                                </p>
+                                </small>
                                 @foreach ($tutor->teach as $i => $teach)
                                 <p class="paragraph-text mb-0">
                                     {{$teach->subject->name}}
@@ -115,35 +113,35 @@ width:22px;
 
                             </div>
                         </div>
-                        {{-- <div class="row mt-3">
-                            <div class="col-md-3">
-                                <img src="{{asset('assets/images/ico/red-icons.png')}}" alt="blue-ico">
-                            </div>
-                            <div class="col-md-9">
-                                <p class="profile-tutor">
-                                    Subjects
-                                </p>
-                                <p class="paragraph-text" style="line-height: 0;">
-                                    Physics, Chemistry
-                                </p>
-                            </div>
-                        </div>
                         <div class="row mt-3">
                             <div class="col-md-3">
                                 <img src="{{asset('assets/images/ico/red-icons.png')}}" alt="blue-ico">
                             </div>
                             <div class="col-md-9">
                                 <p class="profile-tutor">
-                                    Subjects
+                                    Languages
                                 </p>
-                                <p class="paragraph-text" style="line-height: 0;">
-                                    Physics, Chemistry
+                                <p class="paragraph-text" >
+                                    {{$tutor->lang_short}}
                                 </p>
                             </div>
-                        </div> --}}
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-3">
+                                <img src="{{asset('assets/images/ico/location-green.png')}}" alt="blue-ico">
+                            </div>
+                            <div class="col-md-9">
+                                <p class="profile-tutor">
+                                    Location
+                                </p>
+                                <p class="paragraph-text" >
+                                    {{$tutor->city}}, {{$tutor->country}} 
+                                </p>
+                            </div>
+                        </div>
 
                     </div>
-                    <div class="container-fluid mt-3 pt-3 pb-3 mb-3 profile-header">
+                    <div class="card-body profile-header">
                         <p class="heading-forth">
                             Education
                         </p>
@@ -158,7 +156,7 @@ width:22px;
                         @endforeach
 
                     </div>
-                    <div class="container-fluid mt-3 pt-3 pb-3 mb-3 profile-header">
+                    <div class="card-body profile-header">
                         <p class="heading-forth">
                             Experience
                         </p>
@@ -257,15 +255,15 @@ width:22px;
                         <div class="col-md-4">
                             <div class="card">
                                 <img src="{{asset('assets/images/ico/course.png')}}" alt="Avatar" style="width:100%">
-                                <div class="container-fluid mt-3">
+                                <div class="container-fluid mt-3 mb-3">
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-8">
                                             <span class="che-text">
                                                 {{$course->subject->name}}
                                             </span>
                                         </div>
-                                        <div class="col-md-6">
-                                            <span class="dolar-text ml-5">
+                                        <div class="col-md-4 text-right pt-2">
+                                            <span class="dolar-text ">
                                                 ${{$course->basic_price}}
                                             </span>
                                         </div>
@@ -273,50 +271,30 @@ width:22px;
                                                 {{$course->title}}
                                         </span>
                                     </div>
-                                    <button class="mt-3 w-100 schedule-btn mb-3">Start learning</button>
+                                    <a href="{{ route('tutor.course.edit',[$course->id]) }}" class="mt-3 w-100 schedule-btn mb-3 text-center">Edit Course</a>
+                                    
                                 </div>
                             </div>
                         </div>
                         @endforeach
-
-
-                    </div>
-
-                    {{--
-                    <div class="row mt-5">
-                        <span class="heading-second">Student reviews</span>
-                        <div class="container">
-                            <div class="row">
-                                <div class="mt-3 d-flex">
-                                    <div>
-                                        <img src="{{asset('assets/images/ico/profile-boy.png')}}" alt="profile-header">
+                        <div class="col-md-4 text-center">
+                            <div class="card border-only">
+                                <div class="card-body ">
+                                    <div class="add-new" style="margin-top:37%;margin-bottom: 37%;">
+                                        @if(Auth::user()->status == 2)
+                                            <a href="{{route('tutor.addcourse')}}">
+                                                <img src="{{asset('assets/images/ico/add-new.png')}}" alt="add-new" class="w-100">
+                                            </a>
+                                        @else
+                                            <a onclick="showMessage()">
+                                                <img src="{{asset('assets/images/ico/add-new.png')}}" alt="add-new" class="w-100">
+                                            </a>
+                                        @endif
                                     </div>
-                                    <span class="ml-3 heading-forth1">Smith John <br />
-                                        <span class="notification-text4">
-                                            Student
-                                        </span>
-                                    </span>
                                 </div>
                             </div>
-                            <div class="star-icos">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked ml-1"></span>
-                                <span class="fa fa-star checked ml-1"></span>
-                                <span class="fa fa-star checked ml-1"></span>
-                                <span class="perfile-text ml-1">4.0</span>
-                            </div>
-                            <span class="notification-text6">
-                                <br />
-                                It is a long established fact that a reader will be distracted by the readable
-                                content of a page when looking at its
-                                lyout. The point of using Lorem Ipsum is that it has a more-or-less normal
-                                distribution of letters, as opposed to using
-                                Content here content making it look like readable English.
-                            </span>
                         </div>
-                    </div> --}}
-
-
+                    </div>
             </div>
         </div>
     </div>

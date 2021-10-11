@@ -32,4 +32,8 @@ class SubjectController extends Controller
 
         return redirect()->back();
     }
+    public function review(){
+
+        return view('tutor.pages.reviews.index');
+    }
 }

@@ -38,15 +38,6 @@
 }
 
 
-
-/* #other-videos video {
-    width: 45%;
-    margin: 5px;
-    border: 1px solid black;
-    padding: 1px;
-    border-radius: 3px;
-} */
-
 #txt-chat-message {
     width: 100%;
     resize: vertical;
@@ -62,7 +53,7 @@
 #conversation-panel {
     margin-bottom: 20px;
     text-align: left;
-    max-height: 365px;
+    max-height: 230px;
     /* overflow: auto; */
     /* border-top: 1px solid #E5E5E5; */
     /* width: 100%; */
@@ -118,6 +109,10 @@ hr {
 }
 .h-500{
     height:500px !important;
+}
+.h-200{
+    max-height:200px !important;
+    min-height: 65px !important;
 }
    .container-police {
   display: grid;
@@ -399,6 +394,38 @@ height:25px;
         /* Textarea End*/
 
         /*Chat Box End */
+
+/**Video Adjustment */
+    /* Call Video Student*/
+
+    
+    #other-videos video {
+        width: 30%;
+        margin: 0;
+        border: none;
+        padding: 0;
+        border-radius: 3px;
+    }
+    
+    #other-videos {
+        position: absolute;
+        top: 0;
+        margin-top: 5px;
+        margin-left: 5px;
+    }
+    /* Call Video Student End*/
+    /*Call Main Video*/
+    
+    #main-video {
+        width: 100%;
+        margin-top: 0;
+        /* border: 1px solid #121010; */
+        border-radius: 3px;
+        display: none;
+        padding: 0;
+    }
+    /*Call main Video End*/
+/*Video Adjustment end */
 </style>
 @section('content')
  <!-- top Fixed navbar End -->
@@ -416,6 +443,60 @@ height:25px;
                     </div>
                 </div>
             </div> -->
+            <div class="row callDiv mt-4" >
+                <div class="col-md-8 text-center rounded bg-dark p-5">
+                    <div class="row">
+                        <div class="col-md-12">
+                            @if($user->picture)
+                                @if(file_exists( public_path(). $user->picture))
+                                    <img src="{{asset($user->picture)}}" class="profile-img pg" alt="">
+                                @else
+                                    <img src="{{asset('assets/images/ico/Square-white.jpg')}}"  class="profile-img pg" alt="">
+                                @endif
+                            @else
+                                <img src="{{asset('assets/images/ico/Square-white.jpg')}}"  class="profile-img pg" alt="">
+                            @endif
+                        </div>
+                        <div class="col-md-12 mt-4">
+                            <a  class="callSet vc">
+                                <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
+                            </a>
+                            <a  class="callSet no-vc">
+                                <img src="{{asset('assets/images/ico/no-vc.png')}}" title="With Video" alt="">
+                            </a>
+                            <a  class="callSet mk" >
+                                <img src="{{asset('assets/images/ico/mike.png')}}" title="Without Audio" alt="">
+                            </a>
+                            <a  class="callSet no-mk">
+                                <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
+                            </a>
+                        </div>
+                    </div>
+                   
+                </div>
+                <div class="col-md-4  mt-3">
+                    <div class="m-2">
+                        <p class="heading-fifth">Ideal Criterias: </p>
+                        <ul style="list-style: disc;">
+                            <li>Allow notifications.</li>
+                            <li>Allow audio video Permissions.</li>
+                            <li>Audio device is compulsory.</li>
+                            <li>Tutor Camera's compulsory for conducting a class.</li>
+                            <li>If not working correctly, try icognito mode or deactivate any third party extension.</li>
+                        </ul>
+                        <div class="text-center">
+                            <button type="button" role="button" id="join_now"  class="schedule-btn ">
+                                Join Class Now
+                            </button>
+                            <p class="hide" id="p1">/tutor/class/{{$class->classroom_id}}</p>
+                            <button type="button" role="button" id="" onclick="copyToClipboard('p1')" class="cencel-btn ">
+                                <i class="fa fa-clone" aria-hidden="true"></i> Copy Class Link
+                            </button>
+                            <input type="hidden" id="" placeholder="Paste here for test" />
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row  tech_weck tech_weck-none">
                 <div class="col-md-9 "> 
                     <div class="row">
@@ -442,11 +523,11 @@ height:25px;
                                         </a> -->
                                         <span class="bright">
                                             <label > Share Screen </label>   
-                                                    <label class="switch  ml-2" style="">
-                                                        <input type="checkbox" class="s_status" val_id="3" val_st="1" checked="">
-                                                        <!-- <input type="checkbox" class="s_status" val_id="3" val_st="1 "  checked -->
-                                                        <span class="slider round"></span>
-                                                    </label>
+                                            <label class="switch  ml-2" style="">
+                                                <input type="checkbox" class="s_status" val_id="3" val_st="1">
+                                                <!-- <input type="checkbox" class="s_status" val_id="3" val_st="1 "  checked -->
+                                                <span class="slider round"></span>
+                                            </label>
                                         </span>
                                     </div>
                                 </nav>
@@ -668,7 +749,7 @@ height:25px;
                     </div>
                     </div> -->
                     <div class="row mt-3 mb-3">
-                        <div class="col-md-12">
+                        <div class="col-md-12 h-200">
                             <video id="main-video"  playsinline autoplay></video>
                             <div id="other-videos"  playsinline autoplay></div>
                             <canvas id="temp-stream-canvas" style="display: none;"></canvas>
@@ -804,7 +885,7 @@ height:25px;
  
  
 <!--Call Modal -->
-<div class="modal fade " id="callModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" >
+    <!-- <div class="modal fade " id="callModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" >
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body bg-black" >
@@ -838,7 +919,7 @@ height:25px;
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
 
 <!--Review Modal -->
@@ -929,7 +1010,7 @@ height:25px;
             } );
             function cheng(){
                 var ter = $(this).html();
-                alert(ter);
+                // alert(ter);
                 $('.language-html').text(ter);
             }
 </script>
@@ -945,7 +1026,7 @@ height:25px;
         
         // $(".tech_weck").hide();
      
-        $("#callModal").modal("show");
+        // $("#callModal").modal("show");
         $("#join_now").attr("disabled","disabled" );
         });
     $(".no-mk").click(function(){
@@ -1076,7 +1157,8 @@ connection.DetectRTC.load(function() {
         $("#join_now").removeAttr("disabled","disabled" );
             $("#join_now").click(function(){
                 $(".tech_weck").removeClass("tech_weck-none");
-                $("#callModal").modal("hide");
+                $(".callDiv").hide();
+                // $("#callModal").modal("hide");
                 // joinClass();
                 /** Javascript Timer */
                 var timer = new Timer();
@@ -1320,6 +1402,7 @@ $(".no-vc").click(function(){
     var localStream = connection.attachStreams[0];
     
     localStream.mute('video');
+    $("#other-videos video").attr("poster","{{asset('assets/images/ico/Mute-video.jpg')}}");
 })
 $(".vc").click(function(){
     // alert("Vc");
@@ -1821,6 +1904,28 @@ function saveClassLogs() {
 
 }
 
+function copyToClipboard(elementId) {
 
+// Create a "hidden" input
+var aux = document.createElement("input");
+
+// Assign it the value of the specified element
+aux.setAttribute("value", document.getElementById(elementId).innerHTML);
+
+// Append it to the body
+document.body.appendChild(aux);
+
+// Highlight its content
+aux.select();
+
+// Copy the highlighted text
+document.execCommand("copy");
+
+// Remove it from the body
+document.body.removeChild(aux);
+
+toastr.success("Link Copied Successfully");
+
+}
 </script>
 @endsection

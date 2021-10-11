@@ -54,7 +54,7 @@
                  <a href="">
                      <img class="history-sid mr-2" src="{{asset('assets/images/ico/history-ico.png') }}" alt="history-ico">
                      <span class="history-show mt-3">
-                         Support Tickets
+                         Support
                      </span>
                  </a>
              </li>
@@ -109,6 +109,12 @@
                      Subjects
                  </a>
              </li>
+             <!-- <li class="btn  @if(\Request::path() === 'tutor/reviews') active @endif w-100">
+                 <a href="{{route('tutor.reviews')}}">
+                     <img src="{{asset('assets/images/ico/subject-ico.png') }}" alt="subject-ico" class=" mr-2">
+                     Reviews
+                 </a>
+             </li> -->
              <li class="btn @if(\Request::path() === 'tutor/calendar') active @endif w-100">
                  <a href="{{route('tutor.calendar')}}">
                      <img src="{{asset('assets/images/ico/calender-ico.png') }}" alt="calender-ico" class=" mr-2">
@@ -118,7 +124,7 @@
              <li class="btn @if(\Request::path() === 'tutor/history') active @endif w-100">
                  <a href="{{route('tutor.history')}}">
                      <img src="{{asset('assets/images/ico/history-ico.png') }}" alt="history-ico" class=" mr-2">
-                     Support Tickets
+                     Support
                  </a>
              </li>
              <li class="btn @if(\Request::path() === 'tutor/payment') active @endif w-100">

@@ -91,7 +91,7 @@ class SettingController extends Controller
 
         // $class = Classroom::with('booking')->where('classroom_id',$class_room_id)->first();
         $user = User::where('id',Auth::user()->id)->first();
-
+        // dd($class);
         return view('tutor.pages.classroom.classroom',compact('class','user','booking'));
 
     }

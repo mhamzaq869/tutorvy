@@ -60,8 +60,8 @@
                                         <div class="bg-dead {{$default > 10 ? 'bg-levelThree' : ''}} ml-1" role="progressbar" style="width: 15%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
                                         <div class="bg-dead {{$default >= 30 ? 'bg-levelFour' : '' }} ml-1" role="progressbar" style="width: 15%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                                         <div class="bg-dead {{$default >= 50 ? 'bg-levelFive' : ''}} ml-1" role="progressbar" style="width: 15%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                        <div class="bg-dead {{$default >= 70 ? 'bg-levelFive' : ''}} ml-1" role="progressbar" style="width: 15%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                        <div class="bg-dead {{$default >= 90 ? 'bg-levelFive' : '' }} ml-1" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="bg-dead {{$default >= 70 ? 'bg-levelFive' : ''}} ml-1" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="bg-dead {{$default >= 90 ? 'bg-levelFive' : '' }} ml-1" role="progressbar" style="width: 20%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                     <p class="text-mute mt-1 mb-0"> <i class="fa fa-check text-success"></i> Tutors with complete profile tends to have more students than the other tutors.</p>
                                     <p class="text-mute mb-0"> <i class="fa fa-check text-success"></i> Tutors with complete profile get verified sooner than others.</p>
@@ -365,9 +365,9 @@
                                             </a>
                                         @endforeach
                                     @else
-                                    <div class="text-center m-3">
-                                        <img src="{{asset('assets/images/clock.png')}}" alt=""> 
-                                        <p> No Bookings for Today</p>
+                                    <div class="text-center" style="min-height:113px;">
+                                        <img src="{{asset('assets/images/ico/clander.png')}}" alt="" style="width:33%;"> 
+                                        <p class="mb-5"> No Bookings for Today</p>
 
                                     </div>
                                     @endif
@@ -415,9 +415,9 @@
                                             </a>
                                         @endforeach
                                     @else
-                                    <div class="text-center m-3">
-                                        <img src="{{asset('assets/images/learning.png')}}" alt=""> 
-                                        <p> No Upcoming Bookings Registered</p>
+                                    <div class="text-center " style="min-height:113px;">
+                                        <img src="{{asset('assets/images/ico/clander.png')}}" alt="" style="width:33%;"> 
+                                        <p class="mb-5"> No Upcoming Bookings found</p>
 
                                     </div>
                                     @endif

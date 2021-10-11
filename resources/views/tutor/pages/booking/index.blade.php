@@ -107,7 +107,9 @@
                                                     @foreach ($all as $booking)
                                                         <tr id="all_{{$booking->id}}">
                                                             <td class="pt-4">
-                                                                {{$booking->user->fullname}}
+                                                                <a href="{{route('tutor.student',[$booking->user->id])}}" >
+                                                                    {{$booking->user->fullname}}
+                                                                </a>
                                                             </td>
                                                             <td class="pt-4">
                                                             {{$booking->subject->name}}
@@ -187,7 +189,9 @@
                                                 @foreach ($confirmed as $booking)
                                                 <tr>
                                                     <td class="pt-4">
-                                                        {{$booking->user->fullname}}
+                                                        <a href="{{route('tutor.student',[$booking->user->id])}}" >
+                                                            {{$booking->user->fullname}}
+                                                        </a>
                                                     </td>
                                                     <td class="pt-4">
                                                        {{$booking->subject->name}}
@@ -272,7 +276,9 @@
                                                     @foreach ($pending as $booking)
                                                     <tr id="pending_{{$booking->id}}">
                                                         <td class="pt-4">
-                                                            {{$booking->user->fullname}}
+                                                            <a href="{{route('tutor.student',[$booking->user->id])}}" >
+                                                                {{$booking->user->fullname}}
+                                                            </a>
                                                         </td>
                                                         <td class="pt-4">
                                                         {{$booking->subject->name}}
@@ -356,7 +362,9 @@
                                                     @foreach ($completed as $booking)
                                                     <tr>
                                                         <td class="pt-4">
-                                                            {{$booking->user->fullname}}
+                                                            <a href="{{route('tutor.student',[$booking->user->id])}}" >
+                                                                {{$booking->user->fullname}}
+                                                            </a>
                                                         </td>
                                                         <td class="pt-4">
                                                         {{$booking->subject->name}}
@@ -439,6 +447,7 @@
                                                     @foreach ($cancelled as $booking)
                                                     <tr>
                                                         <td class="pt-4">
+                                                            
                                                             {{$booking->user->fullname}}
                                                         </td>
                                                         <td class="pt-4">

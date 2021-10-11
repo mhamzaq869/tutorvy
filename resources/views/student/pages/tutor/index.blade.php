@@ -92,7 +92,7 @@
                                         <div class=" ">
                                             <a href="#" class="" data-toggle="collapse" data-target="#rateDiv" aria-expanded="true" aria-controls="rateDiv">
                                                 <div class="tutorFilterHead" id="headingOne">
-                                                    Rate <span class="pull-right"><i class="fa fa-chevron-down"></i></span>
+                                                    Price <span class="pull-right"><i class="fa fa-chevron-down"></i></span>
                                                 </div>
                                             </a>
                                             <div id="rateDiv" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
@@ -387,9 +387,9 @@
                                                     <div class="col-md-2 col-6 pr-0">
                                                         <a href="{{route('student.tutor.show',[$tutor->id])}}">
                                                             @if($tutor->picture != null)
-                                                                <img src="{{asset($tutor->picture)}}" alt="" class="profile-img w-100" style="height:auto;">
+                                                                <img src="{{asset($tutor->picture)}}" alt="" class="profile-img w-100" style="height:70px;">
                                                             @else
-                                                                <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="profile-img w-100" style="height:auto;">
+                                                                <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="profile-img w-100" style="height:70px;">
                                                             @endif                                                        
                                                         </a>
                                                        
@@ -462,6 +462,7 @@
                                                 @php
 
                                                     $sub = explode(',',$tutor->subject_names);
+                                                    $ter = sizeof($sub);
                                                     
                                                 @endphp
                                                 <p class="mb-2">Subject</p>
@@ -469,11 +470,17 @@
                                                     @for ($i=0 ; $i < 1; $i++)
                                                         <span class="info-1 info">{{$sub[$i]}}</span>
                                                         
+                                                        @if($ter > 1)
                                                         <small>
                                                             <a href="#" class="text-dark decoration-none"> 
-                                                                +2 Others
+                                                                @php
+                                                                        $one = 1;
+                                                                        $check = $ter - $one;
+                                                                @endphp
+                                                                +{{$check}} Others
                                                             </a>
                                                         </small>
+                                                        @endif
                                                     @endfor
                                                 </p>
                                             </div>
@@ -490,7 +497,7 @@
                                                 @endphp
                                                 <p>
                                                 @for ($i=0 ; $i < sizeof($inst); $i++)
-                                                <span class="info-1 info edu">{{$inst[$i]}}</span>
+                                                    <span class="info-1 info edu">{{$inst[$i]}}</span>
                                                 @endfor
                                                 </p>
                                             </div>
@@ -498,8 +505,12 @@
                                         <div class="row mt-2">
                                             <div class="col-md-12 find_tutor">
                                                 <p><strong> About Tutor </strong></p>
-                                                <p>
-                                                    {{Str::limit($tutor->bio, 200, $end='...')}}
+                                                <p >
+                                                    {{Str::limit($tutor->bio, 240, $end='')}}
+                                                    @if(strlen($tutor->bio) > 240)
+                                                        <a href="{{route('student.tutor.show',[$tutor->id])}}">Read more...</a>
+                                                    @endif
+
                                                 </p>
                                             </div>
                                         </div>
