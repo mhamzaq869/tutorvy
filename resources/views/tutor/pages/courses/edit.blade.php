@@ -197,21 +197,13 @@
                                         <option value="7">Sunday</option>
                                     </select>
                                 </div>
+                                <div class=" mt-2" id="extraFields"></div>
+
+                                <h3 class="mt-3 pb-2">
+                                    Price
+                                </h3>
                                 <div class="input-options mt-2">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <input type="time" name="standard_start_time" value="{{$course->basic_start_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="time" name="standard_end_time" value="{{$course->basic_end_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
-                                        </div>
-                                    </div>
-                                    <h3 class="mt-3 pb-2">
-                                        Price
-                                    </h3>
-                                    <div class="input-options mt-2">
                                     <input type="number" name="basic_price" class="form-control" value="{{$course->basic_price}}" placeholder="Add course price">
-                                    </div>
                                 </div>
 
 
@@ -301,27 +293,20 @@
                                 Timing
                             </h3>
                             <div class="input-options mt-2">
-                                <select name="standard_days" id="standard_days" multiple role="multiselect">
-                                    @php $standard_days = json_decode($course->standard_days) ?? 0; @endphp
-                                    <option disabled selected required>Select days</option>
-                                    <option value="monday">Monday</option>
-                                    <option value="tuesday">Tuesday</option>
-                                    <option value="wednesday">Wednesday</option>
-                                    <option value="thursday">Thursday</option>
-                                    <option value="Friday">Friday</option>
-                                    <option value="Saturday">Saturday</option>
-                                    <option value="Sunday">Sunday</option>
+                                <select class="js-multiSelect" id="standard_day" name="standard_days[]" multiple="multiple">
+                                    <option value="1" >Monday</option>
+                                    <option value="2">Tuesday</option>
+                                    <option value="3">Wednesday</option>
+                                    <option value="4">Thursday</option>
+                                    <option value="5">Friday</option>
+                                    <option value="6">Saturday</option>
+                                    <option value="7">Sunday</option>
                                 </select>
                             </div>
+                            <div class=" mt-2" id="standard_extraFields"></div>
+
                             <div class="input-options mt-2">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <input type="time" name="standard_start_time" value="{{$course->standard_start_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="time" name="standard_end_time" value="{{$course->standard_end_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
-                                    </div>
-                                </div>
+                                
                                 <h3 class="mt-3 pb-2">
                                     Price
                                 </h3>
@@ -421,28 +406,19 @@
                                 Timing
                             </h3>
                             <div class="input-options mt-2">
-                                <select name="advance_days" id="adv_days" multiple role="multiselect">
-                                    @php $advance_days = json_decode($course->advance_days) ?? 0 ; @endphp
-                                    <option disabled selected required>Select days</option>
-                                    <option value="monday">Monday</option>
-                                    <option value="tuesday">Tuesday</option>
-                                    <option value="wednesday">Wednesday</option>
-                                    <option value="thursday">Thursday</option>
-                                    <option value="Friday">Friday</option>
-                                    <option value="Saturday">Saturday</option>
-                                    <option value="Sunday">Sunday</option>
+                                <select class="js-multiSelect" id="advance_day" name="advance_days[]" multiple="multiple">
+                                    <option value="1" >Monday</option>
+                                    <option value="2">Tuesday</option>
+                                    <option value="3">Wednesday</option>
+                                    <option value="4">Thursday</option>
+                                    <option value="5">Friday</option>
+                                    <option value="6">Saturday</option>
+                                    <option value="7">Sunday</option>
                                 </select>
                             </div>
+                            <div class=" mt-2" id="advance_extraFields"></div>
 
                             <div class="input-options mt-2">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <input type="time" name="advance_start_time" value="{{$course->advance_start_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="time" name="advance_end_time" value="{{$course->advance_end_time}}" class="form-control texteara-s mt-2 pt-2 mb-2">
-                                    </div>
-                                </div>
                                 <h3 class="mt-3 pb-2">
                                     Price
                                 </h3>
@@ -468,16 +444,10 @@
 @endsection
 
 @section('scripts')
+@include('js_files.tutor.course')
+
 <script>
-    $(function() {
-        $("#basic_days").multiselect('select',@json($basic_days));
-    });
-    $(function() {
-        $("#standard_days").multiselect('select',@json($standard_days));
-    });
-    $(function() {
-        $("#adv_days").multiselect('select',@json($advance_days));
-    });
+   
 
 
     var counter = {{$course->outline->count() - 2}};

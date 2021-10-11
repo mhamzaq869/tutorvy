@@ -186,18 +186,6 @@
                                 <option value="7">Sunday</option>
                             </select>
                         </div>
-                        <!-- <div class="input-options mt-2">
-                            <label for=""> Select Days</label>
-                            <select name="basic_days[]" class="bd-input" id="basic_days"  multiple role="multiselect">
-                                <option value="Mon" >Mon</option>
-                                <option value="Tue">Tue</option>
-                                <option value="Wed">Wed</option>
-                                <option value="Thu">Thu</option>
-                                <option value="Fri">Fri</option>
-                                <option value="Sat">Sat</option>
-                                <option value="Sun">Sun</option>
-                            </select>
-                        </div> -->
                         <div class=" mt-2" id="extraFields"></div>
 
                         <h3 class="mt-2 pb-1">
@@ -206,9 +194,6 @@
                         <div class="input-options mt-2">
                             <input type="number" name="basic_price" class="form-control" placeholder="Add course price">
                         </div>
-                        <!-- <div class="text-center mt-4">
-                            <input type="submit" class="schedule-btn w-50 " value="Submit course" />
-                    </div> -->
                 </div>
             </div>
             <div class="col-md-4 container-fluid border-right mb-1">
@@ -285,7 +270,7 @@
                     Schedule
                     </h3>
                     <div class="input-options mt-2">
-                    <select class="js-multiSelect" id="standard_day" name="standard_days[]" multiple="multiple">
+                        <select class="js-multiSelect" id="standard_day" name="standard_days[]" multiple="multiple">
                             <option value="1" >Monday</option>
                             <option value="2">Tuesday</option>
                             <option value="3">Wednesday</option>
@@ -402,8 +387,8 @@
                         Schedule
                         </h3>
                         <div class="input-options mt-2">
-                        <select class="js-multiSelect" id="advance_day" name="advance_days[]" multiple="multiple">
-                            <option value="1" >Monday</option>
+                            <select class="js-multiSelect" id="advance_day" name="advance_days[]" multiple="multiple">
+                                <option value="1" >Monday</option>
                                 <option value="2">Tuesday</option>
                                 <option value="3">Wednesday</option>
                                 <option value="4">Thursday</option>

@@ -105,6 +105,13 @@
                                             <tbody id="all_booking_table">
                                                @if($all)
                                                     @foreach ($all as $booking)
+                                                        @php
+
+                                                        $tz = get_local_time();
+                                                        $dt = new DateTime($booking->class_time, new DateTimeZone($tz)); //first argument "must" be a string
+                                                        $time = $dt->format('g:i a');
+
+                                                        @endphp
                                                         <tr id="all_{{$booking->id}}">
                                                             <td class="pt-4">
                                                                 <a href="{{route('tutor.student',[$booking->user->id])}}" >
@@ -118,7 +125,7 @@
                                                             {{$booking->topic}}
                                                             </td>
                                                             <td class="pt-4">
-                                                            {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
+                                                            {{$time}} - {{$booking->class_date }}
                                                             </td>
                                                            
                                                             <td class="pt-4">

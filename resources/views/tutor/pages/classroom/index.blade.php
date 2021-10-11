@@ -75,6 +75,13 @@
                                                 @if($classes != null && $classes != [] && $classes != "")
                                                     @foreach($classes as $class)
                                                         @if($class != null && $class != "")
+                                                        @php
+
+                                                        $tz = get_local_time();
+                                                        $dt = new DateTime($class->class_time, new DateTimeZone($tz)); //first argument "must" be a string
+                                                        $time = $dt->format('g:i a');
+
+                                                        @endphp
                                                             <tr>
                                                                 <td class="pt-4">
                                                                     @if($class->user != null && $class->user != "")
@@ -93,7 +100,7 @@
                                                                     {{ $class->topic }}
                                                                 </td>
                                                                 <td class="pt-4">
-                                                                {{$class->class_time}} {{date("g:i a", strtotime("$class->class_time UTC"))}}
+                                                                {{$time}}
                                                                 </td>
                                                                
                                                                 <td class="pt-4">
@@ -233,6 +240,7 @@
 <script src="{{asset('/admin/assets/js/jquery.js')}}"></script>
 <script src="{{asset('/admin/assets/js/jquery-ui.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone-with-data.min.js"></script>
 
 <script>
     $(document).ready(function() {
@@ -250,8 +258,8 @@
             var CurrentDate = new Date();
             class_date = new Date(class_date);
 
-            console.log(class_date , "class_date");
-            console.log(CurrentDate , "CurrentDate");
+            // console.log(class_date , "class_date");
+            // console.log(CurrentDate , "CurrentDate");
 
             let split_time = time.split(':');
             let create_time = parseInt(split_time[0]) + parseInt(duration);
@@ -259,12 +267,17 @@
             let actual_time  = create_time + ':' + split_time[1];
 
             var time = moment(booking_time).format('MMM D, YYYY h:mm:ss a');
-
+            var time = moment.tz(time, '{{$tz}}');
             var countDownDate = new Date(time).getTime();
-
+// console.log(time)
             var x = setInterval(function() {
 
-                var now = new Date().getTime();
+                var now = new Date();
+                var now = moment(now).format('MMM D, YYYY h:mm:ss a');
+
+                var now = moment.tz(now, '{{$tz}}');
+                console.log(now)
+
                 var distance = countDownDate - now;
 
                 var days = Math.floor(distance / (1000 * 60 * 60 * 24));

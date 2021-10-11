@@ -18,7 +18,7 @@
                     <img src="{{asset('admin/assets/img/ico/Square-white.jpg')}}" class="round-profile" alt="re" class="w-50">
                 @endif
                 <h3 class="mt-3 mb-0">{{ $tutor->first_name }} {{ $tutor->last_name }}</h3>
-                <p class="heading-fifth mt-2 line-height-1 mb-1">Tutor</p>
+                <p class="heading-fifth mt-2 line-height-1 mb-1">{{$tutor->tagline}}</p>
                 @if($tutor->status == 2)
                 <h6><span class="badge badge-success mb-3 all-tutor-badge">Verified</span></h6>
                 @else
