@@ -349,8 +349,9 @@ height:25px;
 }
 .vid-btn {
     position: absolute !important;
-    bottom: 6px;
-    left: 0px;
+    bottom: 12px;
+    left: 7px;
+    z-index: 99;
 }
 .btn-outline-danger{
     border:1px solid red;
