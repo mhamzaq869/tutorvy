@@ -19,6 +19,8 @@ class CreateCoursesTable extends Migration
             $table->string('title')->nullable();
             $table->integer('subject_id')->nullable();
             $table->text('about')->nullable();
+            $table->string('start_date')->nullable();
+            $table->integer('seats')->nullable();
             $table->string('video')->nullable();
             $table->string('thumbnail')->nullable();
             $table->date('start_date')->nullable();

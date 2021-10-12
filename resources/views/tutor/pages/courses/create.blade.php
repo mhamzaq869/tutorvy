@@ -54,12 +54,26 @@
                 </div>
             </div>
             <div class="col-md-5 mt-5">
-                <div class="mt-3">
-                    <div class="mb-3">
-                        <label class="form-label heading-forth">Starting Date</label>
-                        <input type="text" name="start_date" class="form-control texteara-s mt-2 pt-2 mb-2" required="" placeholder="From" onfocus="(this.type='date')">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mt-3">
+                            <div class="mb-3">
+                                <label class="form-label heading-forth">Starting Date</label>
+                                <input type="text" name="start_date" class="form-control texteara-s mt-2 pt-2 mb-2" required="" placeholder="From" onfocus="(this.type='date')">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mt-3">
+                            <div class="mb-3">
+                                <label class="form-label heading-forth">Available Seats</label>
+                                <input type="text" name="seats" class="form-control texteara-s mt-2 pt-2 mb-2" required placeholder="Seats" onfocus="(this.type='number')">
+                            </div>
+                        </div>
                     </div>
                 </div>
+
                 <div class="mt-4">
                     <div style="padding-top:11px;">
                             <!-- <label for="" class="pt-2 ">Intro Video</label>
@@ -300,7 +314,7 @@
             <div class="col-md-4 container-fluid border-right mb-1">
                     <div class="container-fluid">
 
-                        
+
                         <div class="text-center heading-forth">
                         Advance
                         </div>
@@ -424,11 +438,11 @@ $("#thumbnail").change(
     function () {
     //Get reference of FileUpload.
     var fileUpload = document.getElementById("thumbnail");
- 
+
     //Check whether the file is valid Image.
     var regex = new RegExp("([a-zA-Z0-9\s_\\.\-:])+(.jpg|.png|.gif)$");
     if (regex.test(fileUpload.value.toLowerCase())) {
- 
+
         //Check whether HTML5 is supported.
         if (typeof (fileUpload.files) != "undefined") {
             //Initiate the FileReader object.
@@ -438,10 +452,10 @@ $("#thumbnail").change(
             reader.onload = function (e) {
                 //Initiate the JavaScript Image object.
                 var image = new Image();
- 
+
                 //Set the Base64 string return from FileReader as source.
                 image.src = e.target.result;
-                       
+
                 //Validate the File Height and Width.
                 image.onload = function () {
                     var height = this.height;
@@ -456,7 +470,7 @@ $("#thumbnail").change(
                     alert("Uploaded image has valid Height and Width.");
                     return true;
                 };
- 
+
             }
         } else {
             alert("This browser does not support HTML5.");
