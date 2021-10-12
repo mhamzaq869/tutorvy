@@ -755,7 +755,7 @@ height:25px;
                                 </a> -->
                                 <canvas id="temp-stream-canvas" style="display: none;"></canvas>
                                 <a href="#" class="callSet  no-ph">
-                                    <img src="{{asset('assets/images/ico/no-phone.png')}}" title="End Call" alt="">
+                                    <img src="{{asset('assets/images/ico/phone.png')}}" title="End Call" alt="">
                                 </a>
                             </div>
                         </div>

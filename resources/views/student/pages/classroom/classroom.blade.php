@@ -808,7 +808,7 @@ height:25px;
                                     <img src="{{asset('assets/images/ico/no-mike.png')}}" title="With Audio" alt="">
                                 </a>
                                 <a  class="callSet no-ph">
-                                    <img src="{{asset('assets/images/ico/no-phone.png')}}" title="End Call" alt="">
+                                    <img src="{{asset('assets/images/ico/phone.png')}}" title="End Call" alt="">
                                 </a>
                             </div>
                         </div>

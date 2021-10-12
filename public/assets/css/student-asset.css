@@ -1311,8 +1311,10 @@
     .no-mk,
     .no-vc,
     .no-ph {
-        background: transparent;
-        border: 1px solid #fff;
+        /* background: transparent;
+        border: 1px solid #fff; */
+        background: #DF615C;
+        border-color: #DF615C;
         cursor: pointer;
     }
     /*     
