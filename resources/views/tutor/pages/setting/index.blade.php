@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-md-12 mb-1 ">
                     <div class=" card  bg-toast infoCard">
-                        
+
                         <div class="card-body row">
                             <div class="col-md-1 text-center">
                                 <i class="fa fa-info" aria-hidden="true"></i>
@@ -33,7 +33,7 @@
                                 <small>
                                   Update your settings to get secured and optimised as much as you can<a href="#">Learn More</a>
                                 </small>
-                                <a href="#" class="cross"  onclick="hideCard()"> 
+                                <a href="#" class="cross"  onclick="hideCard()">
                                     <i class="fa fa-times" aria-hidden="true"></i>
                                 </a>
 
@@ -47,10 +47,10 @@
                             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                 <!-- <a class="nav-link {{session()->has('key') ? '' : 'active'}}" id="v-pills-General-tab" data-toggle="pill" href="#v-pills-General"
                                     role="tab" aria-controls="v-pills-General" aria-selected="true">General</a> -->
-                               
+
                                 <a class="nav-link {{session()->has('key') ? '' : 'active'}}" id="v-pills-Security-tab" data-toggle="pill" href="#v-pills-Security"
                                     role="tab" aria-controls="v-pills-Security" aria-selected="true">Security</a>
-                                
+
                                 <a class="nav-link" id="v-pills-Payment-tab" data-toggle="pill"
                                     href="#v-pills-Payment" role="tab" aria-controls="v-pills-Payment"
                                     aria-selected="false">Payments</a>
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-               
+
                 <div class="col-md-9">
                     <div class="card">
                         <div class="card-body">
@@ -70,7 +70,7 @@
 
                                 <!-- <div class="tab-pane fade {{session()->has('key') ? '' : 'active show'}} chee" id="v-pills-General" role="tabpanel"
                                     aria-labelledby="v-pills-General-tab">
-                                    
+
                                     <form action="{{ route('tutor.profile.update', [Auth::user()->id]) }}" method="Post"
                                         enctype="multipart/form-data" id="personal">
                                         @csrf
@@ -99,8 +99,8 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    
-                                                
+
+
                                                     <small class="">Email Address</small>
                                                     <div class="form-group">
                                                         <input type="email" value="" class="form-control"
@@ -110,7 +110,7 @@
                                                     <div class="form-group">
                                                         <input type="number" value="" class="form-control"
                                                             placeholder="03XX XXXXXXXX">
-                                                    </div> 
+                                                    </div>
                                                     <small class=" ">Address</small>
                                                     <div class="row">
                                                         <div class="form-group col-md-6">
@@ -265,7 +265,12 @@
                                             <div class="float-right">
                                                 <button class="schedule-btn">Save changes</button>
                                             </div>
+
+                                            <a class="btn btn-primary" href="https://www.sandbox.paypal.com/connect?flowEntry=static&client_id=AWeUwawzNAmSvcs8f7M_4dhn_DJ09bsUhQ9IuUuI8Cd1e8pizjpnZn-48R2UdcY23OjoYJJQxdB778Fs&scope=profile&redirect_uri=https://webs.dev/tutor/settings">set Up Paypal</a>
+                                            <span id='lippButton'></span>
+
                                         </div>
+
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-md-12">
@@ -276,7 +281,7 @@
                                                 <div class="card-body">
                                                     <div class="text-center">
                                                         <img src="{{asset ('assets/images/payment-icon/paypal_logo_512.png')}}" alt="">
-                                                        <span class="payment-menu dropdown d-flex"> 
+                                                        <span class="payment-menu dropdown d-flex">
                                                             <a class=" d-flex" href="#" data-toggle="dropdown" aria-expanded="true">
                                                                 <img src="{{asset ('assets/images/payment-icon/menu_dots.png')}}" alt="">
                                                             </a>
@@ -301,7 +306,7 @@
                                                 <div class="card-body">
                                                     <div class="text-center">
                                                         <img src="{{asset ('assets/images/payment-icon/masterCard_logo_512.png')}}" alt="">
-                                                        <span class="payment-menu dropdown d-flex"> 
+                                                        <span class="payment-menu dropdown d-flex">
                                                             <a class=" d-flex" href="#" data-toggle="dropdown" aria-expanded="true">
                                                                 <img src="{{asset ('assets/images/payment-icon/menu_dots.png')}}" alt="">
                                                             </a>
@@ -326,7 +331,7 @@
                                                 <div class="card-body">
                                                     <div class="text-center">
                                                         <img src="{{asset ('assets/images/payment-icon/masterCard_logo_512.png')}}" alt="">
-                                                        <span class="payment-menu dropdown d-flex"> 
+                                                        <span class="payment-menu dropdown d-flex">
                                                             <a class=" d-flex" href="#" data-toggle="dropdown" aria-expanded="true">
                                                                 <img src="{{asset ('assets/images/payment-icon/menu_dots.png')}}" alt="">
                                                             </a>
@@ -402,8 +407,8 @@
                                                         <button type="submit" class="schedule-btn">Save changes</button>
                                                     </div>
                                                 </div>
-                                                
-                                                
+
+
                                             </form>
                                         </div>
                                     </div>
@@ -416,5 +421,6 @@
         </div>
     </div>
 </section>
+
 
 @endsection

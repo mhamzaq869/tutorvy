@@ -316,4 +316,5 @@ class SettingController extends Controller
         return view('student.pages.course.course_detail',compact('course'));
     }
 
+
 }

@@ -69,7 +69,7 @@ class CourseController extends Controller
         $courselevel->about              = $request->about;
         $courselevel->video              = $request->video;
         $courselevel->thumbnail          = $thumbnail_path ?? '';
-        $courselevel->start_date              = $request->start_date;
+        $courselevel->start_date         = $request->start_date;
 
         $courselevel->basic_home_work    = $request->basic_home_work;
         $courselevel->basic_quiz         = $request->basic_quiz;
@@ -163,7 +163,6 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         if($request->hasFile('video')){
             $video_path = "storage/course/video/".$request->video->getClientOriginalName();
             $request->video->storeAs('course/video/',$request->video->getClientOriginalName(),'public');
