@@ -421,11 +421,26 @@ height:25px;
         margin-top: 0;
         /* border: 1px solid #121010; */
         border-radius: 3px;
-        display: none;
+        display: block;
         padding: 0;
     }
     /*Call main Video End*/
 /*Video Adjustment end */
+
+        /* No Cam Overlay */
+        .overlayCam{
+    display:none;
+    background-color:#00132D;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index: 9999999999999999999999999999999999999999999999;
+    
+}
+
+        /* No Cam Overlay End */
 </style>
 @section('content')
  <!-- top Fixed navbar End -->
@@ -433,7 +448,32 @@ height:25px;
      <input type="hidden" id="class_room_id" value="{{$class->id}}">
 
      <input type="hidden" id="sbooking_id" value="{{$class->booking_id}}">
+     <div class="overlayCam container-fluid">
+    <div class="row text-center text-white">
+        <div class="col-md-12">
+            <img src="{{asset('assets/images/ico/noCam.svg')}}" class="w-50" alt="">
+        </div>
+        <div class="col-md-12 ">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-6 text-left">
+                    <h3 class="text-white">Your Camera is Blocked</h3>
+                    <h5>Tutorvy needs access to your camera. To get 100% result,</h5>
+                    <ul style="list-style-type:disc;">
+                        <li>Click the camera blocked icon <img src="https://www.gstatic.com/meet/ic_blocked_camera_7ca83311f629f64699401950ceaed61e.svg" alt="">  in your browser's address bar</li>
+                        <li>Allow access and then refresh the page</li>
+                    </ul>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <button class="schedule-btn"> Allow Access </button>
+            <button class="cencel-btn"> Continue without Camera </button>
+        </div>
+    </div>
 
+</div>
     <div class="content-wrapper " style="overflow: hidden;">
         <div class="container-fluidd">
             <!-- <div class="row">
@@ -443,7 +483,7 @@ height:25px;
                     </div>
                 </div>
             </div> -->
-            <div class="row callDiv mt-4 ml-2 mr-2" >
+            <div class="row callDiv mt-4 mr-2 ml-2" >
                 <div class="col-md-8 text-center rounded bg-dark p-5">
                     <div class="row">
                         <div class="col-md-12">
@@ -1028,6 +1068,7 @@ height:25px;
      
         // $("#callModal").modal("show");
         $("#join_now").attr("disabled","disabled" );
+        $("#main-video").attr("poster","{{asset('assets/images/ico/Mute-video.png')}}");
         });
     $(".no-mk").click(function(){
         $(".no-mk").hide();
@@ -1182,14 +1223,36 @@ connection.DetectRTC.load(function() {
 
     if (connection.DetectRTC.hasWebcam === true) {
         // enable camera
-        connection.mediaConstraints.video = true;
-        connection.session.video = true;
-        // alert('attach true camera')
-        $(".no-vc").show();
+        if(connection.DetectRTC.videoInputDevices.length > 0){
+            var varr = connection.DetectRTC.videoInputDevices;
+            for(var v = 0 ; v < varr.length ; v++){
+                if(varr[v].deviceId != undefined){
+                    console.log(connection.DetectRTC)
+                    connection.mediaConstraints.video = true;
+                    connection.session.video = true;
+                    $(".overlayCam").css("display","none");
+                    alert('attach true camera');
+                }else{
+                    console.log(connection.DetectRTC)
+                    // connection.dontCaptureUserMedia = true;
+                    // connection.DetectRTC.isWebsiteHasWebcamPermissions
+                    connection.mediaConstraints.video = false;
+                    connection.session.video = false;
+                    // alert('no camera')
+                    // connection.dontCaptureUserMedia = true;
+                    
+                    // connection.mediaConstraints.video = true;
+                    // connection.session.video = true;
+                   
+                }
+            }
+        }else{
+
+        }
 
     }else{
         $(".no-vc").hide();
-
+        $(".overlayCam").css("display","block");
         alert('attach Cam First');
     }
 
@@ -1402,7 +1465,7 @@ $(".no-vc").click(function(){
     var localStream = connection.attachStreams[0];
     
     localStream.mute('video');
-    $("#other-videos video").attr("poster","{{asset('assets/images/ico/Mute-video.jpg')}}");
+    $("#other-videos video").attr("poster","{{asset('assets/images/ico/Mute-video.png')}}");
 })
 $(".vc").click(function(){
     // alert("Vc");
