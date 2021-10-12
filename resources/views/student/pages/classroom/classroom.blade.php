@@ -413,6 +413,13 @@ height:25px;
         margin-top: 5px;
         margin-left: 5px;
     }
+
+    #other-videos2 video {
+        width: 60%;
+        margin: 0;
+        border: none;
+        padding: 0;
+    }
     /* Call Video Student End*/
     /*Call Main Video*/
     
@@ -469,7 +476,7 @@ height:25px;
         </div>
         <div class="col-md-12">
             <button class="schedule-btn"> Allow Access </button>
-            <button class="cencel-btn"> Continue without Camera </button>
+            <button class="cencel-btn" id="conCam"  > Continue without Camera </button>
         </div>
     </div>
 
@@ -484,10 +491,12 @@ height:25px;
                 </div>
             </div> -->
             <div class="row callDiv mt-4 mr-2 ml-2" >
-                <div class="col-md-8 text-center rounded bg-dark p-5">
+                <div class="col-md-8 text-center rounded bg-dark ">
                     <div class="row">
                         <div class="col-md-12">
-                            @if($user->picture)
+                            <div id="other-videos2"  playsinline autoplay></div>
+
+                            <!-- @if($user->picture)
                                 @if(file_exists( public_path(). $user->picture))
                                     <img src="{{asset($user->picture)}}" class="profile-img pg" alt="">
                                 @else
@@ -495,9 +504,9 @@ height:25px;
                                 @endif
                             @else
                                 <img src="{{asset('assets/images/ico/Square-white.jpg')}}"  class="profile-img pg" alt="">
-                            @endif
+                            @endif -->
                         </div>
-                        <div class="col-md-12 mt-4">
+                        <div class="col-md-12 " style="position: absolute;bottom: 22px;">
                             <a  class="callSet vc">
                                 <img src="{{asset('assets/images/ico/vc.png')}}" title="Without Video" alt="">
                             </a>
@@ -1162,7 +1171,9 @@ height:25px;
 </script>
 
 <script>
-
+$("#conCam").click(function(){
+    $(".overlayCam").hide();
+})
 var connection = new RTCMultiConnection();
 var roomid = '{{$class->classroom_id}}';
 var fullName = '{{$user->first_name}} {{$user->last_name}}';
@@ -1191,6 +1202,14 @@ connection.DetectRTC.load(function() {
     console.log(connection.DetectRTC);
     if (connection.DetectRTC.hasMicrophone === true) {
         // enable microphone
+        if(connection.DetectRTC.isWebsiteHasMicrophonePermissions === false){
+                $(".overlayCam").css("display","block");
+               $(".overlayCam").find("h3").text("Your Microphone is Blocked");
+               $(".overlayCam").find("h5").text("Tutorvy needs access to your microphone. To get 100% result");
+               $(".overlayCam").find("#conCam").text("Continue without Microphone");
+       }
+       else{
+       // enable microphone
         connection.mediaConstraints.audio = true;
         connection.session.audio = true;
         // alert('attach true microphone')
@@ -1216,9 +1235,16 @@ connection.DetectRTC.load(function() {
                     });
                 /* Javascript Timer ENd */
             })
+       }
+        
     }else{
         toastr.warning( "Audio Device is Mendatory ");
         $(".no-mk").hide();
+        $(".overlayCam").css("display","block");
+
+        $(".overlayCam").find("h3").text("Your Microphone is Blocked");
+        $(".overlayCam").find("h5").text("Tutorvy needs access to your microphone. To get 100% result");
+              
     }
 
     if (connection.DetectRTC.hasWebcam === true) {
@@ -1226,7 +1252,6 @@ connection.DetectRTC.load(function() {
         connection.mediaConstraints.video = true;
         connection.session.video = true;
         // alert('attach true camera')
-        $(".overlayCam").css("display","none");
         $(".no-vc").show();
 
 
@@ -1420,7 +1445,9 @@ connection.onstream = function(event) {
         event.mediaElement.controls = false;
 
         var otherVideos = document.querySelector('#other-videos');
+        var otherVideos2 = document.querySelector('#other-videos2');
         otherVideos.appendChild(event.mediaElement);
+        otherVideos2.appendChild(event.mediaElement);
     }
 
     connection.onUserStatusChanged(event);
@@ -1446,6 +1473,7 @@ $(".no-vc").click(function(){
     
     localStream.mute('video');
     $("#other-videos video").attr("poster","{{asset('assets/images/ico/Mute-video.png')}}");
+    $("#other-videos2 video").attr("poster","{{asset('assets/images/ico/Mute-video.png')}}");
 })
 $(".vc").click(function(){
     // alert("Vc");

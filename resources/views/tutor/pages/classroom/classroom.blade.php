@@ -443,6 +443,13 @@ height:25px;
 }
 
         /* No Cam Overlay End */
+
+        /* Cam Modal */
+        .w-56{
+            width:56%;
+        }
+        /* Cam Modal */
+
 </style>
 @section('content')
  <!-- top Fixed navbar End -->
@@ -462,7 +469,7 @@ height:25px;
                     <h3 class="text-white">Your Camera is Blocked</h3>
                     <h5>Tutorvy needs access to your camera. To get 100% result,</h5>
                     <ul style="list-style-type:disc;">
-                        <li>Click the camera blocked icon <img src="https://www.gstatic.com/meet/ic_blocked_camera_7ca83311f629f64699401950ceaed61e.svg" alt="">  in your browser's address bar</li>
+                        <li >Click the camera blocked icon <img src="https://www.gstatic.com/meet/ic_blocked_camera_7ca83311f629f64699401950ceaed61e.svg" alt="">  in your browser's address bar</li>
                         <li>Allow access and then refresh the page</li>
                     </ul>
                 </div>
@@ -486,8 +493,10 @@ height:25px;
                 </div>
             </div>
             <div class="row callDiv ml-2 mr-2 mt-4" >
-                <div class="col-md-8 text-center rounded bg-dark p-5">
-                    @if($user->picture)
+                <div class="col-md-8 text-center rounded bg-dark ">
+                    <video id="main-video2" class=" w-56" playsinline autoplay></video>
+
+                    <!-- @if($user->picture)
                         @if(file_exists( public_path(). $user->picture))
                             <img src="{{asset($user->picture)}}" class="profile-img pg" alt="">
                         @else
@@ -495,7 +504,7 @@ height:25px;
                         @endif
                     @else
                         <img src="{{asset('assets/images/ico/Square-white.jpg')}}" class="profile-img pg" alt="">
-                    @endif
+                    @endif -->
                 </div>
                 <div class="col-md-4  mt-3">
                     <div class="m-2">
@@ -507,7 +516,7 @@ height:25px;
                             <li>If not working correctly, try incognito mode or deactivate any third party extension.</li>
                         </ul>
                         <div class="text-center">
-                            <button type="button" role="button" id="join_now"  class="schedule-btn ">
+                            <button type="button" role="button"  id="join_now"  class="schedule-btn ">
                                 Start Class
                             </button>
                             <p class="hide" id="p1">/student/class/{{$class->classroom_id}}</p>
@@ -921,21 +930,36 @@ height:25px;
 
 <!-- End Call Modal -->
 <div class="modal fade " id="endCall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Do you want to end the call?</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body text-center ">
-                    <button type="button" class="btn-general " id="endCallYes">End Call</button>
-                    <button type="button" class="btn-outline-general " data-dismiss="modal"> Not Yet </button>
-                </div>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Do you want to end the call?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center ">
+                <button type="button" class="btn-general " id="endCallYes">End Call</button>
+                <button type="button" class="btn-outline-general " data-dismiss="modal"> Not Yet </button>
             </div>
         </div>
     </div>
+</div>
+
+<!-- Permission Modal -->
+<div class="modal fade " id="permissionCall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body card-body">
+                <h5 class="modal-title mb-4">Camera or Microphone is blocked</h5>
+                <p class="mb-4">Tutorvy requires access to your camera and microphone. Click the camera blocked icon <img src="https://www.gstatic.com/meet/ic_blocked_camera_dark_f401bc8ec538ede48315b75286c1511b.svg" alt="">  in your browser's address bar.</p>
+                <a href="#"  class="pull-right decoration-none" data-dismiss="modal" aria-label="Close"> Dismiss</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Permission Modal -->
  
 @endsection
 @section('scripts')
@@ -949,7 +973,6 @@ height:25px;
         $(".mk").hide();
         $(".vc").hide();
         // $("#callModal").modal("show");
-        $("#join_now").attr("disabled","disabled" );
         $("#main-video").attr("poster","{{asset('assets/images/ico/Mute-video.png')}}");
         // saveClassLogs();
 
@@ -1043,34 +1066,21 @@ connection.DetectRTC.load(function() {
     console.log(connection.DetectRTC);
     if (connection.DetectRTC.hasMicrophone === true) {
         if(connection.DetectRTC.isWebsiteHasMicrophonePermissions === false){
+           
             $(".overlayCam").css("display","block");
+                $(".overlayCam").find("h3").text("Your Microphone is Blocked");
+                $(".overlayCam").find("h5").text("Tutorvy needs access to your microphone. To get 100% result");
+                $(".overlayCam").find("#conCam").hide();
         }
+        else{
         // enable microphone
         connection.mediaConstraints.audio = true;
-        connection.session.audio = true;
-        // alert('attach true microphone')
-        // $(".no-mk").show();
-        $("#join_now").removeAttr("disabled","disabled" );
-            $("#join_now").click(function(){
-                $(".tech_weck").removeClass("tech_weck-none");
-                $(".callDiv").hide();
-                // joinClass();
-                /** Javascript Timer */
-                var timer = new Timer();
-                    timer.start({countdown: true, startValues: {seconds: 30}});
+                connection.session.audio = true;
+        }
+       
 
-                    $('#countdownExample .values').html(timer.getTimeValues().toString());
-
-                    timer.addEventListener('secondsUpdated', function (e) {
-                        $('#countdownExample .values').html(timer.getTimeValues().toString());
-                    });
-
-                    timer.addEventListener('targetAchieved', function (e) {
-                        $('#countdownExample .values').html('Class Time has Ended!!');
-                    });
-                /* Javascript Timer ENd */
-            })
-    }else{
+    }
+    else{
         toastr.warning( "Audio Device is Mendatory ");
         $(".no-mk").hide();
     }
@@ -1087,8 +1097,8 @@ connection.DetectRTC.load(function() {
                     console.log(connection.DetectRTC)
                     connection.mediaConstraints.video = true;
                     connection.session.video = true;
-                    $(".overlayCam").css("display","none");
-                    alert('attach true camera');
+                    // $(".overlayCam").css("display","none");
+                    // alert('attach true camera');
                 }else{
                     console.log(connection.DetectRTC)
                     // connection.dontCaptureUserMedia = true;
@@ -1142,6 +1152,35 @@ connection.onmute = function (e) {
         } else "audio" === e.muteType && (e.mediaElement.muted = !0);
 };
 
+$("#join_now").click(function (){
+    
+    if(connection.DetectRTC.isWebsiteHasMicrophonePermissions === false){
+        
+        $("#permissionCall").modal("show");
+    }
+    else if(connection.DetectRTC.isWebsiteHasWebcamPermissions === false){
+        $("#permissionCall").modal("show");
+    }
+    else{
+                $(".tech_weck").removeClass("tech_weck-none");
+                $(".callDiv").hide();
+                // joinClass();
+                /** Javascript Timer */
+                var timer = new Timer();
+                    timer.start({countdown: true, startValues: {seconds: 30}});
+
+                    $('#countdownExample .values').html(timer.getTimeValues().toString());
+
+                    timer.addEventListener('secondsUpdated', function (e) {
+                        $('#countdownExample .values').html(timer.getTimeValues().toString());
+                    });
+
+                    timer.addEventListener('targetAchieved', function (e) {
+                        $('#countdownExample .values').html('Class Time has Ended!!');
+                    });
+                /* Javascript Timer ENd */
+    }
+});
 
 // On mute Screen End
 
@@ -1312,17 +1351,26 @@ connection.onstream = function(event) {
         
     }
     else if (event.extra.roomOwner === true) {
+
         var video = document.getElementById('main-video');
+        var video2 = document.getElementById('main-video2');
+        
         video.setAttribute('data-streamid', event.streamid);
+        video2.setAttribute('data-streamid', event.streamid);
         
         // video.style.display = 'none';
         if(event.type === 'local') {
             video.muted = true;
             video.volume = 0;
+            video2.muted = true;
+            video2.volume = 0;
         }
         video.srcObject = event.stream;
         $('#main-video').show();
-    } else {
+        video2.srcObject = event.stream;
+        $('#main-video2').show();
+    } 
+    else {
         event.mediaElement.controls = false;
         $("#main-video").css("width","30%");
 
