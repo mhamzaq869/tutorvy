@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\Session;
 
 class RegisterController extends Controller
 {
@@ -109,7 +109,6 @@ class RegisterController extends Controller
         $subjects = Subject::all();
         $subject_cat = SubjectCategory::all();
 
-
         return view('student.pages.register',compact('user','degrees','subjects','subject_cat'));
     }
 
@@ -127,14 +126,14 @@ class RegisterController extends Controller
         // Get a validator for an incoming registration request
         // from Tutor/Student Registor Form .
 
-        $account_id = mt_rand(100000,999999); 
+        $account_id = mt_rand(100000,999999);
 
         $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255','unique:users'],
             'password' => ['required', 'string', 'min:8']
-            
+
         ]);
         $request->ip = $_SERVER['REMOTE_ADDR'];
         $request->dob = $request->year.'-'.$request->month.'-'.$request->day;
@@ -171,7 +170,7 @@ class RegisterController extends Controller
             ]);
         else:
             // return $request;
-            // return "Null"; 
+            // return "Null";
         //   $user = $this->registerStudent($request);
         $user = User::updateOrCreate(["email" => $request->email],[
             'first_name' => $request->first_name,
@@ -199,7 +198,7 @@ class RegisterController extends Controller
             // 'bio' => $request->bio,
             ]);
 
-           
+
         endif;
 
         /**
@@ -222,13 +221,21 @@ class RegisterController extends Controller
             Auth::login($user);
 
             User::find(Auth::user()->id)->update(['ip' => null,'status' => 0]);
-        
+
             if(Auth::user()->role == 2):
                 return redirect()->route('tutor.dashboard');
 
+
                 // return view('tutor.skip',compact('request'));
             else:
+
+                if(Session::get('redirectUrlCourse')){
+                    return redirect()->route('student.course-details',[Session::get('redirectUrlCourse')]);
+                    Session::flush(Session::get('redirectUrlCourse'));
+                }
+
                 return redirect()->route('student.dashboard');
+
             endif;
 
         }
@@ -311,7 +318,7 @@ class RegisterController extends Controller
 
     private function registerStudent($request)
         {
-           
+
             return User::updateOrCreate([
                     'first_name' => $request->first_name,
                     'last_name' => $request->last_name,

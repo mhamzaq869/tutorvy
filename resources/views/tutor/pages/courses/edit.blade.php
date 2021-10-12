@@ -56,24 +56,24 @@
                     </div>
                     <div class="col-md-5 mt-5">
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="mt-3">
-                            <div class="mb-3">
-                                <label class="form-label heading-forth">Starting Date</label>
-                                <input type="text" name="start_date" class="form-control texteara-s mt-2 pt-2 mb-2" required="" value="{{$course->start_date}}" onfocus="(this.type='date')">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mt-3">
+                                    <div class="mb-3">
+                                        <label class="form-label heading-forth">Starting Date</label>
+                                        <input type="text" name="start_date" class="form-control texteara-s mt-2 pt-2 mb-2" required="" value="{{date('m/d/Y',strtotime($course->start_date))}}" onfocus="(this.type='date')">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mt-3">
+                                    <div class="mb-3">
+                                        <label class="form-label heading-forth">Available Seats</label>
+                                        <input type="text" name="seats" class="form-control texteara-s mt-2 pt-2 mb-2" required value="{{$course->seats}}" placeholder="Seats" onfocus="(this.type='number')">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mt-3">
-                            <div class="mb-3">
-                                <label class="form-label heading-forth">Available Seats</label>
-                                <input type="text" name="seats" class="form-control texteara-s mt-2 pt-2 mb-2" required value="{{$course->seats}}" placeholder="Seats" onfocus="(this.type='number')">
-                            </div>
-                        </div>
-                    </div>
-                </div>
                         <div class="mt-4">
                             <div style="padding-top:11px;">
                                     <!-- <label for="" class="pt-2 ">Intro Video</label>
@@ -184,7 +184,7 @@
                                 </div>
 
                                 <h3 class="mt-3 pb-2">
-                                    Timing
+                                    Schedule
                                 </h3>
                                 <div class="input-options">
                                     <select class="js-multiSelect" id="basic_day" name="basic_days[]" multiple="multiple">
