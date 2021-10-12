@@ -263,6 +263,10 @@ class CourseController extends Controller
         // $courselevel->basic_class_end_time     = json_encode($request->basic_class_end_time);
         // $courselevel->basic_price        = $request->basic_price;
 
+        if($request->hasFile('thumbnail')){
+            $thumbnail_path = "storage/course/thumbnail/".$request->thumbnail->getClientOriginalName();
+            $request->thumbnail->storeAs('course/thumbnail/',$request->thumbnail->getClientOriginalName(),'public');
+        }
 
         // if($request->hasFile('video')){
         //     $video_path = "storage/course/video/".$request->video->getClientOriginalName();

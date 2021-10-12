@@ -470,7 +470,7 @@ height:25px;
             </div>
         </div>
         <div class="col-md-12">
-            <button class="schedule-btn"> Allow Access </button>
+            <!-- <button class="schedule-btn"> Allow Access </button> -->
             <button class="cencel-btn" id="conCam"> Continue without Camera </button>
         </div>
     </div>
@@ -942,7 +942,7 @@ height:25px;
 @include('js_files.whiteBoard')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.2.7/emojionearea.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-
+<script src="https://www.webrtc-experiment.com/DetectRTC.js"></script>
 <script>
     $(document).ready(function(){
         // $(".tech_weck").hide();
@@ -1038,34 +1038,38 @@ if (connection.DetectRTC.isWebRTCSupported === false) {
     alert('Please try a WebRTC compatible web browser e.g. Chrome, Firefox or Opera.');
 }
 connection.DetectRTC.load(function() {
-
     console.log(connection.DetectRTC);
     if (connection.DetectRTC.hasMicrophone === true) {
-        // enable microphone
-        connection.mediaConstraints.audio = true;
-        connection.session.audio = true;
-        // alert('attach true microphone')
-        // $(".no-mk").show();
-        $("#join_now").removeAttr("disabled","disabled" );
-            $("#join_now").click(function(){
-                $(".tech_weck").removeClass("tech_weck-none");
-                $(".callDiv").hide();
-                // joinClass();
-                /** Javascript Timer */
-                var timer = new Timer();
-                    timer.start({countdown: true, startValues: {seconds: 30}});
+        if(connection.DetectRTC.isWebsiteHasMicrophonePermissions === false){
+            $(".overlayCam").css("display","block");
+        }else{
+             // enable microphone
+            connection.mediaConstraints.audio = true;
+            connection.session.audio = true;
+            // alert('attach true microphone')
+            // $(".no-mk").show();
+            $("#join_now").removeAttr("disabled","disabled" );
+                $("#join_now").click(function(){
+                    $(".tech_weck").removeClass("tech_weck-none");
+                    $(".callDiv").hide();
+                    // joinClass();
+                    /** Javascript Timer */
+                    var timer = new Timer();
+                        timer.start({countdown: true, startValues: {seconds: 30}});
 
-                    $('#countdownExample .values').html(timer.getTimeValues().toString());
-
-                    timer.addEventListener('secondsUpdated', function (e) {
                         $('#countdownExample .values').html(timer.getTimeValues().toString());
-                    });
 
-                    timer.addEventListener('targetAchieved', function (e) {
-                        $('#countdownExample .values').html('Class Time has Ended!!');
-                    });
-                /* Javascript Timer ENd */
-            })
+                        timer.addEventListener('secondsUpdated', function (e) {
+                            $('#countdownExample .values').html(timer.getTimeValues().toString());
+                        });
+
+                        timer.addEventListener('targetAchieved', function (e) {
+                            $('#countdownExample .values').html('Class Time has Ended!!');
+                        });
+                    /* Javascript Timer ENd */
+                })
+        }
+       
     }else{
         toastr.warning( "Audio Device is Mendatory ");
         $(".no-mk").hide();
@@ -1073,6 +1077,9 @@ connection.DetectRTC.load(function() {
 
     if (connection.DetectRTC.hasWebcam === true) {
         // enable camera
+        if(connection.DetectRTC.isWebsiteHasWebcamPermissions === false){
+            $(".overlayCam").css("display","block");
+        }
         if(connection.DetectRTC.videoInputDevices.length > 0){
             var varr = connection.DetectRTC.videoInputDevices;
             for(var v = 0 ; v < varr.length ; v++){
@@ -1084,17 +1091,22 @@ connection.DetectRTC.load(function() {
                     alert('attach true camera');
                 }else{
                     console.log(connection.DetectRTC)
-                    connection.dontCaptureUserMedia = true;
-
+                    // connection.dontCaptureUserMedia = true;
+                    // connection.DetectRTC.isWebsiteHasWebcamPermissions
+                    connection.mediaConstraints.video = false;
+                    connection.session.video = false;
+                    // alert('no camera')
+                    // connection.dontCaptureUserMedia = true;
+                    
                     // connection.mediaConstraints.video = true;
                     // connection.session.video = true;
-                    $(".overlayCam").css("display","block");
-                    alert('no camera');
+                   
                 }
             }
         }else{
 
         }
+
         
         $(".no-vc").show();
 
@@ -1105,12 +1117,7 @@ connection.DetectRTC.load(function() {
         // alert('attach Cam')
     }
 
-    if (connection.DetectRTC.hasMicrophone === false &&
-        connection.DetectRTC.hasWebcam === false) {
-        // he do not have microphone or camera
-        // so, ignore capturing his devices
-        connection.dontCaptureUserMedia = true;
-    }
+    
 
     if (connection.DetectRTC.hasSpeakers === false) { // checking for "false"
         // alert('Please attach a speaker device. You will unable to hear the incoming audios.');
@@ -1188,11 +1195,11 @@ connection.isInitiator = true;
 connection.chunkSize = 16000;
 connection.enableFileSharing = true;
 
-// connection.session = {
-//     audio: true,
-//     video: true,
-//     data: true
-// };
+connection.session = {
+    audio: true,
+    video: false,
+    data: true
+};
 connection.sdpConstraints.mandatory = {
     OfferToReceiveAudio: true,
     OfferToReceiveVideo: false
@@ -1215,7 +1222,7 @@ connection.sdpConstraints.mandatory = {
 // };
 
 connection.onopen = function(event) {
-    connection.onUserStatusChanged(event);
+    // connection.onUserStatusChanged(event);
 
     if (designer.pointsLength <= 0) {
         // make sure that remote user gets all drawings synced.
@@ -1232,7 +1239,7 @@ connection.onopen = function(event) {
 connection.onclose = connection.onerror = connection.onleave = function(event) {
     // toastr.success("Student has ended the call!");
     $("#main-video").css("width","85%")
-    connection.onUserStatusChanged(event);
+    // connection.onUserStatusChanged(event);
 };
 
 connection.onmessage = function(event) {
@@ -1318,7 +1325,7 @@ connection.onstream = function(event) {
         otherVideos.appendChild(event.mediaElement);
     }
 
-    connection.onUserStatusChanged(event);
+    // connection.onUserStatusChanged(event);
 };
 
 connection.onstreamended = function(event) {

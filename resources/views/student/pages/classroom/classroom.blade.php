@@ -1223,12 +1223,32 @@ connection.DetectRTC.load(function() {
 
     if (connection.DetectRTC.hasWebcam === true) {
         // enable camera
-        connection.mediaConstraints.video = true;
-        connection.session.video = true;
-        // alert('attach true camera')
-        $(".overlayCam").css("display","none");
-        $(".no-vc").show();
+        if(connection.DetectRTC.videoInputDevices.length > 0){
+            var varr = connection.DetectRTC.videoInputDevices;
+            for(var v = 0 ; v < varr.length ; v++){
+                if(varr[v].deviceId != undefined){
+                    console.log(connection.DetectRTC)
+                    connection.mediaConstraints.video = true;
+                    connection.session.video = true;
+                    $(".overlayCam").css("display","none");
+                    alert('attach true camera');
+                }else{
+                    console.log(connection.DetectRTC)
+                    // connection.dontCaptureUserMedia = true;
+                    // connection.DetectRTC.isWebsiteHasWebcamPermissions
+                    connection.mediaConstraints.video = false;
+                    connection.session.video = false;
+                    // alert('no camera')
+                    // connection.dontCaptureUserMedia = true;
+                    
+                    // connection.mediaConstraints.video = true;
+                    // connection.session.video = true;
+                   
+                }
+            }
+        }else{
 
+        }
 
     }else{
         $(".no-vc").hide();
