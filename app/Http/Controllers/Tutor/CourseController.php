@@ -207,7 +207,6 @@ class CourseController extends Controller
             $courselevel->standard_class_start_time= json_encode($request->standard_class_start_time)  ?? json_encode($courselevel->standard_home_work);
             $courselevel->standard_class_end_time  = json_encode($request->standard_class_end_time)  ?? json_encode($courselevel->standard_home_work);
             $courselevel->standard_price     = $request->standard_price;
-
             $courselevel->advance_home_work  = $request->advance_home_work  ?? $courselevel->advance_home_work;
             $courselevel->advance_quiz       = $request->advance_quiz  ?? $courselevel->advance_home_work;
             $courselevel->advance_one_one    = $request->advance_one_one  ?? $courselevel->advance_home_work;
