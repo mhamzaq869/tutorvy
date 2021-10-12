@@ -61,12 +61,12 @@
 #main-video {
     position: absolute;
     z-index: 9;
-    width: 30%;
+    width: 85%;
     margin-top: 0;
     /* border: 1px solid #121010; */
     border-radius: 3px;
     margin: 5px;
-    display: none;
+    display: block;
     padding: 1px;
 }
 
@@ -152,7 +152,7 @@ hr {
     height:500px !important;
 }
 .h-200{
-    max-height:200px !important;
+    height:200px !important;
     min-height: 65px !important;
 }
    .container-police {
@@ -428,6 +428,21 @@ height:25px;
         /* Textarea End*/
 
         /*Chat Box End */
+
+        /* No Cam Overlay */
+.overlayCam{
+    display:none;
+    background-color:#00132D;
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index: 9999999999999999999999999999999999999999999999;
+    
+}
+
+        /* No Cam Overlay End */
 </style>
 @section('content')
  <!-- top Fixed navbar End -->
@@ -435,7 +450,32 @@ height:25px;
 
  <!--  -->
     <input type="hidden" id="class_room_id" value="{{$class->id}}">
+<div class="overlayCam container-fluid">
+    <div class="row text-center text-white">
+        <div class="col-md-12">
+            <img src="{{asset('assets/images/ico/noCam.svg')}}" class="w-50" alt="">
+        </div>
+        <div class="col-md-12 ">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-6 text-left">
+                    <h3 class="text-white">Your Camera is Blocked</h3>
+                    <h5>Tutorvy needs access to your camera. To get 100% result,</h5>
+                    <ul style="list-style-type:disc;">
+                        <li>Click the camera blocked icon <img src="https://www.gstatic.com/meet/ic_blocked_camera_7ca83311f629f64699401950ceaed61e.svg" alt="">  in your browser's address bar</li>
+                        <li>Allow access and then refresh the page</li>
+                    </ul>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <!-- <button class="schedule-btn"> Allow Access </button> -->
+            <button class="cencel-btn" id="conCam"> Continue without Camera </button>
+        </div>
+    </div>
 
+</div>
     <div class="content-wrapper " style="overflow: hidden;">
         <div class="container-fluidd">
             <div class="row">
@@ -470,7 +510,7 @@ height:25px;
                             <button type="button" role="button" id="join_now"  class="schedule-btn ">
                                 Start Class
                             </button>
-                            <p class="hide" id="p1">{{$class->classroom_id}}</p>
+                            <p class="hide" id="p1">/student/class/{{$class->classroom_id}}</p>
                             <button type="button" role="button" id="" onclick="copyToClipboard('p1')" class="cencel-btn ">
                                 <i class="fa fa-clone" aria-hidden="true"></i> Copy Class Link
                             </button>
@@ -910,7 +950,7 @@ height:25px;
         $(".vc").hide();
         // $("#callModal").modal("show");
         $("#join_now").attr("disabled","disabled" );
-
+        $("#main-video").attr("poster","{{asset('assets/images/ico/Mute-video.png')}}");
         // saveClassLogs();
 
     })
@@ -946,7 +986,9 @@ var editor2 = ace.edit("editor2");
    $(".no-ph").click(function(){
         $("#endCall").modal("show");
     });
-    
+    $("#conCam").click(function(){
+        $(".overlayCam").css("display","none");
+    })
 </script>
 
 
@@ -997,8 +1039,12 @@ if (connection.DetectRTC.isWebRTCSupported === false) {
 }
 connection.DetectRTC.load(function() {
 
+    
     console.log(connection.DetectRTC);
     if (connection.DetectRTC.hasMicrophone === true) {
+        if(connection.DetectRTC.isWebsiteHasMicrophonePermissions === false){
+            $(".overlayCam").css("display","block");
+        }
         // enable microphone
         connection.mediaConstraints.audio = true;
         connection.session.audio = true;
@@ -1031,6 +1077,9 @@ connection.DetectRTC.load(function() {
 
     if (connection.DetectRTC.hasWebcam === true) {
         // enable camera
+        if(connection.DetectRTC.isWebsiteHasWebcamPermissions === false){
+            $(".overlayCam").css("display","block");
+        }
         if(connection.DetectRTC.videoInputDevices.length > 0){
             var varr = connection.DetectRTC.videoInputDevices;
             for(var v = 0 ; v < varr.length ; v++){
@@ -1038,19 +1087,26 @@ connection.DetectRTC.load(function() {
                     console.log(connection.DetectRTC)
                     connection.mediaConstraints.video = true;
                     connection.session.video = true;
-                    alert('attach true camera')
+                    $(".overlayCam").css("display","none");
+                    alert('attach true camera');
                 }else{
                     console.log(connection.DetectRTC)
                     // connection.dontCaptureUserMedia = true;
                     // connection.DetectRTC.isWebsiteHasWebcamPermissions
                     connection.mediaConstraints.video = false;
                     connection.session.video = false;
-                    alert('no camera')
+                    // alert('no camera')
+                    // connection.dontCaptureUserMedia = true;
+                    
+                    // connection.mediaConstraints.video = true;
+                    // connection.session.video = true;
+                   
                 }
             }
         }else{
 
         }
+
         
         $(".no-vc").show();
 
@@ -1080,9 +1136,9 @@ connection.onmute = function (e) {
             var paused = e.mediaElement.pause();
             "undefined" != typeof paused
                 ? paused.then(function () {
-                      e.mediaElement.poster = e.snapshot || "{{asset('assets/images/ico/Mute-video.jpg')}}";
+                      e.mediaElement.poster = e.snapshot || "{{asset('assets/images/ico/Mute-video.png')}}";
                   })
-                : (e.mediaElement.poster = e.snapshot || "{{asset('assets/images/ico/Mute-video.jpg')}}");
+                : (e.mediaElement.poster = e.snapshot || "{{asset('assets/images/ico/Mute-video.png')}}");
         } else "audio" === e.muteType && (e.mediaElement.muted = !0);
 };
 
@@ -1154,24 +1210,24 @@ connection.sdpConstraints.mandatory = {
     OfferToReceiveVideo: false
 };
 
-connection.onUserStatusChanged = function(event) {
-    var infoBar = document.getElementById('onUserStatusChanged');
-    var names = [];
-    connection.getAllParticipants().forEach(function(pid) {
-        names.push(getFullName(pid));
-    });
+// connection.onUserStatusChanged = function(event) {
+//     var infoBar = document.getElementById('onUserStatusChanged');
+//     var names = [];
+//     connection.getAllParticipants().forEach(function(pid) {
+//         names.push(getFullName(pid));
+//     });
 
-    if (!names.length) {
-        names = ['Only You'];
-    } else {
-        names = [connection.extra.userFullName || 'You'].concat(names);
-    }
+//     if (!names.length) {
+//         names = ['Only You'];
+//     } else {
+//         names = [connection.extra.userFullName || 'You'].concat(names);
+//     }
 
-    infoBar.innerHTML = '<b>Active users:</b> ' + names.join(', ');
-};
+//     infoBar.innerHTML = '<b>Active users:</b> ' + names.join(', ');
+// };
 
 connection.onopen = function(event) {
-    connection.onUserStatusChanged(event);
+    // connection.onUserStatusChanged(event);
 
     if (designer.pointsLength <= 0) {
         // make sure that remote user gets all drawings synced.
@@ -1187,7 +1243,8 @@ connection.onopen = function(event) {
 
 connection.onclose = connection.onerror = connection.onleave = function(event) {
     // toastr.success("Student has ended the call!");
-    connection.onUserStatusChanged(event);
+    $("#main-video").css("width","85%")
+    // connection.onUserStatusChanged(event);
 };
 
 connection.onmessage = function(event) {
@@ -1252,26 +1309,28 @@ connection.onstream = function(event) {
     if (event.stream.isScreen && !event.stream.canvasStream) {
         $('#screen-viewer').get(0).srcObject = event.stream;
         $('#screen-viewer').hide();
+        
     }
     else if (event.extra.roomOwner === true) {
         var video = document.getElementById('main-video');
         video.setAttribute('data-streamid', event.streamid);
+        
         // video.style.display = 'none';
         if(event.type === 'local') {
             video.muted = true;
             video.volume = 0;
-            
         }
         video.srcObject = event.stream;
         $('#main-video').show();
     } else {
         event.mediaElement.controls = false;
+        $("#main-video").css("width","30%");
 
         var otherVideos = document.querySelector('#other-videos');
         otherVideos.appendChild(event.mediaElement);
     }
 
-    connection.onUserStatusChanged(event);
+    // connection.onUserStatusChanged(event);
 };
 
 connection.onstreamended = function(event) {
@@ -1822,7 +1881,7 @@ function copyToClipboard(elementId) {
 
     // Append it to the body
     document.body.appendChild(aux);
-
+   
     // Highlight its content
     aux.select();
 
