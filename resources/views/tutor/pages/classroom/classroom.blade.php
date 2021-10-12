@@ -1061,8 +1061,6 @@ if (connection.DetectRTC.isWebRTCSupported === false) {
     alert('Please try a WebRTC compatible web browser e.g. Chrome, Firefox or Opera.');
 }
 connection.DetectRTC.load(function() {
-
-    
     console.log(connection.DetectRTC);
     if (connection.DetectRTC.hasMicrophone === true) {
         if(connection.DetectRTC.isWebsiteHasMicrophonePermissions === false){
@@ -1071,16 +1069,35 @@ connection.DetectRTC.load(function() {
                 $(".overlayCam").find("h3").text("Your Microphone is Blocked");
                 $(".overlayCam").find("h5").text("Tutorvy needs access to your microphone. To get 100% result");
                 $(".overlayCam").find("#conCam").hide();
-        }
-        else{
-        // enable microphone
-        connection.mediaConstraints.audio = true;
-                connection.session.audio = true;
+        }else{
+             // enable microphone
+            connection.mediaConstraints.audio = true;
+            connection.session.audio = true;
+            // alert('attach true microphone')
+            // $(".no-mk").show();
+            $("#join_now").removeAttr("disabled","disabled" );
+                $("#join_now").click(function(){
+                    $(".tech_weck").removeClass("tech_weck-none");
+                    $(".callDiv").hide();
+                    // joinClass();
+                    /** Javascript Timer */
+                    var timer = new Timer();
+                        timer.start({countdown: true, startValues: {seconds: 30}});
+
+                        $('#countdownExample .values').html(timer.getTimeValues().toString());
+
+                        timer.addEventListener('secondsUpdated', function (e) {
+                            $('#countdownExample .values').html(timer.getTimeValues().toString());
+                        });
+
+                        timer.addEventListener('targetAchieved', function (e) {
+                            $('#countdownExample .values').html('Class Time has Ended!!');
+                        });
+                    /* Javascript Timer ENd */
+                })
         }
        
-
-    }
-    else{
+    }else{
         toastr.warning( "Audio Device is Mendatory ");
         $(".no-mk").hide();
     }
@@ -1127,12 +1144,7 @@ connection.DetectRTC.load(function() {
         // alert('attach Cam')
     }
 
-    if (connection.DetectRTC.hasMicrophone === false &&
-        connection.DetectRTC.hasWebcam === false) {
-        // he do not have microphone or camera
-        // so, ignore capturing his devices
-        connection.dontCaptureUserMedia = true;
-    }
+    
 
     if (connection.DetectRTC.hasSpeakers === false) { // checking for "false"
         // alert('Please attach a speaker device. You will unable to hear the incoming audios.');
