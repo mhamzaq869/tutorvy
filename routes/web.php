@@ -195,7 +195,9 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     //Course CRUD
     Route::get('/course',[TutorCourseController::class,'index'])->name('tutor.course');
     Route::get('/addcourse', [TutorCourseController::class,'create'])->name('tutor.addcourse');
+    
     Route::post('/srtorecourse', [TutorCourseController::class,'store'])->name('tutor.storecourse');
+
     Route::get('/course/{id}/edit', [TutorCourseController::class,'edit'])->name('tutor.course.edit');
     Route::post('/course/{id}/update', [TutorCourseController::class,'update'])->name('tutor.course.update');
 
