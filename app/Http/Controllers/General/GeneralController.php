@@ -11,7 +11,7 @@ use App\Models\General\Institute;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin\Subject;
 use App\Models\Course;
-
+use Illuminate\Support\Facades\Session;
 
 class GeneralController extends Controller
 {
@@ -106,6 +106,17 @@ class GeneralController extends Controller
 
     }
 
+    public function enroll($id)
+    {
+        if(Auth::check()):
+            return redirect()->route('student.course-details',[$id]);
+        else:
+            Session::put('redirectUrlCourse',$id);
+           return redirect()->route('student.register');
+        endif;
+
+    }
+
     public function save_activity_logs($module , $table_ref, $ref_id , $action_perform, $user_agent, $created_by) {
         Activitylogs::create([
             "module" => $module,
@@ -116,4 +127,6 @@ class GeneralController extends Controller
             "created_by" =>  $created_by,
         ]);
     }
+
+
 }

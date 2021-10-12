@@ -69,7 +69,7 @@ class CourseController extends Controller
         $courselevel->about              = $request->about;
         $courselevel->video              = $request->video;
         $courselevel->thumbnail          = $thumbnail_path ?? '';
-        $courselevel->start_date              = $request->start_date;
+        $courselevel->start_date         = $request->start_date;
 
         $courselevel->basic_home_work    = $request->basic_home_work;
         $courselevel->basic_quiz         = $request->basic_quiz;
@@ -162,7 +162,7 @@ class CourseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-        {      
+        {
             // return dd($request->all());
             if($request->hasFile('thumbnail')){
                 $thumbnail_path = "storage/course/thumbnail/".$request->thumbnail->getClientOriginalName();
@@ -190,11 +190,11 @@ class CourseController extends Controller
             $courselevel->basic_days         = json_encode($request->basic_days) ?? json_encode($courselevel->basic_days) ;
             $courselevel->basic_class_title = json_encode($request->basic_class_title) ?? json_encode($courselevel->basic_class_title);
             $courselevel->basic_class_overview = json_encode($request->basic_class_overview) ?? json_encode($courselevel->basic_class_overview);
-            $courselevel->basic_class_start_time   = json_encode($request->basic_class_start_time) ?? json_encode($courselevel->basic_class_start_time); 
+            $courselevel->basic_class_start_time   = json_encode($request->basic_class_start_time) ?? json_encode($courselevel->basic_class_start_time);
             $courselevel->basic_class_end_time     = json_encode($request->basic_class_end_time) ?? json_encode($courselevel->basic_class_end_time);
             $courselevel->basic_price        = $request->basic_price ?? $courselevel->basic_price;
-    
-    
+
+
             $courselevel->standard_home_work = $request->standard_home_work  ?? $courselevel->standard_home_work;
             $courselevel->standard_quiz      = $request->standard_quiz ?? $courselevel->standard_home_work;
             $courselevel->standard_one_one   = $request->standard_one_one  ?? $courselevel->standard_home_work;
@@ -207,7 +207,6 @@ class CourseController extends Controller
             $courselevel->standard_class_start_time= json_encode($request->standard_class_start_time)  ?? json_encode($courselevel->standard_home_work);
             $courselevel->standard_class_end_time  = json_encode($request->standard_class_end_time)  ?? json_encode($courselevel->standard_home_work);
             $courselevel->standard_price     = $request->standard_price;
-    
             $courselevel->advance_home_work  = $request->advance_home_work  ?? $courselevel->advance_home_work;
             $courselevel->advance_quiz       = $request->advance_quiz  ?? $courselevel->advance_home_work;
             $courselevel->advance_one_one    = $request->advance_one_one  ?? $courselevel->advance_home_work;
@@ -234,6 +233,10 @@ class CourseController extends Controller
             // $courselevel->basic_class_end_time     = json_encode($request->basic_class_end_time);
             // $courselevel->basic_price        = $request->basic_price;
 
+        if($request->hasFile('thumbnail')){
+            $thumbnail_path = "storage/course/thumbnail/".$request->thumbnail->getClientOriginalName();
+            $request->thumbnail->storeAs('course/thumbnail/',$request->thumbnail->getClientOriginalName(),'public');
+        }
 
         // if($request->hasFile('video')){
         //     $video_path = "storage/course/video/".$request->video->getClientOriginalName();

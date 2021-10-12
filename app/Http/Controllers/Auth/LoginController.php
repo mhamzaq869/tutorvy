@@ -56,6 +56,7 @@ class LoginController extends Controller
         *  view
         */
         $user = User::where('email',$request->email)->where('role','!=',1)->first();
+
         if($user){
             return view('auth.login',compact('user'));
         }
@@ -96,6 +97,11 @@ class LoginController extends Controller
                     }
                     if($value != ''){
                         return redirect()->route('student.book-now',[$value]);
+                    }
+
+                    if(Session::get('redirectUrlCourse')){
+                        return redirect()->route('student.course-details',[Session::get('redirectUrlCourse')]);
+                        Session::flush(Session::get('redirectUrlCourse'));
                     }
 
                     return redirect()->route('student.dashboard');

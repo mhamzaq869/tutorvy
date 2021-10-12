@@ -283,8 +283,8 @@ class SettingController extends Controller
 
                 array_push($standard_classes,$class);
             }
-           
-            
+
+
         }
         $course->standard_classes = $standard_classes;
         // Advance Classes
@@ -304,16 +304,17 @@ class SettingController extends Controller
                 $class->et_time = $cr_ad_cet[$cr_ad_dys[$i]];
                 $class->title = $cr_ad_clt[$cr_ad_dys[$i]];
                 $class->overview = $cr_ad_clo[$cr_ad_dys[$i]];
-    
+
                 array_push($advance_classes,$class);
             }
-           
-            
+
+
         }
-       
+
         $course->advance_classes = $advance_classes;
         // return $course;
         return view('student.pages.course.course_detail',compact('course'));
     }
+
 
 }

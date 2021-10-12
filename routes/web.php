@@ -315,8 +315,6 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     /*Course */
     Route::get('/course-details/{id}',[StudentSettingController::class,'courseDetails'])->name('student.course-details');
     Route::get('/courses',[StudentSettingController::class,'courses'])->name('student.courses');
-
-
     /*Course  End*/
 });
 /*
@@ -360,6 +358,7 @@ Route::view('/subject','frontend.subject');
 // Route::view('/course','frontend.course');
 
 Route::get('/course',[GeneralController::class,'course']);
+Route::get('courseenroll/{id}',[GeneralController::class,'enroll'])->name('course.enroll');
 
 Route::get('/findtutor/{subject?}',[FrontTutorController::class,'index']);
 Route::post('/findtutor',[FrontTutorController::class,'filterTutor'])->name('find.tutor');

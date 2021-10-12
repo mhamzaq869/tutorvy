@@ -311,7 +311,7 @@
                                                 <span class="progress-bar"></span>
                                             </span>
                                             <div class="progress-value">
-                                                <span>5</span>
+                                                <span>{{$course->seats}}</span>
 
                                             </div>
                                         </div>
@@ -320,8 +320,8 @@
                                         </span>
                                     </div>
                                     <div class="col-md-12 text-center learning-button mt-4">
-                                        <a href="#" class="no-decor">
-                                            Start Course
+                                        <a href="{{route('course.enroll',[$course->id])}}" class="no-decor">
+                                            Enroll Course
                                         </a>
                                     </div>
                                 </div>
