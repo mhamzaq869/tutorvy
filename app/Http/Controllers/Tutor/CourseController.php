@@ -246,9 +246,14 @@ class CourseController extends Controller
         // }
 
 
-        
-
-
+        // $courselevel->user_id            = Auth::user()->id;
+        // $courselevel->title              = $request->course_title ?? $courselevel->title;
+        // $courselevel->subject_id         = $request->subject ?? $courselevel->subject_id;
+        // $courselevel->about              = $request->about ?? $courselevel->about;
+        // $courselevel->start_date         = $request->start_date ?? $courselevel->start_date;
+        // $courselevel->seats              = $request->seats ?? $courselevel->seats;
+        // $courselevel->video              = $video_path ?? $courselevel->video;
+        // $courselevel->thumbnail          = $thumbnail_path ?? $courselevel->thumbnail;
         // $courselevel->basic_home_work    = $request->basic_home_work ?? $courselevel->basic_home_work;
         // $courselevel->basic_quiz         = $request->basic_quiz ?? $courselevel->basic_quiz;
         // $courselevel->basic_one_one      = $request->basic_one_one ?? $courselevel->basic_one_one;
@@ -259,9 +264,6 @@ class CourseController extends Controller
         // $courselevel->basic_start_time   = $request->basic_start_time ?? $courselevel->basic_start_time;
         // $courselevel->basic_end_time     = $request->basic_end_time ?? $courselevel->basic_end_time;
         // $courselevel->basic_price        = $request->basic_price ?? $courselevel->basic_price;
-
-
-
         // $courselevel->standard_home_work = $request->standard_home_work ?? $courselevel->standard_home_work;
         // $courselevel->standard_quiz      = $request->standard_quiz ?? $courselevel->standard_quiz;
         // $courselevel->standard_one_one   = $request->standard_one_one ?? $courselevel->standard_one_one;
@@ -272,8 +274,6 @@ class CourseController extends Controller
         // $courselevel->standard_start_time= $request->start_time ??  $courselevel->standard_start_time;
         // $courselevel->standard_end_time  = $request->end_time ?? $courselevel->standard_end_time;
         // $courselevel->standard_price     = $request->price ?? $courselevel->standard_price;
-
-
         // $courselevel->advance_home_work  = $request->advance_home_work ?? $courselevel->advance_home_work;
         // $courselevel->advance_quiz       = $request->advance_quiz ?? $courselevel->advance_quiz;
         // $courselevel->advance_one_one    = $request->advance_one_one ?? $courselevel->advance_one_one;
