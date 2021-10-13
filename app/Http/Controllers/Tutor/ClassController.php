@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Http\Request;
 use App\Models\Activitylogs;
+use App\Http\Controllers\General\NotifyController;
 use App\Models\Classroom;
 use App\Models\Booking;
 use App\Models\User;
@@ -45,7 +46,7 @@ class ClassController extends Controller
 
         $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
         $slug = URL::to('/') . '/student/'. $class->classroom_id;
-        
+
         $notification = new NotifyController();
 
         $reciever_id = $booking->user_id;
