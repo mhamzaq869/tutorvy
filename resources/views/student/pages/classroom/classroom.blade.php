@@ -494,7 +494,9 @@ height:25px;
                 <div class="col-md-8 text-center rounded bg-dark ">
                     <div class="row">
                         <div class="col-md-12">
-                            <div id="other-videos2"  playsinline autoplay></div>
+                            <div id="other-videos2"  playsinline autoplay>
+                               
+                            </div>
 
                             <!-- @if($user->picture)
                                 @if(file_exists( public_path(). $user->picture))
@@ -1172,8 +1174,10 @@ height:25px;
 
 <script>
 $("#conCam").click(function(){
+    let html = `<img src="{{asset('assets/images/ico/Square-white.jpg')}}" class="profile-card-img"  alt="" style="margin-top:12%;">`;
+                    $("#other-videos2").html(html);
     $(".overlayCam").hide();
-})
+});
 var connection = new RTCMultiConnection();
 var roomid = '{{$class->classroom_id}}';
 var fullName = '{{$user->first_name}} {{$user->last_name}}';
@@ -1216,11 +1220,33 @@ connection.DetectRTC.load(function() {
         $(".no-mk").show();
         $("#join_now").removeAttr("disabled","disabled" );
             $("#join_now").click(function(){
+                
                 $(".tech_weck").removeClass("tech_weck-none");
                 $(".callDiv").hide();
-                // $("#callModal").modal("hide");
-                // joinClass();
-                /** Javascript Timer */
+                    connection.onstream = function(event) {
+                        if (event.stream.isScreen && !event.stream.canvasStream) {
+                            $('#screen-viewer').get(0).srcObject = event.stream;
+                            $('#screen-viewer').hide();
+                        }
+                        else if (event.extra.roomOwner === true) {
+                            var video = document.getElementById('main-video');
+                            video.setAttribute('data-streamid', event.streamid);
+                            // video.style.display = 'none';
+                            if(event.type === 'local') {
+                                video.muted = true;
+                                video.volume = 0;
+                            }
+                            video.srcObject = event.stream;
+                            $('#main-video').show();
+                        } else {
+                            event.mediaElement.controls = false;
+
+                            var otherVideos = document.querySelector('#other-videos');
+                            otherVideos.appendChild(event.mediaElement);
+                        }
+
+                        connection.onUserStatusChanged(event);
+                    };
                 var timer = new Timer();
                     timer.start({countdown: true, startValues: {seconds: 30}});
 
@@ -1248,36 +1274,49 @@ connection.DetectRTC.load(function() {
     }
 
     if (connection.DetectRTC.hasWebcam === true) {
+       
         // enable camera
-        if(connection.DetectRTC.videoInputDevices.length > 0){
-            var varr = connection.DetectRTC.videoInputDevices;
-            for(var v = 0 ; v < varr.length ; v++){
-                if(varr[v].deviceId != undefined){
-                    console.log(connection.DetectRTC)
-                    connection.mediaConstraints.video = true;
-                    connection.session.video = true;
-                    $(".overlayCam").css("display","none");
-                    $(".no-vc").show();
-                    alert('attach true camera');
-                }else{
-                    console.log(connection.DetectRTC)
-                    // connection.dontCaptureUserMedia = true;
-                    // connection.DetectRTC.isWebsiteHasWebcamPermissions
-                    connection.mediaConstraints.video = false;
-                    connection.session.video = false;
-                    // alert('no camera')
-                    // connection.dontCaptureUserMedia = true;
+        if(connection.DetectRTC.isWebsiteHasWebcamPermissions === false){
+                $(".overlayCam").css("display","block");
+                
+                $("#other-videos2").attr("poster","{{asset('assets/images/ico/Mute-video.png')}}");
+
+       }
+       else{
+       // enable microphone
+            if(connection.DetectRTC.videoInputDevices.length > 0){
+                var varr = connection.DetectRTC.videoInputDevices;
+                for(var v = 0 ; v < varr.length ; v++){
+                    if(varr[v].deviceId != undefined){
+                        console.log(connection.DetectRTC)
+                        connection.mediaConstraints.video = true;
+                        connection.session.video = true;
+                        $(".overlayCam").css("display","none");
+                        $(".no-vc").show();
+                        alert('attach true camera');
+                    }else{
+                        console.log(connection.DetectRTC)
+                        // connection.dontCaptureUserMedia = true;
+                        // connection.DetectRTC.isWebsiteHasWebcamPermissions
+                        connection.mediaConstraints.video = false;
+                        connection.session.video = false;
+                        // alert('no camera')
+                        // connection.dontCaptureUserMedia = true;
+                        
+                        // connection.mediaConstraints.video = true;
+                        // connection.session.video = true;
                     
-                    // connection.mediaConstraints.video = true;
-                    // connection.session.video = true;
-                   
+                    }
                 }
+            }else{
+
             }
-        }else{
 
-        }
-
-    }else{
+       }
+        
+       
+    }
+    else{
         $(".no-vc").hide();
         $(".overlayCam").css("display","block");
         alert('attach Cam First');
@@ -1465,11 +1504,8 @@ connection.onstream = function(event) {
         $('#main-video').show();
     } else {
         event.mediaElement.controls = false;
-
         var otherVideos = document.querySelector('#other-videos');
-        var otherVideos2 = document.querySelector('#other-videos2');
         otherVideos.appendChild(event.mediaElement);
-        otherVideos2.appendChild(event.mediaElement);
     }
 
     connection.onUserStatusChanged(event);
@@ -1491,12 +1527,51 @@ connection.onstreamended = function(event) {
 };
 $(".no-vc").click(function(){
     // alert("No vc");
-    var localStream = connection.attachStreams[0];
+    if (connection.DetectRTC.hasWebcam === true) {
+        // enable camera
+        if(connection.DetectRTC.videoInputDevices.length > 0){
+
+            var varr = connection.DetectRTC.videoInputDevices;
+            for(var v = 0 ; v < varr.length ; v++){
+                if(varr[v].deviceId != undefined){
+                    console.log(connection.DetectRTC)
+                    connection.mediaConstraints.video = true;
+                    connection.session.video = true;
+                    $(".overlayCam").css("display","none");
+                   
+                  
+                    alert('attach true 2 camera');
+                    var localStream = connection.attachStreams[0];
     
-    localStream.mute('video');
-    $("#other-videos video").attr("poster","{{asset('assets/images/ico/Mute-video.png')}}");
-    $("#other-videos2 video").attr("poster","{{asset('assets/images/ico/Mute-video.png')}}");
-})
+                    localStream.mute('video');
+                    $("#other-videos video").attr("poster","{{asset('assets/images/ico/Mute-video.png')}}");
+                    // $("#other-videos2 video").attr("poster","{{asset('assets/images/ico/Mute-video.png')}}");
+                }else{
+                    console.log(connection.DetectRTC)
+                    // connection.dontCaptureUserMedia = true;
+                    // connection.DetectRTC.isWebsiteHasWebcamPermissions
+                    connection.mediaConstraints.video = false;
+                    connection.session.video = false;
+                    // alert('no camera')
+                    // connection.dontCaptureUserMedia = true;
+                    
+                    // connection.mediaConstraints.video = true;
+                    // connection.session.video = true;
+                   
+                }
+            }
+         
+        }else{
+
+        }
+
+    }else if (connection.DetectRTC.hasWebcam === false) {
+        alert("No Blovk");
+        $(".no-vc").hide();
+        $(".overlayCam").css("display","block");
+        alert('attach Cam First');
+    }
+});
 $(".vc").click(function(){
     // alert("Vc");
     var localStream = connection.attachStreams[0];

@@ -1116,14 +1116,14 @@ connection.DetectRTC.load(function() {
                     connection.mediaConstraints.video = true;
                     connection.session.video = true;
                     // $(".overlayCam").css("display","none");
-                    // alert('attach true camera');
+                    alert('attach true camera');
                 }else{
                     console.log(connection.DetectRTC)
                     // connection.dontCaptureUserMedia = true;
                     // connection.DetectRTC.isWebsiteHasWebcamPermissions
                     connection.mediaConstraints.video = false;
                     connection.session.video = false;
-                    // alert('no camera')
+                    alert('no camera')
                     // connection.dontCaptureUserMedia = true;
                     
                     // connection.mediaConstraints.video = true;
@@ -1367,11 +1367,9 @@ connection.onstream = function(event) {
 
         var video = document.getElementById('main-video');
         var video2 = document.getElementById('main-video2');
-        
         video.setAttribute('data-streamid', event.streamid);
         video2.setAttribute('data-streamid', event.streamid);
-        
-        // video.style.display = 'none';
+        video.style.display = 'none';
         if(event.type === 'local') {
             video.muted = true;
             video.volume = 0;
@@ -1386,11 +1384,9 @@ connection.onstream = function(event) {
     else {
         event.mediaElement.controls = false;
         $("#main-video").css("width","30%");
-
         var otherVideos = document.querySelector('#other-videos');
         otherVideos.appendChild(event.mediaElement);
     }
-
     // connection.onUserStatusChanged(event);
 };
 
