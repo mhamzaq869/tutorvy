@@ -1183,6 +1183,7 @@ var roomid = '{{$class->classroom_id}}';
 var fullName = '{{$user->first_name}} {{$user->last_name}}';
 var class_duration = {{$booking->duration}};
 var timer = new Timer();
+var get = '00:05:00';
 
 (function() {
     var params = {},
@@ -1264,6 +1265,11 @@ connection.DetectRTC.load(function() {
                     timer.addEventListener('secondsUpdated', function (e) {
                         $('#countdownExample .values').html(timer.getTimeValues().toString());
                     });
+                    
+                        var ter =$('.values').text();
+                        if( ter == get ){
+                            $(".values").css("color","red");
+                        }
 
                     timer.addEventListener('targetAchieved', function (e) {
                         $('#countdownExample .values').html('');
