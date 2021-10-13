@@ -40,6 +40,23 @@ class ClassController extends Controller
             "tutor_join_time" => $request->tutor_join_time,
         ]);
 
+        $class = Classroom::where('id',$request->class_room_id)->first();
+        $booking = Booking::where('id',$class->booking_id)->first();
+
+        $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+        $slug = URL::to('/') . '/student/'. $class->classroom_id;
+
+        $reciever_id = $booking->user_id;
+        $type = 'class_started';
+        $data = 'data';
+        $title = 'Class Started';
+        $icon = 'fas fa-tag';
+        $class = 'btn-success';
+        $desc = $name . ' Started the class. Here is the link to join class. <a href="">Class Link</a> ' ;
+        $pic = Auth::user()->picture;
+
+        $notification->GeneralNotifi( $reciever_id , $slug ,  $type , $title , $icon , $class ,$desc,$pic);
+
         return response()->json([
             "message" => "Classroom logs saved",
             "status_code" => 200,

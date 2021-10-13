@@ -1078,7 +1078,7 @@ height:25px;
         // $(".tech_weck").hide();
      
         // $("#callModal").modal("show");
-        $("#join_now").attr("disabled","disabled" );
+        // $("#join_now").attr("disabled","disabled" );
         $("#main-video").attr("poster","{{asset('assets/images/ico/Mute-video.png')}}");
         });
     $(".no-mk").click(function(){
@@ -1204,15 +1204,14 @@ connection.socketURL = 'https://tutorvy.herokuapp.com:443/';
 connection.extra.userFullName = fullName;
 connection.DetectRTC.load(function() {
 
-    if(connection.DetectRTC.isWebsiteHasWebcamPermissions === false && connection.DetectRTC.isWebsiteHasMicrophonePermissions === false){
-        connection.dontCaptureUserMedia = true;
-    }
+    
 
 
     console.log(connection.DetectRTC);
     if (connection.DetectRTC.hasMicrophone === true) {
         // enable microphone
         if(connection.DetectRTC.isWebsiteHasMicrophonePermissions === false){
+            alert("has microphone not permission");
                 $(".overlayCam").css("display","block");
                $(".overlayCam").find("h3").text("Your Microphone is Blocked");
                $(".overlayCam").find("h5").text("Tutorvy needs access to your microphone. To get 100% result");
@@ -1220,6 +1219,7 @@ connection.DetectRTC.load(function() {
        }
        else{
        // enable microphone
+       alert("has microphone and permission");
         connection.mediaConstraints.audio = true;
         connection.session.audio = true;
         // alert('attach true microphone')
@@ -1251,7 +1251,7 @@ connection.DetectRTC.load(function() {
                             otherVideos.appendChild(event.mediaElement);
                         }
 
-                        connection.onUserStatusChanged(event);
+                        // connection.onUserStatusChanged(event);
                     };
                 var timer = new Timer();
                     timer.start({countdown: true, startValues: {seconds: 30}});
@@ -1284,12 +1284,13 @@ connection.DetectRTC.load(function() {
         // enable camera
         if(connection.DetectRTC.isWebsiteHasWebcamPermissions === false){
                 $(".overlayCam").css("display","block");
-                
+                alert("has webcam and no permission");
                 $("#other-videos2").attr("poster","{{asset('assets/images/ico/Mute-video.png')}}");
 
        }
        else{
        // enable microphone
+       alert("has webcam and permission");
             if(connection.DetectRTC.videoInputDevices.length > 0){
                 var varr = connection.DetectRTC.videoInputDevices;
                 for(var v = 0 ; v < varr.length ; v++){
@@ -1331,6 +1332,57 @@ connection.DetectRTC.load(function() {
     if (connection.DetectRTC.hasSpeakers === false) { // checking for "false"
         // alert('Please attach a speaker device. You will unable to hear the incoming audios.');
     }
+    
+    if(connection.DetectRTC.isWebsiteHasWebcamPermissions === false && connection.DetectRTC.isWebsiteHasMicrophonePermissions === false){
+        connection.dontCaptureUserMedia = true;
+        connection.mediaConstraints.audio = false;
+        connection.session.audio = false;
+        connection.mediaConstraints.video = false;
+        connection.session.video = false;
+        $("#join_now").click(function(){
+                
+                $(".tech_weck").removeClass("tech_weck-none");
+                $(".callDiv").hide();
+                    connection.onstream = function(event) {
+                        if (event.stream.isScreen && !event.stream.canvasStream) {
+                            $('#screen-viewer').get(0).srcObject = event.stream;
+                            $('#screen-viewer').hide();
+                        }
+                        else if (event.extra.roomOwner === true) {
+                            var video = document.getElementById('main-video');
+                            video.setAttribute('data-streamid', event.streamid);
+                            // video.style.display = 'none';
+                            if(event.type === 'local') {
+                                video.muted = true;
+                                video.volume = 0;
+                            }
+                            video.srcObject = event.stream;
+                            $('#main-video').show();
+                        } else {
+                            event.mediaElement.controls = false;
+
+                            var otherVideos = document.querySelector('#other-videos');
+                            otherVideos.appendChild(event.mediaElement);
+                        }
+
+                        // connection.onUserStatusChanged(event);
+                    };
+                var timer = new Timer();
+                    timer.start({countdown: true, startValues: {seconds: 30}});
+
+                    $('#countdownExample .values').html(timer.getTimeValues().toString());
+
+                    timer.addEventListener('secondsUpdated', function (e) {
+                        $('#countdownExample .values').html(timer.getTimeValues().toString());
+                    });
+
+                    timer.addEventListener('targetAchieved', function (e) {
+                        $('#countdownExample .values').html('Class Time has Ended!!');
+                    });
+                /* Javascript Timer ENd */
+            })
+    }
+    
 });
 /// make this room public
 connection.publicRoomIdentifier = '';
@@ -1390,7 +1442,7 @@ connection.enableFileSharing = true;
 connection.session.data =  true;
 
 connection.sdpConstraints.mandatory = {
-    OfferToReceiveAudio: true,
+    OfferToReceiveAudio: false,
     OfferToReceiveVideo: false
 };
 
@@ -1411,8 +1463,10 @@ connection.onUserStatusChanged = function(event) {
 };
 
 connection.onopen = function(event) {
-    connection.onUserStatusChanged(event);
-
+    // connection.onUserStatusChanged(event);
+    connection.send({
+        class_joined: true
+    });
     if (designer.pointsLength <= 0) {
         // make sure that remote user gets all drawings synced.
         setTimeout(function() {
@@ -1427,7 +1481,7 @@ connection.onopen = function(event) {
 
 connection.onclose = connection.onerror = connection.onleave = function(event) {
 
-    connection.onUserStatusChanged(event);
+    // connection.onUserStatusChanged(event);
 
 };
 
@@ -1511,7 +1565,7 @@ connection.onstream = function(event) {
         otherVideos.appendChild(event.mediaElement);
     }
 
-    connection.onUserStatusChanged(event);
+    // connection.onUserStatusChanged(event);
 };
 
 connection.onstreamended = function(event) {
@@ -1915,6 +1969,7 @@ designer.appendTo(document.getElementById('widget-container'), function() {
                 }
                 alert(error);
             }
+            
             saveClassLogs();
             connection.socket.on('disconnect', function() {
                 location.reload();
