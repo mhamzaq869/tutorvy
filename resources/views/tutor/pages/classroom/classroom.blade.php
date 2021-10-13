@@ -1189,7 +1189,7 @@ connection.publicRoomIdentifier = '';
 connection.socketMessageEvent = 'canvas-dashboard-demo';
 
 // keep room opened even if owner leaves
-connection.autoCloseEntireSession = true;
+// connection.autoCloseEntireSession = true;
 
 // https://www.rtcmulticonnection.org/docs/maxParticipantsAllowed/
 // connection.maxParticipantsAllowed = 1000;
@@ -1279,8 +1279,10 @@ connection.onopen = function(event) {
     document.getElementById('btn-attach-file').style.display = 'inline-block';
     // document.getElementById('btn-share-screen').style.display = 'inline-block';
 };
+// connection.leave();
 
 connection.onclose = connection.onerror = connection.onleave = function(event) {
+    console.log(event)
     // toastr.success("Student has ended the call!");
     $("#main-video").css("width","85%")
     // connection.onUserStatusChanged(event);
@@ -1321,7 +1323,6 @@ connection.onmessage = function(event) {
         window.location.href="{{route('tutor.classroom')}}";
     }
     if(event.data.class_joined === true){
-        alert('dsad')
         toastr.success(event.extra.userFullName + ' Joined the class.');
     }
 
@@ -1693,7 +1694,7 @@ designer.appendTo(document.getElementById('widget-container'), function() {
             window.tempStream = tempStream;
 
             connection.extra.roomOwner = true;
-            connection.open(roomid, function(isRoomOpened, roomid, error) {
+            connection.openOrJoin(roomid, function(isRoomOpened, roomid, error) {
                 if (error) {
                     if (error === connection.errors.ROOM_NOT_AVAILABLE) {
                         alert('Someone already created this room. Please either join or create a separate room.');
@@ -1701,6 +1702,8 @@ designer.appendTo(document.getElementById('widget-container'), function() {
                     }
                     alert(error);
                 }
+                var video = document.getElementById('main-video');
+        video.setAttribute('data-streamid', event.streamid);
                 saveClassLogs();
                 connection.socket.on('disconnect', function() {
                     location.reload();
