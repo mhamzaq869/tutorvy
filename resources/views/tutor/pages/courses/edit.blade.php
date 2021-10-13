@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <p class="mr-3 heading-first">
-                        < Add Courses
+                        < Edit Courses
                     </p>
                 </div>
             </div>
@@ -184,19 +184,46 @@
                                 </div>
 
                                 <h3 class="mt-3 pb-2">
-                                    Schedule
+                                    Timing 
                                 </h3>
+                                
                                 <div class="input-options">
                                     <select class="js-multiSelect" id="basic_day" name="basic_days[]" multiple="multiple">
-                                        <option value="1" >Monday</option>
-                                        <option value="2">Tuesday</option>
-                                        <option value="3">Wednesday</option>
-                                        <option value="4">Thursday</option>
-                                        <option value="5">Friday</option>
-                                        <option value="6">Saturday</option>
-                                        <option value="7">Sunday</option>
+                                        <option value="1" {{(str_contains($course->basic_days , '1')) ? 'selected' : 0}} >Monday</option>
+                                        <option value="2" {{(str_contains($course->basic_days , '2')) ? 'selected' : 0}}>Tuesday</option>
+                                        <option value="3" {{(str_contains($course->basic_days , '3')) ? 'selected' : 0}}>Wednesday</option>
+                                        <option value="4" {{(str_contains($course->basic_days , '4')) ? 'selected' : 0}}>Thursday</option>
+                                        <option value="5" {{(str_contains($course->basic_days , '5')) ? 'selected' : 0}}>Friday</option>
+                                        <option value="6" {{(str_contains($course->basic_days , '6')) ? 'selected' : 0}}>Saturday</option>
+                                        <option value="7" {{(str_contains($course->basic_days , '7')) ? 'selected' : 0}}>Sunday</option>
                                     </select>
                                 </div>
+                                @if($course->basic_classes != null && $course->basic_classes != "" && $course->basic_classes!= []) 
+                                    @foreach($course->basic_classes as $basic )
+                                    <div id="bas_{{$basic->day}}">
+                                        <span class="heading-forth"> {{$basic->day}}  </span>
+                                        <div class="input-serachs mt-2">
+                                            <input type="txt" name="basic_class_title[{{$basic->day}}]" value="{{$basic->title != null ? $basic->title : ''}}" placeholder="Write Class Title" required />
+                                        </div>
+                                        <div class="input-serachs mt-2 mb-2">
+                                            <input type="txt" name="basic_class_overview[{{$basic->day}}]" value="{{$basic->overview != null ? $basic->overview : ''}}" placeholder="Write Class Overview" value="" required />
+                                        </div>
+                                        <span class="heading-forth"> Timing</span>
+                                        <div class="input-options ">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <input type="text" name="basic_class_start_time[{{$basic->day}}]" value="{{$basic->st_time != null ? $basic->st_time : ''}}" class="form-control texteara-s mt-2 pt-2 mb-2" required  placeholder="From"
+                                                    onfocus="(this.type='time')"> 
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" name="basic_class_end_time[{{$basic->day}}]" value="{{$basic->et_time != null ? $basic->et_time : ''}}" class="form-control texteara-s mt-2 pt-2 mb-2" required placeholder="To"
+                                                        onfocus="(this.type='time')">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                @endif
                                 <div class=" mt-2" id="extraFields"></div>
 
                                 <h3 class="mt-3 pb-2">
@@ -292,17 +319,46 @@
                             <h3 class="mt-3 pb-2">
                                 Timing
                             </h3>
-                            <div class="input-options mt-2">
+                            <div class="input-options">
                                 <select class="js-multiSelect" id="standard_day" name="standard_days[]" multiple="multiple">
-                                    <option value="1" >Monday</option>
-                                    <option value="2">Tuesday</option>
-                                    <option value="3">Wednesday</option>
-                                    <option value="4">Thursday</option>
-                                    <option value="5">Friday</option>
-                                    <option value="6">Saturday</option>
-                                    <option value="7">Sunday</option>
+                                    <option value="1" {{(str_contains($course->standard_days , '1')) ? 'selected' : 0}} >Monday</option>
+                                    <option value="2" {{(str_contains($course->standard_days , '2')) ? 'selected' : 0}}>Tuesday</option>
+                                    <option value="3" {{(str_contains($course->standard_days , '3')) ? 'selected' : 0}}>Wednesday</option>
+                                    <option value="4" {{(str_contains($course->standard_days , '4')) ? 'selected' : 0}}>Thursday</option>
+                                    <option value="5" {{(str_contains($course->standard_days , '5')) ? 'selected' : 0}}>Friday</option>
+                                    <option value="6" {{(str_contains($course->standard_days , '6')) ? 'selected' : 0}}>Saturday</option>
+                                    <option value="7" {{(str_contains($course->standard_days , '7')) ? 'selected' : 0}}>Sunday</option>
                                 </select>
                             </div>
+
+                            @if($course->standard_classes != null && $course->standard_classes != "" && $course->standard_classes!= []) 
+                                @foreach($course->standard_classes as $standard )
+                                <div id="standard_{{$standard->day}}">
+                                    <span class="heading-forth"> {{$standard->day}}  </span>
+                                    <div class="input-serachs mt-2">
+                                        <input type="txt" name="standard_class_title[{{$standard->day}}]" value="{{$standard->title}}" placeholder="Write Class Title" required />
+                                    </div>
+                                    <div class="input-serachs mt-2 mb-2">
+                                        <input type="txt" name="standard_class_overview[{{$standard->day}}]" value="{{$standard->overview}}" placeholder="Write Class Overview" value="" required />
+                                    </div>
+                                    <span class="heading-forth"> Timing</span>
+                                    <div class="input-options ">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="text" name="standard_class_start_time[{{$standard->day}}]" value="{{$standard->st_time}}" class="form-control texteara-s mt-2 pt-2 mb-2" required  placeholder="From"
+                                                onfocus="(this.type='time')">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" name="standard_class_end_time[{{$standard->day}}]" value="{{$standard->et_time}}" class="form-control texteara-s mt-2 pt-2 mb-2" required placeholder="To"
+                                                    onfocus="(this.type='time')">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            @endif
+                            
+                            
                             <div class=" mt-2" id="standard_extraFields"></div>
 
                             <div class="input-options mt-2">
@@ -319,6 +375,7 @@
                             </div>
 
                         </div>
+
                         <div class="col-md-4 border-right mb-1">
 
                             <div class="text-center heading-forth">
@@ -405,17 +462,44 @@
                             <h3 class="mt-3 pb-2">
                                 Timing
                             </h3>
-                            <div class="input-options mt-2">
+                            <div class="input-options">
                                 <select class="js-multiSelect" id="advance_day" name="advance_days[]" multiple="multiple">
-                                    <option value="1" >Monday</option>
-                                    <option value="2">Tuesday</option>
-                                    <option value="3">Wednesday</option>
-                                    <option value="4">Thursday</option>
-                                    <option value="5">Friday</option>
-                                    <option value="6">Saturday</option>
-                                    <option value="7">Sunday</option>
+                                    <option value="1" {{(str_contains($course->advance_days , '1')) ? 'selected' : 0}} >Monday</option>
+                                    <option value="2" {{(str_contains($course->advance_days , '2')) ? 'selected' : 0}}>Tuesday</option>
+                                    <option value="3" {{(str_contains($course->advance_days , '3')) ? 'selected' : 0}}>Wednesday</option>
+                                    <option value="4" {{(str_contains($course->advance_days , '4')) ? 'selected' : 0}}>Thursday</option>
+                                    <option value="5" {{(str_contains($course->advance_days , '5')) ? 'selected' : 0}}>Friday</option>
+                                    <option value="6" {{(str_contains($course->advance_days , '6')) ? 'selected' : 0}}>Saturday</option>
+                                    <option value="7" {{(str_contains($course->advance_days , '7')) ? 'selected' : 0}}>Sunday</option>
                                 </select>
                             </div>
+
+                            @if($course->advance_classes != null && $course->advance_classes != "" && $course->advance_classes!= []) 
+                                @foreach($course->advance_classes as $advance)
+                                <div id="advance_{{$advance->day}}">
+                                    <span class="heading-forth"> {{$advance->day}} </span>
+                                    <div class="input-serachs mt-2">
+                                        <input type="txt" name="advance_class_title[{{$advance->day}}]"  value="{{$advance->title}}" placeholder="Write Class Title" required />
+                                    </div>
+                                    <div class="input-serachs mt-2 mb-2">
+                                        <input type="txt" name="advance_class_overview[{{$advance->day}}]" value="{{$advance->overview}}" placeholder="Write Class Overview" required />
+                                    </div>
+                                    <span class="heading-forth"> Timing</span>
+                                    <div class="input-options ">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <input type="text" name="advance_class_start_time[{{$advance->day}}]" value="{{$advance->ad_time}}" class="form-control texteara-s mt-2 pt-2 mb-2" required  placeholder="From"
+                                                onfocus="(this.type='time')">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" name="advance_class_end_time[{{$advance->day}}]" value="{{$advance->et_time}}" class="form-control texteara-s mt-2 pt-2 mb-2" required placeholder="To"
+                                                    onfocus="(this.type='time')">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            @endif
                             <div class=" mt-2" id="advance_extraFields"></div>
 
                             <div class="input-options mt-2">

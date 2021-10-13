@@ -173,17 +173,17 @@ class BookingController extends Controller
             $total_price = $booking->price + $comm;
         }else{
             $total_price = $booking->price;
+            $comm = 0;
         }
-
 
         Session::put('service_fee',$comm);
 
         if(!$booking){
-            Session::put('error','Unable to process booking not available.');
+            Session::flash('error','Unable to process booking not available.');
             return redirect()->route('student.bookings');
         }
         if($total_price == null || $total_price == 0.00 || $total_price == 0){
-            Session::put('error','Unable to process booking with invalid amount.');
+            Session::flash('error','Unable to process booking with invalid amount.');
             return redirect()->route('student.bookings');
         }
 
@@ -248,6 +248,7 @@ class BookingController extends Controller
 
                 Payments::create([
                     'user_id' => Auth::user()->id,
+                    'type_id' => $booking->id,
                     'type' => 'Booked Class',
                     'transaction_id' =>  $transaction_id,
                     'amount'  => $total_price,
@@ -272,7 +273,7 @@ class BookingController extends Controller
                 return redirect()->away($redirect_url);
             }
 
-            Session::put('error','Unknown error occurred');
+            Session::flash('error','Unknown error occurred');
 
         }
 
@@ -354,7 +355,7 @@ class BookingController extends Controller
 
         Session::forget('payment_id');
         if (empty($request->input('PayerID')) || empty($request->input('token'))) {
-            \Session::put('error','Payment failed');
+            \Session::flash('error','Payment failed');
             return Redirect::route('student.bookings');
         }
         $payment = Payment::get($payment_id, $this->_api_context);
@@ -364,7 +365,7 @@ class BookingController extends Controller
 
 
         if ($result->getState() == 'approved') {
-            \Session::put('success','Payment success');
+            \Session::flash('success','Payment success');
 
             $classroom_id = sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
                 mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ),
@@ -379,6 +380,7 @@ class BookingController extends Controller
 
             Payments::create([
                 'user_id' => Auth::user()->id,
+                'type_id' => $booking->id,
                 'type' => 'Booked Class',
                 'transaction_id' => $result->id,
                 'amount'  => $result->transactions[0]->amount->total,
@@ -470,7 +472,8 @@ class BookingController extends Controller
         $total_price = \Session::get('amount');
 
         Payments::create([
-            'booking_id' => $booking->id,
+            'user_id' => Auth::User()->id,
+            'type_id' => $booking->id,
             'transaction_id' =>  $transaction_id,
             'amount'  => $total_price,
             'service_fee'  => \Session::get('service_fee'),

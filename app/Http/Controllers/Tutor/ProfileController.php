@@ -281,8 +281,8 @@ class ProfileController extends Controller
     {
 
         $tutor = User::with(['education','professional','teach','course'])->find($id);
-        // dd($favorite_tutors);
-        return view('tutor.pages.profile.profile',compact('tutor'));
+        $delivered_classes = Booking::where('booked_tutor',$id)->where('status',5)->count();
+        return view('tutor.pages.profile.profile',compact('tutor','delivered_classes'));
     }
 
     public function show($id)

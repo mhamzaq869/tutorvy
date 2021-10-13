@@ -620,7 +620,7 @@
                                                             </ul>
                                                         </span> -->
                                                         <span class="round">
-                                                            <input id="checkbox1" name="paytype" onclick="paymentMethod(this.value)" {{($defaultPay->method == 'paypal') ? 'checked' :''}} class="radio-custom" value="paypal" type="radio" >
+                                                        <input id="checkbox1" name="paytype" onclick="paymentMethod(this.value)" class="radio-custom" value="paypal" type="radio" {{$defaultPay == null ? '' : ($defaultPay->method == 'paypal' ? 'checked' : '') }}>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -644,7 +644,7 @@
                                                             </ul>
                                                         </span> -->
                                                         <span class="round">
-                                                            <input id="checkbox2" name="paytype" onclick="paymentMethod(this.value)"  {{($defaultPay->method == 'skrill') ? 'checked' :''}} value="skrill" type="radio">
+                                                        <input id="checkbox2" name="paytype" onclick="paymentMethod(this.value)" value="skrill" type="radio" {{$defaultPay == null ? '' : ($defaultPay->method == 'skrill' ? 'checked' : '') }}>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -657,7 +657,7 @@
                                                         <img src="{{asset ('assets/images/icons8-wallet-64.png')}}" class="w-50" alt="">
 
                                                         <span class="round">
-                                                            <input id="checkbox3" name="paytype" onclick="paymentMethod(this.value)"  {{($defaultPay->method == 'wallet') ? 'checked' :''}} value="wallet" type="radio">
+                                                        <input id="checkbox3" name="paytype" onclick="paymentMethod(this.value)"  value="wallet" type="radio" {{$defaultPay == null ? '' : ($defaultPay->method == 'wallet' ? 'checked' : '') }}>
                                                         </span>
                                                     </div>
                                                 </div>
