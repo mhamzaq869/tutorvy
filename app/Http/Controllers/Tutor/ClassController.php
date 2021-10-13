@@ -45,6 +45,8 @@ class ClassController extends Controller
 
         $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
         $slug = URL::to('/') . '/student/'. $class->classroom_id;
+        
+        $notification = new NotifyController();
 
         $reciever_id = $booking->user_id;
         $type = 'class_started';
