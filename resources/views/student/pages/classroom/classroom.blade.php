@@ -533,7 +533,8 @@ height:25px;
                             <li>Allow audio video Permissions.</li>
                             <li>Audio device is compulsory.</li>
                             <li>Tutor Camera's compulsory for conducting a class.</li>
-                            <li>If not working correctly, try icognito mode or deactivate any third party extension.</li>
+                            <li>If not working correctly, try to deactivate any third party extension.</li>
+                            <li>Avoid Incognito Mode.</li>
                         </ul>
                         <div class="text-center">
                             <button type="button" role="button" id="join_now"  class="schedule-btn ">

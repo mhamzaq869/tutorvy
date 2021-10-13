@@ -219,7 +219,7 @@
                                     @if($favorite_tutors != "[]")
                                         <div class="col-md-12 scrollable h-666" id="Fav_tutor">
                                             @foreach($favorite_tutors as $tutor)
-                                                <div class="card  mt-0">
+                                                <div class="card">
                                                     <div class="card-body">
                                                         
                                                         <div class="row">
@@ -228,12 +228,12 @@
                                                                     <div class="col-md-10">
                                                                         <div class="row">
                                                                             
-                                                                            <div class="col-md-2 col-6 pr-0">
+                                                                            <div class="col-md-2 col-6 pr-0 pt-3">
                                                                                 <a href="{{route('student.tutor.show',[$tutor->id])}}">
                                                                                     @if($tutor->picture != null)
-                                                                                        <img src="{{asset($tutor->picture)}}" alt="" class="profile-img w-100" style="height:70px;">
+                                                                                        <img src="{{asset($tutor->picture)}}" alt="" class="profile-img  " style="height:63px;width:63px;">
                                                                                     @else
-                                                                                        <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="profile-img w-100" style="height:70px;">
+                                                                                        <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="profile-img  " style="height:63px;width:63px;">
                                                                                     @endif                                                        
                                                                                 </a>
                                                                             

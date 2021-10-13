@@ -2477,8 +2477,6 @@ select#paymentMethod option[value="others"] {
     width: 12px;
 }
 
-
-
 .round input[type="radio"]:checked+label {
     background-color: #1173FF;
     border-color: #1173FF;
@@ -2537,6 +2535,8 @@ select#paymentMethod option[value="others"] {
     border-radius: 4px;
     padding: 3px 12px;
     display: block;
+    font-size: 12px;
+    text-align: center;
 }
 
 .bg-color-apporve1 {
@@ -2544,6 +2544,8 @@ select#paymentMethod option[value="others"] {
     border-radius: 4px;
     padding: 3px 12px;
     display: block;
+    font-size: 12px;
+    text-align: center;
 }
 
 .bg-color-apporve3 {
@@ -2551,6 +2553,8 @@ select#paymentMethod option[value="others"] {
     border-radius: 4px;
     padding: 3px 12px;
     display: block;
+    font-size: 12px;
+    text-align: center;
 }
 
 .bg-bookings {
