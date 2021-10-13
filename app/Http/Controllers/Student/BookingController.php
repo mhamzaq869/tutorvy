@@ -470,7 +470,7 @@ class BookingController extends Controller
         $total_price = \Session::get('amount');
 
         Payments::create([
-            'booking_id' => $booking->id,
+            'user_id' => Auth::User()->id,
             'transaction_id' =>  $transaction_id,
             'amount'  => $total_price,
             'service_fee'  => \Session::get('service_fee'),
