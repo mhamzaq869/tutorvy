@@ -1214,6 +1214,7 @@ connection.DetectRTC.load(function() {
     if (connection.DetectRTC.hasMicrophone === true) {
         // enable microphone
         if(connection.DetectRTC.isWebsiteHasMicrophonePermissions === false){
+            // alert("has microphone not permission");
                 $(".overlayCam").css("display","block");
                $(".overlayCam").find("h3").text("Your Microphone is Blocked");
                $(".overlayCam").find("h5").text("Tutorvy needs access to your microphone. To get 100% result");
@@ -1221,6 +1222,7 @@ connection.DetectRTC.load(function() {
        }
        else{
        // enable microphone
+    //    alert("has microphone and permission");
         connection.mediaConstraints.audio = true;
         connection.session.audio = true;
         // alert('attach true microphone')
@@ -1274,7 +1276,6 @@ connection.DetectRTC.load(function() {
         toastr.warning( "Audio Device is Mendatory ");
         $(".no-mk").hide();
         $(".overlayCam").css("display","block");
-
         $(".overlayCam").find("h3").text("Your Microphone is Blocked");
         $(".overlayCam").find("h5").text("Tutorvy needs access to your microphone. To get 100% result");
               
@@ -1285,7 +1286,7 @@ connection.DetectRTC.load(function() {
         // enable camera
         if(connection.DetectRTC.isWebsiteHasWebcamPermissions === false){
                 $(".overlayCam").css("display","block");
-                
+                // alert("has webcam and no permission");
                 $("#other-videos2").attr("poster","{{asset('assets/images/ico/Mute-video.png')}}");
 
        }
@@ -1326,7 +1327,7 @@ connection.DetectRTC.load(function() {
     else{
         $(".no-vc").hide();
         $(".overlayCam").css("display","block");
-        alert('attach Cam First');
+        // alert('attach Cam First');
     }
 
     if (connection.DetectRTC.hasSpeakers === false) { // checking for "false"
