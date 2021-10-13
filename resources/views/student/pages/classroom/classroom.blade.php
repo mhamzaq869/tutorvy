@@ -1203,6 +1203,12 @@ connection.socketURL = 'https://tutorvy.herokuapp.com:443/';
 
 connection.extra.userFullName = fullName;
 connection.DetectRTC.load(function() {
+
+    if(connection.DetectRTC.isWebsiteHasWebcamPermissions === false && connection.DetectRTC.isWebsiteHasMicrophonePermissions === false){
+        connection.dontCaptureUserMedia = true;
+    }
+
+
     console.log(connection.DetectRTC);
     if (connection.DetectRTC.hasMicrophone === true) {
         // enable microphone
@@ -1381,14 +1387,11 @@ designer.setTools({
 connection.chunkSize = 16000;
 connection.enableFileSharing = true;
 
-connection.session = {
-    audio: true,
-    video: true,
-    data: true
-};
+connection.session.data =  true;
+
 connection.sdpConstraints.mandatory = {
     OfferToReceiveAudio: true,
-    OfferToReceiveVideo: true
+    OfferToReceiveVideo: false
 };
 
 connection.onUserStatusChanged = function(event) {

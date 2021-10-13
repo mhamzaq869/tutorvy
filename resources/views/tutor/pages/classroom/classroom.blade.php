@@ -1252,11 +1252,8 @@ connection.isInitiator = true;
 connection.chunkSize = 16000;
 connection.enableFileSharing = true;
 
-connection.session = {
-    audio: true,
-    video: false,
-    data: true
-};
+connection.session.data =  true;
+
 connection.sdpConstraints.mandatory = {
     OfferToReceiveAudio: true,
     OfferToReceiveVideo: false
