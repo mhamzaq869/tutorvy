@@ -219,7 +219,7 @@
                                     @if($favorite_tutors != "[]")
                                         <div class="col-md-12 scrollable h-666" id="Fav_tutor">
                                             @foreach($favorite_tutors as $tutor)
-                                                <div class="card  mt-0">
+                                                <div class="card">
                                                     <div class="card-body">
                                                         
                                                         <div class="row">
