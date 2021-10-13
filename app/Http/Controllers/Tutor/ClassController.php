@@ -45,7 +45,7 @@ class ClassController extends Controller
         $booking = Booking::where('id',$class->booking_id)->first();
 
         $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
-        $slug = URL::to('/') . '/student/'. $class->classroom_id;
+        $slug = URL::to('/') . '/student/class/'. $class->classroom_id;
 
         $notification = new NotifyController();
 
