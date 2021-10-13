@@ -52,7 +52,7 @@ class ClassController extends Controller
         $title = 'Class Started';
         $icon = 'fas fa-tag';
         $class = 'btn-success';
-        $desc = $name . ' Started the class. Here is the link to join class. <a href="">Class Link</a> ' ;
+        $desc = $name . ' Started the class. Here is the link to join class. <a href='.$slug.'>Class Link</a> ' ;
         $pic = Auth::user()->picture;
 
         $notification->GeneralNotifi( $reciever_id , $slug ,  $type , $title , $icon , $class ,$desc,$pic);
