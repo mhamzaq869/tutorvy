@@ -447,8 +447,8 @@ height:25px;
         /* No Cam Overlay End */
 
         /* Cam Modal */
-        .w-56{
-            width:56%;
+        .w-62{
+            width:62%;
         }
         /* Cam Modal */
 
@@ -496,7 +496,7 @@ height:25px;
             </div>
             <div class="row callDiv ml-2 mr-2 mt-4" >
                 <div class="col-md-8 text-center rounded bg-dark ">
-                    <video id="main-video2" class=" w-56" playsinline autoplay></video>
+                    <video id="main-video2" class=" w-62" playsinline autoplay></video>
 
                     <!-- @if($user->picture)
                         @if(file_exists( public_path(). $user->picture))
@@ -1020,7 +1020,7 @@ var connection = new RTCMultiConnection();
 console.log(connection , "connection");
 var roomid = '{{$class->classroom_id}}';
 var fullName = '{{$booking->tutor->first_name}} {{$booking->tutor->last_name}}';
-
+var get = '00:05:00';
 
 (function() {
     var params = {},
@@ -1066,13 +1066,21 @@ connection.DetectRTC.load(function() {
                     $(".tech_weck").removeClass("tech_weck-none");
                     $(".callDiv").hide();
                     // joinClass();
+
                     /** Javascript Timer */
                     var timer = new Timer();
-                    timer.start({countdown: true, startValues: {hours: 2}});
+                    var check = 25;
+                    timer.start({countdown: true, startValues: {seconds: check}});
 
                     $('#countdownExample .values').html(timer.getTimeValues().toString());
 
                     timer.addEventListener('secondsUpdated', function (e) {
+                        var ter =$('.values').text();
+                        
+                        if( ter == get ){
+                            $(".values").css("color","red");
+                        }
+
                         $('#countdownExample .values').html(timer.getTimeValues().toString());
                     });
 
