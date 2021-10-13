@@ -489,8 +489,8 @@ height:25px;
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 text-right">
-                    <div id="countdownExample">
-                        <!-- <div class="values"></div> -->
+                    <div id="countdownExample" class="mr-3" >
+                        <div class="values"></div>
                     </div>
                 </div>
             </div>
@@ -583,7 +583,6 @@ height:25px;
                                                             <div class="col-md-12 h-500 mb-5">
                                                                 <div id="widget-container"  style=""></div>
                                                                 <video id="screen-viewer"  playsinline ></video>
-                                                                
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1069,17 +1068,17 @@ connection.DetectRTC.load(function() {
                     // joinClass();
                     /** Javascript Timer */
                     var timer = new Timer();
-                        timer.start({countdown: true, startValues: {seconds: 30}});
+                    timer.start({countdown: true, startValues: {hours: 2}});
 
+                    $('#countdownExample .values').html(timer.getTimeValues().toString());
+
+                    timer.addEventListener('secondsUpdated', function (e) {
                         $('#countdownExample .values').html(timer.getTimeValues().toString());
+                    });
 
-                        timer.addEventListener('secondsUpdated', function (e) {
-                            $('#countdownExample .values').html(timer.getTimeValues().toString());
-                        });
-
-                        timer.addEventListener('targetAchieved', function (e) {
-                            $('#countdownExample .values').html('Class Time has Ended!!');
-                        });
+                    timer.addEventListener('targetAchieved', function (e) {
+                        $('#countdownExample .values').html('');
+                    });
                     /* Javascript Timer ENd */
                 })
         }
