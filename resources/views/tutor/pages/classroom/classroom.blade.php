@@ -315,9 +315,6 @@ height:25px;
     width:22%;
 }
 
-#countdownExample{
-    font-family:'Orbitron';
-}
 .h-35{
     height:35px;
 }
@@ -490,7 +487,12 @@ height:25px;
             <div class="row">
                 <div class="col-md-12 text-right">
                     <div id="countdownExample" class="mr-3" >
-                        <div class="values"></div>
+                        <div class="row">
+                            <div class="col-md-8 Text-reck">
+
+                            </div>
+                            <div class="col-md-4 values"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1020,7 +1022,7 @@ var connection = new RTCMultiConnection();
 console.log(connection , "connection");
 var roomid = '{{$class->classroom_id}}';
 var fullName = '{{$booking->tutor->first_name}} {{$booking->tutor->last_name}}';
-var get = '00:05:00';
+var get = '00:05:00'; 
 var class_duration = {{$booking->duration}};
 var timer = new Timer();
 
@@ -1070,7 +1072,7 @@ connection.DetectRTC.load(function() {
                     // joinClass();
 
                     /** Javascript Timer */
-                    timer.start({countdown: true, startValues: {hours: class_duration}});
+                    timer.start({countdown: true, startValues: {seconds: class_duration}});
 
                     $('#countdownExample .values').html(timer.getTimeValues().toString());
 
@@ -1080,13 +1082,14 @@ connection.DetectRTC.load(function() {
                         
                         if( ter == get ){
                             $(".values").css("color","red");
+                            $(".Text-reck").text("Class will end in Five minutes sharp.").css("color","red");
                         }
 
                         $('#countdownExample .values').html(timer.getTimeValues().toString());
                     });
 
                     timer.addEventListener('targetAchieved', function (e) {
-                        $('#countdownExample .values').html('');
+                        $('#endCall').modal("show");
                     });
                     /* Javascript Timer ENd */
                 })
@@ -1173,18 +1176,18 @@ $("#join_now").click(function (){
                 $(".callDiv").hide();
                 // joinClass();
                 /** Javascript Timer */
-                 timer = new Timer();
-                    timer.start({countdown: true, startValues: {seconds: 30}});
+                //  timer = new Timer();
+                //     timer.start({countdown: true, startValues: {seconds: 30}});
 
-                    $('#countdownExample .values').html(timer.getTimeValues().toString());
+                //     $('#countdownExample .values').html(timer.getTimeValues().toString());
 
-                    timer.addEventListener('secondsUpdated', function (e) {
-                        $('#countdownExample .values').html(timer.getTimeValues().toString());
-                    });
+                //     timer.addEventListener('secondsUpdated', function (e) {
+                //         $('#countdownExample .values').html(timer.getTimeValues().toString());
+                //     });
 
-                    timer.addEventListener('targetAchieved', function (e) {
-                        $('#countdownExample .values').html('Class Time has Ended!!');
-                    });
+                //     timer.addEventListener('targetAchieved', function (e) {
+                //         $('#countdownExample .values').html('Class Time has Ended!!');
+                //     });
                 /* Javascript Timer ENd */
     }
 });

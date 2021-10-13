@@ -1265,14 +1265,16 @@ connection.DetectRTC.load(function() {
                     timer.addEventListener('secondsUpdated', function (e) {
                         $('#countdownExample .values').html(timer.getTimeValues().toString());
                     });
-                    
+
                         var ter =$('.values').text();
                         if( ter == get ){
                             $(".values").css("color","red");
                         }
 
                     timer.addEventListener('targetAchieved', function (e) {
-                        $('#countdownExample .values').html('');
+                        // $('#countdownExample .values').html('');
+                        $('#reviewModal').modal("show");
+
                     });
                 /* Javascript Timer ENd */
             })
