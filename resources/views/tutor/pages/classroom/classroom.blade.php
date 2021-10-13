@@ -1020,7 +1020,8 @@ var connection = new RTCMultiConnection();
 console.log(connection , "connection");
 var roomid = '{{$class->classroom_id}}';
 var fullName = '{{$booking->tutor->first_name}} {{$booking->tutor->last_name}}';
-var class_duration = '{{$booking->duration}}';
+var class_duration = {{$booking->duration}};
+var timer = new Timer();
 
 (function() {
     var params = {},
@@ -1067,7 +1068,6 @@ connection.DetectRTC.load(function() {
                     $(".callDiv").hide();
                     // joinClass();
                     /** Javascript Timer */
-                    var timer = new Timer();
                     timer.start({countdown: true, startValues: {hours: class_duration}});
 
                     $('#countdownExample .values').html(timer.getTimeValues().toString());
@@ -1164,7 +1164,7 @@ $("#join_now").click(function (){
                 $(".callDiv").hide();
                 // joinClass();
                 /** Javascript Timer */
-                var timer = new Timer();
+                 timer = new Timer();
                     timer.start({countdown: true, startValues: {seconds: 30}});
 
                     $('#countdownExample .values').html(timer.getTimeValues().toString());
@@ -1323,6 +1323,11 @@ connection.onmessage = function(event) {
     }
     if(event.data.class_joined === true){
         toastr.success(event.extra.userFullName + ' Joined the class.');
+        console.log(timer)
+        connection.send({
+            is_timer:true,
+            time_value:timer
+        })
     }
 
     if (event.data.chatMessage) {

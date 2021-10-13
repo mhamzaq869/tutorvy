@@ -1181,8 +1181,8 @@ $("#conCam").click(function(){
 var connection = new RTCMultiConnection();
 var roomid = '{{$class->classroom_id}}';
 var fullName = '{{$user->first_name}} {{$user->last_name}}';
-var class_duration = '{{$booking->duration}}';
-
+var class_duration = {{$booking->duration}};
+var timer = new Timer();
 
 (function() {
     var params = {},
@@ -1214,7 +1214,7 @@ connection.DetectRTC.load(function() {
     if (connection.DetectRTC.hasMicrophone === true) {
         // enable microphone
         if(connection.DetectRTC.isWebsiteHasMicrophonePermissions === false){
-            // alert("has microphone not permission");
+
                 $(".overlayCam").css("display","block");
                $(".overlayCam").find("h3").text("Your Microphone is Blocked");
                $(".overlayCam").find("h5").text("Tutorvy needs access to your microphone. To get 100% result");
@@ -1222,7 +1222,7 @@ connection.DetectRTC.load(function() {
        }
        else{
        // enable microphone
-    //    alert("has microphone and permission");
+
         connection.mediaConstraints.audio = true;
         connection.session.audio = true;
         // alert('attach true microphone')
@@ -1256,7 +1256,7 @@ connection.DetectRTC.load(function() {
 
                         // connection.onUserStatusChanged(event);
                     };
-                var timer = new Timer();
+                
                     timer.start({countdown: true, startValues: {hours: class_duration}});
 
                     $('#countdownExample .values').html(timer.getTimeValues().toString());
@@ -1286,7 +1286,8 @@ connection.DetectRTC.load(function() {
         // enable camera
         if(connection.DetectRTC.isWebsiteHasWebcamPermissions === false){
                 $(".overlayCam").css("display","block");
-                // alert("has webcam and no permission");
+
+
                 $("#other-videos2").attr("poster","{{asset('assets/images/ico/Mute-video.png')}}");
 
        }
@@ -1400,7 +1401,8 @@ connection.onUserStatusChanged = function(event) {
     console.log(event)
     var infoBar = document.getElementById('onUserStatusChanged');
     var names = [];
- 
+
+
     connection.getAllParticipants().forEach(function(pid) {
         names.push(getFullName(pid));
     });
@@ -1416,7 +1418,7 @@ connection.onUserStatusChanged = function(event) {
 
 connection.onopen = function(event) {
     // connection.onUserStatusChanged(event);
-
+timer.start();
     //conection joined
     connection.send({
         class_joined: true
@@ -1437,6 +1439,7 @@ var usersLeft = {};
 connection.onleave = function(event) {
     toastr.success("Tutor Disconnected. Please wait...");
 console.log(event.extra)
+timer.pause();
    
 };
 
@@ -1479,6 +1482,10 @@ connection.onmessage = function(event) {
     if(event.data.call_ended === true){
         toastr.success("Tutor ended the class.");
         $("#reviewModal").modal("show");
+    }
+    if(event.data.is_timer === true){
+
+        console.log(event.data.time_value)
     }
 
     if (event.data.chatMessage) {
