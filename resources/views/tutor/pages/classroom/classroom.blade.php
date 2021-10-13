@@ -1021,6 +1021,8 @@ console.log(connection , "connection");
 var roomid = '{{$class->classroom_id}}';
 var fullName = '{{$booking->tutor->first_name}} {{$booking->tutor->last_name}}';
 var get = '00:05:00';
+var class_duration = {{$booking->duration}};
+var timer = new Timer();
 
 (function() {
     var params = {},
@@ -1068,13 +1070,12 @@ connection.DetectRTC.load(function() {
                     // joinClass();
 
                     /** Javascript Timer */
-                    var timer = new Timer();
-                    var check = 25;
-                    timer.start({countdown: true, startValues: {seconds: check}});
+                    timer.start({countdown: true, startValues: {hours: class_duration}});
 
                     $('#countdownExample .values').html(timer.getTimeValues().toString());
 
                     timer.addEventListener('secondsUpdated', function (e) {
+
                         var ter =$('.values').text();
                         
                         if( ter == get ){
@@ -1172,7 +1173,7 @@ $("#join_now").click(function (){
                 $(".callDiv").hide();
                 // joinClass();
                 /** Javascript Timer */
-                var timer = new Timer();
+                 timer = new Timer();
                     timer.start({countdown: true, startValues: {seconds: 30}});
 
                     $('#countdownExample .values').html(timer.getTimeValues().toString());
@@ -1196,7 +1197,7 @@ connection.publicRoomIdentifier = '';
 connection.socketMessageEvent = 'canvas-dashboard-demo';
 
 // keep room opened even if owner leaves
-connection.autoCloseEntireSession = true;
+// connection.autoCloseEntireSession = true;
 
 // https://www.rtcmulticonnection.org/docs/maxParticipantsAllowed/
 // connection.maxParticipantsAllowed = 1000;
@@ -1286,8 +1287,10 @@ connection.onopen = function(event) {
     document.getElementById('btn-attach-file').style.display = 'inline-block';
     // document.getElementById('btn-share-screen').style.display = 'inline-block';
 };
+// connection.leave();
 
 connection.onclose = connection.onerror = connection.onleave = function(event) {
+
     // toastr.success("Student has ended the call!");
     $("#main-video").css("width","85%")
     // connection.onUserStatusChanged(event);
@@ -1328,8 +1331,12 @@ connection.onmessage = function(event) {
         window.location.href="{{route('tutor.classroom')}}";
     }
     if(event.data.class_joined === true){
-        alert('dsad')
         toastr.success(event.extra.userFullName + ' Joined the class.');
+        console.log(timer)
+        connection.send({
+            is_timer:true,
+            time_value:timer
+        })
     }
 
     if (event.data.chatMessage) {
@@ -1700,7 +1707,7 @@ designer.appendTo(document.getElementById('widget-container'), function() {
             window.tempStream = tempStream;
 
             connection.extra.roomOwner = true;
-            connection.open(roomid, function(isRoomOpened, roomid, error) {
+            connection.openOrJoin(roomid, function(isRoomOpened, roomid, error) {
                 if (error) {
                     if (error === connection.errors.ROOM_NOT_AVAILABLE) {
                         alert('Someone already created this room. Please either join or create a separate room.');
@@ -1708,6 +1715,8 @@ designer.appendTo(document.getElementById('widget-container'), function() {
                     }
                     alert(error);
                 }
+                var video = document.getElementById('main-video');
+        video.setAttribute('data-streamid', event.streamid);
                 saveClassLogs();
                 connection.socket.on('disconnect', function() {
                     location.reload();
