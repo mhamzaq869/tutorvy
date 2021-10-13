@@ -1020,7 +1020,7 @@ var connection = new RTCMultiConnection();
 console.log(connection , "connection");
 var roomid = '{{$class->classroom_id}}';
 var fullName = '{{$booking->tutor->first_name}} {{$booking->tutor->last_name}}';
-
+var class_duration = '{{$booking->duration}}';
 
 (function() {
     var params = {},
@@ -1068,7 +1068,7 @@ connection.DetectRTC.load(function() {
                     // joinClass();
                     /** Javascript Timer */
                     var timer = new Timer();
-                    timer.start({countdown: true, startValues: {hours: 2}});
+                    timer.start({countdown: true, startValues: {hours: class_duration}});
 
                     $('#countdownExample .values').html(timer.getTimeValues().toString());
 

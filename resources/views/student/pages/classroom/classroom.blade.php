@@ -1181,6 +1181,7 @@ $("#conCam").click(function(){
 var connection = new RTCMultiConnection();
 var roomid = '{{$class->classroom_id}}';
 var fullName = '{{$user->first_name}} {{$user->last_name}}';
+var class_duration = '{{$booking->duration}}';
 
 
 (function() {
@@ -1254,7 +1255,7 @@ connection.DetectRTC.load(function() {
                         // connection.onUserStatusChanged(event);
                     };
                 var timer = new Timer();
-                    timer.start({countdown: true, startValues: {hours: 2}});
+                    timer.start({countdown: true, startValues: {hours: class_duration}});
 
                     $('#countdownExample .values').html(timer.getTimeValues().toString());
 
