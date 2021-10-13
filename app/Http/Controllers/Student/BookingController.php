@@ -248,6 +248,7 @@ class BookingController extends Controller
 
                 Payments::create([
                     'user_id' => Auth::user()->id,
+                    'type_id' => $booking->id,
                     'type' => 'Booked Class',
                     'transaction_id' =>  $transaction_id,
                     'amount'  => $total_price,
@@ -379,6 +380,7 @@ class BookingController extends Controller
 
             Payments::create([
                 'user_id' => Auth::user()->id,
+                'type_id' => $booking->id,
                 'type' => 'Booked Class',
                 'transaction_id' => $result->id,
                 'amount'  => $result->transactions[0]->amount->total,
@@ -471,6 +473,7 @@ class BookingController extends Controller
 
         Payments::create([
             'user_id' => Auth::User()->id,
+            'type_id' => $booking->id,
             'transaction_id' =>  $transaction_id,
             'amount'  => $total_price,
             'service_fee'  => \Session::get('service_fee'),
