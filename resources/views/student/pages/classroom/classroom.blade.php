@@ -483,13 +483,13 @@ height:25px;
 </div>
     <div class="content-wrapper " style="overflow: hidden;">
         <div class="container-fluidd">
-            <!-- <div class="row">
+            <div class="row">
                 <div class="col-md-12 text-right">
                     <div id="countdownExample">
                         <div class="values"></div>
                     </div>
                 </div>
-            </div> -->
+            </div>
             <div class="row callDiv mt-4 mr-2 ml-2" >
                 <div class="col-md-8 text-center rounded bg-dark ">
                     <div class="row">
@@ -1254,7 +1254,7 @@ connection.DetectRTC.load(function() {
                         // connection.onUserStatusChanged(event);
                     };
                 var timer = new Timer();
-                    timer.start({countdown: true, startValues: {seconds: 30}});
+                    timer.start({countdown: true, startValues: {hours: 2}});
 
                     $('#countdownExample .values').html(timer.getTimeValues().toString());
 
@@ -1263,7 +1263,7 @@ connection.DetectRTC.load(function() {
                     });
 
                     timer.addEventListener('targetAchieved', function (e) {
-                        $('#countdownExample .values').html('Class Time has Ended!!');
+                        $('#countdownExample .values').html('');
                     });
                 /* Javascript Timer ENd */
             })
