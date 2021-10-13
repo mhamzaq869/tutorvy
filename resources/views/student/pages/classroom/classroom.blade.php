@@ -1386,6 +1386,7 @@ connection.session = {
     video: true,
     data: true
 };
+
 connection.sdpConstraints.mandatory = {
     OfferToReceiveAudio: true,
     OfferToReceiveVideo: true
