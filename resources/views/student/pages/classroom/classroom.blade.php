@@ -1465,6 +1465,7 @@ connection.onUserStatusChanged = function(event) {
 
 connection.onopen = function(event) {
     // connection.onUserStatusChanged(event);
+    //conection joined
     connection.send({
         class_joined: true
     });
