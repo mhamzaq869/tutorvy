@@ -1281,7 +1281,7 @@ connection.onopen = function(event) {
 // connection.leave();
 
 connection.onclose = connection.onerror = connection.onleave = function(event) {
-    console.log(event)
+
     // toastr.success("Student has ended the call!");
     $("#main-video").css("width","85%")
     // connection.onUserStatusChanged(event);

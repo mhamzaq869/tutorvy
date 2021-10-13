@@ -1484,7 +1484,6 @@ connection.onmessage = function(event) {
         $("#reviewModal").modal("show");
     }
     if(event.data.is_timer === true){
-
         console.log(event.data.time_value)
     }
 
