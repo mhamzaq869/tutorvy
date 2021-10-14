@@ -1188,7 +1188,67 @@ var deadline = '00:05:00';
 var resced = '00:15:00'; 
 var class_duration = {{$booking->duration}};
 // var class_duration = 20;
+$("#join_now").click(function(){
+                $(".tech_weck").removeClass("tech_weck-none");
+                $(".callDiv").hide();
+                    connection.onstream = function(event) {
+                        if (event.stream.isScreen && !event.stream.canvasStream) {
+                            $('#screen-viewer').get(0).srcObject = event.stream;
+                            $('#screen-viewer').hide();
+                        }
+                        else if (event.extra.roomOwner === true) {
+                            var video = document.getElementById('main-video');
+                            video.setAttribute('data-streamid', event.streamid);
+                            // video.style.display = 'none';
+                            if(event.type === 'local') {
+                                video.muted = true;
+                                video.volume = 0;
+                            }
+                            video.srcObject = event.stream;
+                            $('#main-video').show();
+                        } else {
+                            event.mediaElement.controls = false;
 
+                            var otherVideos = document.querySelector('#other-videos');
+                            otherVideos.appendChild(event.mediaElement);
+                        }
+
+                        // connection.onUserStatusChanged(event);
+                    };
+                
+                    timer.start({countdown: true, startValues: {hours: class_duration}});
+
+                    $('#countdownExample .values').html(timer.getTimeValues().toString());
+
+                    timer.addEventListener('secondsUpdated', function (e) {
+                        $('#countdownExample .values').html(timer.getTimeValues().toString());
+                    });
+
+                        var ter =$('.values').text();
+                        
+                        if( ter == deadline ){
+                            
+                            $(".blink").css("background","#dc3545");
+                            $(".Text-reck").text("Class will end in Five minutes sharp.");
+                        }
+                        else if( ter == resced ){
+                            $(".blink").css("background","#ffc107");
+                            let html = `<p class="mb-0">Do you want to reschedule another class? <a href="">Yes</a> or  <a href="">No</a> </p>`
+                            $(".Text-reck").html(html);
+                        }
+                        else if( ter >= resced ){
+                            $(".blink").css("background","#28a745");
+                            $(".Text-reck").text("Class will ends in: ");
+
+                        }
+
+                    timer.addEventListener('targetAchieved', function (e) {
+                        // $('#countdownExample .values').html('');
+                        $('#reviewModal').modal("show");
+
+                    });
+                /* Javascript Timer ENd */
+            });
 (function() {
     var params = {},
         r = /([^&=]+)=?([^&]*)/g;
@@ -1309,10 +1369,13 @@ connection.DetectRTC.load(function() {
        
         // enable camera
         if(connection.DetectRTC.isWebsiteHasWebcamPermissions === false){
-                $(".overlayCam").css("display","block");
 
+                $(".overlayCam").css("display","block");
+                let vhtml = `<video poster="{{asset('assets/images/ico/Mute-video.png')}}"></video>`;
+                $("#other-videos").html(vhtml);
 
                 $("#other-videos2").attr("poster","{{asset('assets/images/ico/Mute-video.png')}}");
+                // $("#other-videos video").attr("poster","{{asset('assets/images/ico/Mute-video.png')}}");
 
        }
        else{

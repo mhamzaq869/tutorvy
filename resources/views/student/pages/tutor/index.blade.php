@@ -384,23 +384,23 @@
                                             <div class="col-md-10">
                                                 <div class="row">
                                                     
-                                                    <div class="col-md-2 col-6 pr-0">
+                                                    <div class="col-md-2 col-6 pr-0 div-center">
                                                         <a href="{{route('student.tutor.show',[$tutor->id])}}">
                                                             @if($tutor->picture != null)
-                                                                <img src="{{asset($tutor->picture)}}" alt="" class="profile-img w-100" style="height:70px;">
+                                                                <img src="{{asset($tutor->picture)}}" alt="" class="profile-img " style="height:70px; width:70px;">
                                                             @else
-                                                                <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="profile-img w-100" style="height:70px;">
+                                                                <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="profile-img " style="height:70px; width:70px;">
                                                             @endif                                                        
                                                         </a>
                                                        
                                                     </div>
-                                                    <div class="col-md-4 col-6 mt-2">
+                                                    <div class="col-md-4 col-6  pr-0">
                                                         <a href="{{route('student.tutor.show',[$tutor->id])}}" class="decoration-none"><h3 class="mb-0">{{$tutor->first_name}} {{$tutor->last_name}}</h3></a>
                                                         <p class="mb-0"><img src="../assets/images/ico/red-icon.png" alt="" class="">  {{$tutor->designation ?? '---'}}</p>
                                                         <p class="mb-0"><img src="../assets/images/ico/location-pro.png" alt="" class="">{{ $tutor->city != NULL ? $tutor->city.' , ' : '---' }} {{ $tutor->country != NULL ? $tutor->country: '---' }}</p>
                                                     </div>
                                                     <div class="col-md-6 col-12">
-                                                        <p>
+                                                        <p class="mb-0">
                                                             @if($tutor->rating == 1)
                                                             <i class="fa fa-star text-yellow"></i>
                                                             <i class="fa fa-star "></i>
@@ -441,7 +441,11 @@
                                                         
                                                             <small class="text-grey">(0 reviews)</small>
                                                         </p>
-                                                        <p> 3 hours tutoring in (this subject) </p>
+                                                        <p class="mb-0">
+                                                            <small>
+                                                                3 hours tutoring in (this subject)
+                                                            </small>  
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -457,7 +461,7 @@
 
                                             </div>
                                         </div>
-                                        <div class="row mt-2">
+                                        <div class="row mt-3">
                                             <div class="col-md-4">
                                                 @php
 

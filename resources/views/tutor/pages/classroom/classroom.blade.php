@@ -1028,6 +1028,8 @@ var class_duration = {{$booking->duration}};
 // var class_duration = 20;
 var timer = new Timer();
 
+
+
 (function() {
     var params = {},
         r = /([^&=]+)=?([^&]*)/g;
@@ -1114,8 +1116,10 @@ connection.DetectRTC.load(function() {
     }
 
     if (connection.DetectRTC.hasWebcam === true) {
+
         // enable camera
         if(connection.DetectRTC.isWebsiteHasWebcamPermissions === false){
+
             $(".overlayCam").css("display","block");
         }
         if(connection.DetectRTC.videoInputDevices.length > 0){
@@ -1270,6 +1274,7 @@ connection.sdpConstraints.mandatory = {
 };
 
 connection.onUserStatusChanged = function(event) {
+    
     var infoBar = document.getElementById('onUserStatusChanged');
     var names = [];
     // console.log(connection.getAllParticipants())
@@ -1279,6 +1284,12 @@ connection.onUserStatusChanged = function(event) {
         // if(fullName != getFullName(pid)){
         //     toastr.success(getFullName(pid) + " Joined the class.");
         // }
+
+        let vhtml = `<video poster="{{asset('assets/images/ico/Mute-video.png')}}"></video>`;
+
+        $("#other-videos").html(vhtml);
+        $("#main-video").css("width","30%");
+
     });
 
     if (!names.length) {
