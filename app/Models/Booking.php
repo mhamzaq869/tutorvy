@@ -59,7 +59,7 @@ class Booking extends Model
 
     public function payment()
     {
-        return $this->hasMany(Payments::class);
+        return $this->hasMany(Payments::class,'type_id','id');
     }
 
     // Scopes for Filteration

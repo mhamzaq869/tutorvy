@@ -183,8 +183,7 @@ width:22px;
                                         <div class="">
                                             <img src="{{asset('assets/images/ico/blue-icos.png')}}" alt="blue">
                                         </div>
-                                        <span class="heading-third ml-3">
-                                            16 <br />
+                                        <span class="heading-third ml-3"> {{$delivered_classes}} <br />
                                             <span class="heading-sixths">Total classes</span>
                                         </span>
                                     </div>
@@ -195,8 +194,7 @@ width:22px;
                                         <div class="">
                                             <img src="{{asset('assets/images/ico/blue-clock.png')}}" alt="blue-clock">
                                         </div>
-                                        <span class="heading-third ml-3">
-                                            50$ <br />
+                                        <span class="heading-third ml-3"> {{$tutor->hourly_rate != null ? $tutor->hourly_rate : 0}}$  <br />
                                             <span class="heading-sixths">Per hour rate</span>
                                         </span>
                                     </div>

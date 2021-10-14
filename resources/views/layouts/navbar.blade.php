@@ -64,11 +64,11 @@
                                                     <ul class="dropdown-menu classdrop classdrop1 ">
                                                         <li>
                                                             @if(Auth::user()->role == 2)
-                                                            <a tabindex="-1" class="" href="{{route('tutor.profile')}}">
+                                                            <a tabindex="-1" class="" href="{{route('tutor.profileView',[Auth::user()->id])}}">
                                                                 Profile
                                                             </a>
                                                             @elseif(Auth::user()->role == 3)
-                                                            <a tabindex="-1" class="" href="{{route('student.profile')}}">
+                                                            <a tabindex="-1" class="" href="{{route('student.profileView',[Auth::user()->id])}}">
                                                                 Profile
                                                             </a>
                                                             @else

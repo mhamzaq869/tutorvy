@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Http\Request;
 use App\Models\Activitylogs;
+use App\Http\Controllers\General\NotifyController;
 use App\Models\Classroom;
 use App\Models\Booking;
 use App\Models\User;
@@ -39,6 +40,25 @@ class ClassController extends Controller
             "class_room_id" => $request->class_room_id, 
             "tutor_join_time" => $request->tutor_join_time,
         ]);
+
+        $class = Classroom::where('id',$request->class_room_id)->first();
+        $booking = Booking::where('id',$class->booking_id)->first();
+
+        $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+        $slug = URL::to('/') . '/student/class/'. $class->classroom_id;
+
+        $notification = new NotifyController();
+
+        $reciever_id = $booking->user_id;
+        $type = 'class_started';
+        $data = 'data';
+        $title = 'Class Started';
+        $icon = 'fas fa-tag';
+        $class = 'btn-success';
+        $desc = $name . ' Started the class. Here is the link to join class. <a href='.$slug.'>Class Link</a> ' ;
+        $pic = Auth::user()->picture;
+
+        $notification->GeneralNotifi( $reciever_id , $slug ,  $type , $title , $icon , $class ,$desc,$pic);
 
         return response()->json([
             "message" => "Classroom logs saved",

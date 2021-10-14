@@ -288,6 +288,15 @@ messaging.onMessage((payload) => {
     if (user_id == current_user_id && user_role_id == 3) {
         $('.show_notification_counts').text(unread_count);
 
+        if(type == "class_started"){
+            toastr.success(title + '<br>' + body, {
+                position: 'top-end',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: notification_time,
+            });
+        }
+
         if (type == "class_booking_approved") {
             let redirect = body + '<br> ' + `<a href="` + slug + `" class="notification_link"> click here to view.</a>`;
             toastr.success(title + '<br>' + redirect, {

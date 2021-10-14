@@ -102,10 +102,16 @@
     padding: 0 !important;
      margin-left: 0 !important;
 }
-    .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    color: #fff;
-    background-color: #007bff !important;
-}
+    .nav-pills .nav-link.active,
+    .nav-pills .show>.nav-link {
+        color: #fff;
+        background-color: #007bff !important;
+        border-bottom: 0;
+    }
+    .nav-pills .nav-link:hover{
+        background-color: #E2F0FF !important;
+        color: #007bff;
+    }
 #v-pills-Verification  .dropify-wrapper {
     height: 86px !important;
 }

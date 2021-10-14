@@ -349,13 +349,15 @@ height:25px;
 }
 .vid-btn {
     position: absolute !important;
-    bottom: 6px;
-    left: 0px;
+    bottom: 12px;
+    left: 7px;
+    z-index: 99;
 }
 .btn-outline-danger{
     border:1px solid red;
 }
 /*End Call Button End*/
+
 /**Code Editor style */
 #editor2 { 
         height:500px;
@@ -443,6 +445,13 @@ height:25px;
 }
 
         /* No Cam Overlay End */
+
+        /* Cam Modal */
+        .w-56{
+            width:56%;
+        }
+        /* Cam Modal */
+
 </style>
 @section('content')
  <!-- top Fixed navbar End -->
@@ -462,7 +471,7 @@ height:25px;
                     <h3 class="text-white">Your Camera is Blocked</h3>
                     <h5>Tutorvy needs access to your camera. To get 100% result,</h5>
                     <ul style="list-style-type:disc;">
-                        <li>Click the camera blocked icon <img src="https://www.gstatic.com/meet/ic_blocked_camera_7ca83311f629f64699401950ceaed61e.svg" alt="">  in your browser's address bar</li>
+                        <li >Click the camera blocked icon <img src="https://www.gstatic.com/meet/ic_blocked_camera_7ca83311f629f64699401950ceaed61e.svg" alt="">  in your browser's address bar</li>
                         <li>Allow access and then refresh the page</li>
                     </ul>
                 </div>
@@ -477,17 +486,19 @@ height:25px;
 
 </div>
     <div class="content-wrapper " style="overflow: hidden;">
-        <div class="container-fluidd">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 text-right">
-                    <div id="countdownExample">
-                        <!-- <div class="values"></div> -->
+                    <div id="countdownExample" class="mr-3" >
+                        <div class="values"></div>
                     </div>
                 </div>
             </div>
             <div class="row callDiv ml-2 mr-2 mt-4" >
-                <div class="col-md-8 text-center rounded bg-dark p-5">
-                    @if($user->picture)
+                <div class="col-md-8 text-center rounded bg-dark ">
+                    <video id="main-video2" class=" w-56" playsinline autoplay></video>
+
+                    <!-- @if($user->picture)
                         @if(file_exists( public_path(). $user->picture))
                             <img src="{{asset($user->picture)}}" class="profile-img pg" alt="">
                         @else
@@ -495,7 +506,7 @@ height:25px;
                         @endif
                     @else
                         <img src="{{asset('assets/images/ico/Square-white.jpg')}}" class="profile-img pg" alt="">
-                    @endif
+                    @endif -->
                 </div>
                 <div class="col-md-4  mt-3">
                     <div class="m-2">
@@ -504,10 +515,12 @@ height:25px;
                             <li>Allow Notifications.</li>
                             <li>Audio device should be working properly.</li>
                             <li>Tutor Camera's compulsory for conducting a class.</li>
-                            <li>If not working correctly, try incognito mode or deactivate any third party extension.</li>
+                            <li>If not working correctly, try to deactivate any third party extension.</li>
+                            <li>Avoid Incognito Mode.</li>
+
                         </ul>
                         <div class="text-center">
-                            <button type="button" role="button" id="join_now"  class="schedule-btn ">
+                            <button type="button" role="button"  id="join_now"  class="schedule-btn ">
                                 Start Class
                             </button>
                             <p class="hide" id="p1">/student/class/{{$class->classroom_id}}</p>
@@ -570,7 +583,6 @@ height:25px;
                                                             <div class="col-md-12 h-500 mb-5">
                                                                 <div id="widget-container"  style=""></div>
                                                                 <video id="screen-viewer"  playsinline ></video>
-                                                                
                                                             </div>
                                                         </div>
                                                     </div>
@@ -691,9 +703,12 @@ height:25px;
                                         <div class="container-fluid ">
 
                                             <div class="row">
-                                                <div class="col-md-12 col-sm-12 col-xs-12 mt-5" >
-                                                    <div id="editor2">
-                                                    </div>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <pre><code class="language-html">
+                                                        
+                                                    </code></pre>
+                                                    <textarea name="" id="check" cols="30" rows="10" onkeypress="cheng()"></textarea>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -703,27 +718,9 @@ height:25px;
 
                                     <div class="container-fluid ">
 
-                                        <div class="row mt-5">
-                                            <div class="col-md-4 col-sm-12 col-xs-12 text-center  ">
-                                                <img class="mt-2 w-50" src="{{asset('assets/images/ico/docs.png')}}" alt="" >
-                                                <p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi tenetur amet molestiae.</p>
-                                                <button class="mt-2 schedule-btn">
-                                                    Launch Google Docs <i class="fa fa-arrow-right"></i>
-                                                </button>
-                                            </div>
-                                            <div class="col-md-4 col-sm-12 col-xs-12 text-center  ">
-                                                <img class="mt-2 w-50" src="{{asset('assets/images/ico/sheets.png')}}" alt="" >
-                                                <p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi tenetur amet molestiae.</p>
-                                                <button class="mt-2 schedule-btn">
-                                                    Launch Google Sheets <i class="fa fa-arrow-right"></i>
-                                                </button>
-                                            </div>
-                                            <div class="col-md-4 col-sm-12 col-xs-12 text-center  ">
-                                                <img class="mt-2 w-50" src="{{asset('assets/images/ico/slides.png')}}" alt="" >
-                                                <p class="mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi tenetur amet molestiae.</p>
-                                                <button class="mt-2 schedule-btn">
-                                                    Launch Google Slides <i class="fa fa-arrow-right"></i>
-                                                </button>
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -755,7 +752,7 @@ height:25px;
                                 </a> -->
                                 <canvas id="temp-stream-canvas" style="display: none;"></canvas>
                                 <a href="#" class="callSet  no-ph">
-                                    <img src="{{asset('assets/images/ico/no-phone.png')}}" title="End Call" alt="">
+                                    <img src="{{asset('assets/images/ico/phone.png')}}" title="End Call" alt="">
                                 </a>
                             </div>
                         </div>
@@ -921,21 +918,36 @@ height:25px;
 
 <!-- End Call Modal -->
 <div class="modal fade " id="endCall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Do you want to end the call?</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body text-center ">
-                    <button type="button" class="btn-general " id="endCallYes">End Call</button>
-                    <button type="button" class="btn-outline-general " data-dismiss="modal"> Not Yet </button>
-                </div>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Do you want to end the call?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center ">
+                <button type="button" class="btn-general " id="endCallYes">End Call</button>
+                <button type="button" class="btn-outline-general " data-dismiss="modal"> Not Yet </button>
             </div>
         </div>
     </div>
+</div>
+
+<!-- Permission Modal -->
+<div class="modal fade " id="permissionCall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body card-body">
+                <h5 class="modal-title mb-4">Camera or Microphone is blocked</h5>
+                <p class="mb-4">Tutorvy requires access to your camera and microphone. Click the camera blocked icon <img src="https://www.gstatic.com/meet/ic_blocked_camera_dark_f401bc8ec538ede48315b75286c1511b.svg" alt="">  in your browser's address bar.</p>
+                <a href="#"  class="pull-right decoration-none" data-dismiss="modal" aria-label="Close"> Dismiss</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Permission Modal -->
  
 @endsection
 @section('scripts')
@@ -949,15 +961,11 @@ height:25px;
         $(".mk").hide();
         $(".vc").hide();
         // $("#callModal").modal("show");
-        $("#join_now").attr("disabled","disabled" );
         $("#main-video").attr("poster","{{asset('assets/images/ico/Mute-video.png')}}");
         // saveClassLogs();
 
     })
-// var timerInstance = new easytimer.Timer();
-var editor2 = ace.edit("editor2");
-    editor2.setTheme("ace/theme/monokai");
-    editor2.session.setMode("ace/mode/javascript");
+
     // $("#join_now").click(function(){
     //     $(".tech_weck").show();;
     //     $("#callModal").modal("hide");
@@ -1012,7 +1020,8 @@ var connection = new RTCMultiConnection();
 console.log(connection , "connection");
 var roomid = '{{$class->classroom_id}}';
 var fullName = '{{$booking->tutor->first_name}} {{$booking->tutor->last_name}}';
-
+var class_duration = {{$booking->duration}};
+var timer = new Timer();
 
 (function() {
     var params = {},
@@ -1029,6 +1038,7 @@ var fullName = '{{$booking->tutor->first_name}} {{$booking->tutor->last_name}}';
 
 //connection.socketURL = '/';
 // connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+
 // connection.socketURL = 'https://tutorvy.herokuapp.com:443/';
 connection.socketURL = 'https://tutorvy.herokuapp.com:443/';
 
@@ -1041,7 +1051,11 @@ connection.DetectRTC.load(function() {
     console.log(connection.DetectRTC);
     if (connection.DetectRTC.hasMicrophone === true) {
         if(connection.DetectRTC.isWebsiteHasMicrophonePermissions === false){
+           
             $(".overlayCam").css("display","block");
+                $(".overlayCam").find("h3").text("Your Microphone is Blocked");
+                $(".overlayCam").find("h5").text("Tutorvy needs access to your microphone. To get 100% result");
+                $(".overlayCam").find("#conCam").hide();
         }else{
              // enable microphone
             connection.mediaConstraints.audio = true;
@@ -1054,18 +1068,17 @@ connection.DetectRTC.load(function() {
                     $(".callDiv").hide();
                     // joinClass();
                     /** Javascript Timer */
-                    var timer = new Timer();
-                        timer.start({countdown: true, startValues: {seconds: 30}});
+                    timer.start({countdown: true, startValues: {hours: class_duration}});
 
+                    $('#countdownExample .values').html(timer.getTimeValues().toString());
+
+                    timer.addEventListener('secondsUpdated', function (e) {
                         $('#countdownExample .values').html(timer.getTimeValues().toString());
+                    });
 
-                        timer.addEventListener('secondsUpdated', function (e) {
-                            $('#countdownExample .values').html(timer.getTimeValues().toString());
-                        });
-
-                        timer.addEventListener('targetAchieved', function (e) {
-                            $('#countdownExample .values').html('Class Time has Ended!!');
-                        });
+                    timer.addEventListener('targetAchieved', function (e) {
+                        $('#countdownExample .values').html('');
+                    });
                     /* Javascript Timer ENd */
                 })
         }
@@ -1087,7 +1100,7 @@ connection.DetectRTC.load(function() {
                     console.log(connection.DetectRTC)
                     connection.mediaConstraints.video = true;
                     connection.session.video = true;
-                    $(".overlayCam").css("display","none");
+                    // $(".overlayCam").css("display","none");
                     alert('attach true camera');
                 }else{
                     console.log(connection.DetectRTC)
@@ -1095,7 +1108,7 @@ connection.DetectRTC.load(function() {
                     // connection.DetectRTC.isWebsiteHasWebcamPermissions
                     connection.mediaConstraints.video = false;
                     connection.session.video = false;
-                    // alert('no camera')
+                    alert('no camera')
                     // connection.dontCaptureUserMedia = true;
                     
                     // connection.mediaConstraints.video = true;
@@ -1137,6 +1150,35 @@ connection.onmute = function (e) {
         } else "audio" === e.muteType && (e.mediaElement.muted = !0);
 };
 
+$("#join_now").click(function (){
+    
+    if(connection.DetectRTC.isWebsiteHasMicrophonePermissions === false){
+        
+        $("#permissionCall").modal("show");
+    }
+    else if(connection.DetectRTC.isWebsiteHasWebcamPermissions === false){
+        $("#permissionCall").modal("show");
+    }
+    else{
+                $(".tech_weck").removeClass("tech_weck-none");
+                $(".callDiv").hide();
+                // joinClass();
+                /** Javascript Timer */
+                 timer = new Timer();
+                    timer.start({countdown: true, startValues: {seconds: 30}});
+
+                    $('#countdownExample .values').html(timer.getTimeValues().toString());
+
+                    timer.addEventListener('secondsUpdated', function (e) {
+                        $('#countdownExample .values').html(timer.getTimeValues().toString());
+                    });
+
+                    timer.addEventListener('targetAchieved', function (e) {
+                        $('#countdownExample .values').html('Class Time has Ended!!');
+                    });
+                /* Javascript Timer ENd */
+    }
+});
 
 // On mute Screen End
 
@@ -1146,7 +1188,7 @@ connection.publicRoomIdentifier = '';
 connection.socketMessageEvent = 'canvas-dashboard-demo';
 
 // keep room opened even if owner leaves
-connection.autoCloseEntireSession = true;
+// connection.autoCloseEntireSession = true;
 
 // https://www.rtcmulticonnection.org/docs/maxParticipantsAllowed/
 // connection.maxParticipantsAllowed = 1000;
@@ -1195,31 +1237,32 @@ connection.isInitiator = true;
 connection.chunkSize = 16000;
 connection.enableFileSharing = true;
 
-connection.session = {
-    audio: true,
-    video: false,
-    data: true
-};
+connection.session.data =  true;
+
 connection.sdpConstraints.mandatory = {
     OfferToReceiveAudio: true,
     OfferToReceiveVideo: false
 };
 
-// connection.onUserStatusChanged = function(event) {
-//     var infoBar = document.getElementById('onUserStatusChanged');
-//     var names = [];
-//     connection.getAllParticipants().forEach(function(pid) {
-//         names.push(getFullName(pid));
-//     });
+connection.onUserStatusChanged = function(event) {
+    var infoBar = document.getElementById('onUserStatusChanged');
+    var names = [];
+    // console.log(connection.getAllParticipants())
+    connection.getAllParticipants().forEach(function(pid) {
+        // alert(getFullName(pid))
+        names.push(getFullName(pid));
+        // if(fullName != getFullName(pid)){
+        //     toastr.success(getFullName(pid) + " Joined the class.");
+        // }
+    });
 
-//     if (!names.length) {
-//         names = ['Only You'];
-//     } else {
-//         names = [connection.extra.userFullName || 'You'].concat(names);
-//     }
-
-//     infoBar.innerHTML = '<b>Active users:</b> ' + names.join(', ');
-// };
+    if (!names.length) {
+        names = ['Only You'];
+    } else {
+        names = [connection.extra.userFullName || 'You'].concat(names);
+    }
+    // infoBar.innerHTML = '<b>Active users:</b> ' + names.join(', ');
+};
 
 connection.onopen = function(event) {
     // connection.onUserStatusChanged(event);
@@ -1235,8 +1278,10 @@ connection.onopen = function(event) {
     document.getElementById('btn-attach-file').style.display = 'inline-block';
     // document.getElementById('btn-share-screen').style.display = 'inline-block';
 };
+// connection.leave();
 
 connection.onclose = connection.onerror = connection.onleave = function(event) {
+
     // toastr.success("Student has ended the call!");
     $("#main-video").css("width","85%")
     // connection.onUserStatusChanged(event);
@@ -1276,6 +1321,14 @@ connection.onmessage = function(event) {
         toastr.success("Class has Ended.");
         window.location.href="{{route('tutor.classroom')}}";
     }
+    if(event.data.class_joined === true){
+        toastr.success(event.extra.userFullName + ' Joined the class.');
+        console.log(timer)
+        connection.send({
+            is_timer:true,
+            time_value:timer
+        })
+    }
 
     if (event.data.chatMessage) {
         appendChatMessage(event);
@@ -1307,24 +1360,29 @@ connection.onstream = function(event) {
         
     }
     else if (event.extra.roomOwner === true) {
+
         var video = document.getElementById('main-video');
+        var video2 = document.getElementById('main-video2');
         video.setAttribute('data-streamid', event.streamid);
-        
-        // video.style.display = 'none';
+        video2.setAttribute('data-streamid', event.streamid);
+        video.style.display = 'none';
         if(event.type === 'local') {
             video.muted = true;
             video.volume = 0;
+            video2.muted = true;
+            video2.volume = 0;
         }
         video.srcObject = event.stream;
         $('#main-video').show();
-    } else {
+        video2.srcObject = event.stream;
+        $('#main-video2').show();
+    } 
+    else {
         event.mediaElement.controls = false;
         $("#main-video").css("width","30%");
-
         var otherVideos = document.querySelector('#other-videos');
         otherVideos.appendChild(event.mediaElement);
     }
-
     // connection.onUserStatusChanged(event);
 };
 
@@ -1640,7 +1698,7 @@ designer.appendTo(document.getElementById('widget-container'), function() {
             window.tempStream = tempStream;
 
             connection.extra.roomOwner = true;
-            connection.open(roomid, function(isRoomOpened, roomid, error) {
+            connection.openOrJoin(roomid, function(isRoomOpened, roomid, error) {
                 if (error) {
                     if (error === connection.errors.ROOM_NOT_AVAILABLE) {
                         alert('Someone already created this room. Please either join or create a separate room.');
@@ -1648,6 +1706,8 @@ designer.appendTo(document.getElementById('widget-container'), function() {
                     }
                     alert(error);
                 }
+                var video = document.getElementById('main-video');
+        video.setAttribute('data-streamid', event.streamid);
                 saveClassLogs();
                 connection.socket.on('disconnect', function() {
                     location.reload();
