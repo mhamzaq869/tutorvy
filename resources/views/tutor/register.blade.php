@@ -302,6 +302,8 @@
                                 enctype="multipart/form-data" onsubmit="return false">
                                 @csrf
                                 <input type="hidden" name="role" value="2">
+                                <input type="hidden" name="region" id="region">
+                                <input type="hidden" name="time_zone" id="time_zone">
                                 <div class="tab-content mt-5">
                                     <div role="tabpanel" class="border-right tab-pane active" id="step-1">
                                         <div class="col-md-12">
@@ -1068,6 +1070,13 @@
                     }
             });
             $(document).ready(function() {
+                
+                var date = new Date();
+                $("#region").val(date);
+                const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                // console.log(timezone);
+                $("#time_zone").val(timezone);
+
                 $("#year,#grad-year").yearpicker({
                     year: {{ $user->year ?? '1990' }},
                     startYear: 1950,

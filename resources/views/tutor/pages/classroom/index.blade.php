@@ -121,13 +121,13 @@
                                                                     </span>
                                                                 @elseif($class->status == 0)
                                                                     <span class="bg-color-apporve">
-                                                                        Pending
+                                                                        Pending 
                                                                     </span>
                                                                 @endif
                                                                 </td>
                                                                 <td style="text-align: center;">
                                                                     @if($class->classroom != null)
-                                                                    <span data-id="{{$class->id}}"  data-review="{{$class->is_reviewed}}" data-date="{{$class->class_date}}" data-room="{{$class->classroom != null ? $class->classroom->classroom_id : ''}}" data-duration="{{$class->duration}}" data-time="{{$class->class_time}}"
+                                                                    <span data-id="{{$class->id}}" data-zone="{{$class->user->time_zone}}"  data-review="{{$class->is_reviewed}}" data-date="{{$class->class_date}}" data-room="{{$class->classroom != null ? $class->classroom->classroom_id : ''}}" data-duration="{{$class->duration}}" data-time="{{$class->class_time}}"
                                                                         id="class_time_{{$class->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success mt-3">{{$class->class_date}} {{$class->class_time}} </span>     
                                                                     <div id="join_class_{{$class->id}}" class="text-center">
                                                                     @endif
@@ -243,28 +243,34 @@
 
 <script>
     $(document).ready(function() {
-        
+
+        const str = new Date().toLocaleString('en-US', { timeZone: 'Asia/Calcutta' });
+
+        // let a = moment(str).format("YYYY-MM-DD HH:mm");
+        // console.log(str , "a");
+        // const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        // console.log(timezone);
         $( ".current_time" ).each(function() {
 
             var booking_time = $( this ).text();
+            console.log(booking_time , "booking_time");
             var attr_id = $(this).data('id');
             var duration = $(this).data('duration');
             var time = $(this).data('time');
             var room_id = $(this).data('room');
             var class_date = $(this).data('date');
             var review = $(this).data('review');
+            var time_zone = $(this).data('zone');
+
+            const current_tz = new Date().toLocaleString('en-US', { timeZone: time_zone });
 
             var CurrentDate = new Date();
             class_date = new Date(class_date);
 
             let split_time = time.split(':');
             let create_time = parseInt(split_time[0]) + parseInt(duration);
-
             let actual_time  = create_time + ':' + split_time[1];
-
-            var time = moment(booking_time).format('MMM D, YYYY h:mm:ss a');
-            console.log(booking_time , "bt");
-            console.log(time , "time");
+            var time = moment(current_tz).format('MMM D, YYYY h:mm:ss a');
 
             var countDownDate = new Date(time).getTime();
 

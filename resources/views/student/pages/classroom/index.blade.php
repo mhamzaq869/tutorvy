@@ -186,7 +186,7 @@
 
                                                             <td>
                                                                 @if($class->classroom != null)
-                                                                <span data-id="{{$class->id}}"  data-review="{{$class->is_reviewed}}" data-date="{{$class->class_date}}" data-room="{{$class->classroom != null ? $class->classroom->classroom_id : ''}}" data-duration="{{$class->duration}}" data-time="{{$class->class_time}}"
+                                                                <span data-id="{{$class->id}}" data-zone="{{$class->user->time_zone}}"   data-review="{{$class->is_reviewed}}" data-date="{{$class->class_date}}" data-room="{{$class->classroom != null ? $class->classroom->classroom_id : ''}}" data-duration="{{$class->duration}}" data-time="{{$class->class_time}}"
                                                                         id="class_time_{{$class->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success mt-3">{{$class->class_date}} {{$class->class_time}} </span>     
                                                                     <div class="join_class_{{$class->id}}" class="text-center">
                                                                 @endif
@@ -414,6 +414,8 @@
 
         $( ".current_time" ).each(function() {
 
+
+
             var booking_time = $( this ).text();
             var attr_id = $(this).data('id');
             var duration = $(this).data('duration');
@@ -421,6 +423,11 @@
             var time = $(this).data('time');
             var class_date = $(this).data('date');
             var review = $(this).data('review');
+            var time_zone = $(this).data('zone');
+
+            const str = new Date().toLocaleString('en-US', { timeZone: time_zone});
+            let a = moment(str).format("YYYY-MM-DD HH:mm");            
+            const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
             var CurrentDate = new Date();
             class_date = new Date(class_date);
@@ -429,60 +436,42 @@
             let create_time = parseInt(split_time[0]) + parseInt(duration);
 
             let actual_time  = create_time + ':' + split_time[1];
+            var time = moment(str).format('MMM D, YYYY h:mm:ss a');
+            
+            var countDownDate = new Date(time).getTime();
+            var x = setInterval(function() {
 
-            console.log(attr_id , "ai");
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
 
-            let join_btn = `<a onclick="joinClass('`+room_id+`')" class="schedule-btn"> Join Class </a>`;
-                    
-            $(".join_class_"+attr_id).html(join_btn);
-            $("#class_time_"+attr_id).html("");
- 
-            return false;
-           
-            // console.log(booking_time,"booking_time");
-            // var time = moment(booking_time).format('MMMM Do YYYY, h:mm:ss a');
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // console.log(time , "asd");
-
-            // var countDownDate = new Date(time).getTime();
-            // var x = setInterval(function() {
-
-            //     var now = new Date().getTime();
-            //     var distance = countDownDate - now;
-
-            //     var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            //     var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            //     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            //     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            //     var total_time = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+                var total_time = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
                 
-            //     $("#class_time_"+attr_id).html(total_time);
-                
-            //     if (distance < 0) {
-            //         clearInterval(x);
+                $("#class_time_"+attr_id).html(total_time);
 
-            //         // let join_btn = `<a href="{{url('student/class')}}/`+room_id+`"  class="schedule-btn"> Join Class </a>`;
-            //         let join_btn = `<a onclick="joinClass('`+room_id+`')" class="schedule-btn"> Join Class </a>`;
+                if (distance < 0) {
+                    clearInterval(x);
+                    let join_btn = `<a onclick="joinClass('`+room_id+`')" class="schedule-btn"> Join Class </a>`;
+                    // if(time > actual_time) {
+                    //     $("#class_time_"+attr_id).text("Class Expired");
+                    // }else{
+                    //     $("#join_class_"+attr_id).html(join_btn);
+                    // }
+
+                    if(review == 0) {
+                        $(".join_class_"+attr_id).html(join_btn);
+                    }else{
+                        $(".join_class_"+attr_id).html(" ");
+                    }
                     
-            //         $("#join_class_"+attr_id).html(join_btn);
-            //         $("#join_class_"+attr_id).html("");
-
-            //         // if(time > actual_time) {
-            //         //     if(review == 0 ) {
-            //         //         $("#join_class_"+attr_id).html(join_btn);
-            //         //     }else{
-            //         //         $("#join_class_"+attr_id).html("");
-            //         //     }
-                        
-            //         //     $("#class_time_"+attr_id).text("");
-
-            //         // }else{
-            //         //     $("#class_time_"+attr_id).text("Class Expired");
-            //         // }
+                    $("#class_time_"+attr_id).text("");
                     
-            //     }
-            // }, 1000);
+                }
+            }, 1000);
 
         }); 
     });

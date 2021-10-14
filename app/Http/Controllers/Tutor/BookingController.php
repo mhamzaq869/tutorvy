@@ -12,6 +12,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
+use DateTime;
+use DateTimeZone;
 
 class BookingController extends Controller
 {
@@ -20,12 +22,42 @@ class BookingController extends Controller
      */
 
     public function index() {
-        $all = Booking::where('booked_tutor',Auth::user()->id)->get();
-        $pending = Booking::where('booked_tutor',Auth::user()->id)->whereIn('status',[0,1])->get();
-        $confirmed = Booking::where('booked_tutor',Auth::user()->id)->status(2)->get();
-        $completed = Booking::where('booked_tutor',Auth::user()->id)->status(5)->get();
-        $cancelled = Booking::where('booked_tutor',Auth::user()->id)->whereIn('status',[3,4])->get();
+        $all = Booking::with(['user','tutor'])->where('booked_tutor',Auth::user()->id)->get();
+
+        foreach($all as $all_booking) {
+            date_default_timezone_set($all_booking->tutor->time_zone);
+            $date = date("h:i:sa");
+            $all_booking->actual_booking_time =  date("H:i", strtotime($date));
+
+        }
+
+        // dd($all->toArray());
+
+        // $booking_class_time = $all[0]->class_time . ':00';
+        // // dd($all->toArray());
+
+        // // tutor
+        // $date = date_create($all[0]->class_date, timezone_open($all[0]->tutor->time_zone));
+        // echo date_format($date, 'Y-m-d H:i:s') . " -> tutor -> india" . '<br>';
+
+
+        // echo "booking time " . $booking_class_time . '<br>';
+
+
+        // date_default_timezone_set($all[0]->tutor->time_zone);
+        // echo "india time zone " . date("h:i:sa"). '<br>';
         
+        // $time_in_24_hour_format  = date("H:i:s", strtotime(date("h:i:sa")));
+        // echo "current india time is:" . $time_in_24_hour_format;
+
+        // return false;
+
+
+        $pending = Booking::with(['user','tutor'])->where('booked_tutor',Auth::user()->id)->whereIn('status',[0,1])->get();
+        $confirmed = Booking::with(['user','tutor'])->where('booked_tutor',Auth::user()->id)->status(2)->get();
+        $completed = Booking::with(['user','tutor'])->where('booked_tutor',Auth::user()->id)->status(5)->get();
+        $cancelled = Booking::with(['user','tutor'])->where('booked_tutor',Auth::user()->id)->whereIn('status',[3,4])->get();
+        // dd($pending->toArray());
         return view('tutor.pages.booking.index',compact('all','pending','confirmed','completed','cancelled'));
     }
 
