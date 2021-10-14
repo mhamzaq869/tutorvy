@@ -535,7 +535,8 @@ height:25px;
                             <li>Allow audio video Permissions.</li>
                             <li>Audio device is compulsory.</li>
                             <li>Tutor Camera's compulsory for conducting a class.</li>
-                            <li>If not working correctly, try icognito mode or deactivate any third party extension.</li>
+                            <li>If not working correctly, deactivate any third party extension.</li>
+                            <li>Avoid Incognito mode for better experience.</li>
                         </ul>
                         <div class="text-center">
                             <button type="button" role="button" id="join_now"  class="schedule-btn ">
@@ -1080,7 +1081,6 @@ height:25px;
         // $(".tech_weck").hide();
      
         // $("#callModal").modal("show");
-        $("#join_now").attr("disabled","disabled" );
         $("#main-video").attr("poster","{{asset('assets/images/ico/Mute-video.png')}}");
         });
     $(".no-mk").click(function(){
@@ -1232,7 +1232,6 @@ connection.DetectRTC.load(function() {
         connection.session.audio = true;
         // alert('attach true microphone')
         $(".no-mk").show();
-        $("#join_now").removeAttr("disabled","disabled" );
             $("#join_now").click(function(){
                 
                 $(".tech_weck").removeClass("tech_weck-none");
