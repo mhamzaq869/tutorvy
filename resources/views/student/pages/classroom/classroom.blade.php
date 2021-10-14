@@ -1274,6 +1274,7 @@ connection.DetectRTC.load(function() {
         console.log(error)
         if(error == 'NotReadableError: Could not start video source'){
             alert('Unable to get camera. Please check camera is not used by any other program or and refresh the page again to start the class.')
+            $("#join_now").hide();
         }
         
     }
