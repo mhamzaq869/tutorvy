@@ -486,9 +486,9 @@ height:25px;
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 text-right">
-                    <div id="countdownExample" class="mr-3" >
-                        <div class="row">
-                            <div class="col-md-8 Text-reck">
+                    <div id="countdownExample" class="" >
+                        <div class="row blink text-white p-2">
+                            <div class="col-md-8 Text-reck text-center">
 
                             </div>
                             <div class="col-md-4 values"></div>
@@ -1022,8 +1022,10 @@ var connection = new RTCMultiConnection();
 console.log(connection , "connection");
 var roomid = '{{$class->classroom_id}}';
 var fullName = '{{$booking->tutor->first_name}} {{$booking->tutor->last_name}}';
-var get = '00:05:00'; 
+var deadline = '00:05:00'; 
+var resced = '00:15:00'; 
 var class_duration = {{$booking->duration}};
+// var class_duration = 20;
 var timer = new Timer();
 
 (function() {
@@ -1080,9 +1082,20 @@ connection.DetectRTC.load(function() {
 
                         var ter =$('.values').text();
                         
-                        if( ter == get ){
-                            $(".values").css("color","red");
-                            $(".Text-reck").text("Class will end in Five minutes sharp.").css("color","red");
+                        if( ter == deadline ){
+                            
+                            $(".values").css("color","#dc3545");
+                            // $(".Text-reck").text("Class will end in Five minutes sharp.");
+                        }
+                        else if( ter == resced ){
+                            $(".values").css("color","#ffc107");
+                            // let html = `<p class="mb-0">Do you want to reschedule another class? <a href="">Yes</a> or  <a href="">No</a> </p>`
+                            // $(".Text-reck").html(html);
+                        }
+                        else if( ter >= resced ){
+                            $(".values").css("color","#28a745");
+                            // $(".Text-reck").text("Class will ends in: ");
+
                         }
 
                         $('#countdownExample .values').html(timer.getTimeValues().toString());

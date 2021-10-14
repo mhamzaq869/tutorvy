@@ -264,9 +264,6 @@ height:25px;
     padding-top: 16%; 
     border-radius:4px;
 }
-#countdownExample{
-    font-family:'Orbitron';
-}
 .w-20{
     width:20px;
 }
@@ -485,8 +482,13 @@ height:25px;
         <div class="container-fluidd">
             <div class="row">
                 <div class="col-md-12 text-right">
-                    <div id="countdownExample">
-                        <div class="values"></div>
+                    <div id="countdownExample" class="mr-3" >
+                        <div class="row blink text-white p-2">
+                            <div class="col-md-8 Text-reck text-center">
+
+                            </div>
+                            <div class="col-md-4 values"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1181,9 +1183,11 @@ $("#conCam").click(function(){
 var connection = new RTCMultiConnection();
 var roomid = '{{$class->classroom_id}}';
 var fullName = '{{$user->first_name}} {{$user->last_name}}';
-var class_duration = {{$booking->duration}};
 var timer = new Timer();
-var get = '00:05:00';
+var deadline = '00:05:00'; 
+var resced = '00:15:00'; 
+var class_duration = {{$booking->duration}};
+// var class_duration = 20;
 
 (function() {
     var params = {},
@@ -1267,8 +1271,21 @@ connection.DetectRTC.load(function() {
                     });
 
                         var ter =$('.values').text();
-                        if( ter == get ){
-                            $(".values").css("color","red");
+                        
+                        if( ter == deadline ){
+                            
+                            $(".blink").css("background","#dc3545");
+                            $(".Text-reck").text("Class will end in Five minutes sharp.");
+                        }
+                        else if( ter == resced ){
+                            $(".blink").css("background","#ffc107");
+                            let html = `<p class="mb-0">Do you want to reschedule another class? <a href="">Yes</a> or  <a href="">No</a> </p>`
+                            $(".Text-reck").html(html);
+                        }
+                        else if( ter >= resced ){
+                            $(".blink").css("background","#28a745");
+                            $(".Text-reck").text("Class will ends in: ");
+
                         }
 
                     timer.addEventListener('targetAchieved', function (e) {
