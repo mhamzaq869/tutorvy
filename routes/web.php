@@ -288,6 +288,7 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     Route::get('/settings',[StudentSettingController::class,'index'])->name('student.settings');
     Route::post('student-paymentmethod',[StudentSettingController::class,'paymentMethod'])->name('student.paymentmethod');
     Route::post('setDefaltPayment', [StudentSettingController::class,'setDefaultPayment']);
+    Route::get('checkDfltPymntMthd', [StudentBookingController::class,'checkDefaultPaymentMethod'])->name('check.default.payment');
     Route::post('/change-password',[StudentSettingController::class,'change_password']);
 
     Route::get('/profile',[StudentProfileController::class,'index'])->name('student.profile');

@@ -89,7 +89,7 @@
                                 <div class="">
                                 <p class=" heading-fifth mt-3"
                                     style="line-height: 0;">
-                                    <a type="button" data-toggle="modal" data-target="#payModel"> + Add balance</a>
+                                    <a type="button" onclick="addBalance()" data-target=""> + Add balance</a>
                                     </p>
                                 </div>
                             </div>
@@ -200,6 +200,9 @@
                                     <div class="col-md-12">
                                         <h3>Select Payment Method</h3>
                                     </div>
+                                    <div class="col-md-12">
+                                        <p id="pmnt" class="font-weight-normal"></p>
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="card">
@@ -208,8 +211,7 @@
                                                         <img src="{{ asset('assets/images/payment-icon/paypal2.png') }}"
                                                             class="w-50" alt="">
                                                         <span class="round">
-                                                            <input id="checkbox1" name="paytype"
-                                                                onclick="paymentMethod(this.value)" class="radio-custom"
+                                                            <input id="checkbox1" name="paytype" class="radio-custom"
                                                                 value="paypal" type="radio">
                                                         </span>
                                                     </div>
@@ -223,8 +225,7 @@
                                                         <img src="{{ asset('assets/images/payment-icon/skrill.png') }}"
                                                             class="w-50" alt="">
                                                         <span class="round">
-                                                            <input id="checkbox2" name="paytype"
-                                                                onclick="paymentMethod(this.value)" value="skrill"
+                                                            <input id="checkbox2" name="paytype" value="skrill"
                                                                 type="radio">
                                                         </span>
                                                     </div>
@@ -233,7 +234,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12 mt-3 text-right">
-                                        <input type="submit" class="schedule-btn btn w-30" value="Continue" />
+                                        <input type="submit" id="paymntbtn" class="schedule-btn btn w-30" value="Continue" />
                                     </div>
                                 </form>
                             </div>
@@ -246,3 +247,8 @@
 
     </div>
 @endsection
+
+@section('scripts')
+    @include('js_files.student.wallet')
+@endsection
+
