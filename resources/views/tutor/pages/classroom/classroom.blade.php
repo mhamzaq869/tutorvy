@@ -1072,7 +1072,7 @@ connection.DetectRTC.load(function() {
                     // joinClass();
 
                     /** Javascript Timer */
-                    timer.start({countdown: true, startValues: {seconds: class_duration}});
+                    timer.start({countdown: true, startValues: {hours: class_duration}});
 
                     $('#countdownExample .values').html(timer.getTimeValues().toString());
 
