@@ -1208,8 +1208,15 @@ var class_duration = {{$booking->duration}};
 connection.socketURL = 'https://tutorvy.herokuapp.com:443/';
 
 connection.extra.userFullName = fullName;
-connection.DetectRTC.load(function() {
 
+connection.DetectRTC.load(function() {
+    connection.onMediaError=function(error,constraints){
+        console.log(error)
+        if(error == 'NotReadableError: Could not start video source'){
+            alert('Unable to get camera. Please check camera is not used by any other program or and refresh the page again to start the class.')
+        }
+        
+    }
     if(connection.DetectRTC.isWebsiteHasWebcamPermissions === false && connection.DetectRTC.isWebsiteHasMicrophonePermissions === false){
         connection.dontCaptureUserMedia = true;
     }
@@ -1306,14 +1313,12 @@ connection.DetectRTC.load(function() {
     }
 
     if (connection.DetectRTC.hasWebcam === true) {
-       
         // enable camera
         if(connection.DetectRTC.isWebsiteHasWebcamPermissions === false){
-                $(".overlayCam").css("display","block");
-
-
-                $("#other-videos2").attr("poster","{{asset('assets/images/ico/Mute-video.png')}}");
-
+            $(".overlayCam").css("display","block");
+            connection.mediaConstraints.video = false;
+            connection.session.video = false;
+            $("#other-videos2").attr("poster","{{asset('assets/images/ico/Mute-video.png')}}");
        }
        else{
        // enable microphone
@@ -1321,6 +1326,7 @@ connection.DetectRTC.load(function() {
                 var varr = connection.DetectRTC.videoInputDevices;
                 for(var v = 0 ; v < varr.length ; v++){
                     if(varr[v].deviceId != undefined){
+                        
                         console.log(connection.DetectRTC)
                         connection.mediaConstraints.video = true;
                         connection.session.video = true;
@@ -1359,6 +1365,8 @@ connection.DetectRTC.load(function() {
         // alert('Please attach a speaker device. You will unable to hear the incoming audios.');
     }
 });
+
+
 /// make this room public
 connection.publicRoomIdentifier = '';
 
@@ -1442,7 +1450,7 @@ connection.onUserStatusChanged = function(event) {
 
 connection.onopen = function(event) {
     // connection.onUserStatusChanged(event);
-timer.start();
+// timer.resume();
     //conection joined
     connection.send({
         class_joined: true
@@ -1904,6 +1912,8 @@ function updateLabel(progress, label) {
 // if(!!params.password) {
 //     connection.password = params.password;
 // }
+console.log(connection)
+
 
 designer.appendTo(document.getElementById('widget-container'), function() {
     // if (params.open === true || params.open === 'true') {
@@ -1931,8 +1941,10 @@ designer.appendTo(document.getElementById('widget-container'), function() {
     //         });
     // } else {
         connection.join(roomid, function(isRoomJoined, roomid, error) {
+            alert('in join')
             
             if (error) {
+                console.log(error)
                 if (error === connection.errors.ROOM_NOT_AVAILABLE) {
                     alert('This room does not exist. Please either create it or wait for moderator to enter in the room.');
                     window.location.href="{{route('student.classroom')}}";
