@@ -38,13 +38,63 @@
                                 <div class="col-md-8">
                                     <div class="col-md-12 pl-0">
                                         <span class="heading-fifth-1">Ticket Message</span>
-                                        <p class="paragraph-text-1 mt-3">
-                                            {{$ticket->message}}
-                                        </p>
+                                        <div class="row mt-3 mb-3 ticketChat">
+                                            <div class="col-md-12 ">
+                                                <div class="sender">
+                                                    <small>From Sender Name</small>  
+                                                    <p class="mb-0">
+                                                        {{$ticket->message}}
+                                                    </p>
+                                                    <small class="dull pull-right">
+                                                        1min ago
+                                                    </small>
+                                                   
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 ">
+                                                <div class="reciever">
+                                                    <small>From You</small>
+                                                    <p class="mb-0">
+                                                        {{$ticket->message}}
+                                                    </p>
+                                                    <small class="dull pull-right">
+                                                        1min ago
+                                                    </small>
+                                                </div>
+                                               
+                                            </div>
+                                            <div class="col-md-12 ">
+                                                <div class="sender">
+                                                    <small>From Sender Name</small>
+                                                    <p class="mb-0">
+                                                           <img src="{{asset('assets/images/ico/Square-white.jpg')}}" class="attachment" alt="">
+                                                 
+                                                    </p>
+                                                    <small class="dull pull-right">
+                                                        1min ago
+                                                    </small>
+                                                </div>
+                                               
+                                            </div>
+                                            <div class="col-md-12 ">
+                                                <div class="reciever">
+                                                    <small>From You</small>
+                                                    <p class="mb-0">
+                                                           <img src="{{asset('assets/images/ico/Mute-video.png')}}" class="attachment" alt="">
+                                                 
+                                                    </p>
+                                                    <small class="dull pull-right">
+                                                        1min ago
+                                                    </small>
+                                                </div>
+                                               
+                                            </div>
+                                        </div>
+                                        
                                     </div>
-                                    <div class="container-fluid mt-5 m-0 p-0">
+                                    <div class="container-fluid  m-0 p-0">
                                         <span class="heading-fifth-1 mb-3">Reply</span>
-                                        <form class="form-border mb-5 mt-3">
+                                        <form class="form-border ">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <textarea class="textarea-ticket form-control mt-3 p-2" name="" id="" cols="" rows="" placeholder="Your Reply"></textarea>
