@@ -1082,3 +1082,38 @@ footer a:hover {
 
 
 /*Toaster Link ENd*/
+
+
+/*FInd Tutor Front-end*/
+
+h3 {
+    color: #00132D;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: "Poppins";
+}
+
+.decoration-none:hover {
+    text-decoration: none;
+}
+
+.findTutor-img {
+    height: 70px;
+    width: 70px;
+}
+
+.div-center {
+    justify-content: center;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+
+/*End Find Tutor*/

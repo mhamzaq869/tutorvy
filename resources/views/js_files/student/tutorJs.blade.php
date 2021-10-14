@@ -244,9 +244,9 @@ function list_tutors(){
             let img = ``;
             if(tutors[i].picture != null){
                 console.log(tutors[i].picture)
-                img = `<img src="{{asset('`+tutors[i].picture+`')}}" alt="" class="profile-img w-100" style="height:70px;"`;
+                img = `<img src="{{asset('`+tutors[i].picture+`')}}" alt="" class="profile-img " style="height:70px;width:70px;"`;
             }else{
-                img = `<img src="../assets/images/ico/Square-white.jpg" alt="" class="profile-img w-100" style="height:70px;">`;
+                img = `<img src="../assets/images/ico/Square-white.jpg" alt="" class="profile-img " style="height:70px;width:70px;">`;
             }
 
             var fav_btn = `
@@ -267,12 +267,12 @@ function list_tutors(){
                                             <div class="row">
                                                 <div class="col-md-10">
                                                     <div class="row">
-                                                        <div class="col-md-2 col-6 pr-0">
+                                                        <div class="col-md-2 col-6 pr-0 div-center">
                                                             <a href="`+url2+`">
                                                                 `+img+`
                                                             </a>
                                                         </div>
-                                                        <div class="col-md-4 col-6">
+                                                        <div class="col-md-4 col-6 pr-0">
                                                             <a href="`+url2+`" class="decoration-none">
                                                                 <h3 class="mb-0">`+tutors[i].first_name+ ' ' +tutors[i].last_name+`</h3>
                                                             </a>
@@ -280,10 +280,10 @@ function list_tutors(){
                                                             <p class="mb-0"><img src="../assets/images/ico/location-pro.png" alt="" class="">`+tutors[i].city + ',' + tutors[i].country+`</p>
                                                         </div>
                                                         <div class="col-md-6 col-12">
-                                                            <p>
+                                                            <p class="mb-0">
                                                                 `+rating_html+`
                                                             </p>
-                                                            <p> 3 hours tutoring in (this subject) </p>
+                                                            <p class="mb-0"> <small> 3 hours tutoring in (this subject) </small></p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -291,7 +291,7 @@ function list_tutors(){
                                                     `+rank_html+`
                                                 </div>
                                             </div>
-                                            <div class="row mt-2">
+                                            <div class="row mt-3">
                                                 <div class="col-md-4">
                                                     
                                                     <p class="mb-2">Subject</p>
@@ -344,7 +344,7 @@ function list_tutors(){
         }
 
     }else{
-        noTut = ` <h3  class="mb-0  mt-2">  0  Tutor Available</h3>`
+        noTut = ` <h3  class="mb-0  mt-4">  0 Tutor Available</h3>`
         $('#number-booking').html(noTut);
         let no_rec_html = `<div class="card">
                             <div class="card-body text-center">
@@ -361,7 +361,7 @@ function list_tutors(){
 
 
 function star(){
-    alert("D");
+    // alert("D");
     $(".fa-star").addClass("text-yellow");
 }
 
