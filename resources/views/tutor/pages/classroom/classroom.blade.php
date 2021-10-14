@@ -315,9 +315,6 @@ height:25px;
     width:22%;
 }
 
-#countdownExample{
-    font-family:'Orbitron';
-}
 .h-35{
     height:35px;
 }
@@ -447,8 +444,8 @@ height:25px;
         /* No Cam Overlay End */
 
         /* Cam Modal */
-        .w-56{
-            width:56%;
+        .w-62{
+            width:62%;
         }
         /* Cam Modal */
 
@@ -489,14 +486,19 @@ height:25px;
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 text-right">
-                    <div id="countdownExample" class="mr-3" >
-                        <div class="values"></div>
+                    <div id="countdownExample" class="" >
+                        <div class="row blink text-white p-2">
+                            <div class="col-md-8 Text-reck text-center">
+
+                            </div>
+                            <div class="col-md-4 values"></div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row callDiv ml-2 mr-2 mt-4" >
                 <div class="col-md-8 text-center rounded bg-dark ">
-                    <video id="main-video2" class=" w-56" playsinline autoplay></video>
+                    <video id="main-video2" class=" w-62" playsinline autoplay></video>
 
                     <!-- @if($user->picture)
                         @if(file_exists( public_path(). $user->picture))
@@ -1020,7 +1022,10 @@ var connection = new RTCMultiConnection();
 console.log(connection , "connection");
 var roomid = '{{$class->classroom_id}}';
 var fullName = '{{$booking->tutor->first_name}} {{$booking->tutor->last_name}}';
+var deadline = '00:05:00'; 
+var resced = '00:15:00'; 
 var class_duration = {{$booking->duration}};
+// var class_duration = 20;
 var timer = new Timer();
 
 (function() {
@@ -1067,17 +1072,37 @@ connection.DetectRTC.load(function() {
                     $(".tech_weck").removeClass("tech_weck-none");
                     $(".callDiv").hide();
                     // joinClass();
+
                     /** Javascript Timer */
                     timer.start({countdown: true, startValues: {hours: class_duration}});
 
                     $('#countdownExample .values').html(timer.getTimeValues().toString());
 
                     timer.addEventListener('secondsUpdated', function (e) {
+
+                        var ter =$('.values').text();
+                        
+                        if( ter == deadline ){
+                            
+                            $(".values").css("color","#dc3545");
+                            // $(".Text-reck").text("Class will end in Five minutes sharp.");
+                        }
+                        else if( ter == resced ){
+                            $(".values").css("color","#ffc107");
+                            // let html = `<p class="mb-0">Do you want to reschedule another class? <a href="">Yes</a> or  <a href="">No</a> </p>`
+                            // $(".Text-reck").html(html);
+                        }
+                        else if( ter >= resced ){
+                            $(".values").css("color","#28a745");
+                            // $(".Text-reck").text("Class will ends in: ");
+
+                        }
+
                         $('#countdownExample .values').html(timer.getTimeValues().toString());
                     });
 
                     timer.addEventListener('targetAchieved', function (e) {
-                        $('#countdownExample .values').html('');
+                        $('#endCall').modal("show");
                     });
                     /* Javascript Timer ENd */
                 })
@@ -1164,18 +1189,18 @@ $("#join_now").click(function (){
                 $(".callDiv").hide();
                 // joinClass();
                 /** Javascript Timer */
-                 timer = new Timer();
-                    timer.start({countdown: true, startValues: {seconds: 30}});
+                //  timer = new Timer();
+                //     timer.start({countdown: true, startValues: {seconds: 30}});
 
-                    $('#countdownExample .values').html(timer.getTimeValues().toString());
+                //     $('#countdownExample .values').html(timer.getTimeValues().toString());
 
-                    timer.addEventListener('secondsUpdated', function (e) {
-                        $('#countdownExample .values').html(timer.getTimeValues().toString());
-                    });
+                //     timer.addEventListener('secondsUpdated', function (e) {
+                //         $('#countdownExample .values').html(timer.getTimeValues().toString());
+                //     });
 
-                    timer.addEventListener('targetAchieved', function (e) {
-                        $('#countdownExample .values').html('Class Time has Ended!!');
-                    });
+                //     timer.addEventListener('targetAchieved', function (e) {
+                //         $('#countdownExample .values').html('Class Time has Ended!!');
+                //     });
                 /* Javascript Timer ENd */
     }
 });
