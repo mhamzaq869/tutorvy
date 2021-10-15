@@ -34,6 +34,20 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span class="heading-fifth-1">Ticket Message</span>
+                                </div>
+                                <div class="col-md-12">
+                                     {{$ticket->message}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
                             <div class="row pt-4 container-bg-1  ml-1 mr-1">
                                 <!-- <div class="col-md-8">
                                     <div class="col-md-12 pl-0">
@@ -45,7 +59,7 @@
                                 </div> -->
                                 <div class="col-md-8">
                                     <div class="col-md-12 pl-0">
-                                        <span class="heading-fifth-1">Ticket Message</span>
+                                        <span class="heading-fifth-1">Reply</span>
                                         <div class="row mt-3 mb-3 ticketChat">
                                             <div class="col-md-12 ">
                                                 <div class="sender">
