@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-md-12 mb-1 ">
                 <div class=" card  bg-toast infoCard">
-                   
+
 
                     <div class="card-body row">
                         <div class="col-md-1 text-center">
@@ -26,7 +26,7 @@
                                 Payment stats here to know about your earnings and way to organize the paid classes. <a href="#">Learn More</a>
 
                             </small>
-                            <a href="#" class="cross"  onclick="hideCard()"> 
+                            <a href="#" class="cross"  onclick="hideCard()">
                                 <i class="fa fa-times" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -69,7 +69,14 @@
             <div class="col-md-3">
             </div>
         </div>
-
+        <div class="row mt-3 ">
+            <div class="col-md-12">
+                <h5>Withdraw: </h5>
+                <button class="btn btn-light">
+                    <img class="w-25" src="{{asset ('assets/images/payment-icon/paypal_logo_512.png')}}" alt="">
+                    Paypal</button>
+            </div>
+        </div>
         <div class="row mt-3 ">
             <div class="col-md-6">
                 <p class="heading-third">Payment history</p>
@@ -100,7 +107,7 @@
                             <tbody>
                                 @if($payment != "[]")
                                     @foreach($payment as $pay)
-                                    
+
                                         <tr>
                                             <td class="pt-4"> {{$pay->user->first_name}} {{$pay->user->last_name}}</td>
                                             <td class="pt-4">{{$pay->topic}}</td>
@@ -115,7 +122,7 @@
                                                 </td>
                                             @endif
                                             <td class="pt-4 text-center"> ${{$pay->price}}</td>
-                                            <td class="pt-4" > 
+                                            <td class="pt-4" >
                                                 <a class="cencel-btn" href="{{route('tutor.booking.detail',[$pay->id])}}"> View Details</a>
                                             </td>
                                         </tr>
@@ -131,7 +138,7 @@
                         </table>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>

@@ -109,7 +109,6 @@
                                                         @if($all != "[]")
                                                             @foreach ($all as $booking)
                                                                 @php
-
                                                                 $tz = get_local_time();
                                                                 $dt = new DateTime($booking->class_time, new DateTimeZone($tz)); //first argument "must" be a string
                                                                 $time = $dt->format('g:i a');
@@ -464,7 +463,6 @@
                                                 @if($cancelled !="[]")
                                                     @foreach ($cancelled as $booking)
                                                         @php
-
                                                         $tz = get_local_time();
                                                         $dt = new DateTime($booking->class_time, new DateTimeZone($tz)); //first argument "must" be a string
                                                         $time = $dt->format('g:i a');
@@ -673,16 +671,6 @@
                                             </form>
                                         </div>
 
-
-                            </div>
-                        </div>
-                        <div class="mt-4 mb-2" style="text-align: right;">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
 </div>
 @endsection
@@ -690,3 +678,4 @@
 @section('scripts')
     @include('js_files.student.bookingJs')
 @endsection
+

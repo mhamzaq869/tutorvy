@@ -100,7 +100,6 @@ class BookingController extends Controller
        return view('student.pages.booking.booking',compact('tutor'));
     }
 
-
     public function booked(Request $request) {
         $attachments = [];
         $path = '';
@@ -184,7 +183,6 @@ class BookingController extends Controller
             'message' => 'success'
         ]);
     }
-
 
     public function bookingPayment(Request $request,$id)
     {
@@ -525,8 +523,6 @@ class BookingController extends Controller
         ]);
     }
 
-
-
     /**
      *  @param $total_price,$commission,$comm.$booking,$bookingID
      *  @return $redirectURL
@@ -581,5 +577,13 @@ class BookingController extends Controller
         return $redirectUrl;
     }
 
+    public function checkDefaultPaymentMethod()
+    {
+        $defaultPay = DB::table('payment_methods')->where('user_id',Auth::user()->id)->where('default',1)->first();
+
+        if(!$defaultPay):
+            return response()->json(['success' => "You haven't select or add any default payment method yet, Please select by following this <a href='/student/settings'>Add Payment Method</a>"]);
+        endif;
+    }
 }
 
