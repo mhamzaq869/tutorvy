@@ -282,73 +282,73 @@
                     <div class="modal-body">
                         <div class="container">
                             <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="iconss" style="text-align: center;">
+                                <div class="col-md-12">
+                                    <div class="iconss" style="text-align: center;">
 
-                                                <img src="{{asset ('admin/assets/img/ico/doollarss.png')}}" width="60px">
-                                                <p
-                                                    style="font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 500;margin-top: 10px;">
-                                                    Note</p>
-                                                <!-- <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;"
-                                                    class="ml-4 mr-4">
-                                                    Send approved time for class.
-                                                </p> -->
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <h3>Payment Details</h3>
-                                         </div>
+                                        <img src="{{asset ('admin/assets/img/ico/doollarss.png')}}" width="60px">
+                                        <p
+                                            style="font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 500;margin-top: 10px;">
+                                            Note</p>
+                                        <!-- <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;"
+                                            class="ml-4 mr-4">
+                                            Send approved time for class.
+                                        </p> -->
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <h3>Payment Details</h3>
+                                    </div>
 
-                                        <div class="col-md-6 col-6 col-sm-6">
-                                            <p class="mb-0">Current Balance: </p>
-                                        </div>
+                                <div class="col-md-6 col-6 col-sm-6">
+                                    <p class="mb-0">Current Balance: </p>
+                                </div>
 
-                                        <div class="col-md-6 col-6 col-sm-6 text-right" >
-                                            <strong id="price"> $123</strong>
-                                        </div>
+                                <div class="col-md-6 col-6 col-sm-6 text-right" >
+                                    <strong id="price"> $123</strong>
+                                </div>
 
-                                        <div class="col-md-6 col-6 col-sm-6">
-                                            <p class="mb-0">Amount to withdraw: <span id="total_commision"></span>
-                                            </p>
-                                        </div>
-                                        <div class="col-md-6 col-6 col-sm-6 text-right">
-                                            <strong id="commission"> $100</strong>
-                                        </div>
-                                        <div class="col-md-6 col-6 col-sm-6">
-                                            <p class="mb-0">Remaining Balance: </p>
-                                        </div>
-                                        <div class="col-md-6 col-6 col-sm-6 text-right">
-                                            <strong id="total_price">$23</strong>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <hr>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <h3>Reciever Details</h3>
-                                         </div>
-                                        <div class="col-md-6 col-6 col-sm-6">
-                                            <p class="mb-0">Reciever PayPal Account </p>
-                                        </div>
-                                        <div class="col-md-6 col-6 col-sm-6 text-right">
-                                            <strong id="total_price">sdsd*******@***.com</strong>
-                                        </div>
-                                        <div class="col-md-6 col-6 col-sm-6">
-                                            <p class="mb-0">PayPal Service Tax: </p>
-                                        </div>
-                                        <div class="col-md-6 col-6 col-sm-6 text-right">
-                                            <strong id="total_price">$1.87</strong>
-                                        </div>
-                                        <div class="col-md-6 col-6 col-sm-6">
-                                            <p class="mb-0">Amount Transfered: </p>
-                                        </div>
-                                        <div class="col-md-6 col-6 col-sm-6 text-right">
-                                            <strong id="total_price">$98.13</strong>
-                                        </div>
-                                        <div class="col-md-12 text-right mt-3" id="show_pay_btn">
-                                            <button class="btn-general" data-dismiss="modal">
-                                                Confirm
-                                            </button>
-                                        </div>
+                                <div class="col-md-6 col-6 col-sm-6">
+                                    <p class="mb-0">Amount to withdraw: <span id="total_commision"></span>
+                                    </p>
+                                </div>
+                                <div class="col-md-6 col-6 col-sm-6 text-right">
+                                    <strong id="commission"> $100</strong>
+                                </div>
+                                <div class="col-md-6 col-6 col-sm-6">
+                                    <p class="mb-0">Remaining Balance: </p>
+                                </div>
+                                <div class="col-md-6 col-6 col-sm-6 text-right">
+                                    <strong id="total_price">$23</strong>
+                                </div>
+                                <div class="col-md-12">
+                                    <hr>
+                                </div>
+                                <div class="col-md-12">
+                                    <h3>Reciever Details</h3>
+                                    </div>
+                                <div class="col-md-6 col-6 col-sm-6">
+                                    <p class="mb-0">Reciever PayPal Account </p>
+                                </div>
+                                <div class="col-md-6 col-6 col-sm-6 text-right">
+                                    <strong id="total_price">sdsd*******@***.com</strong>
+                                </div>
+                                <div class="col-md-6 col-6 col-sm-6">
+                                    <p class="mb-0">PayPal Service Tax: </p>
+                                </div>
+                                <div class="col-md-6 col-6 col-sm-6 text-right">
+                                    <strong id="total_price">$1.87</strong>
+                                </div>
+                                <div class="col-md-6 col-6 col-sm-6">
+                                    <p class="mb-0">Amount Transfered: </p>
+                                </div>
+                                <div class="col-md-6 col-6 col-sm-6 text-right">
+                                    <strong id="total_price">$98.13</strong>
+                                </div>
+                                <div class="col-md-12 text-right mt-3" id="show_pay_btn">
+                                    <button class="btn-general" data-dismiss="modal">
+                                        Confirm
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div class="mt-4 mb-2" style="text-align: right;">
