@@ -143,7 +143,7 @@
 
          <!--  sideanv bottom support -->
          <div class="container-fluid">
-         <a data-toggle="modal" href="#supportModal" style="text-decoration:none;">
+            <a href="#" data-toggle="modal" data-target="#supportModal" style="text-decoration:none;">
                 <div class="imageside text-center">
 
                     <img src="{{asset('assets/images/backgrounds/man.svg') }}" alt="background-image">
