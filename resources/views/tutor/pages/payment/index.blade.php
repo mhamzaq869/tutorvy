@@ -76,7 +76,7 @@
                
             </div>
             <div class="col-md-8 mt-1">
-                    <a href="#" class="btn btn-light btn-outline-general" data-toggle="modal" data-target="#paymentModel">
+                    <a href="#" class="btn btn-light btn-outline-general" data-toggle="modal" data-target="#paymentAmountModel">
                         <h3 class="mb-0 heading-forth"><img style="width:30px;" src="{{asset ('assets/images/payment-icon/paypal_logo_512.png')}}" alt="">
                         Paypal</h3>
                     </a>
@@ -155,7 +155,7 @@
 </div>
 
   <!--Paypal Modal -->
-  <div class="modal fade" id="paymentModel" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="paymentModel" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content pt-4 pb-4">
                     <div class="modal-body">
@@ -198,7 +198,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12 mt-3"  style="text-align: right;">
-                                                    <button type="button" class="btn-general" data-dismiss="modal"
+                                                    <button type="button" class="btn-general" data-dismiss="modal" 
                                                         style="">Connect My PayPal Account</button>
                                                 </div>
                                             </div>
@@ -212,4 +212,159 @@
                 </div>
             </div>
         </div>
+
+          <!--Payment Amount Modal -->
+          <div class="modal fade" id="paymentAmountModel" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content pt-4 pb-4">
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="iconss" style="text-align: center;">
+                                        <!-- <img src="{{asset('assets/images/ico/watchs.png')}}" width="60px"> -->
+                                        <p
+                                            style="font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 500;margin-top: 10px;">
+                                           Enter your amount</p>
+                                        <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;"
+                                            class="ml-4 mr-4">
+                                            
+                                        </p>
+                                    </div>
+                                    <div class="ml-4 mr-4">
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label for="">Current Balance</label>
+                                                    <div class="form-group input-group">
+                                                        
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">$</span>
+                                                        </div>
+                                                        <input type="text" class="form-control" disabled aria-label="Amount (to the nearest dollar)">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <label for="">Amount to Withdraw</label>
+                                                    <div class="form-group input-group">
+                                                        
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">$</span>
+                                                        </div>
+                                                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                                    </div>
+                                                </div>
+                                              
+                                                <div class="col-md-12">
+                                                    <p>We will not be able to recover funds after sending, please make sure the information you enter is correct.</p>
+                                                </div>
+
+                                                <div class="col-md-12 mt-3"  style="text-align: right;">
+                                                    <button type="button" class="btn-general" id="cnfrm_send"
+                                                        style="">Send</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+           <!--Pay Now Class Modal -->
+           <div class="modal fade" id="payModel" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content pt-4 pb-4">
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="iconss" style="text-align: center;">
+
+                                                <img src="{{asset ('admin/assets/img/ico/doollarss.png')}}" width="60px">
+                                                <p
+                                                    style="font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 500;margin-top: 10px;">
+                                                    Note</p>
+                                                <!-- <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;"
+                                                    class="ml-4 mr-4">
+                                                    Send approved time for class.
+                                                </p> -->
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <h3>Payment Details</h3>
+                                         </div>
+
+                                        <div class="col-md-6 col-6 col-sm-6">
+                                            <p class="mb-0">Current Balance: </p>
+                                        </div>
+
+                                        <div class="col-md-6 col-6 col-sm-6 text-right" >
+                                            <strong id="price"> $123</strong>
+                                        </div>
+
+                                        <div class="col-md-6 col-6 col-sm-6">
+                                            <p class="mb-0">Amount to withdraw: <span id="total_commision"></span>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 text-right">
+                                            <strong id="commission"> $100</strong>
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6">
+                                            <p class="mb-0">Remaining Balance: </p>
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 text-right">
+                                            <strong id="total_price">$23</strong>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <hr>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <h3>Reciever Details</h3>
+                                         </div>
+                                        <div class="col-md-6 col-6 col-sm-6">
+                                            <p class="mb-0">Reciever PayPal Account </p>
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 text-right">
+                                            <strong id="total_price">sdsd*******@***.com</strong>
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6">
+                                            <p class="mb-0">PayPal Service Tax: </p>
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 text-right">
+                                            <strong id="total_price">$1.87</strong>
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6">
+                                            <p class="mb-0">Amount Transfered: </p>
+                                        </div>
+                                        <div class="col-md-6 col-6 col-sm-6 text-right">
+                                            <strong id="total_price">$98.13</strong>
+                                        </div>
+                                        <div class="col-md-12 text-right mt-3" id="show_pay_btn">
+                                            <button class="btn-general" data-dismiss="modal">
+                                                Confirm
+                                            </button>
+                                        </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 mb-2" style="text-align: right;">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+@endsection
+
+@section('js')
+  <script>
+      $("#cnfrm_send").click(function(){
+            $("#paymentAmountModel").modal("hide");
+            $("#payModel").modal("show");
+      });
+  </script>
 @endsection
