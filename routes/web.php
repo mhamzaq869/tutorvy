@@ -140,6 +140,7 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
     Route::get('/ticket/{id}',[SupportController::class,'ticket'])->name('admin.ticket');
 
     Route::get('/ticket-reply',[SupportController::class,'ticketReply'])->name('admin.ticketReply');
+    Route::post('/ticket-chat',[SupportController::class,'ticketChat'])->name('admin.ticketChat');
     Route::get('/setting',[SettingController::class,'index'])->name('admin.setting');
 
     Route::get('/activity-logs',[SettingController::class,'activityLogs'])->name('admin.activity.logs');

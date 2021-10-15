@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\tktCat;
+use App\Models\General\TicketChat;
 use App\Models\Admin\supportTkts;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +24,10 @@ class SupportController extends Controller
     }
     public function ticket($id) {
         $ticket = supportTkts::where('ticket_no',$id)->with(['category','tkt_created_by'])->first();
-        return view('admin.pages.support.ticket',compact('ticket'));
+        $idAdmin = Auth::user()->id;
+
+     
+        return view('admin.pages.support.ticket',compact('ticket','idAdmin'));
     }
     public function ticketReply()
     {
@@ -58,5 +62,16 @@ class SupportController extends Controller
             'message' => 'Category Deleted Successfully',
             'success' => true,
         ]);
+    }
+    public function ticketChat(Request $request){
+        
+        $data = $request->all();
+        TicketChat::create($data);
+        return response()->json([
+            'status_code'=> 200,
+            'message' => 'Message Sent Successfully',
+            'success' => true,
+        ]);
+
     }
 }
