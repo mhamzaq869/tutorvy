@@ -186,8 +186,16 @@
 
                                                             <td>
                                                                 @if($class->classroom != null)
-                                                                <span data-id="{{$class->id}}" data-zone="{{$class->user->time_zone}}"   data-review="{{$class->is_reviewed}}" data-date="{{$class->class_date}}" data-room="{{$class->classroom != null ? $class->classroom->classroom_id : ''}}" data-duration="{{$class->duration}}" data-time="{{$class->class_time}}"
-                                                                        id="class_time_{{$class->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success mt-3">{{$class->class_date}} {{$class->class_time}} </span>     
+                                                                    <span data-id="{{$class->id}}" 
+                                                                        data-review="{{$class->is_reviewed}}"
+                                                                        data-room="{{$class->classroom != null ? $class->classroom->classroom_id : ''}}" 
+                                                                        id="class_time_{{$class->id}}" 
+                                                                        class="badge current_time badge-pill text-white font-weight-normal bg-success mt-3">
+
+                                                                        {{$class->class_date}} {{$class->class_time}}
+
+                                                                    </span>     
+
                                                                     <div class="join_class_{{$class->id}}" class="text-center">
                                                                 @endif
                                                             </td>
@@ -348,6 +356,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script>
     $(document).ready(function(){
+        var timer = new Timer();
 
         $('#stars li').on('click', function(){
             var onStar = parseInt($(this).data('value'), 10); // The star currently selected
@@ -410,71 +419,61 @@
  
         });
 
-
-
+ 
         $( ".current_time" ).each(function() {
 
-
-
             var booking_time = $( this ).text();
-            var attr_id = $(this).data('id');
-            var duration = $(this).data('duration');
-            var room_id = $(this).data('room');
-            var time = $(this).data('time');
-            var class_date = $(this).data('date');
-            var review = $(this).data('review');
-            var time_zone = $(this).data('zone');
-
-            const str = new Date().toLocaleString('en-US', { timeZone: time_zone});
-            let a = moment(str).format("YYYY-MM-DD HH:mm");            
-            const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-            var CurrentDate = new Date();
-            class_date = new Date(class_date);
-
-            let split_time = time.split(':');
-            let create_time = parseInt(split_time[0]) + parseInt(duration);
-
-            let actual_time  = create_time + ':' + split_time[1];
-            var time = moment(str).format('MMM D, YYYY h:mm:ss a');
+            var booking_seconds_time = HmsToSeconds(moment(booking_time).format('HH:mm:ss'));;
             
-            var countDownDate = new Date(time).getTime();
-            var x = setInterval(function() {
+            var attr_id = $(this).data('id');
+            var room_id = $(this).data('room');
+            var review = $(this).data('review');         
 
-                var now = new Date().getTime();
-                var distance = countDownDate - now;
+            var getcurrenttime = new Date();
+            var remain_time = (booking_seconds_time - HmsToSeconds(moment(getcurrenttime).format('HH:mm:ss')));
 
-                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            timer.start({countdown: true, startValues: {seconds: remain_time}});
+            timer.addEventListener('secondsUpdated', function (e) {
+                $("#class_time_"+attr_id).html(timer.getTimeValues().toString());
+            });
 
-                var total_time = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-                
-                $("#class_time_"+attr_id).html(total_time);
-
-                if (distance < 0) {
-                    clearInterval(x);
-                    let join_btn = `<a onclick="joinClass('`+room_id+`')" class="schedule-btn"> Join Class </a>`;
-                    // if(time > actual_time) {
-                    //     $("#class_time_"+attr_id).text("Class Expired");
-                    // }else{
-                    //     $("#join_class_"+attr_id).html(join_btn);
-                    // }
-
-                    if(review == 0) {
-                        $(".join_class_"+attr_id).html(join_btn);
-                    }else{
-                        $(".join_class_"+attr_id).html(" ");
-                    }
-                    
-                    $("#class_time_"+attr_id).text("");
-                    
+            timer.addEventListener('targetAchieved', function (e) {
+                let join_btn = `<a onclick="joinClass('`+room_id+`')" class="schedule-btn"> Join Class </a>`;
+                if(review == 0) {
+                    $(".join_class_"+attr_id).html(join_btn);
+                }else{
+                    $(".join_class_"+attr_id).html(" ");
                 }
-            }, 1000);
-
+                $("#class_time_"+attr_id).html("");
+            }); 
         }); 
     });
+
+    
+    function HmsToSeconds(hms) {
+        // var hms = '02:04:33';
+        var a = hms.split(':'); // split it at the colons
+
+        // minutes are worth 60 seconds. Hours are worth 60 minutes.
+        var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
+        return seconds;
+    }
+
+    function secondsToHms(secs) {
+
+        var sec_num = parseInt(secs, 10);
+        var hours = Math.floor(sec_num / 3600);
+        var minutes = Math.floor(sec_num / 60) % 60;
+        var seconds = sec_num % 60;
+
+        var h = hours < 10 ? "0" + hours : hours;
+        var m = minutes < 10 ? "0" + minutes : minutes;
+        var s = seconds < 10 ? "0" + seconds : seconds;
+
+        var fin = h + ":" + m + ":" + s;
+        return fin;
+
+    }
 
     function joinClass(id){
         var connection = new RTCMultiConnection();
@@ -497,7 +496,6 @@
     }
 
     function showReviewModal(id) {
-
         $("#booking_id").val(id);
         $("#reviewModal").modal('show');
     }

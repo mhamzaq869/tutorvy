@@ -57,6 +57,11 @@ class Booking extends Model
         return $this->hasOne(Classroom::class,'booking_id','id');
     }
 
+    public function booking_payment()
+    {
+        return $this->hasOne(Payments::class,'type_id','id');
+    }
+
     public function payment()
     {
         return $this->hasMany(Payments::class,'type_id','id');
