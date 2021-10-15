@@ -1049,7 +1049,50 @@ height:25px;
             </div>
         </div>
     </div>
- 
+ <!--Reschedule meeting-->default  <!-- Modal -->
+            <div class="modal " id="resced" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content pt-4 pb-4">
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="iconss" style="text-align: center;">
+                                            <img src="{{asset('assets/images/ico/watchs.png')}}" width="60px">
+                                            <p
+                                                style="font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 500;margin-top: 10px;">
+                                                Re-schedule class</p>
+                                            <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;"
+                                                class="ml-4 mr-4">
+                                                Send new time for class with a short note about why are you rescheduling
+                                                class
+                                            </p>
+                                        </div>
+                                        <div class="ml-4 mr-4">
+                                            <form>
+                                                <div style="display: flex;">
+                                                    <input id="today2" class="inputtype mb-2" style="width: 170px;"
+                                                        type="date">
+                                                    <input type="time" class="inputtype ml-5 mb-2" class="times"
+                                                        style="width: 170px;" value="13:00" step="900">
+                                                </div>
+                                                <textarea class="form-control mt-3" rows="6" cols="50"
+                                                    placeholder="Write reason"></textarea>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 mb-2" style="text-align: right;">
+                                <button type="button" class="schedule-btn" data-dismiss="modal"
+                                    style="width: 130px;margin-right: 40px;">Send</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Reschedule Meeting End-->
 @endsection
 @section('scripts')
 @include('js_files.whiteBoard')
@@ -1233,7 +1276,7 @@ $("#join_now").click(function(){
                         }
                         else if( ter == resced ){
                             $(".blink").css("background","#ffc107");
-                            let html = `<p class="mb-0">Do you want to reschedule another class? <a href="">Yes</a> or  <a href="">No</a> </p>`
+                            let html = `<p class="mb-0">Do you want to reschedule another class? <a href="#" data-toggle="modal" data-target="#resced">Yes</a> or  <a href="">No</a> </p>`
                             $(".Text-reck").html(html);
                         }
                         else if( ter >= resced ){
