@@ -184,7 +184,12 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::get('/classroom',[ClassController::class,'index'])->name('tutor.classroom');
     Route::get('/calendar',[CalendarController::class,'index'])->name('tutor.calendar');
     Route::get('/support-ticket',[HistoryController::class,'index'])->name('tutor.history');
+
     Route::get('/payment',[PaymentController::class,'index'])->name('tutor.payment');
+    Route::get('/payment/paypal-status',[PaymentController::class,'paypalResponseSuccess'])->name('tutor.payment.paypal_status');
+
+    Route::get('/payment/paypal',[PaymentController::class,'withdrawWithPaypal'])->name('tutor.payment.paypal');
+
     Route::get('/subjects',[TutorSubjectController::class,'index'])->name('tutor.subject');
     Route::get('/reviews',[TutorSubjectController::class,'review'])->name('tutor.reviews');
     Route::get('/removesubjects/{id}',[TutorSubjectController::class,'destroy'])->name('tutor.remove.subject');

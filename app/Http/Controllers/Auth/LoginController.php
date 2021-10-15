@@ -253,4 +253,39 @@ class LoginController extends Controller
         }
 
     }
+
+    public function logout(Request $request)
+    {
+        $user = Auth::user();
+        $cur_unnid = Session::get('unnid');
+        $tokens = array();
+        
+        $tokens_obj = $user->token;
+       
+        if($tokens_obj != NULL){
+
+            $tokens_obj = json_decode($tokens_obj);
+            for($i = 0; $i < sizeof($tokens_obj) ; $i++ ){
+                if($cur_unnid != $tokens_obj[$i]->token){
+                    $fcm_data['token'] = $tokens_obj[$i]->token;
+                    $fcm_data['device'] = 'Windows';
+                    array_push($tokens,$fcm_data);
+                }
+               
+            }
+            if(sizeof($tokens) == 0 || $tokens == [] || $tokens == '[]'){
+                $tokens = NULL;
+                $user->token = $tokens;
+                $user->save();
+            }else{
+                $user->token = json_encode($tokens);
+                $user->save();
+            }
+            
+        }
+ 
+        Auth::logout();
+        Session::flush();
+        return redirect('/');
+    }
 }

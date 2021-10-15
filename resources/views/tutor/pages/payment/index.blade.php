@@ -194,7 +194,7 @@
                                                 <div class="col-md-12 ">
                                                     <div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" name="working" id="working">
-                                                        <label class="custom-control-label" for="working">Currently Working? </label>
+                                                        <label class="custom-control-label" for="working">I understand and agree. </label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12 mt-3"  style="text-align: right;">

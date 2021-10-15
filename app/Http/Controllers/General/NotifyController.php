@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Notification;
 use App\Models\User;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 
 class NotifyController extends Controller
@@ -62,8 +63,10 @@ class NotifyController extends Controller
           $entry = current(array_filter($fcm_array, function ($e) use ($token) {
               return $e->token == $token;
           }));
+          Session::put('unnid',$token);
 
           if ($entry === false) {
+
               $fcm_data = array();
               $fcm_data['token'] = $request->token;
               $fcm_data['device'] = 'Windows';
@@ -74,6 +77,8 @@ class NotifyController extends Controller
               $user->save();
           }
       }else{
+          Session::put('unnid',$request->token);
+
           $fcm_data = array();
           $fcm_array = array();
           $fcm_data['token'] = $request->token;
