@@ -109,7 +109,6 @@
                                                         @if($all != "[]")
                                                             @foreach ($all as $booking)
                                                                 @php
-                                                                 dd(localtime(time(),true));
                                                                 $tz = get_local_time();
                                                                 $dt = new DateTime($booking->class_time, new DateTimeZone($tz)); //first argument "must" be a string
                                                                 $time = $dt->format('g:i a');
@@ -674,5 +673,9 @@
 
     </section>
 </div>
+@endsection
+
+@section('scripts')
+    @include('js_files.student.bookingJs')
 @endsection
 

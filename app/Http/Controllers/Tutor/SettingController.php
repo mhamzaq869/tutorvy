@@ -28,7 +28,10 @@ class SettingController extends Controller
     public function index(){
 
         $user = User::where('id',\Auth::user()->id)->first();
-        return view('tutor.pages.setting.index',compact('user'));
+        $paypal_payment = DB::table('payment_methods')->where('user_id',Auth::user()->id)
+                            ->where('method','paypal')->first();
+
+        return view('tutor.pages.setting.index',compact('user','paypal_payment'));
     }
 
     protected function validator(array $request)
@@ -43,13 +46,13 @@ class SettingController extends Controller
     public function changePassword(Request $request){
 
         $data = $request->all();
-        
+
         $request->validate([
             'current_password'     => 'required',
             'new_password'     => 'required|min:6',
             'new_confirm_password' => 'required|same:new_password',
         ]);
- 
+
         $user = User::find(auth()->user()->id);
 
         if(!\Hash::check($data['current_password'], $user->password)){
@@ -60,7 +63,7 @@ class SettingController extends Controller
             User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
 
             // activity logs
-            $id = Auth::user()->id; 
+            $id = Auth::user()->id;
             $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
             $action_perform = '<a href="'.URL::to('/') . '/admin/tutor/profile/'. $id .'"> '.$name.' </a> Change his Password';
             $activity_logs = new GeneralController();
@@ -96,7 +99,7 @@ class SettingController extends Controller
 
     }
 
-   
+
 
     public function change_password(Request $request) {
 
@@ -111,7 +114,7 @@ class SettingController extends Controller
             User::find(\Auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
 
             // activity logs
-            $id = Auth::user()->id; 
+            $id = Auth::user()->id;
             $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
             $action_perform = '<a href="'.URL::to('/') . '/admin/tutor/profile/'. $id .'"> '.$name.' </a> Change his Password';
             $activity_logs = new GeneralController();
@@ -128,7 +131,7 @@ class SettingController extends Controller
             $class = 'btn-success';
             $desc = $name . ' Logout from System.';
             $pic = Auth::user()->picture;
-    
+
             $notification->GeneralNotifi( $reciever_id , $slug ,  $type , $title , $icon , $class ,$desc,$pic);
 
             return redirect()->back()->with(['success' => 'Password Change ...' , 'key' => 'password_changed']);
@@ -142,9 +145,9 @@ class SettingController extends Controller
 
     public function getAllCategories() {
         $data = tktCat::all();
-        
+
         return response()->json([
-            "status_code" => 200, 
+            "status_code" => 200,
             "categories" => $data,
         ]);
 
@@ -167,14 +170,14 @@ class SettingController extends Controller
         ]);
 
         return response()->json([
-            "status_code" => 200, 
+            "status_code" => 200,
             "message" => "Ticket Created .. Our Staff will contact us soon.",
             "success" => true,
         ]);
     }
 
 
-    public function ticket($id) {        
+    public function ticket($id) {
         $ticket = supportTkts::where('ticket_no',$id)->with(['category','tkt_created_by'])->first();
         return view('tutor.pages.history.ticket_details',compact('ticket'));
     }
