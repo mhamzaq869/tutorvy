@@ -28,7 +28,25 @@
                 </div>
             </div>
             <div class="row">
+
                 <div class="col-md-12 mb-1 ">
+                    @if(session()->has('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <i class="fa fa-info" aria-hidden="true"></i>
+                        {{session('error')}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @elseif(session()->has('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="fa fa-info" aria-hidden="true"></i>
+                        {{session('success')}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @endif
                     <div class=" card  bg-toast infoCard">
 
                         <div class="card-body row">
@@ -147,23 +165,6 @@
                                     <div class="col-md-12 mb-4">
                                         <h3>Security</h3>
                                     </div>
-                                    <div class="col-6">
-                                        @if(session()->has('error'))
-                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                            {{session('error')}}
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        @elseif(session()->has('success'))
-                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                            {{session('success')}}
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        @endif
-                                    </div>
 
                                     <div class="col-md-12 font-light">
                                             Change password
@@ -200,6 +201,9 @@
                                                 <div class="float-right">
                                                     <button type="submit" class="schedule-btn">Save changes</button>
                                                 </div>
+
+                                                <span id='lippButton'></span>
+
                                             </form>
                                         </div>
                                     </div>
@@ -208,12 +212,59 @@
                                 <div class="tab-pane fade chee" id="v-pills-Payment" role="tabpanel"
                                     aria-labelledby="v-pills-Payment-tab">
                                     <div class="row">
-                                    <div class="col-md-12 mb-4">
-                                        <h3>Payments</h3>
+                                        <div class="col-md-12 mb-4">
+                                            <h3>Payments</h3>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-6">
-                                            <small>Payment Methods</small>
-                                            <div class="form-group  mt-1">
+
+                                        <div class="row">
+                                            <div class="col-md-2 text-center">
+                                                <img class="mt-4" src="{{asset ('assets/images/payment-icon/paypal_logo_512.png')}}" alt="">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <h5>Paypal</h5>
+                                                <hr>
+                                                <p>Additional activation and maintainance fees charged by Paypal.
+                                                    <a href="https://www.paypal.com/us/webapps/mpp/account-selection">Don't have a Paypal account?</a>
+                                                </p>
+
+                                            </div>
+                                            <div class="col-md-2 text-center">
+                                                @if ($paypal_payment != null)
+                                                <button type="button" class="btn btn-secondary mt-4" disabled>Set Up</button>
+                                                @else
+                                                <button type="button" data-toggle="modal" data-target="#paypalModel" class="btn btn-primary mt-4">Set Up</button>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-2 text-center">
+                                                <img class="mt-4 w-100" src="{{asset ('assets/images/payment-icon/Payoneer_logo.png')}}" alt="">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <h5>Payoneer</h5>
+                                                <hr>
+                                                <p>Additional activation and maintainance fees charged by Paypal.
+                                                    <a href="https://payouts.payoneer.com/partners/or.aspx?pid=YOYIZC74IO2s4KZQp7tgsw%3d%3d&web_interaction=website_traffic">Don't have a Payoneer account?</a>
+                                                </p>
+
+                                            </div>
+                                            <div class="col-md-2 text-center">
+                                                <a href="#" class="btn btn-primary mt-4">Set Up</a>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        {{-- <div class="row"> --}}
+                                    {{-- <div class="col-sm-6"> --}}
+                                            {{-- <small>Payment Methods</small> --}}
+                                            {{-- <div class="form-group  mt-1">
                                                 <select name="" id="paymentMethod" class="form-control" id="">
                                                     <option value="Paypal"> <p> <i class="fa fa-plus"></i> Paypal  </p></option>
                                                     <option value="Payoneer">Payoneer</option>
@@ -270,18 +321,19 @@
                                             </div>
                                             <div class="float-right">
                                                 <button class="schedule-btn">Save changes</button>
-                                            </div>
+                                            </div> --}}
 
-                                            <a class="btn btn-primary" href="https://www.sandbox.paypal.com/connect?flowEntry=static&client_id=AWeUwawzNAmSvcs8f7M_4dhn_DJ09bsUhQ9IuUuI8Cd1e8pizjpnZn-48R2UdcY23OjoYJJQxdB778Fs&scope=profile&redirect_uri=https://webs.dev/tutor/settings">set Up Paypal</a>
-                                            <span id='lippButton'></span>
 
-                                        </div>
 
-                                    </div>
+                                        {{-- </div> --}}
+
+                                    {{-- </div> --}}
                                     <div class="row mb-3">
                                         <div class="col-md-12">
                                             <hr>
                                         </div>
+
+                                        @if ($paypal_payment != null)
                                         <div class="col-md-4">
                                             <div class="card">
                                                 <div class="card-body">
@@ -293,20 +345,19 @@
                                                             </a>
                                                             <ul class="dropdown-menu  " >
                                                                 <li>
-                                                                    <a tabindex="-1" class="" href="">
+                                                                    <a id="paypal_btn" onclick="delPayMethod({{$paypal_payment->id}})">
                                                                         Delete
                                                                     </a>
                                                                 </li>
                                                             </ul>
                                                         </span>
-                                                        <span class="round">
-                                                            <input type="checkbox" id="checkbox1" />
-                                                            <label for="checkbox1"></label>
-                                                        </span>
+
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        @endif
+
                                         <div class="col-md-4">
                                             <div class="card">
                                                 <div class="card-body">
@@ -332,6 +383,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="col-md-4">
                                             <div class="card">
                                                 <div class="card-body">
@@ -428,5 +480,39 @@
     </div>
 </section>
 
+@include('Modals.paymentModal')
+
+
+<script>
+    function delPayMethod(id)
+    {
+        $.ajax({
+            url: "{{route('del.payment')}}",
+            type:"POST",
+            data:{
+                id:id,
+            },
+            success:function(data){
+                    if(data == "success"){
+                        toastr.success('Payment Method Deleted Successfully!',{
+                        position: 'top-end',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
+
+                    setInterval(function(){
+                        window.location.href = "{{ route('tutor.settings') }}";
+                    }, 1500);
+
+
+                    }
+                },
+            });
+    }
+</script>
 
 @endsection
+
+
+

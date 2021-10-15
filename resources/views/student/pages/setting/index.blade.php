@@ -202,6 +202,7 @@
                                                             <span class="small text-danger">{{ $message }}</span>
                                                         @enderror
                                                     </div>
+
                                                     <div class="float-right">
                                                         <button type="submit" class="schedule-btn">Save changes</button>
                                                     </div>
@@ -216,6 +217,8 @@
                                             <div class="col-md-12 mb-4">
                                                 <h3>Payment</h3>
                                             </div>
+
+
                                             <div class="col-sm-6">
                                                 <form action="{{ route('student.paymentmethod') }}" method="post">
                                                     @csrf
@@ -340,10 +343,8 @@
     </section>
 
     <script>
-
         function defaultMethod(value)
         {
-
             $.ajax({
                 url: 'setDefaltPayment',
                 dataType: "json",
@@ -363,9 +364,8 @@
 
         }
 
-        var app = <?php Session('success'); ?>
-        console.log(app, "asd");
-
     </script>
+
+
 
 @endsection

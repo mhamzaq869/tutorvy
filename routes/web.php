@@ -184,7 +184,12 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::get('/classroom',[ClassController::class,'index'])->name('tutor.classroom');
     Route::get('/calendar',[CalendarController::class,'index'])->name('tutor.calendar');
     Route::get('/support-ticket',[HistoryController::class,'index'])->name('tutor.history');
+
     Route::get('/payment',[PaymentController::class,'index'])->name('tutor.payment');
+    Route::get('/payment/paypal-status',[PaymentController::class,'paypalResponseSuccess'])->name('tutor.payment.paypal_status');
+
+    Route::get('/payment/paypal',[PaymentController::class,'withdrawWithPaypal'])->name('tutor.payment.paypal');
+
     Route::get('/subjects',[TutorSubjectController::class,'index'])->name('tutor.subject');
     Route::get('/reviews',[TutorSubjectController::class,'review'])->name('tutor.reviews');
     Route::get('/removesubjects/{id}',[TutorSubjectController::class,'destroy'])->name('tutor.remove.subject');
@@ -195,7 +200,7 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     //Course CRUD
     Route::get('/course',[TutorCourseController::class,'index'])->name('tutor.course');
     Route::get('/addcourse', [TutorCourseController::class,'create'])->name('tutor.addcourse');
-    
+
     Route::post('/srtorecourse', [TutorCourseController::class,'store'])->name('tutor.storecourse');
 
     Route::get('/course/{id}/edit', [TutorCourseController::class,'edit'])->name('tutor.course.edit');
@@ -217,6 +222,13 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::get('/settings',[TutorSettingController::class,'index'])->name('tutor.settings');
     Route::post('/change-password',[TutorSettingController::class,'changePassword'])->name('tutor.changePassword');
 
+    /**
+     * Payment Configuration | Integeration
+     */
+    Route::post('storePaypal',[PaymentController::class,'paypalConfigure'])->name('paypal.conf');
+    Route::post('delPayMethod',[PaymentController::class,'delPayMethod'])->name('del.payment');
+
+
     Route::get('/call',[TutorSettingController::class,'call'])->name('tutor.call');
     Route::get('/class/{class_room_id}',[TutorSettingController::class,'start_class'])->name('tutor.start_class');
     Route::post('/save-class-logs',[ClassController::class,'saveClassLogs'])->name('tutor.class.logs');
@@ -229,6 +241,7 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::post('/save-ticket',[TutorSettingController::class,'saveTicket'])->name('tutor.save.ticket');
 
     Route::get('/ticket/{id}',[TutorSettingController::class,'ticket'])->name('tutor.ticket');
+
 });
 
 /*
@@ -290,6 +303,7 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     Route::get('/settings',[StudentSettingController::class,'index'])->name('student.settings');
     Route::post('student-paymentmethod',[StudentSettingController::class,'paymentMethod'])->name('student.paymentmethod');
     Route::post('setDefaltPayment', [StudentSettingController::class,'setDefaultPayment']);
+    Route::get('checkDfltPymntMthd', [StudentBookingController::class,'checkDefaultPaymentMethod'])->name('check.default.payment');
     Route::post('/change-password',[StudentSettingController::class,'change_password']);
 
     Route::get('/profile',[StudentProfileController::class,'index'])->name('student.profile');
@@ -299,7 +313,6 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     Route::get('/class/{class_room_id}',[StudentSettingController::class,'join_class'])->name('student.join_class');
 
     Route::get('/whiteBoard',[StudentSettingController::class,'whiteBoard'])->name('student.whiteBoard');
-
 
     Route::post('/updateprofile',[StudentProfileController::class,'profileUpdate'])->name('student.profile.update');
     Route::post('/update_education',[StudentProfileController::class,'profileEducationRecord'])->name('student.education.update');
@@ -313,11 +326,12 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     Route::post('/fav-tutor',[StudentSettingController::class,'favouriteTutor'])->name('student.fav.tutor');
     Route::get('/ticket/{id}',[StudentSettingController::class,'tickets'])->name('student.ticket');
 
-
     /*Course */
     Route::get('/course-details/{id}',[StudentSettingController::class,'courseDetails'])->name('student.course-details');
     Route::get('/courses',[StudentSettingController::class,'courses'])->name('student.courses');
     /*Course  End*/
+
+
 });
 /*
 |--------------------------------------------------------------------------

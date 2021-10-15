@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 @section('content')
 
-   
+
     <section>
         <div class="content-wrapper " style="overflow: hidden;">
             <div class="container-fluid">
@@ -11,7 +11,7 @@
                             <p class="mr-3 heading-first lead"> Booking Details </p>
                     </div>
                 </div>
-                
+
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
@@ -52,7 +52,7 @@
                                                 <div class="text3" style="display: flex;">
                                                     <span>
                                                         <img class="book-details"
-                                                        
+
                                                             src="{{ asset('assets/images/ico/Group 4689.png') }}" alt="gros">
                                                         <span class="schedule">
                                                             Schedule Date:
@@ -74,7 +74,7 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                        
+
                                         </div>
                                         <div class="col-md-3"></div>
                                         <div class="container-fluid" style="">
@@ -82,7 +82,7 @@
                                                 <p
                                                     style="color: #00132D;font-size: 16px;font-family: Poppins;font-weight: 500;">
                                                      Attachments</p>
-                                                     
+
                                                 <div class="row">
                                                     <!-- <div class="col-md-3 col-sm-12 card bg-light mb-3"
                                                         style="">
@@ -148,7 +148,7 @@
                                                             <p>No attachments found</p>
                                                         </div>
                                                     @endif
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>

@@ -221,7 +221,10 @@ if(val){
 }
 
 function paymentMethod(value){
+
     let input = "<input type='hidden' name='paymentMethod' value='"+value+"' />"
     $("#payment #paytype").html(input)
 }
+
+
 </script>

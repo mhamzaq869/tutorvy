@@ -49,12 +49,12 @@
             <div class="row">
                 <div class="col-md-12">
                     <!-- <a href="{{route('student.courses')}}" class="decoration-none"> -->
-                        <p class="heading-first mr-3 ml-3"> 
-                                Course Detail     
+                        <p class="heading-first mr-3 ml-3">
+                                Course Detail
                         </p>
                     <!-- </a> -->
                 </div>
-              
+
             </div>
             @if (Session::has('error'))
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -99,7 +99,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
                 <div class="col-md-7">
                     <div class="card bg-color">
@@ -116,7 +116,7 @@
                                 <div class="panels">
                                     <div class="panel " id="one-panel">
                                         <div class="container-fluid ">
-                                            
+
                                             <div class="panel-title">Course outline</div>
                                                 @if($course->basic_class_title == "null")
                                                     <div class="row mt-3">
@@ -196,20 +196,20 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <!-- <span class="heading-forth ml-2">Course outline</span> -->
-                        
+
                                                         <div id="main">
                                                             <!-- first -->
                                                             <div class="container-fluid m-0 p-0 border-bottom pb-3">
                                                                 @foreach($course->outline as $outline)
-                                                                    @if($outline->level == 1)   
+                                                                    @if($outline->level == 1)
                                                                         @if($outline->title == '' && $outline->explain == '')
                                                                         <p>No Course Outline added.</p>
                                                                         @else
                                                                         <div class="accordion active" id="faq">
                                                                                 <div class="card m-0 p-0">
-                                                                                    
+
                                                                                         <div class="card-header" id="outlinehead{{$outline->id}}">
-                                                                                            <a href="#" 
+                                                                                            <a href="#"
                                                                                                 class=" bg-color btn-header-link collapsed"
                                                                                                 data-toggle="collapse" data-target="#outline{{$outline->id}}"
                                                                                                 aria-expanded="true" aria-controls="outline{{$outline->id}}">
@@ -223,7 +223,7 @@
                                                                                                 {{$outline->explain}}
                                                                                             </div>
                                                                                         </div>
-                                                                                    
+
                                                                                 </div>
                                                                             </div>
                                                                         @endif
@@ -300,7 +300,7 @@
                                                                         @else
                                                                         <td class="pt-4 pb-0">---</td>
                                                                         @endif
-                                    
+
                                                                         @if($class->day == 3)
                                                                         <td class="m-0 p-0 pt-4">
                                                                             <div class="bg-color-apporve3 pl-2 pr-3 m-0 p-0 w-150">
@@ -392,17 +392,17 @@
                                                                         @endif
                                                                     </tr>
                                                                     @endforeach
-                                    
+
                                                                 </tbody>
                                                         </table>
                                                     </div>
                                                 </div>
-                                                
+
                                                 @endif
                                         </div>
                                     </div>
                                     <div class="panel" id="two-panel">
-                    
+
                                         <div class="container-fluid ">
                                             <div class="panel-title">Course Outline</div>
                                             @if($course->standard_class_title == "null")
@@ -418,7 +418,7 @@
                                                         <div id="main">
                                                             <div class="container-fluid m-0 p-0 border-bottom pb-3">
                                                                 @foreach($course->outline as $outline)
-                                                                    @if($outline->level == 2) 
+                                                                    @if($outline->level == 2)
                                                                         @if($outline->title == '' && $outline->explain == '')
                                                                             <p>No Course Outline added.</p>
                                                                         @else
@@ -517,7 +517,7 @@
                                                                     @else
                                                                     <td class="pt-4 pb-0">---</td>
                                                                     @endif
-                                
+
                                                                     @if($class->day == 3)
                                                                     <td class="m-0 p-0 pt-4">
                                                                         <div class="bg-color-apporve3 pl-2 pr-3 m-0 p-0 w-150">
@@ -609,7 +609,7 @@
                                                                     @endif
                                                                 </tr>
                                                                 @endforeach
-                                
+
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -677,10 +677,10 @@
                                                 </div>
                                             @endif
                                         </div>
-                    
+
                                     </div>
                                     <div class="panel" id="three-panel">
-                    
+
                                         <div class="container-fluid ">
                                             <div class="panel-title">Course Outline</div>
                                             @if($course->advance_class_title == "null")
@@ -696,7 +696,7 @@
                                                         <div id="main">
                                                             <div class="container-fluid m-0 p-0 border-bottom pb-3">
                                                             @foreach($course->outline as $outline)
-                                                                    @if($outline->level == 2) 
+                                                                    @if($outline->level == 2)
                                                                         @if($outline->title == '' && $outline->explain == '')
                                                                             <p>No Course Outline added.</p>
                                                                         @else
@@ -795,7 +795,7 @@
                                                                     @else
                                                                     <td class="pt-4 pb-0">---</td>
                                                                     @endif
-                                
+
                                                                     @if($class->day == 3)
                                                                     <td class="m-0 p-0 pt-4">
                                                                         <div class="bg-color-apporve3 pl-2 pr-3 m-0 p-0 w-150">
@@ -887,7 +887,7 @@
                                                                     @endif
                                                                 </tr>
                                                                 @endforeach
-                                
+
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -1017,40 +1017,43 @@
                                     <p class="mb-0">Start Date: </p>
                                 </div>
                                 <div class="col-md-6 col-6 col-sm-6 text-right" >
-                                    <strong id="scdule_date"></strong>
+                                    <strong id="scdule_date">{{date('d M, Y',strtotime($course->start_date))}}</strong>
                                 </div>
                                 <div class="col-md-6 col-6 col-sm-6">
                                     <p class="mb-0">Course Duration: </p>
                                 </div>
                                 <div class="col-md-6 col-6 col-sm-6 text-right" >
-                                    <strong id="class_time"></strong>
+                                    <strong id="class_time">{{$course->basic_duration.' Weeks'}}</strong>
                                 </div>
                                 <div class="col-md-12 col-12 col-sm-12">
                                         <p class=""><strong>Course Timings</strong>  </p>
                                 </div>
                                 <div class="col-md-12">
                                     <ul style="list-style-type:disc;">
+                                        @foreach ($course->basic_classes as $bs)
+
                                         <li>
-                                           <p class="mb-0">Monday  <span class="pull-right"> 10:00 PM - 11:00</span></p>
+                                            <p class="mb-0">
+                                                @if ($bs->day == 1)
+                                                    Monday
+                                                @elseif ($bs->day == 2)
+                                                    Tuesday
+                                                @elseif ($bs->day == 3)
+                                                    wednesday
+                                                @elseif ($bs->day == 4)
+                                                    Thursday
+                                                @elseif ($bs->day == 5)
+                                                    Friday
+                                                @elseif ($bs->day == 6)
+                                                    Saturday
+                                                @elseif ($bs->day == 7)
+                                                    Sunday
+                                                @endif
+                                            <span class="pull-right"> {{date('h:i A',strtotime($bs->st_time))}} - {{date('h:i A',strtotime($bs->et_time))}}</span></p>
                                         </li>
-                                        <li>
-                                            <p class="mb-0">Tuesday  <span class="pull-right"> 10:00 PM - 11:00</span></p>
-                                        </li>
-                                        <li>
-                                            <p class="mb-0">Wednesday  <span class="pull-right"> 10:00 PM - 11:00</span></p>
-                                        </li>
-                                        <li>
-                                           <p class="mb-0">Thursday  <span class="pull-right"> 10:00 PM - 11:00</span></p>
-                                        </li>
-                                        <li>
-                                            <p class="mb-0">Friday  <span class="pull-right"> 10:00 PM - 11:00</span></p>
-                                        </li>
-                                        <li>
-                                            <p class="mb-0">Saturday  <span class="pull-right"> 10:00 PM - 11:00</span></p>
-                                        </li>
-                                        <li>
-                                             <p class="mb-0">Sunday  <span class="pull-right"> 10:00 PM - 11:00</span></p>
-                                        </li>
+
+                                        @endforeach
+
                                     </ul>
                                 </div>
                                 <div class="col-md-6 col-6 col-sm-6 text-right" >
@@ -1065,11 +1068,11 @@
                                 </div>
 
                                 <div class="col-md-6 col-6 col-sm-6 text-right" >
-                                    <strong id="price"></strong>
+                                    <strong id="price">${{$course->basic_price}}</strong>
                                 </div>
 
                                 <div class="col-md-6 col-6 col-sm-6">
-                                    <p class="mb-0">Service Fee: <span id="total_commision"></span>
+                                    <p class="mb-0">Service Fee: <span id="total_commision">{{$basic_comm}}</span>
                                     </p>
                                 </div>
                                 <div class="col-md-6 col-6 col-sm-6 text-right">

@@ -3132,3 +3132,47 @@ select#paymentMethod option[value="others"] {
 
 
 /*Toaster Link ENd*/
+
+
+/*Ticket Messages*/
+
+.ticketChat {
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.reciever {
+    float: right;
+    max-width: 75%;
+}
+
+.sender {
+    float: left;
+    max-width: 75%;
+}
+
+.reciever p,
+.sender p {
+    width: 100%;
+    min-width: 324px;
+    border: 1px solid #6EAAFF;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.reciever p {
+    float: right;
+    border-color: #D3D8DF;
+}
+
+.dull {
+    color: #BCC0C7;
+}
+
+.attachment {
+    width: 150px;
+    margin-left: 33%;
+}
+
+
+/*Ticket Messages End*/

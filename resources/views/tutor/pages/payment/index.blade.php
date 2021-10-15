@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-md-12 mb-1 ">
                 <div class=" card  bg-toast infoCard">
-                   
+
 
                     <div class="card-body row">
                         <div class="col-md-1 text-center">
@@ -26,7 +26,7 @@
                                 Payment stats here to know about your earnings and way to organize the paid classes. <a href="#">Learn More</a>
 
                             </small>
-                            <a href="#" class="cross"  onclick="hideCard()"> 
+                            <a href="#" class="cross"  onclick="hideCard()">
                                 <i class="fa fa-times" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -69,7 +69,24 @@
             <div class="col-md-3">
             </div>
         </div>
+        <div class="row mt-3 ">
+            <div class="col-md-2">
+                <h5 class="pt-3">Withdraw: </h5>
 
+               
+            </div>
+            <div class="col-md-8 mt-1">
+                    <a href="#" class="btn btn-light btn-outline-general" data-toggle="modal" data-target="#paymentAmountModel">
+                        <h3 class="mb-0 heading-forth"><img style="width:30px;" src="{{asset ('assets/images/payment-icon/paypal_logo_512.png')}}" alt="">
+                        Paypal</h3>
+                    </a>
+                    <a href="#" class="btn btn-light btn-outline-general">
+                        <h3 class="mb-0 heading-forth"><img style="width:30px;" src="{{asset ('assets/images/payment-icon/payoneer.png')}}" alt="">
+                        Bank Transfer</h3>
+                    </a>
+                    
+            </div>
+        </div>
         <div class="row mt-3 ">
             <div class="col-md-6">
                 <p class="heading-third">Payment history</p>
@@ -100,7 +117,7 @@
                             <tbody>
                                 @if($payment != "[]")
                                     @foreach($payment as $pay)
-                                    
+
                                         <tr>
                                             <td class="pt-4"> {{$pay->user->first_name}} {{$pay->user->last_name}}</td>
                                             <td class="pt-4">{{$pay->topic}}</td>
@@ -115,7 +132,7 @@
                                                 </td>
                                             @endif
                                             <td class="pt-4 text-center"> ${{$pay->price}}</td>
-                                            <td class="pt-4" > 
+                                            <td class="pt-4" >
                                                 <a class="cencel-btn" href="{{route('tutor.booking.detail',[$pay->id])}}"> View Details</a>
                                             </td>
                                         </tr>
@@ -131,9 +148,223 @@
                         </table>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
 </div>
+
+  <!--Paypal Modal -->
+        <div class="modal fade" id="paymentModel" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content pt-4 pb-4">
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="iconss" style="text-align: center;">
+                                        <!-- <img src="{{asset('assets/images/ico/watchs.png')}}" width="60px"> -->
+                                        <p
+                                            style="font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 500;margin-top: 10px;">
+                                           Conigure Your Paypal Account</p>
+                                        <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;"
+                                            class="ml-4 mr-4">
+                                            We will use this PayPal account to send you money when you initiate a withdrawal.
+                                        </p>
+                                    </div>
+                                    <div class="ml-4 mr-4">
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="">Email Address</label>
+                                                        <input type="email" class="form-control" >
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="">Repeat Email Address</label>
+                                                        <input type="email" class="form-control" >
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <p>We will not be able to recover funds sent to the wrong address, please make sure the information you enter is correct.</p>
+                                                </div>
+
+                                                <div class="col-md-12 ">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" name="working" id="working">
+                                                        <label class="custom-control-label" for="working">I understand and agree. </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 mt-3"  style="text-align: right;">
+                                                    <button type="button" class="btn-general" data-dismiss="modal" 
+                                                        style="">Connect My PayPal Account</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+          <!--Payment Amount Modal -->
+          <div class="modal fade" id="paymentAmountModel" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content pt-4 pb-4">
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="iconss" style="text-align: center;">
+                                        <!-- <img src="{{asset('assets/images/ico/watchs.png')}}" width="60px"> -->
+                                        <p
+                                            style="font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 500;margin-top: 10px;">
+                                           Enter your amount</p>
+                                        <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;"
+                                            class="ml-4 mr-4">
+                                            
+                                        </p>
+                                    </div>
+                                    <div class="ml-4 mr-4">
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label for="">Current Balance</label>
+                                                    <div class="form-group input-group">
+                                                        
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">$</span>
+                                                        </div>
+                                                        <input type="text" class="form-control" disabled aria-label="Amount (to the nearest dollar)">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <label for="">Amount to Withdraw</label>
+                                                    <div class="form-group input-group">
+                                                        
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">$</span>
+                                                        </div>
+                                                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                                    </div>
+                                                </div>
+                                              
+                                                <div class="col-md-12">
+                                                    <p>We will not be able to recover funds after sending, please make sure the information you enter is correct.</p>
+                                                </div>
+
+                                                <div class="col-md-12 mt-3"  style="text-align: right;">
+                                                    <button type="button" class="btn-general" id="cnfrm_send"
+                                                        style="">Send</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+           <!--Pay Now Class Modal -->
+           <div class="modal fade" id="payModel" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content pt-4 pb-4">
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="iconss" style="text-align: center;">
+
+                                        <img src="{{asset ('admin/assets/img/ico/doollarss.png')}}" width="60px">
+                                        <p
+                                            style="font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 500;margin-top: 10px;">
+                                            Note</p>
+                                        <!-- <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;"
+                                            class="ml-4 mr-4">
+                                            Send approved time for class.
+                                        </p> -->
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <h3>Payment Details</h3>
+                                    </div>
+
+                                <div class="col-md-6 col-6 col-sm-6">
+                                    <p class="mb-0">Current Balance: </p>
+                                </div>
+
+                                <div class="col-md-6 col-6 col-sm-6 text-right" >
+                                    <strong id="price"> $123</strong>
+                                </div>
+
+                                <div class="col-md-6 col-6 col-sm-6">
+                                    <p class="mb-0">Amount to withdraw: <span id="total_commision"></span>
+                                    </p>
+                                </div>
+                                <div class="col-md-6 col-6 col-sm-6 text-right">
+                                    <strong id="commission"> $100</strong>
+                                </div>
+                                <div class="col-md-6 col-6 col-sm-6">
+                                    <p class="mb-0">Remaining Balance: </p>
+                                </div>
+                                <div class="col-md-6 col-6 col-sm-6 text-right">
+                                    <strong id="total_price">$23</strong>
+                                </div>
+                                <div class="col-md-12">
+                                    <hr>
+                                </div>
+                                <div class="col-md-12">
+                                    <h3>Reciever Details</h3>
+                                    </div>
+                                <div class="col-md-6 col-6 col-sm-6">
+                                    <p class="mb-0">Reciever PayPal Account </p>
+                                </div>
+                                <div class="col-md-6 col-6 col-sm-6 text-right">
+                                    <strong id="total_price">sdsd*******@***.com</strong>
+                                </div>
+                                <div class="col-md-6 col-6 col-sm-6">
+                                    <p class="mb-0">PayPal Service Tax: </p>
+                                </div>
+                                <div class="col-md-6 col-6 col-sm-6 text-right">
+                                    <strong id="total_price">$1.87</strong>
+                                </div>
+                                <div class="col-md-6 col-6 col-sm-6">
+                                    <p class="mb-0">Amount Transfered: </p>
+                                </div>
+                                <div class="col-md-6 col-6 col-sm-6 text-right">
+                                    <strong id="total_price">$98.13</strong>
+                                </div>
+                                <div class="col-md-12 text-right mt-3" id="show_pay_btn">
+                                    <button class="btn-general" data-dismiss="modal">
+                                        Confirm
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 mb-2" style="text-align: right;">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+@endsection
+
+@section('js')
+  <script>
+      $("#cnfrm_send").click(function(){
+            $("#paymentAmountModel").modal("hide");
+            $("#payModel").modal("show");
+      });
+  </script>
 @endsection

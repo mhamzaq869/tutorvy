@@ -1284,12 +1284,11 @@ connection.onUserStatusChanged = function(event) {
         // if(fullName != getFullName(pid)){
         //     toastr.success(getFullName(pid) + " Joined the class.");
         // }
-
-        let vhtml = `<video poster="{{asset('assets/images/ico/Mute-video.png')}}"></video>`;
-
-        $("#other-videos").html(vhtml);
-        $("#main-video").css("width","30%");
-
+        if ($('#other-videos').contents().length == 0){
+            let vhtml = `<video poster="{{asset('assets/images/ico/Mute-video.png')}}"></video>`;
+            $("#other-videos").append(vhtml);
+            $("#main-video").css("width","30%");
+        }
     });
 
     if (!names.length) {

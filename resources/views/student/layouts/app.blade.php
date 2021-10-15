@@ -347,8 +347,9 @@ function hideCard() {
     $(".infoCard").hide('slow');
 };
 
-               
+
 </script>
+
 
 </body>
 
