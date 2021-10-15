@@ -23,13 +23,16 @@ class ClassController extends Controller
      */
 
     public function index(){
-        $classes = Booking::with(['classroom','user','tutor','subject'])->where('booked_tutor',Auth::user()->id)->whereIn('status',[2,5])->get();
-
+        $classes = Booking::with(['classroom','user','tutor','subject','booking_payment'])
+                    ->where('booked_tutor',Auth::user()->id)
+                    ->whereIn('status',[2,5])->get();
+        
         foreach($classes as $class) {
-            date_default_timezone_set($class->tutor->time_zone);
-            $date = date("h:i:sa");
-            $class->actual_booking_time =  date("H:i", strtotime($date));
-
+            if($class != null && $class->tutor != null && $class->tutor->time_zone != null) {
+                date_default_timezone_set($class->tutor->time_zone);
+                $date = date("h:i:sa");
+                $class->actual_booking_time =  date("H:i", strtotime($date));
+            }
         }
         // dd($classes);
         $user = User::where('id',Auth::user()->id)->first();

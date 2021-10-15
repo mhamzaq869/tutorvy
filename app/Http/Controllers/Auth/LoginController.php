@@ -50,11 +50,7 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        /*
-        *  validating user by his email address and if user
-        *  if email/user validated then send Obj $user to login
-        *  view
-        */
+
         $user = User::where('email',$request->email)->where('role','!=',1)->first();
 
         if($user){
@@ -77,6 +73,9 @@ class LoginController extends Controller
                     $activity_logs = new GeneralController();
                     $activity_logs->save_activity_logs("Login", "users", $id, $action_perform, $request->header('User-Agent'), $id);
 
+                    if(Auth::user()->time_zone == null && Auth::user()->time_zone == "") {
+                        User::where('id',Auth::user()->id)->update(["time_zone" => $request->time_zone]);
+                    }
 
                     return redirect()->route('tutor.dashboard');
                 }
@@ -102,6 +101,10 @@ class LoginController extends Controller
                     if(Session::get('redirectUrlCourse')){
                         return redirect()->route('student.course-details',[Session::get('redirectUrlCourse')]);
                         Session::flush(Session::get('redirectUrlCourse'));
+                    }
+
+                    if(Auth::user()->time_zone == null && Auth::user()->time_zone == "") {
+                        User::where('id',Auth::user()->id)->update(["time_zone" => $request->time_zone]);
                     }
 
                     return redirect()->route('student.dashboard');
