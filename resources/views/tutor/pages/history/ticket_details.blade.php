@@ -252,16 +252,8 @@
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <button class="float-right schedule-btn mt-2 w-50" data-toggle="modal"
-                                            data-target="#assignModal" >Assign ticket</button>
-
-                                        <button class="float-right cencel-btn mt-2  w-50" data-toggle="modal"
-                                            data-target="#assignModal" >Chage Assignnment</button>
-
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
