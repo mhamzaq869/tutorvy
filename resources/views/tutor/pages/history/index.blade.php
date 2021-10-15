@@ -56,7 +56,7 @@
                     </h3>
                 </div>
                 <div class="col-md-6 text-right">
-                    <a data-toggle="modal" href="#supportModal" style="text-decoration:none;" class="schedule-btn  text-center">Add new ticket</a>
+                    <a data-toggle="modal" data-target="#supportModal" style="text-decoration:none;" class="schedule-btn  text-center">Add new ticket</a>
                 </div>
                 <div class="col-md-12">
                     <table class="table table-borderless mt-3">
@@ -102,13 +102,13 @@
                                         <td> - </td>
                                         <td>
                                             @if($ticket->status == 0)
-                                                <span> Pending </span>
+                                                <span class="bg-color-apporve "> Pending </span>
                                             @else
                                                 <span> - </span>
                                             @endif
                                         </td>
                                         <td> 
-                                            <a href="{{url('student/ticket')}}/{{$ticket->ticket_no}}" class="schedule-btn">View</a>
+                                            <a href="{{url('tutor/ticket')}}/{{$ticket->ticket_no}}" class="btn schedule-btn">View</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -124,4 +124,5 @@
         </div>
     </section>
 </div>
+
 @endsection

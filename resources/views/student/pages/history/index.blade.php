@@ -102,13 +102,13 @@
                                         <td> - </td>
                                         <td>
                                             @if($ticket->status == 0)
-                                                <span> Pending </span>
+                                                <span class="bg-color-apporve "> Pending </span>
                                             @else
                                                 <span> - </span>
                                             @endif
                                         </td>
                                         <td> 
-                                            <a href="{{url('student/ticket')}}/{{$ticket->ticket_no}}" class="schedule-btn">View</a>
+                                            <a href="{{url('student/ticket')}}/{{$ticket->ticket_no}}" class="btn schedule-btn">View</a>
                                         </td>
                                     </tr>
                                 @endforeach

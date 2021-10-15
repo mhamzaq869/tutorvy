@@ -18,6 +18,10 @@
                                     <label class="font-weight-bold">Email:</label>
                                     <input type="email" name="email" class="form-control py-2">
                                 </div>
+                                <div class="form-group">
+                                    <label class="font-weight-bold">Confirm Email:</label>
+                                    <input type="email" name="email" class="form-control py-2">
+                                </div>
 
                                 <p class="font-weight-normal my-4 ">We will not be able to recover funds sent to the wrong address,
                                     please make sure the information you enter is correct.

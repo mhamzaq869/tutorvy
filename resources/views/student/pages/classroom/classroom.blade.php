@@ -1061,23 +1061,45 @@ height:25px;
                                             <img src="{{asset('assets/images/ico/watchs.png')}}" width="60px">
                                             <p
                                                 style="font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 500;margin-top: 10px;">
-                                                Re-schedule class</p>
+                                                Book a new class</p>
                                             <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;"
                                                 class="ml-4 mr-4">
-                                                Send new time for class with a short note about why are you rescheduling
+                                                Send new time for class with a short note about why are you getting a new
                                                 class
                                             </p>
                                         </div>
                                         <div class="ml-4 mr-4">
                                             <form>
-                                                <div style="display: flex;">
-                                                    <input id="today2" class="inputtype mb-2" style="width: 170px;"
-                                                        type="date">
-                                                    <input type="time" class="inputtype ml-5 mb-2" class="times"
-                                                        style="width: 170px;" value="13:00" step="900">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-control">
+                                                            <label for="">Date</label>
+                                                            <input id="today2" class="inputtype mb-2" 
+                                                                type="date">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-control">
+                                                            <label for="">Time</label>
+                                                            <input id="today2" class="inputtype mb-2" 
+                                                                type="time">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-control">
+                                                            <label for="">Duration <small>(in hours)</small></label>
+                                                            <input id="today2" class="inputtype mb-2" 
+                                                                type="number">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-control">
+                                                            <label for="">Short Note</label>
+                                                            <textarea class="form-control mt-3" rows="6" cols="50"
+                                                            placeholder="Write reason"></textarea>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <textarea class="form-control mt-3" rows="6" cols="50"
-                                                    placeholder="Write reason"></textarea>
                                             </form>
                                         </div>
                                     </div>
