@@ -187,9 +187,9 @@
                                                             <td>
                                                                 @if($class->classroom != null)
                                                                     <span data-id="{{$class->id}}" 
-                                                                        data-review="{{$class->is_reviewed}}"
+                                                                        data-review="{{$class->is_reviewed}}" data-duration="{{$class->duration}}"
                                                                         data-room="{{$class->classroom != null ? $class->classroom->classroom_id : ''}}" 
-                                                                        id="class_time_{{$class->id}}" 
+                                                                        id="class_time_{{$class->id}}" data-date="{{$class->class_date}}"
                                                                         class="badge current_time badge-pill text-white font-weight-normal bg-success mt-3">
 
                                                                         {{$class->class_date}} {{$class->class_time}}
@@ -422,15 +422,37 @@
  
         $( ".current_time" ).each(function() {
 
-            var booking_time = $( this ).text();
+            var booking_time = $.trim($( this ).text());
             var booking_seconds_time = HmsToSeconds(moment(booking_time).format('HH:mm:ss'));;
             
             var attr_id = $(this).data('id');
             var room_id = $(this).data('room');
+            var booking_date = $(this).data('date');
+            console.log(booking_date , "booking_date");
+            var duration = $(this).data('duration');
             var review = $(this).data('review');         
 
-            var getcurrenttime = new Date();
-            var remain_time = (booking_seconds_time - HmsToSeconds(moment(getcurrenttime).format('HH:mm:ss')));
+            var date = new Date();
+            var remain_time = (booking_seconds_time - HmsToSeconds(moment(date).format('HH:mm:ss')));
+
+            console.log(date , "date");
+            console.log(date.getTime() , "date");
+
+            var std_time_in_seconds = HmsToSeconds(moment(date).format('HH:mm:ss'));
+
+            var region_booking_time = moment(date).add(remain_time,'s').format("LT");
+            var booking_time = new Date(booking_date + ' ' +  region_booking_time);
+
+            var class_end_time = moment(date).add(remain_time,'s').add(duration, 'h').format("LT");
+            var class_end_date = new Date(booking_date + ' ' +  class_end_time);
+
+            console.log(booking_time , "booking_time");
+            console.log(booking_time.getTime() , "booking_time");
+
+            console.log(class_end_date , "class_end_date");
+            console.log(class_end_date.getTime() , "class_end_date");
+            
+
 
             timer.start({countdown: true, startValues: {seconds: remain_time}});
             timer.addEventListener('secondsUpdated', function (e) {
@@ -441,11 +463,22 @@
                 let join_btn = `<a onclick="joinClass('`+room_id+`')" class="schedule-btn"> Join Class </a>`;
                 if(review == 0) {
                     $(".join_class_"+attr_id).html(join_btn);
-                }else{
-                    $(".join_class_"+attr_id).html(" ");
+                    $("#class_time_"+attr_id).html("");
                 }
-                $("#class_time_"+attr_id).html("");
             }); 
+
+            if(date.getTime() > booking_time.getTime() &&  date.getTime() < class_end_date.getTime()) {
+                let join_btn = `<a onclick="joinClass('`+room_id+`')" class="schedule-btn"> Join Class </a>`;
+                if(review == 0) {
+                    $(".join_class_"+attr_id).html(join_btn);
+                    $("#class_time_"+attr_id).html("");
+                }
+            }else {
+                $(".join_class_"+attr_id).html("");
+                $("#class_time_"+attr_id).html("Class Time Over");
+            }
+
+
         }); 
     });
 
