@@ -370,7 +370,7 @@
                 </li>
                 <li class="nav-item" id="imageDropdown" data-toggle="dropdown"
                     style="position: absolute;right: 15px;">
-                    <img src="{{asset('assets/images/logo/profile-image.png') }}" alt="logo"
+                    <img src="{{asset('assets/images/logo/profile-image.png') }}"  aria-expanded="true" alt="logo"
                         style="width: 35px;border-radius: 30px;">
                     <div class="dropdown classdrop" style="position: absolute;right:99px;top: 7px; ">
                         <ul class="dropdown-menu classdrop " style="padding-bottom: 5px;padding-top: 5px;"
@@ -473,12 +473,12 @@
                     </a>
                     @auth
                         @if(Auth::user()->picture)
-                                <img class="profile-img " src="{{asset(Auth::user()->picture) }}" data-toggle="dropdown" alt="profile">
+                                <img class="profile-img "  aria-expanded="true" src="{{asset(Auth::user()->picture) }}" data-toggle="dropdown" alt="profile">
                         @else
-                        <img class="profile-img" src="{{asset('assets/images/ico/Square-white.jpg') }}" data-toggle="dropdown" alt="profile">
+                        <img class="profile-img"  aria-expanded="true" src="{{asset('assets/images/ico/Square-white.jpg') }}" data-toggle="dropdown" alt="profile">
                         @endif
                     @else
-                        <img class="profile-img" src="{{asset('assets/images/ico/Square-white.jpg') }}" data-toggle="dropdown" alt="profile">
+                        <img class="profile-img"  aria-expanded="true" src="{{asset('assets/images/ico/Square-white.jpg') }}" data-toggle="dropdown" alt="profile">
                     @endauth
 
                     <ul class="dropdown-menu classdrop classdrop1 ">
