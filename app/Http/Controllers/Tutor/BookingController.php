@@ -24,7 +24,7 @@ class BookingController extends Controller
     public function index() {
         $all = Booking::with(['user','tutor'])->where('booked_tutor',Auth::user()->id)->get();
 
-        dd($all->toArray());
+        // dd($all->toArray());
 
         foreach($all as $all_booking) {
             if($all_booking->tutor != null && $all_booking->tutor->time_zone != null) {

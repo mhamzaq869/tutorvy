@@ -4,6 +4,7 @@ namespace App\Models\General;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 
 class TicketChat extends Model
@@ -23,5 +24,13 @@ class TicketChat extends Model
         'ticket_id',
         'text'
     ];
+
+    public function sender() {
+        return $this->hasOne(User::class , 'id' , 'sender_id');
+    }
+
+    public function receiver() {
+        return $this->hasOne(User::class , 'id' , 'reciever_id');
+    }
 
 }

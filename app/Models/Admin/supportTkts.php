@@ -31,4 +31,5 @@ class supportTkts extends Model
     public function tkt_created_by() {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+
 }
