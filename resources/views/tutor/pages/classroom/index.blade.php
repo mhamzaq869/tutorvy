@@ -248,7 +248,7 @@
 
         $( ".current_time" ).each(function() {
 
-            var booking_time = $( this ).text();
+            var booking_time = $.trim($( this ).text());
             var booking_seconds_time =  HmsToSeconds(moment(booking_time).format('HH:mm:ss'));
 
             var attr_id = $(this).data('id');
@@ -262,14 +262,19 @@
             var std_time_in_seconds = HmsToSeconds(moment(std_current_region_date).format('HH:mm:ss'));
 
             var remain_time = (booking_seconds_time -  std_time_in_seconds);
-            
+          
             var date = new Date();
             var tutor_time_in_seconds = HmsToSeconds(moment(date).format('HH:mm:ss'));
 
-            var get = (tutor_time_in_seconds + remain_time);
-            let create_date = booking_class_date + ' ' + secondsToHms(get);
-            var time = moment(create_date).format('h:mm a');
-            $("#tutor_time_"+attr_id).text(time);
+            var region_booking_time = moment(date).add(remain_time,'s').format("LT");
+           
+            // var get = (tutor_time_in_seconds + remain_time);
+            // var create_date = booking_class_date + ' ' + secondsToHms(get);
+            
+            // var region_booking_date = new Date(booking_class_date);
+            // var time =  moment.parseZone(region_booking_date).local().format("LT");
+            
+            $("#tutor_time_"+attr_id).text(region_booking_time);
 
             timer.start({countdown: true, startValues: {seconds: remain_time }});
             timer.addEventListener('secondsUpdated', function (e) {
