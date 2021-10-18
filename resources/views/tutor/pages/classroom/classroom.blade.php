@@ -1741,6 +1741,7 @@ designer.appendTo(document.getElementById('widget-container'), function() {
                     }
                     alert(error);
                 }
+                // start timer here
                 var video = document.getElementById('main-video');
         video.setAttribute('data-streamid', event.streamid);
                 saveClassLogs();
