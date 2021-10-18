@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\General\GeneralController;
+use App\Http\Controllers\General\NotifyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -179,6 +180,19 @@ class SettingController extends Controller
         $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> Create a New Ticket';
         $activity_logs = new GeneralController();
         $activity_logs->save_activity_logs("Ticket Created", "support_tkts.id", $ticket->id, $action_perform, $request->header('User-Agent'), $id);
+
+        $admin = User::where('role',1)->first();
+        $notification = new NotifyController();
+        $slug = '-';
+        $type = 'support_ticket';
+        $data = 'data';
+        $title = 'Support Ticket';
+        $icon = 'fas fa-tag';
+        $class = 'btn-success';
+        $desc = $name . ' Create a Support Ticket';
+        $pic = Auth::user()->picture;
+
+        $notification->GeneralNotifi( $admin->id , $slug ,  $type , $title , $icon , $class ,$desc,$pic);
 
         return response()->json([
             "status_code" => 200,
