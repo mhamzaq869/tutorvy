@@ -170,6 +170,20 @@ class SettingController extends Controller
             "ticket_no" => $ticket_no,
         ]);
 
+        $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+        $admin = User::where('role',1)->first();
+        $notification = new NotifyController();
+        $slug = '-';
+        $type = 'support_ticket';
+        $data = 'data';
+        $title = 'Support Ticket';
+        $icon = 'fas fa-tag';
+        $class = 'btn-success';
+        $desc = $name . ' Create a Support Ticket';
+        $pic = Auth::user()->picture;
+
+        $notification->GeneralNotifi( $admin->id , $slug ,  $type , $title , $icon , $class ,$desc,$pic);
+
         return response()->json([
             "status_code" => 200,
             "message" => "Ticket Created .. Our Staff will contact us soon.",

@@ -255,17 +255,16 @@
             var room_id = $(this).data('room');
             var review = $(this).data('review');
             var duration = $(this).data('duration');
-            var time_zone = $(this).data('zone');
+            var std_time_zone = $(this).data('zone');
             var tutor_time_zone = $(this).data('tzone');
             var booking_class_date = $(this).data('date');
-
 
             var std_current_region_date = new Date().toLocaleString('en-US', { timeZone: tutor_time_zone });
             var std_time_in_seconds = HmsToSeconds(moment(std_current_region_date).format('HH:mm:ss'));
 
             var remain_time = (booking_seconds_time -  std_time_in_seconds);          
             var date = new Date();
-            
+
             var moment_date = moment(date).format('YYYY-MM-DD');
 
             var tutor_time_in_seconds = HmsToSeconds(moment(date).format('HH:mm:ss'));
@@ -297,6 +296,7 @@
             }else {
                 $("#join_class_"+attr_id).html("");
                 $("#class_time_"+attr_id).html("Class Time Over");
+                $("#class_time_"+attr_id).removeAttr("data-room");
             }
 
         });
