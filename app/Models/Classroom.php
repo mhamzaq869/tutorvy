@@ -18,11 +18,12 @@ class Classroom extends Model
     protected $table = 'classroom';
     protected $fillable = [
         'booking_id',
+        'course_id',
         'classroom_id',
-      
+
     ];
 
-    
+
 
 }
 

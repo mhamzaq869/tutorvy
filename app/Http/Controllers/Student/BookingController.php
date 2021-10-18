@@ -16,6 +16,8 @@ use App\Models\General\Teach;
 use App\Models\Admin\tktCat;
 use App\Models\Admin\supportTkts;
 use App\Models\Admin\Subject;
+use App\Models\Course;
+use App\Models\CourseEnrollment;
 use App\Models\Payments;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Session;
@@ -279,9 +281,135 @@ class BookingController extends Controller
 
     }
 
+    public function coursePayment(Request $request,$id)
+    {
+        $course = Course::where('id',$id)->first();
+        $commission = DB::table("sys_settings")->first();
+        $tutor_fee = $request->amount - $request->comm ;
+        $course->price = $tutor_fee;
+
+        Session::put('service_fee',$request->comm);
+
+        if($course->seats != 0){
+
+            if($request->paymentMethod == 'skrill'){
+                Session::put('plan',$request->plan);
+                $redirectUrl = $this->skrillPayment($request->amount,$commission,$request->comm,$course,$id);
+                return redirect()->to($redirectUrl);
+
+            }elseif($request->paymentMethod == 'wallet'){
+
+                $walletIn  = Wallet::where('user_id',Auth::user()->id)->where('type','in')->sum('amount');
+                $walletOut = Wallet::where('user_id',Auth::user()->id)->where('type','out')->sum('amount');
+                $balance   = $walletIn-$walletOut;
+
+                if($balance >= $request->amount){
+
+                    $course = Course::where('id',$id)->first();
+
+                    $course->seats = $course->seats - 1;
+                    $course->save();
+
+                    CourseEnrollment::create([
+                        'user_id' => Auth::user()->id,
+                        'course_id' => $course->id,
+                        'plan' => $request->plan,
+                        'price' => $request->amount,
+                        'service_fee' => $request->comm,
+                        'status' => 1
+                    ]);
+
+
+                    $classroom_id = sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+                        mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ),
+                        mt_rand( 0, 0xffff ),
+                        mt_rand( 0, 0x0C2f ) | 0x4000,
+                        mt_rand( 0, 0x3fff ) | 0x8000,
+                        mt_rand( 0, 0x2Aff ), mt_rand( 0, 0xffD3 ), mt_rand( 0, 0xff4B )
+                    );
+
+                    Classroom::create([
+                        'booking_id' => $booking->id ?? null,
+                        'course_id' => $course->id ?? null,
+                        'classroom_id' => $classroom_id
+                    ]);
+
+                    $id = Auth::user()->id;
+                    $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+                    $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> Payment success';
+                    $activity_logs = new GeneralController();
+                    $activity_logs->save_activity_logs("Payment Success", "users.id", $id, $action_perform, $request->header('User-Agent'), $id);
+
+                    $admin = User::where('role',1)->first();
+
+
+                    $notification = new NotifyController();
+                    $slug = URL::to('/') . '/tutor/course-detail/' . $course->id;
+                    $type = 'course_enrlled';
+                    $title = 'Course Enrolled';
+                    $icon = 'fas fa-tag';
+                    $class = 'btn-success';
+                    $desc = $name.' Paid for Course of '. $course->title;
+                    $pic = Auth::User()->picture;
+                    $notification->GeneralNotifi($course->booked_tutor ,$slug,$type,$title,$icon,$class,$desc,$pic);
+
+                    // send to admin
+                    $admin_slug = URL::to('/') . '/admin/course-detail/' . $course->id;
+                    $notification->GeneralNotifi($admin->id,$admin_slug,$type,$title,$icon,$class,$desc,$pic);
+
+                    $transaction_id = Session::get('transaction_id');
+
+                    Payments::create([
+                        'user_id' => Auth::User()->id,
+                        'type_id' =>  $course->id,
+                        'type' => 'course_enrollment',
+                        'transaction_id' =>  $transaction_id,
+                        'amount'  => $request->amount,
+                        'service_fee'  => Session::get('service_fee'),
+                        'method'  => 'skrill'
+                    ]);
+
+                    Wallet::create([
+                        'user_id' => Auth::user()->id,
+                        'amount' => $request->amount,
+                        'type' => 'out',
+                    ]);
+
+                }
+                Session::flash('error','You have sufficient balance');
+                return redirect()->back();
+            }else{
+                //Payment Through Paypal
+                Session::put('plan',$request->plan);
+                $redirect_url = $this->paypalPayment($request->amount,$course);
+                if(isset($redirect_url)) {
+                    return redirect()->away($redirect_url);
+                }
+
+                Session::flash('error','Unknown error occurred');
+
+            }
+
+
+            return redirect()->route('student.course');
+        }elseif($course->seats == 0){
+            Session::flash('error','Course Seats are filled, We are unabled to process course enrollment');
+            return redirect()->back();
+        }
+        else{
+            Session::flash('error','Unable to process booking with invalid amount.');
+            return redirect()->back();
+        }
+
+        // dd($booking,$commission,$request->comm,$total_price);
+
+
+
+    }
+
     private function paypalPayment($total_price,$booking)
     {
-        $payerEmail = DB::table('payment_methods')
+            $payerEmail = DB::table('payment_methods')
                                 ->where('user_id',Auth::user()->id)
                                 ->where('method','paypal')
                                 ->first();
@@ -363,7 +491,7 @@ class BookingController extends Controller
 
 
         if ($result->getState() == 'approved') {
-            \Session::flash('success','Payment success');
+            Session::flash('success','Payment success');
 
             $classroom_id = sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
                 mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ),
@@ -374,24 +502,42 @@ class BookingController extends Controller
             );
             // return $red;
             $booking = Booking::where('id',$booking_id)->first();
-            $subject = Subject::where('id',$booking->subject_id)->first();
+            $course = Course::where('id',$booking_id)->first();
+
+            if($booking != null){
+                $subject = Subject::where('id',$booking->subject_id)->first();
+                $booking->status = 2;
+                $booking->save();
+            }else{
+                CourseEnrollment::create([
+                    'user_id' => Auth::user()->id,
+                    'course_id' => $course->id,
+                    'plan' => Session::get('plan'),
+                    'price' => $result->transactions[0]->amount->total,
+                    'service_fee' => Session::get('service_fee'),
+                    'status' => 1
+                ]);
+
+                $course->status = 1;
+                $course->seats = $course->seats - 1;
+                $course->save();
+            }
 
             Payments::create([
                 'user_id' => Auth::user()->id,
-                'type_id' => $booking->id,
-                'type' => 'Booked Class',
+                'type_id' => ($booking != null) ? $booking->id : $course->id,
+                'type' => ($booking != null) ? 'booking_class' : 'course_enrollment',
                 'transaction_id' => $result->id,
                 'amount'  => $result->transactions[0]->amount->total,
-                'service_fee' => \Session::get('service_fee'),
+                'service_fee' => Session::get('service_fee'),
                 'method'  => 'paypal'
             ]);
 
             Classroom::create([
-                'booking_id' => $booking_id,
+                'booking_id' => $booking->id ?? null,
+                'course_id' => $course->id ?? null,
                 'classroom_id' => $classroom_id
             ]);
-            $booking->status = 2;
-            $booking->save();
 
             $id = Auth::user()->id;
             $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
@@ -415,16 +561,40 @@ class BookingController extends Controller
             $admin_slug = URL::to('/') . '/admin/booking-detail/' . $booking->id;
             $notification->GeneralNotifi($admin->id,$admin_slug,$type,$title,$icon,$class,$desc,$pic);
 
-            return Redirect::route('student.bookings');
+            return redirect()->route('student.bookings');
         }
-        \Session::put('error','Payment failed !!');
-		return Redirect::route('student.bookings');
+        Session::put('error','Payment failed !!');
+		return redirect()->route('student.bookings');
     }
 
     public function skrillPaymentComplete()
     {
+        $transaction_id = Session::get('transaction_id');
+        $total_price = Session::get('amount');
+
         $booking_id = Session::get('bookingId');
         $booking = Booking::where('id',$booking_id)->first();
+        $course = Course::where('id',$booking_id)->first();
+
+        if($booking != null){
+            $subject = Subject::where('id',$booking->subject_id)->first();
+            $booking->status = 2;
+            $booking->save();
+        }else{
+            CourseEnrollment::create([
+                'user_id' => Auth::user()->id,
+                'course_id' => $course->id,
+                'plan' => Session::get('plan'),
+                'price' => $total_price,
+                'service_fee' => Session::get('service_fee'),
+                'status' => 1
+            ]);
+
+            $course->status = 1;
+            $course->seats = $course->seats - 1;
+            $course->save();
+        }
+
 
         $classroom_id = sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
             mt_rand( 0, 0xffff ), mt_rand( 0, 0xffff ),
@@ -434,12 +604,9 @@ class BookingController extends Controller
             mt_rand( 0, 0x2Aff ), mt_rand( 0, 0xffD3 ), mt_rand( 0, 0xff4B )
         );
 
-        $subject = Subject::where('id',$booking->subject_id)->first();
-        $booking->status = 2;
-        $booking->save();
-
         Classroom::create([
-            'booking_id' => $booking_id,
+            'booking_id' => $booking->id ?? null,
+            'course_id' => $course->id ?? null,
             'classroom_id' => $classroom_id
         ]);
 
@@ -452,29 +619,27 @@ class BookingController extends Controller
         $admin = User::where('role',1)->first();
 
         $notification = new NotifyController();
-        $slug = URL::to('/') . '/tutor/booking-detail/' . $booking->id;
-        $type = 'booking_confirmed';
-        $title = 'Booking Confirmed';
+        $slug = ($booking != null) ? URL::to('/') . '/tutor/booking-detail/' . $booking->id : URL::to('/') . '/tutor/course-detail/' . $course->id;
+        $type = ($booking != null) ? 'booking_confirmed' : 'course_enrlled';
+        $title = ($booking != null) ? 'Booking Confirmed' : 'Course Enrolled';
         $icon = 'fas fa-tag';
         $class = 'btn-success';
-        $desc = $name . ' Paid for Class of ' . $subject->name;
+        $desc = ($booking != null) ? $name . ' Paid for Class of ' . $subject->name : $name.' Paid for Course of '. $course->title;
         $pic = Auth::User()->picture;
-        $notification->GeneralNotifi($booking->booked_tutor ,$slug,$type,$title,$icon,$class,$desc,$pic);
+        $notification->GeneralNotifi($booking->booked_tutor ?? $course->user_id,$slug,$type,$title,$icon,$class,$desc,$pic);
 
         // send to admin
-        $admin_slug = URL::to('/') . '/admin/booking-detail/' . $booking->id;
+        $admin_slug = ($booking != null) ? URL::to('/') . '/admin/booking-detail/' . $booking->id : URL::to('/') . '/tutor/course-detail/' . $course->id;
         $notification->GeneralNotifi($admin->id,$admin_slug,$type,$title,$icon,$class,$desc,$pic);
 
 
-        $transaction_id = \Session::get('transaction_id');
-        $total_price = \Session::get('amount');
-
         Payments::create([
             'user_id' => Auth::User()->id,
-            'type_id' => $booking->id,
+            'type_id' => ($booking != null) ? $booking->id : $course->id,
+            'type' => ($booking != null) ? 'booking_class' : 'course_enrollment',
             'transaction_id' =>  $transaction_id,
             'amount'  => $total_price,
-            'service_fee'  => \Session::get('service_fee'),
+            'service_fee'  => Session::get('service_fee'),
             'method'  => 'skrill'
         ]);
 
@@ -487,7 +652,6 @@ class BookingController extends Controller
 
         return view('student.pages.history.index',compact('tickets'));
     }
-
 
     public function tutorPlans(Request $request) {
         $plans = subjectPlans::where("user_id", $request->user_id)->where("subject_id",$request->subject_id)->get();
@@ -515,8 +679,8 @@ class BookingController extends Controller
 
         $this->skrilRequest = new SkrillRequest();
         $this->skrilRequest->pay_to_email = 'skrill_user_test2@smart2pay.com';
-        $this->skrilRequest->return_url = 'https://webs.dev/student/skrlpayment-complete';
-        $this->skrilRequest->cancel_url = 'https://webs.dev/student/bookings';
+        $this->skrilRequest->return_url = 'https://tutorvy.dev/student/skrlpayment-complete';
+        $this->skrilRequest->cancel_url = 'https://tutorvy.dev/student/bookings';
         $this->skrilRequest->logo_url = 'https://tutorvydev.naumanyasin.com/assets/images/logo/logo.png';
         $this->skrilRequest->pay_from_email = $payerEmail->email;
         $this->skrilRequest->transaction_id = 'SKRL-'.rand();
@@ -530,13 +694,13 @@ class BookingController extends Controller
         $this->skrilRequest->detail1_description = 'Booking ID:';
         $this->skrilRequest->detail1_text = $booking->id;
         $this->skrilRequest->detail2_description = 'Tutor Fee:';
-        $this->skrilRequest->detail2_text = '$'.$booking->price;
+        $this->skrilRequest->detail2_text = '$'.$booking->price ?? $booking;
         $this->skrilRequest->detail3_description = 'Service Fee:'.$commission->commission.'%';
         $this->skrilRequest->detail3_text = '$'.$comm;
 
-        \Session::put('bookingId',$bkid);
-        \Session::put('transaction_id',$this->skrilRequest->transaction_id);
-        \Session::put('amount',$total_price);
+        Session::put('bookingId',$bkid);
+        Session::put('transaction_id',$this->skrilRequest->transaction_id);
+        Session::put('amount',$total_price);
 
         // create object instance of SkrillClient
         $client = new SkrillClient($this->skrilRequest);
@@ -561,5 +725,7 @@ class BookingController extends Controller
             return response()->json(['success' => "You haven't select or add any default payment method yet, Please select by following this <a href='/student/settings'>Add Payment Method</a>"]);
         endif;
     }
+
+
 }
 

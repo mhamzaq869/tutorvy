@@ -9,11 +9,11 @@
         <div class="container-fluid m-0 p-0">
             <div class="row">
                 <div class="col-md-12">
-                    <p class="heading-first mr-3 ml-3"> 
-                            Courses      
+                    <p class="heading-first mr-3 ml-3">
+                            Courses
                     </p>
                 </div>
-              
+
             </div>
             @if (Session::has('error'))
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -38,17 +38,37 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($courses as $i => $course)
                             <tr>
-                                <td>1</td>
-                                <td>2</td>
-                                <td>3</td>
-                                <td>4</td>
-                                <td>5</td>
+                                <td>{{$i+1}}</td>
+                                <td>{{$course->course->user->first_name}} {{$course->course->user->last_name}}</td>
+                                <td>{{$course->course->title}}</td>
                                 <td>
-                                    <?php
-                                        $id = 1;
-                                    ?>
-                                    <a class="cencel-btn w-auto decoration-none mr-2" href="{{route('student.course-details',[$id])}}">
+                                    @if ($course->plan == 1)
+                                    {{$course->course->basic_duration . ' weeks'}}
+                                    @elseif ($course->plan == 2)
+                                    {{$course->course->standard_duration. ' weeks'}}
+                                    @elseif ($course->plan == 3)
+                                    {{$course->course->advance_duration. ' weeks'}}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($course->status == 0)
+                                        <span class="bg-color-apporve3">
+                                            Payment Pending
+                                        </span>
+                                    @elseif($course->status == 1)
+                                        <span class="bg-color-apporve1">
+                                            Approved
+                                        </span>
+                                    @elseif($course->status == 0)
+                                        <span class="bg-color-apporve">
+                                            Pending
+                                        </span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <a class="cencel-btn w-auto decoration-none mr-2" href="{{route('student.course-details',[$course->id])}}">
                                         View Details
                                     </a>
                                     <button class="schedule-btn w-auto">
@@ -56,10 +76,11 @@
                                     </button>
                                 </td>
                             </tr>
+                            @endforeach
+
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
     </section>

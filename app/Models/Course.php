@@ -49,6 +49,10 @@ class Course extends Model
     public function review(){
         return $this->morphMany(Review::class,'reviewable');
     }
+    public function enrolled()
+    {
+        return $this->hasMany(CourseEnrollment::class);
+    }
     /**
      * Accessor ot Mutator
      */
@@ -66,7 +70,7 @@ class Course extends Model
 
     public function getCourseBasicDaysAttribute()
     {
-        
+
         if($this->basic_days != null && $this->basic_days != 'null'){
             $days = $this->getDays($this->basic_days);
             return $days;
@@ -98,7 +102,7 @@ class Course extends Model
         $days = json_decode($days);
         $day_name = '';
         $day_arr = array();
-        
+
         for($i = 0 ; $i < sizeof($days) ; $i++){
 
             switch ($days[$i]) {
@@ -128,7 +132,7 @@ class Course extends Model
             }
 
             array_push($day_arr , $day_name);
-            
+
         }
 
         $days = implode(',',$day_arr);
