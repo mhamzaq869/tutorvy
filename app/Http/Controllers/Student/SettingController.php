@@ -14,6 +14,7 @@ use App\Models\Booking;
 use App\Models\Activitylogs;
 use App\Models\Classroom;
 use App\Models\Admin\tktCat;
+use App\Models\General\TicketChat;
 use App\Models\Admin\supportTkts;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
@@ -235,7 +236,22 @@ class SettingController extends Controller
 
     public function tickets($id) {
         $ticket = supportTkts::where('ticket_no',$id)->with(['category','tkt_created_by'])->first();
-        return view('student.pages.history.ticket_details',compact('ticket'));
+        $ticket_replies = TicketChat::with(['sender','receiver'])->where('ticket_id',$ticket->id)->get();
+        $admin = User::where('role','1')->first();
+        return view('student.pages.history.ticket_details',compact('ticket','ticket_replies','admin'));
+    }
+
+    public function ticketChat(Request $request){   
+        $data = $request->all();
+        TicketChat::create($data);
+
+        return response()->json([
+            'status_code'=> 200,
+            'message' => 'Message Sent Successfully',
+            'success' => true,
+            'data' => $data,
+        ]);
+
     }
     public function courses(){
         return view('student.pages.course.index');

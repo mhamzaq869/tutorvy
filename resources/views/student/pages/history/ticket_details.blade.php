@@ -53,7 +53,7 @@
                                 <div class="col-md-8">
                                     <div class="col-md-12 pl-0">
                                         <span class="heading-fifth-1">Reply</span>
-                                        <div class="row mt-3 mb-3 ticketChat">
+                                        <!-- <div class="row mt-3 mb-3 ticketChat">
                                             <div class="col-md-12 ">
                                                 <div class="sender">
                                                     <small>From Sender Name</small>  
@@ -104,18 +104,49 @@
                                                 </div>
                                                
                                             </div>
+                                        </div> -->
+                                        <div class="row mt-3 mb-3 ticketChat">
+                                            @foreach($ticket_replies as $replies)
+                                                @if($replies->sender_id != Auth::user()->id)
+                                                    <div class="col-md-12 ">
+                                                        <div class="sender">
+                                                            <small>From {{$replies->sender->name}}</small>  
+                                                            <p class="mb-0">
+                                                                {{$replies->text}}
+                                                            </p>
+                                                            <small class="dull pull-right">
+                                                                1min ago
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                @else
+                                                    <div class="col-md-12 ">
+                                                        <div class="reciever">
+                                                            <small>From You</small>
+                                                            <p class="mb-0">
+                                                            {{$replies->text}}
+                                                            </p>
+                                                            <small class="dull pull-right">
+                                                                1min ago
+                                                            </small>
+                                                        </div>
+                                                    
+                                                    </div>
+                                                @endif
+
+                                            @endforeach
                                         </div>
                                         
                                     </div>
                                     <div class="container-fluid  m-0 p-0">
                                         <span class="heading-fifth-1 mb-3">Reply</span>
-                                        <form class="form-border ">
+                                        <!-- <form class="form-border ">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <textarea class="textarea-ticket form-control mt-3 p-2" name="" id="" cols="" rows="" placeholder="Your Reply"></textarea>
-                                                    <!-- image upload name -->
+                                                
                                                     <div class="divided-line"></div>
-                                                    <!-- end -->
+                                              
                                                 </div>
                                             </div>
                                             <div class="row p-1">
@@ -132,6 +163,36 @@
                                                 </div>
                                                 <div class="col-md-3 text-right">
                                                     <a href="#"> <button class="schedule-btn ">Send</button></a>
+                                                </div>
+                                            </div>
+                                        </form> -->
+                                        <form class="form-border" id="stdTicketForm" method="POST" action="{{route('student.ticketChat')}}">
+                                            <input type="hidden" name="reciever_id" value="{{$admin->id}}">
+                                            <input type="hidden" name="sender_id" value="{{$ticket->user_id}}">
+                                            <input type="hidden" name="ticket_id" value="{{$ticket->id}}">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <textarea class="textarea-ticket form-control mt-3 p-2" name="text" id="" cols="" rows="" placeholder="Your Reply"></textarea>
+                                                    <!-- image upload name -->
+                                                    <div class="divided-line"></div>
+                                                    <!-- end -->
+                                                </div>
+                                            </div>
+                                            <div class="row p-1">
+                                                <div class="col-md-9 ">
+                                                    <input type="file" id="file" class="file-attach" />
+                                                    <label for="file" class="p-0" >
+                                                        <img src="{{asset('admin/assets/img/ico/Repeat-image.png')}}" class="" alt="repeat" />
+                                                    </label>
+                                                    <input type="file" id="file" accept=".jpg,.jpeg,.png" class="file-attach" />
+                                                    <label for="file" class="p-0">
+                                                        <img src="{{asset('admin/assets/img/ico/metro-attachment.png')}}" class="" style="width:23px;"
+                                                            alt="repeat" />
+                                                    </label>
+                                                    <div id="custom-file-name"></div>
+                                                </div>
+                                                <div class="col-md-3 text-right">
+                                                 <button class="schedule-btn" type="submit">Send</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -378,6 +439,59 @@
             </div>
 
 @endsection
-@section('js')
+@section('scripts')
+<script>
+      $("#stdTicketForm").submit(function(e){
+          e.preventDefault();
   
+
+          var action = $(this).attr('action');
+          var method = $(this).attr('method');
+           $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: action,
+            type:method,
+            data: new FormData( this ),
+            cache: false,
+            contentType: false,
+            processData: false,
+            success:function(response){
+                // console.log(response);
+                if(response.status_code == 200) {
+                  
+                    toastr.success(response.message,{
+                        position: 'top-end',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
+                    let html = `<div class="col-md-12 ">
+                                                        <div class="reciever">
+                                                            <small>From You</small>
+                                                            <p class="mb-0">
+                                                             `+response.data.text+`
+                                                            </p>
+                                                            <small class="dull pull-right">
+                                                                1min ago
+                                                            </small>
+                                                        </div>
+                                                    
+                                                    </div>`;
+                    $(".ticketChat").append(html);
+
+                }
+            },
+            error:function(e){
+                toastr.error('Something Went Wrong',{
+                    position: 'top-end',
+                    icon: 'error',
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            }
+        });
+      })
+  </script>
 @endsection

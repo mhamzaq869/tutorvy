@@ -73,6 +73,7 @@ class SupportController extends Controller
             'status_code'=> 200,
             'message' => 'Message Sent Successfully',
             'success' => true,
+            'data' => $data,
         ]);
 
     }

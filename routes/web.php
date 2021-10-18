@@ -242,6 +242,7 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::post('/save-ticket',[TutorSettingController::class,'saveTicket'])->name('tutor.save.ticket');
 
     Route::get('/ticket/{id}',[TutorSettingController::class,'ticket'])->name('tutor.ticket');
+    Route::post('/ticket-chat',[TutorSettingController::class,'ticketChat'])->name('tutor.ticketChat');
 
 });
 
@@ -326,6 +327,8 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
 
     Route::post('/fav-tutor',[StudentSettingController::class,'favouriteTutor'])->name('student.fav.tutor');
     Route::get('/ticket/{id}',[StudentSettingController::class,'tickets'])->name('student.ticket');
+    Route::post('/ticket-chat',[StudentSettingController::class,'ticketChat'])->name('student.ticketChat');
+
 
     /*Course */
     Route::get('/course-details/{id}',[StudentSettingController::class,'courseDetails'])->name('student.course-details');

@@ -54,11 +54,10 @@
                                         <span class="heading-fifth-1">Reply</span>
                                         <div class="row mt-3 mb-3 ticketChat">
                                             @foreach($ticket_replies as $replies)
-
-                                                @if($replies->sender != null )
+                                                @if($replies->sender_id != Auth::user()->id)
                                                     <div class="col-md-12 ">
                                                         <div class="sender">
-                                                            <small>From {{$replies->sender->name}}</small>  
+                                                            <small>From {{$replies->sender->first_name}}</small>  
                                                             <p class="mb-0">
                                                                 {{$replies->text}}
                                                             </p>
@@ -67,12 +66,10 @@
                                                             </small>
                                                         </div>
                                                     </div>
-                                                @endif
-
-                                                @if($replies->receiver != null )
+                                                @else
                                                     <div class="col-md-12 ">
                                                         <div class="reciever">
-                                                            <small>From {{$replies->receiver->first_name}}</small>
+                                                            <small>From You</small>
                                                             <p class="mb-0">
                                                                 {{$replies->text}}
                                                             </p>
@@ -83,7 +80,6 @@
                                                     
                                                     </div>
                                                 @endif
-
                                             @endforeach
                                         </div>
                                         
@@ -388,8 +384,23 @@
                         showConfirmButton: false,
                         timer: 2500
                     });
+                    
 
                 }
+                let html = `<div class="col-md-12 ">
+                                <div class="reciever">
+                                    <small>From You</small>
+                                    <p class="mb-0">
+                                        `+response.data.text+`
+                                    </p>
+                                    <small class="dull pull-right">
+                                        1min ago
+                                    </small>
+                                </div>
+                            
+                            </div>`;
+                    $(".ticketChat").append(html);
+
             },
             error:function(e){
                 toastr.error('Something Went Wrong',{
