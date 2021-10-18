@@ -276,6 +276,8 @@
                                 enctype="multipart/form-data" onsubmit="return false" autocomplete="off">
                                 @csrf
                                 <input type="hidden" name="role" value="3">
+                                <input type="hidden" name="region" id="region">
+                                <input type="hidden" name="time_zone" id="time_zone">
                                 <div class="tab-content mt-5">
                                     <div role="tabpanel" class="border-right tab-pane active" id="step-1">
                                         <div class="col-md-12">
@@ -683,6 +685,11 @@
         <script>
 
             $(document).ready(function() {
+
+                var date = new Date();
+                $("#region").val(date);
+                const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                $("#time_zone").val(timezone);
 
                 for (var i = 1; i <= 31; i++) {
                     $("#day").append("<option value='" + i + "'" + (i == {{ $user->day ?? 1 }} ? 'selected' : '') + ">" + i +

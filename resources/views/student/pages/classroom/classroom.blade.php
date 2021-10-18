@@ -1049,7 +1049,72 @@ height:25px;
             </div>
         </div>
     </div>
- 
+ <!--Reschedule meeting-->default  <!-- Modal -->
+            <div class="modal " id="resced" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content pt-4 pb-4">
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="iconss" style="text-align: center;">
+                                            <img src="{{asset('assets/images/ico/watchs.png')}}" width="60px">
+                                            <p
+                                                style="font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 500;margin-top: 10px;">
+                                                Book a new class</p>
+                                            <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;"
+                                                class="ml-4 mr-4">
+                                                Send new time for class with a short note about why are you getting a new
+                                                class
+                                            </p>
+                                        </div>
+                                        <div class="ml-4 mr-4">
+                                            <form>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-control">
+                                                            <label for="">Date</label>
+                                                            <input id="today2" class="inputtype mb-2" 
+                                                                type="date">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-control">
+                                                            <label for="">Time</label>
+                                                            <input id="today2" class="inputtype mb-2" 
+                                                                type="time">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-control">
+                                                            <label for="">Duration <small>(in hours)</small></label>
+                                                            <input id="today2" class="inputtype mb-2" 
+                                                                type="number">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-control">
+                                                            <label for="">Short Note</label>
+                                                            <textarea class="form-control mt-3" rows="6" cols="50"
+                                                            placeholder="Write reason"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 mb-2" style="text-align: right;">
+                                <button type="button" class="schedule-btn" data-dismiss="modal"
+                                    style="width: 130px;margin-right: 40px;">Send</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Reschedule Meeting End-->
 @endsection
 @section('scripts')
 @include('js_files.whiteBoard')
@@ -1188,7 +1253,67 @@ var deadline = '00:05:00';
 var resced = '00:15:00'; 
 var class_duration = {{$booking->duration}};
 // var class_duration = 20;
+$("#join_now").click(function(){
+                $(".tech_weck").removeClass("tech_weck-none");
+                $(".callDiv").hide();
+                    connection.onstream = function(event) {
+                        if (event.stream.isScreen && !event.stream.canvasStream) {
+                            $('#screen-viewer').get(0).srcObject = event.stream;
+                            $('#screen-viewer').hide();
+                        }
+                        else if (event.extra.roomOwner === true) {
+                            var video = document.getElementById('main-video');
+                            video.setAttribute('data-streamid', event.streamid);
+                            // video.style.display = 'none';
+                            if(event.type === 'local') {
+                                video.muted = true;
+                                video.volume = 0;
+                            }
+                            video.srcObject = event.stream;
+                            $('#main-video').show();
+                        } else {
+                            event.mediaElement.controls = false;
 
+                            var otherVideos = document.querySelector('#other-videos');
+                            otherVideos.appendChild(event.mediaElement);
+                        }
+
+                        // connection.onUserStatusChanged(event);
+                    };
+                
+                    timer.start({countdown: true, startValues: {hours: class_duration}});
+
+                    $('#countdownExample .values').html(timer.getTimeValues().toString());
+
+                    timer.addEventListener('secondsUpdated', function (e) {
+                        $('#countdownExample .values').html(timer.getTimeValues().toString());
+                    });
+
+                        var ter =$('.values').text();
+                        
+                        if( ter == deadline ){
+                            
+                            $(".blink").css("background","#dc3545");
+                            $(".Text-reck").text("Class will end in Five minutes sharp.");
+                        }
+                        else if( ter == resced ){
+                            $(".blink").css("background","#ffc107");
+                            let html = `<p class="mb-0">Do you want to reschedule another class? <a href="#" data-toggle="modal" data-target="#resced">Yes</a> or  <a href="">No</a> </p>`
+                            $(".Text-reck").html(html);
+                        }
+                        else if( ter >= resced ){
+                            $(".blink").css("background","#28a745");
+                            $(".Text-reck").text("Class will ends in: ");
+
+                        }
+
+                    timer.addEventListener('targetAchieved', function (e) {
+                        // $('#countdownExample .values').html('');
+                        $('#reviewModal').modal("show");
+
+                    });
+                /* Javascript Timer ENd */
+            });
 (function() {
     var params = {},
         r = /([^&=]+)=?([^&]*)/g;
@@ -1214,6 +1339,7 @@ connection.DetectRTC.load(function() {
         console.log(error)
         if(error == 'NotReadableError: Could not start video source'){
             alert('Unable to get camera. Please check camera is not used by any other program or and refresh the page again to start the class.')
+            $("#join_now").hide();
         }
         
     }
@@ -1315,10 +1441,17 @@ connection.DetectRTC.load(function() {
     if (connection.DetectRTC.hasWebcam === true) {
         // enable camera
         if(connection.DetectRTC.isWebsiteHasWebcamPermissions === false){
-            $(".overlayCam").css("display","block");
-            connection.mediaConstraints.video = false;
-            connection.session.video = false;
-            $("#other-videos2").attr("poster","{{asset('assets/images/ico/Mute-video.png')}}");
+
+                $(".overlayCam").css("display","block");
+                let vhtml = `<video poster="{{asset('assets/images/ico/Mute-video.png')}}"></video>`;
+                $("#other-videos").html(vhtml);
+
+
+                connection.mediaConstraints.video = false;
+                connection.session.video = false;
+                $("#other-videos2").attr("poster","{{asset('assets/images/ico/Mute-video.png')}}");
+                $("#other-videos video").attr("poster","{{asset('assets/images/ico/Mute-video.png')}}");
+
        }
        else{
        // enable microphone

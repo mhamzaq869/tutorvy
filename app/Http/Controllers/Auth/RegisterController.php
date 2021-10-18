@@ -126,6 +126,7 @@ class RegisterController extends Controller
         // Get a validator for an incoming registration request
         // from Tutor/Student Registor Form .
 
+        $region =  substr($request->region ,25,50);
         $account_id = mt_rand(100000,999999);
 
         $request->validate([
@@ -149,7 +150,8 @@ class RegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'account_id' => $account_id,
-            // 'ip' => $request->ip,
+            'region' =>  $region,
+            'time_zone' =>  $request->time_zone,
             // 'dob' => $request->dob,
             // 'phone' => $request->phone,
             // 'city' => $request->city,
@@ -178,6 +180,8 @@ class RegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'account_id' => $account_id,
+            'region' =>  $region,
+            'time_zone' =>  $request->time_zone,
             // 'ip' => $request->ip,
             // 'dob' => $request->dob,
             // 'phone' => $request->phone,

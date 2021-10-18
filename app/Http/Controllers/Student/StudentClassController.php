@@ -24,6 +24,13 @@ class StudentClassController extends Controller
     public function index(){
 
         $classes = Booking::with(['classroom','user','tutor','subject'])->where('user_id',Auth::user()->id)->where('status',2)->get();
+        
+        foreach($classes as $class) {
+            date_default_timezone_set($class->user->time_zone);
+            $date = date("h:i:sa");
+            $class->actual_booking_time =  date("H:i", strtotime($date));
+        }
+
         $user = User::where('id',Auth::user()->id)->first();
         // return $classes;
         $booked_classes = Booking::with('user')->where('user_id',Auth::user()->id)->where('status',5)->get();

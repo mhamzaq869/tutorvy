@@ -518,4 +518,9 @@
 <script>
     var pending_booking = {!! $pending !!};
     console.log(pending_booking, "pending_booking");
+    const date = new Date();
+    const offset = date.getTimezoneOffset();
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    console.log(timezone);
+
 </script>

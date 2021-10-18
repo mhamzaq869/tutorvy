@@ -7,6 +7,11 @@ $(document).ready(function() {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
+
+
+    var date = new Date();
+    $("#current_date").val(date);
 })
 
 $( '#book_tutor_form' ).on( 'submit', function(e) {

@@ -172,6 +172,7 @@
                                 @csrf
                                 <div class="mb-5 input-login">
                                     <div class="input-container">
+                                            <input type="hidden" name="time_zone" id="time_zone">
                                             @if(!isset($user))
                                             <input type="email" name="email" id="myName" placeholder="Enter Email Address"
                                                 class="form-control @if(Session::has('error')) is-invalid @endif">
@@ -344,6 +345,9 @@
         <script>
             // jquery form validation
             $(document).ready(function() {
+                const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                $("#time_zone").val(timezone);
+
                 $("#form").validate({
                     rules: {
                         myName: {

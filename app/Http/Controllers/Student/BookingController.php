@@ -156,6 +156,30 @@ class BookingController extends Controller
         $notification->GeneralNotifi($reciever->id ,$slug,$type,$title,$icon,$class,$desc,$pic);
 
 
+        // timezone
+        if($request->current_date != null && $request->current_date != "") {
+
+            $booking_region =  substr($request->current_date ,25,50);
+
+            if(Auth::user()->region != null && Auth::user()->region != "") {
+
+                
+                if(Auth::user()->region != $booking_region) {
+                    User::where('id', Auth::user()->id)->update([
+                        "region" => $booking_region,
+                    ]);
+                }
+
+            }else{
+
+                User::where('id', Auth::user()->id)->update([
+                    "region" => $booking_region,
+                ]);
+
+            }
+
+        }
+
         return response()->json([
             'status'=>200,
             'message' => 'success'

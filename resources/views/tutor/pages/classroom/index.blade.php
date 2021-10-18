@@ -93,19 +93,11 @@
                                                                     <span> - </span>
                                                                     @endif
                                                                 </td>
-                                                                <td class="pt-4">
-                                                                    {{ $class->subject->name }}
-                                                                </td>
-                                                                <td class="pt-4">
-                                                                    {{ $class->topic }}
-                                                                </td>
-                                                                <td class="pt-4">
-                                                                {{$time}}
-                                                                </td>
+                                                                <td class="pt-4"> {{ $class->subject->name }} </td>
+                                                                <td class="pt-4"> {{ $class->topic }} </td>
+                                                                <td class="pt-4" id="tutor_time_{{$class->id}}">  </td>
                                                                
-                                                                <td class="pt-4">
-                                                                    {{ $class->duration }} Hour(s)
-                                                                </td>
+                                                                <td class="pt-4"> {{ $class->duration }} Hour(s) </td>
                                                                 <td class="pt-4">
                                                                 @if($class->status == 1)
                                                                     <span class="bg-color-apporve3">
@@ -121,14 +113,22 @@
                                                                     </span>
                                                                 @elseif($class->status == 0)
                                                                     <span class="bg-color-apporve">
-                                                                        Pending
+                                                                        Pending 
                                                                     </span>
                                                                 @endif
                                                                 </td>
                                                                 <td style="text-align: center;">
                                                                     @if($class->classroom != null)
-                                                                    <span data-id="{{$class->id}}"  data-review="{{$class->is_reviewed}}" data-date="{{$class->class_date}}" data-room="{{$class->classroom != null ? $class->classroom->classroom_id : ''}}" data-duration="{{$class->duration}}" data-time="{{$class->class_time}}"
-                                                                        id="class_time_{{$class->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success mt-3">{{$class->class_date}} {{$class->class_time}} </span>     
+                                                                    <span data-id="{{$class->id}}"
+                                                                        data-tzone="{{$class->tutor->time_zone}}" data-zone="{{$class->user->time_zone}}"  
+                                                                        data-review="{{$class->is_reviewed}}" data-date="{{$class->class_date}}" 
+                                                                        data-room="{{$class->classroom != null ? $class->classroom->classroom_id : ''}}" 
+                                                                        data-time="{{$class->class_time}}"
+                                                                        id="class_time_{{$class->id}}" 
+                                                                        class="badge current_time badge-pill text-white font-weight-normal bg-success mt-3">
+                                                                        {{$class->class_date}} {{$class->class_time}} 
+                                                                    </span>     
+
                                                                     <div id="join_class_{{$class->id}}" class="text-center">
                                                                     @endif
                                                                 </td>
@@ -243,68 +243,75 @@
 
 <script>
     $(document).ready(function() {
-        
+        var timer = new Timer();
+
+
         $( ".current_time" ).each(function() {
 
             var booking_time = $( this ).text();
+            var booking_seconds_time =  HmsToSeconds(moment(booking_time).format('HH:mm:ss'));
+
             var attr_id = $(this).data('id');
-            var duration = $(this).data('duration');
-            var time = $(this).data('time');
             var room_id = $(this).data('room');
-            var class_date = $(this).data('date');
             var review = $(this).data('review');
-
-            var CurrentDate = new Date();
-            class_date = new Date(class_date);
-
-            let split_time = time.split(':');
-            let create_time = parseInt(split_time[0]) + parseInt(duration);
-
-            let actual_time  = create_time + ':' + split_time[1];
-
-            var time = moment(booking_time).format('MMM D, YYYY h:mm:ss a');
-            console.log(booking_time , "bt");
-            console.log(time , "time");
-
-            var countDownDate = new Date(time).getTime();
-
-            var x = setInterval(function() {
-
-                var now = new Date().getTime();
-                var distance = countDownDate - now;
-
-                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                var total_time = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-                
-                $("#class_time_"+attr_id).html(total_time);
-
-                if (distance < 0) {
-                    clearInterval(x);
-                    let join_btn = `<a href="{{url('tutor/class')}}/`+room_id+`"  class="schedule-btn"> Start Call </a>`;
-                    // if(time > actual_time) {
-                    //     $("#class_time_"+attr_id).text("Class Expired");
-                    // }else{
-                    //     $("#join_class_"+attr_id).html(join_btn);
-                    // }
-
-                    if(review == 0) {
-                        $("#join_class_"+attr_id).html(join_btn);
-                    }else{
-                        $("#join_class_"+attr_id).html(" ");
-                    }
-                    
-                    $("#class_time_"+attr_id).text("");
-                    
-                }
-            }, 1000);
+            var time_zone = $(this).data('zone');
+            var tutor_time_zone = $(this).data('tzone');
+            var booking_class_date = $(this).data('date');
             
+            var std_current_region_date = new Date().toLocaleString('en-US', { timeZone: tutor_time_zone });
+            var std_time_in_seconds = HmsToSeconds(moment(std_current_region_date).format('HH:mm:ss'));
+
+            var remain_time = (booking_seconds_time -  std_time_in_seconds);
+            
+            var date = new Date();
+            var tutor_time_in_seconds = HmsToSeconds(moment(date).format('HH:mm:ss'));
+
+            var get = (tutor_time_in_seconds + remain_time);
+            let create_date = booking_class_date + ' ' + secondsToHms(get);
+            var time = moment(create_date).format('h:mm a');
+            $("#tutor_time_"+attr_id).text(time);
+
+            timer.start({countdown: true, startValues: {seconds: remain_time }});
+            timer.addEventListener('secondsUpdated', function (e) {
+                $("#class_time_"+attr_id).html(timer.getTimeValues().toString());
+            });
+
+            timer.addEventListener('targetAchieved', function (e) {
+                let join_btn = `<a onclick="joinClass('`+room_id+`')" class="schedule-btn"> Join Class </a>`;
+                if(review == 0) {
+                    $("#join_class_"+attr_id).html(join_btn);
+                }else{
+                    $("#join_class_"+attr_id).html(" ");
+                }
+                $("#class_time_"+attr_id).html("");
+            });         
 
         });
 
+        function HmsToSeconds(hms) {
+            // var hms = '02:04:33';
+            var a = hms.split(':'); // split it at the colons
+
+            // minutes are worth 60 seconds. Hours are worth 60 minutes.
+            var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
+            return seconds;
+        }
+
+        function secondsToHms(secs) {
+
+            var sec_num = parseInt(secs, 10);
+            var hours = Math.floor(sec_num / 3600);
+            var minutes = Math.floor(sec_num / 60) % 60;
+            var seconds = sec_num % 60;
+
+            var h = hours < 10 ? "0" + hours : hours;
+            var m = minutes < 10 ? "0" + minutes : minutes;
+            var s = seconds < 10 ? "0" + seconds : seconds;
+
+            var fin = h + ":" + m + ":" + s;
+            return fin;
+
+        }
 
     });
 </script>

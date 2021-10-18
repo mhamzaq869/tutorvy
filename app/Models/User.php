@@ -41,6 +41,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'city',
         'country',
         'country_short',
+        'region',
+        'time_zone',
         'type',
         'cnic_security',
         'gender',

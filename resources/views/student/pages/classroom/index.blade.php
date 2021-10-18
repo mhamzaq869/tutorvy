@@ -186,8 +186,16 @@
 
                                                             <td>
                                                                 @if($class->classroom != null)
-                                                                <span data-id="{{$class->id}}"  data-review="{{$class->is_reviewed}}" data-date="{{$class->class_date}}" data-room="{{$class->classroom != null ? $class->classroom->classroom_id : ''}}" data-duration="{{$class->duration}}" data-time="{{$class->class_time}}"
-                                                                        id="class_time_{{$class->id}}" class="badge current_time badge-pill text-white font-weight-normal bg-success mt-3">{{$class->class_date}} {{$class->class_time}} </span>     
+                                                                    <span data-id="{{$class->id}}" 
+                                                                        data-review="{{$class->is_reviewed}}"
+                                                                        data-room="{{$class->classroom != null ? $class->classroom->classroom_id : ''}}" 
+                                                                        id="class_time_{{$class->id}}" 
+                                                                        class="badge current_time badge-pill text-white font-weight-normal bg-success mt-3">
+
+                                                                        {{$class->class_date}} {{$class->class_time}}
+
+                                                                    </span>     
+
                                                                     <div class="join_class_{{$class->id}}" class="text-center">
                                                                 @endif
                                                             </td>
@@ -348,6 +356,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script>
     $(document).ready(function(){
+        var timer = new Timer();
 
         $('#stars li').on('click', function(){
             var onStar = parseInt($(this).data('value'), 10); // The star currently selected
@@ -410,82 +419,61 @@
  
         });
 
-
-
+ 
         $( ".current_time" ).each(function() {
 
             var booking_time = $( this ).text();
+            var booking_seconds_time = HmsToSeconds(moment(booking_time).format('HH:mm:ss'));;
+            
             var attr_id = $(this).data('id');
-            var duration = $(this).data('duration');
             var room_id = $(this).data('room');
-            var time = $(this).data('time');
-            var class_date = $(this).data('date');
-            var review = $(this).data('review');
+            var review = $(this).data('review');         
 
-            var CurrentDate = new Date();
-            class_date = new Date(class_date);
+            var getcurrenttime = new Date();
+            var remain_time = (booking_seconds_time - HmsToSeconds(moment(getcurrenttime).format('HH:mm:ss')));
 
-            let split_time = time.split(':');
-            let create_time = parseInt(split_time[0]) + parseInt(duration);
+            timer.start({countdown: true, startValues: {seconds: remain_time}});
+            timer.addEventListener('secondsUpdated', function (e) {
+                $("#class_time_"+attr_id).html(timer.getTimeValues().toString());
+            });
 
-            let actual_time  = create_time + ':' + split_time[1];
-
-            console.log(attr_id , "ai");
-
-            let join_btn = `<a onclick="joinClass('`+room_id+`')" class="schedule-btn"> Join Class </a>`;
-                    
-            $(".join_class_"+attr_id).html(join_btn);
-            $("#class_time_"+attr_id).html("");
- 
-            return false;
-           
-            // console.log(booking_time,"booking_time");
-            // var time = moment(booking_time).format('MMMM Do YYYY, h:mm:ss a');
-
-            // console.log(time , "asd");
-
-            // var countDownDate = new Date(time).getTime();
-            // var x = setInterval(function() {
-
-            //     var now = new Date().getTime();
-            //     var distance = countDownDate - now;
-
-            //     var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            //     var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            //     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            //     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            //     var total_time = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-                
-            //     $("#class_time_"+attr_id).html(total_time);
-                
-            //     if (distance < 0) {
-            //         clearInterval(x);
-
-            //         // let join_btn = `<a href="{{url('student/class')}}/`+room_id+`"  class="schedule-btn"> Join Class </a>`;
-            //         let join_btn = `<a onclick="joinClass('`+room_id+`')" class="schedule-btn"> Join Class </a>`;
-                    
-            //         $("#join_class_"+attr_id).html(join_btn);
-            //         $("#join_class_"+attr_id).html("");
-
-            //         // if(time > actual_time) {
-            //         //     if(review == 0 ) {
-            //         //         $("#join_class_"+attr_id).html(join_btn);
-            //         //     }else{
-            //         //         $("#join_class_"+attr_id).html("");
-            //         //     }
-                        
-            //         //     $("#class_time_"+attr_id).text("");
-
-            //         // }else{
-            //         //     $("#class_time_"+attr_id).text("Class Expired");
-            //         // }
-                    
-            //     }
-            // }, 1000);
-
+            timer.addEventListener('targetAchieved', function (e) {
+                let join_btn = `<a onclick="joinClass('`+room_id+`')" class="schedule-btn"> Join Class </a>`;
+                if(review == 0) {
+                    $(".join_class_"+attr_id).html(join_btn);
+                }else{
+                    $(".join_class_"+attr_id).html(" ");
+                }
+                $("#class_time_"+attr_id).html("");
+            }); 
         }); 
     });
+
+    
+    function HmsToSeconds(hms) {
+        // var hms = '02:04:33';
+        var a = hms.split(':'); // split it at the colons
+
+        // minutes are worth 60 seconds. Hours are worth 60 minutes.
+        var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
+        return seconds;
+    }
+
+    function secondsToHms(secs) {
+
+        var sec_num = parseInt(secs, 10);
+        var hours = Math.floor(sec_num / 3600);
+        var minutes = Math.floor(sec_num / 60) % 60;
+        var seconds = sec_num % 60;
+
+        var h = hours < 10 ? "0" + hours : hours;
+        var m = minutes < 10 ? "0" + minutes : minutes;
+        var s = seconds < 10 ? "0" + seconds : seconds;
+
+        var fin = h + ":" + m + ":" + s;
+        return fin;
+
+    }
 
     function joinClass(id){
         var connection = new RTCMultiConnection();
@@ -508,7 +496,6 @@
     }
 
     function showReviewModal(id) {
-
         $("#booking_id").val(id);
         $("#reviewModal").modal('show');
     }

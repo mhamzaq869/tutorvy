@@ -34,10 +34,24 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span class="heading-fifth-1">Ticket Message</span>
+                                </div>
+                                <div class="col-md-12">
+                                     {{$ticket->message}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
                             <div class="row pt-4 container-bg-1  ml-1 mr-1">
                                 <div class="col-md-8">
                                     <div class="col-md-12 pl-0">
-                                        <span class="heading-fifth-1">Ticket Message</span>
+                                        <span class="heading-fifth-1">Reply</span>
                                         <div class="row mt-3 mb-3 ticketChat">
                                             <div class="col-md-12 ">
                                                 <div class="sender">
@@ -94,10 +108,13 @@
                                     </div>
                                     <div class="container-fluid  m-0 p-0">
                                         <span class="heading-fifth-1 mb-3">Reply</span>
-                                        <form class="form-border ">
+                                        <form class="form-border" id="formTkt" method="POST" action="{{route('admin.ticketChat')}}">
+                                            <input type="hidden" name="reciever_id" value="{{$ticket->user_id}}">
+                                            <input type="hidden" name="sender_id" value="{{$idAdmin}}">
+                                            <input type="hidden" name="ticket_id" value="{{$ticket->id}}">
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <textarea class="textarea-ticket form-control mt-3 p-2" name="" id="" cols="" rows="" placeholder="Your Reply"></textarea>
+                                                    <textarea class="textarea-ticket form-control mt-3 p-2" name="text" id="" cols="" rows="" placeholder="Your Reply"></textarea>
                                                     <!-- image upload name -->
                                                     <div class="divided-line"></div>
                                                     <!-- end -->
@@ -117,7 +134,7 @@
                                                     <div id="custom-file-name"></div>
                                                 </div>
                                                 <div class="col-md-3 text-right">
-                                                    <a href="#"> <button class="schedule-btn ">Send</button></a>
+                                                 <button class="schedule-btn " type="submit">Send</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -367,5 +384,40 @@
 
 @endsection
 @section('js')
-  
+  <script>
+      $("#formTkt").submit(function(e){
+          e.preventDefault();
+
+          var action = $(this).attr('action');
+          var method = $(this).attr('method');
+           $.ajax({
+            url: action,
+            type:method,
+            data: new FormData( this ),
+            cache: false,
+            contentType: false,
+            processData: false,
+            success:function(response){
+                // console.log(response);
+                if(response.status_code == 200) {
+                    toastr.success(response.message,{
+                        position: 'top-end',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
+
+                }
+            },
+            error:function(e){
+                toastr.error('Something Went Wrong',{
+                    position: 'top-end',
+                    icon: 'error',
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            }
+        });
+      })
+  </script>
 @endsection

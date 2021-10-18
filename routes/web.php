@@ -140,6 +140,7 @@ Route::group(['prefix' => '/admin','middleware' => ['auth','admin']],function ()
     Route::get('/ticket/{id}',[SupportController::class,'ticket'])->name('admin.ticket');
 
     Route::get('/ticket-reply',[SupportController::class,'ticketReply'])->name('admin.ticketReply');
+    Route::post('/ticket-chat',[SupportController::class,'ticketChat'])->name('admin.ticketChat');
     Route::get('/setting',[SettingController::class,'index'])->name('admin.setting');
 
     Route::get('/activity-logs',[SettingController::class,'activityLogs'])->name('admin.activity.logs');
@@ -184,7 +185,12 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::get('/classroom',[ClassController::class,'index'])->name('tutor.classroom');
     Route::get('/calendar',[CalendarController::class,'index'])->name('tutor.calendar');
     Route::get('/support-ticket',[HistoryController::class,'index'])->name('tutor.history');
+
     Route::get('/payment',[PaymentController::class,'index'])->name('tutor.payment');
+    Route::get('/payment/paypal-status',[PaymentController::class,'paypalResponseSuccess'])->name('tutor.payment.paypal_status');
+
+    Route::get('/payment/paypal',[PaymentController::class,'withdrawWithPaypal'])->name('tutor.payment.paypal');
+
     Route::get('/subjects',[TutorSubjectController::class,'index'])->name('tutor.subject');
     Route::get('/reviews',[TutorSubjectController::class,'review'])->name('tutor.reviews');
     Route::get('/removesubjects/{id}',[TutorSubjectController::class,'destroy'])->name('tutor.remove.subject');

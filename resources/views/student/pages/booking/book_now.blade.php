@@ -13,7 +13,8 @@
     <div class="container">
         <div class="col-md-12">
             <p class="heading-third mt-3">Personal information</p>
-            <form action="{{route('student.booked.tutor')}}" method="post"  enctype="multipart/form-data" id="book_tutor_form">
+            <form enctype="multipart/form-data" id="book_tutor_form">
+                <input type="hidden" name="current_date" id="current_date">
                 <div class="row mt-5">
                         <div class=" col-md-6">
                             <div class="row">

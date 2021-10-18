@@ -34,33 +34,99 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span class="heading-fifth-1">Ticket Message</span>
+                                </div>
+                                <div class="col-md-12">
+                                     {{$ticket->message}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
                             <div class="row pt-4 container-bg-1  ml-1 mr-1">
+                               
                                 <div class="col-md-8">
                                     <div class="col-md-12 pl-0">
-                                        <span class="heading-fifth-1">Ticket Message</span>
-                                        <p class="paragraph-text-1 mt-3">
-                                            {{$ticket->message}}
-                                        </p>
+                                        <span class="heading-fifth-1">Reply</span>
+                                        <div class="row mt-3 mb-3 ticketChat">
+                                            <div class="col-md-12 ">
+                                                <div class="sender">
+                                                    <small>From Sender Name</small>  
+                                                    <p class="mb-0">
+                                                        ewwe
+                                                    </p>
+                                                    <small class="dull pull-right">
+                                                        1min ago
+                                                    </small>
+                                                   
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 ">
+                                                <div class="reciever">
+                                                    <small>From You</small>
+                                                    <p class="mb-0">
+                                                        ewwe
+                                                    </p>
+                                                    <small class="dull pull-right">
+                                                        1min ago
+                                                    </small>
+                                                </div>
+                                               
+                                            </div>
+                                            <div class="col-md-12 ">
+                                                <div class="sender">
+                                                    <small>From Sender Name</small>
+                                                    <p class="mb-0">
+                                                           <img src="http://127.0.0.1:8000/assets/images/ico/Square-white.jpg" class="attachment" alt="">
+                                                 
+                                                    </p>
+                                                    <small class="dull pull-right">
+                                                        1min ago
+                                                    </small>
+                                                </div>
+                                               
+                                            </div>
+                                            <div class="col-md-12 ">
+                                                <div class="reciever">
+                                                    <small>From You</small>
+                                                    <p class="mb-0">
+                                                           <img src="http://127.0.0.1:8000/assets/images/ico/Mute-video.png" class="attachment" alt="">
+                                                 
+                                                    </p>
+                                                    <small class="dull pull-right">
+                                                        1min ago
+                                                    </small>
+                                                </div>
+                                               
+                                            </div>
+                                        </div>
+                                        
                                     </div>
-                                    <!-- <div class="container-fluid mt-5 m-0 p-0">
+                                    <div class="container-fluid  m-0 p-0">
                                         <span class="heading-fifth-1 mb-3">Reply</span>
-                                        <form class="form-border mb-5 mt-3">
+                                        <form class="form-border ">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <textarea class="textarea-ticket form-control mt-3 p-2" name="" id="" cols="" rows="" placeholder="Your Reply"></textarea>
+                                                    <!-- image upload name -->
                                                     <div class="divided-line"></div>
+                                                    <!-- end -->
                                                 </div>
                                             </div>
                                             <div class="row p-1">
                                                 <div class="col-md-9 ">
-                                                    <input type="file" id="file" class="file-attach" />
-                                                    <label for="file">
-                                                        <img src="{{asset('admin/assets/img/ico/Repeat-image.png')}}" class="" alt="repeat" />
+                                                    <input type="file" id="file" class="file-attach">
+                                                    <label for="file" class="p-0    ">
+                                                        <img src="http://127.0.0.1:8000/admin/assets/img/ico/Repeat-image.png" class="" alt="repeat">
                                                     </label>
-                                                    <input type="file" id="file" accept=".jpg,.jpeg,.png" class="file-attach" />
-                                                    <label for="file">
-                                                        <img src="{{asset('admin/assets/img/ico/metro-attachment.png')}}" class="" style="width:23px;"
-                                                            alt="repeat" />
+                                                    <input type="file" id="file" accept=".jpg,.jpeg,.png" class="file-attach">
+                                                    <label for="file" class="p-0    ">
+                                                        <img src="http://127.0.0.1:8000/admin/assets/img/ico/metro-attachment.png" class="" style="width:23px;" alt="repeat">
                                                     </label>
                                                     <div id="custom-file-name"></div>
                                                 </div>
@@ -69,7 +135,7 @@
                                                 </div>
                                             </div>
                                         </form>
-                                    </div> -->
+                                    </div>
                                 </div>
                                 <div class="col-md-4 rounded border">
                                     <div class="card-1 mt-3">
@@ -179,16 +245,8 @@
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <button class="float-right schedule-btn mt-2 w-50" data-toggle="modal"
-                                            data-target="#assignModal" >Assign ticket</button>
-
-                                        <button class="float-right cencel-btn mt-2  w-50" data-toggle="modal"
-                                            data-target="#assignModal" >Chage Assignnment</button>
-
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
