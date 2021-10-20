@@ -647,15 +647,11 @@
 
 
                                         <div class="col-md-12 text-right mt-3" id="show_pay_btn">
-                                            @if ($defaultPay != null)
+
                                             <form action="{{url('/student/booking/payment')}}" id="payment" method="post">
-                                            @endif
                                                 @csrf
                                                 <div id="paytype"></div>
                                                 <span></span>
-                                                @if ($defaultPay == null)
-                                                <button class="btn btn-secondary" disabled>Pay now</button>
-                                                @endif
 
                                             </form>
                                         </div>

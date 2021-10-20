@@ -41,7 +41,7 @@
                                 <button class="tablinks nav-link" onclick="openCity(event, 'tab3')">Payment</button>
                                 <button class="tablinks nav-link" onclick="openCity(event, 'tab4')">System</button>
                             </div>
-                           
+
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="settings-data">
-                                
+
                                 <div id="tab1" class="tabcontent" style="display:block;">
                                     <form method="POST" action="{{route('admin.profile')}}">
                                         @csrf
@@ -87,8 +87,8 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    
-                                                
+
+
                                                     <small class="">Email Address</small>
                                                     <div class="form-group">
                                                         <input type="email" name="email" class="form-control"
@@ -98,7 +98,7 @@
                                                     <div class="form-group">
                                                         <input type="number"name="phone" class="form-control"
                                                             placeholder="03XX XXXXXXXX">
-                                                    </div> 
+                                                    </div>
                                                     <small class=" ">Address</small>
                                                     <div class="row">
                                                         <div class="form-group col-md-6">
@@ -117,10 +117,10 @@
                                                     <div class="row">
                                                         <div class="col-md-12 text-right">
                                                                 <button type="submit" class="btn-general">Save changes</button>
-                                                            
+
                                                         </div>
                                                     </div>
-                                                    
+
 
                                                 </div>
                                         </div>
@@ -136,7 +136,7 @@
                                             <div class="col-md-12 font-light">
                                                     Change password
                                             </div>
-                                            
+
                                             <div class="col-sm-6">
                                                 <form action="{{route('admin.change.password')}}" id="changePasswordForm" method="POST">
                                                     <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
@@ -238,7 +238,7 @@
                                                 <div class="card-body">
                                                     <div class="text-center">
                                                         <img src="{{asset ('assets/images/payment-icon/paypal_logo_512.png')}}" alt="">
-                                                        <span class="payment-menu dropdown d-flex"> 
+                                                        <span class="payment-menu dropdown d-flex">
                                                             <a class=" d-flex" href="#" data-toggle="dropdown" aria-expanded="true">
                                                                 <img src="{{asset ('assets/images/payment-icon/menu_dots.png')}}" alt="">
                                                             </a>
@@ -263,7 +263,7 @@
                                                 <div class="card-body">
                                                     <div class="text-center">
                                                         <img src="{{asset ('assets/images/payment-icon/masterCard_logo_512.png')}}" alt="">
-                                                        <span class="payment-menu dropdown d-flex"> 
+                                                        <span class="payment-menu dropdown d-flex">
                                                             <a class=" d-flex" href="#" data-toggle="dropdown" aria-expanded="true">
                                                                 <img src="{{asset ('assets/images/payment-icon/menu_dots.png')}}" alt="">
                                                             </a>
@@ -288,7 +288,7 @@
                                                 <div class="card-body">
                                                     <div class="text-center">
                                                         <img src="{{asset ('assets/images/payment-icon/masterCard_logo_512.png')}}" alt="">
-                                                        <span class="payment-menu dropdown d-flex"> 
+                                                        <span class="payment-menu dropdown d-flex">
                                                             <a class=" d-flex" href="#" data-toggle="dropdown" aria-expanded="true">
                                                                 <img src="{{asset ('assets/images/payment-icon/menu_dots.png')}}" alt="">
                                                             </a>
@@ -310,7 +310,7 @@
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        
+
                                     </div>
                                 </div>
 
@@ -321,7 +321,7 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <form action="{{route('admin.save.system-setting')}}" id="systemSettingForm" method="POST">
-                                                
+
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <small class="">Commission</small>
@@ -342,13 +342,25 @@
                                                                 placeholder="">
                                                         </div>
                                                     </div>
-                                                    
+                                                    <div class="col-md-12">
+                                                        <small class="">Payouts clearence days</small>
+
+                                                        <div class="form-group">
+                                                            @if($setting != null)
+                                                            <input type="number" name="clearence_days" class="form-control"
+                                                                placeholder="Comission Percentage" value="{{$setting->clearence_days != null ? $setting->clearence_days : ''}}">
+                                                            @else
+                                                            <input type="number" name="clearence_days" class="form-control" placeholder="Comission Percentage">
+                                                            @endif
+                                                        </div>
+
+                                                    </div>
                                                     <div class="col-md-12">
                                                         <small class="">Change Logo</small>
                                                     </div>
                                                     <div class="col-md-12  mb-2 mt-1">
                                                         @if($setting != null)
-                                                            <input type="file" name="logo" class="dropify" data-default-file="{{ asset($setting->logo) }}"> 
+                                                            <input type="file" name="logo" class="dropify" data-default-file="{{ asset($setting->logo) }}">
                                                         @else
                                                             <input type="file" name="logo" class="dropify">
                                                         @endif
@@ -386,13 +398,13 @@
                             </div>
                         </div>
                     </div>
-                
+
                 </div>
             </div>
         </div>
 </section>
     <!--section start  -->
-   
+
 
 
 @endsection

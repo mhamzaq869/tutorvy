@@ -64,6 +64,7 @@ class SettingController extends Controller
             "user_id" => Auth::user()->id,
             "title" => $request->title,
             "commission" => $request->commission,
+            "clearence_days" => $request->clearence_days,
             // "logo" => $request->hasFile('logo') ?? $images[0]  ,
             // "favicon" => $request->hasFile('favicon') ?? $images[1],
         );
@@ -95,15 +96,15 @@ class SettingController extends Controller
             "success" => true,
             "message" => "Setting saved successfully",
         ]);
-        
+
 
     }
 
 
     public function saveProfile(Request $request) {
-        
+
         $data = array(
-            "first_name" => $request->first_name, 
+            "first_name" => $request->first_name,
             "last_name" => $request->last_name,
             "email" => $request->email,
             "phone" => $request->phone,

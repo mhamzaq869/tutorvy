@@ -163,7 +163,7 @@ class BookingController extends Controller
 
             if(Auth::user()->region != null && Auth::user()->region != "") {
 
-                
+
                 if(Auth::user()->region != $booking_region) {
                     User::where('id', Auth::user()->id)->update([
                         "region" => $booking_region,
@@ -353,7 +353,6 @@ class BookingController extends Controller
                     );
 
                     Classroom::create([
-                        'booking_id' => $booking->id ?? null,
                         'course_id' => $course->id ?? null,
                         'classroom_id' => $classroom_id
                     ]);
@@ -441,10 +440,11 @@ class BookingController extends Controller
             $payer = new Payer();
             $payer->setPaymentMethod('paypal');
 
-            $payerInfo = new PayerInfo();
-            $payerInfo->setEmail($payerEmail->email);
-
-            $payer->setPayerInfo($payerInfo);
+            if(isset($payerEmail)):
+                $payerInfo = new PayerInfo();
+                $payerInfo->setEmail($payerEmail->email);
+                $payer->setPayerInfo($payerInfo);
+            endif;
 
             $item_1 = new Item();
 
@@ -706,7 +706,7 @@ class BookingController extends Controller
         $this->skrilRequest->return_url = 'https://tutorvy.dev/student/skrlpayment-complete';
         $this->skrilRequest->cancel_url = 'https://tutorvy.dev/student/bookings';
         $this->skrilRequest->logo_url = 'https://tutorvydev.naumanyasin.com/assets/images/logo/logo.png';
-        $this->skrilRequest->pay_from_email = $payerEmail->email;
+        $this->skrilRequest->pay_from_email = $payerEmail->email ?? '';
         $this->skrilRequest->transaction_id = 'SKRL-'.rand();
         $this->skrilRequest->amount = $total_price;
         $this->skrilRequest->currency = 'USD';
