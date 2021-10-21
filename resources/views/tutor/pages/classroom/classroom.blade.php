@@ -456,6 +456,9 @@ height:25px;
 
  <!--  -->
     <input type="hidden" id="class_room_id" value="{{$class->id}}">
+    <input type="hidden" id="class_date" value="{{$booking->class_date}}">
+    <input type="hidden" id="class_time" value="{{$booking->class_time}}">
+    <input type="hidden" id="class_total_duration" value="{{$booking->duration}}">
 <div class="overlayCam container-fluid">
     <div class="row text-center text-white">
         <div class="col-md-12">
@@ -1076,36 +1079,36 @@ connection.DetectRTC.load(function() {
                     // joinClass();
 
                     /** Javascript Timer */
-                    timer.start({countdown: true, startValues: {hours: class_duration}});
+                    // timer.start({countdown: true, startValues: {hours: class_duration}});
 
-                    $('#countdownExample .values').html(timer.getTimeValues().toString());
+                    // $('#countdownExample .values').html(timer.getTimeValues().toString());
 
-                    timer.addEventListener('secondsUpdated', function (e) {
+                    // timer.addEventListener('secondsUpdated', function (e) {
 
-                        var ter =$('.values').text();
+                    //     var ter =$('.values').text();
                         
-                        if( ter == deadline ){
+                    //     if( ter == deadline ){
                             
-                            $(".values").css("color","#dc3545");
-                            // $(".Text-reck").text("Class will end in Five minutes sharp.");
-                        }
-                        else if( ter == resced ){
-                            $(".values").css("color","#ffc107");
-                            // let html = `<p class="mb-0">Do you want to reschedule another class? <a href="">Yes</a> or  <a href="">No</a> </p>`
-                            // $(".Text-reck").html(html);
-                        }
-                        else if( ter >= resced ){
-                            $(".values").css("color","#28a745");
-                            // $(".Text-reck").text("Class will ends in: ");
+                    //         $(".values").css("color","#dc3545");
+                    //         // $(".Text-reck").text("Class will end in Five minutes sharp.");
+                    //     }
+                    //     else if( ter == resced ){
+                    //         $(".values").css("color","#ffc107");
+                    //         // let html = `<p class="mb-0">Do you want to reschedule another class? <a href="">Yes</a> or  <a href="">No</a> </p>`
+                    //         // $(".Text-reck").html(html);
+                    //     }
+                    //     else if( ter >= resced ){
+                    //         $(".values").css("color","#28a745");
+                    //         // $(".Text-reck").text("Class will ends in: ");
 
-                        }
+                    //     }
 
-                        $('#countdownExample .values').html(timer.getTimeValues().toString());
-                    });
+                    //     $('#countdownExample .values').html(timer.getTimeValues().toString());
+                    // });
 
-                    timer.addEventListener('targetAchieved', function (e) {
-                        $('#endCall').modal("show");
-                    });
+                    // timer.addEventListener('targetAchieved', function (e) {
+                    //     $('#endCall').modal("show");
+                    // });
                     /* Javascript Timer ENd */
                 })
         }
@@ -1741,6 +1744,62 @@ designer.appendTo(document.getElementById('widget-container'), function() {
                     }
                     alert(error);
                 }
+
+                var class_date = $("#class_date").val();
+                var class_time = $("#class_time").val();
+                var class_total_duration = $("#class_total_duration").val();
+
+                var bookings = new Date(class_date + ' ' + class_time);
+                var booking_seconds = HmsToSeconds(moment(bookings).format('HH:mm:ss')) ;
+
+                var today_date = new Date();
+                var today_date_seconds = HmsToSeconds(moment(today_date).format('HH:mm:ss'));
+
+
+                var class_end = moment(bookings).add(class_total_duration,'h').format("HH:mm:ss");
+                var create_class_end_date = new Date(class_date + ' ' + class_end);
+                var class_end_seconds = HmsToSeconds(moment(create_class_end_date).format('HH:mm:ss'));
+
+                var remain_seconds = class_end_seconds - today_date_seconds;
+
+                /** Javascript Timer */
+                timer.start({countdown: true, startValues: {seconds: remain_seconds}});
+
+                $('#countdownExample .values').html(timer.getTimeValues().toString());
+                timer.addEventListener('secondsUpdated', function (e) {
+
+                    var ter = $('.values').text();
+                    
+                    if( ter < deadline ){
+                        
+                        $(".values").css("color","#dc3545");
+                        // $(".Text-reck").text("Class will end in Five minutes sharp.");
+                    }
+                    else if( ter == resced || ter < resced && ter > deadline){
+                        $(".values").css("color","#ffc107");
+                        // let html = `<p class="mb-0">Do you want to reschedule another class? <a href="">Yes</a> or  <a href="">No</a> </p>`
+                        // $(".Text-reck").html(html);
+                    }
+                    else if( ter >= resced ){
+                        $(".values").css("color","#28a745");
+                        // $(".Text-reck").text("Class will ends in: ");
+
+                    }
+
+                    $('#countdownExample .values').html(timer.getTimeValues().toString());
+                });
+
+                timer.addEventListener('targetAchieved', function (e) {
+                    $('#endCall').modal("show");
+                });
+                /* Javascript Timer ENd */
+
+                if(today_date_seconds > class_end_seconds) {
+                    $('#countdownExample .values').html("Class Time Over");
+                    $('#endCall').modal("show");
+                }
+
+                // start timer here
                 var video = document.getElementById('main-video');
         video.setAttribute('data-streamid', event.streamid);
                 saveClassLogs();
@@ -1985,7 +2044,36 @@ function copyToClipboard(elementId) {
 
 }
 
+
+
+
 /* Add New Board Section */
+
+
+// seconds to hms
+function secondsToHms(secs) {
+    var sec_num = parseInt(secs, 10);
+    var hours = Math.floor(sec_num / 3600);
+    var minutes = Math.floor(sec_num / 60) % 60;
+    var seconds = sec_num % 60;
+
+    var h = hours < 10 ? "0" + hours : hours;
+    var m = minutes < 10 ? "0" + minutes : minutes;
+    var s = seconds < 10 ? "0" + seconds : seconds;
+
+    var fin = h + ":" + m + ":" + s;
+    return fin;
+}
+
+// hms to seconds
+function HmsToSeconds(hms) {
+    // var hms = '02:04:33';
+    var a = hms.split(':'); // split it at the colons
+
+    // minutes are worth 60 seconds. Hours are worth 60 minutes.
+    var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
+    return seconds;
+}
 </script>
 
 

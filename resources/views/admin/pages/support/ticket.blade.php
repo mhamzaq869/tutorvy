@@ -53,56 +53,34 @@
                                     <div class="col-md-12 pl-0">
                                         <span class="heading-fifth-1">Reply</span>
                                         <div class="row mt-3 mb-3 ticketChat">
-                                            <div class="col-md-12 ">
-                                                <div class="sender">
-                                                    <small>From Sender Name</small>  
-                                                    <p class="mb-0">
-                                                        {{$ticket->message}}
-                                                    </p>
-                                                    <small class="dull pull-right">
-                                                        1min ago
-                                                    </small>
-                                                   
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12 ">
-                                                <div class="reciever">
-                                                    <small>From You</small>
-                                                    <p class="mb-0">
-                                                        {{$ticket->message}}
-                                                    </p>
-                                                    <small class="dull pull-right">
-                                                        1min ago
-                                                    </small>
-                                                </div>
-                                               
-                                            </div>
-                                            <div class="col-md-12 ">
-                                                <div class="sender">
-                                                    <small>From Sender Name</small>
-                                                    <p class="mb-0">
-                                                           <img src="{{asset('assets/images/ico/Square-white.jpg')}}" class="attachment" alt="">
-                                                 
-                                                    </p>
-                                                    <small class="dull pull-right">
-                                                        1min ago
-                                                    </small>
-                                                </div>
-                                               
-                                            </div>
-                                            <div class="col-md-12 ">
-                                                <div class="reciever">
-                                                    <small>From You</small>
-                                                    <p class="mb-0">
-                                                           <img src="{{asset('assets/images/ico/Mute-video.png')}}" class="attachment" alt="">
-                                                 
-                                                    </p>
-                                                    <small class="dull pull-right">
-                                                        1min ago
-                                                    </small>
-                                                </div>
-                                               
-                                            </div>
+                                            @foreach($ticket_replies as $replies)
+                                                @if($replies->sender_id != Auth::user()->id)
+                                                    <div class="col-md-12 ">
+                                                        <div class="sender">
+                                                            <small>From {{$replies->sender->first_name}}</small>  
+                                                            <p class="mb-0">
+                                                                {{$replies->text}}
+                                                            </p>
+                                                            <small class="dull pull-right">
+                                                                1min ago
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                @else
+                                                    <div class="col-md-12 ">
+                                                        <div class="reciever">
+                                                            <small>From You</small>
+                                                            <p class="mb-0">
+                                                                {{$replies->text}}
+                                                            </p>
+                                                            <small class="dull pull-right">
+                                                                1min ago
+                                                            </small>
+                                                        </div>
+                                                    
+                                                    </div>
+                                                @endif
+                                            @endforeach
                                         </div>
                                         
                                     </div>
@@ -406,8 +384,23 @@
                         showConfirmButton: false,
                         timer: 2500
                     });
+                    
 
                 }
+                let html = `<div class="col-md-12 ">
+                                <div class="reciever">
+                                    <small>From You</small>
+                                    <p class="mb-0">
+                                        `+response.data.text+`
+                                    </p>
+                                    <small class="dull pull-right">
+                                        1min ago
+                                    </small>
+                                </div>
+                            
+                            </div>`;
+                    $(".ticketChat").append(html);
+
             },
             error:function(e){
                 toastr.error('Something Went Wrong',{

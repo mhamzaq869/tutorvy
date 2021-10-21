@@ -22,12 +22,14 @@ class SupportController extends Controller
         $categories = tktCat::all();
         return view('admin.pages.support.category',compact('categories'));
     }
+
     public function ticket($id) {
         $ticket = supportTkts::where('ticket_no',$id)->with(['category','tkt_created_by'])->first();
+        $ticket_replies = TicketChat::with(['sender','receiver'])->where('ticket_id',$ticket->id)->get();
+        // dd($ticket_replies);
         $idAdmin = Auth::user()->id;
 
-     
-        return view('admin.pages.support.ticket',compact('ticket','idAdmin'));
+        return view('admin.pages.support.ticket',compact('ticket','idAdmin','ticket_replies'));
     }
     public function ticketReply()
     {
@@ -71,6 +73,7 @@ class SupportController extends Controller
             'status_code'=> 200,
             'message' => 'Message Sent Successfully',
             'success' => true,
+            'data' => $data,
         ]);
 
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\General\GeneralController;
+use App\Http\Controllers\General\NotifyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -14,6 +15,7 @@ use App\Models\Booking;
 use App\Models\Activitylogs;
 use App\Models\Classroom;
 use App\Models\Admin\tktCat;
+use App\Models\General\TicketChat;
 use App\Models\Admin\supportTkts;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
@@ -181,6 +183,19 @@ class SettingController extends Controller
         $activity_logs = new GeneralController();
         $activity_logs->save_activity_logs("Ticket Created", "support_tkts.id", $ticket->id, $action_perform, $request->header('User-Agent'), $id);
 
+        $admin = User::where('role',1)->first();
+        $notification = new NotifyController();
+        $slug = '-';
+        $type = 'support_ticket';
+        $data = 'data';
+        $title = 'Support Ticket';
+        $icon = 'fas fa-tag';
+        $class = 'btn-success';
+        $desc = $name . ' Create a Support Ticket';
+        $pic = Auth::user()->picture;
+
+        $notification->GeneralNotifi( $admin->id , $slug ,  $type , $title , $icon , $class ,$desc,$pic);
+
         return response()->json([
             "status_code" => 200,
             "message" => "Ticket Created .. Our Staff will contact us soon.",
@@ -236,7 +251,22 @@ class SettingController extends Controller
 
     public function tickets($id) {
         $ticket = supportTkts::where('ticket_no',$id)->with(['category','tkt_created_by'])->first();
-        return view('student.pages.history.ticket_details',compact('ticket'));
+        $ticket_replies = TicketChat::with(['sender','receiver'])->where('ticket_id',$ticket->id)->get();
+        $admin = User::where('role','1')->first();
+        return view('student.pages.history.ticket_details',compact('ticket','ticket_replies','admin'));
+    }
+
+    public function ticketChat(Request $request){   
+        $data = $request->all();
+        TicketChat::create($data);
+
+        return response()->json([
+            'status_code'=> 200,
+            'message' => 'Message Sent Successfully',
+            'success' => true,
+            'data' => $data,
+        ]);
+
     }
     public function courses(){
         $courses = CourseEnrollment::where('user_id',Auth::user()->id)->get();

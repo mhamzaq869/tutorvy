@@ -123,7 +123,7 @@
                                                                         data-tzone="{{$class->tutor->time_zone}}" data-zone="{{$class->user->time_zone}}"  
                                                                         data-review="{{$class->is_reviewed}}" data-date="{{$class->class_date}}" 
                                                                         data-room="{{$class->classroom != null ? $class->classroom->classroom_id : ''}}" 
-                                                                        data-time="{{$class->class_time}}"
+                                                                        data-time="{{$class->class_time}}" data-duration="{{$class->duration}}"
                                                                         id="class_time_{{$class->id}}" 
                                                                         class="badge current_time badge-pill text-white font-weight-normal bg-success mt-3">
                                                                         {{$class->class_date}} {{$class->class_time}} 
@@ -248,28 +248,33 @@
 
         $( ".current_time" ).each(function() {
 
-            var booking_time = $( this ).text();
+            var booking_time = $.trim($( this ).text());
             var booking_seconds_time =  HmsToSeconds(moment(booking_time).format('HH:mm:ss'));
 
             var attr_id = $(this).data('id');
             var room_id = $(this).data('room');
             var review = $(this).data('review');
-            var time_zone = $(this).data('zone');
+            var duration = $(this).data('duration');
+            var std_time_zone = $(this).data('zone');
             var tutor_time_zone = $(this).data('tzone');
             var booking_class_date = $(this).data('date');
-            
+
             var std_current_region_date = new Date().toLocaleString('en-US', { timeZone: tutor_time_zone });
             var std_time_in_seconds = HmsToSeconds(moment(std_current_region_date).format('HH:mm:ss'));
 
-            var remain_time = (booking_seconds_time -  std_time_in_seconds);
-            
+            var remain_time = (booking_seconds_time -  std_time_in_seconds);          
             var date = new Date();
-            var tutor_time_in_seconds = HmsToSeconds(moment(date).format('HH:mm:ss'));
 
-            var get = (tutor_time_in_seconds + remain_time);
-            let create_date = booking_class_date + ' ' + secondsToHms(get);
-            var time = moment(create_date).format('h:mm a');
-            $("#tutor_time_"+attr_id).text(time);
+            var moment_date = moment(date).format('YYYY-MM-DD');
+
+            var tutor_time_in_seconds = HmsToSeconds(moment(date).format('HH:mm:ss'));
+            var region_booking_time = moment(date).add(remain_time,'s').format("LT");
+            
+            var create_region_date = new Date(booking_class_date + ' ' +  region_booking_time)
+            var class_end_time = moment(date).add(remain_time,'s').add(duration, 'h').format("LT");
+            var class_end_date = new Date(booking_class_date + ' ' +  class_end_time);
+
+            $("#tutor_time_"+attr_id).text(region_booking_time);    
 
             timer.start({countdown: true, startValues: {seconds: remain_time }});
             timer.addEventListener('secondsUpdated', function (e) {
@@ -277,14 +282,22 @@
             });
 
             timer.addEventListener('targetAchieved', function (e) {
-                let join_btn = `<a onclick="joinClass('`+room_id+`')" class="schedule-btn"> Join Class </a>`;
-                if(review == 0) {
-                    $("#join_class_"+attr_id).html(join_btn);
-                }else{
-                    $("#join_class_"+attr_id).html(" ");
-                }
+                let start_call = `<a href="{{url('tutor/class')}}/`+room_id+`"  class="schedule-btn"> Start Call </a>`;
+                $("#join_class_"+attr_id).html(start_call);
                 $("#class_time_"+attr_id).html("");
-            });         
+            });
+
+            if(date.getTime() > create_region_date.getTime() &&  date.getTime() < class_end_date.getTime()) {
+                let start_call = `<a href="{{url('tutor/class')}}/`+room_id+`"  class="schedule-btn"> Start Call </a>`;
+                if(review == 0) {
+                    $("#join_class_"+attr_id).html(start_call);
+                    $("#class_time_"+attr_id).html("");
+                }
+            }else {
+                $("#join_class_"+attr_id).html("");
+                $("#class_time_"+attr_id).html("Class Time Over");
+                $("#class_time_"+attr_id).removeAttr("data-room");
+            }
 
         });
 
