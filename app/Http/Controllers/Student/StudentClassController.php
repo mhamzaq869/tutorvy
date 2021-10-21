@@ -24,12 +24,13 @@ class StudentClassController extends Controller
     public function index(){
 
         $classes = Booking::with(['classroom','user','tutor','subject'])->where('user_id',Auth::user()->id)->where('status',2)->get();
-        
+
         foreach($classes as $class) {
             date_default_timezone_set($class->user->time_zone);
             $date = date("h:i:sa");
             $class->actual_booking_time =  date("H:i", strtotime($date));
         }
+
 
         $user = User::where('id',Auth::user()->id)->first();
         // return $classes;
@@ -45,6 +46,9 @@ class StudentClassController extends Controller
             "is_reviewed" => 1,
             "status" => 5,
         ]);
+
+
+
 
         return response()->json([
             "message" => "Rating Saved Successfully",

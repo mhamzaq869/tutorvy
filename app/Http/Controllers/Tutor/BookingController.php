@@ -49,7 +49,7 @@ class BookingController extends Controller
 
         // date_default_timezone_set($all[0]->tutor->time_zone);
         // echo "india time zone " . date("h:i:sa"). '<br>';
-        
+
         // $time_in_24_hour_format  = date("H:i:s", strtotime(date("h:i:sa")));
         // echo "current india time is:" . $time_in_24_hour_format;
 
@@ -78,8 +78,8 @@ class BookingController extends Controller
         $booking = Booking::with(['user','subject'])->where('id',$request->id)->first();
 
         return response()->json([
-            "status_code" => 200, 
-            "success" => true, 
+            "status_code" => 200,
+            "success" => true,
             "booking" => $booking,
         ]);
     }
@@ -123,9 +123,9 @@ class BookingController extends Controller
             'status'=>'200',
             'message' => 'Booking accepted.'
         ]);
-    
+
     }
-    
+
     /**
      *  Return Tutor Chat view
      */

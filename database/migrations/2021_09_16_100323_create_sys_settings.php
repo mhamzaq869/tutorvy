@@ -17,6 +17,9 @@ class CreateSysSettings extends Migration
             $table->id();
             $table->integer('user_id')->nullable();
             $table->double('commission')->nullable();
+            $table->double('clearence_days')->nullable();
+            $table->integer('mini_withdraw_amount')->nullable();
+            $table->integer('comm_tutor_withdraw')->nullable();
             $table->string("logo")->nullable();
             $table->string("favicon")->nullable();
             $table->string("title")->nullable();

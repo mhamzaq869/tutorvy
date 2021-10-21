@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 use App\Models\Course;
+use App\Models\CourseEnrollment;
 use App\Models\General\ClassTable;
 
 
@@ -268,7 +269,8 @@ class SettingController extends Controller
 
     }
     public function courses(){
-        return view('student.pages.course.index');
+        $courses = CourseEnrollment::where('user_id',Auth::user()->id)->get();
+        return view('student.pages.course.index',compact('courses'));
     }
     public function courseDetails($id){
 
@@ -298,6 +300,7 @@ class SettingController extends Controller
         $course->basic_classes = $basic_classes;
         // Standard Classes
         $standard_classes = array();
+        $standard_comm = $commission->commission / 100 * $course->standard_price;
 
         $cr_std_dys = json_decode($course->standard_days);
         $cr_std_clt = json_decode($course->standard_class_title,true);
@@ -322,6 +325,7 @@ class SettingController extends Controller
         $course->standard_classes = $standard_classes;
         // Advance Classes
         $advance_classes = array();
+        $advance_comm = $commission->commission / 100 * $course->advance_price;
 
         $cr_ad_dys = json_decode($course->advance_days);
         $cr_ad_clt = json_decode($course->advance_class_title,true);
@@ -343,10 +347,11 @@ class SettingController extends Controller
 
 
         }
+        $defaultPay = DB::table('payment_methods')->where('user_id',Auth::user()->id)->where('default',1)->first();
 
         $course->advance_classes = $advance_classes;
         // return $course;
-        return view('student.pages.course.course_detail',compact('course','basic_comm'));
+        return view('student.pages.course.course_detail',compact('course','basic_comm','standard_comm','advance_comm','commission','defaultPay'));
     }
 
 

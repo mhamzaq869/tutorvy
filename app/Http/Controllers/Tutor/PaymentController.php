@@ -12,7 +12,7 @@ use App\Models\Booking;
 use App\Models\User;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Carbon;
-
+use App\Models\Wallet;
 use PayPal\Rest\ApiContext;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Api\Amount;
@@ -22,6 +22,11 @@ use PayPal\Api\ItemList;
 use PayPal\Api\Payer;
 use PayPal\Api\Payee;
 use PayPal\Api\PayerInfo;
+use PayPal\Api\Payout;
+use PayPal\Api\PayoutItem;
+use PayPal\Api\PayoutBatch;
+use PayPal\Api\PayoutBatchHeader;
+use PayPal\Api\PayoutSenderBatchHeader;
 use PayPal\Api\Payment;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\ExecutePayment;
@@ -47,7 +52,10 @@ class PaymentController extends Controller
 
     public function index(){
         $payment = Booking::with(['user','subject'])->where('booked_tutor',Auth::user()->id)->whereIn('status',['2','5'])->get();
-        return view('tutor.pages.payment.index',compact('payment'));
+        $pend = Wallet::where('user_id',Auth::user()->id)->where('type','pen')->sum('amount');
+        $cleared = Wallet::where('user_id',Auth::user()->id)->where('type','cleared')->sum('amount');
+
+        return view('tutor.pages.payment.index',compact('payment','pend','cleared'));
     }
 
 
@@ -84,88 +92,128 @@ class PaymentController extends Controller
 
     }
 
-    public function withdrawWithPaypal(){
-        $payer = new Payer();
-        $payer->setPaymentMethod('paypal');
+    public function withdrawWithPaypal(Request $request){
 
-        // $payerInfo = new PayerInfo();
-        // $payerInfo->setEmail($payerEmail->email);
+        $receiverEmail = DB::table('payment_methods')
+                                ->where('user_id',Auth::user()->id)
+                                ->where('method','paypal')
+                                ->first();
 
-        // $payer->setPayerInfo($payerInfo);
+        // Create a new instance of Payout object
+        $payouts = new Payout();
 
-        $item_1 = new Item();
+        $senderBatchHeader = new PayoutSenderBatchHeader();
+        // ### NOTE:
+        // You can prevent duplicate batches from being processed. If you specify a `sender_batch_id` that was used in the last 30 days, the batch will not be processed. For items, you can specify a `sender_item_id`. If the value for the `sender_item_id` is a duplicate of a payout item that was processed in the last 30 days, the item will not be processed.
 
-        $item_1->setName('Online Class')
-            ->setCurrency('USD')
-            ->setQuantity(1)
-            ->setPrice(20);
+        // #### Batch Header Instance
+        $senderBatchHeader->setSenderBatchId(uniqid())
+            ->setEmailSubject("You have a Payout!");
 
-        $item_list = new ItemList();
-        $item_list->setItems(array($item_1));
+        // #### Sender Item
+        // Please note that if you are using single payout with sync mode, you can only pass one Item in the request
 
-        $amount = new Amount();
-        $amount->setCurrency('USD')
-            ->setTotal(20);
+        $senderItem = new PayoutItem();
+        $senderItem->setRecipientType('Email')
+            ->setNote('Thanks for your patronage!')
+            ->setReceiver('sb-j1n6u851143@personal.example.com')
+            ->setSenderItemId(uniqid())
+            ->setAmount([
+                'value' => 22,
+                'currency' => 'USD'
+            ]);
 
-        $payee = new Payee();
-        $payee->setEmail("sb-j1n6u851143@personal.example.com");
+        $payouts->setSenderBatchHeader($senderBatchHeader)
+            ->addItem($senderItem);
 
-        $transaction = new Transaction();
-        $transaction->setAmount($amount)
-            ->setItemList($item_list)
-            ->setDescription('Online class booking.')
-            ->setPayee($payee)
-            ->setInvoiceNumber(uniqid());
-
-        $redirect_urls = new RedirectUrls();
-        $redirect_urls->setReturnUrl(URL::route('tutor.payment.paypal_status'))
-            ->setCancelUrl(URL::route('tutor.payment.paypal_status'));
-
-        $payment = new Payment();
-        $payment->setIntent('Sale')
-            ->setPayer($payer)
-            ->setRedirectUrls($redirect_urls)
-            ->setTransactions(array($transaction));
-
+         // ### Create Payout
         try {
-            //create payment object
-            $createdPayment = $payment->create($this->_api_context);
-            
-            //get payment details to get payer id so that payment can be executed and transferred to seller.
-            $paymentDetails = Payment::get($createdPayment->getId(), $this->_api_context);
-            $execution = new PaymentExecution();
-            $execution->setPayerId($paymentDetails->getPayer());
-            $paymentResult = $paymentDetails->execute($execution,$this->_api_context);
-
-        } catch (\Exception $ex) {
-            //handle exception here
+            $output = $payouts->create(['sync_mode' => 'false'],$this->_api_context);
+        } catch (\PayPal\Exception\PayPalConnectionException $ex) {
+            // NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
+            dd($ex);
+            exit(1);
         }
-        
+
+        return $output;
+
+        // $payer = new Payer();
+        // $payer->setPaymentMethod('paypal');
+
+
+        // $item_1 = new Item();
+
+        // $item_1->setName('Online Class')
+        //     ->setCurrency('USD')
+        //     ->setQuantity(1)
+        //     ->setPrice(20);
+
+        // $item_list = new ItemList();
+        // $item_list->setItems(array($item_1));
+
+        // $amount = new Amount();
+        // $amount->setCurrency('USD')
+        //     ->setTotal(20);
+
+        // $payee = new Payee();
+        // $payee->setEmail("sb-j1n6u851143@personal.example.com");
+
+        // $transaction = new Transaction();
+        // $transaction->setAmount($amount)
+        //     ->setItemList($item_list)
+        //     ->setDescription('Online class booking.')
+        //     ->setPayee($payee)
+        //     ->setInvoiceNumber(uniqid());
+
+        // $redirect_urls = new RedirectUrls();
+        // $redirect_urls->setReturnUrl(URL::route('tutor.payment.paypal_status'))
+        //     ->setCancelUrl(URL::route('tutor.payment.paypal_status'));
+
+        // $payment = new Payment();
+        // $payment->setIntent('Sale')
+        //     ->setPayer($payer)
+        //     ->setRedirectUrls($redirect_urls)
+        //     ->setTransactions(array($transaction));
+
         // try {
-        //     $payment->create($this->_api_context);
-        // } catch (\PayPal\Exception\PPConnectionException $ex) {
-        //     if (\Config::get('app.debug')) {
-        //         Session::flash('error','Connection timeout');
-        //         return redirect()->route('student.bookings');
-        //     } else {
-        //         Session::flash('error','Some error occur, sorry for inconvenient');
-        //         return redirect()->route('student.bookings');
-        //     }
+        //     //create payment object
+        //     $createdPayment = $payment->create($this->_api_context);
+
+        //     //get payment details to get payer id so that payment can be executed and transferred to seller.
+        //     $paymentDetails = Payment::get($createdPayment->getId(), $this->_api_context);
+        //     $execution = new PaymentExecution();
+        //     $execution->setPayerId($paymentDetails->getPayer());
+        //     $paymentResult = $paymentDetails->execute($execution,$this->_api_context);
+
+        // } catch (\Exception $ex) {
+        //     //handle exception here
         // }
 
-        // foreach($payment->getLinks() as $link) {
-        //     if($link->getRel() == 'approval_url') {
-        //         $redirect_url = $link->getHref();
-        //         break;
-        //     }
-        // }
-        // Session::put('booking_id', $booking->id);
-        // Session::put('payment_id', $payment->getId());
+        // // try {
+        // //     $payment->create($this->_api_context);
+        // // } catch (\PayPal\Exception\PPConnectionException $ex) {
+        // //     if (\Config::get('app.debug')) {
+        // //         Session::flash('error','Connection timeout');
+        // //         return redirect()->route('student.bookings');
+        // //     } else {
+        // //         Session::flash('error','Some error occur, sorry for inconvenient');
+        // //         return redirect()->route('student.bookings');
+        // //     }
+        // // }
 
-        // return $redirect_url;
-        $approvalUrl = $payment->getApprovalLink();
+        // // foreach($payment->getLinks() as $link) {
+        // //     if($link->getRel() == 'approval_url') {
+        // //         $redirect_url = $link->getHref();
+        // //         break;
+        // //     }
+        // // }
+        // // Session::put('booking_id', $booking->id);
+        // // Session::put('payment_id', $payment->getId());
 
-        return redirect($approvalUrl);
+        // // return $redirect_url;
+        // $approvalUrl = $payment->getApprovalLink();
+
+        // return redirect($approvalUrl);
     }
 
     public function paypalResponseSuccess(Request $request)
