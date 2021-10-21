@@ -17,6 +17,7 @@ use App\Models\ClassroomLogs;
 use App\Models\Admin\tktCat;
 use App\Models\Admin\supportTkts;
 use App\Models\User;
+use App\Models\Wallet;
 use Illuminate\Support\Facades\URL;
 
 class SettingController extends Controller

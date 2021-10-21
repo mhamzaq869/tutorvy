@@ -189,7 +189,7 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::get('/payment',[PaymentController::class,'index'])->name('tutor.payment');
     Route::get('/payment/paypal-status',[PaymentController::class,'paypalResponseSuccess'])->name('tutor.payment.paypal_status');
 
-    Route::get('/payment/paypal',[PaymentController::class,'withdrawWithPaypal'])->name('tutor.payment.paypal');
+    Route::post('/payment/paypal',[PaymentController::class,'withdrawWithPaypal'])->name('tutor.withdraw.paypal');
 
     Route::get('/subjects',[TutorSubjectController::class,'index'])->name('tutor.subject');
     Route::get('/reviews',[TutorSubjectController::class,'review'])->name('tutor.reviews');
@@ -279,6 +279,8 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
 
     Route::post('/booking/payment/{id}',[StudentBookingController::class,'bookingPayment'])->name('student.booking.payment');
     Route::get('/booking/paymentstatus',[StudentBookingController::class,'getPaymentStatus'])->name('student.paymentstatus');
+
+    Route::post('/course/payment/{id}',[StudentBookingController::class,'coursePayment'])->name('student.course.payment');
 
     Route::get('/skrlpayment-complete',[StudentBookingController::class,'skrillPaymentComplete'])->name('skrill.payment.complete');
 

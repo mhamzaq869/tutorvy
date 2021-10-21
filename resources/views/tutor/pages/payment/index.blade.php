@@ -50,7 +50,13 @@
                         <img src="../assets/images/ico/doollarss.png" style="width: 45px;" class="mt-3">
                         <div class="">
                             <p class="heading-fifth mt-4" style="line-height: 0;">Current balance</p>
-                            <p class="heading-first"> 00$</p>
+                            <p class="heading-first">
+                            @if ($cleared != 0 || $cleared != null)
+                                ${{$cleared}}
+                            @else
+                                ${{0}}
+                            @endif
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -61,19 +67,40 @@
                         <img src="../assets/images/ico/dolar.png" style="width: 45px;" class="mt-3">
                         <div class="">
                             <p class="heading-fifth mt-4" style="line-height: 0;">Pending balance</p>
-                            <p class="heading-first"> 00$</p>
+                            <p class="heading-first">
+                                @if ($pend != 0 || $pend != null)
+                                    ${{$pend}}
+                                @else
+                                    ${{0}}
+                                @endif
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-            </div>
+            {{-- <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body pt-1 pb-1">
+                        <img src="../assets/images/ico/doollarss.png" style="width: 45px;" class="mt-3">
+                        <div class="">
+                            <p class="heading-fifth mt-4" style="line-height: 0;">Available to Withdraw</p>
+                            <p class="heading-first">
+                                @if ($cleared != 0 || $cleared != null)
+                                    ${{$cleared}}
+                                @else
+                                    ${{0}}
+                                @endif
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
         </div>
         <div class="row mt-3 ">
             <div class="col-md-2">
                 <h5 class="pt-3">Withdraw: </h5>
 
-               
+
             </div>
             <div class="col-md-8 mt-1">
                     <a href="#" class="btn btn-light btn-outline-general" data-toggle="modal" data-target="#paymentAmountModel">
@@ -84,7 +111,7 @@
                         <h3 class="mb-0 heading-forth"><img style="width:30px;" src="{{asset ('assets/images/payment-icon/payoneer.png')}}" alt="">
                         Bank Transfer</h3>
                     </a>
-                    
+
             </div>
         </div>
         <div class="row mt-3 ">
@@ -198,7 +225,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12 mt-3"  style="text-align: right;">
-                                                    <button type="button" class="btn-general" data-dismiss="modal" 
+                                                    <button type="button" class="btn-general" data-dismiss="modal"
                                                         style="">Connect My PayPal Account</button>
                                                 </div>
                                             </div>
@@ -207,7 +234,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -228,7 +255,7 @@
                                            Enter your amount</p>
                                         <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;"
                                             class="ml-4 mr-4">
-                                            
+
                                         </p>
                                     </div>
                                     <div class="ml-4 mr-4">
@@ -237,9 +264,15 @@
                                                 <div class="col-md-12">
                                                     <label for="">Current Balance</label>
                                                     <div class="form-group input-group">
-                                                        
+
                                                         <div class="input-group-prepend">
-                                                            <span class="input-group-text">$</span>
+                                                            <span class="input-group-text">
+                                                                @if ($cleared != 0 || $cleared != null)
+                                                                ${{$cleared}}
+                                                            @else
+                                                                ${{0}}
+                                                            @endif
+                                                            </span>
                                                         </div>
                                                         <input type="text" class="form-control" disabled aria-label="Amount (to the nearest dollar)">
                                                     </div>
@@ -247,14 +280,14 @@
                                                 <div class="col-md-12">
                                                     <label for="">Amount to Withdraw</label>
                                                     <div class="form-group input-group">
-                                                        
+
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text">$</span>
                                                         </div>
-                                                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                                        <input type="text" class="form-control" id="amount" aria-label="Amount (to the nearest dollar)">
                                                     </div>
                                                 </div>
-                                              
+
                                                 <div class="col-md-12">
                                                     <p>We will not be able to recover funds after sending, please make sure the information you enter is correct.</p>
                                                 </div>
@@ -269,7 +302,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -304,7 +337,13 @@
                                 </div>
 
                                 <div class="col-md-6 col-6 col-sm-6 text-right" >
-                                    <strong id="price"> $123</strong>
+                                    <strong id="price">
+                                    @if ($cleared != 0 || $cleared != null)
+                                        ${{$cleared}}
+                                    @else
+                                        ${{0}}
+                                    @endif
+                                    </strong>
                                 </div>
 
                                 <div class="col-md-6 col-6 col-sm-6">
@@ -330,7 +369,9 @@
                                     <p class="mb-0">Reciever PayPal Account </p>
                                 </div>
                                 <div class="col-md-6 col-6 col-sm-6 text-right">
-                                    <strong id="total_price">sdsd*******@***.com</strong>
+                                    <strong id="total_price">
+                                        {{hideEmailAddress(Auth::user()->email)}}
+                                    </strong>
                                 </div>
                                 <div class="col-md-6 col-6 col-sm-6">
                                     <p class="mb-0">PayPal Service Tax: </p>
@@ -342,12 +383,16 @@
                                     <p class="mb-0">Amount Transfered: </p>
                                 </div>
                                 <div class="col-md-6 col-6 col-sm-6 text-right">
-                                    <strong id="total_price">$98.13</strong>
+                                    <strong id="total_price_b">$98.13</strong>
                                 </div>
                                 <div class="col-md-12 text-right mt-3" id="show_pay_btn">
-                                    <button class="btn-general" data-dismiss="modal">
-                                        Confirm
-                                    </button>
+                                    <form action="{{route('tutor.withdraw.paypal')}}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="amount" id="payouts_amnt" value="">
+                                        <input type="submit" class="btn-general" value="Confirm">
+
+
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -362,9 +407,25 @@
 
 @section('js')
   <script>
+
       $("#cnfrm_send").click(function(){
-            $("#paymentAmountModel").modal("hide");
-            $("#payModel").modal("show");
+
+            var crnt_bal = "{{$cleared ?? 0}}"
+            var amnt = $("#amount").val();
+            var total_price = crnt_bal - amnt;
+
+            if(crnt_bal >= amnt){
+                $("#commission").html('$'+amnt)
+                $("#total_price").html('$'+total_price)
+                $("#total_price_b").html('$'+amnt)
+                $("#payouts_amnt").val(amnt)
+
+                $("#paymentAmountModel").modal("hide");
+                $("#payModel").modal("show");
+            }else{
+                alert('Your balance is not enough');
+            }
+
       });
   </script>
 @endsection

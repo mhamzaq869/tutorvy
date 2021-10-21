@@ -599,24 +599,18 @@
                                         </div>
                                         <div class="col-md-12">
                                             <h3>Payment Method</h3>
+                                            @if ($defaultPay == null)
+                                            <p> <i class="fa fa-info-circle"></i> You haven't select any default payment method, Please select any method by following this
+                                                <a href="{{route('student.settings')}}">Payment Method</a>
+                                            </p>
+                                            @endif
                                          </div>
                                         <div class="col-md-6">
                                             <div class="card">
                                                 <div class="card-body">
                                                     <div class="text-center">
                                                         <img src="{{asset ('assets/images/payment-icon/paypal2.png')}}" class="w-50" alt="">
-                                                        <!-- <span class="payment-menu dropdown d-flex">
-                                                            <a class=" d-flex" href="#" data-toggle="dropdown" aria-expanded="true">
-                                                                <img src="{{asset ('assets/images/payment-icon/menu_dots.png')}}" alt="">
-                                                            </a>
-                                                            <ul class="dropdown-menu  " >
-                                                                <li>
-                                                                    <a tabindex="-1" class="" href="">
-                                                                        Delete
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </span> -->
+
                                                         <span class="round">
                                                         <input id="checkbox1" name="paytype" onclick="paymentMethod(this.value)" class="radio-custom" value="paypal" type="radio" {{$defaultPay == null ? '' : ($defaultPay->method == 'paypal' ? 'checked' : '') }}>
                                                         </span>
@@ -629,18 +623,7 @@
                                                 <div class="card-body">
                                                     <div class="text-center">
                                                         <img src="{{asset ('assets/images/payment-icon/skrill.png')}}" class="w-50" alt="">
-                                                        <!-- <span class="payment-menu dropdown d-flex">
-                                                            <a class=" d-flex" href="#" data-toggle="dropdown" aria-expanded="true">
-                                                                <img src="{{asset ('assets/images/payment-icon/menu_dots.png')}}" alt="">
-                                                            </a>
-                                                            <ul class="dropdown-menu  " >
-                                                                <li>
-                                                                    <a tabindex="-1" class="" href="">
-                                                                        Delete
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </span> -->
+
                                                         <span class="round">
                                                         <input id="checkbox2" name="paytype" onclick="paymentMethod(this.value)" value="skrill" type="radio" {{$defaultPay == null ? '' : ($defaultPay->method == 'skrill' ? 'checked' : '') }}>
                                                         </span>
@@ -664,10 +647,12 @@
 
 
                                         <div class="col-md-12 text-right mt-3" id="show_pay_btn">
+
                                             <form action="{{url('/student/booking/payment')}}" id="payment" method="post">
                                                 @csrf
                                                 <div id="paytype"></div>
                                                 <span></span>
+
                                             </form>
                                         </div>
 
