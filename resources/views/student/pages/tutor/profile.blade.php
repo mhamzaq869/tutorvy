@@ -246,7 +246,36 @@ width:22px;
                             </div>
                         </div>
                     </div>
-                    
+                    <p class="heading-second pt-3  mb-0">
+                        Subjects
+                    </p>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="col-md-12">
+                                <table class="pt-2 tableed table  table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="">Srno.</th>
+                                            <th scope="col">Subject</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="subject_table">
+                                        <tr>
+                                            <td class="pt-4">01</td>
+                                            <td class="pt-4">Subject Name</td>
+                                            <td >
+                                                <a href="javascript:void(0)" onclick="" class="schedule-btn btn">
+                                                    View Plans
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                     
                     <p class="heading-second pt-3  mb-0">
                         Courses

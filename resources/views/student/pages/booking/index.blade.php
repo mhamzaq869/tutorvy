@@ -541,7 +541,7 @@
                                                 <img src="{{asset ('admin/assets/img/ico/doollarss.png')}}" width="60px">
                                                 <p
                                                     style="font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 500;margin-top: 10px;">
-                                                    Note</p>
+                                                    Payment Details</p>
                                                 <!-- <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;"
                                                     class="ml-4 mr-4">
                                                     Send approved time for class.
