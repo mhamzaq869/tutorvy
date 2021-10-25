@@ -194,7 +194,7 @@ width:22px;
                                         <div class="">
                                             <img src="{{asset('assets/images/ico/blue-clock.png')}}" alt="blue-clock">
                                         </div>
-                                        <span class="heading-third ml-3"> {{$tutor->hourly_rate != null ? $tutor->hourly_rate : 0}}$  <br />
+                                        <span class="heading-third ml-3"> ${{$tutor->hourly_rate != null ? $tutor->hourly_rate : 0}}  <br />
                                             <span class="heading-sixths">Per hour rate</span>
                                         </span>
                                     </div>
@@ -259,15 +259,17 @@ width:22px;
                                         </tr>
                                     </thead>
                                     <tbody id="subject_table">
-                                        <tr>
-                                            <td class="pt-4">01</td>
-                                            <td class="pt-4">Subject Name</td>
-                                            <td >
-                                                <a href="javascript:void(0)" onclick="" class="schedule-btn btn">
-                                                    View Plans
-                                                </a>
-                                            </td>
-                                        </tr>
+                                         @foreach ($tutor->teach as $i => $teach)   
+                                            <tr>
+                                                <td class="pt-4">{{$i+1}}</td>
+                                                <td class="pt-4">{{$teach->subject->name}}</td>
+                                                <td>
+                                                    <a href="javascript:void(0)" onclick="showTutorPlans('{{$teach->sub_name}}',{{$teach->user_id}},{{$teach->subject_id}})" class="schedule-btn btn">
+                                                        View Plans
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -326,4 +328,84 @@ width:22px;
             </div>
         </div>
     </div>
+
+    
+<div class="modal fade" id="planModal" tabindex="-1" role="dialog"
+    aria-labelledby="planModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <!-- <div class="modal-header text-center">
+            </div> -->
+            <div class="modal-body h-auto  card-body">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <img  src="{{asset('admin/assets/img/ico/dollars.png')}}" />
+                    </div>
+                    <div class="col-md-12 text-center mt-3">
+                        <h3 id="subject_title"> </h3>
+                    </div>
+                </div>
+                <div id="show_plans"></div>
+            </div>
+            <div class="modal-footer ">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="schedule-btn btn" data-dismiss="modal">
+                            Okay
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+@section('scripts')
+<script>
+     function showTutorPlans(subject_title , user_id , subject_id) {
+    $.ajax({
+        url: "{{route('tutor.plans')}}",
+        type:"POST",
+        data:{
+          user_id:user_id,
+          subject_id:subject_id,
+        },
+        success:function(response){
+
+          var data = ``;
+          if(response.status_code == 200) {
+
+            for(var i =0; i < response.tutor_plans.length; i++) {
+
+              data +=`
+                <div class="row mt-3 ">
+                    <div class="col-md-6">
+                        <p> `+ (response.tutor_plans[i].experty_title != null ? response.tutor_plans[i].experty_title : '-') +` </p>
+                    </div>
+                    <div class="text-right col-md-6 ">
+                        <p> $`+response.tutor_plans[i].rate+` </p>
+                    </div>
+                </div>`
+
+            }
+            $("#subject_title").text(subject_title);
+            $("#show_plans").html(data);
+            $("#planModal").modal('show');
+
+          }else{
+
+            toastr.error( response.message,{
+                position: 'top-end',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 2500
+            });
+
+          }
+        },
+    });
+   
+  }
+</script>
+
 @endsection

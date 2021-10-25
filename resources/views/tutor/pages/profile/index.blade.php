@@ -693,7 +693,7 @@
                                                 <label for="exampleText" class="m-0 heading-fifth">Graduation Year</label>
                                                 <!-- <input type="date" name="graduate_year[]" class=" yearpicker form-control"> -->
 
-                                                <select name="graduate_year[]" id="" class="yearpicker form-control">
+                                                <select name="graduate_year[]" id="" class="yearpicker form-select">
                                                     <option value="2000">2000</option>
                                                     <option value="2001">2001</option>
                                                     <option value="2002">2002</option>
@@ -790,7 +790,7 @@
                                                  <div class=" col-md-6">
                                                     <label for="exampleText" class="mb-0 heading-fifth">Completion Date</label>
                                                     <!-- <input type="date" name="graduate_year[]" class=" yearpicker form-control" value="{{$edu->year}}"> -->
-                                                    <select name="graduate_year[]" id="" class="yearpicker form-control">
+                                                    <select name="graduate_year[]" id="" class="yearpicker form-select">
                                                         <option value="2000">2000</option>
                                                         <option value="2001">2001</option>
                                                         <option value="2002">2002</option>
@@ -882,7 +882,7 @@
                                                                 value=""
                                                                 class="form-control" name="degree_start[]"
                                                                 placeholder="Starting date" value="" required> -->
-                                                                <select name="degree_start[]" id="" class="yearpicker form-control">
+                                                                <select name="degree_start[]" id="" class="yearpicker form-select">
                                                                     <option value="2000">2000</option>
                                                                     <option value="2001">2001</option>
                                                                     <option value="2002">2002</option>
@@ -915,7 +915,7 @@
                                                                 class="form-control" name="degree_end[]"
                                                                 placeholder="Ending Date" value="" required id="kinEnd"> -->
 
-                                                                <select name="degree_end[]" id="kinEnd" class="yearpicker form-control">
+                                                                <select name="degree_end[]" id="kinEnd" class="yearpicker form-select">
                                                                     <option value="2000">2000</option>
                                                                     <option value="2001">2001</option>
                                                                     <option value="2002">2002</option>
@@ -962,12 +962,7 @@
                                                     <div class="col-md-12">
                                                         <div class="element">
                                                             <div class="row">
-                                                                <div class="col-md-8 mt-2 mb-3">
-                                                                    <div class="custom-control custom-checkbox">
-                                                                        <input type="checkbox" class="custom-control-input" name="working" id="working">
-                                                                        <label class="custom-control-label" for="working">Currently Working? </label>
-                                                                    </div>
-                                                                </div>
+                                                                
                                                                 <div class=" col-md-6">
                                                                     <label for="exampleText" class="mb-0 heading-fifth">Organization</label>
                                                                     <input name="organization[]"
@@ -984,15 +979,16 @@
                                                                         placeholder="Designation">
                                                                 </div>
                                                                
+                                                               
                                                             </div>
                                                             <div class="row my-3">
                                                                 <div class=" col-md-6">
                                                                     <label for="exampleText" class="mb-0 heading-fifth">Starting Year</label>
-                                                                    <input type="date"
+                                                                        <!--<input type="date"
                                                                         value="{{ $profession->start_date ?? '' }}"
                                                                         class="form-control" name="degree_start[]"
-                                                                        placeholder="Starting date" value="">
-                                                                        <select value="{{ $profession->start_date ?? '' }}" name="degree_start[]" class="yearpicker form-control">
+                                                                        placeholder="Starting date" value="">-->
+                                                                        <select value="{{ $profession->start_date ?? '' }}" name="degree_start[]" class="yearpicker  form-select">
                                                                             <option value="2000">2000</option>
                                                                             <option value="2001">2001</option>
                                                                             <option value="2002">2002</option>
@@ -1021,11 +1017,11 @@
                                                                         
                                                                 </div>
                                                                 <div class=" col-md-6">
-                                                                    <label for="exampleText" class="mb-0 heading-fifth">Ending Date</label>
+                                                                    <label for="exampleText" class="mb-0 heading-fifth">Ending Year</label>
                                                                     <!-- <input type="date" value="{{ $profession->end_date ?? '' }}"
                                                                         class="form-control" name="degree_end[]"
                                                                         placeholder="Ending Date" value="" id="kinEnd"> -->
-                                                                        <select value="{{ $profession->end_date ?? '' }}" name="degree_end[]" class="yearpicker form-control" id="kinEnd">
+                                                                        <select value="{{ $profession->end_date ?? '' }}" name="degree_end[]" class="yearpicker form-select" id="kinEnd">
                                                                             <option value="2000">2000</option>
                                                                             <option value="2001">2001</option>
                                                                             <option value="2002">2002</option>
@@ -1051,6 +1047,12 @@
                                                                             <option value="202s2">2022</option>
                                                                             <option value="2023">2023</option>
                                                                         </select>
+                                                                </div>
+                                                                <div class="col-md-8 mt-2 mb-3">
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <input type="checkbox" class="custom-control-input" name="working" id="working">
+                                                                        <label class="custom-control-label" for="working">Currently Working? </label>
+                                                                    </div>
                                                                 </div>
                                                             </div>
 
@@ -1367,7 +1369,7 @@
 
                     </div>
                     <div class="input-text col-md-6">
-                            <select name="graduate_year[]" id="" class="yearpicker form-control">
+                            <select name="graduate_year[]" id="" class="yearpicker form-select">
                                                     <option value="2000">2000</option>
                                                     <option value="2001">2001</option>
                                                     <option value="2002">2002</option>
