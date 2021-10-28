@@ -359,7 +359,7 @@
                                         </div> -->
                                         <div class="col-md-9"></div>
                                         <div class="col-md-3 text-right mt-3" id="show_pay_btn">
-                                            <form action="{{url('/student/booking/payment')}}" id="payment" method="post">
+                                            <form action="{{url('/student/booking/payment')}}" id="payment" method="post" target="_blank">
                                                 @csrf
                                                 <div id="paytype"></div>
                                                 <span></span>

@@ -247,7 +247,7 @@
                     </p>
 
                     <div class="row stu_reg mt-5">
-                        
+
                         <div class="col-md-12">
                             <!-- <div class="board">
                                 <ul class="nav nav-tabs">
@@ -278,10 +278,10 @@
                                 <input type="hidden" name="role" value="3">
                                 <input type="hidden" name="region" id="region">
                                 <input type="hidden" name="time_zone" id="time_zone">
-                                <div class="tab-content mt-5">
+                                <div class="tab-content">
                                     <div role="tabpanel" class="border-right tab-pane active" id="step-1">
                                         <div class="col-md-12">
-                                            <p class="heading-third mt-3">Personal information </p>
+                                            <p class="heading-third">Personal information </p>
                                             @if (Session::has('error'))
                                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="margin-top:-12px">
@@ -295,7 +295,7 @@
                                                     <input type="" class="form-control csd  @error('first_name') is-invalid @enderror" name="first_name" id="fname"
                                                     placeholder="First Name" value="{{$user->first_name ?? ''}}" style="text-transform: capitalize;">
                                                     <span for="" id="fname_error" class="invalid-feedback" role="alert">
-                                                        <strong> This field is required </strong>  
+                                                        <strong> This field is required </strong>
                                                     </span>
 
                                                     @error('first_name')
@@ -310,7 +310,7 @@
                                                         placeholder="Last Name" value="{{$user->last_name ?? ''}}" id="lname" style="text-transform: capitalize;">
                                                         <!-- <label for="" id="lname_error" class="text-red"><strong> This field is required </strong>  </label> -->
                                                         <span for="" id="lname_error" class="invalid-feedback" role="alert">
-                                                            <strong> This field is required </strong>  
+                                                            <strong> This field is required </strong>
                                                         </span>
                                                         @error('last_name')
                                                             <span class="invalid-feedback" role="alert">
@@ -324,10 +324,10 @@
                                                     placeholder="Email Address" value="{{$user->email ?? ''}}" id="email">
                                                     <!-- <label for="" id="email_error" class="text-red"><strong> This field is required </strong>  </label> -->
                                                     <span for="" id="email_error" class="invalid-feedback" role="alert">
-                                                        <strong> This field is required </strong>  
+                                                        <strong> This field is required </strong>
                                                     </span>
                                                     <span for="" id="email_error_duplicate" class="invalid-feedback" role="alert">
-                                                        <strong> This email already exists.  <a href="{{ route('login') }}" class="text-primary" style="text-decoration:none">Log in?</a> </strong>  
+                                                        <strong> This email already exists.  <a href="{{ route('login') }}" class="text-primary" style="text-decoration:none">Log in?</a> </strong>
                                                     </span>
                                                     @error('email')
                                                         <span class="invalid-feedback" role="alert">
@@ -350,7 +350,7 @@
                                                             </ul>
                                                         </small>
                                                     <span for="" id="password_error" class="invalid-feedback" role="alert">
-                                                        <strong> This field is required </strong>  
+                                                        <strong> This field is required </strong>
                                                     </span>
                                                     @error('password')
                                                         <span class="invalid-feedback" role="alert">
@@ -380,7 +380,7 @@
                                                         <option value="Oct" @if(isset($user) && $user->month == 'Oct') @endif>October</option>
                                                         <option value="Nov" @if(isset($user) && $user->month == 'Nov') @endif>November</option>
                                                         <option value="Dec" @if(isset($user) && $user->month == 'Dec') @endif>December</option>
-                                                    </select>   
+                                                    </select>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <input type="" name="year" class=" yearpicker form-control"
@@ -394,14 +394,14 @@
                                                         value="{{ $user->phone ?? '' }}" id="phone" placeholder="Phone Number">
                                                         <label for="" id="phone_error" class="text-red"><strong> This field is required </strong>  </label>
                                                     <span for="" id="phone_error" class="invalid-feedback" role="alert">
-                                                        <strong> This field is required </strong>  
+                                                        <strong> This field is required </strong>
                                                     </span>
                                                     @error('phone')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
                                                     @enderror
-                                                
+
                                                     <script src="{{ asset('assets/js/intlTelInput.js') }}"></script>
                                                     <script>
                                                         var input = document.getElementById("phone");
@@ -429,7 +429,7 @@
                                                         <input id="myInput" type="" name="city" placeholder="City" value="{{$user->city ?? ''}}">
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="input-text col-md-6">
                                                     <div class="form-item">
                                                         <input id="country_selector" name="country" type="">
@@ -439,7 +439,7 @@
                                                     </div>
 
                                                 </div> -->
-                                               
+
                                                 <div class="container mt-3">
                                                     <!-- <div class=" row">
                                                         <div class="input-text col-md-6">
@@ -456,7 +456,7 @@
                                                                 placeholder="ID card number"
                                                                 value="{{ $user->cnic_security ?? '' }}">
                                                         </div>
-                                                        
+
                                                     </div> -->
                                                     <!-- <div class="row ">
                                                         <div class="col-md-6 d-block">
@@ -465,7 +465,7 @@
                                                                 id="languages-list" name="lang_short" onchange="langshort(this)">
                                                             </select>
                                                             <span for="" id="language_error" class="invalid-feedback" role="alert">
-                                                                <strong> This field is required </strong>  
+                                                                <strong> This field is required </strong>
                                                             </span>
                                                         </div>
                                                         <div class="col-md-6 d-block">
@@ -480,11 +480,11 @@
                                                                 </select>
                                                                 <label for="" id="gender_error" class="text-red"><strong> This field is required </strong>  </label>
                                                                 <span for="" id="gender_error" class="invalid-feedback" role="alert">
-                                                                    <strong> This field is required </strong>  
+                                                                    <strong> This field is required </strong>
                                                                 </span>
                                                             </div>
                                                         </div>
-                                                        
+
                                                     </div> -->
                                                 </div>
                                             </div>
@@ -496,9 +496,6 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12 text-right ">
-                                                            <!-- <input type="submit"
-                                                                class="btn btn-registration btn-lg cencel-btn nextBtn pull-right ml-5"
-                                                                value=" Save for Later"> -->
 
                                                             <button id="finish"  type="submit"
                                                                 class="btn btn-lg btn-registration schedule-btn  nextBtn pull-right  ">
@@ -517,7 +514,7 @@
                                                                             {{ Session::get('error') }}
                                                                         </div>
                                                                     @endif
-                                                                   
+
                                                                     <div class="Google">
                                                                         <a href="{{route('social.google',[3])}}">
                                                                             <img class="mr-3" src="{{asset('assets/images/ico/google.png')}}" alt="google">
@@ -573,13 +570,13 @@
                                                             <select name="std_grade"
                                                                 class="form-select form-select-lg mb-3">
                                                                 <option value="" disabled selected>Which grade you are in?</option>
-                                                            
+
                                                                     <option value="1">Pre Elementary School</option>
                                                                     <option value="2">Elementary School</option>
                                                                     <option value="3">Secondary School</option>
                                                                     <option value="4">High School</option>
                                                                     <option value=" 5"> Post Secondary</option>
-                                                            
+
                                                             </select>
                                                         </div>
 
@@ -591,7 +588,7 @@
                                                                 @foreach($subjects as $subject)
                                                                         <option value="{{$subject->id}}">{{$subject->name}}</option>
                                                                 @endforeach
-                                                            
+
                                                             </select>
                                                             <div class="row">
                                                                 <div class="col-md-6">
@@ -601,7 +598,7 @@
                                                                         @foreach($subject_cat as $subject)
                                                                                 <option value="{{$subject->id}}">{{$subject->name}}</option>
                                                                         @endforeach
-                                                                    
+
                                                                     </select>
                                                                 </div>
                                                                 <div class="col-md-6">
@@ -611,15 +608,15 @@
                                                                         @foreach($subjects as $subject)
                                                                                 <option value="{{$subject->id}}">{{$subject->name}}</option>
                                                                         @endforeach
-                                                                    
+
                                                                     </select>
                                                                 </div>
                                                             </div>
-                                                            
+
 
                                                         </div>
 
-                                                    
+
                                                     </div>
                                                     <div class="row mt-3">
                                                         <div class="input-text col-md-12">
@@ -629,7 +626,7 @@
                                                                 @foreach($subjects as $subject)
                                                                         <option value="{{$subject->id}}">{{$subject->name}}</option>
                                                                 @endforeach
-                                                            
+
                                                             </select>
 
                                                         </div>
@@ -655,7 +652,7 @@
                                         </div>
 
                                     </div> -->
-                                    
+
                                 </div>
                             </form>
                         </div>
@@ -665,7 +662,7 @@
         </div>
         </div>
         </div>
-        
+
     </section>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/intlTelInput.js"></script>
@@ -699,7 +696,7 @@
                 $("#finish").on('click', function() {
                     $(this).attr('name', 'finish');
                 });
-               
+
                 $("#year,#grad-year").yearpicker({
                     year: {{ $user->year ?? '1990' }},
                     startYear: 1950,
@@ -818,7 +815,7 @@
                     //     // $("#password").removeClass("is-invalid");
                     //     // $("#password").addClass("valid");
                     //     // $('#register').removeAttr('onsubmit');
-                        
+
                     // }else{
                     //     var attr = $('#register').attr('onsubmit');
 
@@ -870,14 +867,14 @@
                     <div class="input-text col-md-6">
                         <select name="degree[` + count_field + `]" onchange="checkLevel(this)" onchange="checkLevel(this)" class="form-select form-select-lg mb-3">
                             <option  selected="">Degree</option>
-                        
+
                         </select>
                     </div>
 
                     <div class="input-text col-md-6">
                         <select name="major[` + count_field + `]" class="form-select form-select-lg mb-3">
                             <option value="0" selected="">Major</option>
-                           
+
                         </select>
 
                     </div>
@@ -912,7 +909,7 @@
             $('.customer_records_dynamic').append(html);
             $('.dropify').dropify();
                 // $(".form-select").select2();
-            
+
             });
             $("#register").validate({
                 rules: {
@@ -923,7 +920,7 @@
                     },
                     password: {
                         required: true,
-                        
+
                     },
                     first_name: {
                         required: true
@@ -940,7 +937,7 @@
                     phone: {
                         required: true
                     },
-                    
+
                 },
                 messages: {
                     email: {
@@ -995,7 +992,7 @@
                 $("#lang").val(val)
             }
 
-         
+
 
 
             $("#finish").click(function(){
@@ -1030,8 +1027,8 @@
                             $("#email").removeClass("is-invalid");
                         }
                     }
-                });  
-                  
+                });
+
             });
 
         </script>

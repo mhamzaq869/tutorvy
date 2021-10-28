@@ -135,7 +135,7 @@
     padding: 6px 0;
 }
 .emojionearea .emojionearea-picker.emojionearea-picker-position-top {
-  
+
     left: 5px;
     /* top: -10px; */
 }
@@ -157,7 +157,7 @@
                                 Connect with your students to know more about their requirements <a href="#">Learn More</a>
 
                             </small>
-                                <a href="#" class="cross"  onclick="hideCard()"> 
+                                <a href="#" class="cross"  onclick="hideCard()">
                                     <i class="fa fa-times" aria-hidden="true"></i>
                                 </a>
                             </div>
@@ -175,7 +175,7 @@
                         </div>
                         <div class="line-box"></div>
                         @foreach ($tutors as $tutor)
-                            <a href="#" class="chatLeft" id="chatClient_1" onclick="selectUser(`{{ $tutor->id }}`)">
+                            <a href="#" class="chatLeft" id="chatClient_1" >
                                 <div class="container-fluid m-0 p-0 img-chats">
                                     <img src="{{ asset('admin/assets/img/logo/harram.jpg') }}" class="leftImg ml-1">
                                     <span class="activeDot" id="activeDot_{{ $tutor->id }}"></span>
@@ -188,7 +188,7 @@
                                                 DOn-t u dare
                                             </div>
                                         </div>
-                                        
+
                                     </div> -->
                                     <div class="img-chat w-100">
                                         <div class="row">

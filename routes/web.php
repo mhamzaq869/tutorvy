@@ -255,7 +255,7 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
 Route::group(['prefix' => '/general','middleware' => ['auth']],function () {
 
     Route::post('chat/store',[GenChatController::class,'sendMessage'])->name('store.text');
-    Route::post('call/signal',[GenChatController::class,'sendSignal'])->name('tutor.sendsignal');
+    Route::get('call/signal',[GenChatController::class,'sendSignal'])->name('tutor.sendsignal');
     Route::get('chat/user/talk/{id}',[GenChatController::class,'messages_between'])->name('user.chat');
 
     Route::post('/save-token',[NotifyController::class,'saveToken'])->name('general.save.token');
@@ -378,7 +378,9 @@ Route::view('/tutor','frontend.tutor');
 Route::view('/student','frontend.student');
 Route::view('/subject','frontend.subject');
 // Route::view('/course','frontend.course');
-
+Route::get('users', function () {
+    dd(request()->getHost() );
+});
 Route::get('/course',[GeneralController::class,'course']);
 Route::get('courseenroll/{id}',[GeneralController::class,'enroll'])->name('course.enroll');
 
