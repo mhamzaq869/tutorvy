@@ -2,6 +2,20 @@
 <link href="{{ asset('assets/css/registration.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/css/booknow.css') }}" rel="stylesheet">
 @section('content')
+<style>
+    input[type="date"]::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
+</style>
  <!-- top Fixed navbar End -->
  <section>
 

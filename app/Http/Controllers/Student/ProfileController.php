@@ -15,7 +15,7 @@ use App\Models\General\Institute;
 use App\Models\Admin\SubjectCategory;
 use Illuminate\Support\Facades\URL;
 use App\Models\Booking;
-
+use App\Models\subjectPlans;
 
 class ProfileController extends Controller
 {
@@ -192,5 +192,17 @@ class ProfileController extends Controller
         $price = Booking::where('user_id',$student->id)->where('status',2)->sum('price');
         // dd($favorite_tutors);
         return view('student.pages.profile.profile',compact('student','subjects','favorite_tutors','classes','reviews','price'));
+    }
+
+
+      // show tutor plans
+      public function showTutorPlans(Request $request) {
+        $plans = subjectPlans::where("user_id", $request->user_id)->where("subject_id",$request->subject_id)->get();
+
+        return response()->json([
+            "tutor_plans" => $plans,
+            "status_code" => 200,
+            "success" => true,
+        ]);
     }
 }

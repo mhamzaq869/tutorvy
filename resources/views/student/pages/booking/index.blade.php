@@ -151,11 +151,15 @@
                                                                 </td>
 
                                                                 <td style="text-align: center;">
-                                                                    <a href="{{route('student.booking-detail',[$booking->id])}}">
-                                                                        <button class="schedule-btn" type="button">
-                                                                            View details
-                                                                        </button>
-                                                                    </a>
+                                                                        @if($booking->status == 1 )
+                                                                            <button  onclick="pay_now({{$booking->id}})" id="pay_now_btn_{{$booking->id}}" type="button" role="button" class="cencel-btn mr-2"> Pay Now </button>
+                                                                            <button type="button" id="pay_now_loader_{{$booking->id}}" style="display:none" disabled role="button" class="btn btn-primary btn-sm"> Processing </button>
+                                                                        @endif
+                                                                        <a href="{{route('student.booking-detail',[$booking->id])}}">
+                                                                            <button class="schedule-btn" type="button">
+                                                                                View details
+                                                                            </button>
+                                                                        </a>
                                                                 </td>
                                                             </tr>
                                                             @endforeach
@@ -541,7 +545,7 @@
                                                 <img src="{{asset ('admin/assets/img/ico/doollarss.png')}}" width="60px">
                                                 <p
                                                     style="font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 500;margin-top: 10px;">
-                                                    Note</p>
+                                                    Payment Details</p>
                                                 <!-- <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;"
                                                     class="ml-4 mr-4">
                                                     Send approved time for class.

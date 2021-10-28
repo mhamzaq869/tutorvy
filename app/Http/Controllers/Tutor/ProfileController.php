@@ -18,7 +18,7 @@ use App\Models\General\Education;
 use App\Models\General\Professional;
 use App\Models\Userdetail;
 use App\Models\Booking;
-
+use App\Models\subjectPlans;
 use Illuminate\Support\Facades\URL;
 
 class ProfileController extends Controller
@@ -295,5 +295,17 @@ class ProfileController extends Controller
         // dd($reviews);
         return view('tutor.pages.student.index',compact('student','subjects','classes','price','reviews'));
     }
+
+    // show tutor plans
+    public function showTutorPlans(Request $request) {
+        $plans = subjectPlans::where("user_id", $request->user_id)->where("subject_id",$request->subject_id)->get();
+
+        return response()->json([
+            "tutor_plans" => $plans,
+            "status_code" => 200,
+            "success" => true,
+        ]);
+    }
+    
 
 }
