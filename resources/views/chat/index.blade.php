@@ -292,7 +292,7 @@
                             </div>
                             <div class="row">
 
-                                <div class="col-md-12 col-8" id="chatForm">
+                                <div class="col-md-12 col-8" id="chatForm" data="{{}}">
 
                                     {{-- <form id="chat_form" action="{{ route('store.text') }}">
                                         <a href="" class="sendLeft" type="button">
