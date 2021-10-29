@@ -35,6 +35,9 @@ use PayPal\Api\Payer;
 use PayPal\Api\PayerInfo;
 use PayPal\Api\Payment;
 use PayPal\Api\RedirectUrls;
+use PayPal\Api\Refund;
+use PayPal\Api\RefundRequest;
+use PayPal\Api\Sale;
 use PayPal\Api\ExecutePayment;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\Transaction;
@@ -237,6 +240,7 @@ class BookingController extends Controller
 
                 $subject = Subject::where('id',$booking->subject_id)->first();
                 $booking->status = 2;
+                $booking->service_fee =  Session::get('service_fee');
                 $booking->save();
 
                 Classroom::create([
@@ -303,6 +307,58 @@ class BookingController extends Controller
 
     	return redirect()->route('student.bookings');
 
+    }
+
+    public function cancelBooking(Request $request,$id)
+    {
+        $booking = Booking::find($id);
+
+        $refund_amount = $booking->price;
+        $saleId = $booking->payment->first()->sale_id;
+
+        $paymentValue =  (string) round($refund_amount,2); ;
+
+        // ### Refund amount
+        // Includes both the refunded amount (to Payer)
+        // and refunded fee (to Payee). Use the $amt->details
+        // field to mention fees refund details.
+        $amt = new Amount();
+        $amt->setCurrency('USD')
+            ->setTotal($paymentValue);
+
+        // ### Refund object
+        $refundRequest = new RefundRequest();
+        $refundRequest->setAmount($amt);
+
+        // ###Sale
+        // A sale transaction.
+        // Create a Sale object with the
+        // given sale transaction id.
+        $sale = new Sale();
+        $sale->setId($saleId);
+        try {
+            $refundedSale = $sale->refundSale($refundRequest, $this->_api_context);
+        } catch (\Exception $ex) {
+            dd($ex);
+            exit(1);
+        }
+
+        if($refundedSale->state == 'completed'){
+
+            Payments::create([
+                'user_id' => Auth::user()->id,
+                'type' => 'payment_refund',
+                'transaction_id' => $booking->payment->first()->transaction_id,
+                'sale_id' => $refundedSale->sale_id ?? '',
+                'amount'  => $refundedSale->amount->total,
+                'method'  => 'paypal'
+            ]);
+
+            $booking->status = 4;
+            $booking->save();
+        }
+
+        return redirect()->route('student.bookings')->with('success', '$'.$refundedSale->amount->total.' amount has been refunded to your account successfully!');
     }
 
     public function coursePayment(Request $request,$id)
@@ -513,7 +569,6 @@ class BookingController extends Controller
         $execution->setPayerId($request->input('PayerID'));
         $result = $payment->execute($execution, $this->_api_context);
 
-
         if ($result->getState() == 'approved') {
             Session::flash('success','Payment success');
 
@@ -531,6 +586,7 @@ class BookingController extends Controller
             if($booking != null){
                 $subject = Subject::where('id',$booking->subject_id)->first();
                 $booking->status = 2;
+                $booking->service_fee =  Session::get('service_fee');
                 $booking->save();
             }else{
                 CourseEnrollment::create([
@@ -552,6 +608,7 @@ class BookingController extends Controller
                 'type_id' => ($booking != null) ? $booking->id : $course->id,
                 'type' => ($booking != null) ? 'booking_class' : 'course_enrollment',
                 'transaction_id' => $result->id,
+                'sale_id' => $result->transactions[0]->related_resources[0]->sale->id ?? '',
                 'amount'  => $result->transactions[0]->amount->total,
                 'service_fee' => Session::get('service_fee'),
                 'method'  => 'paypal'
@@ -603,6 +660,7 @@ class BookingController extends Controller
         if($booking != null){
             $subject = Subject::where('id',$booking->subject_id)->first();
             $booking->status = 2;
+            $booking->service_fee =  Session::get('service_fee');
             $booking->save();
         }else{
             CourseEnrollment::create([
@@ -669,25 +727,7 @@ class BookingController extends Controller
 
         return redirect()->route('student.bookings');
     }
-
-    public function history()
-    {
-        $tickets = supportTkts::where('user_id',Auth::user()->id)->with(['category','tkt_created_by'])->get();
-
-        return view('student.pages.history.index',compact('tickets'));
-    }
-
-    public function tutorPlans(Request $request) {
-        $plans = subjectPlans::where("user_id", $request->user_id)->where("subject_id",$request->subject_id)->get();
-
-        return response()->json([
-            "tutor_plans" => $plans,
-            "status_code" => 200,
-            "success" => true,
-        ]);
-    }
-
-    /**
+ /**
      *  @param $total_price,$commission,$comm.$booking,$bookingID
      *  @return $redirectURL
      *
@@ -741,6 +781,35 @@ class BookingController extends Controller
         return $redirectUrl;
     }
 
+    public function history()
+    {
+        $tickets = supportTkts::where('user_id',Auth::user()->id)->with(['category','tkt_created_by'])->get();
+
+        return view('student.pages.history.index',compact('tickets'));
+    }
+
+    public function tutorPlans(Request $request) {
+        $plans = subjectPlans::where("user_id", $request->user_id)->where("subject_id",$request->subject_id)->get();
+
+        return response()->json([
+            "tutor_plans" => $plans,
+            "status_code" => 200,
+            "success" => true,
+        ]);
+    }
+
+    public function rescheduleBooking(Request $request,$id){
+
+        $booking = Booking::find($id);
+
+        $booking->class_date = $request->date;
+        $booking->class_time = $request->time;
+        $booking->reschedule_note = $request->note;
+        $booking->save();
+
+        return redirect()->back();
+    }
+
     public function checkDefaultPaymentMethod()
     {
         $defaultPay = DB::table('payment_methods')->where('user_id',Auth::user()->id)->where('default',1)->first();
@@ -749,6 +818,7 @@ class BookingController extends Controller
             return response()->json(['success' => "You haven't select or add any default payment method yet, Please select by following this <a href='/student/settings'>Add Payment Method</a>"]);
         endif;
     }
+
 
 
 }

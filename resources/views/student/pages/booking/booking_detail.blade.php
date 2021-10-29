@@ -34,18 +34,20 @@
                                     style="margin-top: 10px; text-align: left;color: #00132D;font-size: 22px;font-family: Poppins;font-weight: 500;">
                                     {{$booking->subject->name}} Class</p>
                                 <p style="text-align: right;" class="col-md-6 col-xs-12 class-btn-center">
-
-                                    <button type="button" data-toggle="modal" data-target="#exampleModalCenter"
+                                    @if ($booking->status == 2)
+                                        <button type="button" data-toggle="modal" data-target="#exampleModalCenter"
                                         class="cencel-btn mr-2" style="font-size: 12px;width: 150px;"> Cancel
-                                        Booking</button>
-                                    <button type="button" data-toggle="modal" data-target="#exampleModalCente"
-                                        class="schedule-btn mr-2" style="font-size: 12px;width: 150px;"> Re-schedule
-                                        class</button>
-                                        @if($booking->status == 1)
+                                        Booking
+                                        </button>
+                                    @elseif($booking->status == 1)
+                                        <button type="button" data-toggle="modal" data-target="#exampleModalCente"
+                                            class="schedule-btn mr-2" style="font-size: 12px;width: 150px;"> Re-schedule
+                                            class
+                                        </button>
                                         <button type="button" onclick="pay_now({{$booking->id}})"
                                         class="schedule-btn" style="font-size: 12px;width: 150px;"> Pay Now
                                         </button>
-                                        @endif
+                                    @endif
                                 </p>
                             </div>
                             <div class="card-body">
@@ -80,9 +82,7 @@
                                             <div class="mt-4">
                                                 <div class="text3" style="display: flex;">
                                                     <span>
-                                                        <img class="book-details"
-
-                                                            src="{{ asset('assets/images/ico/Group 4689.png') }}" alt="gros">
+                                                        <img class="book-details" src="{{ asset('assets/images/ico/Group 4689.png') }}" alt="gros">
                                                         <span class="schedule">
                                                             Schedule Date:
                                                         </span>
@@ -206,24 +206,29 @@
                                             </p>
                                         </div>
                                         <div class="ml-4 mr-4">
-                                            <form>
+                                            <form action="{{route('student.booking.reschedule',[$booking->id])}}" method="post">
+                                                @csrf
                                                 <div style="display: flex;">
-                                                    <input id="today2" class="inputtype mb-2" style="width: 170px;"
+                                                    <input id="today2" name="date" class="inputtype mb-2" style="width: 170px;"
                                                         type="date">
-                                                    <input type="time" class="inputtype ml-5 mb-2" class="times"
+                                                    <input type="time" name="time" class="inputtype ml-5 mb-2" class="times"
                                                         style="width: 170px;" value="13:00" step="900">
                                                 </div>
-                                                <textarea class="form-control mt-3" rows="6" cols="50"
+                                                <textarea class="form-control mt-3" name="note" rows="6" cols="50"
                                                     placeholder="Write reason"></textarea>
-                                            </form>
+
+
+                                            <div class="text-right mt-3">
+                                                <input type="submit" class="schedule-btn"
+                                                                 style="width: 130px" value="Send">
+                                            </div>
+
+                                        </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="mt-4 mb-2" style="text-align: right;">
-                                <button type="button" class="schedule-btn" data-dismiss="modal"
-                                    style="width: 130px;margin-right: 40px;">Send</button>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -243,16 +248,19 @@
                                                 Cancel Booking</p>
                                             <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;line-height: 1.4;"
                                                 class="ml-5 mr-5">Are you sure you want to cancel booking ? it will cost
-                                                ${{$booking->payment->first()->service_fee ?? 10}} for cancelling</p>
+                                                ${{$booking->service_fee ?? 10}} for cancelling</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div style="text-align: center;" class="mt-2 mb-2">
-                                <button type="button" class="cencel-btn" style="width: 130px;">Yes, Cancel</button>
-                                &nbsp;&nbsp;
-                                <button type="button" class="schedule-btn" data-dismiss="modal"
-                                    style="width: 130px;">No</button>
+                                <form action="{{route('student.booking.cancel',[$booking->id])}}" method="post">
+                                    @csrf
+                                    <button type="submit" class="cencel-btn" style="width: 130px;">Yes, Cancel</button>
+                                    &nbsp;&nbsp;
+                                    <button type="button" class="schedule-btn" data-dismiss="modal"
+                                        style="width: 130px;">No</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -359,7 +367,7 @@
                                         </div> -->
                                         <div class="col-md-9"></div>
                                         <div class="col-md-3 text-right mt-3" id="show_pay_btn">
-                                            <form action="{{url('/student/booking/payment')}}" id="payment" method="post">
+                                            <form action="{{url('/student/booking/payment')}}" id="payment" method="post" target="_blank">
                                                 @csrf
                                                 <div id="paytype"></div>
                                                 <span></span>

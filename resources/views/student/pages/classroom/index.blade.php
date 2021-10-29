@@ -191,9 +191,9 @@
 
                                                             <td>
                                                                 @if($class->classroom != null)
-                                                                    <span data-id="{{$class->id}}" 
+                                                                    <span data-id="{{$class->id}}"
                                                                         data-review="{{$class->is_reviewed}}" data-duration="{{$class->duration}}"
-                                                                        data-room="{{$class->classroom != null ? $class->classroom->classroom_id : ''}}" 
+                                                                        data-room="{{$class->classroom != null ? $class->classroom->classroom_id : ''}}"
                                                                         id="class_time_{{$class->id}}" data-date="{{$class->class_date}}"
                                                                         class="badge current_time badge-pill text-white font-weight-normal bg-success mt-3">
 
@@ -367,7 +367,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script>
     $(document).ready(function() {
-        var timer = new Timer();
 
         $('#stars li').on('click', function() {
             var onStar = parseInt($(this).data('value'), 10); // The star currently selected
@@ -431,8 +430,9 @@
         });
 
 
-            
+
         $(".current_time").each(function() {
+            var timer = new Timer();
 
             var booking_time = $.trim($( this ).text());
             var booking_seconds_time = HmsToSeconds(moment(booking_time).format('HH:mm:ss'));;
@@ -442,7 +442,7 @@
             var booking_date = $(this).data('date');
             console.log(booking_date , "booking_date");
             var duration = $(this).data('duration');
-            var review = $(this).data('review');         
+            var review = $(this).data('review');
 
             var date = new Date();
             var remain_time = (booking_seconds_time - HmsToSeconds(moment(date).format('HH:mm:ss')));
@@ -454,7 +454,7 @@
 
             var class_end_time = moment(date).add(remain_time,'s').add(duration, 'h').format("LT");
             var class_end_date = new Date(booking_date + ' ' +  class_end_time);
-            
+
 
             let join_btn = `<a onclick="joinClass('`+room_id+`')" class="schedule-btn"> Join Class </a>`;
 
@@ -462,7 +462,7 @@
             timer.addEventListener('secondsUpdated', function (e) {
                 if( parseInt(remain_time) > 0)  {
                     $("#class_time_"+attr_id).html(timer.getTimeValues().toString());
-                    var current_time_text =  $("#class_time_"+attr_id).text(); 
+                    var current_time_text =  $("#class_time_"+attr_id).text();
                     if($.trim(current_time_text) == "00:00:00") {
                         $(".join_class_"+attr_id).html(join_btn);
                         $("#class_time_"+attr_id).html("");
@@ -471,11 +471,11 @@
                     $(".join_class_"+attr_id).html("");
                     $("#class_time_"+attr_id).html("Class Time Over");
                 }
-                
+
             });
 
             timer.addEventListener('targetAchieved', function (e) {
-                var current_time_text =  $("#class_time_"+attr_id).text(); 
+                var current_time_text =  $("#class_time_"+attr_id).text();
 
                 if( parseInt(remain_time) > 0) {
                     if($.trim(current_time_text)  == "00:00:00") {
@@ -484,9 +484,9 @@
                     }
                 }else{
                     $(".join_class_"+attr_id).html("");
-                    $("#class_time_"+attr_id).html("Class Time Over"); 
+                    $("#class_time_"+attr_id).html("Class Time Over");
                 }
-            }); 
+            });
 
             if(date.getTime() > booking_time.getTime() &&  date.getTime() < class_end_date.getTime()) {
                 if(review == 0) {
@@ -495,8 +495,8 @@
                         $("#class_time_"+attr_id).html("");
                     }else{
                         $(".join_class_"+attr_id).html("");
-                        $("#class_time_"+attr_id).html("Class Time Over");        
-                    }                    
+                        $("#class_time_"+attr_id).html("Class Time Over");
+                    }
                 }
             }else {
                 $(".join_class_"+attr_id).html("");
@@ -504,7 +504,7 @@
             }
 
 
-        }); 
+        });
     });
 
 
