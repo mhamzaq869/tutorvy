@@ -52,6 +52,9 @@
     opacity:0 ;
 }
 
+.sub-tab .tablinks{
+    font-size:14px;
+}
 </style>
 @section('content')
     <!-- top Fixed navbar End -->
@@ -147,36 +150,56 @@
                         </div>
                         
                         <div class="row">
-                            @foreach ($subjects as $i => $subject)
-                                @if ((Auth::user()->teach[$i]->subject_id ?? null) != $subject->id)
-                                    <div class="col-md-3">
-                                        <div class="card-deck">
-                                            <div class="card h-auto card-shadow p-0">
-                                                <div class="card-body ">
-                                                    <div class="row">
-                                                        <div class="col-md-9">
-                                                            <p class="heading-fifth mr-3 pt-2 mb-0 ">
-                                                                {{ $subject->name }}
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            @if(Auth::user()->status == 2)
-                                                                <a href="{{ route('tutor.test', [$subject->id]) }}">
-                                                                    <p class="view-bookings mb-0">Add</p>
-                                                                </a>
-                                                            @else
-                                                                <a onclick="showMessage()">
-                                                                    <p class="view-bookings mb-0">Add</p>
-                                                                </a>
-                                                            @endif
+                            <div class="col-md-2 pt-5">
+                                <div class="tab-mobile tab sub-tab">
+                                    <button class="tablinks active" id="defaultOpen" onclick="openCity(event, 'London')">
+                                        ComputerScience
+                                    </button>
+                                    <button class="tablinks" onclick="openCity(event, 'Paris')">Engineering</button>
+                                    <button class="tablinks" onclick="openCity(event, 'ForeignLanguage')">ForeignLanguage</button>
+                                    <button class="tablinks" onclick="openCity(event, 'Tokyo')">History</button>
+                                    <button class="tablinks" onclick="openCity(event, 'science')" id="">
+                                        Science
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="row">
+                                    <div id="London" class="tabcontent show">
+                                        @foreach ($subjects as $i => $subject)
+                                            @if ((Auth::user()->teach[$i]->subject_id ?? null) != $subject->id)
+                                                <div class="col-md-4">
+                                                    <div class="card-deck">
+                                                        <div class="card h-auto card-shadow p-0">
+                                                            <div class="card-body ">
+                                                                <div class="row">
+                                                                    <div class="col-md-9">
+                                                                        <p class="heading-fifth mr-3 pt-2 mb-0 ">
+                                                                            {{ $subject->name }}
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        @if(Auth::user()->status == 2)
+                                                                            <a href="{{ route('tutor.test', [$subject->id]) }}">
+                                                                                <p class="view-bookings mb-0">Add</p>
+                                                                            </a>
+                                                                        @else
+                                                                            <a onclick="showMessage()">
+                                                                                <p class="view-bookings mb-0">Add</p>
+                                                                            </a>
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
+                                            @endif
+                                        @endforeach
                                     </div>
-                                @endif
-                            @endforeach
+                                </div>
+                            </div>
+                           
                         </div>
                         <div class="row">
                             <div class="col-md-12">

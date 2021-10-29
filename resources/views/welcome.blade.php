@@ -20,9 +20,9 @@
                     There are many variations of passages available, but <br />
                     the majority have suffered alteration in some form.</p>
                 <div class=" input-text-button-1 input-text-main mt-4">
-                    <a href="tutor/tutor.html" class="btn"> For tutor &#8594;
+                    <a href="{{ url('tutor') }}" class="btn"> For tutor &#8594;
                     </a>
-                    <a href="student/student.html" class="ml-3 btn"> For student &#8594; </a>
+                    <a href="{{ url('student') }}" class="ml-3 btn"> For student &#8594; </a>
                 </div>
             </div>
         </div>
@@ -56,9 +56,9 @@
                     There are many variations of passages available, but
                     the majority have suffered alteration in some form.</p>
                 <div class=" input-text-button-1 input-text-main mt-4">
-                    <a href="tutor/tutor.html" class="btn"> For tutor &#8594;
+                    <a href="{{ url('tutor') }}" class="btn"> For tutor &#8594;
                     </a>
-                    <a href="student/student.html" class="ml-3 btn"> For student &#8594; </a>
+                    <a href="{{ url('student') }}" class="ml-3 btn"> For student &#8594; </a>
                 </div>
             </div>
         </div>
@@ -163,7 +163,7 @@
                 </div>
                 <div class="input-text input-text-main input-text-main-mob mt-4 d-flex"
                     style="position: relative;left: -4px;">
-                    <a href="student/student.html" class="none">
+                    <a href="{{ url('student') }}" class="none">
                         <input type="submit" value="Learn more">
                     </a>
                 </div>
@@ -248,7 +248,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="tutor/tutor.html" class="view-text btn mt-4 pl-3 pr-3">Learn more</a>
+                                <a href="{{ url('tutor') }}" class="view-text btn mt-4 pl-3 pr-3">Learn more</a>
                             </div>
                         </div>
                     </div>
@@ -841,7 +841,7 @@
                     There are many variations of passages available, but
                     the majority have suffered alteration in some form.</p>
                 <div class="input-text-1 input-text-center mt-4">
-                    <a href="course/course.html">
+                    <a href="{{ url('course') }}">
                         <input type="submit" value="View all courses" class="w-50">
                     </a>
                 </div>

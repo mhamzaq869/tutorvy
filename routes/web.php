@@ -368,8 +368,8 @@ Route::post('/updatePassword',[ResetPasswordController::class,'updatePassword'])
 Route::post('/resendOtp',[ResetPasswordController::class,'resendOtp'])->name('resend.otp');
 
 
-Route::view('/','welcome');
-
+//Route::view('/','welcome');
+Route::get('/',[GeneralController  ::class,'home']);
 // Route::get('/',[GeneralController::class,'home']);
 
 Route::get('/widget',[FrontTutorController::class,'widgetTech'])->name('whiteBoard.canvas');
