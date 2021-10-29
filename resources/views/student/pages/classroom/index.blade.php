@@ -367,7 +367,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script>
     $(document).ready(function() {
-        var timer = new Timer();
 
         $('#stars li').on('click', function() {
             var onStar = parseInt($(this).data('value'), 10); // The star currently selected
@@ -433,6 +432,7 @@
 
 
         $(".current_time").each(function() {
+            var timer = new Timer();
 
             var booking_time = $.trim($( this ).text());
             var booking_seconds_time = HmsToSeconds(moment(booking_time).format('HH:mm:ss'));;
