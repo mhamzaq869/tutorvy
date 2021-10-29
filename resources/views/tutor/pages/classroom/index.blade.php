@@ -95,7 +95,7 @@
                                                                 </td>
                                                                 <td class="pt-4"> {{ $class->subject->name }} </td>
                                                                 <td class="pt-4"> {{ $class->topic }} </td>
-                                                                <td class="pt-4" id="tutor_time_{{$class->id}}">  </td>
+                                                                <td class="pt-4 tutor_time_{{$class->id}}">  </td>
                                                                
                                                                 <td class="pt-4"> {{ $class->duration }} Hour(s) </td>
                                                                 <td class="pt-4">
@@ -268,35 +268,62 @@
             var moment_date = moment(date).format('YYYY-MM-DD');
 
             var tutor_time_in_seconds = HmsToSeconds(moment(date).format('HH:mm:ss'));
+            // console.log(tutor_time_in_seconds , "tutor_time_in_seconds");
             var region_booking_time = moment(date).add(remain_time,'s').format("LT");
             
             var create_region_date = new Date(booking_class_date + ' ' +  region_booking_time)
             var class_end_time = moment(date).add(remain_time,'s').add(duration, 'h').format("LT");
             var class_end_date = new Date(booking_class_date + ' ' +  class_end_time);
+            
+            $(".tutor_time_"+attr_id).text(region_booking_time);    
 
-            $("#tutor_time_"+attr_id).text(region_booking_time);    
-
+            let start_call = `<a href="{{url('tutor/class')}}/`+room_id+`"  class="schedule-btn"> Start Call </a>`;
+            
             timer.start({countdown: true, startValues: {seconds: remain_time }});
             timer.addEventListener('secondsUpdated', function (e) {
-                $("#class_time_"+attr_id).html(timer.getTimeValues().toString());
+                var current_time_text =  $("#class_time_"+attr_id).text();    
+                if( parseInt(remain_time) > 0) {
+                    $("#class_time_"+attr_id).html(timer.getTimeValues().toString());
+                    
+                    if($.trim(current_time_text) == "00:00:00") {
+                        $("#join_class_"+attr_id).html(start_call);
+                        $("#class_time_"+attr_id).html("");
+                    }
+                }else{
+                    $("#join_class_"+attr_id).html("");
+                    $("#class_time_"+attr_id).html("Class Time Over");
+                }
+
             });
 
             timer.addEventListener('targetAchieved', function (e) {
-                let start_call = `<a href="{{url('tutor/class')}}/`+room_id+`"  class="schedule-btn"> Start Call </a>`;
-                $("#join_class_"+attr_id).html(start_call);
-                $("#class_time_"+attr_id).html("");
+                var current_time_text =  $("#class_time_"+attr_id).text();    
+                
+                if( parseInt(remain_time) > 0) {
+                    if($.trim(current_time_text)  == "00:00:00") {
+                        $("#join_class_"+attr_id).html(start_call);
+                        $("#class_time_"+attr_id).html("");
+                    }
+                }else{
+                    $("#join_class_"+attr_id).html("");
+                    $("#class_time_"+attr_id).html("Class Time Over");  
+                }
+                
             });
 
             if(date.getTime() > create_region_date.getTime() &&  date.getTime() < class_end_date.getTime()) {
-                let start_call = `<a href="{{url('tutor/class')}}/`+room_id+`"  class="schedule-btn"> Start Call </a>`;
                 if(review == 0) {
-                    $("#join_class_"+attr_id).html(start_call);
-                    $("#class_time_"+attr_id).html("");
+                    if(Math.abs(remain_time) > 0) {
+                        $("#join_class_"+attr_id).html(start_call);
+                        $("#class_time_"+attr_id).html("");
+                    }else{
+                        $("#join_class_"+attr_id).html("");
+                        $("#class_time_"+attr_id).html("Class Time Over");        
+                    }                    
                 }
             }else {
                 $("#join_class_"+attr_id).html("");
                 $("#class_time_"+attr_id).html("Class Time Over");
-                $("#class_time_"+attr_id).removeAttr("data-room");
             }
 
         });

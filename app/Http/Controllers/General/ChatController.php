@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Student;
+namespace App\Http\Controllers\General;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -22,7 +22,7 @@ class ChatController extends Controller
     public function index(){
         $tutors = User::where('role',2)->where('status',1)->get();
         // $contacts = Chat::where('sender_id',Auth::user()->id);
-        return view('student.pages.chat.index',compact('tutors'));
+        return view('chat.index',compact('tutors'));
     }
 
 

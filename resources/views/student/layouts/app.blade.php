@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- <script src="{{ asset('js/app.js') }}"></script> -->
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <!-- Scripts -->
     <!--favicon --->
@@ -34,6 +34,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Styles -->
     @include('student.layouts.css')
+    <script src="{{ asset('js/app.js') }}"></script>
+
 </head>
 
 <body>
@@ -41,6 +43,7 @@
         <input type="hidden" class="user_id" value={{ Auth::user()->id }}>
         <input type="hidden" class="user_role_id" value={{ Auth::user()->role }}>
         <!-- side navbar -->
+
         @include('student.layouts.sidebar')
         <!-- seide navbar end -->
         <div class="content" style="width: 100%;background-color: #FBFBFB !important;">

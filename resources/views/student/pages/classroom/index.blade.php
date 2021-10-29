@@ -431,6 +431,9 @@
         });
 
 
+
+        $(".current_time").each(function() {
+
             var booking_time = $.trim($( this ).text());
             var booking_seconds_time = HmsToSeconds(moment(booking_time).format('HH:mm:ss'));;
 
@@ -444,9 +447,6 @@
             var date = new Date();
             var remain_time = (booking_seconds_time - HmsToSeconds(moment(date).format('HH:mm:ss')));
 
-            console.log(date , "date");
-            console.log(date.getTime() , "date");
-
             var std_time_in_seconds = HmsToSeconds(moment(date).format('HH:mm:ss'));
 
             var region_booking_time = moment(date).add(remain_time,'s').format("LT");
@@ -455,37 +455,48 @@
             var class_end_time = moment(date).add(remain_time,'s').add(duration, 'h').format("LT");
             var class_end_date = new Date(booking_date + ' ' +  class_end_time);
 
-            console.log(booking_time , "booking_time");
-            console.log(booking_time.getTime() , "booking_time");
 
-            console.log(class_end_date , "class_end_date");
-            console.log(class_end_date.getTime() , "class_end_date");
+            let join_btn = `<a onclick="joinClass('`+room_id+`')" class="schedule-btn"> Join Class </a>`;
 
-
-
-            timer.start({
-                countdown: true,
-                startValues: {
-                    seconds: remain_time
+            timer.start({countdown: true, startValues: {seconds: remain_time}});
+            timer.addEventListener('secondsUpdated', function (e) {
+                if( parseInt(remain_time) > 0)  {
+                    $("#class_time_"+attr_id).html(timer.getTimeValues().toString());
+                    var current_time_text =  $("#class_time_"+attr_id).text();
+                    if($.trim(current_time_text) == "00:00:00") {
+                        $(".join_class_"+attr_id).html(join_btn);
+                        $("#class_time_"+attr_id).html("");
+                    }
+                }else{
+                    $(".join_class_"+attr_id).html("");
+                    $("#class_time_"+attr_id).html("Class Time Over");
                 }
-            });
-            timer.addEventListener('secondsUpdated', function(e) {
-                $("#class_time_" + attr_id).html(timer.getTimeValues().toString());
+
             });
 
             timer.addEventListener('targetAchieved', function (e) {
-                let join_btn = `<a onclick="joinClass('`+room_id+`')" class="schedule-btn"> Join Class </a>`;
-                if(review == 0) {
-                    $(".join_class_"+attr_id).html(join_btn);
-                    $("#class_time_"+attr_id).html("");
+                var current_time_text =  $("#class_time_"+attr_id).text();
+
+                if( parseInt(remain_time) > 0) {
+                    if($.trim(current_time_text)  == "00:00:00") {
+                        $(".join_class_"+attr_id).html(join_btn);
+                        $("#class_time_"+attr_id).html("");
+                    }
+                }else{
+                    $(".join_class_"+attr_id).html("");
+                    $("#class_time_"+attr_id).html("Class Time Over");
                 }
             });
 
             if(date.getTime() > booking_time.getTime() &&  date.getTime() < class_end_date.getTime()) {
-                let join_btn = `<a onclick="joinClass('`+room_id+`')" class="schedule-btn"> Join Class </a>`;
                 if(review == 0) {
-                    $(".join_class_"+attr_id).html(join_btn);
-                    $("#class_time_"+attr_id).html("");
+                    if(Math.abs(remain_time) > 0) {
+                        $(".join_class_"+attr_id).html(join_btn);
+                        $("#class_time_"+attr_id).html("");
+                    }else{
+                        $(".join_class_"+attr_id).html("");
+                        $("#class_time_"+attr_id).html("Class Time Over");
+                    }
                 }
             }else {
                 $(".join_class_"+attr_id).html("");

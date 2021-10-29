@@ -3,12 +3,14 @@
 
 @section('content')
     <style>
-               .chatLeft:hover {
+        .chatLeft:hover {
             text-decoration: none;
         }
+
         .w-100 {
             width: 100%;
         }
+
         .rightChatIcon {
             font-size: 25px;
             padding-left: 9px;
@@ -16,12 +18,15 @@
             padding-right: 19px;
             color: #00132D;
         }
+
         .rightChatIcon:hover {
             text-decoration: none;
         }
+
         .f-19 {
             font-size: 19px;
         }
+
         .sendRight {
             right: 28px;
             position: absolute;
@@ -29,21 +34,25 @@
             color: #00132D;
             font-size: 20px;
         }
-        .sendLeft{
+
+        .sendLeft {
             left: 48px;
             position: absolute;
-            z-index:3;
+            z-index: 3;
             color: #00132D;
         }
-        .sendLeft i{
-            font-size:19px;
+
+        .sendLeft i {
+            font-size: 19px;
         }
+
         .chatArea {
             height: 365px;
             padding-left: 0px;
             padding-right: 0;
-            overflow-y:scroll;
+            overflow-y: scroll;
         }
+
         .headIcon {
             font-size: 28px;
             padding-top: 4px;
@@ -51,12 +60,15 @@
             color: #00132D;
             font-weight: 400;
         }
+
         .activate {
             background: #fff;
         }
-        .sender{
-            float:right;
+
+        .sender {
+            float: right;
         }
+
         .reciever p,
         .sender p {
             width: 300px;
@@ -64,28 +76,34 @@
             border-radius: 5px;
             padding: 5px;
         }
+
         .reciever p:hover,
         .sender p:hover {
             cursor: pointer;
         }
-        .recDull{
+
+        .recDull {
             position: absolute;
             left: 34%;
             color: #BCC0C7;
         }
+
         .dull {
             position: absolute;
             right: 2%;
             color: #BCC0C7;
         }
+
         .chatTime {
             float: right;
             font-size: 12px;
         }
+
         .line-box2 {
             border-bottom: 1px solid #D6DBE2;
             margin-bottom: 10px;
         }
+
         .textMenu2 {
             color: #00132D;
             position: absolute;
@@ -93,20 +111,24 @@
             left: 45%;
             display: none;
         }
-        .textMenu{
+
+        .textMenu {
             color: #00132D;
             position: absolute;
             top: 28%;
             right: 45%;
         }
+
         .textMenu2 i,
         .textMenu i {
             font-size: 22px;
         }
-        .search-box-icon{
-            color:#00132D;
-            font-size:22px;
+
+        .search-box-icon {
+            color: #00132D;
+            font-size: 22px;
         }
+
         .activeDot {
             width: 14px;
             border: 2px solid #fff;
@@ -117,31 +139,34 @@
             background: green;
             border-radius: 50%;
         }
-        .offlice{
+
+        .offlice {
             background: gray !important;
         }
-        .emojionearea.emojionearea-inline > .emojionearea-button {
-    left: 3px !important;
-}
-.emojionearea.emojionearea-inline > .emojionearea-editor {
-    height: 32px;
-    min-height: 20px;
-    overflow: hidden;
-    white-space: nowrap;
-    position: absolute;
-    top: 0;
-    left: 93px;
-    right: 24px;
-    padding: 6px 0;
-}
-.emojionearea .emojionearea-picker.emojionearea-picker-position-top {
 
-    left: 5px;
-    /* top: -10px; */
-}
+        .emojionearea.emojionearea-inline>.emojionearea-button {
+            left: 3px !important;
+        }
+
+        .emojionearea.emojionearea-inline>.emojionearea-editor {
+            height: 32px;
+            min-height: 20px;
+            overflow: hidden;
+            white-space: nowrap;
+            position: absolute;
+            top: 0;
+            left: 93px;
+            right: 24px;
+            padding: 6px 0;
+        }
+
+        .emojionearea .emojionearea-picker.emojionearea-picker-position-top {
+
+            left: 5px;
+            /* top: -10px; */
+        }
 
     </style>
-
     <div class="content" style="width: 100%;background-color: #FBFBFB !important;">
         <div class="container-fluid">
             <p class="heading-first ml-4 ">Inbox</p>
@@ -153,11 +178,12 @@
                                 <i class="fa fa-info" aria-hidden="true"></i>
                             </div>
                             <div class="col-md-11 pl-0">
-                            <small>
-                                Connect with your students to know more about their requirements <a href="#">Learn More</a>
+                                <small>
+                                    Connect with your students to know more about their requirements <a href="#">Learn
+                                        More</a>
 
-                            </small>
-                                <a href="#" class="cross"  onclick="hideCard()">
+                                </small>
+                                <a href="#" class="cross" onclick="hideCard()">
                                     <i class="fa fa-times" aria-hidden="true"></i>
                                 </a>
                             </div>
@@ -175,25 +201,16 @@
                         </div>
                         <div class="line-box"></div>
                         @foreach ($tutors as $tutor)
-                            <a href="#" class="chatLeft" id="chatClient_1" >
+                            <a href="#" class="chatLeft" id="chatClient_1">
                                 <div class="container-fluid m-0 p-0 img-chats">
                                     <img src="{{ asset('admin/assets/img/logo/harram.jpg') }}" class="leftImg ml-1">
                                     <span class="activeDot" id="activeDot_{{ $tutor->id }}"></span>
-                                    <!-- <div class="img-chat">
-                                        <div class="row">
-                                            <div class="col-md-10">
-                                                Check me name
-                                            </div>
-                                            <div class="col-md-2">
-                                                DOn-t u dare
-                                            </div>
-                                        </div>
 
-                                    </div> -->
                                     <div class="img-chat w-100">
                                         <div class="row">
                                             <div class="col-md-9">
-                                                <p class="name-client">{{ $tutor->first_name }} {{ $tutor->last_name }}
+                                                <p class="name-client">{{ $tutor->first_name }}
+                                                    {{ $tutor->last_name }}
                                                 </p>
                                             </div>
                                             <div class="col-md-3">
@@ -207,13 +224,15 @@
 
                                             </div>
                                             <div class="col-md-3">
-                                                <span class="dot pl-2 " id="unseen_msg_cnt_{{ $tutor->id }}">2 </span>
+                                                <span class="dot pl-2 " id="unseen_msg_cnt_{{ $tutor->id }}">2
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </a>
                         @endforeach
+
                     </div>
 
                 </div>
@@ -261,22 +280,23 @@
                         <div class="search-type ">
                             <div class="row">
                                 <!-- <div class="col-md-2 col-4">
-                                    <a href="#">
-                                        <i class="fa fa-smile rightChatIcon"></i> -->
-                                        <!-- <img src="../assets/img/whiteicon/smiley-ico.png" class="w-100"> -->
-                                    <!-- </a>
-                                    <a href="#">
-                                        <i class="fa fa-paperclip rightChatIcon"></i>
+                                        <a href="#">
+                                            <i class="fa fa-smile rightChatIcon"></i> -->
+                                <!-- <img src="../assets/img/whiteicon/smiley-ico.png" class="w-100"> -->
+                                <!-- </a>
+                                        <a href="#">
+                                            <i class="fa fa-paperclip rightChatIcon"></i>
 
-                                    </a>
-                                </div> -->
+                                        </a>
+                                    </div> -->
                                 <div class="col-md-12 col-8">
                                     <span class="text-muted" id="typingUser"></span>
                                     <form id="chat_form" action="{{ route('store.text') }}">
                                         <a href="" class="sendLeft" type="button">
-                                                <i class="fa fa-paperclip rightChatIcon"></i>
+                                            <i class="fa fa-paperclip rightChatIcon"></i>
                                         </a>
-                                        <input type="search" id="msg" class="w-100" alt="message" onKeyUp="sendTypingEvent()">
+                                        <input type="search" id="msg" class="w-100" alt="message"
+                                            onKeyUp="sendTypingEvent()">
                                         <a href="" class="sendRight" type="submit">
                                             <i class="fa fa-paper-plane f-19"></i>
                                         </a>

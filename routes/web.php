@@ -32,14 +32,13 @@ use App\Http\Controllers\Tutor\PaymentController;
 use App\Http\Controllers\Tutor\SettingController as TutorSettingController;
 use App\Http\Controllers\Tutor\AssessmentController;
 use App\Http\Controllers\Tutor\ProfileController;
-use App\Http\Controllers\Tutor\ChatController;
 use App\Http\Controllers\Student\BookingController as StudentBookingController;
 use App\Http\Controllers\Student\HomeController as StudentHomeController;
 use App\Http\Controllers\Student\ProfileController as StudentProfileController;
 use App\Http\Controllers\Student\TutorController as StudentTutorController;
 use App\Http\Controllers\Student\StudentClassController as StudentClassController;
 use App\Http\Controllers\Student\SettingController as StudentSettingController;
-use App\Http\Controllers\Student\ChatController as StdChatController;
+use App\Http\Controllers\General\ChatController;
 use App\Http\Controllers\Student\WalletController;
 
 use App\Http\Controllers\General\GenChatController;
@@ -266,7 +265,7 @@ Route::group(['prefix' => '/general','middleware' => ['auth']],function () {
 Route::group(['prefix' => '/student','middleware' => ['auth','student']],function () {
 
     Route::get('/dashboard',[StudentHomeController::class,'index'])->name('student.dashboard');
-    Route::get('/chat',[StdChatController::class,'index'])->name('student.chat');
+    Route::get('/chat',[ChatController::class,'index'])->name('student.chat');
 
     //Bookings
     Route::get('/bookings',[StudentBookingController::class,'index'])->name('student.bookings');
@@ -277,6 +276,9 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
 
     Route::get('/booking-detail/{id}',[StudentBookingController::class,'bookingDetail'])->name('student.booking-detail');
     Route::get('/booking/{id}/tutor',[StudentBookingController::class,'directBooking'])->name('student.direct.booking');
+
+    Route::post('/cancelBooking/{id}',[StudentBookingController::class,'cancelBooking'])->name('student.booking.cancel');
+    Route::post('/rescheduleBooking/{id}',[StudentBookingController::class,'rescheduleBooking'])->name('student.booking.reschedule');
 
     Route::post('/booking/payment/{id}',[StudentBookingController::class,'bookingPayment'])->name('student.booking.payment');
     Route::get('/booking/paymentstatus',[StudentBookingController::class,'getPaymentStatus'])->name('student.paymentstatus');

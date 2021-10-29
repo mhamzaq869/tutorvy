@@ -1,4 +1,9 @@
-@extends('tutor.layouts.app')
+
+@if(Auth::user()->role == 2)
+    @extends('tutor.layouts.app')
+@elseif(Auth::user()->role == 3)
+    @extends('student.layouts.app')
+@endif
 
 @section('content')
     <style>
@@ -170,7 +175,6 @@
     <div class="content" style="width: 100%;background-color: #FBFBFB !important;">
         <div class="container-fluid">
             <p class="heading-first ml-4 ">Inbox</p>
-            <div id="react"></div>
             <div class="row">
                 <div class="col-md-12 mb-1 ">
                     <div class=" card  bg-toast infoCard">
@@ -203,7 +207,7 @@
                             </a>
                         </div>
                         <div class="line-box"></div>
-                        @foreach ($students as $student)
+                        @foreach ($tutors as $student)
                             <a href="#" class="chatLeft" id="chatClient_1"
                                 onclick="selectUser(`{{ $student->id }}`)">
                                 <!-- <a href="#" class="chatLeft" id="chatClient_1" > -->
@@ -276,10 +280,7 @@
                     </nav>
                     <div class="line-box2"></div>
 
-                    <div class="row chatArea p-5 bg-white" id="chatArea">
-
-
-                    </div>
+                    <div class="row chatArea p-5 bg-white" id="chatArea"></div>
                     <div class="container-fluid mb-3">
                         <div class="search-type ">
                             <div class="row">
@@ -291,9 +292,9 @@
                             </div>
                             <div class="row">
 
-                                <div class="col-md-12 col-8">
+                                <div class="col-md-12 col-8" id="chatForm">
 
-                                    <form id="chat_form" action="{{ route('store.text') }}">
+                                    {{-- <form id="chat_form" action="{{ route('store.text') }}">
                                         <a href="" class="sendLeft" type="button">
                                             <i class="fa fa-paperclip rightChatIcon"></i>
                                         </a>
@@ -302,7 +303,7 @@
                                         <a href="" class="sendRight" type="submit">
                                             <i class="fa fa-paper-plane f-19"></i>
                                         </a>
-                                    </form>
+                                    </form> --}}
                                     <!-- <img src="../assets/img/ico/Icon material-send.png" style="position: relative;left: -35px;height: 25px;margin-top: 10px;"> -->
                                 </div>
                             </div>
