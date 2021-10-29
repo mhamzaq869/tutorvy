@@ -14,7 +14,7 @@ class CreateBookingsTable extends Migration
     public function up()
     {
         Schema::create('bookings', function (Blueprint $table) {
-            
+
             $table->id();
             $table->integer('user_id')->nullable();
             $table->integer('booked_tutor')->nullable();
@@ -33,6 +33,7 @@ class CreateBookingsTable extends Migration
             $table->integer('is_reviewed')->default('0')->nullable();
             $table->text('reschedule_note')->nullable();
             $table->double('price', 15, 2);
+            $table->double('service_fee', 15, 2);
             $table->timestamps();
         });
     }

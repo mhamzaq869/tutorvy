@@ -116,7 +116,7 @@ class PaymentController extends Controller
         $senderItem = new PayoutItem();
         $senderItem->setRecipientType('Email')
             ->setNote('Thanks for your patronage!')
-            ->setReceiver('sb-j1n6u851143@personal.example.com')
+            ->setReceiver($receiverEmail->email ?? '')
             ->setSenderItemId(uniqid())
             ->setAmount([
                 'value' => 22,
@@ -135,6 +135,10 @@ class PaymentController extends Controller
             exit(1);
         }
 
+        // dd($output->batch_header);
+
+        dd($senderItem->get($output->batch_header->payout_batch_id,$this->_api_context));
+        // return redirect($output->links[0]->href);
         return $output;
 
         // $payer = new Payer();

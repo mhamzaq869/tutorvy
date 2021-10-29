@@ -34,9 +34,9 @@ class GenChatController extends Controller
     public function messages_between($id)
     {
         $user = User::where('id',$id)->first();
-        
+
         $messages = auth()->user()->messages_between($user);
-        
+
         return response()->json($messages);
     }
 

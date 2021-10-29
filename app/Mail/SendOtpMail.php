@@ -29,6 +29,6 @@ class SendOtpMail extends Mailable
     public function build()
     {
         return $this->view('mail.otpcode')
-                    ->subject('Verification code for Verify Your Email Address');
+                    ->subject('Tutorvy:Verification code for Verify Your Email Address');
     }
 }
