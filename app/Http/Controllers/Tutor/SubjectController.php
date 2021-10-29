@@ -21,8 +21,9 @@ class SubjectController extends Controller
 
     public function index(){
 
-        $subjects = Subject::paginate(15);
-        return view('tutor.pages.subject.index',compact('subjects'));
+        $subjects = Subject::where('category_id',1)->get();
+        $main_sub = SubjectCategory::all();
+        return view('tutor.pages.subject.index',compact('subjects','main_sub'));
     }
 
     public function destroy($id)
@@ -36,4 +37,9 @@ class SubjectController extends Controller
 
         return view('tutor.pages.reviews.index');
     }
+
+    /*public function displaySub($id){
+        $subjects2 = Subject::where('category_id',$id)->get();
+        return view('tutor.pages.subject.index',compact('subjects2'));
+    }*/
 }
