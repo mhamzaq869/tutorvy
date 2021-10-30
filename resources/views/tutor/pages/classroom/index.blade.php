@@ -243,10 +243,10 @@
 
 <script>
     $(document).ready(function() {
-        var timer = new Timer();
 
 
         $( ".current_time" ).each(function() {
+            var timer = new Timer();
 
             var booking_time = $.trim($( this ).text());
             var booking_seconds_time =  HmsToSeconds(moment(booking_time).format('HH:mm:ss'));

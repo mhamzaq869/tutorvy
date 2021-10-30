@@ -335,7 +335,7 @@ height:25px;
         }
         .reciever p,
         .sender p {
-            min-width: 100px;
+            /* min-width: 100px; */
             border: 1px solid #6EAAFF;
             border-radius: 5px;
             padding: 5px;

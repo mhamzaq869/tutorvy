@@ -191,6 +191,10 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::post('/payment/paypal',[PaymentController::class,'withdrawWithPaypal'])->name('tutor.withdraw.paypal');
 
     Route::get('/subjects',[TutorSubjectController::class,'index'])->name('tutor.subject');
+    Route::get('/subjects-all/{id}',[TutorSubjectController::class,'displaySub'])->name('tutor.subjectGet');
+
+
+
     Route::get('/reviews',[TutorSubjectController::class,'review'])->name('tutor.reviews');
     Route::get('/removesubjects/{id}',[TutorSubjectController::class,'destroy'])->name('tutor.remove.subject');
     Route::view('/skip','tutor.skip')->name('skip');
@@ -209,7 +213,7 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     //Profile Routes
     Route::get('/profile',[ProfileController::class,'index'])->name('tutor.profile');
     Route::get('/profile-view/{id}',[ProfileController::class,'profile'])->name('tutor.profileView');
-
+    Route::post('/tutor-plans',[ProfileController::class,'showTutorPlans'])->name('tutor.plans');
 
     Route::get('/viewstudent/{id}',[ProfileController::class,'show'])->name('tutor.student');
 
@@ -316,6 +320,8 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
 
     Route::get('/profile',[StudentProfileController::class,'index'])->name('student.profile');
     Route::get('/profile-view/{id}',[StudentProfileController::class,'profile'])->name('student.profileView');
+    Route::post('/tutor-plans',[StudentProfileController::class,'showTutorPlans'])->name('student.tutor.plans');
+
 
     Route::get('/call',[StudentSettingController::class,'call'])->name('student.call');
     Route::get('/class/{class_room_id}',[StudentSettingController::class,'join_class'])->name('student.join_class');
@@ -370,8 +376,8 @@ Route::post('/updatePassword',[ResetPasswordController::class,'updatePassword'])
 Route::post('/resendOtp',[ResetPasswordController::class,'resendOtp'])->name('resend.otp');
 
 
-Route::view('/','welcome');
-
+//Route::view('/','welcome');
+Route::get('/',[GeneralController  ::class,'home']);
 // Route::get('/',[GeneralController::class,'home']);
 
 Route::get('/widget',[FrontTutorController::class,'widgetTech'])->name('whiteBoard.canvas');

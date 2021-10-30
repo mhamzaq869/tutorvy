@@ -370,7 +370,7 @@
                 </li>
                 <li class="nav-item" id="imageDropdown" data-toggle="dropdown"
                     style="position: absolute;right: 15px;">
-                    <img src="{{asset('assets/images/logo/profile-image.png') }}"  aria-expanded="true" alt="logo"
+                    <img src="{{asset('assets/images/logo/profile-image.png') }}"  aria-expanded="false" alt="logo"
                         style="width: 35px;border-radius: 30px;">
                     <div class="dropdown classdrop" style="position: absolute;right:99px;top: 7px; ">
                         <ul class="dropdown-menu classdrop " style="padding-bottom: 5px;padding-top: 5px;"
@@ -463,9 +463,9 @@
                 </a>
             </li>
             <li class="nav-item profile-name1" id="imageDropdowns">
-                <div class="dropdown d-flex ">
+                <div class="dropdown d-flex">
                     <a class="nav-link profile-name  pl-4 mr-3 mt-0 pb-0" href="#"
-                        data-toggle="dropdown" aria-expanded="true">
+                        data-toggle="dropdown" aria-expanded="false">
                         {{Auth::user()->first_name}} {{Auth::user()->last_name}}
                         @if(Auth::user()->account_id != null)
                             <p class="text-mute mb-0">User Id# {{Auth::user()->account_id}}</p>

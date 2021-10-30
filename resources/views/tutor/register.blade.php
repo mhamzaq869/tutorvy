@@ -253,7 +253,12 @@
                     </p>
 
                     <div class="row mt-5">
-                        
+                        <div class="col-md-12 mb-3 mt-3">
+                            <div class="nav nav-pills text-center border" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                <a class="nav-link  w-50 stat" id="v-pills-General-tab" href="{{route('student.register')}}" role="tab"  aria-selected="false">As a Student</a>
+                                <a class="nav-link w-50 stat active" id="v-pills-Security-tab" href="{{route('register')}}" role="tab" aria-selected="true">As a Teacher</a>
+                            </div>
+                        </div>
                         <div class="col-md-12 stu_reg">
                             <!-- <div class="board">
                                 <ul class="nav nav-tabs">
@@ -389,12 +394,7 @@
                                                         </span>
                                                     @enderror
                                                 </div>
-                                                <div class="col-md-12 mb-3 mt-3">
-                                                    <div class="nav nav-pills text-center border" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                                        <a class="nav-link  w-50 stat" id="v-pills-General-tab" href="{{route('student.register')}}" role="tab"  aria-selected="false">As a Student</a>
-                                                        <a class="nav-link w-50 stat active" id="v-pills-Security-tab" href="{{route('register')}}" role="tab" aria-selected="true">As a Teacher</a>
-                                                    </div>
-                                                </div>
+                                               
                                                 <div class="col-md-12 text-right mt-3">
 
                                                     <button id="finish" type="submit"

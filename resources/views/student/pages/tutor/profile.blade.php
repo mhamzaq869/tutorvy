@@ -28,7 +28,7 @@ width:22px;
                            <svg xmlns="http://www.w3.org/2000/svg" data-toggle="tooltip" data-placement="bottom" title="This user is verified by the tutorvy authorities due to his sustained and appreciatable performance in the field" aria-hidden="true" viewBox="0 0 14 14"  role="img" style="width:16px;vertical-align: text-top;">
                            <path fill="#1273FE" d="M13.72 7.03c.45-.56.34-1.39-.24-1.82l-.55-.41c-.34-.25-.53-.66-.51-1.08l.03-.68c.03-.72-.53-1.32-1.25-1.33h-.68c-.42 0-.81-.22-1.05-.57L9.11.57c-.39-.6-1.2-.75-1.79-.33l-.55.4c-.34.24-.79.3-1.18.15L4.95.55c-.67-.25-1.41.11-1.64.79l-.21.65c-.14.4-.46.71-.87.82l-.65.18C.89 3.19.5 3.92.71 4.6l.21.65c.13.41.04.85-.22 1.18l-.42.54c-.45.56-.34 1.39.24 1.81l.55.41c.34.25.53.66.51 1.08l-.03.68c-.03.72.54 1.32 1.25 1.33h.68c.42 0 .81.22 1.05.57l.37.57c.39.6 1.21.75 1.79.33l.55-.4c.34-.25.78-.31 1.18-.16l.64.24c.67.25 1.41-.1 1.64-.79l.21-.65c.13-.4.45-.71.86-.82l.65-.17c.69-.19 1.09-.92.87-1.61l-.21-.65c-.13-.4-.05-.85.22-1.18l.42-.53zM6.06 9.84L3.5 7.27l1.23-1.23 1.33 1.33 3.21-3.21L10.5 5.4 6.06 9.84z"></path></svg>
                         </p>
-                        <p class="profile-tutor mt-0" style="line-height: 0;">
+                        <p class="profile-tutor mt-0" style="">
                             {{$tutor->tagline}}
                         </p>
                         <button class="schedule-btn w-100 mt-3" onclick="location.href = '{{route('student.book-now',[$tutor->id])}}';">
@@ -186,7 +186,7 @@ width:22px;
                                             <img src="{{asset('assets/images/ico/blue-icos.png')}}" alt="blue">
                                         </div>
                                         <span class="heading-third ml-3">
-                                            16 <br />
+                                                {{$delivered_classes}} <br />
                                             <span class="heading-sixths">Total classes</span>
                                         </span>
                                     </div>
@@ -198,7 +198,7 @@ width:22px;
                                             <img src="{{asset('assets/images/ico/blue-clock.png')}}" alt="blue-clock">
                                         </div>
                                         <span class="heading-third ml-3">
-                                            50$ <br />
+                                        ${{$tutor->hourly_rate != null ? $tutor->hourly_rate : 0}} <br />
                                             <span class="heading-sixths">Per hour rate</span>
                                         </span>
                                     </div>
@@ -246,7 +246,38 @@ width:22px;
                             </div>
                         </div>
                     </div>
-                    
+                    <p class="heading-second pt-3  mb-0">
+                        Subjects
+                    </p>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="col-md-12">
+                                <table class="pt-2 tableed table  table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="">Srno.</th>
+                                            <th scope="col">Subject</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="subject_table">
+                                        @foreach ($tutor->teach as $i => $teach)   
+                                            <tr>
+                                                <td class="pt-4">{{$i+1}}</td>
+                                                <td class="pt-4">{{$teach->subject->name}}</td>
+                                                <td>
+                                                    <a href="javascript:void(0)" onclick="showTutorPlans('{{$teach->sub_name}}',{{$teach->user_id}},{{$teach->subject_id}})" class="schedule-btn btn">
+                                                        View Plans
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                     
                     <p class="heading-second pt-3  mb-0">
                         Courses
@@ -320,4 +351,84 @@ width:22px;
             </div>
         </div>
     </div>
+
+        
+<div class="modal fade" id="planModal" tabindex="-1" role="dialog"
+    aria-labelledby="planModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <!-- <div class="modal-header text-center">
+            </div> -->
+            <div class="modal-body h-auto  card-body">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <img  src="{{asset('admin/assets/img/ico/dollars.png')}}" />
+                    </div>
+                    <div class="col-md-12 text-center mt-3">
+                        <h3 id="subject_title"> </h3>
+                    </div>
+                </div>
+                <div id="show_plans"></div>
+            </div>
+            <div class="modal-footer ">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="schedule-btn btn" data-dismiss="modal">
+                            Okay
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+@section('scripts')
+<script>
+     function showTutorPlans(subject_title , user_id , subject_id) {
+    $.ajax({
+        url: "{{route('student.tutor.plans')}}",
+        type:"POST",
+        data:{
+          user_id:user_id,
+          subject_id:subject_id,
+        },
+        success:function(response){
+
+          var data = ``;
+          if(response.status_code == 200) {
+
+            for(var i =0; i < response.tutor_plans.length; i++) {
+
+              data +=`
+                <div class="row mt-3 ">
+                    <div class="col-md-6">
+                        <p> `+ (response.tutor_plans[i].experty_title != null ? response.tutor_plans[i].experty_title : '-') +` </p>
+                    </div>
+                    <div class="text-right col-md-6 ">
+                        <p> $`+response.tutor_plans[i].rate+` </p>
+                    </div>
+                </div>`
+
+            }
+            $("#subject_title").text(subject_title);
+            $("#show_plans").html(data);
+            $("#planModal").modal('show');
+
+          }else{
+
+            toastr.error( response.message,{
+                position: 'top-end',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 2500
+            });
+
+          }
+        },
+    });
+   
+  }
+</script>
+
 @endsection
