@@ -253,6 +253,8 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
 */
 Route::group(['prefix' => '/general','middleware' => ['auth']],function () {
 
+    Route::get('chat',[GenChatController::class,'chatContact'])->name('chat');
+    Route::post('chat/fetchmsg/{id}',[GenChatController::class,'fetchMessages'])->name('fetch.msg');
     Route::post('chat/store',[GenChatController::class,'sendMessage'])->name('store.text');
     Route::get('call/signal',[GenChatController::class,'sendSignal'])->name('tutor.sendsignal');
     Route::get('chat/user/talk/{id}',[GenChatController::class,'messages_between'])->name('user.chat');

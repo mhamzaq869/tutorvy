@@ -217,7 +217,8 @@
                         @if(!isset($user))
                         <div class="social-Icon ml-3 mr-3">
                             <div class="Google">
-                                <a href="{{route('social.google',[0])}}">
+                                <a href="{{route('social.google',[0])}}" target="popup"
+                                onclick="window.open({{route('social.google',[0])}},'popup','width=600,height=600'); return true;">
                                     <img class="mr-3" src="../assets/images/ico/google.png" alt="google">
                                     Continue with Google
                                 </a>

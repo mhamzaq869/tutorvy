@@ -30,6 +30,15 @@ class GenChatController extends Controller
 
     }
 
+    public function chatContact()
+    {
+        $id = Auth::user()->id;
+        $messages = DB::select('select * from `chats` where (`sender_id` = ? or `recipient_id` = ?) and (`recipient_id` = ? or `sender_id` = ?)', [$id,$id,$to,$to]);
+        $chatts = Message::where('sender_id',Auth::user()->id)->get();
+        $chats = User::whereIn('id',$chatts->pluck('recipient_id')->unique()->flatten())->get();
+        dd($chatts,$chats);
+    }
+
     public function fetchMessages($to)
     {
         $id = Auth::user()->id;
