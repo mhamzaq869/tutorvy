@@ -38,8 +38,8 @@ class SubjectController extends Controller
         return view('tutor.pages.reviews.index');
     }
 
-    /*public function displaySub($id){
-        $subjects2 = Subject::where('category_id',$id)->get();
-        return view('tutor.pages.subject.index',compact('subjects2'));
-    }*/
+    public function displaySub($id){
+        $subjects = Subject::where('category_id',$id)->get();
+        return response()->json($subjects);
+    }
 }

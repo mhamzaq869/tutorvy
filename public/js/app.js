@@ -2073,7 +2073,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
  */
 
 
-__webpack_require__(/*! ./components/ChatList */ "./resources/js/components/ChatList.jsx");
+__webpack_require__(/*! ./components/ChatList */ "./resources/js/components/ChatList.js");
 
 __webpack_require__(/*! ./components/ChatForm */ "./resources/js/components/ChatForm.js");
 
@@ -2192,7 +2192,6 @@ function ChatForm(props) {
   };
 
   function handleClick() {
-    console.log(props);
     axios.post('/general/chat/store', {
       content: inputStr,
       user: 2
@@ -2256,77 +2255,13 @@ if (document.getElementById('chatForm')) {
 
 /***/ }),
 
-/***/ "./resources/js/components/ChatList.jsx":
-/*!**********************************************!*\
-  !*** ./resources/js/components/ChatList.jsx ***!
-  \**********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ "./resources/js/components/ChatList.js":
+/*!*********************************************!*\
+  !*** ./resources/js/components/ChatList.js ***!
+  \*********************************************/
+/***/ (() => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-
-
-
-function ChatList() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    className: "container-fluid m-0 p-0 img-chats",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-      src: "",
-      className: "leftImg ml-1"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-      className: "activeDot",
-      id: "activeDot_"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "img-chat w-100",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        className: "row",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          className: "col-9",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-            className: "name-client"
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          className: "col-md-3",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-            className: "time-chat",
-            children: "11:25"
-          })
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        className: "row",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          className: "col-md-9",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-            className: "massage-client",
-            id: "recent_msg_",
-            children: "It is a long distae... "
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          className: "col-md-3",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-            className: "dot pl-2 ",
-            id: "unseen_msg_cnt_",
-            children: "2"
-          })
-        })]
-      })]
-    })]
-  });
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ChatList);
-
-if (document.getElementById('react')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(ChatList, {}), document.getElementById('react'));
-}
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\laragon\\www\\tutorvy\\resources\\js\\components\\ChatList.js: Unexpected reserved word 'await'. (10:16)\n\n\u001b[0m \u001b[90m  8 |\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m  9 |\u001b[39m     useEffect(() \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 10 |\u001b[39m        \u001b[36mvar\u001b[39m ra \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m axios\u001b[33m.\u001b[39m\u001b[36mget\u001b[39m(\u001b[32m'/general/chat'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 11 |\u001b[39m        console\u001b[33m.\u001b[39mlog(ra)\u001b[0m\n\u001b[0m \u001b[90m 12 |\u001b[39m     }\u001b[33m,\u001b[39m[])\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 13 |\u001b[39m\u001b[0m\n    at Object._raise (C:\\laragon\\www\\tutorvy\\node_modules\\@babel\\parser\\lib\\index.js:541:17)\n    at Object.raiseWithData (C:\\laragon\\www\\tutorvy\\node_modules\\@babel\\parser\\lib\\index.js:534:17)\n    at Object.raise (C:\\laragon\\www\\tutorvy\\node_modules\\@babel\\parser\\lib\\index.js:495:17)\n    at Object.checkReservedWord (C:\\laragon\\www\\tutorvy\\node_modules\\@babel\\parser\\lib\\index.js:12749:12)\n    at Object.parseIdentifierName (C:\\laragon\\www\\tutorvy\\node_modules\\@babel\\parser\\lib\\index.js:12703:12)\n    at Object.parseIdentifier (C:\\laragon\\www\\tutorvy\\node_modules\\@babel\\parser\\lib\\index.js:12677:23)\n    at Object.parseExprAtom (C:\\laragon\\www\\tutorvy\\node_modules\\@babel\\parser\\lib\\index.js:11827:27)\n    at Object.parseExprAtom (C:\\laragon\\www\\tutorvy\\node_modules\\@babel\\parser\\lib\\index.js:7456:20)\n    at Object.parseExprSubscripts (C:\\laragon\\www\\tutorvy\\node_modules\\@babel\\parser\\lib\\index.js:11414:23)\n    at Object.parseUpdate (C:\\laragon\\www\\tutorvy\\node_modules\\@babel\\parser\\lib\\index.js:11394:21)");
 
 /***/ }),
 

@@ -80,7 +80,7 @@
                                             Subject Details to get to know which subjects you can offer and which subjects you have already offered and their status. <a href="#">Learn More</a>
 
                                         </small>
-                                        <a href="#" class="cross"  onclick="hideCard()"> 
+                                        <a href="#" class="cross"  onclick="hideCard()">
                                             <i class="fa fa-times" aria-hidden="true"></i>
                                         </a>
                                     </div>
@@ -137,7 +137,7 @@
                         </div>
                     @endif
                         <p class="heading-third mt-3">Add subjects</p>
-  
+
                         <div class="row">
                             <div class="col-md-6">
                                 <select name="" class="form-select form-control w-25 " id="">
@@ -148,12 +148,12 @@
                                 </select>
                             </div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-md-2 pt-5">
                                 <div class="tab-mobile tab sub-tab">
                                     @foreach($main_sub as $sub_cat)
-                                        <button class="tablinks active" id="defaultOpen" onclick="openCity(event, '{{$sub_cat->id}}')">
+                                        <button class="tablinks {{($sub_cat->id == 1) ? 'active': ''}}" id="defaultOpen_{{$sub_cat->id}}" onclick="getSubSubject({{$sub_cat->id}})">
                                             {{$sub_cat->name}}
                                         </button>
                                     @endforeach
@@ -161,8 +161,8 @@
                             </div>
                             <div class="col-md-10">
                                 <div id="subjects">
-                                    <div id="1" class="tabcontent ">
-                                        <div class="row">
+                                    <div id="1">
+                                        <div class="row" id="subSubjects">
                                             @foreach ($subjects as $i => $subject)
                                                 @if ((Auth::user()->teach[$i]->subject_id ?? null) != $subject->id)
                                                     <div class="col-md-4">
@@ -193,12 +193,13 @@
                                                     </div>
                                                 @endif
                                             @endforeach
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                      
+
                 @else
                     <!-- no subject start -->
                     @include('tutor.pages.general.nosubject')
