@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Models\ClassroomLogs;
 use DateTime;
 use DateTimeZone;
+use Carbon\Carbon;
 
 class ClassController extends Controller
 {
@@ -23,6 +24,9 @@ class ClassController extends Controller
      */
 
     public function index(){
+
+       
+
         $classes = Booking::with(['classroom','user','tutor','subject','booking_payment'])
                     ->where('booked_tutor',Auth::user()->id)
                     ->whereIn('status',[2,5])->get();
