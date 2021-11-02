@@ -1,9 +1,6 @@
 
-@if(Auth::user()->role == 2)
-    @extends('tutor.layouts.app')
-@elseif(Auth::user()->role == 3)
-    @extends('student.layouts.app')
-@endif
+@extends('tutor.layouts.app')
+
 
 @section('content')
     <style>
@@ -169,7 +166,9 @@
             left: 5px;
             /* top: -10px; */
         }
-
+        #chatList{
+            cursor: pointer;
+        }
     </style>
 
     <div class="content" style="width: 100%;background-color: #FBFBFB !important;">
@@ -207,39 +206,8 @@
                             </a>
                         </div>
                         <div class="line-box"></div>
-                        @foreach ($tutors as $student)
-                            <a href="#" class="chatLeft" id="chatClient_1"
-                                onclick="selectUser(`{{ $student->id }}`)">
-                                <!-- <a href="#" class="chatLeft" id="chatClient_1" > -->
-                                <div class="container-fluid m-0 p-0 img-chats">
-                                    <img src="{{ asset('admin/assets/img/logo/harram.jpg') }}" class="leftImg ml-1">
-                                    <span class="activeDot" id="activeDot_{{ $student->id }}"></span>
-                                    <div class="img-chat w-100">
+                        <div id="chatList"></div>
 
-                                        <div class="row">
-                                            <div class="col-9">
-                                                <p class="name-client">{{ $student->first_name }}
-                                                    {{ $student->last_name }}</p>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <p class="time-chat">11:25</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-9">
-                                                <p class="massage-client" id="recent_msg_{{ $student->id }}">It is a long
-                                                    distae... </p>
-
-                                            </div>
-                                            <div class="col-md-3">
-                                                <span class="dot pl-2 " id="unseen_msg_cnt_{{ $student->id }}">2
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        @endforeach
                     </div>
 
                 </div>
@@ -292,7 +260,7 @@
                             </div>
                             <div class="row">
 
-                                <div class="col-md-12 col-8" id="chatForm">
+                                <div class="col-md-12 col-8" id="chatForm" data="{{}}">
 
                                     {{-- <form id="chat_form" action="{{ route('store.text') }}">
                                         <a href="" class="sendLeft" type="button">

@@ -136,7 +136,7 @@ class LoginController extends Controller
     public function redirectGoogle($id)
     {
         Session::put('c_id',$id);
-        return Socialite::driver('google')->redirect();
+        return Socialite::driver('google')->asPopup()->redirect();
     }
 
     public function handleGoogleCallback()
@@ -262,9 +262,9 @@ class LoginController extends Controller
         $user = Auth::user();
         $cur_unnid = Session::get('unnid');
         $tokens = array();
-        
+
         $tokens_obj = $user->token;
-       
+
         if($tokens_obj != NULL){
 
             $tokens_obj = json_decode($tokens_obj);
@@ -274,7 +274,7 @@ class LoginController extends Controller
                     $fcm_data['device'] = 'Windows';
                     array_push($tokens,$fcm_data);
                 }
-               
+
             }
             if(sizeof($tokens) == 0 || $tokens == [] || $tokens == '[]'){
                 $tokens = NULL;
@@ -284,9 +284,9 @@ class LoginController extends Controller
                 $user->token = json_encode($tokens);
                 $user->save();
             }
-            
+
         }
- 
+
         Auth::logout();
         Session::flush();
         return redirect('/');
