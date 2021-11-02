@@ -15,7 +15,6 @@ function ChatForm(props) {
     };
 
     function handleClick() {
-        console.log(props)
       axios.post('/general/chat/store', {
        content:inputStr,
        user:2

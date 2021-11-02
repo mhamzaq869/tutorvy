@@ -182,7 +182,7 @@
 
             <!-- <script src="{{ asset('assets/js/jquery_ui_multiselector.js') }}"></script> -->
 
-            <!-- @include('js_files.chat') -->
+
             @yield('scripts')
             @include('js_files.tutor.supportJs')
             @yield('js')
@@ -293,7 +293,7 @@
                             }
                         },
                         error: function(e) {
-                            console.log(e)
+                            // console.log(e)
                         }
                     });
                 }
