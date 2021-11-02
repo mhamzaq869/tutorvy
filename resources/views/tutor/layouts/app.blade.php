@@ -221,9 +221,14 @@
                         $('[data-toggle="tooltip"]').tooltip()
                     });
                 })
-                $(".content-wrapper").click(function() {
-                    $(".notification-menu ").hide();
-                });
+                $('.dd').click(function(){
+                        $('.dd2').toggle('hide');
+                    })
+
+                    $(".content-wrapper").click(function(){
+                            $(".notification-menu ").hide();
+                            $('.dd2').hide();
+                    });
                 $("#country_selector").countrySelect({
                     defaultCountry: "{{ $user->country_short ?? '' }}",
                     preferredCountries: ['ca', 'gb', 'us', 'pk']

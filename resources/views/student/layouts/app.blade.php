@@ -147,7 +147,6 @@
     $(document).ready(function(){
 
         get_all_notifications();
-
         $(".mk").hide();
         $(".vc").hide();
         $(".dropify").dropify();
@@ -204,9 +203,19 @@
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
                 })
+
+
+
+
     })
+
+ $('.dd').click(function(){
+     $('.dd2').toggle('hide');
+ })
+
     $(".content-wrapper").click(function(){
             $(".notification-menu ").hide();
+            $('.dd2').hide();
     });
     $("#country_selector").countrySelect({
                 defaultCountry: "{{ $user->country_short ?? '' }}",
