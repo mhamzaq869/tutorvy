@@ -29,11 +29,20 @@
             <div class="col-md-3"></div>
             <div class="col-md-6 col-12 bg-subject bg-subject1">
                 <div class="mobile-view-input">
-                    <select name="" class="input-subject" id="">
-                        <option value="">Select Subject</option>
-                    </select>
-                    <!-- <input type="text" class="input-subject" placeholder="Subject category"> -->
-                    <input type="submit" class="input-submite input-submite1" value="Search">
+                  
+                        <select name="" class="input-subject" id="">
+                            <option value="">Select Subject</option>
+
+                            @foreach($main_sub as $sub_cat)
+                            <option value="{{$sub_cat->id}}" id="defaultOpen_{{$sub_cat->id}}" onclick="getSubSubject({{$sub_cat->id}})">
+                                    {{$sub_cat->name}}
+                            </option>
+                        @endforeach
+                        </select>
+                        <!-- <input type="text" class="input-subject" placeholder="Subject category"> 
+                        <input type="submit" class="input-submite input-submite1" value="Search">-->
+               
+                   
                 </div>
 
             </div>
@@ -45,466 +54,24 @@
         <div class="row mt-5">
             <div class="col-md-3 col-12 ">
                 <div class="tab-mobile tab">
-                    <button class="tablinks active"  onclick="openCity(event, 'compSci')">
-                        Computer Science
-                    </button>
-                    <button class="tablinks" onclick="openCity(event, 'engineering')">Engineering</button>
-                    <button class="tablinks" onclick="openCity(event, 'ForeignLanguage')">Foreign Language</button>
-                    <button class="tablinks" onclick="openCity(event, 'history')">History</button>
-                    <button class="tablinks" onclick="openCity(event, 'science')" id="">
-                        Science
-                    </button>
-                    <button class="tablinks" onclick="openCity(event, 'Humanities')">Humanities</button>
-                    <button class="tablinks" onclick="openCity(event, 'Professional')">Professional</button>
-                    <button class="tablinks" onclick="openCity(event, 'Math')" id="">
-                        Math</button>
-                    <button class="tablinks" onclick="openCity(event, 'TestPrep')">TestPrep</button>
+                    @foreach($main_sub as $sub_cat)
+                        <button class="tablinks {{($sub_cat->id == 1) ? 'active': ''}}" id="defaultOpen_{{$sub_cat->id}}" onclick="getSubSubject({{$sub_cat->id}})">
+                            {{$sub_cat->name}}
+                        </button>
+                    @endforeach
                 </div>
             </div>
             <div class="col-md-9">
-                <div id="compSci" class="tabcontent" style="display: block ;">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4 col-4 m-0 p-0">
-                                <ul class="book-luli">
-                                    <li>Computer Science</li>
-                                    <li>Bengali</li>
-                                    <li>Bulgarian</li>
-                                    <li>Cantonese</li>
-                                    <li>Coptic</li>
-                                    <li>Danish</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4 col-4">
-                                <ul class="book-luli">
-                                    <li>English</li>
-                                    <li>Bengali</li>
-                                    <li>Bulgarian</li>
-                                    <li>Cantonese</li>
-                                    <li>Coptic</li>
-                                    <li>Danish</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>German</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4 col-4">
-                                <ul class="book-luli">
-                                    <li>Arabic</li>
-                                    <li>Bengali</li>
-                                    <li>Bulgarian</li>
-                                    <li>Cantonese</li>
-                                    <li>Coptic</li>
-                                    <li>Danish</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="engineering" class="tabcontent">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4 col-4 m-0 p-0">
-                                <ul class="book-luli">
-                                    <li>Engineering</li>
-                                    <li>Bengali</li>
-                                    <li>Bulgarian</li>
-                                    <li>Cantonese</li>
-                                    <li>Coptic</li>
-                                    <li>Danish</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4 col-4">
-                                <ul class="book-luli">
-                                    <li>English</li>
-                                    <li>Bengali</li>
-                                    <li>Bulgarian</li>
-                                    <li>Cantonese</li>
-                                    <li>Coptic</li>
-                                    <li>Danish</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>German</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4 col-4">
-                                <ul class="book-luli">
-                                    <li>Arabic</li>
-                                    <li>Bengali</li>
-                                    <li>Bulgarian</li>
-                                    <li>Cantonese</li>
-                                    <li>Coptic</li>
-                                    <li>Danish</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="ForeignLanguage" class="tabcontent">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4 col-4 m-0 p-0">
-                                <ul class="book-luli">
-                                    <li>Foreign Language</li>
-                                    <li>Bengali</li>
-                                    <li>Bulgarian</li>
-                                    <li>Cantonese</li>
-                                    <li>Coptic</li>
-                                    <li>Danish</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4 col-4">
-                                <ul class="book-luli">
-                                    <li>English</li>
-                                    <li>Bengali</li>
-                                    <li>Bulgarian</li>
-                                    <li>Cantonese</li>
-                                    <li>Coptic</li>
-                                    <li>Danish</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>German</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4 col-4">
-                                <ul class="book-luli">
-                                    <li>Arabic</li>
-                                    <li>Bengali</li>
-                                    <li>Bulgarian</li>
-                                    <li>Cantonese</li>
-                                    <li>Coptic</li>
-                                    <li>Danish</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="history" class="tabcontent">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4 col-4 m-0 p-0">
-                                <ul class="book-luli">
-                                    <li>History</li>
-                                    <li>Bengali</li>
-                                    <li>Bulgarian</li>
-                                    <li>Cantonese</li>
-                                    <li>Coptic</li>
-                                    <li>Danish</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4 col-4">
-                                <ul class="book-luli">
-                                    <li>English</li>
-                                    <li>Bengali</li>
-                                    <li>Bulgarian</li>
-                                    <li>Cantonese</li>
-                                    <li>Coptic</li>
-                                    <li>Danish</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>German</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4 col-4">
-                                <ul class="book-luli">
-                                    <li>Arabic</li>
-                                    <li>Bengali</li>
-                                    <li>Bulgarian</li>
-                                    <li>Cantonese</li>
-                                    <li>Coptic</li>
-                                    <li>Danish</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div id="science" class="tabcontent">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4 col-4 m-0 p-0">
-                                <ul class="book-luli">
-                                    <li>Science</li>
-                                    <li>Bengali</li>
-                                    <li>Bulgarian</li>
-                                    <li>Cantonese</li>
-                                    <li>Coptic</li>
-                                    <li>Danish</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4 col-4">
-                                <ul class="book-luli">
-                                    <li>English</li>
-                                    <li>Bengali</li>
-                                    <li>Bulgarian</li>
-                                    <li>Cantonese</li>
-                                    <li>Coptic</li>
-                                    <li>Danish</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>German</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4 col-4">
-                                <ul class="book-luli">
-                                    <li>Arabic</li>
-                                    <li>Bengali</li>
-                                    <li>Bulgarian</li>
-                                    <li>Cantonese</li>
-                                    <li>Coptic</li>
-                                    <li>Danish</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div id="Humanities" class="tabcontent">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4 col-4 m-0 p-0">
-                                <ul class="book-luli">
-                                    <li>Humanities</li>
-                                    <li>Bengali</li>
-                                    <li>Bulgarian</li>
-                                    <li>Cantonese</li>
-                                    <li>Coptic</li>
-                                    <li>Danish</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4 col-4">
-                                <ul class="book-luli">
-                                    <li>English</li>
-                                    <li>Bengali</li>
-                                    <li>Bulgarian</li>
-                                    <li>Cantonese</li>
-                                    <li>Coptic</li>
-                                    <li>Danish</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>German</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4 col-4">
-                                <ul class="book-luli">
-                                    <li>Arabic</li>
-                                    <li>Bengali</li>
-                                    <li>Bulgarian</li>
-                                    <li>Cantonese</li>
-                                    <li>Coptic</li>
-                                    <li>Danish</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div id="Professional" class="tabcontent">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4 col-4 m-0 p-0">
-                                <ul class="book-luli">
-                                    <li>Professional</li>
-                                    <li>Bengali</li>
-                                    <li>Bulgarian</li>
-                                    <li>Cantonese</li>
-                                    <li>Coptic</li>
-                                    <li>Danish</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4 col-4">
-                                <ul class="book-luli">
-                                    <li>English</li>
-                                    <li>Bengali</li>
-                                    <li>Bulgarian</li>
-                                    <li>Cantonese</li>
-                                    <li>Coptic</li>
-                                    <li>Danish</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>German</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4 col-4">
-                                <ul class="book-luli">
-                                    <li>Arabic</li>
-                                    <li>Bengali</li>
-                                    <li>Bulgarian</li>
-                                    <li>Cantonese</li>
-                                    <li>Coptic</li>
-                                    <li>Danish</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div id="Math" class="tabcontent">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4 col-4 m-0 p-0">
-                                <ul class="book-luli">
-                                    <li>Math</li>
-                                    <li>Bengali</li>
-                                    <li>Bulgarian</li>
-                                    <li>Cantonese</li>
-                                    <li>Coptic</li>
-                                    <li>Danish</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4 col-4">
-                                <ul class="book-luli">
-                                    <li>English</li>
-                                    <li>Bengali</li>
-                                    <li>Bulgarian</li>
-                                    <li>Cantonese</li>
-                                    <li>Coptic</li>
-                                    <li>Danish</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>German</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4 col-4">
-                                <ul class="book-luli">
-                                    <li>Arabic</li>
-                                    <li>Bengali</li>
-                                    <li>Bulgarian</li>
-                                    <li>Cantonese</li>
-                                    <li>Coptic</li>
-                                    <li>Danish</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div id="TestPrep" class="tabcontent">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4 col-4 m-0 p-0">
-                                <ul class="book-luli">
-                                    <li>TestPrep</li>
-                                    <li>Bengali</li>
-                                    <li>Bulgarian</li>
-                                    <li>Cantonese</li>
-                                    <li>Coptic</li>
-                                    <li>Danish</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4 col-4">
-                                <ul class="book-luli">
-                                    <li>English</li>
-                                    <li>Bengali</li>
-                                    <li>Bulgarian</li>
-                                    <li>Cantonese</li>
-                                    <li>Coptic</li>
-                                    <li>Danish</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>German</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4 col-4">
-                                <ul class="book-luli">
-                                    <li>Arabic</li>
-                                    <li>Bengali</li>
-                                    <li>Bulgarian</li>
-                                    <li>Cantonese</li>
-                                    <li>Coptic</li>
-                                    <li>Danish</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                    <li>Macedonian</li>
-                                    <li>Arabic</li>
-                                </ul>
-                            </div>
+                <div id="subjects">
+                    <div id="1">
+                        <div class="row book-luli" id="subSubjects">
+                            @foreach ($subjects as $i => $subject)
+                                    <div class="col-md-4">
+                                        <a href="#"  class="">
+                                            {{ $subject->name }}
+                                        </a>        
+                                    </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -538,18 +105,18 @@
                                         </span>
                                         <div class="container mt-4">
                                             <div class="row">
-                                                <div class="d-flex">
+                                                <div class="col-md-12">
                                                     <div class="input-text text-mobile-sub  pt-3 pb-3 input-subs"
-                                                        style="display: flex;">
+                                                        >
                                                         <input type="text" class="card-input ml-3"
                                                             placeholder="Enter your name">
                                                         <input type="text" class="card-input ml-4 mr-3"
                                                             placeholder="Enter your email">
                                                     </div>
                                                 </div>
-                                                <div class="d-flex">
+                                                <div class="col-md-12">
                                                     <div class="input-text text-mobile-sub input-subs"
-                                                        style="display: flex;">
+                                                       >
                                                         <input type="text" class="card-input ml-3"
                                                             placeholder="Are you a">
                                                         <input type="text" class="card-input ml-4 mr-3"

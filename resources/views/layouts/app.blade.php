@@ -64,7 +64,42 @@
         $(".form-select").select2();
        
     })
-    
+    function getSubSubject(id){
+
+for(var i=0; i<= $(".tablinks").length; i++){
+    $(".tablinks").removeClass('active')
+}
+
+$("#defaultOpen_"+id).addClass('active')
+
+$.ajax({
+    url: "{{url('subjects-all')}}"+"/"+id,
+    type:"get",
+    success:function(response){
+        $("#subSubjects").html('')
+        if(response){
+        for(var i=0; i<=response.length; i++){
+            var html = `<div class="col-md-4">
+                                    <a href="#"  class="">
+                                    `+response[i].name+`
+                                    </a>        
+                                </div>`
+
+                $('#subSubjects').append(html)
+            }
+
+        }
+    },
+    error:function(e) {
+        console.log(e);
+
+    }
+});
+
+
+
+}
+
 </script>
     <!-- <div class="modal fade support_modal show" id="support-modal" tabindex="-1" role="dialog" aria-labelledby="support-modal" style="padding-right: 7px; display: block;">
         <div class="modal-dialog  modal-dialog-centered" role="document">

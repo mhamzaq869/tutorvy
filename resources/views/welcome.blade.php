@@ -357,23 +357,29 @@
     <div class="row mt-5">
         <div class="col-md-3 col-12 ">
             <div class="tab-mobile tab">
-                <button class="tablinks active" id="defaultOpen" onclick="openCity(event, 'London')">
-                    ComputerScience
-                </button>
-                <button class="tablinks" onclick="openCity(event, 'Paris')">Engineering</button>
-                <button class="tablinks" onclick="openCity(event, 'ForeignLanguage')">ForeignLanguage</button>
-                <button class="tablinks" onclick="openCity(event, 'Tokyo')">History</button>
-                <button class="tablinks" onclick="openCity(event, 'science')" id="">
-                    Science
-                </button>
-                <button class="tablinks" onclick="openCity(event, 'Humanities')">Humanities</button>
-                <button class="tablinks" onclick="openCity(event, 'Professional')">Professional</button>
-                <button class="tablinks" onclick="openCity(event, 'Math')" id="">
-                    Math</button>
-                <button class="tablinks" onclick="openCity(event, 'TestPrep')">TestPrep</button>
+                @foreach($main_sub as $sub_cat)
+                    <button class="tablinks {{($sub_cat->id == 1) ? 'active': ''}}" id="defaultOpen_{{$sub_cat->id}}" onclick="getSubSubject({{$sub_cat->id}})">
+                        {{$sub_cat->name}}
+                    </button>
+                @endforeach
             </div>
         </div>
         <div class="col-md-9">
+            <div id="subjects">
+                <div id="1">
+                    <div class="row book-luli" id="subSubjects">
+                        @foreach ($subjects as $i => $subject)
+                                <div class="col-md-4">
+                                    <a href="#"  class="">
+                                        {{ $subject->name }}
+                                    </a>        
+                                </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="col-md-9">
             <div id="London" class="tabcontent show" style="display: block;">
                 <div class="container">
                     <div class="row">
@@ -821,7 +827,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
     </div>
 </div>
 <!-- course thought -->
@@ -1266,3 +1272,4 @@
 <!-- why tutor end -->
 
 @endsection
+
