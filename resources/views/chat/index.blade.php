@@ -1,6 +1,4 @@
-
-@extends('tutor.layouts.app')
-
+@extends(Auth::user()->role == 2 ? 'tutor.layouts.app' : 'student.layouts.app' )
 
 @section('content')
     <style>
@@ -84,8 +82,6 @@
         }
 
         .recDull {
-            position: absolute;
-            left: 34%;
             color: #BCC0C7;
         }
 
@@ -141,7 +137,7 @@
             border-radius: 50%;
         }
 
-        .offlice {
+        .offline {
             background: gray !important;
         }
 
@@ -162,130 +158,22 @@
         }
 
         .emojionearea .emojionearea-picker.emojionearea-picker-position-top {
-
             left: 5px;
             /* top: -10px; */
         }
         #chatList{
             cursor: pointer;
         }
+        .chatActive{
+            background-color: #FFFFFF;
+            border-radius: 8px;
+        }
     </style>
 
-    <div class="content" style="width: 100%;background-color: #FBFBFB !important;">
+    <div class="content" style="width: 100%;background-color: #FBFBFB !important;" id="app">
         <div class="container-fluid">
             <p class="heading-first ml-4 ">Inbox</p>
-            <div class="row">
-                <div class="col-md-12 mb-1 ">
-                    <div class=" card  bg-toast infoCard">
-
-
-                        <div class="card-body row">
-                            <div class="col-md-1 text-center">
-                                <i class="fa fa-info" aria-hidden="true"></i>
-                            </div>
-                            <div class="col-md-11 pl-0">
-                                <small>
-                                    ` Connect with your students to know more about their requirements <a href="#">Learn
-                                        More</a>
-
-                                </small>
-                                <a href="#" class="cross" onclick="hideCard()">
-                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3" style="background-color: #F2F3F4;">
-                    <div class="box-main pt-3 pb-3">
-                        <div class="input-box">
-                            <input type="" placeholder="Search messeges">
-                            <a href="#">
-                                <i class="fa fa-search search-box-icon"></i>
-                                <!-- <img src="../assets/img/ico/Search.png" class="search-box-icon"> -->
-                            </a>
-                        </div>
-                        <div class="line-box"></div>
-                        <div id="chatList"></div>
-
-                    </div>
-
-                </div>
-                <div class="col-md-9  chatSet" style="">
-                    <nav class="chatHead navbars navbar-light bg-white m-0 p-0 pl-3 pr-3 row">
-                        <div class="col-md-6 col-6">
-                            <a class="navbar-brand pb-0" href="#">
-                                <div class="container-fluid m-0 p-0 img-chats">
-
-                                    <img src="{{ asset('admin/assets/img/logo/harram.jpg') }}">
-
-                                    <div class="img-chat">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <p class="name-client">Harram Laraib </p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <p class="massage-client" style="position: relative;top: -5px;">Online
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md-6 col-6 pt-3 text-right">
-                            <input type="hidden" class="col-sm-9 form-control ">
-
-                            <a href="#">
-                                <i class="fa fa-search headIcon"></i>
-                            </a>
-                            <a href="#">
-                                <i class="fa fa-ellipsis-v headIcon"></i>
-                            </a>
-                        </div>
-                    </nav>
-                    <div class="line-box2"></div>
-
-                    <div class="row chatArea p-5 bg-white" id="chatArea"></div>
-                    <div class="container-fluid mb-3">
-                        <div class="search-type ">
-                            <div class="row">
-                                <div class="col-md-2 col-4">
-                                </div>
-                                <div class="col-md-10">
-                                    <span class="text-muted" id="typingUser"></span>
-                                </div>
-                            </div>
-                            <div class="row">
-
-                                <div class="col-md-12 col-8" id="chatForm" data="{{}}">
-
-                                    {{-- <form id="chat_form" action="{{ route('store.text') }}">
-                                        <a href="" class="sendLeft" type="button">
-                                            <i class="fa fa-paperclip rightChatIcon"></i>
-                                        </a>
-                                        <input type="search" id="msg" class="w-100" alt="message"
-                                            onKeyUp="sendTypingEvent()">
-                                        <a href="" class="sendRight" type="submit">
-                                            <i class="fa fa-paper-plane f-19"></i>
-                                        </a>
-                                    </form> --}}
-                                    <!-- <img src="../assets/img/ico/Icon material-send.png" style="position: relative;left: -35px;height: 25px;margin-top: 10px;"> -->
-                                </div>
-                            </div>
-
-
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-9 chatDefault">
-                    <img src="http://www.tutorvy.com/assets/images/comming/coming-soon.png" alt="">
-                </div>
-            </div>
-
+            <chat-app :user="{{Auth::user()}}"></chat-app>
         </div>
     </div>
 

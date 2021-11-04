@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\ChatMessage;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\LoginController as AdminLogin;
@@ -44,7 +45,7 @@ use App\Http\Controllers\Student\WalletController;
 use App\Http\Controllers\General\GenChatController;
 use App\Http\Controllers\General\NotifyController;
 use App\Http\Controllers\Frontend\TutorController as FrontTutorController;
-
+use App\Models\Chat;
 
 /*
 |--------------------------------------------------------------------------
@@ -176,7 +177,11 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
     Route::get('/booking',[BookingController::class,'index'])->name('tutor.booking');
     Route::get('/booking-detail/{id}',[BookingController::class,'bookingDetail'])->name('tutor.booking.detail');
     Route::get('/booking-accept/{id}',[BookingController::class,'acceptBooking'])->name('tutor.booking.accept');
-    //
+
+    Route::post('/cancelBooking/{id}',[BookingController::class,'cancelBooking'])->name('tutor.booking.cancel');
+    Route::post('/rescheduleBooking/{id}',[BookingController::class,'rescheduleBooking'])->name('tutor.booking.reschedule');
+
+
     Route::post('/get-booking',[BookingController::class,'getBookingDetail'])->name('tutor.getBookingDetail');
 
 
@@ -255,18 +260,6 @@ Route::group(['prefix' => '/tutor','middleware' => ['auth','tutor']],function ()
 |--------------------------------------------------------------------------
 |
 */
-Route::group(['prefix' => '/general','middleware' => ['auth']],function () {
-
-    Route::get('chat',[GenChatController::class,'chatContact'])->name('chat');
-    Route::post('chat/fetchmsg/{id}',[GenChatController::class,'fetchMessages'])->name('fetch.msg');
-    Route::post('chat/store',[GenChatController::class,'sendMessage'])->name('store.text');
-    Route::get('call/signal',[GenChatController::class,'sendSignal'])->name('tutor.sendsignal');
-    Route::get('chat/user/talk/{id}',[GenChatController::class,'messages_between'])->name('user.chat');
-
-    Route::post('/save-token',[NotifyController::class,'saveToken'])->name('general.save.token');
-    Route::get('/get-notifications',[NotifyController::class,'getAllNotification'])->name('getNotification');
-
-});
 
 Route::group(['prefix' => '/student','middleware' => ['auth','student']],function () {
 
@@ -312,6 +305,8 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     Route::get('/tutor',[StudentTutorController::class,'index'])->name('student.tutor');
     Route::get('/viewtutor/{id}',[StudentTutorController::class,'show'])->name('student.tutor.show');
     Route::post('/tutorfilter',[StudentTutorController::class,'filterTutor'])->name('student.tutor.filter');
+    Route::get('/contact/tutor/{id}', [ChatController::class,'contactTutor']);
+
     Route::get('/settings',[StudentSettingController::class,'index'])->name('student.settings');
     Route::post('student-paymentmethod',[StudentSettingController::class,'paymentMethod'])->name('student.paymentmethod');
     Route::post('setDefaltPayment', [StudentSettingController::class,'setDefaultPayment']);
@@ -340,8 +335,6 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
     Route::post('/fav-tutor',[StudentSettingController::class,'favouriteTutor'])->name('student.fav.tutor');
     Route::get('/ticket/{id}',[StudentSettingController::class,'tickets'])->name('student.ticket');
     Route::post('/ticket-chat',[StudentSettingController::class,'ticketChat'])->name('student.ticketChat');
-
-
     /*Course */
     Route::get('/course-details/{id}',[StudentSettingController::class,'courseDetails'])->name('student.course-details');
     Route::get('/courses',[StudentSettingController::class,'courses'])->name('student.courses');
@@ -349,6 +342,31 @@ Route::group(['prefix' => '/student','middleware' => ['auth','student']],functio
 
 
 });
+
+/*
+|--------------------------------------------------------------------------
+| General Routes
+|--------------------------------------------------------------------------
+|
+*/
+Route::group(['prefix' => '/general','middleware' => ['auth']],function () {
+
+    Route::get('chat',[GenChatController::class,'chatContact'])->name('chat');
+    Route::get('chat/fetchmsg/{id}',[GenChatController::class,'fetchMessages'])->name('fetch.msg');
+    Route::post('chat/store',[GenChatController::class,'sendMessage'])->name('store.text');
+    Route::get('call/signal',[GenChatController::class,'sendSignal'])->name('tutor.sendsignal');
+    Route::get('chat/user/talk/{id}',[GenChatController::class,'messages_between'])->name('user.chat');
+
+    Route::post('/save-token',[NotifyController::class,'saveToken'])->name('general.save.token');
+    Route::get('/get-notifications',[NotifyController::class,'getAllNotification'])->name('getNotification');
+
+});
+
+Route::get('/contacts', [ChatController::class,'get']);
+Route::get('/conversation/{id}', [ChatController::class,'getMessagesFor']);
+Route::post('/conversation/send', [ChatController::class,'send']);
+Route::post('/attachment/send', [ChatController::class,'sendAttachment']);
+
 /*
 |--------------------------------------------------------------------------
 | Frontend Routes

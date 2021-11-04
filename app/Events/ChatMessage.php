@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\General\Message;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -10,12 +11,11 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class NewMessage implements ShouldBroadcast
+class ChatMessage implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $message;
-
     /**
      * Create a new event instance.
      *
@@ -33,6 +33,12 @@ class NewMessage implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PresenceChannel('App.User.' . $this->message->recipient_id);
+        return new Channel('messages.' . $this->message->recipient_id);
+    }
+
+
+    public function broadcastWith()
+    {
+        return ["message" => "hamza"];
     }
 }

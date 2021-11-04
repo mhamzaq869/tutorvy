@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\ChatMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,4 +19,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+Route::get('/ship', function (Request $request)
+{
+    $id = $request->input('id');
+    event(new ChatMessage($id)); // trigger event
+    return Response::make('Order Shipped!');
+});
