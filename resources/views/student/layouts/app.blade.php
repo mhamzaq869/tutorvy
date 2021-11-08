@@ -211,7 +211,7 @@
 
  $('.dd').click(function(){
      $('.dd2').toggle('hide');
- })
+ });
 
     $(".content-wrapper").click(function(){
             $(".notification-menu ").hide();

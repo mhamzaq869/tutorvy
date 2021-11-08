@@ -1,7 +1,8 @@
 @extends('student.layouts.app')
 
 @section('content')
-    <div class="container">
+<div class="content-wrapper " style="overflow: hidden;">
+    <div class="container-fluid">
         <p class="heading-first ml-3 mr-3">
             Profile
         </p>
@@ -263,4 +264,5 @@
             </div>
         </div>
     </div>
+</div>
 @endsection
