@@ -117,7 +117,6 @@ export default {
 
     return this.contacts.filter((item) =>
         item.lastmessage.match(this.search)
-
       );
 
     },
@@ -130,7 +129,6 @@ export default {
       })
       .leaving((user) => {
         this.onlineUsers.splice(this.onlineUsers.indexOf(user), 1);
-        console.log("leaving", user.first_name);
       });
 
       console.log(this.search)

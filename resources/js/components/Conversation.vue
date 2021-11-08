@@ -99,19 +99,11 @@ export default {
   mounted() {
     Echo.join(`chat`)
       .here((users) => {
-        console.log(
-          "online",
-          users.find((fd) => {
-            console.log(fd.id);
-          })
-            ? "11 user active"
-            : ""
-        );
         this.onlineUsers = users;
       })
       .leaving((user) => {
-        // this.onlineFriends.splice(this.onlineFriends.indexOf(user), 1);
-        console.log("leaving", user.first_name);
+        this.onlineFriends.splice(this.onlineFriends.indexOf(user), 1);
+        // console.log("leaved", user.first_name);
       });
   },
 };

@@ -2308,8 +2308,6 @@ __webpack_require__.r(__webpack_exports__);
       _this2.onlineUsers = users;
     }).leaving(function (user) {
       _this2.onlineUsers.splice(_this2.onlineUsers.indexOf(user), 1);
-
-      console.log("leaving", user.first_name);
     });
     console.log(this.search);
   }
@@ -2433,13 +2431,10 @@ __webpack_require__.r(__webpack_exports__);
     var _this2 = this;
 
     Echo.join("chat").here(function (users) {
-      console.log("online", users.find(function (fd) {
-        console.log(fd.id);
-      }) ? "11 user active" : "");
       _this2.onlineUsers = users;
     }).leaving(function (user) {
-      // this.onlineFriends.splice(this.onlineFriends.indexOf(user), 1);
-      console.log("leaving", user.first_name);
+      _this2.onlineFriends.splice(_this2.onlineFriends.indexOf(user), 1); // console.log("leaved", user.first_name);
+
     });
   }
 });
