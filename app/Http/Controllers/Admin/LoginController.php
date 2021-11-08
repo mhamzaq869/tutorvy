@@ -35,7 +35,7 @@ class LoginController extends Controller
         if($user) {
 
             if($user->role != 2 && $user->role != 3) {
-                                
+
                 if(Auth::attempt( ["email" => $request->email,"password" => $request->password,"status" => 1]) ) {
 
                     $permisssions = RolesPermissions::where('role_id', $user->role)->where('permission',1)->get();
@@ -75,6 +75,6 @@ class LoginController extends Controller
         $user->save();
         Auth::logout();
         return redirect('admins');
-        
+
     }
 }

@@ -10,8 +10,8 @@
         class="container-fluid m-0 p-0 img-chats"
         v-if="user.id != contact.id"
       >
-        <span v-if="contact.profile_image != null">
-          <img :src="contact.profile_image" class="leftImg ml-1" />
+        <span v-if="contact.picture != null">
+          <img :src="contact.picture" class="leftImg ml-1" />
         </span>
         <span v-else>
           <img
