@@ -12,7 +12,9 @@
             <div class="img-chat">
               <div class="row">
                 <div class="col-12">
-                  <p class="name-client">{{contact.first_name}} {{contact.last_name}}</p>
+                  <p class="name-client">
+                    {{ contact.first_name }} {{ contact.last_name }}
+                  </p>
                 </div>
               </div>
               <div class="row">
@@ -21,7 +23,11 @@
                     class="massage-client"
                     style="position: relative; top: -5px"
                   >
-                    {{(contact.isOnline == 1 ? 'Online': 'Offline')}}
+                    {{
+                      onlineUsers.find((cont) => cont.id == contact.id)
+                        ? "Online"
+                        : "Offline"
+                    }}
                   </p>
                 </div>
               </div>
@@ -40,7 +46,11 @@
       </div>
     </nav>
     <MessagesFeed :contact="contact" :messages="messages" />
-    <MessageComposer @send="sendMessage" :contact="contact"/>
+    <MessageComposer
+      @send="sendMessage"
+      @inputFile="sendFile"
+      :contact="contact"
+    />
   </div>
 </template>
 
@@ -58,6 +68,12 @@ export default {
       default: [],
     },
   },
+
+  data() {
+    return {
+      onlineUsers: [],
+    };
+  },
   methods: {
     sendMessage(text) {
       if (!this.contact) {
@@ -70,24 +86,33 @@ export default {
         })
         .then((response) => {
           this.$emit("new", response.data);
-          console.log(response.data)
         });
     },
-    // sendFile(file) {
-    //   if (!this.contact) {
-    //     return;
-    //   }
-    //   axios
-    //     .post("/conversation/send", {
-    //       contact_id: this.contact.id,
-    //       file: file,
-    //     })
-    //     .then((response) => {
-    //       this.$emit("new", response.data);
-    //     //   console.log(response.data)
-    //     });
-    // },
+    sendFile() {
+      axios.get(`/conversation/${this.contact.id}`).then((response) => {
+        console.log(response.data);
+      });
+    },
+
   },
   components: { MessagesFeed, MessageComposer },
+  mounted() {
+    Echo.join(`chat`)
+      .here((users) => {
+        console.log(
+          "online",
+          users.find((fd) => {
+            console.log(fd.id);
+          })
+            ? "11 user active"
+            : ""
+        );
+        this.onlineUsers = users;
+      })
+      .leaving((user) => {
+        // this.onlineFriends.splice(this.onlineFriends.indexOf(user), 1);
+        console.log("leaving", user.first_name);
+      });
+  },
 };
 </script>

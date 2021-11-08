@@ -406,9 +406,7 @@ Route::view('/tutor','frontend.tutor');
 Route::view('/student','frontend.student');
 Route::view('/subject','frontend.subject');
 // Route::view('/course','frontend.course');
-Route::get('users', function () {
-    dd(request()->getHost() );
-});
+
 Route::get('/course',[GeneralController::class,'course']);
 Route::get('courseenroll/{id}',[GeneralController::class,'enroll'])->name('course.enroll');
 

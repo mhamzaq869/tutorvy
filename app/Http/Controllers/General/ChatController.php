@@ -11,6 +11,7 @@ use App\Models\Chat;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\General\Message;
+use App\Events\Test;
 
 class ChatController extends Controller
 {
@@ -52,7 +53,6 @@ class ChatController extends Controller
         // add an unread key to each contact with the count of unread messages
         $contacts = $contacts->map(function($contact) use ($unreadIds) {
             $contactUnread = $unreadIds->where('sender_id', $contact->id)->first();
-
             $contact->unread = $contactUnread ? $contactUnread->messages_count : 0;
 
             return $contact;
@@ -60,6 +60,18 @@ class ChatController extends Controller
         });
 
 
+        $message = Message::all();
+
+
+        $contacts = $contacts->map(function($contact) use ($message) {
+            $message = DB::select('select * from `messages` where (`sender_id` = ? or `recipient_id` = ?) and (`recipient_id` = ? or `sender_id` = ?) Order BY id desc LIMIT 1 ', [Auth::id(),Auth::id(),$contact->id,$contact->id]);
+            $contact->lastmessage = $message ? $message[0]->content : '';
+            $contact->lastmessageattach = $message ? $message[0]->attachments : '';
+            $contact->lastmessagetime = $message ? date('h:i A',strtotime($message[0]->created_at)) : 0;
+            return $contact;
+        });
+
+        // dd($contacts[1]);
         return response()->json($contacts);
     }
 
@@ -83,12 +95,12 @@ class ChatController extends Controller
 
     public function send(Request $request)
     {
-        dd($request->all());
+
         if(request()->has('file')){
             $filename = request('file')->store('chat','public');
             $message = Message::create([
                 'sender_id' => auth()->id(),
-                'recipient_id' => $request->recipient_id,
+                'recipient_id' => $request->contact_id,
                 'content' => '',
                 'attachments' => $filename
             ]);
@@ -100,7 +112,7 @@ class ChatController extends Controller
             ]);
         }
 
-        broadcast(new ChatMessage($message));
+        event(new ChatMessage($message));
 
         return response()->json($message);
     }

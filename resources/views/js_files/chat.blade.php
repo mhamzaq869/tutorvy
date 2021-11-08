@@ -5,7 +5,7 @@
  <script type="text/javascript">
         $.ajaxSetup({
             headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                'X-CSRF-TOKEN': "{{csrf_token()}}"
             }
         });
     </script>
@@ -21,7 +21,7 @@
     // .joining(user => {
     //     console.log('joining'+user.first_name)
     //     $('#activeDot_'+user.id).removeClass('offlice');
-        
+
     //     this.activeUsers.push(user)
     // })
     // .leaving(user => {
@@ -31,14 +31,14 @@
     //     this.activeUsers = this.activeUsers.filter(u => u.id != user.id);
     // })
 
-    
+
 
     // Channel to send & listen message
 
     Echo.join(`App.User.{{Auth::user()->id}}`).here( users => {
-      
+
     })
-    .listen('NewMessage', (event) => { 
+    .listen('NewMessage', (event) => {
         console.log(event)
         // if (this.chatWith && event.message.sender_id == this.chatWith.id) {
             // User A , B , C -- if B send to A # B -> A
@@ -52,7 +52,7 @@
                                     <small class="dull">1min ago</small>
                                     <a href="#" class="textMenu"><i class="fa fa-ellipsis-h"></i></a>
                                 </div>
-                            </div>`; 
+                            </div>`;
 
                 $('#chatArea').append(msg);
             }else{
@@ -82,7 +82,7 @@
         }else{
             $('#typingUser').html('')
         }
-        
+
         setTimeout(() => {
             this.typingUser =  null;
 
@@ -98,7 +98,7 @@
     }
 
     $( '#chat_form' ).on( 'submit', function(e) {
-    
+
         event.preventDefault();
 
         let msg = $("input[id=msg]").val();
@@ -115,10 +115,10 @@
             success:function(response){
             // console.log(response);
             if(response.status == 200) {
-                
+
                 $("#msg").val('');
                 sendTypingEvent()
-            
+
             }
             },
         });
@@ -132,7 +132,7 @@
         $.ajax({
             url: url,
             type:"get",
-           
+
             success:function(response){
                 $auth = "{{Auth::user()->id}}";
                 $('#chatArea').html('');
@@ -146,8 +146,8 @@
                                             <small class="dull">1min ago</small>
                                             <a href="#" class="textMenu"><i class="fa fa-ellipsis-h"></i></a>
                                         </div>
-                                    </div>`; 
-                        
+                                    </div>`;
+
                         $('#chatArea').append(msg);
 
                     }else{
@@ -174,7 +174,7 @@
 
     function incrementUnseenMessagesCount(sender_id){
 
-        
+
 
     }
 
