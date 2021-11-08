@@ -2097,6 +2097,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2114,15 +2116,13 @@ __webpack_require__.r(__webpack_exports__);
       selectedContact: null,
       messages: [],
       contacts: [],
-      search: ''
+      search: ""
     };
   },
   mounted: function mounted() {
     var _this = this;
 
-    Echo.channel("messages.".concat(this.user.id)).listen("ChatMessage", function (e) {
-      console.log(e);
-
+    Echo["private"]("messages.".concat(this.user.id)).listen("ChatMessage", function (e) {
       _this.hanleIncoming(e.message);
     });
     axios.get("/contacts").then(function (response) {
@@ -2148,6 +2148,7 @@ __webpack_require__.r(__webpack_exports__);
         return;
       }
 
+      console.log(message);
       this.updateUnreadCount(message.from_contact, false);
     },
     updateUnreadCount: function updateUnreadCount(contact, reset) {
@@ -2164,15 +2165,6 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     Conversation: _Conversation__WEBPACK_IMPORTED_MODULE_0__["default"],
     ContactsList: _ContactsList__WEBPACK_IMPORTED_MODULE_1__["default"]
-  },
-  computed: {
-    filteredContacts: function filteredContacts() {
-      var _this3 = this;
-
-      return this.contacts.filter(function (post) {
-        return post.first_name.toLowerCase().includes(_this3.search.toLowerCase());
-      });
-    }
   }
 });
 
@@ -2237,6 +2229,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     contacts: {
@@ -2246,11 +2271,19 @@ __webpack_require__.r(__webpack_exports__);
     user: {
       type: Object,
       "default": []
+    },
+    messages: {
+      type: Array,
+      "default": []
+    },
+    search: {
+      type: String
     }
   },
   data: function data() {
     return {
-      selected: this.contacts.length ? this.contacts[0] : null
+      selected: this.contacts.length ? this.contacts[0] : null,
+      onlineUsers: []
     };
   },
   methods: {
@@ -2263,21 +2296,20 @@ __webpack_require__.r(__webpack_exports__);
     sortedContacts: function sortedContacts() {
       var _this = this;
 
-      return _.sortBy(this.contacts, [function (contact) {
-        if (contact == _this.selected) {
-          return Infinity;
-        }
-
-        return contact.unread;
-      }]).reverse();
-    },
-    filteredContacts: function filteredContacts() {
-      var _this2 = this;
-
-      return this.contacts.filter(function (contact) {
-        return contact.first_name.toLowerCase().includes(_this2.search.toLowerCase());
+      return this.contacts.filter(function (item) {
+        return item.lastmessage.match(_this.search);
       });
     }
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    Echo.join("chat").here(function (users) {
+      _this2.onlineUsers = users;
+    }).leaving(function (user) {
+      _this2.onlineUsers.splice(_this2.onlineUsers.indexOf(user), 1);
+    });
+    console.log(this.search);
   }
 });
 
@@ -2342,6 +2374,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2354,6 +2396,11 @@ __webpack_require__.r(__webpack_exports__);
       type: Array,
       "default": []
     }
+  },
+  data: function data() {
+    return {
+      onlineUsers: []
+    };
   },
   methods: {
     sendMessage: function sendMessage(text) {
@@ -2368,28 +2415,27 @@ __webpack_require__.r(__webpack_exports__);
         text: text
       }).then(function (response) {
         _this.$emit("new", response.data);
-
+      });
+    },
+    sendFile: function sendFile() {
+      axios.get("/conversation/".concat(this.contact.id)).then(function (response) {
         console.log(response.data);
       });
-    } // sendFile(file) {
-    //   if (!this.contact) {
-    //     return;
-    //   }
-    //   axios
-    //     .post("/conversation/send", {
-    //       contact_id: this.contact.id,
-    //       file: file,
-    //     })
-    //     .then((response) => {
-    //       this.$emit("new", response.data);
-    //     //   console.log(response.data)
-    //     });
-    // },
-
+    }
   },
   components: {
     MessagesFeed: _MessagesFeed__WEBPACK_IMPORTED_MODULE_0__["default"],
     MessageComposer: _MessageComposer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    Echo.join("chat").here(function (users) {
+      _this2.onlineUsers = users;
+    }).leaving(function (user) {
+      _this2.onlineFriends.splice(_this2.onlineFriends.indexOf(user), 1); // console.log("leaved", user.first_name);
+
+    });
   }
 });
 
@@ -2500,8 +2546,23 @@ __webpack_require__.r(__webpack_exports__);
       message: "",
       search: "",
       files: [],
+      typingUser: [],
+      typingClock: null,
       token: document.head.querySelector('meta[name="csrf-token"]').content
     };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    Echo.join("chat").listenForWhisper("typing", function (e) {
+      if (e) {
+        _this.typingUser = e.first_name + " " + e.last_name + " is typing...";
+        if (_this.typingClock) clearTimeout();
+        _this.typingClock = setTimeout(function () {
+          _this.typingUser = [];
+        }, 2000);
+      }
+    });
   },
   methods: {
     send: function send(e) {
@@ -2517,9 +2578,26 @@ __webpack_require__.r(__webpack_exports__);
     append: function append(emoji) {
       this.message += emoji;
     },
-    inputFile: function inputFile(newFile, oldFile) {
-      console.log(newFile);
-      this.$emit("inputFile", newFile);
+    inputFile: function inputFile() {
+      this.$emit("inputFile");
+    },
+    sendtypingEvent: function sendtypingEvent() {
+      Echo.join("chat").whisper("typing", this.contact);
+    }
+  },
+  watch: {
+    files: {
+      deep: true,
+      handler: function handler() {
+        var success = this.files[0].success;
+
+        if (success) {
+          this.inputFile();
+        }
+      }
+    },
+    "$refs.upload": function $refsUpload(val) {
+      console.log(val);
     }
   },
   directives: {
@@ -2547,6 +2625,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
 //
 //
 //
@@ -2739,12 +2820,10 @@ window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/d
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
   key: "TutorvyKey",
-  cluster: "mt1",
   wsHost: window.location.hostname,
   wsPort: 6001,
   wssPort: 6001,
   disableStats: true,
-  encrypted: true,
   enabledTransports: ['ws', 'wss']
 });
 
@@ -45130,7 +45209,12 @@ var render = function () {
             { attrs: { id: "chatList" } },
             [
               _c("ContactsList", {
-                attrs: { contacts: _vm.contacts, user: this.user },
+                attrs: {
+                  contacts: _vm.contacts,
+                  user: this.user,
+                  messages: _vm.messages,
+                  search: _vm.search,
+                },
                 on: { selected: _vm.startConversationWith },
               }),
             ],
@@ -45194,7 +45278,7 @@ var render = function () {
         },
         [
           _vm.user.id != contact.id
-            ? _c("div", { staticClass: "container-fluid m-0 p-0 img-chats " }, [
+            ? _c("div", { staticClass: "container-fluid m-0 p-0 img-chats" }, [
                 contact.profile_image != null
                   ? _c("span", [
                       _c("img", {
@@ -45210,13 +45294,17 @@ var render = function () {
                     ]),
                 _vm._v(" "),
                 _c("span", {
-                  class: contact.isOnline == 1 ? "activeDot" : "offline",
+                  class: _vm.onlineUsers.find(function (cont) {
+                    return cont.id == contact.id
+                  })
+                    ? "activeDot"
+                    : "offline",
                   attrs: { id: "activeDot_" },
                 }),
                 _vm._v(" "),
                 _c("div", { staticClass: "img-chat w-100" }, [
                   _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-9" }, [
+                    _c("div", { staticClass: "col-8" }, [
                       _c("p", { staticClass: "name-client" }, [
                         _vm._v(
                           "\n              " +
@@ -45228,11 +45316,51 @@ var render = function () {
                       ]),
                     ]),
                     _vm._v(" "),
-                    _vm._m(0, true),
+                    _c("div", { staticClass: "col-md-4 p-0" }, [
+                      _c("p", { staticClass: "time-chat" }, [
+                        _vm._v(_vm._s(contact.lastmessagetime)),
+                      ]),
+                    ]),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "row" }, [
-                    _vm._m(1, true),
+                    _c("div", { staticClass: "col-md-9" }, [
+                      contact &&
+                      contact.lastmessage != null &&
+                      contact.lastmessage != ""
+                        ? _c(
+                            "p",
+                            {
+                              staticClass: "massage-client",
+                              attrs: { id: "recent_msg_" },
+                            },
+                            [
+                              _vm._v(
+                                "\n              " +
+                                  _vm._s(
+                                    contact.lastmessage.substring(0, 17) + "..."
+                                  ) +
+                                  "\n            "
+                              ),
+                            ]
+                          )
+                        : contact &&
+                          contact.lastmessageattach != null &&
+                          contact.lastmessageattach != ""
+                        ? _c(
+                            "p",
+                            {
+                              staticClass: "massage-client",
+                              attrs: { id: "recent_msg_" },
+                            },
+                            [
+                              _c("i", {
+                                staticClass: "fa fa-image text-secondary",
+                              }),
+                            ]
+                          )
+                        : _vm._e(),
+                    ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "col-md-3" }, [
                       contact.unread > 0
@@ -45256,26 +45384,7 @@ var render = function () {
     0
   )
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-3" }, [
-      _c("p", { staticClass: "time-chat" }, [_vm._v("11:25")]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-9" }, [
-      _c("p", { staticClass: "massage-client", attrs: { id: "recent_msg_" } }, [
-        _vm._v("\n              It is a long distae...\n            "),
-      ]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -45329,9 +45438,11 @@ var render = function () {
                             _c("div", { staticClass: "col-12" }, [
                               _c("p", { staticClass: "name-client" }, [
                                 _vm._v(
-                                  _vm._s(_vm.contact.first_name) +
+                                  "\n                  " +
+                                    _vm._s(_vm.contact.first_name) +
                                     " " +
-                                    _vm._s(_vm.contact.last_name)
+                                    _vm._s(_vm.contact.last_name) +
+                                    "\n                "
                                 ),
                               ]),
                             ]),
@@ -45352,7 +45463,9 @@ var render = function () {
                                   _vm._v(
                                     "\n                  " +
                                       _vm._s(
-                                        _vm.contact.isOnline == 1
+                                        _vm.onlineUsers.find(function (cont) {
+                                          return cont.id == _vm.contact.id
+                                        })
                                           ? "Online"
                                           : "Offline"
                                       ) +
@@ -45379,7 +45492,7 @@ var render = function () {
           _vm._v(" "),
           _c("MessageComposer", {
             attrs: { contact: _vm.contact },
-            on: { send: _vm.sendMessage },
+            on: { send: _vm.sendMessage, inputFile: _vm.sendFile },
           }),
         ],
         1
@@ -45449,8 +45562,13 @@ var render = function () {
                 attrs: {
                   "post-action": "/conversation/send",
                   headers: { "X-CSRF-TOKEN": _vm.token },
+                  data: { contact_id: this.contact.id },
                 },
-                on: { "input-file": _vm.inputFile },
+                on: {
+                  "input-file": function ($event) {
+                    _vm.$refs.upload.active = true
+                  },
+                },
                 model: {
                   value: _vm.files,
                   callback: function ($$v) {
@@ -45459,12 +45577,7 @@ var render = function () {
                   expression: "files",
                 },
               },
-              [
-                _c("v-icon", { staticClass: "mt-3" }, [
-                  _c("i", { staticClass: "fa fa-paperclip ml-1" }),
-                ]),
-              ],
-              1
+              [_c("i", { staticClass: "fa fa-paperclip ml-1" })]
             ),
           ],
           1
@@ -45606,15 +45719,18 @@ var render = function () {
           attrs: { type: "text", placeholder: "Message..." },
           domProps: { value: _vm.message },
           on: {
-            keydown: function ($event) {
-              if (
-                !$event.type.indexOf("key") &&
-                _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-              ) {
-                return null
-              }
-              return _vm.send.apply(null, arguments)
-            },
+            keydown: [
+              function ($event) {
+                if (
+                  !$event.type.indexOf("key") &&
+                  _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                ) {
+                  return null
+                }
+                return _vm.send.apply(null, arguments)
+              },
+              _vm.sendtypingEvent,
+            ],
             input: function ($event) {
               if ($event.target.composing) {
                 return
@@ -45623,6 +45739,10 @@ var render = function () {
             },
           },
         }),
+        _vm._v(" "),
+        _vm.typingUser != null && _vm.typingUser != 0
+          ? _c("span", [_vm._v(_vm._s(_vm.typingUser))])
+          : _vm._e(),
         _vm._v(" "),
         _c(
           "a",
@@ -45719,6 +45839,24 @@ var render = function () {
                 _vm._v(" "),
                 message.attachments != null && message.attachments != ""
                   ? _c("div", { staticClass: "text" }, [
+                      _c(
+                        "small",
+                        {
+                          staticClass: "ml-5",
+                          staticStyle: {
+                            "font-size": "10px",
+                            color: "#a19f9f",
+                          },
+                        },
+                        [
+                          _vm._v(
+                            _vm._s(
+                              _vm.getTimeInterval(new Date(message.created_at))
+                            )
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
                       _c("img", {
                         staticClass: "w-100",
                         attrs: { src: "/storage/" + message.attachments },

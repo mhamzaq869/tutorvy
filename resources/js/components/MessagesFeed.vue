@@ -27,6 +27,9 @@
           class="text"
           v-if="message.attachments != null && message.attachments != ''"
         >
+        <small class="ml-5" style="font-size:10px; color:#a19f9f">{{
+            getTimeInterval(new Date(message.created_at))
+          }}</small>
           <img :src="'/storage/' + message.attachments" class="w-100" />
         </div>
       </li>

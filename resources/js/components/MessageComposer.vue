@@ -2,17 +2,15 @@
   <div class="row">
     <div class="col-md-12 col-8" id="chatForm">
       <a class="sendLeft" type="button" style="top: 13px">
-        <!-- <i class="fa fa-paperclip ml-1"></i> -->
         <file-upload
-            ref="upload"
-            post-action="/conversation/send"
-            v-model="files"
-            @input-file="inputFile"
-            :headers="{'X-CSRF-TOKEN': token}"
+          ref="upload"
+          post-action="/conversation/send"
+          v-model="files"
+          @input-file="$refs.upload.active = true"
+          :headers="{ 'X-CSRF-TOKEN': token }"
+          :data="{ contact_id: this.contact.id }"
         >
-          <v-icon class="mt-3">
-            <i class="fa fa-paperclip ml-1"></i>
-          </v-icon>
+          <i class="fa fa-paperclip ml-1"></i>
         </file-upload>
       </a>
 
@@ -67,8 +65,10 @@
         style="padding-left: 60px"
         v-model="message"
         @keydown.enter="send"
+        @keydown="sendtypingEvent"
         placeholder="Message..."
       />
+      <span v-if="typingUser != null && typingUser != 0">{{ typingUser }}</span>
 
       <a class="sendRight" type="button" @click="send">
         <i class="fa fa-paper-plane f-19"></i>
@@ -92,10 +92,23 @@ export default {
       message: "",
       search: "",
       files: [],
+      typingUser: [],
+      typingClock: null,
       token: document.head.querySelector('meta[name="csrf-token"]').content,
     };
   },
 
+  mounted() {
+    Echo.join(`chat`).listenForWhisper("typing", (e) => {
+      if (e) {
+        this.typingUser = e.first_name + " " + e.last_name + " is typing...";
+        if (this.typingClock) clearTimeout();
+        this.typingClock = setTimeout(() => {
+          this.typingUser = [];
+        }, 2000);
+      }
+    });
+  },
   methods: {
     send(e) {
       e.preventDefault();
@@ -109,12 +122,28 @@ export default {
     append(emoji) {
       this.message += emoji;
     },
-    inputFile(newFile, oldFile) {
-      console.log(newFile);
-      this.$emit("inputFile", newFile);
+    inputFile() {
+      this.$emit("inputFile");
+    },
+    sendtypingEvent() {
+      Echo.join(`chat`).whisper("typing", this.contact);
+    },
+  },
+
+  watch: {
+    files: {
+      deep: true,
+      handler() {
+        let success = this.files[0].success;
+        if (success) {
+          this.inputFile();
+        }
+      },
     },
 
-
+    "$refs.upload"(val) {
+      console.log(val);
+    },
   },
 
   directives: {

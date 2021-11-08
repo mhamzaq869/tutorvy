@@ -11,6 +11,8 @@
           <ContactsList
             :contacts="contacts"
             :user="this.user"
+            :messages="messages"
+            :search="search"
             @selected="startConversationWith"
           />
         </div>
@@ -38,27 +40,27 @@ export default {
       type: Object,
       required: true,
     },
-    isOnline:{
-        type: Boolean
-    }
+    isOnline: {
+      type: Boolean,
+    },
   },
   data() {
     return {
       selectedContact: null,
       messages: [],
       contacts: [],
-      search: ''
+      search: "",
     };
   },
   mounted() {
-    Echo.channel(`messages.${this.user.id}`).listen("ChatMessage", (e) => {
-        console.log(e)
-      this.hanleIncoming(e.message);
+    Echo.private(`messages.${this.user.id}`)
+        .listen("ChatMessage", (e) => {
+            this.hanleIncoming(e.message);
     });
+
     axios.get("/contacts").then((response) => {
       this.contacts = response.data;
     });
-
   },
   methods: {
     startConversationWith(contact) {
@@ -79,6 +81,7 @@ export default {
         this.saveNewMessage(message);
         return;
       }
+      console.log(message)
       this.updateUnreadCount(message.from_contact, false);
     },
     updateUnreadCount(contact, reset) {
@@ -91,17 +94,12 @@ export default {
         return single;
       });
     },
+
   },
 
   components: { Conversation, ContactsList },
 
-  computed: {
-        filteredContacts() {
-            return this.contacts.filter((post) =>
-                post.first_name.toLowerCase().includes(this.search.toLowerCase())
-            );
-        },
-    },
+
 };
 </script>
 
