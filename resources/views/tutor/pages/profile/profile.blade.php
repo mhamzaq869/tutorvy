@@ -7,7 +7,8 @@ width:22px;
     }
 </style>
 <link rel="stylesheet" href="{{asset('assets/css/profile.css')}}">
-    <div class="container">
+<div class="content-wrapper " style="overflow: hidden;">
+    <div class="container-fluid">
         <p class="heading-first ml-3 mr-3">
             Profile
         </p>
@@ -328,7 +329,7 @@ width:22px;
             </div>
         </div>
     </div>
-
+</div>
     
 <div class="modal fade" id="planModal" tabindex="-1" role="dialog"
     aria-labelledby="planModalTitle" aria-hidden="true">

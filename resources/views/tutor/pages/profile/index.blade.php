@@ -504,7 +504,7 @@
                                                     <label for="exampleName" class="heading-fifth mb-0">Tutor Tagline</label>
                                                     <input type="text" name="tagline" class="form-control"
                                                         value="{{ Auth::user()->tagline }}" id="exampleName"
-                                                        aria-describedby="emailHelp" required="required"  placeholder="Last Name" style="text-transform: capitalize;" >
+                                                        aria-describedby="emailHelp" required="required"  placeholder="Tutor Tagline" style="text-transform: capitalize;" >
                                                 </div>
                                             </div>
 
@@ -1021,7 +1021,7 @@
                                                                     <!-- <input type="date" value="{{ $profession->end_date ?? '' }}"
                                                                         class="form-control" name="degree_end[]"
                                                                         placeholder="Ending Date" value="" id="kinEnd"> -->
-                                                                        <select value="{{ $profession->end_date ?? '' }}" name="degree_end[]" class="yearpicker form-select" id="kinEnd">
+                                                                        <select value="{{ $profession->end_date ?? '' }}" name="degree_end[]" class="yearpicker form-select" id="proEnd">
                                                                             <option value="2000">2000</option>
                                                                             <option value="2001">2001</option>
                                                                             <option value="2002">2002</option>
@@ -1050,7 +1050,7 @@
                                                                 </div>
                                                                 <div class="col-md-8 mt-2 mb-3">
                                                                     <div class="custom-control custom-checkbox">
-                                                                        <input type="checkbox" class="custom-control-input" name="working" id="working">
+                                                                        <input type="checkbox" class="custom-control-input" name="working" id="proWorking">
                                                                         <label class="custom-control-label" for="working">Currently Working? </label>
                                                                     </div>
                                                                 </div>
@@ -1247,6 +1247,19 @@
                 $("#kinEnd").val("Currently Working");
 
 
+            }
+        })
+        $("#proWorking").change(function(){
+            var checkBox = document.getElementById("prWorking");
+            if(checkBox.checked == true){
+                $("#proEnd").attr("type","text");
+                $("#proEnd").val("Currently Working");
+                $("#proEnd").attr("disabled","disabled");
+            }
+            else{
+                $("#proEnd").attr("type","select");
+                $("#proEnd").removeAttr("disabled","disabled");
+                $("#proEnd").val("Currently Working");
             }
         })
         $("#country_selector").countrySelect({
@@ -1477,6 +1490,7 @@
                 var ter=$(this).val();
                 if(ter == 3){
                     $(".passport").css("display","block");
+                    $(".passport").attr("required", "true");
                     $(".id").css("display","none");
                     $(".license").css("display","none");
                      $(".policeCert").css("display","none");
@@ -1484,6 +1498,7 @@
                 }
                 else if(ter == 1){
                     $(".passport").css("display","none");
+                    $(".id").attr("required" , "true");
                     $(".id").css("display","block");
                     $(".license").css("display","none");
                     $(".policeCert").css("display","none");
@@ -1491,6 +1506,7 @@
                     }
                 else if(ter == 2){
                 $(".passport").css("display","none");
+                $(".license").attr("required" , "true");
                 $(".id").css("display","none");
                 $(".license").css("display","block");
                 $(".policeCert").css("display","none");
@@ -1499,6 +1515,7 @@
                 }
                 else if(ter == 4){
                 $(".passport").css("display","none");
+                $(".policeCert").attr("required" , "true");
                 $(".id").css("display","none");
                 $(".license").css("display","none");
                 $(".policeCert").css("display","block");
