@@ -3154,7 +3154,7 @@ select#paymentMethod option[value="others"] {
 .reciever p,
 .sender p {
     width: 100%;
-    min-width: 324px;
+    min-width: 217px;
     border: 1px solid #6EAAFF;
     border-radius: 5px;
     padding: 5px;
