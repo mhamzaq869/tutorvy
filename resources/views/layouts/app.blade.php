@@ -62,7 +62,7 @@
     $(document).ready(function(){
         $(".input-subject").select2();
         $(".form-select").select2();
-       
+
     })
     function getSubSubject(id){
 

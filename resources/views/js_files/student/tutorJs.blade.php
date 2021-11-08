@@ -20,7 +20,7 @@ $('#subjects-list').on("change", function(e) {
     let location = $("#location").val();
 
     search_tutors(price,subject,lang,rating,location ,gender);
-    
+
 });
 
 $('#languages-list').on("change", function(e) {
@@ -45,7 +45,7 @@ $('input[type=radio][name=rating_filter]').change(function() {
     let gender = $("input[name='gender']:checked").val();
 
     search_tutors(price,subject,lang,rating,location ,gender);
-    
+
 });
 
 $("#range").change(function() {
@@ -82,7 +82,7 @@ $('input[type=radio][name=gender]').change(function() {
     let location = $("#location").val();
     var gender = $(this).val();
     search_tutors(price,subject,lang,rating,location ,gender);
-    
+
 });
 
 function search_tutors(price,subject,lang,rating,location, gender){
@@ -140,7 +140,7 @@ function list_tutors(){
             console.log(t_id);
             if(tutors[i].insti_names !=null ){
                 inst=  tutors[i].insti_names.split(",");
-                for(var ins=0 ; ins < inst.length; ins++){ 
+                for(var ins=0 ; ins < inst.length; ins++){
                     int_html +=` <span class="info-1 info edu">`+inst[ins]+`</span>`;
                 }
             }
@@ -154,10 +154,10 @@ function list_tutors(){
                 if(sub.length>1){
                 // console.log(sub);
 
-                    for(var s=0 ; s < 1; s++){ 
-                        sub_html +=` <span class="info-1 info">`+sub[s]+`</span> 
+                    for(var s=0 ; s < 1; s++){
+                        sub_html +=` <span class="info-1 info">`+sub[s]+`</span>
                         <small>
-                            <a href="`+url2+`" class="text-dark decoration-none"> 
+                            <a href="`+url2+`" class="text-dark decoration-none">
                                 +`+eq+` Other
                             </a>
                         </small>`;
@@ -165,7 +165,7 @@ function list_tutors(){
                 }
                 else if(sub.length==1){
                     for(var s=0 ; s < 1; s++){
-                    sub_html +=` <span class="info-1 info">`+sub[s]+`</span>`;   }  
+                    sub_html +=` <span class="info-1 info">`+sub[s]+`</span>`;   }
                 }
             }
                 let tutBio = '';
@@ -179,11 +179,11 @@ function list_tutors(){
                     tutBio +=`<p>`+tutors[i].bio+`</p>`
                 }
 
-            
-         
-            
 
-            
+
+
+
+
 
             if(tutors[i].rating == 1){
                 rating_html +=  `<i class="fa fa-star text-yellow"></i>
@@ -205,7 +205,7 @@ function list_tutors(){
                 rating_html +=  `<i class="fa fa-star text-yellow"></i>
                                 <i class="fa fa-star text-yellow"></i>
                                 <i class="fa fa-star text-yellow"></i>
-                                <i class="fa fa-star "></i> 
+                                <i class="fa fa-star "></i>
                                 <i class="fa fa-star "></i>  3.0
                                 <small class="text-grey">(0 reviews)</small>`;
             }
@@ -213,7 +213,7 @@ function list_tutors(){
                 rating_html +=  `<i class="fa fa-star text-yellow"></i>
                                 <i class="fa fa-star text-yellow"></i>
                                 <i class="fa fa-star text-yellow"></i>
-                                <i class="fa fa-star text-yellow"></i> 
+                                <i class="fa fa-star text-yellow"></i>
                                 <i class="fa fa-star "></i>  4.0
                                 <small class="text-grey">(0 reviews)</small>`;
 
@@ -257,11 +257,11 @@ function list_tutors(){
             var un_fav_btn = `
                 <a type="button" onclick="favourite_tutor(`+tutors[i].id+`,'un_fav')" class="fav" title="Favourite">
                     <i class="fa fa-star text-yellow" id="favorite_start_`+tutors[i].id+`"></i>
-                </a>`;                
+                </a>`;
 
             let tutor_Card = `<div class="card">
                                 <div class="card-body">
-                                    
+
                                     <div class="row">
                                         <div class="col-md-9">
                                             <div class="row">
@@ -293,10 +293,10 @@ function list_tutors(){
                                             </div>
                                             <div class="row mt-3">
                                                 <div class="col-md-4">
-                                                    
+
                                                     <p class="mb-2">Subject</p>
                                                     `+sub_html+`
-                                                    
+
                                                 </div>
                                                 <div class="col-md-4">
                                                     <p class="mb-2">Languages</p>
@@ -336,10 +336,10 @@ function list_tutors(){
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>`;
-            
+
             $('#tutors-list').append(tutor_Card);
         }
 
@@ -357,15 +357,13 @@ function list_tutors(){
         $('#tutors-list').html(no_rec_html);
     }
 
-}    
+}
 
 
 function star(){
     // alert("D");
     $(".fa-star").addClass("text-yellow");
 }
-
-
 
 function favourite_tutor(id,type) {
 
@@ -409,5 +407,11 @@ function favourite_tutor(id,type) {
             });
         }
     });
+}
+
+
+function chat(id){
+    var url = "{{url('student/contact/tutor')}}"+'/'+id
+    window.location.href = url
 }
 </script>

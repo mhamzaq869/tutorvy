@@ -5,13 +5,13 @@
  <!-- top Fixed navbar End -->
  <div class="content-wrapper " style="overflow: hidden;">
     <section id="findTutorsection" style="display: flex;">
-        
+
         <div class="container-fluid m-0 p-0">
             <p class="heading-first ml-3 mr-3">Find a Tutor</p>
             <div class="row bg-white ml-2 mr-2 ">
                 <div class="col-md-12 mb-1 ">
                     <div class=" card  bg-toast infoCard">
-                        
+
 
                         <div class="card-body row">
                             <div class="col-md-1 text-center">
@@ -21,7 +21,7 @@
                                 <small>
                                     Filter according to your need. Specify the age,ranges,ratings,subjects and every possible details to get the exact person you need <a href="#">Learn More</a>
                                 </small>
-                                <a href="#" class="cross"  onclick="hideCard()"> 
+                                <a href="#" class="cross"  onclick="hideCard()">
                                     <i class="fa fa-times" aria-hidden="true"></i>
                                 </a>
                             </div>
@@ -122,7 +122,7 @@
                                             <hr class="m-0">
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                                 <div class="col-md-12">
                                     <div id="accordion">
@@ -141,7 +141,7 @@
                                                             <i class="fa fa-star "></i>
                                                             <i class="fa fa-star "></i>
                                                             <i class="fa fa-star "></i>
-                                                            <i class="fa fa-star "></i> 
+                                                            <i class="fa fa-star "></i>
                                                         </p>
                                                         </label>
                                                     </div>
@@ -152,7 +152,7 @@
                                                             <i class="fa fa-star text-yellow"></i>
                                                             <i class="fa fa-star "></i>
                                                             <i class="fa fa-star "></i>
-                                                            <i class="fa fa-star "></i> 
+                                                            <i class="fa fa-star "></i>
                                                         </p>
                                                         </label>
                                                     </div>
@@ -163,7 +163,7 @@
                                                             <i class="fa fa-star text-yellow"></i>
                                                             <i class="fa fa-star text-yellow"></i>
                                                             <i class="fa fa-star "></i>
-                                                            <i class="fa fa-star "></i> 
+                                                            <i class="fa fa-star "></i>
                                                         </p>
                                                         </label>
                                                     </div>
@@ -174,7 +174,7 @@
                                                             <i class="fa fa-star text-yellow"></i>
                                                             <i class="fa fa-star text-yellow"></i>
                                                             <i class="fa fa-star text-yellow"></i>
-                                                            <i class="fa fa-star "></i> 
+                                                            <i class="fa fa-star "></i>
                                                         </p>
                                                         </label>
                                                     </div>
@@ -185,7 +185,7 @@
                                                             <i class="fa fa-star text-yellow"></i>
                                                             <i class="fa fa-star text-yellow"></i>
                                                             <i class="fa fa-star text-yellow"></i>
-                                                            <i class="fa fa-star text-yellow"></i> 
+                                                            <i class="fa fa-star text-yellow"></i>
                                                         </p>
                                                         </label>
                                                     </div>
@@ -194,7 +194,7 @@
                                             <hr class="m-0">
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                                 <div class="col-md-12">
                                     <div id="accordion">
@@ -324,7 +324,7 @@
                                             <hr class="m-0">
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -337,14 +337,14 @@
                                 <div class="card-body">
                                     <p><strong>  Searched Filters:  </strong></p>
                                     <p>
-                                        <span class="info-1 info4">subject</span> 
+                                        <span class="info-1 info4">subject</span>
                                         <span class="info-1 info4">location</span>
                                         <span class="info-1 info4">rate</span>
                                         <span class="info-1 info4">range</span>
                                         <span class="info-1 info4">gender</span>
                                         <span class="info-1 info4">age</span>
                                         <span class="info-1 info4">availability</span>
-                                    </p> 
+                                    </p>
                                     </div>
                             </div>
                         </div>
@@ -352,11 +352,11 @@
                             <div class="card">
                                 <div class="card-body">
                                     <p class="number-booking mt-0 " id="number-booking">  {{ sizeof($available_tutors) }}  </p>
-                                    <p class="mb-0">Total Tutors</p>  
+                                    <p class="mb-0">Total Tutors</p>
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div> -->
                     <div class="row">
                         <div class="col-md-12" id="number-booking">
@@ -374,25 +374,25 @@
                         </div>
                     @else
                         @foreach ($available_tutors as $tutor)
-                        
+
                         <div class="card">
                             <div class="card-body">
-                                
+
                                 <div class="row">
                                     <div class="col-md-9">
                                         <div class="row">
                                             <div class="col-md-10">
                                                 <div class="row">
-                                                    
+
                                                     <div class="col-md-2 col-6 pr-0 div-center">
                                                         <a href="{{route('student.tutor.show',[$tutor->id])}}">
                                                             @if($tutor->picture != null)
                                                                 <img src="{{asset($tutor->picture)}}" alt="" class="profile-img " style="height:70px; width:70px;">
                                                             @else
                                                                 <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="profile-img " style="height:70px; width:70px;">
-                                                            @endif                                                        
+                                                            @endif
                                                         </a>
-                                                       
+
                                                     </div>
                                                     <div class="col-md-4 col-6  pr-0">
                                                         <a href="{{route('student.tutor.show',[$tutor->id])}}" class="decoration-none"><h3 class="mb-0">{{$tutor->first_name}} {{$tutor->last_name}}</h3></a>
@@ -438,13 +438,13 @@
                                                             <i class="fa fa-star "></i>
                                                             <i class="fa fa-star "></i>  0.0
                                                             @endif
-                                                        
+
                                                             <small class="text-grey">(0 reviews)</small>
                                                         </p>
                                                         <p class="mb-0">
                                                             <small>
                                                                 3 hours tutoring in (this subject)
-                                                            </small>  
+                                                            </small>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -467,16 +467,16 @@
 
                                                     $sub = explode(',',$tutor->subject_names);
                                                     $ter = sizeof($sub);
-                                                    
+
                                                 @endphp
                                                 <p class="mb-2">Subject</p>
                                                 <p>
                                                     @for ($i=0 ; $i < 1; $i++)
                                                         <span class="info-1 info">{{$sub[$i]}}</span>
-                                                        
+
                                                         @if($ter > 1)
                                                         <small>
-                                                            <a href="#" class="text-dark decoration-none"> 
+                                                            <a href="#" class="text-dark decoration-none">
                                                                 @php
                                                                         $one = 1;
                                                                         $check = $ter - $one;
@@ -531,13 +531,13 @@
                                                 </a>
                                             @endif
                                             <div class="col-md-12">
-                                                
+
                                                 <p>starting from</p>
                                                 <h1 class="f-60">${{$tutor->hourly_rate != null ? $tutor->hourly_rate : 0}}</h1>
                                                 <p>per hour</p>
-                                                <button type="button" class=" cencel-btn w-100">
+                                                <button type="button" class=" cencel-btn w-100" onclick="chat({{$tutor->id}})">
                                                         &nbsp; Message &nbsp;
-                                                    </button>
+                                                </button>
                                                 <button type="button" onclick="location.href = '{{route('student.book-now',[$tutor->id])}}';" class=" btn-general w-100 mt-2" >
                                                         &nbsp; Book Class &nbsp;
                                                 </button>
@@ -545,7 +545,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                         @endforeach

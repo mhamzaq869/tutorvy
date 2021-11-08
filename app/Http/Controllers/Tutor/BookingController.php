@@ -12,11 +12,41 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
+use PayPal\Rest\ApiContext;
+use PayPal\Auth\OAuthTokenCredential;
+use PayPal\Api\Amount;
+use PayPal\Api\Details;
+use PayPal\Api\Item;
+use PayPal\Api\ItemList;
+use PayPal\Api\Payer;
+use PayPal\Api\PayerInfo;
+use PayPal\Api\Payment;
+use PayPal\Api\RedirectUrls;
+use PayPal\Api\Refund;
+use PayPal\Api\RefundRequest;
+use PayPal\Api\Sale;
+use PayPal\Api\ExecutePayment;
+use PayPal\Api\PaymentExecution;
+use PayPal\Api\Transaction;
+use App\Models\Payments;
 use DateTime;
 use DateTimeZone;
 
 class BookingController extends Controller
 {
+
+    private $_api_context, $skrilRequest,$pay_from_email;
+
+    public function __construct()
+    {
+
+        $paypal_configuration = \Config::get('paypal');
+        $this->_api_context = new ApiContext(new OAuthTokenCredential($paypal_configuration['sandbox']['client_id'], $paypal_configuration['sandbox']['client_secret']));
+        $this->_api_context->setConfig($paypal_configuration);
+
+
+    }
+
     /**
      *  Return Tutor Booking view
      */
@@ -124,6 +154,70 @@ class BookingController extends Controller
             'message' => 'Booking accepted.'
         ]);
 
+    }
+
+    public function cancelBooking(Request $request,$id)
+    {
+        $booking = Booking::find($id);
+
+        $refund_amount = $booking->price + $booking->service_fee;
+        $saleId = $booking->payment->first()->sale_id;
+
+        $paymentValue =  (string) round($refund_amount,2); ;
+
+        // ### Refund amount
+        // Includes both the refunded amount (to Payer)
+        // and refunded fee (to Payee). Use the $amt->details
+        // field to mention fees refund details.
+        $amt = new Amount();
+        $amt->setCurrency('USD')
+            ->setTotal($paymentValue);
+
+        // ### Refund object
+        $refundRequest = new RefundRequest();
+        $refundRequest->setAmount($amt);
+
+        // ###Sale
+        // A sale transaction.
+        // Create a Sale object with the
+        // given sale transaction id.
+        $sale = new Sale();
+        $sale->setId($saleId);
+        try {
+            $refundedSale = $sale->refundSale($refundRequest, $this->_api_context);
+        } catch (\Exception $ex) {
+            dd($ex);
+            exit(1);
+        }
+
+        if($refundedSale->state == 'completed'){
+
+            Payments::create([
+                'user_id' => Auth::user()->id,
+                'type' => 'payment_refund',
+                'transaction_id' => $booking->payment->first()->transaction_id,
+                'sale_id' => $refundedSale->sale_id ?? '',
+                'amount'  => $refundedSale->amount->total,
+                'method'  => 'paypal'
+            ]);
+
+            $booking->status = 3;
+            $booking->save();
+        }
+
+        return redirect()->route('tutor.bookings')->with('success', '$'.$refundedSale->amount->total.' amount has been refunded to your account successfully!');
+    }
+
+    public function rescheduleBooking(Request $request,$id){
+
+        $booking = Booking::find($id);
+
+        $booking->class_date = $request->date;
+        $booking->class_time = $request->time;
+        $booking->reschedule_note = $request->note;
+        $booking->save();
+
+        return redirect()->back();
     }
 
     /**

@@ -9,5 +9,5 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Message extends Model
 {
-    protected $guarded = ['id'];
+    protected $fillable = ['sender_id','recipient_id','content','seen','attachments'];
 }

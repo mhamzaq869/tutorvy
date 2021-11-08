@@ -23,47 +23,29 @@ class GenChatController extends Controller
             'recipient_id' => $request->user,
             'content' => $request->content
         ]);
-        broadcast(new NewMessage($message))->toOthers();
+        event(new NewMessage($message,Auth::user()->id));
         return response()->json([
-            'status' => 200
+            'status' => 200,
+            $message
         ]);
 
     }
 
     public function chatContact()
     {
-        $chatts = Message::where('sender_id',Auth::user()->id)->get();
-        $chats = User::whereIn('id',$chatts->pluck('recipient_id')->unique()->flatten())->get();
-
+        $chatts = Message::where('sender_id',Auth::user()->id)->orWhere('recipient_id',Auth::user()->id)->get();
+        $chats = User::whereIn('id',$chatts->pluck('recipient_id')->unique()->flatten())
+                    ->orWhereIn('id',$chatts->pluck('sender_id')->unique()->flatten())->get();
         return response()->json($chats);
     }
 
     public function fetchMessages($to)
     {
+
         $id = Auth::user()->id;
-        $messages = DB::select('select * from `chats` where (`sender_id` = ? or `recipient_id` = ?) and (`recipient_id` = ? or `sender_id` = ?)', [$id,$id,$to,$to]);
+        $messages = DB::select('select * from `messages` where (`sender_id` = ? or `recipient_id` = ?) and (`recipient_id` = ? or `sender_id` = ?)', [$id,$id,$to,$to]);
 
-        $all = [];
-
-        foreach($messages as $message){
-
-            if($message->user_id == Auth::user()->id):
-                $html = '<a href="javascript:void(0)" onclick="message('.$message->id.')" id="users-'.$message->user_id.'"><div class="outgoing_msg" ><div class="sent_msg">';
-                $html .= '<p>'.$message->message.'</p>';
-                $html .= ' <span class="time_date"> '.date('H:i A',strtotime($message->created_at)).'    |   '.date('M d',strtotime($message->created_at)).'</span></div></div></a>';
-            else:
-                $html = '<a href="javascript:void(0)" onclick="message('.$message->id.')" id="users-'.$message->user_id.'"><div class="incoming_msg"><div class="incoming_msg_img">';
-                $html .= '<img style="width:50px" src="'.asset($message->toUser->photo ?? "upload/profile/profile.jpg").'" alt="sunil"> </div>';
-                $html .= '<div class="received_msg">';
-                $html .= '<div class="received_withd_msg">';
-                $html .= '<p>'.$message->message.'</p>';
-                $html .= '</div></div>></a>';
-            endif;
-
-
-            array_push($all,$html);
-        }
-        return response([$all],200);
+        return response()->json([$messages,User::find($to)]);
 
 
     }

@@ -16,7 +16,8 @@ use App\Models\General\Message;
 use App\Models\Review;
 use App\Models\Student\Wallet;
 use PhpParser\Node\Expr\Empty_;
-
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Auth;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
@@ -68,7 +69,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
-    protected $appends = ['address','status_text','day','month','year','subjects','user_experty_level','requests','r_name'];
+    protected $appends = ['address','status_text','day','month','year','subjects','user_experty_level','requests','r_name','isOnline'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -290,5 +291,15 @@ class User extends Authenticatable implements MustVerifyEmail
 
         $tutor_assessments = Assessment::where('user_id',$this->id)->where('status',0)->get();
         return $tutor_assessments;
+    }
+
+    public function getisOnlineAttribute()
+    {
+        if(Cache::has('online-' . Auth::id()))
+        {
+           return $this->attributes['isOnline'] = 1;
+        }
+
+        return 0;
     }
 }
