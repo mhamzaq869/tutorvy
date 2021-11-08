@@ -258,72 +258,84 @@
             var std_time_zone = $(this).data('zone');
             var tutor_time_zone = $(this).data('tzone');
             var booking_class_date = $(this).data('date');
+            var date = moment(booking_class_date)
 
-            var std_current_region_date = new Date().toLocaleString('en-US', { timeZone: tutor_time_zone });
-            var std_time_in_seconds = HmsToSeconds(moment(std_current_region_date).format('HH:mm:ss'));
+            var now = moment();
+            const date1 = moment(booking_class_date).format('YYYY-MM-DD').valueOf()
+            const date2 = moment().format('YYYY-MM-DD').valueOf();
 
-            var remain_time = (booking_seconds_time -  std_time_in_seconds);          
-            var date = new Date();
-
-            var moment_date = moment(date).format('YYYY-MM-DD');
-
-            var tutor_time_in_seconds = HmsToSeconds(moment(date).format('HH:mm:ss'));
-            // console.log(tutor_time_in_seconds , "tutor_time_in_seconds");
-            var region_booking_time = moment(date).add(remain_time,'s').format("LT");
             
-            var create_region_date = new Date(booking_class_date + ' ' +  region_booking_time)
-            var class_end_time = moment(date).add(remain_time,'s').add(duration, 'h').format("LT");
-            var class_end_date = new Date(booking_class_date + ' ' +  class_end_time);
-            
-            $(".tutor_time_"+attr_id).text(region_booking_time);    
+            if (date1 < date2) {
+                $("#join_class_"+attr_id).html("");
+                $("#class_time_"+attr_id).html("Class Time Over");
+            } else {
+                var std_current_region_date = new Date().toLocaleString('en-US', { timeZone: tutor_time_zone });
+                var std_time_in_seconds = HmsToSeconds(moment(std_current_region_date).format('HH:mm:ss'));
 
-            let start_call = `<a href="{{url('tutor/class')}}/`+room_id+`"  class="schedule-btn"> Start Call </a>`;
-            
-            timer.start({countdown: true, startValues: {seconds: remain_time }});
-            timer.addEventListener('secondsUpdated', function (e) {
-                var current_time_text =  $("#class_time_"+attr_id).text();    
-                if( parseInt(remain_time) > 0) {
-                    $("#class_time_"+attr_id).html(timer.getTimeValues().toString());
-                    
-                    if($.trim(current_time_text) == "00:00:00") {
-                        $("#join_class_"+attr_id).html(start_call);
-                        $("#class_time_"+attr_id).html("");
+                var remain_time = (booking_seconds_time -  std_time_in_seconds);          
+                var date = new Date();
+
+                var moment_date = moment(date).format('YYYY-MM-DD');
+
+                var tutor_time_in_seconds = HmsToSeconds(moment(date).format('HH:mm:ss'));
+                // console.log(tutor_time_in_seconds , "tutor_time_in_seconds");
+                var region_booking_time = moment(date).add(remain_time,'s').format("LT");
+                
+                var create_region_date = new Date(booking_class_date + ' ' +  region_booking_time)
+                var class_end_time = moment(date).add(remain_time,'s').add(duration, 'h').format("LT");
+                var class_end_date = new Date(booking_class_date + ' ' +  class_end_time);
+                
+                $(".tutor_time_"+attr_id).text(region_booking_time);    
+
+                let start_call = `<a href="{{url('tutor/class')}}/`+room_id+`"  class="schedule-btn"> Start Call </a>`;
+                
+                timer.start({countdown: true, startValues: {seconds: remain_time }});
+                timer.addEventListener('secondsUpdated', function (e) {
+                    var current_time_text =  $("#class_time_"+attr_id).text();    
+                    if( parseInt(remain_time) > 0) {
+                        $("#class_time_"+attr_id).html(timer.getTimeValues().toString());
+                        
+                        if($.trim(current_time_text) == "00:00:00") {
+                            $("#join_class_"+attr_id).html(start_call);
+                            $("#class_time_"+attr_id).html("");
+                        }
+                    }else{
+                        $("#join_class_"+attr_id).html("");
+                        $("#class_time_"+attr_id).html("Class Time Over");
                     }
-                }else{
+
+                });
+
+                timer.addEventListener('targetAchieved', function (e) {
+                    var current_time_text =  $("#class_time_"+attr_id).text();    
+                    
+                    if( parseInt(remain_time) > 0) {
+                        if($.trim(current_time_text)  == "00:00:00") {
+                            $("#join_class_"+attr_id).html(start_call);
+                            $("#class_time_"+attr_id).html("");
+                        }
+                    }else{
+                        $("#join_class_"+attr_id).html("");
+                        $("#class_time_"+attr_id).html("Class Time Over");  
+                    }
+                    
+                });
+
+                if(date.getTime() > create_region_date.getTime() &&  date.getTime() < class_end_date.getTime()) {
+                    if(review == 0) {
+                        if(Math.abs(remain_time) > 0) {
+                            $("#join_class_"+attr_id).html(start_call);
+                            $("#class_time_"+attr_id).html("");
+                        }else{
+                            $("#join_class_"+attr_id).html("");
+                            $("#class_time_"+attr_id).html("Class Time Over");        
+                        }                    
+                    }
+                }else {
                     $("#join_class_"+attr_id).html("");
                     $("#class_time_"+attr_id).html("Class Time Over");
                 }
 
-            });
-
-            timer.addEventListener('targetAchieved', function (e) {
-                var current_time_text =  $("#class_time_"+attr_id).text();    
-                
-                if( parseInt(remain_time) > 0) {
-                    if($.trim(current_time_text)  == "00:00:00") {
-                        $("#join_class_"+attr_id).html(start_call);
-                        $("#class_time_"+attr_id).html("");
-                    }
-                }else{
-                    $("#join_class_"+attr_id).html("");
-                    $("#class_time_"+attr_id).html("Class Time Over");  
-                }
-                
-            });
-
-            if(date.getTime() > create_region_date.getTime() &&  date.getTime() < class_end_date.getTime()) {
-                if(review == 0) {
-                    if(Math.abs(remain_time) > 0) {
-                        $("#join_class_"+attr_id).html(start_call);
-                        $("#class_time_"+attr_id).html("");
-                    }else{
-                        $("#join_class_"+attr_id).html("");
-                        $("#class_time_"+attr_id).html("Class Time Over");        
-                    }                    
-                }
-            }else {
-                $("#join_class_"+attr_id).html("");
-                $("#class_time_"+attr_id).html("Class Time Over");
             }
 
         });

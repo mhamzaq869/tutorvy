@@ -667,6 +667,16 @@
     font-weight: 500;
 }
 
+.book-luli a {
+    display: block !important;
+    padding-top: 10px;
+    font-size: 14px;
+    font-family: "Poppins";
+    font-weight: 500;
+    color: #00132D;
+    text-decoration: none;
+}
+
 .main-bg-height-show {
     display: none;
 }

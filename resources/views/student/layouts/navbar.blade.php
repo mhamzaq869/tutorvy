@@ -195,8 +195,9 @@
             </li>
             <li class="nav-item profile-name1" id="imageDropdowns">
                 <div class="dropdown d-flex ">
-                    <a class="nav-link profile-name  pl-4 mr-3 mt-0 pb-0" href="#"
-                        data-toggle="dropdown" aria-expanded="true">
+               
+                    <a class="nav-link profile-name dd  pl-4 mr-3 mt-0 pb-0" href="#"
+                        data-toggle="dropdown" id="" aria-expanded="true">
                         {{Auth::user()->first_name}} {{Auth::user()->last_name}}
                         @if(Auth::user()->account_id != null)
                             <p class="text-mute mb-0">User Id# {{Auth::user()->account_id}}</p>
@@ -204,15 +205,15 @@
                     </a>
                     @auth
                         @if(Auth::user()->picture)
-                                <img class="profile-img profile-img2"  aria-expanded="true" src="{{asset(Auth::user()->picture) }}" data-toggle="dropdown" alt="profile">
+                                <img class="profile-img profile-img2 dd "  aria-expanded="true" src="{{asset(Auth::user()->picture) }}" data-toggle="dropdown" alt="profile">
                             
                         @else
-                            <img class="profile-img profile-img2"  aria-expanded="true" src="{{asset('assets/images/ico/Square-white.jpg') }}" data-toggle="dropdown" alt="profile">
+                            <img class="profile-img profile-img2 dd "  aria-expanded="true" src="{{asset('assets/images/ico/Square-white.jpg') }}" data-toggle="dropdown" alt="profile">
                         @endif
                     @else
-                    <img class="profile-img profile-img2"  aria-expanded="true" src="{{asset('assets/images/ico/Square-white.jpg') }}" data-toggle="dropdown" alt="profile">
+                    <img class="profile-img profile-img2 dd "  aria-expanded="true" src="{{asset('assets/images/ico/Square-white.jpg') }}" data-toggle="dropdown" alt="profile">
                     @endauth
-                    <ul class="dropdown-menu classdrop classdrop1 ">
+                    <ul class="dropdown-menu classdrop classdrop1 dd2">
                         <li>
                             <a tabindex="-1" class="" href="{{route('student.profileView',[Auth::user()->id])}}">
                                 Profile

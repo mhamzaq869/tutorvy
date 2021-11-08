@@ -104,17 +104,17 @@
                                 </a>
                             </li>
                             <li class="mt-3">
-                                <a href="subject/subject.html">
+                                <a href="{{ url('subject') }}">
                                     Subjects
                                 </a>
                             </li>
                             <li class="mt-3">
-                                <a href="tutor/find-tutor.html">
+                                <a href="{{ url('findtutor') }}">
                                     Find a tutor
                                 </a>
                             </li>
                             <li class="mt-3">
-                                <a href="course/course.html">
+                                <a href="{{ url('course') }}">
                                     Courses
                                 </a>
                             </li>
@@ -142,7 +142,7 @@
                                 </a>
                             </li>
                             <li class="mt-3">
-                                <a href="registerion/registration.html">
+                                <a href="{{ url('register') }}">
                                     Become a tutor
                                 </a>
                             </li>

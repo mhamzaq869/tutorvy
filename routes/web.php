@@ -396,6 +396,7 @@ Route::post('/resendOtp',[ResetPasswordController::class,'resendOtp'])->name('re
 
 //Route::view('/','welcome');
 Route::get('/',[GeneralController  ::class,'home']);
+Route::get('/subjects-all/{id}',[GeneralController::class,'displaySub'])->name('subjectGet');
 // Route::get('/',[GeneralController::class,'home']);
 
 Route::get('/widget',[FrontTutorController::class,'widgetTech'])->name('whiteBoard.canvas');
@@ -404,7 +405,8 @@ Route::view('/role','role');
 Route::get('/register_role',[GeneralController  ::class,'loginOnRole'])->name('register.role');
 Route::view('/tutor','frontend.tutor');
 Route::view('/student','frontend.student');
-Route::view('/subject','frontend.subject');
+//Route::view('/subject','frontend.subject');
+Route::get('/subject',[GeneralController  ::class,'subjects']);
 // Route::view('/course','frontend.course');
 
 Route::get('/course',[GeneralController::class,'course']);

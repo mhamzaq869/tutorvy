@@ -10,6 +10,7 @@ use App\Models\Activitylogs;
 use App\Models\General\Institute;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin\Subject;
+use App\Models\Admin\SubjectCategory;
 use App\Models\Course;
 use Illuminate\Support\Facades\Session;
 
@@ -17,17 +18,21 @@ class GeneralController extends Controller
 {
 
     public function home() {
-        // if(Auth::user()->role != null) {
-        //     if(Auth::user()->role != 2 && Auth::user()->role != 3) {
-        //         return redirect('/admin/dashboard');
-        //     }else{
-        //         return view('welcome');
-        //     }
-        // }else{
-        //     return view('welcome');
-        // }
-        
-        return view('welcome');
+     
+        $subjects = Subject::where('category_id',1)->get();
+        $main_sub = SubjectCategory::all();
+        return view('welcome',compact('subjects','main_sub'));
+    }
+
+    public function displaySub($id){
+        $subjects = Subject::where('category_id',$id)->get();
+        return response()->json($subjects);
+    }
+    public function subjects() {
+     
+        $subjects = Subject::where('category_id',1)->get();
+        $main_sub = SubjectCategory::all();
+        return view('frontend.subject',compact('subjects','main_sub'));
     }
 
     public function university(Request $request)

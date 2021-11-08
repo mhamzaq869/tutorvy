@@ -106,6 +106,12 @@ class BookingController extends Controller
     }
 
     public function booked(Request $request) {
+
+        $class_date = $request->date;
+        $class_time = $request->time;
+
+        
+
         $attachments = [];
         $path = '';
         if($request->hasFile('upload')){
