@@ -110,8 +110,8 @@ export default {
 .feed {
   background: #f0f0f0;
   height: 100% !important;
-  max-height: 470px;
-  overflow: scroll;
+  min-height: 470px;
+  overflow: auto;
   ul {
     list-style-type: none;
     padding: 5px;
