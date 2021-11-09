@@ -167,7 +167,7 @@
 
     </style>
 
-    <div class="content" style="width: 100%;background-color: #FBFBFB !important;">
+    <div class="content content-wrapper " style="width: 100%;background-color: #FBFBFB !important;">
         <div class="container-fluid">
             <p class="heading-first ml-4 ">Inbox</p>
             <div id="react"></div>

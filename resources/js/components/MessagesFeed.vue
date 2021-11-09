@@ -109,8 +109,8 @@ export default {
 <style lang="scss" scoped>
 .feed {
   background: #f0f0f0;
-  height: 100% !important;
-  min-height: 470px;
+  /*height: 100% !important;*/
+  height: 470px !important;
   overflow: auto;
   ul {
     list-style-type: none;

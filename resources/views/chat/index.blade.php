@@ -170,7 +170,7 @@
         }
     </style>
 
-    <div class="content" style="width: 100%;background-color: #FBFBFB !important;" id="app">
+    <div class="content content-wrapper " style="width: 100%;background-color: #FBFBFB !important;" id="app">
         <div class="container-fluid">
             <p class="heading-first ml-4 ">Inbox</p>
             <chat-app :user="{{Auth::user()}}"></chat-app>
