@@ -285,6 +285,15 @@
     /* background-color: #45CCFF; */
 }
 
+.div-center {
+    display: flex;
+    -ms-flex-pack: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    justify-content: right;
+    align-items: center;
+}
+
 
 /*  */
 

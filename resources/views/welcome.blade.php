@@ -6,7 +6,7 @@
  <div class="container-fluid learn-more m-0 p-0">
     <div class="row">
 
-        <div class="col-md-6 col-12 main-bg-height">
+        <div class="col-md-6 col-12 main-bg-height div-center">
             <div data-aos="fade-right" data-aos-anchor="#example-anchor" data-aos-offset="100"
                 data-aos-duration="1000" class="text-sectiom-one">
                 <p data-aos="flip-left" class="Learn-text Learn-text-home" style="line-height: 1.2;">
