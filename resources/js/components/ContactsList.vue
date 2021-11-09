@@ -11,7 +11,7 @@
         v-if="user.id != contact.id"
       >
         <span v-if="contact.picture != null">
-          <img :src="contact.picture" class="leftImg ml-1" />
+          <img :src="'../'+contact.picture" class="leftImg ml-1" />
         </span>
         <span v-else>
           <img
