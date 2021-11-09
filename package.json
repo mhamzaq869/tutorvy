@@ -38,6 +38,6 @@
         "vue-emoji-picker": "^1.0.3",
         "vue-highlight-words": "^2.0.0",
         "vue-upload-component": "^2.8.22",
-        "webpack": "^5.61.0"
+        "webpack": "^5.62.2"
     }
 }

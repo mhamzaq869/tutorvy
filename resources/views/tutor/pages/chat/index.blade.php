@@ -70,7 +70,7 @@
 
         .reciever p,
         .sender p {
-            width: 300px;
+            width: 219px;
             border: 1px solid #6EAAFF;
             border-radius: 5px;
             padding: 5px;
