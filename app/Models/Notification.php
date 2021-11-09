@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use LaravelFCM\Message\OptionsBuilder;
 use LaravelFCM\Message\PayloadDataBuilder;
 use LaravelFCM\Message\PayloadNotificationBuilder;
-use FCM;
+use LaravelFCM\Facades\FCM;
 use App\Models\User;
 
 class Notification extends Model
@@ -15,7 +15,7 @@ class Notification extends Model
     protected $fillable = ['sender_pic','receiver_id','slug','read_at','noti_type','noti_data','noti_title','noti_desc','noti_icon','btn_class'];
 
     public function scopeToSingleDevice($query,$token, $title, $body){
-        
+
         $optionBuilder = new OptionsBuilder();
         $optionBuilder->setTimeToLive(60 * 20);
 
@@ -34,10 +34,10 @@ class Notification extends Model
         $notification = $notificationBuilder->build();
         $data = $dataBuilder->build();
         $tokens = $token;
-        
+
         // print_r($data);exit;
         $downstreamResponse = FCM::sendTo($token, $option, $notification, $data);
-        
+
         //echo $downstreamResponse->numberSuccess();exit;
         $downstreamResponse->numberFailure();
         $downstreamResponse->numberModification();
@@ -52,7 +52,7 @@ class Notification extends Model
         return ;
     }
     public function scopeToMultiDevice($query,$user_id,$slug = NULL, $type = NULL ,$title = NULL , $icon = NULL , $btn_class = NULL , $body = NULL ,$pic = NULL){
-                                                
+
         $optionBuilder = new OptionsBuilder();
         $optionBuilder->setTimeToLive(60*20);
 
@@ -79,21 +79,17 @@ class Notification extends Model
         // You must change it to get your tokens
         $tokens = array();
         $user = User::where('id',$user_id)->first();
+
         if($user && ($user->token !='' || $user->token != null)){
             $tokens_obj = $user->token;
             // $tokens_obj = $model->pluck('device_token')->toArray();
             $tokens_obj = json_decode($tokens_obj);
-            for($i = 0; $i < sizeof($tokens_obj) ; $i++ ){
+            for($i = 0; $i < count($tokens_obj) ; $i++ ){
                 if($tokens_obj[$i]->token != null && $tokens_obj[$i]->token != ''){
                     array_push($tokens,$tokens_obj[$i]->token);
                 }
             }
-            // print_r($tokens);exit;
             $downstreamResponse = FCM::sendTo($tokens, $option, $notification, $data);
-            // echo $downstreamResponse->numberSuccess();exit;
-            // echo $downstreamResponse->numberFailure();exit();
-            // echo $downstreamResponse->numberModification();exit();
-    
             // return Array - you must remove all this tokens in your database
             $exp_tkns = $downstreamResponse->tokensToDelete();
             if($exp_tkns){
@@ -116,7 +112,7 @@ class Notification extends Model
         }else{
             return ;
         }
-        
+
 
         // return Array (key : oldToken, value : new token - you must change the token in your database)
         //$downstreamResponse->tokensToModify();
@@ -128,12 +124,12 @@ class Notification extends Model
     }
 
     public function scopeRead(){
-        
+
         return Notification::where('read_at',NULL)->where('receiver_id',\Auth::user()->id)->get();
-    }    
+    }
 
     public static function scopeNumberAlert($query,$user_id){
-        
+
         return Notification::where('read_at',NULL)->where('receiver_id',$user_id)->count();
     }
 }

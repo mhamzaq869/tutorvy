@@ -25,7 +25,7 @@ class ChatController extends Controller
 
     public function contactTutor($id)
     {
-        $message = Message::updateOrCreate(['sender_id' => Auth::id()],[
+        $message = Message::updateOrCreate(['recipient_id' => $id],[
                         'sender_id' => auth()->id(),
                         'recipient_id' => $id,
                         'content' => ''

@@ -36,7 +36,7 @@ $( '#book_tutor_form' ).on( 'submit', function(e) {
             success:function(response){
                 // console.log(response);
                 if(response.status == 200) {
-                    toastr.success('Booking Added Successfully!',{
+                    toastr.success(response.message,{
                         position: 'top-end',
                         icon: 'success',
                         showConfirmButton: false,
@@ -47,6 +47,15 @@ $( '#book_tutor_form' ).on( 'submit', function(e) {
                         window.location.href = "{{ route('student.bookings') }}";
                     }, 1500);
 
+                } else if(response.status == 400) {
+                        toastr.error(response.message,{
+                        position: 'top-end',
+                        icon: 'error',
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
+
+                    setInterval(function(){}, 1500);
                 }
             },
             complete:function(data) {

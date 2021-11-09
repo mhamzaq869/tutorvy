@@ -105,94 +105,119 @@ class BookingController extends Controller
        return view('student.pages.booking.booking',compact('tutor'));
     }
 
-    public function booked(Request $request) {
-
+    public function booked(Request $request)
+    {
         $class_date = $request->date;
         $class_time = $request->time;
 
-        
 
-        $attachments = [];
-        $path = '';
-        if($request->hasFile('upload')){
-            $path = 'storage/booking/docs/'.$request->upload->getClientOriginalName();
-            $request->upload->storeAs('booking/docs',$request->upload->getClientOriginalName(),'public');
-        }
+        $from_time = date("H:i", strtotime("$class_time"));
+        $to_time = date("H:i", strtotime("$from_time"."+".$request->duration."hours"));
 
-        $tutor = User::where('id',$request->tutor_id)->first();
-        $price = $request->subject_plan * $request->duration;
-
-        $booking = Booking::create([
-            'user_id' => Auth::user()->id,
-            'booked_tutor' => $request->tutor_id,
-            'subject_id' =>$request->subject,
-            'topic' => $request->topic,
-            'question' => $request->question,
-            'brief' => $request->brief,
-            'attachments' => $path,
-            'class_date' => $request->date,
-            'class_time' => $request->time,
-            'duration' => $request->duration,
-            'price' => $price,
-
+        DB::enableQueryLog();
+        $booking = DB::select("select * from `bookings` where booked_tutor = ? && class_date = ? && class_time BETWEEN ? AND ? || `class_booked_till` BETWEEN ? AND ?", [
+            $request->tutor_id,
+            $class_date,
+            $from_time,
+            $to_time,
+            $from_time,
+            $to_time
         ]);
 
-        $subject = Subject::where("id",$request->subject)->first();
+        $bookings = collect($booking);
 
-        // activity logs
-        $id = Auth::user()->id;
-        $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
-        $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> request for book a class of '.$subject->name ;
-        $activity_logs = new GeneralController();
-        $activity_logs->save_activity_logs("Class Booking", "bookings.id", $booking->id, $action_perform, $request->header('User-Agent'), $id);
-        $reciever_ids = [];
+        if($bookings->count() <= 0){
 
-        $reciever = User::where('role',1)->first();
+            $attachments = [];
+            $path = '';
+            if($request->hasFile('upload')){
+                $path = 'storage/booking/docs/'.$request->upload->getClientOriginalName();
+                $request->upload->storeAs('booking/docs',$request->upload->getClientOriginalName(),'public');
+            }
 
-        $notification = new NotifyController();
-        $slug = URL::to('/') . '/tutor/booking-detail/'. $booking->id  ;
-        $type = 'class_booking';
-        $title = 'Class Booking Request';
-        $icon = 'fas fa-tag';
-        $class = 'btn-success';
-        $desc = $name . ' request for book a class of '.$subject->name;
-        $pic = Auth::user()->picture;
+            $tutor = User::where('id',$request->tutor_id)->first();
+            $price = $request->subject_plan * $request->duration;
 
-        // tutor notification
-        $notification->GeneralNotifi($request->tutor_id ,$slug,$type,$title,$icon,$class,$desc,$pic);
+            $booking = Booking::create([
+                'user_id' => Auth::user()->id,
+                'booked_tutor' => $request->tutor_id,
+                'subject_id' =>$request->subject,
+                'topic' => $request->topic,
+                'question' => $request->question,
+                'brief' => $request->brief,
+                'attachments' => $path,
+                'class_date' => $request->date,
+                'class_time' => $request->time,
+                'class_booked_till' => $to_time,
+                'duration' => $request->duration,
+                'price' => $price,
 
-        // admin notification
-        $notification->GeneralNotifi($reciever->id ,$slug,$type,$title,$icon,$class,$desc,$pic);
+            ]);
+
+            $subject = Subject::where("id",$request->subject)->first();
+
+            // activity logs
+            $id = Auth::user()->id;
+            $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
+            $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> request for book a class of '.$subject->name ;
+            $activity_logs = new GeneralController();
+            $activity_logs->save_activity_logs("Class Booking", "bookings.id", $booking->id, $action_perform, $request->header('User-Agent'), $id);
+            $reciever_ids = [];
+
+            $reciever = User::where('role',1)->first();
+
+            $notification = new NotifyController();
+            $slug = URL::to('/') . '/tutor/booking-detail/'. $booking->id  ;
+            $type = 'class_booking';
+            $title = 'Class Booking Request';
+            $icon = 'fas fa-tag';
+            $class = 'btn-success';
+            $desc = $name . ' request for book a class of '.$subject->name;
+            $pic = Auth::user()->picture;
+
+            // tutor notification
+            $notification->GeneralNotifi($request->tutor_id ,$slug,$type,$title,$icon,$class,$desc,$pic);
+
+            // admin notification
+            $notification->GeneralNotifi($reciever->id ,$slug,$type,$title,$icon,$class,$desc,$pic);
 
 
-        // timezone
-        if($request->current_date != null && $request->current_date != "") {
+            // timezone
+            if($request->current_date != null && $request->current_date != "") {
 
-            $booking_region =  substr($request->current_date ,25,50);
+                $booking_region =  substr($request->current_date ,25,50);
 
-            if(Auth::user()->region != null && Auth::user()->region != "") {
+                if(Auth::user()->region != null && Auth::user()->region != "") {
 
+                    if(Auth::user()->region != $booking_region) {
+                        User::where('id', Auth::user()->id)->update([
+                            "region" => $booking_region,
+                        ]);
+                    }
 
-                if(Auth::user()->region != $booking_region) {
+                }else{
+
                     User::where('id', Auth::user()->id)->update([
                         "region" => $booking_region,
                     ]);
+
                 }
-
-            }else{
-
-                User::where('id', Auth::user()->id)->update([
-                    "region" => $booking_region,
-                ]);
 
             }
 
-        }
+            return response()->json([
+                'status'=>200,
+                'type' => 'success',
+                'message' => 'Booking Added Successfully!'
+            ]);
 
-        return response()->json([
-            'status'=>200,
-            'message' => 'success'
-        ]);
+        }else{
+            return response()->json([
+                'status'=>400,
+                'type' => 'error',
+                'message' => 'Class is already booked between '.date("h:i A",strtotime($bookings->min('class_time'))).' to '.date("h:i A",strtotime($bookings->max('class_booked_till')))
+            ]);
+        }
     }
 
     public function bookingPayment(Request $request,$id)
@@ -320,51 +345,60 @@ class BookingController extends Controller
         $booking = Booking::find($id);
 
         $refund_amount = $booking->price;
-        $saleId = $booking->payment->first()->sale_id;
+        $saleId = Payments::where('type_id',$booking->id)->first() ?? '';
 
-        $paymentValue =  (string) round($refund_amount,2); ;
+        if($saleId){
+                $paymentValue =  (string) round($refund_amount,2); ;
 
-        // ### Refund amount
-        // Includes both the refunded amount (to Payer)
-        // and refunded fee (to Payee). Use the $amt->details
-        // field to mention fees refund details.
-        $amt = new Amount();
-        $amt->setCurrency('USD')
-            ->setTotal($paymentValue);
+                // ### Refund amount
+                // Includes both the refunded amount (to Payer)
+                // and refunded fee (to Payee). Use the $amt->details
+                // field to mention fees refund details.
+                $amt = new Amount();
+                $amt->setCurrency('USD')
+                    ->setTotal($paymentValue);
 
-        // ### Refund object
-        $refundRequest = new RefundRequest();
-        $refundRequest->setAmount($amt);
+                // ### Refund object
+                $refundRequest = new RefundRequest();
+                $refundRequest->setAmount($amt);
 
-        // ###Sale
-        // A sale transaction.
-        // Create a Sale object with the
-        // given sale transaction id.
-        $sale = new Sale();
-        $sale->setId($saleId);
-        try {
-            $refundedSale = $sale->refundSale($refundRequest, $this->_api_context);
-        } catch (\Exception $ex) {
-            dd($ex);
-            exit(1);
-        }
+                // ###Sale
+                // A sale transaction.
+                // Create a Sale object with the
+                // given sale transaction id.
+                $sale = new Sale();
+                $sale->setId($saleId);
+                try {
+                    $refundedSale = $sale->refundSale($refundRequest, $this->_api_context);
+                } catch (\Exception $ex) {
+                    dd($ex);
+                    exit(1);
+                }
 
-        if($refundedSale->state == 'completed'){
+                if($refundedSale->state == 'completed'){
 
-            Payments::create([
-                'user_id' => Auth::user()->id,
-                'type' => 'payment_refund',
-                'transaction_id' => $booking->payment->first()->transaction_id,
-                'sale_id' => $refundedSale->sale_id ?? '',
-                'amount'  => $refundedSale->amount->total,
-                'method'  => 'paypal'
-            ]);
+                    Payments::create([
+                        'user_id' => Auth::user()->id,
+                        'type' => 'payment_refund',
+                        'transaction_id' => $booking->payment->first()->transaction_id,
+                        'sale_id' => $refundedSale->sale_id ?? '',
+                        'amount'  => $refundedSale->amount->total,
+                        'method'  => 'paypal'
+                    ]);
+
+                    $booking->status = 4;
+                    $booking->save();
+                }
+                    return redirect()->route('student.bookings')->with('success', '$'.$refundedSale->amount->total.' amount has been refunded to your account successfully!');
+
+        }else{
 
             $booking->status = 4;
             $booking->save();
+
+        return redirect()->route('student.bookings')->with('success', 'Booking has been successfully!');
         }
 
-        return redirect()->route('student.bookings')->with('success', '$'.$refundedSale->amount->total.' amount has been refunded to your account successfully!');
     }
 
     public function coursePayment(Request $request,$id)
