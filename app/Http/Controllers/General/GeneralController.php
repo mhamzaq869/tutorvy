@@ -35,6 +35,16 @@ class GeneralController extends Controller
         return view('frontend.subject',compact('subjects','main_sub'));
     }
 
+    public function blog() {
+ 
+        return view('frontend.blog');
+    }
+
+    public function career() {
+ 
+        return view('frontend.career');
+    }
+
     public function university(Request $request)
     {
 

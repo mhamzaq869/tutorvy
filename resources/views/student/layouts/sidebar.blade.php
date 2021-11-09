@@ -34,6 +34,14 @@
                      </span>
                  </a>
              </li>
+             <li class="btn mt-3 @if(\Request::path() === 'student/classroom') active @endif">
+                 <a href="{{route('student.classroom')}}" aria-expanded="false">
+                     <img class="class-sid mr-2" src="{{asset('assets/images/ico/class-ico.png')}}" alt="class-ico">
+                     <span class="class-show mt-3">
+                     Courses
+                     </span>
+                 </a>
+             </li>
              <li class="btn mt-3">
                 <a href="./Subjects/subject.html">
                     <img class="subject-sid mr-2" src="{{asset('assets/images/ico/find-ico.png')}}" alt="Tutor">

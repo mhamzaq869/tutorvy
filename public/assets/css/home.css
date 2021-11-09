@@ -1037,3 +1037,140 @@
 .pd-btn {
     padding: 14px 11px!important
 }
+
+
+/*Blog*/
+
+.latest-btn {
+    background-color: #d4e4fc;
+    padding: 5px;
+    width: 140px;
+    font-size: 16px;
+    font-family: "Poppins";
+    border-radius: 4px;
+    border: 1px solid #d4e4fc;
+    cursor: pointer;
+    font-weight: 400;
+    color: #00132D;
+}
+
+.latest-btn:hover {
+    background-color: #ffffff;
+}
+
+.img-blog1 img {
+    transition: all 0.7s;
+    cursor: pointer;
+}
+
+.img-blog1 img:hover {
+    transform: scale(0.9);
+}
+
+.img-blog1 img {
+    transition: all 0.7s;
+    cursor: pointer;
+}
+
+.img-blog1 img {
+    border-radius: 8px;
+}
+
+.text-blog-pro {
+    font-size: 20px;
+    position: relative;
+    top: -10px;
+    left: 10px;
+    font-family: "Poppins";
+    font-weight: 600;
+}
+
+.text-tutor {
+    font-size: 16px;
+    position: relative;
+    top: -28px;
+    left: 75px;
+    font-family: "Poppins";
+    font-weight: 500;
+}
+
+
+/*Career*/
+
+.font-size-web {
+    font-size: 32px;
+    font-weight: 400;
+}
+
+.career-tabs {
+    text-align: center;
+}
+
+.career-tabs button {
+    padding: 9px;
+    border-radius: 40px;
+    outline: none;
+    cursor: pointer;
+    background-color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 1px solid #A7B5BF;
+    text-align: center !important;
+}
+
+.career-tabs button.active {
+    background-color: #C3DBFF;
+    color: #001524;
+}
+
+.careers li {
+    display: block;
+    margin: 0%;
+    padding: 0px;
+    font-family: "Poppins";
+    font-weight: 400;
+}
+
+.responsibilities-text {
+    font-size: 18px;
+    font-weight: 600;
+    font-family: "Poppins";
+    color: #001524;
+}
+
+.career-card-header {
+    background-color: #F5F6F6;
+    padding-top: 25px !important;
+    padding-bottom: 25px !important;
+    border-radius: 9px;
+}
+
+.career-card-header .card-title-1 {
+    font-size: 14px;
+    font-family: "Poppins";
+    font-weight: 400 !important;
+    font-style: italic;
+}
+
+.career-card-header .card-title {
+    font-size: 16px;
+    font-family: "Poppins";
+    font-weight: 400;
+}
+
+.career-card-header.collapsed:after {
+    content: "\f067";
+}
+
+.career-card-header:after {
+    font-family: 'FontAwesome';
+    float: right;
+    content: "\f067";
+}
+
+
+/* 
+.tab-mobile-s button {
+    display: inline !important;
+    font-size: 14px !important;
+} */

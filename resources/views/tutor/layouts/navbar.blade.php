@@ -13,7 +13,7 @@
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
                     &times;
                 </a>
-                <ul>
+                <!-- <ul>
                     <li class="btn w-100 mt-3 active">
                         <a href="#" data-toggle="" aria-expanded="false" class="">
                             <img src="{{asset('assets/images/ico/dash-ico.png') }}" alt="dash-ico" class=" mr-2">
@@ -62,7 +62,92 @@
                             Settings
                         </a>
                     </li>
+                </ul> -->
+                <ul class="list-unstyled componentsX" id="sidenav-hide">
+                    <li class="btn @if(\Request::path() === 'tutor/dashboard') active @endif  w-100 mt-3">
+                        <a href="{{route('tutor.dashboard')}}" data-toggle="" aria-expanded="false">
+                            <img src="{{asset('assets/images/ico/dash-ico.png') }}" alt="dasborad-ico" class=" mr-2">
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="btn @if(\Request::path() === 'tutor/booking') active @endif w-100">
+                        <a href="{{route('tutor.booking')}}" aria-expanded="false" class="">
+                            <img src="{{asset('assets/images/ico/book-icons.png') }}" alt="book-ico" class=" mr-2">
+                            Bookings
+                        </a>
+                    </li>
+                    <li class="btn @if(\Request::path() === 'tutor/classroom') active @endif w-100">
+                        <a href="{{route('tutor.classroom')}}">
+                            <img src="{{asset('assets/images/ico/class-ico.png') }}" alt="class-ico" class=" mr-2">
+                            Classroom
+                        </a>
+                    </li>
+                    <li class="btn @if(\Request::path() === 'tutor/couser') active @endif w-100">
+                        <a href="{{route('tutor.course')}}">
+                            <img src="{{asset('assets/images/manage-icon.svg')}}" alt="class-ico" style="filter: invert(1)" class="mr-2">
+                            Courses
+                        </a>
+                    </li>
+                    <li class="btn  @if(\Request::path() === 'tutor/subjects') active @endif w-100">
+                        <a href="{{route('tutor.subject')}}">
+                            <img src="{{asset('assets/images/ico/subject-ico.png') }}" alt="subject-ico" class=" mr-2">
+                            Subjects
+                        </a>
+                    </li>
+                    <!-- <li class="btn  @if(\Request::path() === 'tutor/reviews') active @endif w-100">
+                        <a href="{{route('tutor.reviews')}}">
+                            <img src="{{asset('assets/images/ico/subject-ico.png') }}" alt="subject-ico" class=" mr-2">
+                            Reviews
+                        </a>
+                    </li> -->
+                    <li class="btn @if(\Request::path() === 'tutor/calendar') active @endif w-100">
+                        <a href="{{route('tutor.calendar')}}">
+                            <img src="{{asset('assets/images/ico/calender-ico.png') }}" alt="calender-ico" class=" mr-2">
+                            Calendar
+                        </a>
+                    </li>
+                    <li class="btn @if(\Request::path() === 'tutor/history') active @endif w-100">
+                        <a href="{{route('tutor.history')}}">
+                            <img src="{{asset('assets/images/ico/history-ico.png') }}" alt="history-ico" class=" mr-2">
+                            Support
+                        </a>
+                    </li>
+                    <li class="btn @if(\Request::path() === 'tutor/payment') active @endif w-100">
+                        <a href="{{route('tutor.payment')}}">
+                            <img src="{{asset('assets/images/ico/payment-ico.png') }}" alt="payment-ico" class=" mr-2">
+                            Payment
+                        </a>
+                    </li>
+                    <li class="btn @if(\Request::path() === 'tutor/settings') active @endif w-100">
+                        <a href="{{route('tutor.settings')}}">
+                            <img src="{{asset('assets/images/ico/setting-ico.png') }}" alt="setting-ico" class=" mr-2">
+                            Settings
+                        </a>
+                    </li>
                 </ul>
+                <!--  sideanv bottom support -->
+                    <div class="container-fluid">
+                        <a href="#" data-toggle="modal" data-target="#supportModal" style="text-decoration:none;">
+                            <div class=" text-center">
+
+                                <img src="{{asset('assets/images/backgrounds/man.svg') }}" alt="background-image">
+                                <div class="support">
+                                    <div class="text-side text-left">
+                                        <p class="ml-2 mr-2 mt-2 pt-3 pt-2 support-text">
+                                            Support
+                                        </p>
+                                        <p class="ml-2 mr-2 support-text1">
+                                            Contact 24/7 if you need only support
+                                        </p>
+                                        <p class="ml-2 mr-2 support-text2">
+                                            LEARN MORE &nbsp;
+                                            <img src="{{asset('assets/images/ico/arrow-left.png')}}" alt="left-arrow-ico">
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
             </div>
             <!-- sidenav -->
             <ul class="ml-5">

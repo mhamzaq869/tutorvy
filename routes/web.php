@@ -416,6 +416,10 @@ Route::get('/findtutor/{subject?}',[FrontTutorController::class,'index']);
 Route::post('/findtutor',[FrontTutorController::class,'filterTutor'])->name('find.tutor');
 Route::get('/tutor-profile/{id}',[FrontTutorController::class,'profileTutor'])->name('profile.tutor');
 
+
+// Blog
+Route::get('/blog',[GeneralController::class,'blog'])->name('blog');
+Route::get('/career',[GeneralController::class,'career'])->name('career');
 /*
 |--------------------------------------------------------------------------
 | Ajax Calls Routes

@@ -65,7 +65,7 @@
                                 </a>
                             </li>
                             <li class="mt-3">
-                                <a href="blog/blog.html">
+                                <a href="{{route('blog')}}">
                                     Blog
                                 </a>
                             </li>
@@ -75,7 +75,7 @@
                                 </a>
                             </li>
                             <li class="mt-3">
-                                <a href="careers/careers.html">
+                                <a href="{{route('career')}}">
                                     Careers
                                 </a>
                             </li>
