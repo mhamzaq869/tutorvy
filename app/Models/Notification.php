@@ -97,11 +97,10 @@ class Notification extends Model
             $exp_tkns = $downstreamResponse->tokensToDelete();
             
             if($exp_tkns){
-                // print_r($exp_tkns);exit;
                 $new_arr = array();
                 for($k = 0; $k < sizeof($tokens_obj) ; $k++ ){
                     for($t = 0 ;$t<sizeof($exp_tkns);$t++){
-                        if($exp_tkns[$t] != $tokens_obj[$k]->token){
+                        if($exp_tkns[$t] != $tokens_obj[$k]['token']){
                             $fcm_data = array();
                             $fcm_data['token'] = $tokens_obj[$k]['token'];
                             $fcm_data['device'] = $tokens_obj[$k]['device'];
