@@ -115,7 +115,7 @@ class BookingController extends Controller
         $to_time = date("H:i", strtotime("$from_time"."+".$request->duration."hours"));
 
         DB::enableQueryLog();
-        $booking = DB::select("select * from `bookings` where booked_tutor = ? && class_date = ? && class_time BETWEEN ? AND ? || `class_booked_till` BETWEEN ? AND ?", [
+        $booking = DB::select("select * from `bookings` where booked_tutor = ? && class_date = ? && class_time BETWEEN ? AND ? && `class_booked_till` BETWEEN ? AND ?", [
             $request->tutor_id,
             $class_date,
             $from_time,
@@ -123,7 +123,7 @@ class BookingController extends Controller
             $from_time,
             $to_time
         ]);
-
+        // dd(DB::getQueryLog());
         $bookings = collect($booking);
 
         if($bookings->count() <= 0){
@@ -326,7 +326,7 @@ class BookingController extends Controller
             return redirect()->back();
         }else{
             //Payment Through Paypal
-            $redirect_url = $this->paypalPayment($total_price,$booking);
+            $redirect_url = $this->paypalPayment($total_price,$booking,'booking');
 
             if(isset($redirect_url)) {
                 return redirect()->away($redirect_url);
@@ -345,7 +345,7 @@ class BookingController extends Controller
         $booking = Booking::find($id);
 
         $refund_amount = $booking->price;
-        $saleId = Payments::where('type_id',$booking->id)->first() ?? '';
+        $saleId = Payments::where('type_id',$booking->id)->first()->sale_id ?? '';
 
         if($saleId){
                 $paymentValue =  (string) round($refund_amount,2); ;
@@ -500,7 +500,7 @@ class BookingController extends Controller
             }else{
                 //Payment Through Paypal
                 Session::put('plan',$request->plan);
-                $redirect_url = $this->paypalPayment($request->amount,$course);
+                $redirect_url = $this->paypalPayment($request->amount,$course,'course');
                 if(isset($redirect_url)) {
                     return redirect()->away($redirect_url);
                 }
@@ -526,7 +526,7 @@ class BookingController extends Controller
 
     }
 
-    private function paypalPayment($total_price,$booking)
+    private function paypalPayment($total_price,$booking,$type)
     {
             $payerEmail = DB::table('payment_methods')
                                 ->where('user_id',Auth::user()->id)
@@ -589,6 +589,7 @@ class BookingController extends Controller
                 }
             }
             Session::put('booking_id', $booking->id);
+            Session::put('booking_type', $type);
             Session::put('payment_id', $payment->getId());
 
             return $redirect_url;
@@ -597,6 +598,7 @@ class BookingController extends Controller
     public function getPaymentStatus(Request $request)
     {
         $payment_id = Session::get('payment_id');
+        $booking_type = Session::get('booking_type');
         $booking_id = Session::get('booking_id');
 
         Session::forget('payment_id');
@@ -620,8 +622,14 @@ class BookingController extends Controller
                 mt_rand( 0, 0x2Aff ), mt_rand( 0, 0xffD3 ), mt_rand( 0, 0xff4B )
             );
             // return $red;
-            $booking = Booking::where('id',$booking_id)->first();
-            $course = Course::where('id',$booking_id)->first();
+            $booking = null;
+
+            if($booking_type == 'booking'):
+                $booking = Booking::where('id',$booking_id)->first();
+            elseif($booking_type == 'course'):
+
+                $course = Course::where('id',$booking_id)->first();
+            endif;
 
             if($booking != null){
                 $subject = Subject::where('id',$booking->subject_id)->first();
@@ -629,6 +637,7 @@ class BookingController extends Controller
                 $booking->service_fee =  Session::get('service_fee');
                 $booking->save();
             }else{
+
                 CourseEnrollment::create([
                     'user_id' => Auth::user()->id,
                     'course_id' => $course->id,
@@ -660,27 +669,29 @@ class BookingController extends Controller
                 'classroom_id' => $classroom_id
             ]);
 
+
             $id = Auth::user()->id;
             $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
             $action_perform = '<a href="'.URL::to('/') . '/admin/student/profile/'. $id .'"> '.$name.' </a> Payment success';
             $activity_logs = new GeneralController();
-            $activity_logs->save_activity_logs("Payment Success", "users.id", $id, $action_perform, $request->header('User-Agent'), $id);
+            $activity_logs->save_activity_logs("Payment Success", "users.id", $id, $action_perform, \Request::header('User-Agent'), $id);
 
             $admin = User::where('role',1)->first();
 
             $notification = new NotifyController();
-            $slug = URL::to('/') . '/tutor/booking-detail/' . $booking->id;
-            $type = 'booking_confirmed';
-            $title = 'Booking Confirmed';
+            $slug = ($booking != null) ? URL::to('/') . '/tutor/booking-detail/' . $booking->id : URL::to('/') . '/tutor/course-detail/' . $course->id;
+            $type = ($booking != null) ? 'booking_confirmed' : 'course_enrlled';
+            $title = ($booking != null) ? 'Booking Confirmed' : 'Course Enrolled';
             $icon = 'fas fa-tag';
             $class = 'btn-success';
-            $desc = $name . ' Paid for Class of ' . $subject->name;
+            $desc = ($booking != null) ? $name . ' Paid for Class of ' . $subject->name : $name.' Paid for Course of '. $course->title;
             $pic = Auth::User()->picture;
-            $notification->GeneralNotifi($booking->booked_tutor ,$slug,$type,$title,$icon,$class,$desc,$pic);
+            $notification->GeneralNotifi($booking->booked_tutor ?? $course->user_id,$slug,$type,$title,$icon,$class,$desc,$pic);
 
             // send to admin
-            $admin_slug = URL::to('/') . '/admin/booking-detail/' . $booking->id;
+            $admin_slug = ($booking != null) ? URL::to('/') . '/admin/booking-detail/' . $booking->id : URL::to('/') . '/tutor/course-detail/' . $course->id;
             $notification->GeneralNotifi($admin->id,$admin_slug,$type,$title,$icon,$class,$desc,$pic);
+
 
             return redirect()->route('student.bookings');
         }
@@ -694,8 +705,15 @@ class BookingController extends Controller
         $total_price = Session::get('amount');
 
         $booking_id = Session::get('bookingId');
-        $booking = Booking::where('id',$booking_id)->first();
-        $course = Course::where('id',$booking_id)->first();
+        $booking_type = Session::get('booking_type');
+
+        $booking = null;
+
+        if($booking_type == 'booking'):
+            $booking = Booking::where('id',$booking_id)->first();
+        elseif($booking_type == 'course'):
+            $course = Course::where('id',$booking_id)->first();
+        endif;
 
         if($booking != null){
             $subject = Subject::where('id',$booking->subject_id)->first();
@@ -846,6 +864,8 @@ class BookingController extends Controller
         $booking->class_time = $request->time;
         $booking->reschedule_note = $request->note;
         $booking->save();
+
+        \Session::flash('success','You have successfully reschedule this booking');
 
         return redirect()->back();
     }

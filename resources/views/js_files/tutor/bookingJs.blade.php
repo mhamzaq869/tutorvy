@@ -49,4 +49,8 @@ function acceptBookingRequest(){
 
 }
 
+function hideCard() {
+    $(".successCard").hide('slow');
+}
+
 </script>

@@ -28,10 +28,10 @@
                             <small>
                                     Booking Details and all about your schedule for meetings <a href="#">Learn More</a>
                             </small>
-                            <a href="#" class="cross pull-right"  onclick="hideCard()"> 
+                            <a href="#" class="cross pull-right"  onclick="hideCard()">
                                 <i class="fa fa-times" aria-hidden="true"></i>
                             </a>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -41,13 +41,13 @@
                     <div class="nav nav-stwich pb-0" id="nav-tab" role="tablist">
                         <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
                             href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
-                            All 
+                            All
                             <span class="counter-text bg-primary all_counts" id="all_counts">{{count($all)}}</span>
                         </a>
                         <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
                             href="#nav-contact" role="tab" aria-controls="nav-contact"
                             aria-selected="false">
-                            Pending 
+                            Pending
                             <span class="counter-text bg-warning pending_counts" id="pending_counts"> {{count($pending)}} </span>
                         </a>
                         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
@@ -56,7 +56,7 @@
                             Confirmed
                             <span class="counter-text bg-success confirmed_counts" id="confirmed_counts">{{count($confirmed)}}</span>
                         </a>
-                      
+
                         <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about"
                             role="tab" aria-controls="nav-about" aria-selected="false">
                             Completed
@@ -81,6 +81,9 @@
                                                 <tr
                                                     style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
                                                     <th scope="col">
+                                                        Student
+                                                    </th>
+                                                    <th scope="col">
                                                         Subjects
                                                     </th>
                                                     <th scope="col">
@@ -89,7 +92,7 @@
                                                     <th scope="col">
                                                         Time
                                                     </th>
-                                                  
+
                                                     <th scope="col">
                                                         Duration
                                                     </th>
@@ -127,7 +130,7 @@
                                                             <td class="pt-4">
                                                             {{$time}} - {{$booking->class_date }}
                                                             </td>
-                                                           
+
                                                             <td class="pt-4">
                                                                 &nbsp;{{$booking->duration}} Hour(s)
                                                             </td>
@@ -144,15 +147,23 @@
                                                                     Approved
                                                                 </span>
                                                                 @elseif($booking->status == 0)
-                                                                <span class="bg-color-apporve">
+                                                                <span class="bg-color-apporve2">
                                                                     Pending
+                                                                </span>
+                                                                @elseif($booking->status == 3)
+                                                                <span class="bg-color-apporve">
+                                                                    Cancelled
+                                                                </span>
+                                                                @elseif($booking->status == 4)
+                                                                <span class="bg-color-apporve">
+                                                                    Cancelled
                                                                 </span>
                                                                 @endif
                                                             </td>
 
                                                             <td style="text-align: center;">
                                                                 <a class="schedule-btn" href="{{route('tutor.booking.detail',[$booking->id])}}">
-                                                                  
+
                                                                         View details
                                                                 </a>
                                                             </td>
@@ -170,7 +181,7 @@
                             </div>
                             <!-- end -->
                     </div>
-                    
+
                     <div class="tab-pane tab-border-none fade" id="nav-profile" role="tabpanel"
                         aria-labelledby="nav-profile-tab">
                             <div class="container-fluid ">
@@ -180,6 +191,7 @@
                                             <thead>
                                                 <tr
                                                     style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
+                                                    <th scope="col">Student</th>
                                                     <th scope="col">Subjects </th>
                                                     <th scope="col">Topic</th>
                                                     <th scope="col">Time</th>
@@ -209,7 +221,7 @@
                                                     <td class="pt-4">
                                                         {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
                                                     </td>
-                                                   
+
                                                     <td class="pt-4">
                                                         &nbsp;{{$booking->duration}} Hour(s)
                                                     </td>
@@ -226,11 +238,11 @@
                                                                 Approved
                                                             </span>
                                                         @elseif($booking->status == 0)
-                                                            <span class="bg-color-apporve">
+                                                            <span class="bg-color-apporve2">
                                                                 Pending
                                                             </span>
                                                         @endif
-                                                    </td>        
+                                                    </td>
                                                     <td style="text-align: center;">
                                                         <a href="{{route('tutor.booking.detail',[$booking->id])}}">
                                                             <button class="schedule-btn" type="button">
@@ -239,12 +251,12 @@
                                                         </a>
                                                     </td>
                                                 </tr>
-                                                  
+
                                                 @endforeach
                                             @else
                                                 <td>No Booking Found</td>
                                             @endif
-                                            
+
 
                                                 </tbody>
                                             </table>
@@ -253,7 +265,7 @@
                                 </div>
                                 <!-- end -->
                             </div>
-                    
+
 
                         <div class="tab-pane tab-border-none fade" id="nav-contact" role="tabpanel"
                             aria-labelledby="nav-contact-tab">
@@ -266,6 +278,7 @@
                                                 <thead>
                                                     <tr
                                                         style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
+                                                        <th scope="col">Student</th>
                                                         <th scope="col">Subjects </th>
                                                         <th scope="col">Topic</th>
                                                         <th scope="col">Time</th>
@@ -296,7 +309,7 @@
                                                         <td class="pt-4">
                                                             {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
                                                         </td>
-                                                        
+
                                                         <td class="pt-4">
                                                             &nbsp;{{$booking->duration}} Hour(s)
                                                         </td>
@@ -313,11 +326,11 @@
                                                                     Approved
                                                                 </span>
                                                             @elseif($booking->status == 0)
-                                                                <span class="bg-color-apporve">
+                                                                <span class="bg-color-apporve2">
                                                                     Pending
                                                                 </span>
                                                             @endif
-                                                        </td> 
+                                                        </td>
                                                         <td style="text-align: center;">
                                                             <a href="{{route('tutor.booking.detail',[$booking->id])}}">
                                                                 <button class="schedule-btn" type="button">
@@ -350,6 +363,7 @@
                                                 <thead>
                                                     <tr
                                                         style="font-family: Poppins;font-size: 14px;color: #00132D; border-top: 1px solid #D6DBE2;border-bottom: 1px solid #D6DBE2;">
+                                                        <th scope="col">Student </th>
                                                         <th scope="col">Subjects </th>
                                                         <th scope="col">Topic</th>
                                                         <th scope="col">Time</th>
@@ -382,7 +396,7 @@
                                                         <td class="pt-4">
                                                             {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
                                                         </td>
-                                                        
+
                                                         <td class="pt-4">
                                                             &nbsp;{{$booking->duration}} Hour(s)
                                                         </td>
@@ -403,7 +417,7 @@
                                                                     Pending
                                                                 </span>
                                                             @endif
-                                                        </td> 
+                                                        </td>
                                                         <td style="text-align: center;">
                                                             <a href="{{route('tutor.booking.detail',[$booking->id])}}">
                                                                 <button class="schedule-btn" type="button">
@@ -454,7 +468,7 @@
                                                     @foreach ($cancelled as $booking)
                                                     <tr>
                                                         <td class="pt-4">
-                                                            
+
                                                             {{$booking->user->fullname}}
                                                         </td>
                                                         <td class="pt-4">
@@ -466,7 +480,7 @@
                                                         <td class="pt-4">
                                                             {{date("g:i a", strtotime("$booking->class_time UTC"))}} - {{$booking->class_date }}
                                                         </td>
-                                                        
+
                                                         <td class="pt-4">
                                                             &nbsp;{{$booking->duration}} Hour(s)
                                                         </td>
@@ -483,11 +497,19 @@
                                                                     Approved
                                                                 </span>
                                                             @elseif($booking->status == 0)
-                                                                <span class="bg-color-apporve">
+                                                                <span class="bg-color-apporve2">
                                                                     Pending
                                                                 </span>
+                                                            @elseif($booking->status == 3)
+                                                                <span class="bg-color-apporve">
+                                                                    Cancelled
+                                                                </span>
+                                                            @elseif($booking->status == 4)
+                                                                <span class="bg-color-apporve">
+                                                                    Cancelled
+                                                                </span>
                                                             @endif
-                                                        </td> 
+                                                        </td>
                                                         <td style="text-align: center;">
                                                             <a href="{{route('tutor.booking.detail',[$booking->id])}}">
                                                                 <button class="schedule-btn" type="button">

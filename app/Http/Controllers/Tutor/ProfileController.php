@@ -55,12 +55,12 @@ class ProfileController extends Controller
             'gender' => $request->gender,
             'bio' => $request->bio,
         );
-        
+
         if($request->hasFile('filepond')){
             $data['picture'] = 'storage/profile/'.$request->filepond->getClientOriginalName();
             $request->filepond->storeAs('profile',$request->filepond->getClientOriginalName(),'public');
         }
-        
+
         User::where('id',$request->user_id)->update($data);
 
         $location = DB::table('search_locations')->where('name', $request->country)->first();
@@ -72,7 +72,7 @@ class ProfileController extends Controller
         }
 
         // activity logs
-        $id = Auth::user()->id; 
+        $id = Auth::user()->id;
         $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
         $action_perform = '<a href="'.URL::to('/') . '/admin/tutor/profile/'. $id .'"> '.$name.' </a> Update his Profile';
         $activity_logs = new GeneralController();
@@ -88,12 +88,13 @@ class ProfileController extends Controller
             "success" => true,
             "message" => "Profile Updated Successfully",
             "path" => (array_key_exists("picture",$data) ? $data['picture'] : Auth::user()->picture ),
-        ]); 
+        ]);
 
     }
 
     public function updateProfileEdu($user_id ,Request $request) {
-                
+
+        dd($request->all());
         $docs = [];
 
         if($request->hasFile('upload')){
@@ -103,6 +104,8 @@ class ProfileController extends Controller
                 array_push($docs,$path);
             }
         }
+
+        Education::where('user_id',$user_id)->delete();
 
         for($i=0; $i < count($request->degree); $i++){
             Education::updateOrCreate([
@@ -116,7 +119,7 @@ class ProfileController extends Controller
         }
 
         // activity logs
-        $id = Auth::user()->id; 
+        $id = Auth::user()->id;
         $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
         $action_perform = '<a href="'.URL::to('/') . '/admin/tutor/profile/'. $id .'"> '.$name.' </a> Update his Education Record';
         $activity_logs = new GeneralController();
@@ -126,7 +129,7 @@ class ProfileController extends Controller
             "status_code" => 200,
             "success" => true,
             "message" => "Record Saved Successfully",
-        ]); 
+        ]);
     }
 
     public function updateProfileProfession($user_id , Request $request) {
@@ -142,12 +145,12 @@ class ProfileController extends Controller
         }
 
         // activity logs
-        $id = Auth::user()->id; 
+        $id = Auth::user()->id;
         $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
         $action_perform = '<a href="'.URL::to('/') . '/admin/tutor/profile/'. $id .'"> '.$name.' </a> Update his Professional Record';
         $activity_logs = new GeneralController();
         $activity_logs->save_activity_logs("Profile Updated", "professionals.id", $id, $action_perform, $request->header('User-Agent'), $id);
-        
+
         return response()->json([
             "status_code" => 200,
             "success" => true,
@@ -172,13 +175,13 @@ class ProfileController extends Controller
                 array_push($data , $filename);
                 $request->id_card_pic->storeAs('verifcation',$request->id_card_pic->getClientOriginalName(),'public');
             }
-            
+
             if($request->hasFile('id_card_pic2')){
                 $filename = 'storage/verifcation/'.$request->id_card_pic2->getClientOriginalName();
                 array_push($data , $filename);
                 $request->id_card_pic2->storeAs('verifcation',$request->id_card_pic2->getClientOriginalName(),'public');
             }
-            
+
 
         }else if($request->security == 2) {
             if($request->hasFile('license_pic')){
@@ -186,7 +189,7 @@ class ProfileController extends Controller
                 array_push($data , $filename);
                 $request->license_pic->storeAs('verifcation',$request->license_pic->getClientOriginalName(),'public');
             }
-    
+
             if($request->hasFile('license_pic2')){
                 $filename = 'storage/verifcation/'.$request->license_pic2->getClientOriginalName();
                 array_push($data , $filename);
@@ -207,7 +210,7 @@ class ProfileController extends Controller
                 "user_id" => $user_id,
                 "type" => $request->security,
                 "files" => $file,
-            ]); 
+            ]);
         }
 
         $name = Auth::user()->first_name . ' ' . Auth::user()->last_name;
@@ -226,7 +229,7 @@ class ProfileController extends Controller
 
 
         // activity logs
-        $id = Auth::user()->id; 
+        $id = Auth::user()->id;
         $action_perform = '<a href="'.URL::to('/') . '/admin/tutor/profile/'. $id .'"> '.$name.' </a> Upload his documents for verification';
         $activity_logs = new GeneralController();
         $activity_logs->save_activity_logs("Profile Updated", "user_files.user_id", $id, $action_perform, $request->header('User-Agent'), $id);
@@ -235,16 +238,11 @@ class ProfileController extends Controller
             "status_code" => 200,
             "success" => true,
             "message" => "Documents Saved. Please wait for Administrator approval",
-        ]); 
+        ]);
     }
 
     public function educationUpdate(Request $request) {
 
-        dd($request->all());
-        Userdetail::updateOrCreate(['user_id' => Auth::user()->id],[
-            'student_level' => $request->student_level,
-            'hourly_rate' => $request->hour_rate,
-        ]);
 
         if(Auth::user()->education){
             Auth::user()->education->each(function($record) {
@@ -306,6 +304,6 @@ class ProfileController extends Controller
             "success" => true,
         ]);
     }
-    
+
 
 }

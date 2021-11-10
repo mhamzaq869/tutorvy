@@ -7,6 +7,7 @@
           post-action="/conversation/send"
           v-model="files"
           @input-file="$refs.upload.active = true"
+          @input="inputFile"
           :headers="{ 'X-CSRF-TOKEN': token }"
           :data="{ contact_id: this.contact.id }"
         >
@@ -122,8 +123,11 @@ export default {
     append(emoji) {
       this.message += emoji;
     },
-    inputFile() {
-      this.$emit("inputFile");
+    inputFile(e) {
+        axios.get(`/conversation/${this.contact.id}`).then((response) => {
+            let index = (response.data.length) - 1
+            // this.$emit('sendFile', response.data[index])
+        });
     },
     sendtypingEvent() {
       Echo.join(`chat`).whisper("typing", this.contact);

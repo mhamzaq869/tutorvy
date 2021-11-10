@@ -81,7 +81,7 @@ export default {
         this.saveNewMessage(message);
         return;
       }
-      console.log(message)
+
       this.updateUnreadCount(message.from_contact, false);
     },
     updateUnreadCount(contact, reset) {

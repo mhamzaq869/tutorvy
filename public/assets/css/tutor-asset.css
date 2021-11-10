@@ -2538,6 +2538,14 @@ select#paymentMethod option[value="others"] {
     font-size: 12px;
     text-align: center;
 }
+.bg-color-apporve2 {
+    background-color: #ffea2f73;
+    border-radius: 4px;
+    padding: 3px 12px;
+    display: block;
+    font-size: 12px;
+    text-align: center;
+}
 
 .bg-color-apporve1 {
     background-color: #E2F6ED;

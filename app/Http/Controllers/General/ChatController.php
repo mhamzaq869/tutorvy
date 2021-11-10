@@ -34,6 +34,18 @@ class ChatController extends Controller
         return redirect()->route($redirect);
     }
 
+    public function unreadMesg()
+    {
+
+        $unreadIds = Message::select(DB::raw('sender_id, count(`sender_id`) as messages_count'))
+        ->where('recipient_id', auth()->id())
+        ->where('seen', 0)
+        ->groupBy('sender_id')
+        ->first();
+
+        return $unreadIds->messages_count;
+
+    }
     public function get()
     {
 

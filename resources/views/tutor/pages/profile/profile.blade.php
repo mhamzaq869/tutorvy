@@ -92,7 +92,7 @@ width:22px;
                             <a class="schedule-btn w-100 mt-3 text-center" href="{{route('tutor.profile')}}">
                                 Edit Profile
                             </a>
-                       
+
                     </div>
                 </div>
                 <div class="card">
@@ -136,7 +136,7 @@ width:22px;
                                     Location
                                 </p>
                                 <p class="paragraph-text" >
-                                    {{$tutor->city}}, {{$tutor->country}} 
+                                    {{$tutor->city}}, {{$tutor->country}}
                                 </p>
                             </div>
                         </div>
@@ -152,7 +152,7 @@ width:22px;
                             {{$edu->degree->name}} {{$edu->subject->name}} {{ $edu->c_year }}
                         </p>
                         <p class="paragraph-text " style="">
-                        
+
                         </p>
                         @endforeach
 
@@ -170,14 +170,14 @@ width:22px;
                             {{date('d M, Y',strtotime($pro->start_date))}} - {{date('d M, Y',strtotime($pro->end_date))}}
                         </p>
                         @endforeach
-                    </div>      
+                    </div>
                 </div>
-                
+
             </div>
             <div class="col-md-9">
                 <div class="card">
                     <div class="container-fluid profile-header pt-4 pb-4">
-                            
+
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="d-flex">
@@ -222,7 +222,7 @@ width:22px;
                                             <span class="heading-sixths">Response time</span>
                                         </span>
                                     </div>
-                                </div>-->  
+                                </div>-->
                             </div>
                         </div>
                     </div>
@@ -233,7 +233,7 @@ width:22px;
                                     <p class="heading-second">About tutor</p>
                                 </div>
                                 <div class="col-md-6 col-6 col-sm-6 text-right responseTime">
-                                   
+
                                     <p class="heading-fourth"> <span><img src="{{asset('assets/images/ico/watchs.png')}}" class="mr-2" alt=""></span> Response Time: <strong>1 hour</strong></p>
                                 </div>
                                 <div class="about-text col-md-12">
@@ -260,7 +260,7 @@ width:22px;
                                         </tr>
                                     </thead>
                                     <tbody id="subject_table">
-                                         @foreach ($tutor->teach as $i => $teach)   
+                                         @foreach ($tutor->teach as $i => $teach)
                                             <tr>
                                                 <td class="pt-4">{{$i+1}}</td>
                                                 <td class="pt-4">{{$teach->subject->name}}</td>
@@ -276,7 +276,7 @@ width:22px;
                             </div>
                         </div>
                     </div>
-                    
+
                     <p class="heading-second pt-3  mb-0">
                         Courses
                     </p>
@@ -285,7 +285,7 @@ width:22px;
                         @foreach ($tutor->course as $course)
                         <div class="col-md-4">
                             <div class="card">
-                                <img src="{{asset('assets/images/ico/course.png')}}" alt="Avatar" style="width:100%">
+                                <img src="{{asset($course->thumbnail)}}" alt="Avatar" style="width:100%">
                                 <div class="container-fluid mt-3 mb-3">
                                     <div class="row">
                                         <div class="col-md-8">
@@ -303,7 +303,7 @@ width:22px;
                                         </span>
                                     </div>
                                     <a href="{{ route('tutor.course.edit',[$course->id]) }}" class="mt-3 w-100 schedule-btn mb-3 text-center">Edit Course</a>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -330,7 +330,7 @@ width:22px;
         </div>
     </div>
 </div>
-    
+
 <div class="modal fade" id="planModal" tabindex="-1" role="dialog"
     aria-labelledby="planModalTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -405,7 +405,7 @@ width:22px;
           }
         },
     });
-   
+
   }
 </script>
 

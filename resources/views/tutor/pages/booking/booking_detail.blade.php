@@ -19,6 +19,28 @@
                         <p class="mr-3 heading-first">
                             < Booking Details </p>
                     </div>
+
+                    @if(Session::has('success'))
+                    <div class="col-md-12 mb-1 ">
+                        <div class=" card  bg-toast bg-success successCard">
+                            <div class="card-body row">
+                                <div class="col-md-1 text-center">
+                                    <i class="fa fa-info" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-md-11 pl-0">
+
+                                        {{Session::get('success')}}
+
+                                    <a type="button" class="cross pull-right" onclick="hideCard()">
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+
                 </div>
 
                 <div class="row">
@@ -31,12 +53,15 @@
                                     {{ $booking->subject->name }} Class
                                 </p>
                                 <p style="text-align: right;" class="col-md-6 col-xs-12 class-btn-center">
+
                                     <button type="button" data-toggle="modal" data-target="#exampleModalCenter"
                                         class="cencel-btn mr-2" style="font-size: 12px;width: 150px;"> Cancel
                                         Booking</button>
                                     <button type="button" data-toggle="modal" data-target="#exampleModalCente"
                                         class="schedule-btn" style="font-size: 12px;width: 150px;"> Re-schedule
-                                        class</button>
+                                        class
+                                    </button>
+
                                     @if ($booking->status == 0)
                                         <button type="button" data-toggle="modal" data-target="#approveModal"
                                             class="schedule-btn" style="font-size: 12px;width: 150px;"> Approve
@@ -320,8 +345,14 @@
                                         style=" font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 600;margin-top: 10px;">
                                         Cancel Booking</p>
                                     <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;line-height: 1.4;"
-                                        class="ml-5 mr-5">Are you sure you want to cancel booking ? it will cost
-                                        ${{$booking->service_fee ?? 10}} for cancelling</p>
+                                        class="ml-5 mr-5">
+                                        {{-- @if($booking->status == 2)
+                                        Are you sure you want to cancel booking ? it will cost
+                                        ${{$booking->service_fee ?? 0}} for cancelling
+                                        @elseif ($booking->status == 0 || $booking->status == 1) --}}
+                                        Are you sure you want to cancel booking ?
+                                        {{-- @endif --}}
+                                    </p>
                                 </div>
                             </div>
                         </div>

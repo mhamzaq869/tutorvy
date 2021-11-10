@@ -88,10 +88,8 @@ export default {
           this.$emit("new", response.data);
         });
     },
-    sendFile() {
-      axios.get(`/conversation/${this.contact.id}`).then((response) => {
-        console.log(response.data);
-      });
+    sendFile(message) {
+        console.log('message'+ message)
     },
 
   },
