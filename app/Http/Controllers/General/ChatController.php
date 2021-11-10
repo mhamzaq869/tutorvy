@@ -107,7 +107,7 @@ class ChatController extends Controller
 
     public function send(Request $request)
     {
-
+        // dd($request->all());
         if(request()->has('file')){
             $filename = request('file')->store('chat','public');
             $message = Message::create([

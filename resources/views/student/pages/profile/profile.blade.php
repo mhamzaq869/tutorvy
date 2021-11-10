@@ -293,7 +293,7 @@
                                     <p class="heading-third mt-3 ml-3">Favourite Tutors</p>
                                 </div>
                                 @foreach($favorite_tutors as $tutor)
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mt-2 mb-2">
                                         <div class="row">
                                             <div class="col-md-3">
                                                 @if($tutor->picture != null)

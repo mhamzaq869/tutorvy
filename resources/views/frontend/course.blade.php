@@ -267,73 +267,85 @@
                 <div class="col-md-2"></div>
             </div>
             <div class="row row-none-mp ml-5 mr-5 mb-5 mt-1">
-                @foreach ($courses as $course)
-                    <div class="col-md-3 mb-5">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-12 text-center">
-                                        @if ($course->thumbnail == '' || $course->thumbnail == null)
-                                            <img src="{{ asset('assets/images/ico/Square-white.jpg') }}"
-                                                class="border-round course_thumb" alt="Avatar">
-                                        @else
-                                            <img src="{{ $course->thumbnail }}" class="border-round course_thumb"
-                                                alt="Avatar">
+                @if($courses)
+                    @foreach ($courses as $course)
+                        @if($course->status == 1)
+                            <div class="col-md-3 mb-5">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12 text-center">
+                                                @if ($course->thumbnail == '' || $course->thumbnail == null)
+                                                    <img src="{{ asset('assets/images/ico/Square-white.jpg') }}"
+                                                        class="border-round course_thumb" alt="Avatar">
+                                                @else
+                                                    <img src="{{ $course->thumbnail }}" class="border-round course_thumb"
+                                                        alt="Avatar">
 
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="row mt-3">
-                                    <div class="col-md-8">
-                                        <span class="paid-button">
-                                            {{ $course->subject_name }}
-                                        </span>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <h2 class="dolar-text text-right">${{ $course->basic_price }}</h2>
-                                    </div>
-                                </div>
-                                <div class="row ">
-                                    <div class="col-md-12">
-                                        <h6 class="create-text mt-1">{{ $course->title }}</h6>
-                                        <hr>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <p class="mt-2">Next batch is starting from
-                                            {{ date('d M, Y', strtotime($course->start_date)) }}</p>
-                                    </div>
-                                    <div class="col-md-4 text-center">
-                                        <div class="progress blue">
-                                            <span class="progress-left">
-                                                <span class="progress-bar"></span>
-                                            </span>
-                                            <span class="progress-right">
-                                                <span class="progress-bar"></span>
-                                            </span>
-                                            <div class="progress-value">
-                                                <span>{{$course->seats}}</span>
-
+                                                @endif
                                             </div>
                                         </div>
-                                        <span class="leftSeat text-center">
-                                            <p>Seats Left</p>
-                                        </span>
-                                    </div>
-                                    <div class="col-md-12 text-center learning-button mt-4">
-                                        <a href="{{route('course.enroll',[$course->id])}}" class="no-decor">
-                                            Enroll Course
-                                        </a>
+                                        <div class="row mt-3">
+                                            <div class="col-md-8">
+                                                <span class="paid-button">
+                                                    {{ $course->subject_name }}
+                                                </span>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <h2 class="dolar-text text-right">${{ $course->basic_price }}</h2>
+                                            </div>
+                                        </div>
+                                        <div class="row ">
+                                            <div class="col-md-12">
+                                                <h6 class="create-text mt-1">{{ $course->title }}</h6>
+                                                <hr>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <p class="mt-2">Next batch is starting from
+                                                    {{ date('d M, Y', strtotime($course->start_date)) }}</p>
+                                            </div>
+                                            <div class="col-md-4 text-center">
+                                                <div class="progress blue">
+                                                    <span class="progress-left">
+                                                        <span class="progress-bar"></span>
+                                                    </span>
+                                                    <span class="progress-right">
+                                                        <span class="progress-bar"></span>
+                                                    </span>
+                                                    <div class="progress-value">
+                                                        <span>{{$course->seats}}</span>
+
+                                                    </div>
+                                                </div>
+                                                <span class="leftSeat text-center">
+                                                    <p>Seats Left</p>
+                                                </span>
+                                            </div>
+                                            <div class="col-md-12 text-center learning-button mt-4">
+                                                <a href="{{route('course.enroll',[$course->id])}}" class="no-decor">
+                                                    Enroll Course
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                @endforeach
+                        @endif
+                    @endforeach
                 <div class="col-md-12 text-center">
                     <button class="btn-general p-3 pl-5 pr-5">
                         Load More
                     </button>
                 </div>
+                @else
+                    <div class="col-md-3 mb-5">
+                        <div class="card">
+                            <div class="card-body">
+                                No Courses added yet
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
 
             <div class=" row mt-3">

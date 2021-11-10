@@ -1,18 +1,11 @@
 <template>
   <div class="row">
     <div class="col-md-12 col-8" id="chatForm">
-      <a class="sendLeft" type="button" style="top: 13px">
-        <file-upload
-          ref="upload"
-          post-action="/conversation/send"
-          v-model="files"
-          @input-file="$refs.upload.active = true"
-          @input="inputFile"
-          :headers="{ 'X-CSRF-TOKEN': token }"
-          :data="{ contact_id: this.contact.id }"
-        >
-          <i class="fa fa-paperclip ml-1"></i>
-        </file-upload>
+      <a class="sendLeft" type="button" style="top: 12px">
+
+              <label for="upload-photo" style="cursor:pointer"><i class="fa fa-paperclip ml-1"></i></label>
+              <input type="file" id="upload-photo" v-on:change="file">
+
       </a>
 
       <emoji-picker @emoji="append" :search="search">
@@ -92,7 +85,6 @@ export default {
     return {
       message: "",
       search: "",
-      files: [],
       typingUser: [],
       typingClock: null,
       token: document.head.querySelector('meta[name="csrf-token"]').content,
@@ -123,11 +115,17 @@ export default {
     append(emoji) {
       this.message += emoji;
     },
-    inputFile(e) {
-        axios.get(`/conversation/${this.contact.id}`).then((response) => {
-            let index = (response.data.length) - 1
-            // this.$emit('sendFile', response.data[index])
-        });
+    file(e) {
+        let data = []
+        const config = {
+            headers: { 'content-type': 'multipart/form-data' }
+        }
+
+        let formData = new FormData();
+        formData.append('file', e.target.files[0]);
+        formData.append('contact_id', this.contact.id);
+
+         this.$emit("file",formData, config);
     },
     sendtypingEvent() {
       Echo.join(`chat`).whisper("typing", this.contact);
@@ -167,6 +165,11 @@ export default {
 .wrapper {
   position: relative;
   display: inline-block;
+}
+#upload-photo {
+   opacity: 0;
+   position: absolute;
+   z-index: -1;
 }
 
 .regular-input {

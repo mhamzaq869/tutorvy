@@ -48,7 +48,7 @@
     <MessagesFeed :contact="contact" :messages="messages" />
     <MessageComposer
       @send="sendMessage"
-      @inputFile="sendFile"
+      @file="sendFile"
       :contact="contact"
     />
   </div>
@@ -88,8 +88,12 @@ export default {
           this.$emit("new", response.data);
         });
     },
-    sendFile(message) {
-        console.log('message'+ message)
+    sendFile(data,config) {
+
+        axios.post(`/conversation/send`,data, config)
+        .then((response) => {
+          this.$emit("new", response.data);
+        });
     },
 
   },

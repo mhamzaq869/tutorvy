@@ -8,7 +8,7 @@ use App\Models\Course;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\General\ClassTable;
-
+use App\Http\Controllers\General\GeneralController;
 
 
 class CourseController extends Controller
@@ -197,7 +197,7 @@ class CourseController extends Controller
         $course->save();
 
         $message = '';
-        if($request->status == 2){
+        if($request->status == 1){
             $message = 'Course Status Enabled.';
             $action_perform = 'Admin Change Course Status to Enabled';
         }elseif($request->status == 3){

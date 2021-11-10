@@ -19,7 +19,7 @@ $(".c_status").click(function(){
     reason = $('#c_reject_reason').val();
   }
     if($(this).is(':checked')){
-      st = 2;
+      st = 1;
       // alert(st);
       $.ajax({
           url: "{{route('admin.courseStatus')}}",
