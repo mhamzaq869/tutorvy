@@ -1766,27 +1766,46 @@ designer.appendTo(document.getElementById('widget-container'), function() {
                 timer.start({countdown: true, startValues: {seconds: remain_seconds}});
 
                 $('#countdownExample .values').html(timer.getTimeValues().toString());
-                timer.addEventListener('secondsUpdated', function (e) {
+                // timer.addEventListener('secondsUpdated', function (e) {
 
-                    var ter = $('.values').text();
+                //     var ter = $('.values').text();
                     
-                    if( ter < deadline ){
+                //     if( ter < deadline ){
                         
-                        $(".values").css("color","#dc3545");
-                        // $(".Text-reck").text("Class will end in Five minutes sharp.");
-                    }
-                    else if( ter == resced || ter < resced && ter > deadline){
-                        $(".values").css("color","#ffc107");
-                        // let html = `<p class="mb-0">Do you want to reschedule another class? <a href="">Yes</a> or  <a href="">No</a> </p>`
-                        // $(".Text-reck").html(html);
-                    }
-                    else if( ter >= resced ){
-                        $(".values").css("color","#28a745");
-                        // $(".Text-reck").text("Class will ends in: ");
+                //         $(".values").css("color","#dc3545");
+                //         // $(".Text-reck").text("Class will end in Five minutes sharp.");
+                //     }
+                //     else if( ter == resced || ter < resced && ter > deadline){
+                //         $(".values").css("color","#ffc107");
+                //         // let html = `<p class="mb-0">Do you want to reschedule another class? <a href="">Yes</a> or  <a href="">No</a> </p>`
+                //         // $(".Text-reck").html(html);
+                //     }
+                //     else if( ter >= resced ){
+                //         $(".values").css("color","#28a745");
+                //         // $(".Text-reck").text("Class will ends in: ");
 
-                    }
+                //     }
 
+                //     $('#countdownExample .values').html(timer.getTimeValues().toString());
+                // });
+                timer.addEventListener('secondsUpdated', function (e) {
                     $('#countdownExample .values').html(timer.getTimeValues().toString());
+                    ter = $('.values').text();
+                    if( ter < deadline ){
+                        $(".blink").css("background","#dc3545");
+                        $(".Text-reck").text("Class will end in Five minutes sharp.");
+                    }
+                    else if( ter == resced || ter < resced && ter > deadline ){
+                        $(".blink").css("background","#ffc107");
+                        let html = `<p class="mb-0">Want to reschedule another class? Its the time! </p>`
+                        $(".Text-reck").html(html);
+                    }
+                    else if( ter > resced ){
+                        $(".blink").css("background","#28a745");
+                        $(".Text-reck").text("Class will ends in: ");
+
+                    }
+                    
                 });
 
                 timer.addEventListener('targetAchieved', function (e) {
