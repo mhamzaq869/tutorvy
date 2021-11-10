@@ -34,6 +34,7 @@ class CreateBookingsTable extends Migration
             $table->text('reschedule_note')->nullable();
             $table->double('price', 15, 2);
             $table->double('service_fee', 15, 2);
+            $table->string('class_booked_till')->nullable();
             $table->timestamps();
         });
     }
