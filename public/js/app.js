@@ -2415,8 +2415,12 @@ __webpack_require__.r(__webpack_exports__);
         _this.$emit("new", response.data);
       });
     },
-    sendFile: function sendFile(message) {
-      console.log('message' + message);
+    sendFile: function sendFile(data, config) {
+      var _this2 = this;
+
+      axios.post("/conversation/send", data, config).then(function (response) {
+        _this2.$emit("new", response.data);
+      });
     }
   },
   components: {
@@ -2424,12 +2428,12 @@ __webpack_require__.r(__webpack_exports__);
     MessageComposer: _MessageComposer__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this3 = this;
 
     Echo.join("chat").here(function (users) {
-      _this2.onlineUsers = users;
+      _this3.onlineUsers = users;
     }).leaving(function (user) {
-      _this2.onlineFriends.splice(_this2.onlineFriends.indexOf(user), 1); // console.log("leaved", user.first_name);
+      _this3.onlineFriends.splice(_this3.onlineFriends.indexOf(user), 1); // console.log("leaved", user.first_name);
 
     });
   }
@@ -2523,13 +2527,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -2542,7 +2539,6 @@ __webpack_require__.r(__webpack_exports__);
     return {
       message: "",
       search: "",
-      files: [],
       typingUser: [],
       typingClock: null,
       token: document.head.querySelector('meta[name="csrf-token"]').content
@@ -2575,10 +2571,17 @@ __webpack_require__.r(__webpack_exports__);
     append: function append(emoji) {
       this.message += emoji;
     },
-    inputFile: function inputFile(e) {
-      axios.get("/conversation/".concat(this.contact.id)).then(function (response) {
-        var index = response.data.length - 1; // this.$emit('sendFile', response.data[index])
-      });
+    file: function file(e) {
+      var data = [];
+      var config = {
+        headers: {
+          'content-type': 'multipart/form-data'
+        }
+      };
+      var formData = new FormData();
+      formData.append('file', e.target.files[0]);
+      formData.append('contact_id', this.contact.id);
+      this.$emit("file", formData, config);
     },
     sendtypingEvent: function sendtypingEvent() {
       Echo.join("chat").whisper("typing", this.contact);
@@ -7235,7 +7238,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.wrapper[data-v-5a28bf2c] {\r\n  position: relative;\r\n  display: inline-block;\n}\n.regular-input[data-v-5a28bf2c] {\r\n  padding: 0.5rem 1rem;\r\n  border-radius: 3px;\r\n  border: 1px solid #ccc;\r\n  width: 100%;\r\n  outline: none;\n}\n.regular-input[data-v-5a28bf2c]:focus {\r\n  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);\n}\n.emoji-invoker[data-v-5a28bf2c] {\r\n  position: absolute;\r\n  top: 0.5rem;\r\n  left: 20px;\r\n  width: 1.5rem;\r\n  height: 1.5rem;\r\n  border-radius: 50%;\r\n  cursor: pointer;\r\n  transition: all 0.2s;\n}\n.emoji-invoker[data-v-5a28bf2c]:hover {\r\n  transform: scale(1.1);\n}\n.emoji-invoker > svg[data-v-5a28bf2c] {\r\n  fill: #626466;\n}\n.emoji-picker[data-v-5a28bf2c] {\r\n  position: absolute;\r\n  z-index: 1;\r\n  font-family: Montserrat;\r\n  border: 1px solid #ccc;\r\n  width: 15rem;\r\n  height: 20rem;\r\n  overflow: scroll;\r\n  padding: 1rem;\r\n  top: -320px !important;\r\n  left: 14px !important;\r\n  box-sizing: border-box;\r\n  border-radius: 0.5rem;\r\n  background: #fff;\r\n  box-shadow: 1px 1px 8px #c7dbe6;\n}\n.emoji-picker__search[data-v-5a28bf2c] {\r\n  display: flex;\n}\n.emoji-picker__search > input[data-v-5a28bf2c] {\r\n  flex: 1;\r\n  border-radius: 10rem;\r\n  border: 1px solid #ccc;\r\n  padding: 0.5rem 1rem;\r\n  outline: none;\n}\n.emoji-picker h5[data-v-5a28bf2c] {\r\n  margin-bottom: 0;\r\n  color: #b1b1b1;\r\n  text-transform: uppercase;\r\n  font-size: 0.8rem;\r\n  cursor: default;\n}\n.emoji-picker .emojis[data-v-5a28bf2c] {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  justify-content: space-between;\n}\n.emoji-picker .emojis[data-v-5a28bf2c]:after {\r\n  content: \"\";\r\n  flex: auto;\n}\n.emoji-picker .emojis span[data-v-5a28bf2c] {\r\n  padding: 0.2rem;\r\n  cursor: pointer;\r\n  border-radius: 5px;\n}\n.emoji-picker .emojis span[data-v-5a28bf2c]:hover {\r\n  background: #ececec;\r\n  cursor: pointer;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.wrapper[data-v-5a28bf2c] {\r\n  position: relative;\r\n  display: inline-block;\n}\n#upload-photo[data-v-5a28bf2c] {\r\n   opacity: 0;\r\n   position: absolute;\r\n   z-index: -1;\n}\n.regular-input[data-v-5a28bf2c] {\r\n  padding: 0.5rem 1rem;\r\n  border-radius: 3px;\r\n  border: 1px solid #ccc;\r\n  width: 100%;\r\n  outline: none;\n}\n.regular-input[data-v-5a28bf2c]:focus {\r\n  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);\n}\n.emoji-invoker[data-v-5a28bf2c] {\r\n  position: absolute;\r\n  top: 0.5rem;\r\n  left: 20px;\r\n  width: 1.5rem;\r\n  height: 1.5rem;\r\n  border-radius: 50%;\r\n  cursor: pointer;\r\n  transition: all 0.2s;\n}\n.emoji-invoker[data-v-5a28bf2c]:hover {\r\n  transform: scale(1.1);\n}\n.emoji-invoker > svg[data-v-5a28bf2c] {\r\n  fill: #626466;\n}\n.emoji-picker[data-v-5a28bf2c] {\r\n  position: absolute;\r\n  z-index: 1;\r\n  font-family: Montserrat;\r\n  border: 1px solid #ccc;\r\n  width: 15rem;\r\n  height: 20rem;\r\n  overflow: scroll;\r\n  padding: 1rem;\r\n  top: -320px !important;\r\n  left: 14px !important;\r\n  box-sizing: border-box;\r\n  border-radius: 0.5rem;\r\n  background: #fff;\r\n  box-shadow: 1px 1px 8px #c7dbe6;\n}\n.emoji-picker__search[data-v-5a28bf2c] {\r\n  display: flex;\n}\n.emoji-picker__search > input[data-v-5a28bf2c] {\r\n  flex: 1;\r\n  border-radius: 10rem;\r\n  border: 1px solid #ccc;\r\n  padding: 0.5rem 1rem;\r\n  outline: none;\n}\n.emoji-picker h5[data-v-5a28bf2c] {\r\n  margin-bottom: 0;\r\n  color: #b1b1b1;\r\n  text-transform: uppercase;\r\n  font-size: 0.8rem;\r\n  cursor: default;\n}\n.emoji-picker .emojis[data-v-5a28bf2c] {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n  justify-content: space-between;\n}\n.emoji-picker .emojis[data-v-5a28bf2c]:after {\r\n  content: \"\";\r\n  flex: auto;\n}\n.emoji-picker .emojis span[data-v-5a28bf2c] {\r\n  padding: 0.2rem;\r\n  cursor: pointer;\r\n  border-radius: 5px;\n}\n.emoji-picker .emojis span[data-v-5a28bf2c]:hover {\r\n  background: #ececec;\r\n  cursor: pointer;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -45491,7 +45494,7 @@ var render = function () {
           _vm._v(" "),
           _c("MessageComposer", {
             attrs: { contact: _vm.contact },
-            on: { send: _vm.sendMessage, inputFile: _vm.sendFile },
+            on: { send: _vm.sendMessage, file: _vm.sendFile },
           }),
         ],
         1
@@ -45550,37 +45553,17 @@ var render = function () {
           "a",
           {
             staticClass: "sendLeft",
-            staticStyle: { top: "13px" },
+            staticStyle: { top: "12px" },
             attrs: { type: "button" },
           },
           [
-            _c(
-              "file-upload",
-              {
-                ref: "upload",
-                attrs: {
-                  "post-action": "/conversation/send",
-                  headers: { "X-CSRF-TOKEN": _vm.token },
-                  data: { contact_id: this.contact.id },
-                },
-                on: {
-                  "input-file": function ($event) {
-                    _vm.$refs.upload.active = true
-                  },
-                  input: _vm.inputFile,
-                },
-                model: {
-                  value: _vm.files,
-                  callback: function ($$v) {
-                    _vm.files = $$v
-                  },
-                  expression: "files",
-                },
-              },
-              [_c("i", { staticClass: "fa fa-paperclip ml-1" })]
-            ),
-          ],
-          1
+            _vm._m(0),
+            _vm._v(" "),
+            _c("input", {
+              attrs: { type: "file", id: "upload-photo" },
+              on: { change: _vm.file },
+            }),
+          ]
         ),
         _vm._v(" "),
         _c("emoji-picker", {
@@ -45758,7 +45741,18 @@ var render = function () {
     ),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      { staticStyle: { cursor: "pointer" }, attrs: { for: "upload-photo" } },
+      [_c("i", { staticClass: "fa fa-paperclip ml-1" })]
+    )
+  },
+]
 render._withStripped = true
 
 

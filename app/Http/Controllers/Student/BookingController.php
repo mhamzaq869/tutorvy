@@ -322,7 +322,7 @@ class BookingController extends Controller
                 ]);
 
             }
-            Session::flash('error','You have sufficient balance');
+            Session::flash('error','You have insufficient balance');
             return redirect()->back();
         }else{
             //Payment Through Paypal
@@ -801,8 +801,8 @@ class BookingController extends Controller
 
         $this->skrilRequest = new SkrillRequest();
         $this->skrilRequest->pay_to_email = 'skrill_user_test2@smart2pay.com';
-        $this->skrilRequest->return_url = 'https://tutorvy.dev/student/skrlpayment-complete';
-        $this->skrilRequest->cancel_url = 'https://tutorvy.dev/student/bookings';
+        $this->skrilRequest->return_url =  request()->getHost().'student/skrlpayment-complete';
+        $this->skrilRequest->cancel_url =  request()->getHost().'student/bookings';
         $this->skrilRequest->logo_url = 'https://tutorvydev.naumanyasin.com/assets/images/logo/logo.png';
         $this->skrilRequest->pay_from_email = $payerEmail->email ?? '';
         $this->skrilRequest->transaction_id = 'SKRL-'.rand();

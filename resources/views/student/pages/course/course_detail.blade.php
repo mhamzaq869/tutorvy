@@ -60,13 +60,32 @@
 
                 </div>
                 @if (Session::has('error'))
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{-- <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"
                             style="margin-top:-12px">
                             <span aria-hidden="true">×</span>
                         </button>
                         {{ Session::get('error') }}
+                    </div> --}}
+                    <div class="col-md-12 mb-1 ">
+                        <div class=" card  bg-toast bg-danger" id="errorCard">
+                            <div class="card-body row">
+                                <div class="col-md-1 text-center">
+                                    <i class="fa fa-info" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-md-11 pl-0">
+
+                                        {{Session::get('error')}}
+
+                                    <a type="button" class="cross pull-right" onclick="document.getElementById('errorCard').style.display='none';return false;">
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                 @endif
                 <div class="row ml-2 mr-2">
                     <div class="col-md-5">
@@ -1283,7 +1302,7 @@
                             </div>
                             <div class="col-md-12 text-right mt-3" id="show_pay_btn">
 
-                                <form action="{{route('student.course.payment',[$course->id])}}" id="payment" method="post">
+                                <form action="{{route('student.course.payment',[$course->id])}}" id="payment" method="post" target="_blank">
 
                                     @csrf
                                     <div id="paytype"></div>
