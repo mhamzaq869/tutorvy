@@ -297,9 +297,9 @@
                                         <div class="row">
                                             <div class="col-md-3">
                                                 @if($tutor->picture != null)
-                                                    <img src="{{asset($tutor->picture)}}" class="w-100 profile-img" alt="" style="height:70px;">
+                                                    <img src="{{asset($tutor->picture)}}" class=" profile-img" alt="" style="height:70px; width:70px;">
                                                 @else
-                                                    <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="profile-img w-100" style="height:70px;">
+                                                    <img src="{{asset ('assets/images/ico/Square-white.jpg')}}" alt="" class="profile-img " style="width:70px;height:70px;">
                                                 @endif    
                                             </div>
                                             <div class="col-md-5 pl-0 pt-1">
