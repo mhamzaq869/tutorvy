@@ -281,7 +281,7 @@
                                                     </div>
                                                     <div class="col-md-2">
                                                         <label class="switch">
-                                                            <input type="checkbox" class="c_status" val_id="{{$course->id}}" val_st="{{$course->status}} "  {{ ($course->status == 2) ? 'checked' : ''}}>
+                                                            <input type="checkbox" class="c_status" val_id="{{$course->id}}" val_st="{{$course->status}} "  {{ ($course->status == 1) ? 'checked' : ''}}>
                                                             <!-- <input type="checkbox" id="c_status" onclick="changeCourseStatus({{$course->id}},{{$course->status}})" {{ ($course->status == 1) ? 'checked' : ''}}> -->
                                                             <span class="slider round"></span>
                                                         </label>

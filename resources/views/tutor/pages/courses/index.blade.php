@@ -27,7 +27,7 @@
 
       /*Progress Bar STyle */
       .leftSeat p{
-         font-size:14px;
+         font-size:16px;
      }
      .progress{
         width: 51px !important;
@@ -36,7 +36,7 @@
             background: none;
             box-shadow: none;
             position: relative;
-            margin-right: 18px !important;
+            margin-right: 9px !important;
             margin-left: 9px !important;
         }
 .progress:after{
@@ -94,7 +94,7 @@
     height: 90%;
     border-radius: 50%;
     background: transparent;
-    font-size: 19px;
+    font-size: 16px;
     color: #00132D;
     line-height: 45px;
     text-align: center;
@@ -223,7 +223,7 @@
     background: #fff;
     color: #00132D;
     top: 50%;
-    left: 23%;
+    left: 28%;
 }
 .overlay span:hover{
     position: absolute;
@@ -479,7 +479,7 @@
                     <div class="col-md-4 text-center">
                         <div class="card border-only" >
                             <div class="card-body ">
-                                <div class="add-new" style="margin-top:40%;margin-bottom: 40%;">
+                                <div class="add-new" style="margin-top:30%;margin-bottom: 30%;">
                                     @if(Auth::user()->status == 2)
                                         <a href="{{route('tutor.addcourse')}}">
                                             <img src="{{asset('assets/images/ico/add-new.png')}}" alt="add-new">

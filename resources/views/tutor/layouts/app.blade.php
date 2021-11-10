@@ -221,8 +221,14 @@
                         $('[data-toggle="tooltip"]').tooltip()
                     });
                 })
-                $('.dd').click(function(){
+                    $('.dd').click(function(){
                         $('.dd2').toggle('hide');
+                        $(".notification-menu ").hide();
+
+                    })
+                    $('.notification').click(function(){
+                        $('.dd2').hide();
+
                     })
 
                     $(".content-wrapper").click(function(){

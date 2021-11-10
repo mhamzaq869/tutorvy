@@ -211,8 +211,13 @@
 
  $('.dd').click(function(){
      $('.dd2').toggle('hide');
- });
+     $(".notification-menu ").hide();
 
+ });
+ $('.notification').click(function(){
+    $('.dd2').hide();
+
+});
     $(".content-wrapper").click(function(){
             $(".notification-menu ").hide();
             $('.dd2').hide();
@@ -317,23 +322,26 @@ function get_all_notifications() {
                         }
                         notification += `
             <li>
-                <a href="` + obj[i].slug + `" class="bgm">
-                    <div class="row">
+               
+                    <div class="row bgm" >
                         <div class="col-md-2 text-center pr-0">
-                        ` + img + `
+                        <a href="` + obj[i].slug + `" class="">
+                            ` + img + `
+                        </a>
                         </div>
                         <div class="col-md-10">
-                            <div class="head-1-noti">
-                                <span class="notification-text6">
-                                    <strong>` + obj[i].noti_title + ` </strong>
-                                    ` + obj[i].noti_desc + `
+                            <a href="` + obj[i].slug + `" class="">
+                                <div class="head-1-noti">
+                                    <span class="notification-text6">
+                                        <strong>` + obj[i].noti_title + ` </strong>
+                                        ` + obj[i].noti_desc + `
+                                    </span>
+                                </div>
+                                <span class="notification-time">
                                 </span>
-                            </div>
-                            <span class="notification-time">
-                            </span>
+                            </a>
                         </div>
                     </div>
-                </a>
             </li>`;
                     }
                     $(".show_all_notifications").html(notification);

@@ -5,6 +5,12 @@
     .responseTime img{
 width:22px;
     }
+    .no-decor{
+        text-decoration:none;
+    }
+    .no-decor:hover{
+        text-decoration:none;
+    }
 </style>
 <link rel="stylesheet" href="{{asset('assets/css/profile.css')}}">
 <div class="content-wrapper " style="overflow: hidden;">
@@ -286,29 +292,39 @@ width:22px;
 
                     <div class="row mb-5">
                         @foreach ($tutor->course as $course)
-                        <div class="col-md-4">
-                            <div class="card">
-                                <img src="{{asset('assets/images/ico/course.png')}}" alt="Avatar" style="width:100%">
-                                <div class="container-fluid mt-3">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <span class="che-text">
-                                                {{$course->subject->name}}
-                                            </span>
+                            @if($course->status == 1 )
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        @if($course->thumbnail != "")
+                                            <img src="{{asset($course->thumbnail)}}" alt="Avatar" style="width:100%">
+                                        @else
+                                            <img src="{{asset('assets/images/ico/course.png')}}" alt="Avatar" style="width:100%">
+                                        @endif
+                                        <div class="container-fluid mt-3">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <span class="che-text">
+                                                        {{$course->subject->name}}
+                                                    </span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <span class="dolar-text ml-5">
+                                                        ${{$course->basic_price}}
+                                                    </span>
+                                                </div>
+                                                <span class="heading-forth ml-3 mt-3">
+                                                        {{$course->title}}
+                                                </span>
+                                            </div>
+                                                <a href="{{route('course.enroll',[$course->id])}}" class="mt-3 w-100 schedule-btn mb-3 text-center no-decor">
+                                                    Start 
+                                                    Learning
+                                                </a>
+                                            <!-- <button class="mt-3 w-100 schedule-btn mb-3">Start learning</button> -->
                                         </div>
-                                        <div class="col-md-6">
-                                            <span class="dolar-text ml-5">
-                                                ${{$course->basic_price}}
-                                            </span>
-                                        </div>
-                                        <span class="heading-forth ml-3 mt-3">
-                                                {{$course->title}}
-                                        </span>
                                     </div>
-                                    <button class="mt-3 w-100 schedule-btn mb-3">Start learning</button>
                                 </div>
-                            </div>
-                        </div>
+                            @endif
                         @endforeach
 
 

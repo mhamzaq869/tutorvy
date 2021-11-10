@@ -115,18 +115,18 @@
                         <img src="{{asset('assets/images/ico/Notification.png') }}" alt="notifiaction">
                         <span class="notification-text show_notification_counts"> 0 </span>
                         <ul class="notification-menu">
-                            <li class="container-fluid">
+                            <li class="">
                                 <div class="row nav-row">
-                                    <span class="col-md-6" style="text-align: left;">
+                                    <div class="col-md-6" style="text-align: left;">
                                         <a href="" class="notification-text1">
                                             Notifications
                                         </a>
-                                    </span>
-                                    <span class="col-md-6" style="text-align: right;">
+                                    </div>
+                                    <div class="col-md-6" style="text-align: right;">
                                         <a href="" class="notification-text2">
                                             Mark all read
                                         </a>
-                                    </span>
+                                    </div>
                                 </div>
                                 <p class="mt-2 mb-2 notification-text3">
                                     Recent
@@ -203,18 +203,18 @@
                                 <img src="{{asset('assets/images/ico/Notification.png') }}" alt="notification-ico">
                                 <span class="notification-text show_notification_counts"> 0 </span>
                                 <ul class="notification-menu">
-                                    <li class="container-fluid">
+                                    <li class="">
                                         <div class="row nav-row">
-                                            <span class="col-md-6" style="text-align: left;">
+                                            <div class="col-md-6" style="text-align: left;">
                                                 <a href="" class="notification-text1">
                                                     Notifications
                                                 </a>
-                                            </span>
-                                            <span class="col-md-6" style="text-align: right;">
+                                            </div>
+                                            <div class="col-md-6" style="text-align: right;">
                                                 <a href="" class="notification-text2">
                                                     Mark all read
                                                 </a>
-                                            </span>
+                                            </div>
                                         </div>
                                         <p class="mt-2 notification-text3 mt-2">
                                             Recent
