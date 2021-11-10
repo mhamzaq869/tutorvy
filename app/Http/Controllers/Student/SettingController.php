@@ -256,7 +256,7 @@ class SettingController extends Controller
         return view('student.pages.history.ticket_details',compact('ticket','ticket_replies','admin'));
     }
 
-    public function ticketChat(Request $request){   
+    public function ticketChat(Request $request){
         $data = $request->all();
         TicketChat::create($data);
 
@@ -349,6 +349,7 @@ class SettingController extends Controller
         }
         $defaultPay = DB::table('payment_methods')->where('user_id',Auth::user()->id)->where('default',1)->first();
 
+        // ddd($defaultPay);
         $course->advance_classes = $advance_classes;
         // return $course;
         return view('student.pages.course.course_detail',compact('course','basic_comm','standard_comm','advance_comm','commission','defaultPay'));

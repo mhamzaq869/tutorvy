@@ -130,8 +130,6 @@ export default {
       .leaving((user) => {
         this.onlineUsers.splice(this.onlineUsers.indexOf(user), 1);
       });
-
-      console.log(this.search)
   },
 };
 </script>

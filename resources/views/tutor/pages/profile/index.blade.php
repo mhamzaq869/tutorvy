@@ -415,7 +415,7 @@
 
                                 <a class="nav-link" id="v-pills-Verification-tab" data-toggle="pill" href="#v-pills-Verification"
                                     role="tab" aria-controls="v-pills-Verification" aria-selected="false">Verification</a>
-                              
+
                             </div>
                         </div>
                     </div>
@@ -424,7 +424,7 @@
                     <div class="row">
                         <div class="col-md-12 mb-1 ">
                             <div class=" card  bg-toast infoCard">
-                                
+
 
                                 <div class="card-body row">
                                     <div class="col-md-1 text-center">
@@ -434,7 +434,7 @@
                                         <small>
                                             Keep updating your profile to get verified and attract more students by other unvarified tutors. <a href="#">Learn More</a>
                                         </small>
-                                        <a href="#" class="cross"  onclick="hideCard()"> 
+                                        <a href="#" class="cross"  onclick="hideCard()">
                                             <i class="fa fa-times" aria-hidden="true"></i>
                                         </a>
                                     </div>
@@ -626,7 +626,7 @@
                                             <div class="col-md-12">
                                                 <button class="schedule-btn" id="general_save" style="width:180px;float:right;font-size: 14px;" type="submit"
                                                     name="personal">Save Changes</button>
-                                                <button type="button" role="button" type="button" id="general_loading" disabled class="btn btn-primary mb-4 mr-2" 
+                                                <button type="button" role="button" type="button" id="general_loading" disabled class="btn btn-primary mb-4 mr-2"
                                                 style="width: 180px;float:right; display:none">
                                                 <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i> <span class="sr-only">Loading...</span> Processing </button>
                                             </div>
@@ -644,7 +644,7 @@
                                             </div>
                                         </div>
 
-                                        
+
                                     @if( count(Auth::user()->education) == 0)
 
                                         <div class="row mt-3">
@@ -728,8 +728,6 @@
                                             </div>
                                         </div>
 
-                                        
-
                                     @elseif( count(Auth::user()->education) > 0)
 
                                         @foreach(Auth::user()->education as $edu)
@@ -783,10 +781,10 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                <div class="schoolList col-md-6">
+                                                {{-- <div class="schoolList col-md-6">
                                                     <label for="exampleText" class="mb-0 heading-fifth">School Name</label>
                                                     <input type="text" class="form-control " name="institute[]">
-                                                </div>
+                                                </div> --}}
                                                  <div class=" col-md-6">
                                                     <label for="exampleText" class="mb-0 heading-fifth">Completion Date</label>
                                                     <!-- <input type="date" name="graduate_year[]" class=" yearpicker form-control" value="{{$edu->year}}"> -->
@@ -839,7 +837,7 @@
                                         <div class="col-md-12 mt-3">
                                             <button class="schedule-btn" id="educational_save" style="width: 180px;float:right;font-size: 14px;" type="submit"
                                                 id="edu2">Save Changes</button>
-                                            <button type="button" role="button" type="button" id="educational_loading" disabled class="btn btn-primary mb-4 mr-2" 
+                                            <button type="button" role="button" type="button" id="educational_loading" disabled class="btn btn-primary mb-4 mr-2"
                                                 style="width: 180px;float:right; display:none">
                                                 <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i> <span class="sr-only">Loading...</span> Processing </button>
                                         </div>
@@ -859,7 +857,7 @@
                                             <div class="col-md-12">
                                                 <div class="element">
                                                     <div class="row">
-                                                        
+
                                                         <div class="col-md-6">
                                                             <label for="exampleText" class="mb-0 heading-fifth">Organization</label>
                                                             <input name="organization[]"
@@ -954,7 +952,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                      
+
 
                                         @elseif(count(Auth::user()->professional) > 0)
                                             @foreach (Auth::user()->professional as $profession)
@@ -962,7 +960,7 @@
                                                     <div class="col-md-12">
                                                         <div class="element">
                                                             <div class="row">
-                                                                
+
                                                                 <div class=" col-md-6">
                                                                     <label for="exampleText" class="mb-0 heading-fifth">Organization</label>
                                                                     <input name="organization[]"
@@ -978,8 +976,8 @@
                                                                         title="Designation: Senior Developer at Google"
                                                                         placeholder="Designation">
                                                                 </div>
-                                                               
-                                                               
+
+
                                                             </div>
                                                             <div class="row my-3">
                                                                 <div class=" col-md-6">
@@ -1014,7 +1012,7 @@
                                                                             <option value="202s2">2022</option>
                                                                             <option value="2023">2023</option>
                                                                         </select>
-                                                                        
+
                                                                 </div>
                                                                 <div class=" col-md-6">
                                                                     <label for="exampleText" class="mb-0 heading-fifth">Ending Year</label>
@@ -1070,7 +1068,7 @@
                                             <div class="col-md-12">
                                                 <button class="schedule-btn" id="professinal_btn" style="width: 180px;float:right;font-size: 14px;" type="submit"
                                                     name="profession">Save Changes</button>
-                                                <button type="button" role="button" type="button" id="professinal_loading" disabled class="btn btn-primary mb-4 mr-2" 
+                                                <button type="button" role="button" type="button" id="professinal_loading" disabled class="btn btn-primary mb-4 mr-2"
                                                 style="width: 180px;float:right; display:none">
                                                 <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i> <span class="sr-only">Loading...</span> Processing </button>
                                             </div>
@@ -1090,7 +1088,7 @@
                                                 <div class="col-md-10">
                                                     Your Documents are approved from Administrator.
                                                 </div>
-                                                
+
                                             </div>
                                         </div>
                                         <div class="card">
@@ -1099,7 +1097,7 @@
                                                     <div class="col-md-12">
                                                         <p class="heading-fifth">
                                                             Approved Documents
-                                                        </p> 
+                                                        </p>
                                                     </div>
                                                     @foreach($user_files as $files)
                                                         <div class="col-md-6 mt-2 " >
@@ -1146,7 +1144,7 @@
                                             <div class=" row mt-3">
                                                 <div class="col-md-6">
                                                     <label for="exampleText" class="mb-0 heading-fifth">Document Type</label>
-                                                    <select id="selection" name="security" 
+                                                    <select id="selection" name="security"
                                                         class="form-select form-select-lg mb-3 w-100"
                                                         aria-label=".form-select-lg example" required>
                                                         <option value="1" selected>National Identity Card</option>
@@ -1165,7 +1163,7 @@
                                                 <div class="col-md-6 mt-2 policeCert" >
                                                     <input type="file" name="policeCert_pic" class="dropify">
                                                 </div>
-                                                    
+
                                                 <div class="col-md-6 mt-2 id">
                                                     <input type="file" name="id_card_pic" class="dropify">
                                                 </div>
@@ -1188,7 +1186,7 @@
                                             <div class="row mt-3">
                                                 <div class="col-md-12">
                                                     <button class="schedule-btn" id="verfication_btn" style="width: 180px;float:right;font-size: 14px;" type="submit" name="personal">Save Changes</button>
-                                                    <button type="button" role="button" type="button" id="verfication_loading" disabled class="btn btn-primary mb-4 mr-2" 
+                                                    <button type="button" role="button" type="button" id="verfication_loading" disabled class="btn btn-primary mb-4 mr-2"
                                                         style="width: 180px;float:right; display:none">
                                                         <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i> <span class="sr-only">Loading...</span> Processing </button>
                                                 </div>
@@ -1215,11 +1213,11 @@
     <script src="{{ asset('assets/js/countrySelect.js') }}"></script>
     @include('js_files.tutor.profileJs')
     <script>
-      
+
 
 
         $(document).ready(function() {
-         
+
             $("#institutes_list").select2();
             $(".schoolList").hide();
             var url = window.location.href;
@@ -1292,7 +1290,7 @@
         (function() {
             var user_language_code = "{{ Auth::user()->language ?? 'en-US' }}";
             var option = '';
-            option += '<option disabled selected>Select Language</option>'; 
+            option += '<option disabled selected>Select Language</option>';
             for (var language_code in languages_list) {
                 var selected = (language_code == user_language_code) ? ' selected' : '';
                 option += '<option value="' + language_code + '"' + selected + '>' + languages_list[language_code] +

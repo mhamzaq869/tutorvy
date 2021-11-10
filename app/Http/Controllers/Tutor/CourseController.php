@@ -34,7 +34,7 @@ class CourseController extends Controller
 
 
     public function store(Request $request) {
-    
+
         // return ($request);
 
         // if($request->hasFile('video')){
@@ -103,7 +103,7 @@ class CourseController extends Controller
         $this->basicOutline($request);
         $this->standardOutline($request);
         $this->advanceOutline($request);
-        return dd($request->all());
+        // return dd($request->all());
 
         // activity logs
         $id = Auth::user()->id;
@@ -126,7 +126,7 @@ class CourseController extends Controller
         $cr_bs_cst = json_decode($course->basic_class_start_time,true);
         $cr_bs_cet = json_decode($course->basic_class_end_time,true);
 
-        
+
 
         for($i = 0 ; $i < sizeof($cr_bs_dys) ; $i++){
             $class = new ClassTable();
@@ -159,8 +159,8 @@ class CourseController extends Controller
 
                 array_push($standard_classes,$class);
             }
-           
-            
+
+
         }
         $course->standard_classes = $standard_classes;
         // Advance Classes
@@ -180,17 +180,17 @@ class CourseController extends Controller
                 $class->et_time =  $cr_ad_cet != null ? $cr_ad_cet[$cr_ad_dys[$i]] : '';
                 $class->title = $cr_ad_clt != null ?  $cr_ad_clt[$cr_ad_dys[$i]] : '';
                 $class->overview =  $cr_ad_clo != null ? $cr_ad_clo[$cr_ad_dys[$i]] : '';
-    
+
                 array_push($advance_classes,$class);
-            }            
+            }
         }
-       
+
         $course->advance_classes = $advance_classes;
         return view('tutor.pages.courses.edit',compact('course'));
     }
 
 
-    public function update(Request $request, $id) {      
+    public function update(Request $request, $id) {
 
         // return dd($request->all());
         if($request->hasFile('thumbnail')){
@@ -219,7 +219,7 @@ class CourseController extends Controller
         $courselevel->basic_days         = json_encode($request->basic_days) ?? json_encode($courselevel->basic_days) ;
         $courselevel->basic_class_title = json_encode($request->basic_class_title) ?? json_encode($courselevel->basic_class_title);
         $courselevel->basic_class_overview = json_encode($request->basic_class_overview) ?? json_encode($courselevel->basic_class_overview);
-        $courselevel->basic_class_start_time   = json_encode($request->basic_class_start_time) ?? json_encode($courselevel->basic_class_start_time); 
+        $courselevel->basic_class_start_time   = json_encode($request->basic_class_start_time) ?? json_encode($courselevel->basic_class_start_time);
         $courselevel->basic_class_end_time     = json_encode($request->basic_class_end_time) ?? json_encode($courselevel->basic_class_end_time);
         $courselevel->basic_price        = $request->basic_price ?? $courselevel->basic_price;
 

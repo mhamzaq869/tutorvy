@@ -144,8 +144,16 @@
                                                                             Approved
                                                                         </span>
                                                                     @elseif($booking->status == 0)
-                                                                        <span class="bg-color-apporve">
+                                                                        <span class="bg-color-apporve2">
                                                                             Pending
+                                                                        </span>
+                                                                    @elseif($booking->status == 3)
+                                                                        <span class="bg-color-apporve">
+                                                                            Cancelled
+                                                                        </span>
+                                                                    @elseif($booking->status == 4)
+                                                                        <span class="bg-color-apporve">
+                                                                            Cancelled
                                                                         </span>
                                                                     @endif
                                                                 </td>
@@ -237,8 +245,16 @@
                                                                                 Approved
                                                                             </span>
                                                                         @elseif($booking->status == 0)
-                                                                            <span class="bg-color-apporve">
+                                                                            <span class="bg-color-apporve2">
                                                                                 Pending
+                                                                            </span>
+                                                                        @elseif($booking->status == 3)
+                                                                            <span class="bg-color-apporve">
+                                                                                Cancelled
+                                                                            </span>
+                                                                        @elseif($booking->status == 4)
+                                                                            <span class="bg-color-apporve">
+                                                                                Cancelled
                                                                             </span>
                                                                         @endif
                                                                     </td>
@@ -325,8 +341,16 @@
                                                                             Approved
                                                                         </span>
                                                                     @elseif($booking->status == 0)
-                                                                        <span class="bg-color-apporve">
+                                                                        <span class="bg-color-apporve2">
                                                                             Pending
+                                                                        </span>
+                                                                    @elseif($booking->status == 3)
+                                                                        <span class="bg-color-apporve">
+                                                                            Cancelled
+                                                                        </span>
+                                                                    @elseif($booking->status == 4)
+                                                                        <span class="bg-color-apporve">
+                                                                            Cancelled
                                                                         </span>
                                                                     @endif
                                                                 </td>
@@ -415,9 +439,18 @@
                                                                             Approved
                                                                         </span>
                                                                     @elseif($booking->status == 0)
-                                                                        <span class="bg-color-apporve">
+                                                                        <span class="bg-color-apporve2">
                                                                             Pending
                                                                         </span>
+                                                                    @elseif($booking->status == 3)
+                                                                        <span class="bg-color-apporve">
+                                                                            Cancelled
+                                                                        </span>
+                                                                    @elseif($booking->status == 4)
+                                                                        <span class="bg-color-apporve">
+                                                                            Cancelled
+                                                                        </span>
+
                                                                     @endif
                                                                 </td>
                                                                 <td class="pt-3 pb-3" style="text-align: center; " >
@@ -504,6 +537,14 @@
                                                                 @elseif($booking->status == 0)
                                                                     <span class="bg-color-apporve">
                                                                         Pending
+                                                                    </span>
+                                                                @elseif($booking->status == 3)
+                                                                    <span class="bg-color-apporve">
+                                                                        Cancelled
+                                                                    </span>
+                                                                @elseif($booking->status == 4)
+                                                                    <span class="bg-color-apporve">
+                                                                        Cancelled
                                                                     </span>
                                                                 @endif
                                                             </td>

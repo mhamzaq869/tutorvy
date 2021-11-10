@@ -362,6 +362,7 @@ Route::group(['prefix' => '/general','middleware' => ['auth']],function () {
 
 });
 
+Route::get('/unreadmsg', [ChatController::class,'unreadMesg']);
 Route::get('/contacts', [ChatController::class,'get']);
 Route::get('/conversation/{id}', [ChatController::class,'getMessagesFor']);
 Route::post('/conversation/send', [ChatController::class,'send']);

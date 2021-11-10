@@ -34,16 +34,18 @@
                                     style="margin-top: 10px; text-align: left;color: #00132D;font-size: 22px;font-family: Poppins;font-weight: 500;">
                                     {{$booking->subject->name}} Class</p>
                                 <p style="text-align: right;" class="col-md-6 col-xs-12 class-btn-center">
-                                    @if ($booking->status == 2)
+
                                         <button type="button" data-toggle="modal" data-target="#exampleModalCenter"
                                         class="cencel-btn mr-2" style="font-size: 12px;width: 150px;"> Cancel
                                         Booking
                                         </button>
-                                    @elseif($booking->status == 1)
+                                        @if ($booking->status == 0)
                                         <button type="button" data-toggle="modal" data-target="#exampleModalCente"
-                                            class="schedule-btn mr-2" style="font-size: 12px;width: 150px;"> Re-schedule
-                                            class
+                                        class="schedule-btn mr-2" style="font-size: 12px;width: 150px;"> Re-schedule
+                                        class
                                         </button>
+                                    @elseif($booking->status == 1)
+
                                         <button type="button" onclick="pay_now({{$booking->id}})"
                                         class="schedule-btn" style="font-size: 12px;width: 150px;"> Pay Now
                                         </button>
@@ -247,8 +249,13 @@
                                                 style=" font-size: 24px;color: #00132D;font-family: Poppins;font-weight: 600;margin-top: 10px;">
                                                 Cancel Booking</p>
                                             <p style="font-size: 15px;color: #00132D;font-family: Poppins;font-weight: 400;line-height: 1.4;"
-                                                class="ml-5 mr-5">Are you sure you want to cancel booking ? it will cost
-                                                ${{$booking->service_fee ?? 10}} for cancelling</p>
+                                                class="ml-5 mr-5">
+                                                @if($booking->status == 2)
+                                                Are you sure you want to cancel booking ? it will cost
+                                                ${{$booking->service_fee ?? 0}} for cancelling</p>
+                                                @elseif ($booking->status == 0 || $booking->status == 1)
+                                                Are you sure you want to cancel booking ?
+                                                @endif
                                         </div>
                                     </div>
                                 </div>

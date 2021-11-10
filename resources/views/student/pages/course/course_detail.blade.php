@@ -1282,18 +1282,15 @@
                                 </div>
                             </div>
                             <div class="col-md-12 text-right mt-3" id="show_pay_btn">
-                                @if ($defaultPay != null)
+
                                 <form action="{{route('student.course.payment',[$course->id])}}" id="payment" method="post">
-                                @endif
+
                                     @csrf
                                     <div id="paytype"></div>
                                     <span id="amount"></span>
                                     <span id="comm"></span>
                                     <span id="plan"></span>
                                     <input type="submit" class="btn btn-primary" value="Pay now">
-                                    @if ($defaultPay == null)
-                                    <button class="btn btn-secondary" disabled>Pay now</button>
-                                    @endif
 
                                 </form>
                             </div>
@@ -1332,6 +1329,9 @@
         let times = []
         let e_time = [];
 
+
+        $("#courseTime li").remove();
+
         for (bs in time) {
             if (bs == 1) {
                 day.push('Monday')
@@ -1360,11 +1360,10 @@
             }
 
         }
-
         for (var i = 0; i < day.length; i++) {
             var html = "<li><p class='mb-0'>" + day[i] + "<span class='pull-right'>" + times[i] + " - " + e_time[i] +
                 "</span></p></li>"
-            $("#courseTime").append(html)
+                $("#courseTime").append(html);
         }
 
 
