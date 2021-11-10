@@ -444,65 +444,73 @@
             var duration = $(this).data('duration');
             var review = $(this).data('review');
 
-            var date = new Date();
-            var remain_time = (booking_seconds_time - HmsToSeconds(moment(date).format('HH:mm:ss')));
+            var now = moment();
+            const date1 = moment(booking_date).format('YYYY-MM-DD').valueOf()
+            const date2 = moment().format('YYYY-MM-DD').valueOf();
 
-            var std_time_in_seconds = HmsToSeconds(moment(date).format('HH:mm:ss'));
+            if (date1 < date2) {
+                $("#join_class_"+attr_id).html("");
+                $("#class_time_"+attr_id).html("Class Time Over");
+            } else {
+                var date = new Date();
+                var remain_time = (booking_seconds_time - HmsToSeconds(moment(date).format('HH:mm:ss')));
 
-            var region_booking_time = moment(date).add(remain_time,'s').format("LT");
-            var booking_time = new Date(booking_date + ' ' +  region_booking_time);
+                var std_time_in_seconds = HmsToSeconds(moment(date).format('HH:mm:ss'));
 
-            var class_end_time = moment(date).add(remain_time,'s').add(duration, 'h').format("LT");
-            var class_end_date = new Date(booking_date + ' ' +  class_end_time);
+                var region_booking_time = moment(date).add(remain_time,'s').format("LT");
+                var booking_time = new Date(booking_date + ' ' +  region_booking_time);
+
+                var class_end_time = moment(date).add(remain_time,'s').add(duration, 'h').format("LT");
+                var class_end_date = new Date(booking_date + ' ' +  class_end_time);
 
 
-            let join_btn = `<a onclick="joinClass('`+room_id+`')" class="schedule-btn"> Join Class </a>`;
+                let join_btn = `<a onclick="joinClass('`+room_id+`')" class="schedule-btn"> Join Class </a>`;
 
-            timer.start({countdown: true, startValues: {seconds: remain_time}});
-            timer.addEventListener('secondsUpdated', function (e) {
-                if( parseInt(remain_time) > 0)  {
-                    $("#class_time_"+attr_id).html(timer.getTimeValues().toString());
-                    var current_time_text =  $("#class_time_"+attr_id).text();
-                    if($.trim(current_time_text) == "00:00:00") {
-                        $(".join_class_"+attr_id).html(join_btn);
-                        $("#class_time_"+attr_id).html("");
-                    }
-                }else{
-                    $(".join_class_"+attr_id).html("");
-                    $("#class_time_"+attr_id).html("Class Time Over");
-                }
-
-            });
-
-            timer.addEventListener('targetAchieved', function (e) {
-                var current_time_text =  $("#class_time_"+attr_id).text();
-
-                if( parseInt(remain_time) > 0) {
-                    if($.trim(current_time_text)  == "00:00:00") {
-                        $(".join_class_"+attr_id).html(join_btn);
-                        $("#class_time_"+attr_id).html("");
-                    }
-                }else{
-                    $(".join_class_"+attr_id).html("");
-                    $("#class_time_"+attr_id).html("Class Time Over");
-                }
-            });
-
-            if(date.getTime() > booking_time.getTime() &&  date.getTime() < class_end_date.getTime()) {
-                if(review == 0) {
-                    if(Math.abs(remain_time) > 0) {
-                        $(".join_class_"+attr_id).html(join_btn);
-                        $("#class_time_"+attr_id).html("");
+                timer.start({countdown: true, startValues: {seconds: remain_time}});
+                timer.addEventListener('secondsUpdated', function (e) {
+                    if( parseInt(remain_time) > 0)  {
+                        $("#class_time_"+attr_id).html(timer.getTimeValues().toString());
+                        var current_time_text =  $("#class_time_"+attr_id).text();
+                        if($.trim(current_time_text) == "00:00:00") {
+                            $(".join_class_"+attr_id).html(join_btn);
+                            $("#class_time_"+attr_id).html("");
+                        }
                     }else{
                         $(".join_class_"+attr_id).html("");
                         $("#class_time_"+attr_id).html("Class Time Over");
                     }
-                }
-            }else {
-                $(".join_class_"+attr_id).html("");
-                $("#class_time_"+attr_id).html("Class Time Over");
-            }
 
+                });
+
+                timer.addEventListener('targetAchieved', function (e) {
+                    var current_time_text =  $("#class_time_"+attr_id).text();
+
+                    if( parseInt(remain_time) > 0) {
+                        if($.trim(current_time_text)  == "00:00:00") {
+                            $(".join_class_"+attr_id).html(join_btn);
+                            $("#class_time_"+attr_id).html("");
+                        }
+                    }else{
+                        $(".join_class_"+attr_id).html("");
+                        $("#class_time_"+attr_id).html("Class Time Over");
+                    }
+                });
+
+                if(date.getTime() > booking_time.getTime() &&  date.getTime() < class_end_date.getTime()) {
+                    if(review == 0) {
+                        if(Math.abs(remain_time) > 0) {
+                            $(".join_class_"+attr_id).html(join_btn);
+                            $("#class_time_"+attr_id).html("");
+                        }else{
+                            $(".join_class_"+attr_id).html("");
+                            $("#class_time_"+attr_id).html("Class Time Over");
+                        }
+                    }
+                }else {
+                    $(".join_class_"+attr_id).html("");
+                    $("#class_time_"+attr_id).html("Class Time Over");
+                }
+            }
 
         });
     });
