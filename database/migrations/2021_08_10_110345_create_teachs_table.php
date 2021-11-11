@@ -17,6 +17,10 @@ class CreateTeachsTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('subject_id');
+<<<<<<< HEAD
+=======
+            $table->integer('verified_by')->nullable();
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
             $table->timestamps();
         });
     }

@@ -10,6 +10,7 @@
         "production": "mix --production"
     },
     "devDependencies": {
+<<<<<<< HEAD
         "axios": "^0.21",
         "bootstrap": "^4.6.0",
         "jquery": "^3.6",
@@ -25,5 +26,36 @@
     },
     "dependencies": {
         "socket.io": "^4.1.3"
+=======
+        "axios": "^0.21.4",
+        "bootstrap": "^4.6.0",
+        "jquery": "^3.6",
+        "laravel-echo": "^1.11.2",
+        "laravel-mix": "^6.0.37",
+        "lodash": "^4.17.19",
+        "popper.js": "^1.16.1",
+        "postcss": "^8.3.8",
+        "pusher-js": "^7.0.3",
+        "resolve-url-loader": "^3.1.2",
+        "sass": "^1.32.11",
+        "sass-loader": "^11.0.1",
+        "vue": "^2.6.12",
+        "vue-loader": "^15.9.8",
+        "vue-template-compiler": "^2.6.12",
+        "webpack-cli": "^4.9.1"
+    },
+    "dependencies": {
+        "canvas-designer": "^1.3.0",
+        "emoji-mart-vue": "^2.6.6",
+        "firebase": "^9.1.0",
+        "rtcmulticonnection": "^3.7.0",
+        "socket.io": "^4.2.0",
+        "v-emoji-picker": "^2.3.3",
+        "v-file-upload": "^3.1.7",
+        "vue-emoji-picker": "^1.0.3",
+        "vue-highlight-words": "^2.0.0",
+        "vue-upload-component": "^2.8.22",
+        "webpack": "^5.61.0"
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     }
 }

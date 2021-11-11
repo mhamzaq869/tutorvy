@@ -4,10 +4,21 @@
 }
 
 .fa-star {
+<<<<<<< HEAD
     color: orange !important;
     font-size: 22px;
 }
 
+=======
+    /* color: orange !important; */
+    font-size: 22px;
+}
+
+.checked {
+    color: orange !important;
+}
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 .star-icos {
     margin-top: 20px;
 }
@@ -22,9 +33,16 @@
 }
 
 .profile-tutor {
+<<<<<<< HEAD
     font-size: 14px;
     font-family: "Poppins";
     font-weight: 500;
+=======
+    font-size: 15px;
+    font-family: "Poppins";
+    font-weight: 500;
+    margin-bottom: 0;
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 }
 
 .paragraph-text {
@@ -62,8 +80,14 @@
 .che-text {
     background-color: #f3e1e0;
     padding: 7px;
+<<<<<<< HEAD
     font-size: 14px;
     border-radius: 4px;
+=======
+    font-size: 12px;
+    border-radius: 4px;
+    display: block;
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     font-family: "Poppins";
 }
 
@@ -122,4 +146,12 @@
     font-size: 16px;
     font-family: "Poppins";
     font-weight: 400;
+<<<<<<< HEAD
+=======
+}
+
+.img-profile img {
+    height: auto !important;
+    margin-top: 0 !important;
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 }

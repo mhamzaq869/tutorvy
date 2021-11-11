@@ -1,8 +1,15 @@
 /* Main tabs */
 
+<<<<<<< HEAD
 /* fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,500;0,600;0,700;1,700&display=swap');
 
+=======
+
+/* fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,500;0,600;0,700;1,700&display=swap');
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 #body {
     background-image: url('../../admin/assets/img/backgrounds/background-bottom.png');
     background-repeat: no-repeat;
@@ -21,6 +28,7 @@
     /* margin-left: 100px; */
     box-sizing: border-box;
 }
+<<<<<<< HEAD
 .bordr-none{
     border-right: none;
     background-color: transparent;
@@ -29,25 +37,52 @@
 .tab-pane{
     border-right: none !important;
 }
+=======
+
+.bordr-none {
+    border-right: none;
+    background-color: transparent;
+}
+
+.tab-pane {
+    border-right: none !important;
+}
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 .liner {
     height: 1px;
     background: #27B776;
     position: absolute;
+<<<<<<< HEAD
     width: 80%;
+=======
+    width: 52%;
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     margin: 0 auto;
     left: 0;
     right: 0;
     top: 25%;
     z-index: 1;
 }
+<<<<<<< HEAD
 /* preloader */
+=======
+
+
+/* preloader */
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 .preloader {
     position: absolute;
     left: 19.5%;
     top: 16%;
 }
 
+<<<<<<< HEAD
       .preloader-body {
+=======
+.preloader-body {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     position: fixed;
     width: 100%;
     height: 100%;
@@ -55,6 +90,10 @@
     background: white;
     top: 0;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 .nav-tabs>li {
     width: 25%;
 }
@@ -78,6 +117,10 @@
 .register-content {
     margin-top: 70px;
     text-align: center;
+<<<<<<< HEAD
+=======
+    margin-right: 22px;
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     font-size: 14px;
     font-weight: 500;
     font-family: 'Poppins';
@@ -88,7 +131,12 @@
     background: none;
 }
 
+<<<<<<< HEAD
 .nav-tabs>li.active a, .nav-tabs>li.active a:hover {
+=======
+.nav-tabs>li.active a,
+.nav-tabs>li.active a:hover {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     border: none;
     background: none;
 }
@@ -172,6 +220,10 @@ div[role="tabpanel"]:after {
     clear: both;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* Begin Business Info */
 
 #step-1 {
@@ -299,6 +351,7 @@ body {
 }
 
 .Google {
+<<<<<<< HEAD
     margin-top: 100px;
     width: 100%;
     background-color: #ffffff;
@@ -306,16 +359,40 @@ body {
     padding: 9px;
     font-size: 14px;
     border: 1px solid #E3E6EA;
+=======
+    margin-top: 30px;
+    width: 100%;
+    background-color: #C94131;
+    color: #fff;
+    padding: 9px;
+    font-size: 14px;
+    border: 1px solid #C94131;
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     text-align: center;
     font-family: 'Poppins';
     cursor: pointer;
     border-radius: 4px;
 }
 
+<<<<<<< HEAD
 /* .Google:hover{
     background-color: black;
     color: white;
 } */
+=======
+.Google a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.Google:hover {
+    background-color: #fff;
+}
+
+.Google:hover a {
+    color: #C94131;
+}
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 
 .facebook {
     margin-top: 10px;
@@ -426,6 +503,7 @@ textarea::placeholder {
     font-family: 'Poppins';
     color: #737D8B;
 }
+<<<<<<< HEAD
 option{
     /* border:1px solid red !important; */
 background-color: white;
@@ -450,6 +528,36 @@ border-color: #1173FF !important;
 }
 /* css of country  */
 
+=======
+
+option {
+    /* border:1px solid red !important; */
+    background-color: white;
+}
+
+.iti--allow-dropdown {
+    width: 100%;
+}
+
+.iti--allow-dropdown input {
+    border-radius: 4px;
+}
+
+.iti--allow-dropdown input:focus {
+    outline: none;
+    border-color: #1173FF !important;
+}
+
+.iti__selected-flag:focus {
+    outline: none;
+    border-color: #1173FF !important;
+}
+
+
+/* css of country  */
+
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /**
  * Variables declared here can be overridden by consuming applications, with
  * the help of the `!default` flag.
@@ -465,6 +573,10 @@ border-color: #1173FF !important;
  *     @import "bower_component/intl-tel-input/src/css/intlTelInput";
  */
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* attatc docment */
 
 .upload-btn-wrapper {
@@ -499,6 +611,10 @@ border-color: #1173FF !important;
     border-radius: 4px;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /*
   floa dropdown */
 
@@ -529,7 +645,13 @@ border-color: #1173FF !important;
     visibility: hidden;
 }
 
+<<<<<<< HEAD
 .intl-tel-input input, .intl-tel-input input[type=text], .intl-tel-input input[type=tel] {
+=======
+.intl-tel-input input,
+.intl-tel-input input[type=text],
+.intl-tel-input input[type=tel] {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     position: relative;
     z-index: 0;
     margin-top: 0 !important;
@@ -628,6 +750,7 @@ border-color: #1173FF !important;
     background-color: rgba(0, 0, 0, 0.05);
 }
 
+<<<<<<< HEAD
 .intl-tel-input .country-list .flag-box, .intl-tel-input .country-list .country-name, .intl-tel-input .country-list .dial-code {
     vertical-align: middle;
 }
@@ -637,17 +760,46 @@ border-color: #1173FF !important;
 }
 
 .intl-tel-input.allow-dropdown input, .intl-tel-input.allow-dropdown input[type=text], .intl-tel-input.allow-dropdown input[type=tel], .intl-tel-input.separate-dial-code input, .intl-tel-input.separate-dial-code input[type=text], .intl-tel-input.separate-dial-code input[type=tel] {
+=======
+.intl-tel-input .country-list .flag-box,
+.intl-tel-input .country-list .country-name,
+.intl-tel-input .country-list .dial-code {
+    vertical-align: middle;
+}
+
+.intl-tel-input .country-list .flag-box,
+.intl-tel-input .country-list .country-name {
+    margin-right: 6px;
+}
+
+.intl-tel-input.allow-dropdown input,
+.intl-tel-input.allow-dropdown input[type=text],
+.intl-tel-input.allow-dropdown input[type=tel],
+.intl-tel-input.separate-dial-code input,
+.intl-tel-input.separate-dial-code input[type=text],
+.intl-tel-input.separate-dial-code input[type=tel] {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     padding-right: 6px;
     padding-left: 52px;
     margin-left: 0;
 }
 
+<<<<<<< HEAD
 .intl-tel-input.allow-dropdown .flag-container, .intl-tel-input.separate-dial-code .flag-container {
+=======
+.intl-tel-input.allow-dropdown .flag-container,
+.intl-tel-input.separate-dial-code .flag-container {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     right: auto;
     left: 0;
 }
 
+<<<<<<< HEAD
 .intl-tel-input.allow-dropdown .selected-flag, .intl-tel-input.separate-dial-code .selected-flag {
+=======
+.intl-tel-input.allow-dropdown .selected-flag,
+.intl-tel-input.separate-dial-code .selected-flag {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     width: 46px;
 }
 
@@ -659,11 +811,21 @@ border-color: #1173FF !important;
     background-color: rgba(0, 0, 0, 0.05);
 }
 
+<<<<<<< HEAD
 .intl-tel-input.allow-dropdown input[disabled]+.flag-container:hover, .intl-tel-input.allow-dropdown input[readonly]+.flag-container:hover {
     cursor: default;
 }
 
 .intl-tel-input.allow-dropdown input[disabled]+.flag-container:hover .selected-flag, .intl-tel-input.allow-dropdown input[readonly]+.flag-container:hover .selected-flag {
+=======
+.intl-tel-input.allow-dropdown input[disabled]+.flag-container:hover,
+.intl-tel-input.allow-dropdown input[readonly]+.flag-container:hover {
+    cursor: default;
+}
+
+.intl-tel-input.allow-dropdown input[disabled]+.flag-container:hover .selected-flag,
+.intl-tel-input.allow-dropdown input[readonly]+.flag-container:hover .selected-flag {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     background-color: transparent;
 }
 
@@ -678,7 +840,13 @@ border-color: #1173FF !important;
     padding-left: 28px;
 }
 
+<<<<<<< HEAD
 .intl-tel-input.separate-dial-code.iti-sdc-2 input, .intl-tel-input.separate-dial-code.iti-sdc-2 input[type=text], .intl-tel-input.separate-dial-code.iti-sdc-2 input[type=tel] {
+=======
+.intl-tel-input.separate-dial-code.iti-sdc-2 input,
+.intl-tel-input.separate-dial-code.iti-sdc-2 input[type=text],
+.intl-tel-input.separate-dial-code.iti-sdc-2 input[type=tel] {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     padding-left: 66px;
 }
 
@@ -686,7 +854,13 @@ border-color: #1173FF !important;
     width: 60px;
 }
 
+<<<<<<< HEAD
 .intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-2 input, .intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-2 input[type=text], .intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-2 input[type=tel] {
+=======
+.intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-2 input,
+.intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-2 input[type=text],
+.intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-2 input[type=tel] {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     padding-left: 76px;
 }
 
@@ -694,7 +868,13 @@ border-color: #1173FF !important;
     width: 70px;
 }
 
+<<<<<<< HEAD
 .intl-tel-input.separate-dial-code.iti-sdc-3 input, .intl-tel-input.separate-dial-code.iti-sdc-3 input[type=text], .intl-tel-input.separate-dial-code.iti-sdc-3 input[type=tel] {
+=======
+.intl-tel-input.separate-dial-code.iti-sdc-3 input,
+.intl-tel-input.separate-dial-code.iti-sdc-3 input[type=text],
+.intl-tel-input.separate-dial-code.iti-sdc-3 input[type=tel] {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     padding-left: 74px;
 }
 
@@ -702,7 +882,13 @@ border-color: #1173FF !important;
     width: 68px;
 }
 
+<<<<<<< HEAD
 .intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-3 input, .intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-3 input[type=text], .intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-3 input[type=tel] {
+=======
+.intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-3 input,
+.intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-3 input[type=text],
+.intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-3 input[type=tel] {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     padding-left: 84px;
 }
 
@@ -710,7 +896,13 @@ border-color: #1173FF !important;
     width: 78px;
 }
 
+<<<<<<< HEAD
 .intl-tel-input.separate-dial-code.iti-sdc-4 input, .intl-tel-input.separate-dial-code.iti-sdc-4 input[type=text], .intl-tel-input.separate-dial-code.iti-sdc-4 input[type=tel] {
+=======
+.intl-tel-input.separate-dial-code.iti-sdc-4 input,
+.intl-tel-input.separate-dial-code.iti-sdc-4 input[type=text],
+.intl-tel-input.separate-dial-code.iti-sdc-4 input[type=tel] {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     padding-left: 82px;
 }
 
@@ -718,7 +910,13 @@ border-color: #1173FF !important;
     width: 76px;
 }
 
+<<<<<<< HEAD
 .intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-4 input, .intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-4 input[type=text], .intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-4 input[type=tel] {
+=======
+.intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-4 input,
+.intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-4 input[type=text],
+.intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-4 input[type=tel] {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     padding-left: 92px;
 }
 
@@ -726,7 +924,13 @@ border-color: #1173FF !important;
     width: 86px;
 }
 
+<<<<<<< HEAD
 .intl-tel-input.separate-dial-code.iti-sdc-5 input, .intl-tel-input.separate-dial-code.iti-sdc-5 input[type=text], .intl-tel-input.separate-dial-code.iti-sdc-5 input[type=tel] {
+=======
+.intl-tel-input.separate-dial-code.iti-sdc-5 input,
+.intl-tel-input.separate-dial-code.iti-sdc-5 input[type=text],
+.intl-tel-input.separate-dial-code.iti-sdc-5 input[type=tel] {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     padding-left: 90px;
 }
 
@@ -734,7 +938,13 @@ border-color: #1173FF !important;
     width: 84px;
 }
 
+<<<<<<< HEAD
 .intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-5 input, .intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-5 input[type=text], .intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-5 input[type=tel] {
+=======
+.intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-5 input,
+.intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-5 input[type=text],
+.intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-5 input[type=tel] {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     padding-left: 100px;
 }
 
@@ -800,7 +1010,16 @@ border-color: #1173FF !important;
     width: 15px;
 }
 
+<<<<<<< HEAD
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+=======
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (min--moz-device-pixel-ratio: 2),
+only screen and (-o-min-device-pixel-ratio: 2 / 1),
+only screen and (min-device-pixel-ratio: 2),
+only screen and (min-resolution: 192dpi),
+only screen and (min-resolution: 2dppx) {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     .iti-flag {
         background-size: 5630px 15px;
     }
@@ -2106,7 +2325,16 @@ border-color: #1173FF !important;
     background-position: 20px 0;
 }
 
+<<<<<<< HEAD
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+=======
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (min--moz-device-pixel-ratio: 2),
+only screen and (-o-min-device-pixel-ratio: 2 / 1),
+only screen and (min-device-pixel-ratio: 2),
+only screen and (min-resolution: 192dpi),
+only screen and (min-resolution: 2dppx) {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     .iti-flag {
         background-image: url("https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/img/flags@2x.png");
     }
@@ -2137,11 +2365,25 @@ pre {
     display: inline-block;
 }
 
+<<<<<<< HEAD
 .token.operator, .token.entity, .token.url, .language-css .token.string, .style .token.string, .token.variable {
     background: none;
 }
 
 input, button {
+=======
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+    background: none;
+}
+
+input,
+button {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     height: 50px;
     margin: 0;
     padding: 12px 12px;
@@ -2151,6 +2393,7 @@ input, button {
     color: inherit;
 }
 
+<<<<<<< HEAD
 input[disabled], button[disabled] {
     background-color: #eee;
 }
@@ -2158,6 +2401,17 @@ input[disabled], button[disabled] {
 input, select {
     border: 1px solid #D6DBE2;
     width: 100%;
+=======
+input[disabled],
+button[disabled] {
+    background-color: #eee;
+}
+
+input,
+select {
+    border: 1px solid #D6DBE2;
+    width: 100% !important;
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 }
 
 ::-webkit-input-placeholder {
@@ -2190,6 +2444,10 @@ button:hover {
     margin-bottom: 100px;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* counrty css */
 
 .autocomplete-items {
@@ -2288,6 +2546,10 @@ button:hover {
     margin: 0;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /*attact file css  */
 
 .button-wrapper {
@@ -2368,7 +2630,11 @@ button:hover {
     .liner {
         position: absolute;
         top: 30px;
+<<<<<<< HEAD
         width: 80%;
+=======
+        width: 74%;
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
         left: 10px;
         /* padding: 10px; */
     }
@@ -2399,3 +2665,27 @@ button:hover {
     }
 }
 
+<<<<<<< HEAD
+=======
+.text-red {
+    color: red !important;
+}
+
+.student_liner {
+    width: 26%;
+    right: 0;
+}
+
+.stu_reg .board ul {
+    justify-content: center;
+}
+
+.stu_reg .active,
+.stu_reg .btn:hover {
+    padding-left: 0;
+}
+
+.stu_reg .nav-tabs>li a {
+    margin-left: 28px;
+}
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249

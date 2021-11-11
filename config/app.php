@@ -161,6 +161,11 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+<<<<<<< HEAD
+=======
+        Srmklive\PayPal\Providers\PayPalServiceProvider::class,
+        Obydul\LaraSkrill\LaraSkrillServiceProvider::class,
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
         /*
          * Package Service Providers...
          */
@@ -173,6 +178,10 @@ return [
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+<<<<<<< HEAD
+=======
+        LaravelFCM\FCMServiceProvider::class,
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 
     ],
 
@@ -228,6 +237,12 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+<<<<<<< HEAD
+=======
+        'PayPal' => Srmklive\PayPal\Facades\PayPal::class,
+        'FCM'      => LaravelFCM\Facades\FCM::class,
+	    'FCMGroup' => LaravelFCM\Facades\FCMGroup::class,
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 
     ],
 

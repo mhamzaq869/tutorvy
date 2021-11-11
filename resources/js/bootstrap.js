@@ -6,12 +6,21 @@ window._ = require('lodash');
  * code may be modified to fit the specific needs of your application.
  */
 
+<<<<<<< HEAD
 // try {
 //     window.Popper = require('popper.js').default;
 //     window.$ = window.jQuery = require('jquery');
 
 //     require('bootstrap');
 // } catch (e) {}
+=======
+try {
+    window.Popper = require('popper.js').default;
+    window.$ = window.jQuery = require('jquery');
+
+    require('bootstrap');
+} catch (e) {}
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -32,6 +41,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 import Echo from 'laravel-echo';
 
 window.Pusher = require('pusher-js');
+<<<<<<< HEAD
 window.Echo = new Echo({
     broadcaster: 'pusher',
     key: process.env.MIX_PUSHER_APP_KEY,
@@ -40,3 +50,16 @@ window.Echo = new Echo({
     wsPort: 6001,
     forceTLS: false
 });
+=======
+
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: process.env.MIX_PUSHER_APP_KEY,
+    wsHost: window.location.hostname,
+    wsPort: 6001,
+    wssPort: 6001,
+    disableStats: true,
+    enabledTransports: ['ws', 'wss'],
+});
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249

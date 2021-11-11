@@ -31,7 +31,13 @@
                 <div class="col-md-6">
                     <div class="">
                         <div class="login-logo">
+<<<<<<< HEAD
                             <img src="../assets/images/logo/logo.png" alt="logo">
+=======
+                            <a href="{{url('/')}}">
+                                <img src="{{asset('assets/images/logo/logo.png')}}">
+                            </a>
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                         </div>
                         <div class="text">
                             <p class="learn">
@@ -58,7 +64,11 @@
                                 <p class="ml-3 mt-3 mt-5">
                                     @if($user->profile)
                                     @else
+<<<<<<< HEAD
                                     <img src="../assets/images/logo/boy.jpg" alt="boy" style="width: 40px;">
+=======
+                                    <img src="../assets/images/ico/Square-white.jpg" alt="boy" style="width: 40px;">
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                                     @endif
                                 </p>
                                 <p class="ml-3 mt-5 Welcome-text"> {{$user->first_name}} {{$user->last_name}}</p>

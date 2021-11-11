@@ -127,6 +127,10 @@ body {
     border-radius: 4px;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* .Google:hover{
     background-color: black;
     color: white;
@@ -221,6 +225,10 @@ input:focus+.label {
     background-color: white;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* .fa-eye{
     position: relative;
     top: -20px;
@@ -253,8 +261,13 @@ label {
 input {
     width: 100%;
 }
+<<<<<<< HEAD
 .cl
 .checkbox:focus {
+=======
+
+.cl .checkbox:focus {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     width: 10px;
 }
 
@@ -289,6 +302,10 @@ input {
     position: relative;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* .content .lock {
     position: absolute;
     height: 50px;
@@ -354,11 +371,22 @@ input:valid~.show-hide i {
     /* left: 50px; */
     display: flex;
 }
+<<<<<<< HEAD
 #message{
     position: absolute !important;
 left: 10px;
 top: 50px;
 }
+=======
+
+#message {
+    position: absolute !important;
+    left: 10px;
+    top: 50px;
+}
+
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* email validation */
 
 .add {
@@ -374,4 +402,15 @@ top: 50px;
     top: 50px;
     font-family: "Poppins";
     font-size: 16px;
+<<<<<<< HEAD
+=======
+}
+
+.profile-img {
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    border: 2px solid #1173FF;
+    border-radius: 50%;
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 }

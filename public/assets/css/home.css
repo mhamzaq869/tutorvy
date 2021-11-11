@@ -128,6 +128,10 @@
     color: #00132D;
     font-family: 'poppins';
     font-weight: 700;
+<<<<<<< HEAD
+=======
+    margin-bottom: 0;
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 }
 
 .Learn-texts {
@@ -183,12 +187,19 @@
     font-weight: 400;
     color: #00132D;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 .number-4 {
     font-size: 14px;
     font-family: "Poppins";
     font-weight: 400;
     color: #00132D;
+<<<<<<< HEAD
 
+=======
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 }
 
 .line-image {
@@ -320,12 +331,17 @@
     stroke-miterlimit: 10;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* Transparent box ensuring arms center properly. */
 
 .sizing-box {
     fill: none;
 }
 
+<<<<<<< HEAD
 /* Make all arms rotate around the same center point. */
 
 /* Optional: Use transition for animation. */
@@ -337,6 +353,26 @@
 .book-icons{
     height: 70px;
 }
+=======
+
+/* Make all arms rotate around the same center point. */
+
+
+/* Optional: Use transition for animation. */
+
+#hour,
+#minute,
+#second {
+    transform-origin: 300px 300px;
+    transition: transform .5s ease-in-out;
+}
+
+.book-icons {
+    height: 70px;
+}
+
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* how its work section */
 
 .text-hows {
@@ -385,7 +421,11 @@
     margin-top: 100px;
     font-size: 40px;
     color: #ffffff;
+<<<<<<< HEAD
     display: flex;
+=======
+    /* display: flex; */
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     font-family: "Poppins";
     font-weight: 600;
     margin-left: 25px;
@@ -478,7 +518,11 @@
 }
 
 .card:hover {
+<<<<<<< HEAD
     transform: scale(0.9);
+=======
+    /* transform: scale(0.9); */
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     box-shadow: 1px 1px 15px rgb(207, 204, 204);
 }
 
@@ -571,10 +615,13 @@
     width: 50%;
     margin: auto;
     border-radius: 8px;
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 }
 
 .input-subs {
@@ -583,7 +630,10 @@
     padding-bottom: 30px;
     width: 100%;
     margin: auto;
+<<<<<<< HEAD
 
+=======
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 }
 
 .carousel-control-next-icon {
@@ -602,6 +652,10 @@
     background-color: transparent;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* Style the buttons inside the tab */
 
 .tab button {
@@ -618,18 +672,30 @@
     padding: 10px 1px;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* Change background color of buttons on hover */
 
 .tab button:hover {
     color: #1173FF;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* Create an active/current tablink class */
 
 .tab button.active {
     color: #1173FF;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* Style the tab content */
 
 .why-text {
@@ -659,10 +725,27 @@
     font-weight: 500;
 }
 
+<<<<<<< HEAD
+=======
+.book-luli a {
+    display: block !important;
+    padding-top: 10px;
+    font-size: 14px;
+    font-family: "Poppins";
+    font-weight: 500;
+    color: #00132D;
+    text-decoration: none;
+}
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 .main-bg-height-show {
     display: none;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* media query */
 
 @media screen and (max-width: 600px) {
@@ -674,14 +757,33 @@
 @media screen and (max-width: 600px) {
     .text-class {
         font-size: 28px;
+<<<<<<< HEAD
         margin-top: 25px;
 
     }
     .text-xs-center-1{
+=======
+        text-align: center;
+        margin-top: 112px;
+        margin-left: 0;
+    }
+    .chweck {
+        margin-left: 0 !important;
+    }
+    .text-class p {
+        color: #ffffff;
+        margin-right: 0;
+    }
+    .text-xs-center-1 {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
         text-align: center !important;
     }
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /*homepage media query */
 
 @media screen and (max-width: 600px) {
@@ -717,6 +819,10 @@
     }
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* image icon respoive media query*/
 
 @media screen and (max-width: 600px) {
@@ -761,14 +867,23 @@
     .where-text {
         position: relative;
         top: -100px;
+<<<<<<< HEAD
         text-align: center;
+=======
+        /* text-align: center; */
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
         font-size: 47px;
     }
     .there-text-main {
         position: relative;
         top: -100px;
+<<<<<<< HEAD
         text-align: center !important;
         text-align: left;
+=======
+        /* text-align: center !important; */
+        /* text-align: left; */
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
         margin-bottom: 50px;
     }
     .input-text-main {
@@ -781,6 +896,10 @@
     }
     .main-bg-height {
         height: 280px !important;
+<<<<<<< HEAD
+=======
+        text-align: center !important;
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     }
     /* .how-mobile-section {
         height: 120px !important;
@@ -820,9 +939,15 @@
     .Learn-texts {
         text-align: center;
     }
+<<<<<<< HEAD
     .where-texts {
         text-align: center;
     }
+=======
+    /* .where-texts {
+        text-align: center;
+    } */
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     .carousel-hide {
         display: none;
     }
@@ -835,6 +960,10 @@
     }
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* mobile responsive */
 
 @media screen and (max-width: 600px) {
@@ -857,8 +986,13 @@
         left: 95px;
     }
     .take-demo {
+<<<<<<< HEAD
 margin-top: -50px;
 padding-bottom: 100px;
+=======
+        margin-top: -50px;
+        padding-bottom: 100px;
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     }
     .number-2 {
         margin-left: 20px;
@@ -885,7 +1019,11 @@ padding-bottom: 100px;
         padding: 0px;
         /* background-color: red; */
     }
+<<<<<<< HEAD
     ::-webkit-scrollbar {
+=======
+     ::-webkit-scrollbar {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
         display: none;
     }
     .flex-scroll {
@@ -970,6 +1108,7 @@ padding-bottom: 100px;
         width: 75% !important;
         margin: auto 90px !important;
     }
+<<<<<<< HEAD
   .input-sub input{
       margin-left: 5px;
   }
@@ -1001,4 +1140,41 @@ margin-right: 20px;
 .course-text{
     text-align: left !important;
 }
+=======
+    .input-sub input {
+        margin-left: 5px;
+    }
+    .book-icons {
+        height: 40px;
+    }
+    .number-4 {
+        font-size: 10px;
+        font-family: "Poppins";
+        font-weight: 400;
+        color: #00132D;
+        text-align: center !important;
+        margin-left: 10px;
+    }
+    .div-center-icons {
+        text-align: center !important;
+        margin: auto 20px !important;
+    }
+    .refund-text {
+        margin: 0px;
+    }
+    .bg-tutor {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    #section-tutor {
+        height: 400px;
+    }
+    .course-text {
+        text-align: left !important;
+    }
+}
+
+.pd-btn {
+    padding: 14px 11px!important
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 }

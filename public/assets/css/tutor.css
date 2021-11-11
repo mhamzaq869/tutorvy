@@ -15,9 +15,17 @@
 .circlechart {
     width: 50px;
 }
+<<<<<<< HEAD
 .tc-m{
     margin-top: 135px;
 }
+=======
+
+.tc-m {
+    margin-top: 135px;
+}
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 .bg-subject {
     text-align: center;
     background-color: #F2F8FF;
@@ -82,6 +90,10 @@
     border-radius: 4px;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* collspe */
 
 .panel-title a:after {
@@ -107,6 +119,10 @@
     text-decoration: none !important;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* range slider css */
 
 .heading-third {
@@ -142,7 +158,11 @@
 .cencel-btn {
     background-color: #fff !important;
     border: 1px solid #1173FF !important;
+<<<<<<< HEAD
     padding: 10px 10px 10px !important;
+=======
+    padding: 10px 10px 10px;
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     font-size: 12px;
     color: #1173FF;
     font-family: 'Poppins';
@@ -381,6 +401,10 @@
     }
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* mobile viow nav meida query */
 
 @media screen and (max-width: 600px) {
@@ -409,9 +433,15 @@
     .mobile-input input {
         width: 170px;
     }
+<<<<<<< HEAD
     .tc-m{
         margin-top: 0px;
     }
 
 
+=======
+    .tc-m {
+        margin-top: 0px;
+    }
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 }

@@ -15,6 +15,10 @@ class CreateSubjectCategoriesTable extends Migration
     {
         Schema::create('subject_categories', function (Blueprint $table) {
             $table->id();
+<<<<<<< HEAD
+=======
+            $table->integer('subject_id')->nullable();
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
             $table->integer('status')->nullable();

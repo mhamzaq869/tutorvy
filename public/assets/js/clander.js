@@ -17,7 +17,11 @@ createYear = generate_year_range(1970, 2050);
 /** or
  * createYear = generate_year_range( 1970, currentYear );
  */
+<<<<<<< HEAD
 if(document.getElementById("year")){
+=======
+if (document.getElementById("year")) {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     document.getElementById("year").innerHTML = createYear;
 }
 
@@ -117,6 +121,13 @@ function showCalendar(month, year) {
         tbl.appendChild(row);
     }
 }
+<<<<<<< HEAD
 function daysInMonth(iMonth, iYear) {
     return 32 - new Date(iYear, iMonth, 32).getDate();
 }
+=======
+
+function daysInMonth(iMonth, iYear) {
+    return 32 - new Date(iYear, iMonth, 32).getDate();
+}
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249

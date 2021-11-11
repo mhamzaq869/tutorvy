@@ -1,6 +1,12 @@
 @extends('admin.layouts.app')
 @section('content')
+<<<<<<< HEAD
 
+=======
+@php
+    $request_ = route ('admin.tutor') ;
+@endphp
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 <div class="container-fluid pb-4">
     <h1 class="heading-first-top mt-5 ">
         <a href="{{ route ('admin.tutor') }}"> < </a> Tutor request </h1>
@@ -10,6 +16,7 @@
     <div class="row">
         <div class="col-md-3">
             <div class="text-center pt-5 bg-white">
+<<<<<<< HEAD
                 <img src="{{asset('/assets/images/ico/hom-profile.png')}}" alt="re" class="w-50">
                 <h3 class="mt-3 mb-0">{{ $tutor->first_name }} {{ $tutor->last_name }}</h3>
                 <p class="heading-fifth mt-2 line-height-1">Tutor</p>
@@ -19,12 +26,93 @@
                         style="width: 110px;">Reject</button>
                     <button class="schedule-btn" data-toggle="modal" data-target="#exampleModalCenter"
                         style="width: 110px;">Accpet</button>
+=======
+                @if($tutor->picture != null)
+                    <img src="{{asset($tutor->picture)}}" class="round-profile" alt="re" class="w-50">
+                @else
+                    <img src="{{asset('admin/assets/img/ico/Square-white.jpg')}}" class="round-profile" alt="re" class="w-50">
+                @endif
+                <h3 class="mt-3 mb-0">{{ $tutor->first_name }} {{ $tutor->last_name }}</h3>
+                <p class="heading-fifth mt-2 line-height-1 mb-1">{{$tutor->tagline}}</p>
+                @if($tutor->status == 2)
+                <h6><span class="badge badge-success mb-3 all-tutor-badge">Verified</span></h6>
+                @else
+                <div class="pb-5 mt-4" id="verification_btns">
+                    <button class="cencel-btn" data-toggle="modal" data-target="#tutorRejectModal" style="width: 110px;">Reject</button>
+                    @if($tutor_assessment != null)
+                        <button class="schedule-btn save_btn" style="width: 110px;" onclick="verifyTutor(`{{$tutor->id}}`,2,`{{$tutor_assessment->status}}`)">Accept </button>
+                        <button type="button" role="button" type="button" id="verfication_loading" disabled class="btn btn-primary" 
+                        style="width: 110px;display:none"> Processing </button>
+                    @else
+                        <button class="schedule-btn save_btn" style="width: 110px;" onclick="verifyTutor(`{{$tutor->id}}`,2)">Accept </button>
+                        <button type="button" role="button" type="button" id="verfication_loading" disabled class="btn btn-primary" 
+                        style="width: 110px;display:none"> Processing </button>
+                    @endif
+                </div>
+
+                @endif
+                <h6>
+                    <span class="badge badge-success mb-3 all-tutor-badge" id="verified_badge" style="display:none">Verified</span>
+                    <hr>
+                </h6>
+                
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h3>Documents</h3>
+                    @if($tutor->status == 0)
+                        <span class="statusTag doc_not_sub_status">  Document not Submitted </span>
+                    @else
+                        @if( count($documents) > 0)
+                        <hr>
+                            <h6>Document Type</h5>
+                            <p class="text-muted small">
+                                @if($tutor->type != null)
+                                    @if($tutor->type == 1) 
+                                        <span>National Identity Card</span>
+                                    @elseif($tutor->type == 2)
+                                        <span> Driving License </span>
+                                    @elseif($tutor->type == 3)
+                                        <span> Passport </span>
+                                    @else
+                                        <span> - </span>
+                                    @endif.
+                                @else
+                                    <span> - </span>
+                                @endif
+                            </p>
+
+                            <h6> Document Type </h6>
+                            <p class="text-muted small">
+                                {{ $tutor->cnic_security != null ? $tutor->cnic_security : '-' }}
+                            </p>
+
+                            <div class="row">
+                                <div class="col-md-12 mt-3">
+                                    <h6>Document Attachments</h6>
+                                </div>
+                                @foreach($documents as $document)
+                                <div class="col-md-12 mt-2">
+                                    <img src="{{asset($document->files)}}"  class="w-100" alt="">
+                                </div>
+                                @endforeach
+                            </div>
+                        @else
+                            <span class="statusTag doc_not_sub_status">  Document not Submitted </span>
+                        @endif
+                    @endif
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                 </div>
             </div>
         </div>
         <!-- Modal verify -->
+<<<<<<< HEAD
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+=======
+        <div class="modal fade" id="tutorAcceptModal" tabindex="-1" role="dialog"
+            aria-labelledby="tutorAcceptModalTitle" aria-hidden="true">
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
             <div class="modal-dialog  modal-dialog-centered" role="document">
                 <div class="modal-content modals">
                     <div class="modal-body modal-bodys">
@@ -34,10 +122,21 @@
                                 Please verify tutor test to accept request
                             </h3>
 
+<<<<<<< HEAD
                             <button type="button" class="cencel-btn w-25" data-dismiss="modal">Cencel</button>
                             <a href="./test.html">
                                 <button class="schedule-btn w-25">View</button>
                             </a>
+=======
+                            <button type="button" class="cencel-btn w-25" data-dismiss="modal">Cancel</button>
+                             @if($tutor_assessment != null)
+
+                                <a href="{{ route('admin.tutotAssessment',[$tutor_assessment->id]) }}">
+                                    <button class="schedule-btn w-25">View</button>
+                                </a>
+
+                            @endif
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                         </div>
                     </div>
                 </div>
@@ -46,7 +145,11 @@
         <!--  -->
 
         <!-- Modal reject-->
+<<<<<<< HEAD
         <div class="modal fade" id="exampleModalCenterss" tabindex="-1" role="dialog"
+=======
+        <div class="modal fade" id="tutorRejectModal" tabindex="-1" role="dialog"
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -59,16 +162,31 @@
                             <p class="paragraph-text">
                                 Write allegation that why are you rejecting tutor
                             </p>
+<<<<<<< HEAD
                             <textarea class="form-control" rows="5" placeholder="Write reason"></textarea>
                             <div class="mt-4 d-flex" style="position: absolute;right: 30px;">
                                 <button class="cencel-btn w-150 mr-4" data-dismiss="modal">Cencel</button>
                                 <button class="schedule-btn w-150">Send</button>
+=======
+                            <textarea class="form-control" rows="5" placeholder="Write reason" id="t_reject_reason" class="reject_reason"> </textarea>
+                            <div class="mt-4 d-flex" style="position: absolute;right: 30px;">
+                                <button class="cencel-btn w-150 mr-4" data-dismiss="modal">Cancel</button>
+                                @if($tutor_assessment != null)
+                                <button class="schedule-btn w-150" onclick="verifyTutor(`{{$tutor->id}}`,3,`{{$tutor_assessment->status}}`)">Send</button>
+                                @else
+                                <button class="schedule-btn w-150" onclick="verifyTutor(`{{$tutor->id}}`,3)">Send</button>
+                                @endif
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
         <div class="col-md-9 bg-white border-right">
             <div class="mt-4 ml-3">
                 <table class="table">
@@ -164,6 +282,7 @@
                             <th scope="row">
                                 <p class="heading-fifth">Subject</p>
                             </th>
+<<<<<<< HEAD
                             <td class="d-flex">
                                 <p class="paragraph-text">
                                     {{$tutor->userdetail->subjects}}
@@ -179,17 +298,101 @@
                             </th>
                             <td class="paragraph-text">{{$tutor->userdetail->std_level}}</td>
                         </tr>
+=======
+                            @if($tutor_assessment != null)
+                            <td class="d-flex">
+                                <p class="paragraph-text">
+                                    {{$tutor_assessment->sub_name}}
+                                </p>
+                                @if($tutor_assessment->status == 1)
+                                    <h6><span class="badge badge-success">Verified</span></h6>
+                                @elseif($tutor_assessment->status == 2)
+                                    <h6><span class="badge badge-danger">Rejected</span></h6>
+                                @else
+                                <a href="{{ route('admin.tutotAssessment',[$tutor_assessment->id]) }}" class="view-btn btn">
+                                    View
+                                </a>
+                                @endif
+                            @else
+                            <td class="d-flex">
+                                <p class="paragraph-text">
+                                    No Assessment Provided.
+                                </p>
+                            </td>
+                            @endif
+                                
+                            </td>
+                        </tr>
+                        <!-- <tr>
+                            <th scope="row">
+                                <p class="heading-fifth">Experty Level</p>
+                            </th>
+                            <td class="paragraph-text">
+                                    @if($tutor->experty_level == 1)
+                                        Pre Elementary School
+                                    @elseif($tutor->experty_level == 2)
+                                        Elementary School
+                                    @elseif($tutor->experty_level == 3)
+                                        Secondary School
+                                    @elseif($tutor->experty_level == 4)
+                                        High School
+                                    @elseif($tutor->experty_level == 5)
+                                        Post Secondary
+                                    @endif
+                            </td>
+                        </tr> -->
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                         <tr>
                             <th scope="row">
                                 <p class="heading-fifth">Availability</p>
                             </th>
                             <td class="paragraph-text">---</td>
                         </tr>
+<<<<<<< HEAD
+=======
+                        @if( $tutor->hourly_rate )
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                         <tr>
                             <th scope="row">
                                 <p class="heading-fifth">Rate per hour</p>
                             </th>
+<<<<<<< HEAD
                             <td class="paragraph-text">{{$tutor->userdetail->hourly_rate}}$</td>
+=======
+                            <td class="paragraph-text">${{$tutor->hourly_rate}}</td>
+                        </tr>
+                        @endif
+                        <tr>
+                            <th scope="row">
+                                <p class="heading-fifth">Policies</p>
+                            </th>
+                            <td class="paragraph-text">
+                                @if( $tutor->policies == "on")
+                                    On
+                                
+                                @else($tutor->policies == "off" || $tutor->policies == null)
+                                    Off
+                                
+                                @endif
+                                
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <p class="heading-fifth">Email Marketing</p>
+                            </th>
+                            <td class="paragraph-text">
+                                @if( $tutor->email_market == "on")
+                                    On
+                               
+                                @else($tutor->email_market == "off" || $tutor->email_market == null)
+                                    Off
+                           
+                                @endif
+                                
+                            </td>
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                         </tr>
                     </tbody>
                 </table>
@@ -200,3 +403,16 @@
 </div>
 
 @endsection
+<<<<<<< HEAD
+=======
+
+<!-- Extra js to perfome function using ajax. -->
+@section('js')
+
+
+<script>
+    let request_ = "{{$request_}}";
+</script>    
+@include('js_files.admin.tutor')
+@endsection
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249

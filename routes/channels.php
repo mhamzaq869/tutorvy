@@ -13,9 +13,41 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
+<<<<<<< HEAD
+=======
+Broadcast::channel('App.User.{id}', function ($user, $id) {
+    //    return (int)$user->id === (int)$id;
+        return $user;
+});
+
+Broadcast::channel('room.{roomId}', function ($user, $roomId) {
+    if ($user->canJoinRoom($roomId)) {
+        return $user;
+    }
+});
+
+Broadcast::channel('messages.{id}', function ($user, $id) {
+    return (int) $user->id == (int) $id;
+});
+
+Broadcast::channel('chat', function ($user) {
+    if (auth()->check()) {
+        return $user;
+    }
+});
+Broadcast::channel('call', function ($user) {
+    if (auth()->check()) {
+        return $user;
+    }
+});
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 Broadcast::channel('admin_dash', function ($user) {
     if (auth()->check()) {
         return $user->toArray();
     }
+<<<<<<< HEAD
     // return $user;
+=======
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 });

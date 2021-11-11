@@ -1,0 +1,46 @@
+.bg-custom {
+    background: #00132D;
+    color: #fff;
+    background-image: url('../../assets/images/Mask-Group-64.png');
+    background-position: center;
+    background-size: cover;
+}
+
+.bg-btn-light {
+    background-color: #162840;
+    border-radius: 35px;
+    /* margin: 0 18%; */
+}
+
+@media (min-width: 375px) and (max-width: 480px) {
+    /* .bg-btn-light {
+        margin: 0px 6%;
+    } */
+    .modal-btn {
+        width: 145px !important;
+    }
+}
+
+@media (max-width: 375px) {
+    /* .bg-btn-light {
+        margin: 0px 6%;
+    } */
+    .modal-btn {
+        width: 95px !important;
+    }
+}
+
+.modal-btn {
+    border-radius: 35px !important;
+    width: 190px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background: transparent;
+    color: #fff !important;
+    border: 1px solid transparent !important;
+}
+
+.modal-btn:hover {
+    color: #fff;
+    background: #0F6EF4;
+}

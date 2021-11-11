@@ -17,11 +17,19 @@ class AuthenticateAdmin
      */
     public function handle(Request $request, Closure $next)
     {
+<<<<<<< HEAD
         if(Auth::user()->role == 1){
             return $next($request);
           }
 
           return redirect()->route('login');
+=======
+        if(Auth::user()->role != 2 && Auth::user()->role != 3){
+            return $next($request);
+          }
+
+        return redirect()->route('login');
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     }
 
 }

@@ -13,7 +13,11 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
+<<<<<<< HEAD
         //
+=======
+        Commands\checkClassStaus::class,
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     ];
 
     /**
@@ -25,6 +29,11 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+<<<<<<< HEAD
+=======
+        // $schedule->command('generate:payouts')->everyMinute();
+        $schedule->command('command:check_class_status')->everyMinute();
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     }
 
     /**

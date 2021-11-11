@@ -1,0 +1,157 @@
+.chee {
+    background-color: transparent !important;
+    border-right: 5px solid transparent !important;
+    padding-left: 20px;
+}
+
+.liner {
+    width: 25% !important;
+}
+
+#step_1 {
+    margin-left: 23%;
+}
+
+#step_1 span {
+    margin-left: 34%;
+}
+
+#step_2 span {
+    margin-left: 58%;
+}
+
+.text-green {
+    color: #21B573;
+}
+
+.rank_icon img {
+    width: 23px;
+}
+
+.round-border {
+    border-radius: 50%;
+    width: 100%;
+}
+
+.text-grey {
+    color: #949CA7;
+}
+
+.text-yellow {
+    color: #FAAF3A;
+}
+
+.card {
+    height: auto !important;
+}
+
+.info-1 {
+    margin-left: 0 !important;
+}
+
+.info {
+    background: #C6DDFF;
+    font-size: 12px;
+    padding: 5px 10px;
+    margin-left: 5px;
+    border-radius: 4px;
+    margin-top: 5px;
+    display: inline-block;
+}
+
+.info4 {
+    background: #1172FC;
+    font-size: 14px;
+    padding: 5px 15px;
+    margin-left: 5px;
+    border-radius: 4px;
+    margin-top: 5px;
+    display: inline-block;
+    color: #fff;
+}
+
+.f-14 {
+    font-size: 14px;
+}
+
+.lingo {
+    background: #F8D9D8 !important;
+}
+
+.edu {
+    background: #C9EDDD !important;
+}
+
+.scrol-about {
+    height: 62px;
+    overflow-y: auto;
+}
+
+.bg-price {
+    background: #ebf4ff;
+}
+
+.f-60 {
+    font-size: 60px;
+    font-weight: 500;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+.btn-general {
+    background: #1173FF;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    padding: 5px 29px;
+    border: 1px solid #1173FF;
+    font-weight: 600;
+    transition: all 0.9s;
+    cursor: pointer;
+}
+
+.btn-general:hover {
+    color: #1173FF;
+    background: #fff;
+}
+
+.btn-large {
+    padding: 13px 20px !important;
+}
+
+.searchIcon {
+    position: absolute;
+    top: 18px;
+    right: 32px;
+}
+
+.find_tutor .scrol-about {
+    height: 75px;
+    overflow-y: auto;
+}
+
+.scrollable {
+    overflow-y: auto;
+}
+
+.h-666 {
+    max-height: 666px;
+}
+
+.fav {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    color: #fbfbfb;
+}
+
+.fav:hover {
+    color: #FAAF3A;
+}
+
+.fav i {
+    font-size: 24px;
+    /* text-shadow: 0 0 3px #1173FF; */
+}

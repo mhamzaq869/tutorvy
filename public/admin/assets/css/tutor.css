@@ -1,5 +1,12 @@
 /* HAEEDING FIFTH1 */
 
+<<<<<<< HEAD
+=======
+.all-tutor-badge {
+    padding: 7px 15px !important;
+}
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 .heading-fifth1 {
     font-size: 12px;
     font-family: "Poppins";
@@ -11,6 +18,10 @@
     text-decoration: none !important;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* button view */
 
 .cencel-btn {
@@ -20,9 +31,17 @@
 .schedule-btn {
     width: 90px;
 }
+<<<<<<< HEAD
 .schedule-btn-add{
     width: 160px !important;
 }
+=======
+
+.schedule-btn-add {
+    width: 160px !important;
+}
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 .alex-name {
     position: relative;
     top: -3px;
@@ -34,6 +53,10 @@
     width: 120px !important;
     margin-left: 20px;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 .alex-names {
     font-size: 16px;
     font-weight: 600;
@@ -69,7 +92,11 @@
 }
 
 .growth-top {
+<<<<<<< HEAD
     margin-top: 38px !important ;
+=======
+    margin-top: 38px !important;
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 }
 
 .time-top {
@@ -132,6 +159,10 @@
     color: #1173FF;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* ACTIVE SIDENAV TEXT ON TUTOR VIEW*/
 
 .active-text-1 {
@@ -189,6 +220,10 @@
     border-radius: 4px;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* NOTIFICATION */
 
 .notification-text2 {
@@ -221,6 +256,10 @@
     top: -30px;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* RANK IMAGE CSS */
 
 .image-rank {
@@ -267,6 +306,10 @@
     box-shadow: 0 3px 6px rgba(223, 219, 219, 0.16), 0 3px 6px rgba(231, 231, 231, 0.23);
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* view bookings */
 
 .view-bookings-1 {
@@ -291,6 +334,10 @@
     background-color: white;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* tab stwching css*/
 
 .warpper {
@@ -343,16 +390,32 @@
     display: none;
 }
 
+<<<<<<< HEAD
 #one:checked~.panels #one-panel, #two:checked~.panels #two-panel, #three:checked~.panels #three-panel {
     display: block;
 }
 
 #one:checked~.tabs #one-tab, #two:checked~.tabs #two-tab, #three:checked~.tabs #three-tab {
+=======
+#one:checked~.panels #one-panel,
+#two:checked~.panels #two-panel,
+#three:checked~.panels #three-panel {
+    display: block;
+}
+
+#one:checked~.tabs #one-tab,
+#two:checked~.tabs #two-tab,
+#three:checked~.tabs #three-tab {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     background: #fffffff6;
     color: #ffffff;
     background-color: #1173FF;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /*  */
 
 .btn-links {
@@ -366,16 +429,30 @@
     background-color: transparent !important;
     border: none;
 }
+<<<<<<< HEAD
 .cke_top{
 background-color: transparent !important;
+=======
+
+.cke_top {
+    background-color: transparent !important;
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 }
 
 #main {
     margin: 2px 0;
 }
+<<<<<<< HEAD
 .yellow-rank{
     height: 50px;
 }
+=======
+
+.yellow-rank {
+    height: 50px;
+}
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 #main #faq .card {
     border: 0;
 }
@@ -433,6 +510,10 @@ background-color: transparent !important;
     color: #222;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* jquery loader CSS */
 
 .progress {
@@ -443,7 +524,12 @@ background-color: transparent !important;
     height: 80px;
 }
 
+<<<<<<< HEAD
 .progress .track, .progress .fill {
+=======
+.progress .track,
+.progress .fill {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     fill: white;
     stroke-width: 10;
     transform: rotate(90deg)translate(0px, -80px);
@@ -469,7 +555,12 @@ background-color: transparent !important;
     stroke: #00132D;
 }
 
+<<<<<<< HEAD
 .progress .value, .progress .text {
+=======
+.progress .value,
+.progress .text {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     font-family: 'Open Sans';
     fill: black;
     text-anchor: middle;
@@ -627,6 +718,10 @@ background-color: transparent !important;
     top: -10px;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* webiste card css */
 
 .card-web {
@@ -641,17 +736,35 @@ background-color: transparent !important;
 .card-web:hover {
     box-shadow: 0 8px 16px 0 rgba(70, 69, 69, 0.2);
 }
+<<<<<<< HEAD
 /* edit css of staff*/
 .input-option-1 select{
+=======
+
+
+/* edit css of staff*/
+
+.input-option-1 select {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     width: 100%;
     padding: 7px;
     border-radius: 4px;
     border: 1px solid #D6DBE2;
 }
+<<<<<<< HEAD
 .input-option-1 select:focus{
     outline: none;
     border-color: #1173FF ;
 }
+=======
+
+.input-option-1 select:focus {
+    outline: none;
+    border-color: #1173FF;
+}
+
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* media query  */
 
 @media only screen and (max-width: 700px) {
@@ -706,11 +819,14 @@ background-color: transparent !important;
     border-radius: 8px;
 }
 
+<<<<<<< HEAD
 .bg-color-apporve {
     background-color: #FFD9D8;
     border-radius: 4px;
 }
 
+=======
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 .view-bookings-1 {
     color: #1173FF;
     font-size: 12px;
@@ -720,6 +836,14 @@ background-color: transparent !important;
     font-weight: 500;
 }
 
+<<<<<<< HEAD
+=======
+.bg-color-apporve {
+    background-color: #FFD9D8;
+    border-radius: 4px;
+}
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 .bg-color-apporve1 {
     background-color: #E2F6ED;
     border-radius: 4px;
@@ -793,4 +917,55 @@ background-color: transparent !important;
     border-radius: 50px;
 }
 
+<<<<<<< HEAD
 /* scroll x axises */
+=======
+
+/* scroll x axises */
+
+.round-profile {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #1854AB;
+}
+
+.wd-30 {
+    width: 20px;
+}
+
+.ab_right {
+    position: absolute;
+    right: 3%;
+    top: 3%;
+}
+
+.ab_right:hover {
+    text-decoration: none;
+}
+
+.text-grey {
+    color: #6E7988;
+    font-weight: 500;
+}
+
+.view-bookings {
+    margin-top: 15px;
+}
+
+.f-14 {
+    font-size: 14px;
+}
+
+.f-16 {
+    font-size: 16px;
+}
+
+.rank-select:hover {
+    text-decoration: none;
+}
+
+.active-rank {
+    background: #6E7988;
+}
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249

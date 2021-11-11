@@ -20,9 +20,15 @@
                     There are many variations of passages available, but <br />
                     the majority have suffered alteration in some form.</p>
                 <div class=" input-text-button-1 input-text-main mt-4">
+<<<<<<< HEAD
                     <a href="tutor/tutor.html" class="btn"> For tutor &#8594;
                     </a>
                     <a href="student/student.html" class="ml-3 btn"> For student &#8594; </a>
+=======
+                    <a href="{{ url('tutor') }}" class="btn"> For tutor &#8594;
+                    </a>
+                    <a href="{{ url('student') }}" class="ml-3 btn"> For student &#8594; </a>
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                 </div>
             </div>
         </div>
@@ -56,9 +62,15 @@
                     There are many variations of passages available, but
                     the majority have suffered alteration in some form.</p>
                 <div class=" input-text-button-1 input-text-main mt-4">
+<<<<<<< HEAD
                     <a href="tutor/tutor.html" class="btn"> For tutor &#8594;
                     </a>
                     <a href="student/student.html" class="ml-3 btn"> For student &#8594; </a>
+=======
+                    <a href="{{ url('tutor') }}" class="btn"> For tutor &#8594;
+                    </a>
+                    <a href="{{ url('student') }}" class="ml-3 btn"> For student &#8594; </a>
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                 </div>
             </div>
         </div>
@@ -163,7 +175,11 @@
                 </div>
                 <div class="input-text input-text-main input-text-main-mob mt-4 d-flex"
                     style="position: relative;left: -4px;">
+<<<<<<< HEAD
                     <a href="student/student.html" class="none">
+=======
+                    <a href="{{ url('student') }}" class="none">
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                         <input type="submit" value="Learn more">
                     </a>
                 </div>
@@ -248,7 +264,11 @@
                                         </div>
                                     </div>
                                 </div>
+<<<<<<< HEAD
                                 <a href="tutor/tutor.html" class="view-text btn mt-4 pl-3 pr-3">Learn more</a>
+=======
+                                <a href="{{ url('tutor') }}" class="view-text btn mt-4 pl-3 pr-3">Learn more</a>
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                             </div>
                         </div>
                     </div>
@@ -357,6 +377,7 @@
     <div class="row mt-5">
         <div class="col-md-3 col-12 ">
             <div class="tab-mobile tab">
+<<<<<<< HEAD
                 <button class="tablinks" id="defaultOpen" onclick="openCity(event, 'London')">
                     ComputerScience
                 </button>
@@ -375,6 +396,32 @@
         </div>
         <div class="col-md-9">
             <div id="London" class="tabcontent">
+=======
+                @foreach($main_sub as $sub_cat)
+                    <button class="tablinks {{($sub_cat->id == 1) ? 'active': ''}}" id="defaultOpen_{{$sub_cat->id}}" onclick="getSubSubject({{$sub_cat->id}})">
+                        {{$sub_cat->name}}
+                    </button>
+                @endforeach
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div id="subjects">
+                <div id="1">
+                    <div class="row book-luli" id="subSubjects">
+                        @foreach ($subjects as $i => $subject)
+                                <div class="col-md-4">
+                                    <a href="#"  class="">
+                                        {{ $subject->name }}
+                                    </a>        
+                                </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="col-md-9">
+            <div id="London" class="tabcontent show" style="display: block;">
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                 <div class="container">
                     <div class="row">
                         <div class="col-md-4 col-4 m-0 p-0">
@@ -821,7 +868,11 @@
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
         </div>
+=======
+        </div>-->
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     </div>
 </div>
 <!-- course thought -->
@@ -841,7 +892,11 @@
                     There are many variations of passages available, but
                     the majority have suffered alteration in some form.</p>
                 <div class="input-text-1 input-text-center mt-4">
+<<<<<<< HEAD
                     <a href="course/course.html">
+=======
+                    <a href="{{ url('course') }}">
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                         <input type="submit" value="View all courses" class="w-50">
                     </a>
                 </div>
@@ -1266,3 +1321,7 @@
 <!-- why tutor end -->
 
 @endsection
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249

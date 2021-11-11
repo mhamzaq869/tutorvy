@@ -21,11 +21,20 @@ ul {
     overflow: hidden;
     opacity: 0.9;
     padding: 0px;
+<<<<<<< HEAD
       max-width: 100%;
   margin: 35px auto;
   opacity: 0.9;
     border: none !important;
 }
+=======
+    max-width: 100%;
+    margin: 35px auto;
+    opacity: 0.9;
+    border: none !important;
+}
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 .input-serach-text input[type=text] {
     width: 330px;
     border: none !important;
@@ -41,6 +50,10 @@ ul {
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 .profile-name1-home {
     position: absolute !important;
     right: -100px !important;
@@ -937,7 +950,10 @@ select.flat-select:hover {
     width: 120px !important;
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 .number-booking {
     margin-top: 40px;
     font-weight: 600;
@@ -967,8 +983,13 @@ select.flat-select:hover {
 }
 
 .growth-top {
+<<<<<<< HEAD
 top: -3px;
 position: relative;
+=======
+    top: -3px;
+    position: relative;
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 }
 
 .heading-fifth1-1 {
@@ -1045,6 +1066,7 @@ and also iPads specifically.
 .card {
     margin-top: 20px;
     width: 100% !important;
+<<<<<<< HEAD
     height: 132px;
     border-radius: 8px;
     border: white;
@@ -1053,6 +1075,21 @@ and also iPads specifically.
     transition: 0.4s;
 }
 
+=======
+    height: auto;
+    border-radius: 8px;
+    background-color: rgb(255, 255, 255) !important;
+    box-shadow: 1px 1px 15px rgb(238 235 235);
+    border: transparent;
+    cursor: pointer;
+    transition: all 0.7s ease;
+}
+
+.card:hover {
+    /* transform: scale(0.9); */
+    box-shadow: 1px 1px 15px rgb(207 204 204);
+}
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 
 .text-home-1 {
     position: relative;
@@ -1104,7 +1141,10 @@ and also iPads specifically.
     .res-textup {
         line-height: 1.6 !important;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 }
 
 @media(max-width:700px) {
@@ -1168,4 +1208,11 @@ and also iPads specifically.
         white-space: nowrap !important;
         display: inline-block;
     }
+<<<<<<< HEAD
+=======
+}
+
+.pt-24 {
+    padding-top: 24px !important;
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 }

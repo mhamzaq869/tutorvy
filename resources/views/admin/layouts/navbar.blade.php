@@ -29,6 +29,10 @@
                             <img src="{{ asset('/admin/assets/img/sidebar/students.svg')}}" alt="user-icon" class=" mr-2"> Student
                         </a>
                     </li>
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                     <li class="btn w-100">
                         <a href="manage-institute/institute.html" class="btn-manage">
                             <img src="{{ asset('/admin/assets/img/sidebar/institues.svg')}}" alt="user-icon" class=" mr-2"> Institute
@@ -99,9 +103,13 @@
                             <div class="col-xs-2 pull-right">
                                 <div class="notification">
                                     <img src="{{ asset('/admin/assets/img/ico/Notification.png')}}" alt="notification-ico">
+<<<<<<< HEAD
                                     <span class="notification-text">
                                         4
                                     </span>
+=======
+                                    <span class="notification-text show_notification_counts"> 0 </span>
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                                     <ul class="notification-menu navbarNav-1 mt-1">
                                         <li class="container-fluid">
                                             <div class="row nav-row">
@@ -249,7 +257,11 @@
                             </li>
                             <li role="presentation">
                                 <a role="menuitem" tabindex="-1" href="{{route('admin.logout')}}">
+<<<<<<< HEAD
                                     Signout
+=======
+                                    Logout
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                                 </a>
                             </li>
                         </ul>
@@ -275,6 +287,7 @@
                         <div class="col-xs-2 pull-right">
                             <div class="notification mr-4">
                                 <img src="{{ asset('/admin/assets/img/ico/Notification.svg')}}" alt="notification-ico">
+<<<<<<< HEAD
                                 <span class="notification-text">
                                     4
                                 </span>
@@ -288,11 +301,25 @@
                                                 </a>
                                             </span>
                                             <span class="col-md-6">
+=======
+                                <span class="notification-text show_notification_counts"> 0 </span>
+                                <ul class="notification-menu navbarNav-1 mt-1">
+                                    <li class="container-fluid mb-0 pb-0">
+                                        <div class="row nav-row">
+                                            <span class="col-md-6">
+                                                <a href="notification/notification.html"
+                                                    class="notification-text1 decoration-none">
+                                                    Notifications
+                                                </a>
+                                            </span>
+                                            <span class="col-md-6 text-right">
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                                                 <a href="" class="view-bookings">
                                                     Mark all read
                                                 </a>
                                             </span>
                                         </div>
+<<<<<<< HEAD
                                         <p class="mt-2 notification-text3 mt-2">
                                             Recent
                                         </p>
@@ -351,6 +378,16 @@
                                         Yesterday
                                     </li>
                                     <li>
+=======
+                                        <p class="mt-2 notification-text3 mt-2 ">
+                                            Recent
+                                        </p>
+                                    </li>
+                                    <span  class="show_all_notifications">
+                                        
+                                    </span>
+                                    <!-- <li class="show_all_notifications">
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                                         <div class="row">
                                             <div class="col-md-1">
                                                 <img class="avatar mt-2" src="{{ asset('/admin/assets/img/notifiaction/layer.png')}}"
@@ -374,6 +411,7 @@
                                                     alt="dot-ico">
                                             </div>
                                         </div>
+<<<<<<< HEAD
                                     </li>
                                     <li>
                                         <div class="row">
@@ -400,6 +438,9 @@
                                             </div>
                                         </div>
                                     </li>
+=======
+                                    </li> -->
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                                 </ul>
                             </div>
                         </div>
@@ -409,10 +450,27 @@
             <li class="nav-item profile-name1" id="imageDropdowns">
                 <div class="dropdown d-flex">
                     <a class="nav-link profile-name d-flex pl-4 mr-3 mt-1 pb-1" href="#" data-toggle="dropdown">
+<<<<<<< HEAD
                         Harram
                     </a>
                     <img class="profile-img" src="{{ asset('/admin/assets/img/ico/porfile-main.svg')}}" data-toggle="dropdown"
                         alt="profile">
+=======
+                        @if( Auth::user()->first_name == null &&  Auth::user()->last_name == null)
+                            {{Auth::user()->name}}
+                        @else
+                            {{Auth::user()->first_name}} {{Auth::user()->last_name}}
+                        @endif
+                    </a>
+
+                    @if(Auth::user()->picture != null)
+                        <img class="profile-img" src="{{ asset(Auth::user()->picture)}}" data-toggle="dropdown"
+                            alt="profile">
+                    @else
+                        <img class="profile-img" src="{{ asset('/admin/assets/img/ico/Square-white.jpg')}}" data-toggle="dropdown"
+                            alt="profile">
+                    @endif
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                     <ul class="dropdown-menu classdrop classdrop1">
                         <li>
                             <a tabindex="-1" class="disabled" href="setting/setting.html">
@@ -426,7 +484,11 @@
                         </li>
                         <li>
                             <a tabindex="-1" class="disabled" href="{{route('admin.logout')}}">
+<<<<<<< HEAD
                                 Signout
+=======
+                                Logout
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                             </a>
                         </li>
                     </ul>

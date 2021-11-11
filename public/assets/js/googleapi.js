@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 $('.extra-fields-customer').click(function () {
   $('.customer_records').clone().appendTo('.customer_records_dynamic');
   $('.customer_records_dynamic .customer_records').addClass('single remove');
@@ -37,6 +38,8 @@ $('.wrapper1').on('click', '.clone1', function () {
 });
 
 
+=======
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 //
 const xhttp = new XMLHttpRequest();
 const select = document.getElementById("countries");
@@ -44,12 +47,21 @@ const flag = document.getElementById("flag");
 
 let countries;
 
+<<<<<<< HEAD
 xhttp.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
     countries = JSON.parse(xhttp.responseText);
     assignValues();
     handleCountryChange();
   }
+=======
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        countries = JSON.parse(xhttp.responseText);
+        assignValues();
+        handleCountryChange();
+    }
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 };
 // if(xhttp){
 //     xhttp.open("GET", "https://  .eu/rest/v2/all", true);
@@ -57,6 +69,7 @@ xhttp.onreadystatechange = function () {
 // }
 
 function assignValues() {
+<<<<<<< HEAD
   countries.forEach(country => {
     const option = document.createElement("option");
     option.value = country.alpha2Code;
@@ -74,3 +87,22 @@ function handleCountryChange() {
 if(select){
     select.addEventListener("change", handleCountryChange.bind(this));
 }
+=======
+    countries.forEach(country => {
+        const option = document.createElement("option");
+        option.value = country.alpha2Code;
+        option.textContent = country.name;
+        select.appendChild(option);
+    });
+}
+
+function handleCountryChange() {
+    const countryData = countries.find(
+        country => select.value === country.alpha2Code
+    );
+    flag.style.backgroundImage = `url(${countryData.flag})`;
+}
+if (select) {
+    select.addEventListener("change", handleCountryChange.bind(this));
+}
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249

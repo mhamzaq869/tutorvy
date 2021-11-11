@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 @extends('tutor.layouts.app')
+=======
+@extends('student.layouts.app')
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 
 @section('content')
  <!-- top Fixed navbar End -->

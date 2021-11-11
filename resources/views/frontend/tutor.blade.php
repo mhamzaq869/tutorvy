@@ -7,6 +7,7 @@
             <div class="row mt-5">
                 <div class="col-md-6 main-bg-height none" data-aos="fade-right" data-aos-duration="1000">
                     <div class="text-sectiom-one">
+<<<<<<< HEAD
                         <p data-aos="flip-left" class="Learn-text">
                             Teach anytime,
 
@@ -15,6 +16,14 @@
                             at best rate
                         </p>
                             <br />
+=======
+                        <p data-aos="flip-left mb-0" class="Learn-text">
+                            Teach anytime,
+                        </p>
+                        <p  class="where-text-home " style="">
+                            at best rate
+                        </p>
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                         <p class="there-text there-text-main mt-3">
                             There are many variations of passages available, but <br />
                             the majority have suffered alteration in some form.</p>
@@ -40,7 +49,11 @@
                             Teach anytime,
 
                         </p>
+<<<<<<< HEAD
                         <p  class="where-text" style="line-height: 0.5;">
+=======
+                        <p  class="where-text" style="">
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                             at best rate
                         </p>
                         <p  class="there-text there-text-main">
@@ -168,12 +181,22 @@
                 <div class="text-class">
                     <p>
                         Advance
+<<<<<<< HEAD
                     </p>
                     <span class="class-text">
                         Classroom
                     </span>
                 </div>
                 <div class="ml-4 pb-5">
+=======
+                        <span class="class-text">
+                        Classroom
+                    </span>
+                    </p>
+                    
+                </div>
+                <div class=" chweck ml-4 pb-5">
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                     <p class="class-there text-xs-center-1">
                         There are many variations of passages available, but the
                         majority have suffered alteration in some form. There are

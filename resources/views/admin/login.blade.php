@@ -32,6 +32,17 @@
                                 <img src="admin/assets/img/logo/logo.png" alt="logo" class="logo">
                             </div>
                             <p class="login-card-description">Sign into your account</p>
+<<<<<<< HEAD
+=======
+                            @if (Session::has('error'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                    {{ Session::get('error') }}
+                                </div>
+                            @endif
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                             <form action="{{route('admin.login')}}" method="POST">
                                 @csrf
                                 <div class="form-group">

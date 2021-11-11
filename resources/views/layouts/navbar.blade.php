@@ -41,6 +41,7 @@
                                      </ul>
                                      <ul class="navbar-nav ml-auto py-1 py-md-0">
                                         @auth
+<<<<<<< HEAD
                                             <li class="nav-item profile-name1" id="imageDropdowns">
                                                 <div class="dropdown d-flex ">
                                                     <a class="nav-link profile-name d-flex pl-4 mr-3 mt-1 pb-1" href="#"
@@ -54,15 +55,48 @@
                                                     <img class="profile-img" src="../assets/images/ico/profile-boy.png"
                                                         data-toggle="dropdown" alt="profile">
                                                     @endif
+=======
+                                            <li class=" profile-name1 " id="imageDropdowns">
+                                                <div class="dropdown d-flex ">
+                                                    <a class="nav-link profile-name  pl-4 mr-3 mt-1 pb-1" href="#"
+                                                        data-toggle="dropdown" aria-expanded="true">
+                                                        {{Auth::user()->first_name}}
+                                                        @if(Auth::user()->account_id != null)
+                                                            <p class="text-mute mb-0">User Id# {{Auth::user()->account_id}}</p>
+                                                        @endif
+
+                                                    </a>
+                                                    @auth
+                                                        @if(Auth::user()->picture)
+                                                             <img class="profile-img w-25" src="{{asset(Auth::user()->picture) }}" data-toggle="dropdown" alt="profile">
+                                                        @else
+                                                            <img class="profile-img w-25" src="{{asset('assets/images/ico/Square-white.jpg') }}" data-toggle="dropdown" alt="profile">
+                                                        @endif
+                                                    @else
+                                                        <img class="profile-img w-25" src="{{asset('assets/images/ico/Square-white.jpg') }}" data-toggle="dropdown" alt="profile">
+                                                    @endauth
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 
                                                     <ul class="dropdown-menu classdrop classdrop1 ">
                                                         <li>
                                                             @if(Auth::user()->role == 2)
+<<<<<<< HEAD
                                                             <a tabindex="-1" class="" href="{{route('tutor.profile')}}">
                                                                 Profile
                                                             </a>
                                                             @elseif(Auth::user()->role == 3)
                                                             <a tabindex="-1" class="" href="{{route('student.profile')}}">
+=======
+                                                            <a tabindex="-1" class="" href="{{route('tutor.profileView',[Auth::user()->id])}}">
+                                                                Profile
+                                                            </a>
+                                                            @elseif(Auth::user()->role == 3)
+                                                            <a tabindex="-1" class="" href="{{route('student.profileView',[Auth::user()->id])}}">
+                                                                Profile
+                                                            </a>
+                                                            @else
+                                                            <a tabindex="-1" class="" href="{{url('role')}}">
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                                                                 Profile
                                                             </a>
                                                             @endif
@@ -92,7 +126,14 @@
                                                 </a>
                                             </li>
                                             <li class=" button-blue pl-md-0 ml-0 ml-md-4">
+<<<<<<< HEAD
                                                 <a data-toggle="modal" href="#myModal" class="nav-link sign-text">
+=======
+                                                <!-- <a data-toggle="modal" href="#registerLogin" class="nav-link sign-text">
+                                                    &nbsp;&nbsp; Sign Up &nbsp;&nbsp;
+                                                </a> -->
+                                                <a  href="{{route('student.register')}}" class="nav-link sign-text">
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                                                     &nbsp;&nbsp; Sign Up &nbsp;&nbsp;
                                                 </a>
                                             </li>
@@ -109,6 +150,7 @@
      </div>
  </div>
 
+<<<<<<< HEAD
 <style>
 .modal .modal-header {
   border-bottom: none;
@@ -154,3 +196,35 @@
         <a data-toggle="modal" href="#myModal" class="btn btn-primary">Launch demo modal</a>
 	</div>
 </div>
+=======
+    <!-- Modal -->
+    <div class="modal fade custom_modal" id="registerLogin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-body bg-custom text-center p-5">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="p-2"> <img src="{{asset('assets/images/logo-footer.png')}}" alt="">
+                            </h1>
+                            <h3 class="mb-4 p-2"> Are you a</h3>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="bg-btn-light">
+                                <a type="button" href="{{route('student.register')}}" class="btn  modal-btn animate__animated">Student</a>
+                                <a type="buttin" href="{{route('register')}}" class="btn  modal-btn animate__animated">Tutor</a>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <!-- <div class="modal-footer">
+
+                </div> -->
+            </div>
+        </div>
+    </div>
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249

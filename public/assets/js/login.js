@@ -12,6 +12,7 @@ $(".submit2").click(function () {
     return false;
   }
 })
+<<<<<<< HEAD
 // 
 $(".toggle-password").click(function () {
 
@@ -21,6 +22,18 @@ $(".toggle-password").click(function () {
     input.attr("type", "text");
   } else {
     input.attr("type", "password");
+=======
+//
+$("#togglepass").click(function () {
+  $(this).toggleClass("fa-eye fa-eye-slash");
+  var input = $("#pswd").val();
+
+  if ($("#pswd").attr("type") == "password") {
+
+      $("#pswd").attr("type", "");
+  } else {
+    $("#pswd").attr("type", "password");
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
   }
 })
 
@@ -28,7 +41,11 @@ $(".toggle-password").click(function () {
 // pass validation
 
 
+<<<<<<< HEAD
 // 
+=======
+//
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 // const pass_field = document.querySelector("input");
 // const show_btn = document.querySelector("i");
 // show_btn.addEventListener("click", function () {
@@ -42,7 +59,11 @@ $(".toggle-password").click(function () {
 // });
 
 
+<<<<<<< HEAD
 // 
+=======
+//
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 function checkPass() {
 
   var get_elem = document.getElementById,
@@ -53,10 +74,14 @@ function checkPass() {
       goodColor: "#fff",
       goodColored: "#087a08",
       badColor: "#fff",
+<<<<<<< HEAD
       badColored: "#ed0b0b",
       fontStyle: "italic"
 
 
+=======
+      fontStyle: "italic"
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     },
     strings = {
       "confirmMessage": ["Password Matched", "Password notmathed"]

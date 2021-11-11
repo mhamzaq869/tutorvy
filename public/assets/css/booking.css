@@ -7,6 +7,10 @@
     ;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* bnutton toogle left onclick */
 
 .toogle {
@@ -80,6 +84,10 @@ a:hover {
     font-size: 15 px;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* deatail booking */
 
 .cencel-btn {
@@ -106,10 +114,19 @@ a:hover {
     cursor: pointer;
     transition: 0.6s;
 }
+<<<<<<< HEAD
 .profile-header {
     background-color: white;
     border-radius: 8px;
 }
+=======
+
+.profile-header {
+    /* background-color: white; */
+    border-radius: 8px;
+}
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 .schedule-btn {
     background-color: #1173FF;
     border: 1px solid #1173FF;
@@ -120,11 +137,19 @@ a:hover {
     border-radius: 4px;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /*  */
 
 .nav {
     width: 100vh;
     padding: 5px;
+<<<<<<< HEAD
+=======
+    margin-left: 10px;
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 }
 
 .nav .nav-item {
@@ -135,9 +160,15 @@ a:hover {
     font-weight: 600;
 }
 
+<<<<<<< HEAD
 .fade.show {
     background-color: #fff !important;
 }
+=======
+/* .fade.show {
+    background-color: #fff ;
+} */
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 
 .nav-link.active {
     border-bottom: 5px solid #1173FF;
@@ -198,7 +229,12 @@ a:hover {
     cursor: pointer !important;
 }
 
+<<<<<<< HEAD
 .table-image td, th {
+=======
+.table-image td,
+th {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     vertical-align: middle;
 }
 
@@ -206,7 +242,12 @@ a:hover {
     font-size: 14px;
 }
 
+<<<<<<< HEAD
 .fa:nth-child(2) {
+=======
+
+/* .fa:nth-child(2) {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     color: orange;
 }
 
@@ -220,7 +261,11 @@ a:hover {
 
 .fa:nth-child(4) {
     color: orange;
+<<<<<<< HEAD
 }
+=======
+} */
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 
 td {
     border: none !important;
@@ -234,6 +279,10 @@ th {
     border: none !important;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* search */
 
 .input[type=text] {
@@ -266,6 +315,10 @@ th {
     background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* notification */
 
 .notification {
@@ -333,6 +386,10 @@ th {
     color: #aaa;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /*  */
 
 @-webkit-keyframes INDENT {
@@ -509,10 +566,46 @@ a[data-toggle="collapse"] {
     }
 }
 
+<<<<<<< HEAD
 @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+=======
+@media only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px) {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     .table {
         overflow: auto !important;
         white-space: nowrap !important;
         display: inline-block;
     }
+<<<<<<< HEAD
+=======
+}
+
+
+/* Mohsin */
+
+.nav-link.active,
+.nav-link.active:hover {
+    border-right: none;
+}
+
+.tab-content .active {
+    border-right: none !important;
+}
+
+.card:hover {
+    transform: none !important;
+    box-shadow: 1px 1px 15px rgb(207 204 204);
+}
+
+
+/*Board Navbar*/
+
+.board-nav .active {
+    border-right: 1px solid #dee2e6 !important;
+}
+
+.nav-whiteBoard-nav {
+    width: 100% !important;
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 }

@@ -29,7 +29,11 @@ return [
             'secret' => env('PUSHER_APP_SECRET'),
             'path' => env('PUSHER_APP_PATH'),
             'capacity' => null,
+<<<<<<< HEAD
             'enable_client_messages' => false,
+=======
+            'enable_client_messages' => true,
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
             'enable_statistics' => true,
         ],
     ],
@@ -128,6 +132,13 @@ return [
          * Passphrase for your local_cert file.
          */
         'passphrase' => env('LARAVEL_WEBSOCKETS_SSL_PASSPHRASE', null),
+<<<<<<< HEAD
+=======
+
+        'allow_self_signed' => true,
+
+        'verify_peer' => false,
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     ],
 
     /*

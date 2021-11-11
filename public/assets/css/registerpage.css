@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 .heading-first {
     color: #00132D;
     font-size: 28px;
@@ -114,14 +117,25 @@
     font-family: "Poppins";
 }
 
+<<<<<<< HEAD
 /* sroll bar */
 
+=======
+
+/* sroll bar */
+
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* width */
 
 ::-webkit-scrollbar {
     width: 7px;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* Track */
 
 ::-webkit-scrollbar-track {
@@ -129,6 +143,10 @@
     border-radius: 10px;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* Handle */
 
 ::-webkit-scrollbar-thumb {
@@ -136,6 +154,10 @@
     border-radius: 10px;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* Handle on hover */
 
 ::-webkit-scrollbar-thumb:hover {
@@ -149,6 +171,10 @@
     font-weight: 500;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* side navicons css */
 
 ol li {
@@ -164,8 +190,15 @@ ol li:hover {
     top: 100px;
 }
 
+<<<<<<< HEAD
 /* end */
 
+=======
+
+/* end */
+
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* search */
 
 input[type=text] {
@@ -221,6 +254,10 @@ input[type=text]:focus {
     background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* notification css*/
 
 .notification {
@@ -267,6 +304,10 @@ input[type=text]:focus {
     font-size: 14px;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* mobile view navbar css */
 
 .nav-row {
@@ -309,6 +350,10 @@ input[type=text]:focus {
     margin-left: 50px;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* home main nav bar + side bar css */
 
 .navbar {
@@ -341,6 +386,10 @@ input[type=text]:focus {
     align-items: stretch;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* side navbar css */
 
 #sidebar {
@@ -417,12 +466,23 @@ input[type=text]:focus {
     color: #000000 !important;
     background: #F2F8FF!important;
 }
+<<<<<<< HEAD
 /* table */
+=======
+
+
+/* table */
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 .tb-new-header {
     border-top: 1px solid #D6DBE2;
     border-bottom: 1px solid #D6DBE2;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* end */
 
 @media screen and (max-height: 450px) {
@@ -498,6 +558,10 @@ a[data-toggle="collapse"] {
     padding: 15px
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* side support section css */
 
 .sidenav-toggle {
@@ -542,8 +606,15 @@ a[data-toggle="collapse"] {
     font-family: "Poppins";
 }
 
+<<<<<<< HEAD
 /* end */
 
+=======
+
+/* end */
+
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* dropdown image */
 
 .classdrop {
@@ -576,6 +647,10 @@ a[data-toggle="collapse"] {
     font-family: "Poppins";
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* notification */
 
 .notification img {
@@ -649,6 +724,10 @@ a[data-toggle="collapse"] {
     font-family: 'Poppins', sans-serif;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* profile */
 
 .profile-img {
@@ -672,9 +751,17 @@ a[data-toggle="collapse"] {
     float: right !important;
 }
 
+<<<<<<< HEAD
 /* border right */
 
 .active, .btn:hover {
+=======
+
+/* border right */
+
+.active,
+.btn:hover {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     background-color: #F2F8FF;
     border-right: 5px solid #1173FF;
     padding-left: 20px;
@@ -704,7 +791,12 @@ a[data-toggle="collapse"] {
     width: 100%;
 }
 
+<<<<<<< HEAD
 .table-calendar td, .table-calendar th {
+=======
+.table-calendar td,
+.table-calendar th {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     padding: 8px;
     border: 1px solid #e2e2e2;
     text-align: center;
@@ -764,6 +856,10 @@ tr th {
     padding: 5px 1em;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* hover side nav */
 
 .dasborad-sid:hover+.dasborad-show {
@@ -902,6 +998,10 @@ tr th {
     background-color: #1173FF;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* side nav media query */
 
 @media(max-width:768px) {
@@ -969,3 +1069,47 @@ tr th {
         top: 0%;
     }
 }
+<<<<<<< HEAD
+=======
+
+
+/*Register Page*/
+
+.facebook {
+    border: 1px solid #1173FF;
+}
+
+.facebook a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.facebook:hover {
+    background-color: #fff;
+}
+
+.facebook:hover a {
+    color: #1173FF;
+}
+
+.Apple {
+    border: 1px solid #000000;
+}
+
+.Apple a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.Apple:hover {
+    background-color: #fff;
+    color: #000000;
+}
+
+.Apple:hover a {
+    color: #000000;
+}
+
+
+/*Register Page End*/
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249

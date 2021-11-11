@@ -6,6 +6,10 @@ use App\Http\Controllers\Admin\SubjectController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Admin\Subject;
+<<<<<<< HEAD
+=======
+use App\Models\General\Teach;
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 class SubjectCategory extends Model
 {
     use HasFactory;
@@ -25,4 +29,13 @@ class SubjectCategory extends Model
     public function subject(){
         return $this->hasMany(Subject::class);
     }
+<<<<<<< HEAD
+=======
+
+    public function teach(){
+        return $this->hasMany(Teach::class,'subject_id','id');
+    }
+
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 }

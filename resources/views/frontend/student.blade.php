@@ -189,10 +189,18 @@
                 <div class="text-class">
                     <p>
                         Advance
+<<<<<<< HEAD
                     </p>
                     <span class="class-text">
                         Classroom
                     </span>
+=======
+                        <span class="class-text">
+                        Classroom
+                    </span>
+                    </p>
+                    
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                 </div>
                 <div class="ml-4 pb-5">
                     <p class="class-there text-xs-center-1">

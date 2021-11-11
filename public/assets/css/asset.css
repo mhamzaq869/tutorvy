@@ -1,6 +1,10 @@
 /* fonts */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,500;0,600;0,700;1,700&display=swap');
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* Navigation navbar css */
 
 .start-header {
@@ -55,7 +59,12 @@
     padding-right: 0;
 }
 
+<<<<<<< HEAD
 .navbar-toggler:active, .navbar-toggler:focus {
+=======
+.navbar-toggler:active,
+.navbar-toggler:focus {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     outline: none;
 }
 
@@ -68,7 +77,12 @@
     transition: all 300ms linear;
 }
 
+<<<<<<< HEAD
 .navbar-light .navbar-toggler-icon:after, .navbar-light .navbar-toggler-icon:before {
+=======
+.navbar-light .navbar-toggler-icon:after,
+.navbar-light .navbar-toggler-icon:before {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     width: 24px;
     position: absolute;
     height: 1px;
@@ -107,10 +121,18 @@
     color: #00132D !important;
 }
 
+<<<<<<< HEAD
 .nav-item.active .nav-link {
     color: #1173FF !important;
     border-bottom: 2px solid #1173FF;
 }
+=======
+
+/* .nav-item.active .nav-link {
+    color: #1173FF !important;
+    border-bottom: 2px solid #1173FF;
+} */
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 
 .nav-link {
     position: relative;
@@ -148,14 +170,25 @@
     transition: all 200ms linear;
 }
 
+<<<<<<< HEAD
 /* sroll bar */
 
+=======
+
+/* sroll bar */
+
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* width */
 
 ::-webkit-scrollbar {
     width: 7px;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* Track */
 
 ::-webkit-scrollbar-track {
@@ -163,6 +196,10 @@
     border-radius: 10px;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* Handle */
 
 ::-webkit-scrollbar-thumb {
@@ -170,6 +207,10 @@
     border-radius: 10px;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* Handle on hover */
 
 ::-webkit-scrollbar-thumb:hover {
@@ -180,6 +221,17 @@
     margin-top: 0px !important;
 }
 
+<<<<<<< HEAD
+=======
+.section-profile {
+    margin-top: 100px;
+}
+
+.section-profile .card {
+    margin-bottom: 20px;
+}
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 .hp-1 {
     font-family: 'poppins';
     font-size: 14px;
@@ -268,8 +320,15 @@
     /* background-color: #45CCFF; */
 }
 
+<<<<<<< HEAD
 /*  */
 
+=======
+
+/*  */
+
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /*  */
 
 .img-blog1 img {
@@ -338,6 +397,10 @@
     outline: none;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* button css */
 
 .button-blue {
@@ -349,6 +412,10 @@
     top: -4px;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /**
  * Inspiration for this project found at:
  * https://markus.oberlehner.net/blog/pure-css-animated-svg-circle-chart
@@ -376,6 +443,10 @@
     /* 4 */
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /**
    * 1. Rotate by -90 degree to make the starting point of the
    *    stroke the top of the circle.
@@ -455,8 +526,15 @@
     color: #1173FF !important;
 }
 
+<<<<<<< HEAD
 /* */
 
+=======
+
+/* */
+
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* footer */
 
 footer {
@@ -512,6 +590,10 @@ footer a:hover {
     color: #D6DBE2 !important;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /**Sub Navigation**/
 
 .subnavigation-container {
@@ -545,6 +627,10 @@ footer a:hover {
     color: black;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* preloader */
 
 .preloader {
@@ -562,6 +648,10 @@ footer a:hover {
     top: 0;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* scroll to top */
 
 #button {
@@ -637,6 +727,10 @@ footer a:hover {
     text-decoration: none;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* mobile viow nav meida query */
 
 @media screen and (max-width: 600px) {
@@ -668,6 +762,10 @@ footer a:hover {
     }
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 /* navbar */
 
 @media screen and (max-width: 600px) {
@@ -830,3 +928,264 @@ footer a:hover {
         width: 130px;
     }
 }
+<<<<<<< HEAD
+=======
+
+
+/* Aug 21 2021**/
+
+.btn-general {
+    background: #1173FF;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    padding: 5px 29px;
+    border: 1px solid #1173FF;
+    font-weight: 600;
+    transition: all 0.9s;
+}
+
+.btn-general:hover {
+    color: #1173FF;
+    background: #fff;
+}
+
+.h-92 {
+    max-height: 92px;
+    overflow-y: auto;
+}
+
+.round {
+    position: absolute;
+    top: 4px;
+    left: 10px;
+    margin-bottom: 7px;
+}
+
+.heading-forth {
+    color: #00132D;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: "Poppins";
+}
+
+.overScroll {
+    height: 625px;
+    overflow: auto;
+}
+
+.line-profile {
+    top: 0;
+    margin-bottom: 10px;
+}
+
+.btn-download-app {
+    background-color: #1A1A1A;
+    color: white;
+    transition: all 0.3s ease;
+    padding: 7px 20px;
+    border-radius: 50px;
+    border: 1px solid #1A1A1A;
+    font-size: 14px;
+    font-family: 'Poppins';
+    height: 42px;
+    cursor: pointer;
+}
+
+.btn-download-app:hover {
+    background-color: #30005E;
+    border-color: #30005E;
+}
+
+.btn-download-app i {
+    font-size: 18px;
+}
+
+.formy-range {
+    height: 28px;
+    padding: 5px;
+    font-size: 12px;
+    width: 100%;
+}
+
+.irs--flat .irs-bar {
+    background-color: #1173FF !important;
+}
+
+.irs--flat .irs-handle>i:first-child,
+.irs--flat .irs-from,
+.irs--flat .irs-to,
+.irs--flat .irs-single {
+    background-color: #1173FF !important;
+}
+
+.irs--flat .irs-to:before,
+.irs--flat .irs-from:before {
+    border-top-color: #1173FF !important;
+}
+
+.irs--flat .irs-handle.state_hover>i:first-child,
+.irs--flat .irs-handle:hover>i:first-child {
+    background-color: #000 !important;
+}
+
+.statusTag {
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    width: 100%;
+    text-align: center;
+    display: block;
+}
+
+.approve_status {
+    background: #C9EDDD;
+}
+
+.doc_not_sub_status {
+    background: #F5E9C6;
+}
+
+.pending_status {
+    background: #B9D6FF;
+}
+
+.disbaled_status {
+    background: #FBEBEA;
+}
+
+.reject_status {
+    background: #E9C6C6;
+}
+
+
+/*Profile Image*/
+
+.profile-img {
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    border: 2px solid #1173FF;
+    border-radius: 50%;
+}
+
+
+/*End Profile Image*/
+
+
+/* dropdown menu in front-end */
+
+.classdrop {
+    text-align: left !important;
+    background-color: white !important;
+    text-decoration: none !important;
+}
+
+.classdrop1 {
+    padding-bottom: 5px;
+    padding-top: 5px;
+    position: absolute;
+    top: 50px;
+}
+
+.classdrop li:hover {
+    background-color: #F2F8FF !important;
+}
+
+.classdrop li {
+    padding: 5px !important;
+}
+
+.classdrop li a {
+    text-align: left !important;
+    margin-left: 20px !important;
+    text-decoration: none !important;
+    color: #00132D;
+    font-family: "Poppins";
+}
+
+.text-mute {
+    color: grey;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+
+/* dropdown menu in front-end */
+
+
+/*Notification Settings*/
+
+.head-1-noti {
+    display: flex;
+    line-height: 1.3;
+}
+
+.notification-text6 {
+    color: #00132D;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.notification-menu a,
+.show_all_notifications a {
+    color: #00132D !important;
+    text-decoration: none;
+}
+
+.bgm:hover .row {
+    background: rgba(138, 155, 165, 0.15);
+}
+
+
+/*Notificatipon Settings end*/
+
+
+/*Notificatipon Settings end*/
+
+
+/* Toaster Link  */
+
+.notification_link {
+    color: #1173FF !important;
+}
+
+
+/*Toaster Link ENd*/
+
+
+/*FInd Tutor Front-end*/
+
+h3 {
+    color: #00132D;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: "Poppins";
+}
+
+.decoration-none:hover {
+    text-decoration: none;
+}
+
+.findTutor-img {
+    height: 70px;
+    width: 70px;
+}
+
+.div-center {
+    justify-content: center;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+
+/*End Find Tutor*/
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249

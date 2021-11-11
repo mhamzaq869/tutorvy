@@ -6,6 +6,10 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+<<<<<<< HEAD
+=======
+        "apility/laravel-fcm": "^1.4",
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
         "beyondcode/laravel-websockets": "^1.12",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
@@ -14,7 +18,15 @@
         "laravel/socialite": "^5.2",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
+<<<<<<< HEAD
         "pusher/pusher-php-server": "~3.0"
+=======
+        "obydul/laraskrill": "^1.1",
+        "paypal/rest-api-sdk-php": "^1.14",
+        "pusher/pusher-php-server": "~3.0",
+        "spatie/laravel-query-builder": "^3.5",
+        "srmklive/paypal": "^3.0"
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -29,7 +41,19 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
+<<<<<<< HEAD
         }
+=======
+        },
+        "classmap": [],
+
+
+        "files": [
+
+            "app/helpers.php"
+
+        ]
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     },
     "autoload-dev": {
         "psr-4": {

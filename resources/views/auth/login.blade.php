@@ -22,6 +22,80 @@
     <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
     <!-- fonawsome -->
     <link href="{{ asset('assets/css/fontawesome.min.css') }}" rel="stylesheet">
+<<<<<<< HEAD
+=======
+    <link href="{{ asset('assets/css/modal.css') }}" rel="stylesheet">
+
+    <!--toggle Eye for tutor and student-->
+    <style>
+        .toggle-password{
+            position: absolute;
+            right: 12px;
+            top: 43px;
+        }
+
+.Google {
+    margin-top: 30px;
+    width: 100%;
+    background-color: #C94131;
+    color: #fff;
+    padding: 9px;
+    font-size: 14px;
+    border: 1px solid #C94131;
+    text-align: center;
+    font-family: 'Poppins';
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.Google a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.Google:hover {
+    background-color: #fff;
+}
+
+.Google:hover a {
+    color: #C94131;
+}
+.facebook{
+    border:1px solid #1173FF;
+}
+.facebook a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.facebook:hover {
+    background-color: #fff;
+}
+
+.facebook:hover a {
+    color: #1173FF;
+}
+.Apple {
+    border: 1px solid #000000;
+}
+
+.Apple a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.Apple:hover {
+    background-color: #fff;
+    color: #000000;
+
+}
+
+.Apple:hover a {
+    color: #000000;
+}
+
+    </style>
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 </head>
 
 <body>
@@ -58,9 +132,17 @@
                             <div class="row">
                                 @isset($user)
                                 <p class="ml-3 mt-3 mt-5">
+<<<<<<< HEAD
                                     @if($user->profile)
                                     @else
                                     <img src="../assets/images/logo/boy.jpg" alt="boy" style="width: 40px;">
+=======
+                                    @if($user->picture)
+                                        <img src="{{asset($user->picture)}}" alt="boy" class="profile-img" style="width: 40px;">
+
+                                    @else
+                                        <img src="../assets/images/ico/Square-white.jpg" alt="boy" style="width: 40px;">
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                                     @endif
                                 </p>
                                 <p class="ml-3 mt-5 Welcome-text"> {{$user->first_name ?? ''}} {{$user->last_name ?? ''}}</p>
@@ -88,7 +170,11 @@
                             </p>
                             <div class="row">
                                 <p class="user-text ml-3">
+<<<<<<< HEAD
                                     New user?<a href="{{ route('register') }}" class="Create-text text-decoration-none">
+=======
+                                    New user?<a href="{{route('student.register')}}" class="Create-text text-decoration-none">
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                                         create an account
                                     </a>
                                 </p>
@@ -99,6 +185,10 @@
                                 @csrf
                                 <div class="mb-5 input-login">
                                     <div class="input-container">
+<<<<<<< HEAD
+=======
+                                            <input type="hidden" name="time_zone" id="time_zone">
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                                             @if(!isset($user))
                                             <input type="email" name="email" id="myName" placeholder="Enter Email Address"
                                                 class="form-control @if(Session::has('error')) is-invalid @endif">
@@ -113,6 +203,10 @@
                                                 <input type="text" name="role" value="{{$user->role}}" hidden/>
                                                 <input type="password" name="password" id="pswd" placeholder="Enter your password"
                                                 class="@isset($error) is-invalid @endisset">
+<<<<<<< HEAD
+=======
+                                                <span toggle="#password-field" id="togglepass" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                                                 @isset($error)
                                                         <span class="invalid-feedback d-block" role="alert">
                                                             <strong>{{$error}}</strong>
@@ -122,7 +216,11 @@
                                             <input type="submit" class="submit schedule-btn w-25 mt-3 float-right" value="Submit">
                                     </div>
                                     @if(isset($user))
+<<<<<<< HEAD
                                     <span toggle="#password-field pr-5" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                                     <p class="checkboxs d-inline-block w-100 mt-4">
                                         <input style="width: 15px;" type="checkbox" class="checkbox">
                                         <span style="position: absolute;left: 55px;font-size: 16px;font-family: Poppins;">
@@ -142,17 +240,35 @@
                         @if(!isset($user))
                         <div class="social-Icon ml-3 mr-3">
                             <div class="Google">
+<<<<<<< HEAD
                                 <a href="{{route('social.google')}}">
+=======
+                                <a href="{{route('social.google',[0])}}" target="popup"
+                                onclick="window.open({{route('social.google',[0])}},'popup','width=600,height=600'); return true;">
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                                     <img class="mr-3" src="../assets/images/ico/google.png" alt="google">
                                     Continue with Google
                                 </a>
                             </div>
                             <div class="facebook">
+<<<<<<< HEAD
                                 <img class="mr-3" src="../assets/images/ico/facebook(1).png" alt="facebook">
                                 Continue with Facebook
                             </div>
                             <div class="Apple">
                                 <img class="mr-3" src="../assets/images/ico/apple.png" alt="apple">
+=======
+                                <a href="{{route('social.facebook',[0])}}">
+
+                                <!-- <img class="mr-3" src="../assets/images/ico/facebook(1).png" alt="facebook"> -->
+                                <i class="fa fa-facebook fa-lg mr-2" aria-hidden="true"></i>
+                                Continue with Facebook
+                                </a>
+                            </div>
+                            <div class="Apple">
+                                <!-- <img class="mr-3" src="../assets/images/ico/apple.png" alt="apple"> -->
+                                <i class="fa fa-apple fa-lg mr-2" aria-hidden="true"></i>
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                                 Continue with Apple
                             </div>
                             <div class="Policy-text" style="display: flex;">
@@ -180,7 +296,11 @@
                             </div>
                             <div class="col-md-6 text-right">
                                 <div class="social-Icon ml-4" style="font-size: 14px;color: #1173FF;font-family: Poppins;">
+<<<<<<< HEAD
                                     <a href="./login.html" class="mr-4" > Back to signin</a>
+=======
+                                    <a href="{{route('login')}}" class="mr-4" > Back to signin</a>
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                                 </div>
                             </div>
 
@@ -193,6 +313,73 @@
                 </div>
             </div>
 
+<<<<<<< HEAD
+=======
+
+            <!-- Modal -->
+            <div class="modal fade custom_modal" id="registerLogin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+
+                        <div class="modal-body bg-custom text-center p-5">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h1 class="p-2"> <img src="{{asset('assets/images/logo-footer.png')}}" alt="">
+                                    </h1>
+                                    <h3 class="mb-4 p-2"> Are you a</h3>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="bg-btn-light">
+                                        <a type="button" href="{{route('student.register')}}" class="btn  modal-btn animate__animated">Student</a>
+                                        <a type="buttin" href="{{route('register')}}" class="btn  modal-btn animate__animated">Tutor</a>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <!-- <div class="modal-footer">
+
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+<!-- Category Modal -->
+
+             <!-- Modal -->
+    <div class="modal fade custom_modal" id="registerLogin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-body bg-custom text-center p-5">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="p-2"> <img src="{{asset('assets/images/logo-footer.png')}}" alt="">
+                            </h1>
+                            <h3 class="mb-4 p-2"> Are you a</h3>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="bg-btn-light">
+                                <a type="button" href="{{route('student.register')}}" class="btn  modal-btn animate__animated">Student</a>
+                                <a type="buttin" href="{{route('register')}}" class="btn  modal-btn animate__animated">Tutor</a>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <!-- <div class="modal-footer">
+
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="../assets/js/bootstrap.js"></script>
@@ -201,6 +388,12 @@
         <script>
             // jquery form validation
             $(document).ready(function() {
+<<<<<<< HEAD
+=======
+                const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                $("#time_zone").val(timezone);
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                 $("#form").validate({
                     rules: {
                         myName: {
@@ -240,6 +433,10 @@
             })
         </script>
     </section>
+<<<<<<< HEAD
+=======
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 </body>
 
 </html>

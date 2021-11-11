@@ -1,8 +1,11 @@
+<<<<<<< HEAD
 
 
 
 
 
+=======
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 function openCity(evt, cityName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -18,7 +21,11 @@ function openCity(evt, cityName) {
 }
 
 // Get the element with id="defaultOpen" and click on it
+<<<<<<< HEAD
 document.getElementById("defaultOpen").click(); // maybe readd
+=======
+// document.getElementById("defaultOpen").click(); // maybe readd
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 
 
 $('.js-tilt').tilt({
@@ -26,3 +33,18 @@ $('.js-tilt').tilt({
     // maxGlare: 15
 })
 
+<<<<<<< HEAD
+=======
+
+function resetFilter() {
+    alert($("#locat").val());
+    $(".form-select").val("");
+    $(".form-select").select2();
+    $("#availabilityAll").checked = true;
+    $("#range").val(10);
+    $("#any").checked = true;
+    $("#rating_filter0").checked = true;
+
+    // $("#locat").select2("val", "");
+}
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249

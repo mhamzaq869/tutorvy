@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 
 
 /* nedia query */
+=======
+/* nedia query */
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 @media(max-width:768px) {
     #homesection {
         display: block !important;
@@ -84,7 +89,12 @@
     }
 }
 
+<<<<<<< HEAD
 @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+=======
+@media only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px) {
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     .table {
         overflow: auto !important;
         white-space: nowrap !important;

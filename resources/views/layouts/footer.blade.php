@@ -3,7 +3,11 @@
     <div class="footer-middle pb-2">
         <div class="container">
             <div class="col-md-12 mt-3">
+<<<<<<< HEAD
                 <img class="mb-3 logo-footer-mobile" height="34px" src="assets/images/logo-footer.png">
+=======
+                <img class="mb-3 logo-footer-mobile" height="34px" src="{{asset('assets/images/logo-footer.png')}}">
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
             </div>
         </div>
         <div class="container">
@@ -104,17 +108,29 @@
                                 </a>
                             </li>
                             <li class="mt-3">
+<<<<<<< HEAD
                                 <a href="subject/subject.html">
+=======
+                                <a href="{{ url('subject') }}">
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                                     Subjects
                                 </a>
                             </li>
                             <li class="mt-3">
+<<<<<<< HEAD
                                 <a href="tutor/find-tutor.html">
+=======
+                                <a href="{{ url('findtutor') }}">
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                                     Find a tutor
                                 </a>
                             </li>
                             <li class="mt-3">
+<<<<<<< HEAD
                                 <a href="course/course.html">
+=======
+                                <a href="{{ url('course') }}">
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                                     Courses
                                 </a>
                             </li>
@@ -142,7 +158,11 @@
                                 </a>
                             </li>
                             <li class="mt-3">
+<<<<<<< HEAD
                                 <a href="registerion/registration.html">
+=======
+                                <a href="{{ url('register') }}">
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                                     Become a tutor
                                 </a>
                             </li>
@@ -151,9 +171,15 @@
                         <a>
                             <div class="icons-footer mx-auto none">
 
+<<<<<<< HEAD
                                 <img src="assets/images/ico/titwer.svg" alt="icon">
                                 <img class="ml-2 mr-2" src="assets/images/ico/face.svg" alt="icon">
                                 <img src="assets/images/ico/insta.svg" alt="insta-icon">
+=======
+                                <img src="{{asset('assets/images/ico/titwer.svg')}}" alt="icon">
+                                <img class="ml-2 mr-2" src="{{asset('assets/images/ico/face.svg')}}" alt="icon">
+                                <img src="{{asset('assets/images/ico/insta.svg')}}" alt="insta-icon">
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                             </div>
                         </a>
                     </div>
@@ -187,9 +213,15 @@
                     </ul>
                 </div>
                 <div class="icons-footer mx-auto shows">
+<<<<<<< HEAD
                     <img src="assets/images/ico/titwer.svg" alt="icon">
                     <img class="ml-2 mr-2" src="assets/images/ico/face.svg" alt="icon">
                     <img src="assets/images/ico/insta.svg" alt="insta-icon">
+=======
+                    <img src="{{asset('assets/images/ico/titwer.svg')}}" alt="icon">
+                    <img class="ml-2 mr-2" src="{{asset('assets/images/ico/face.svg')}}" alt="icon">
+                    <img src="{{asset('assets/images/ico/insta.svg')}}" alt="insta-icon">
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                 </div>
             </div>
         </div>

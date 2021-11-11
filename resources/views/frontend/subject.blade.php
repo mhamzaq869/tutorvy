@@ -8,7 +8,10 @@
         <br />
         <br />
         <br />
+<<<<<<< HEAD
         <br />
+=======
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
         <span class="text-work" style="line-height: 1;">
             <span class="text-how">
                 Offering
@@ -30,8 +33,25 @@
             <div class="col-md-3"></div>
             <div class="col-md-6 col-12 bg-subject bg-subject1">
                 <div class="mobile-view-input">
+<<<<<<< HEAD
                     <input type="text" class="input-subject" placeholder="Subject category">
                     <input type="submit" class="input-submite input-submite1" value="Search">
+=======
+                  
+                        <select name="" class="input-subject" id="">
+                            <option value="">Select Subject</option>
+
+                            @foreach($main_sub as $sub_cat)
+                            <option value="{{$sub_cat->id}}" id="defaultOpen_{{$sub_cat->id}}" onclick="getSubSubject({{$sub_cat->id}})">
+                                    {{$sub_cat->name}}
+                            </option>
+                        @endforeach
+                        </select>
+                        <!-- <input type="text" class="input-subject" placeholder="Subject category"> 
+                        <input type="submit" class="input-submite input-submite1" value="Search">-->
+               
+                   
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                 </div>
 
             </div>
@@ -43,6 +63,7 @@
         <div class="row mt-5">
             <div class="col-md-3 col-12 ">
                 <div class="tab-mobile tab">
+<<<<<<< HEAD
                     <button class="tablinks" id="defaultOpen" onclick="openCity(event, 'London')">
                         ComputerScience
                     </button>
@@ -504,6 +525,26 @@
                                     <li>Arabic</li>
                                 </ul>
                             </div>
+=======
+                    @foreach($main_sub as $sub_cat)
+                        <button class="tablinks {{($sub_cat->id == 1) ? 'active': ''}}" id="defaultOpen_{{$sub_cat->id}}" onclick="getSubSubject({{$sub_cat->id}})">
+                            {{$sub_cat->name}}
+                        </button>
+                    @endforeach
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div id="subjects">
+                    <div id="1">
+                        <div class="row book-luli" id="subSubjects">
+                            @foreach ($subjects as $i => $subject)
+                                    <div class="col-md-4">
+                                        <a href="#"  class="">
+                                            {{ $subject->name }}
+                                        </a>        
+                                    </div>
+                            @endforeach
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                         </div>
                     </div>
                 </div>
@@ -537,18 +578,30 @@
                                         </span>
                                         <div class="container mt-4">
                                             <div class="row">
+<<<<<<< HEAD
                                                 <div class="d-flex">
                                                     <div class="input-text text-mobile-sub  pt-3 pb-3 input-subs"
                                                         style="display: flex;">
+=======
+                                                <div class="col-md-12">
+                                                    <div class="input-text text-mobile-sub  pt-3 pb-3 input-subs"
+                                                        >
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                                                         <input type="text" class="card-input ml-3"
                                                             placeholder="Enter your name">
                                                         <input type="text" class="card-input ml-4 mr-3"
                                                             placeholder="Enter your email">
                                                     </div>
                                                 </div>
+<<<<<<< HEAD
                                                 <div class="d-flex">
                                                     <div class="input-text text-mobile-sub input-subs"
                                                         style="display: flex;">
+=======
+                                                <div class="col-md-12">
+                                                    <div class="input-text text-mobile-sub input-subs"
+                                                       >
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
                                                         <input type="text" class="card-input ml-3"
                                                             placeholder="Are you a">
                                                         <input type="text" class="card-input ml-4 mr-3"

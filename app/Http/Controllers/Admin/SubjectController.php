@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\Admin\Subject;
 use App\Models\Admin\SubjectCategory;
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 
 class SubjectController extends Controller
 {
@@ -22,8 +27,15 @@ class SubjectController extends Controller
 
     public function index()
     {
+<<<<<<< HEAD
         $subjects = Subject::get();
         $categories = SubjectCategory::get();
+=======
+        $subjects = Subject::paginate(15);
+        $categories = SubjectCategory::get();
+        // $subjectList = Subject::paginate(15);
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
     
         return view('admin.pages.subjects.index',compact('subjects','categories'));
     }
@@ -46,4 +58,54 @@ class SubjectController extends Controller
         }
         return "added Subjects" ;
     }
+<<<<<<< HEAD
+=======
+
+    public function insertSubject(Request $request){
+        $subject = Subject::create([
+            'name' => $request->name,
+            'category_id' => $request->category_id,
+        ]);
+
+        return response()->json([
+            'status'=>'200',
+            'message' => 'Subject Added.'
+        ]);
+
+    
+    }
+    
+    public function deleteSubject(Request $request){
+
+
+        $subject = Subject::destroy([
+            'id' => $request->id,
+        ]);
+
+        return response()->json([
+            'status'=>'200',
+            'message' => 'Subject Deleted.'
+        ]);
+
+    
+    }
+
+    public function updateSubject(Request $request){
+        // console.log($request->name);
+        $subject = Subject::where('id',$request->id)->update([
+            'name' => $request->name,
+            'category_id' => $request->category_id,
+            
+        ]);
+
+        return response()->json([
+            'status'=>'200',
+            'message' => 'Subject Updated.'
+        ]);
+
+    
+    }
+
+
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
 }

@@ -17,6 +17,7 @@ class CreateAssessmentsTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('subject_id');
+<<<<<<< HEAD
             $table->string('question_1')->nullable();
             $table->string('question_2')->nullable();
             $table->string('question_3')->nullable();
@@ -25,6 +26,17 @@ class CreateAssessmentsTable extends Migration
             $table->string('answer_3')->nullable();
             $table->string('assessment_note')->nullable();
             $table->integer('status')->default(0);
+=======
+            $table->text('question_1')->nullable();
+            $table->text('question_2')->nullable();
+            $table->text('question_3')->nullable();
+            $table->text('answer_1')->nullable();
+            $table->text('answer_2')->nullable();
+            $table->text('answer_3')->nullable();
+            $table->string('assessment_note')->nullable();
+            $table->integer('status')->default(0);
+            $table->integer('verified_by')->nullable();
+>>>>>>> bde60e339f8f6b6c5e731844541df755e099d249
             $table->timestamps();
         });
     }
